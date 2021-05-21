@@ -7,5 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dennis",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "egoroof-blowfish": "^2.2.2"
+  }
 }

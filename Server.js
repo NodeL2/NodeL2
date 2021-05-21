@@ -1,5 +1,6 @@
 let net = require('net');
 let crypto = require('crypto');
+const Blowfish = require('egoroof-blowfish');
 
 // User define
 let Config = require('./Config');
@@ -22,10 +23,14 @@ class Server {
 
             var packet = new Buffer.from(data, 'binary').slice(2);
             console.log(packet);
-            var decipher = crypto.createDecipheriv("bf-ecb", "[;'.]94-31==-%&@!^+]", "");
-            decipher.setAutoPadding(false);
-            packet = Buffer.concat([decipher.update(packet), decipher.final()])
-            console.log(packet);
+            // var decipher = crypto.createDecipheriv("bf-ecb", "[;'.]94-31==-%&@!^+]", "");
+            // decipher.setAutoPadding(false);
+            // packet = Buffer.concat([decipher.update(packet), decipher.final()])
+            // console.log(packet);
+
+            const bf = new Blowfish("[;'.]94-31==-%&@!^+]", Blowfish.MODE.ECB, Blowfish.PADDING.NULL);
+            const decoded = bf.decode(packet, Blowfish.TYPE.UINT8_ARRAY);
+            console.log(decoded);
         });
 
         // Callback: Connection closed
