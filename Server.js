@@ -1,4 +1,5 @@
 let net = require('net');
+let crypto = require('crypto');
 
 // User define
 let Config = require('./Config');
@@ -17,7 +18,14 @@ class Server {
 
         // Callback: Received data
         socket.on('data', (data) => {
-            console.log('Connection data from %s: %j', socket.remoteAddress, data);
+            //console.log('Connection data from %s: %j', socket.remoteAddress, data);
+
+            var packet = new Buffer.from(data, 'binary').slice(2);
+            console.log(packet);
+            var decipher = crypto.createDecipheriv("bf-ecb", "[;'.]94-31==-%&@!^+]", "");
+            decipher.setAutoPadding(false);
+            packet = Buffer.concat([decipher.update(packet), decipher.final()])
+            console.log(packet);
         });
 
         // Callback: Connection closed
