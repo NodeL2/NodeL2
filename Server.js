@@ -2,6 +2,7 @@ let net = require('net');
 
 // User define
 let Config = require('./Config');
+let ServerSession = require('./ServerSession');
 let ServerMethods = require('./ServerMethods');
 
 class Server {
@@ -30,7 +31,9 @@ class Server {
         });
 
         socket.setEncoding('binary');
-        socket.write(ServerMethods.init());
+
+        let session = new ServerSession(socket);
+        session.sendPacket(ServerMethods.init());
     }
 }
 

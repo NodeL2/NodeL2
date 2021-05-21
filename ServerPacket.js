@@ -1,7 +1,7 @@
 class ServerPacket {
     constructor(size) {
-        this.buffer = new Buffer.allocUnsafe(size + 2);
-        this.offset = 2;
+        this.buffer = new Buffer.alloc(size + 4 + (size + 4) % 8);
+        this.offset = 0;
     }
 
     writeC(data) {
