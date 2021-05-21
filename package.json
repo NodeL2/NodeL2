@@ -1,8 +1,8 @@
 {
-  "name": "sample",
+  "name": "NodeL2",
   "version": "1.0.0",
-  "description": "Just a sample app",
-  "main": "index.js",
+  "description": "Node implementation of a L2 server emulator",
+  "main": "Server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

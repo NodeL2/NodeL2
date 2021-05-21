@@ -1,15 +1,13 @@
 let net = require('net');
-let initLS = require('./InitLS');
 
-let ls = {
-    host: '127.0.0.1',
-    port: 2106
-};
+// User define
+let Config = require('./Config');
+let ServerMethods = require('./ServerMethods');
 
 class Server {
     constructor() {
-        net.createServer(this.onSocket).listen(ls.port, ls.host, () => {
-            console.info('LS listening on ' + ls.host + ':' + ls.port);
+        net.createServer(this.onSocket).listen(Config.loginServer.port, Config.loginServer.host, () => {
+            console.info('LS listening on ' + Config.loginServer.host + ':' + Config.loginServer.port);
         });
     }
 
@@ -18,7 +16,7 @@ class Server {
 
         // Callback: Received data
         socket.on('data', (data) => {
-            console.info('Connection data from %s: %j', socket.remoteAddress, data);
+            console.log('Connection data from %s: %j', socket.remoteAddress, data);
         });
 
         // Callback: Connection closed
@@ -28,11 +26,11 @@ class Server {
 
         // Callback: Unknown error
         socket.on('error', (error) => {
-            console.info('Connection %s error: %s', socket.remoteAddress, error.message);
+            console.log('Connection %s error: %s', socket.remoteAddress, error.message);
         });
 
         socket.setEncoding('binary');
-        socket.write(initLS());
+        socket.write(ServerMethods.init());
     }
 }
 
