@@ -28,7 +28,7 @@ class Server {
             // packet = Buffer.concat([decipher.update(packet), decipher.final()])
             // console.log(packet);
 
-            const bf = new Blowfish("[;'.]94-31==-%&@!^+]", Blowfish.MODE.ECB, Blowfish.PADDING.NULL);
+            const bf = new Blowfish("[;'.]94-31==-%&@!^+]\u0000", Blowfish.MODE.ECB, Blowfish.PADDING.NULL);
             const decoded = bf.decode(packet, Blowfish.TYPE.UINT8_ARRAY);
             console.log(decoded);
         });
