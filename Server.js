@@ -1,6 +1,5 @@
 let net = require('net');
 let crypto = require('crypto');
-const Blowfish = require('egoroof-blowfish');
 
 // User define
 let Config = require('./Config');
@@ -19,18 +18,12 @@ class Server {
 
         // Callback: Received data
         socket.on('data', (data) => {
-            //console.log('Connection data from %s: %j', socket.remoteAddress, data);
-
-            var packet = new Buffer.from(data, 'binary').slice(2);
+            var packet = new Buffer.from(data, 'binary').slice(2).swap32();
             console.log(packet);
-            // var decipher = crypto.createDecipheriv("bf-ecb", "[;'.]94-31==-%&@!^+]", "");
-            // decipher.setAutoPadding(false);
-            // packet = Buffer.concat([decipher.update(packet), decipher.final()])
-            // console.log(packet);
-
-            const bf = new Blowfish("[;'.]94-31==-%&@!^+]\u0000", Blowfish.MODE.ECB, Blowfish.PADDING.NULL);
-            const decoded = bf.decode(packet, Blowfish.TYPE.UINT8_ARRAY);
-            console.log(decoded);
+            var decipher = crypto.createDecipheriv("bf-ecb", "[;'.]94-31==-%&@!^+]\u0000", "");
+            decipher.setAutoPadding(false);
+            packet = Buffer.concat([decipher.update(packet), decipher.final()]).swap32();
+            console.log(packet);
         });
 
         // Callback: Connection closed
