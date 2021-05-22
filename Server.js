@@ -20,7 +20,7 @@ class Server {
         socket.on('data', (data) => {
             var packet = new Buffer.from(data, 'binary').slice(2).swap32();
             console.log(packet);
-            var decipher = crypto.createDecipheriv("bf-ecb", "[;'.]94-31==-%&@!^+]\u0000", "");
+            var decipher = crypto.createDecipheriv('bf-ecb', Config.blowfishKey, '');
             decipher.setAutoPadding(false);
             packet = Buffer.concat([decipher.update(packet), decipher.final()]).swap32();
             console.log(packet);

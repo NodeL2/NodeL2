@@ -1,4 +1,4 @@
-let ServerPacket = require("./ServerPacket");
+let ServerPacket = require('./ServerPacket');
 
 class ServerMethods {
     static init() {
