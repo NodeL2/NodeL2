@@ -5,6 +5,7 @@ let crypto = require('crypto');
 let Config = require('./Config');
 let ServerSession = require('./ServerSession');
 let ServerMethods = require('./ServerMethods');
+let ClientMethods = require('./ClientMethods');
 
 class Server {
     constructor() {
@@ -24,6 +25,19 @@ class Server {
             decipher.setAutoPadding(false);
             packet = Buffer.concat([decipher.update(packet), decipher.final()]).swap32();
             console.log(packet);
+
+            let opcode = packet[0];
+
+            switch (opcode) {
+                case 0x00:
+                    let hi = ClientMethods.authorizeLogin(packet);
+                    console.log(hi);
+                    break;
+
+                default:
+                    console.log('Unknown opcode -> 0x%s', Number(opcode).toString(16).padStart(2, '0'));
+                    break;
+            }
         });
 
         // Callback: Connection closed
@@ -39,7 +53,7 @@ class Server {
         socket.setEncoding('binary');
 
         let session = new ServerSession(socket);
-        session.sendPacket(ServerMethods.init());
+        session.sendPacket(ServerMethods.handshake(), false);
     }
 }
 
