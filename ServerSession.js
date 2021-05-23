@@ -2,6 +2,7 @@ let crypto = require('crypto');
 
 // User define
 let Config = require('./Config');
+let ServerMethods = require('./ServerMethods');
 let ClientMethods = require('./ClientMethods');
 
 class ServerSession {
@@ -13,7 +14,13 @@ class ServerSession {
         let header = new Buffer.from([data.length + 2, 0x00]);
 
         if (encrypt) {
-            console.log('Encryption failed');
+            let cipher = crypto.createCipheriv('bf-ecb', Config.blowfishKey, '');
+            cipher.setAutoPadding(false);
+            data = cipher.update((new Buffer.from(data)).swap32());
+
+            this.socket.write(
+                Buffer.concat([header, data.swap32()]) // Packet
+            );
         }
         else {
             this.socket.write(
@@ -32,8 +39,14 @@ class ServerSession {
 
         switch (opcode) {
             case 0x00:
-                let hi = ClientMethods.authorizeLogin(packet);
-                console.log(hi);
+                let credentials = ClientMethods.authorizeLogin(packet);
+                console.log(credentials);
+                // Check user
+                this.sendData(ServerMethods.loginSuccess());
+                break;
+
+            case 0x05:
+                console.log('LS:: request Server List');
                 break;
 
             default:
