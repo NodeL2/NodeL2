@@ -32,6 +32,24 @@ class ClientMethods {
             ]
         };
     }
+
+    static gameLogin(buffer) {
+        let packet = new ClientPacket(buffer);
+
+        packet
+            .readC()
+            .readD()  // Session Key (first)
+            .readD()  // Session Key (last)
+            .readC(); // Server ID
+
+        return {
+            sessionKey: [
+                packet.data[1],
+                packet.data[2],
+            ],
+            serverID: packet.data[3]
+        };
+    }
 }
 
 module.exports = ClientMethods;

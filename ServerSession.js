@@ -25,25 +25,37 @@ class ServerSession {
 
         // Opcodes
         switch (decryptedPacket[0]) {
-            case 0x00:
+            case 0x00: // Authorize Login
                 {
                     let data = ClientMethods.authorizeLogin(decryptedPacket);
                     this.sendData(ServerMethods.loginSuccess());
 
-                    // 0x01 - System error
-                    // 0x02 - Password does not match this account
-                    // 0x04 - Access failed
-                    // 0x07 - The account is already in use
+                    // 0x01 System error
+                    // 0x02 Password does not match this account
+                    // 0x04 Access failed
+                    // 0x07 The account is already in use
                     //this.sendData(ServerMethods.loginFail(0x01));
                 }
                 break;
 
-            case 0x05:
+            case 0x05: // Server List
                 {
                     let data = ClientMethods.serverList(decryptedPacket);
 
                     if (Config.sessionKey.toString() === data.sessionKey.toString()) {
-                        this.sendData(ServerMethods.serverList());
+                        this.sendData(ServerMethods.serverList(
+                            Config.gameServer.host, Config.gameServer.port
+                        ));
+                    }
+                }
+                break;
+
+            case 0x02: // Game Login
+                {
+                    let data = ClientMethods.gameLogin(decryptedPacket);
+                    
+                    if (Config.sessionKey.toString() === data.sessionKey.toString()) {
+                        console.log('LS:: Connect to GS %d', data.serverID);
                     }
                 }
                 break;

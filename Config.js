@@ -4,6 +4,11 @@ class Config {
         port: 2106
     };
 
+    static gameServer = {
+        host: '127.0.0.1',
+        port: 7777
+    };
+
     static blowfishKey = '[;\'.]94-31==-%&@!^+]\u0000';
 
     static sessionKey = [
