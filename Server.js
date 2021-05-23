@@ -7,8 +7,11 @@ let ServerMethods = require('./ServerMethods');
 
 class Server {
     constructor() {
-        net.createServer(this.onSocket).listen(Config.loginServer.port, Config.loginServer.host, () => {
-            console.log('LS:: listening on %s:%s', Config.loginServer.host, Config.loginServer.port);
+        let host = Config.loginServer.host;
+        let port = Config.loginServer.port;
+
+        net.createServer(this.onSocket).listen(port, host, () => {
+            console.log('LS:: listening on %s:%s', host, port);
         });
     }
 

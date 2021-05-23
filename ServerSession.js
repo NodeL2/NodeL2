@@ -16,8 +16,9 @@ class ServerSession {
             console.log('Encryption failed');
         }
         else {
-            let packet = Buffer.concat([header, data]);
-            this.socket.write(packet);
+            this.socket.write(
+                Buffer.concat([header, data]) // Packet
+            );
         }
     }
 
@@ -46,7 +47,7 @@ class ServerSession {
     }
 
     connectionError(error) {
-        console.log('Connection %s error: %s', this.socket.remoteAddress, error.message);
+        console.log('LS:: connection %s error: %s', this.socket.remoteAddress, error.message);
     }
 }
 
