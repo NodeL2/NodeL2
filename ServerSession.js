@@ -25,13 +25,20 @@ class ServerSession {
         // Opcodes
         switch (decryptedPacket[0]) {
             case 0x00:
-                let credentials = ClientMethods.authorizeLogin(decryptedPacket);
-                console.log(credentials);
-                this.sendData(ServerMethods.loginSuccess());
+                {
+                    let data = ClientMethods.authorizeLogin(decryptedPacket);
+                    this.sendData(ServerMethods.loginSuccess());
+                }
                 break;
 
             case 0x05:
-                console.log('LS:: request Server List');
+                {
+                    let data = ClientMethods.serverList(decryptedPacket);
+
+                    if (Config.sessionKey.toString() === data.sessionKey.toString()) {
+                        console.log('LS:: send Server List');
+                    }
+                }
                 break;
 
             default:

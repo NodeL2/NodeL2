@@ -9,16 +9,25 @@ class ClientPacket {
         this.data.push(
             this.buffer.readInt8(this.offset)
         );
-        this.offset++;
+        this.offset += 1;
 
         return this;
     }
 
-    readB = function(length) {
+    readD() {
         this.data.push(
-            this.buffer.slice(this.offset, this.offset + length)
+            this.buffer.readUInt32LE(this.offset)
         );
-        this.offset += length;
+        this.offset += 4;
+    
+        return this;
+    }
+
+    readS = function(size) {
+        this.data.push(
+            this.buffer.slice(this.offset, this.offset + size)
+        );
+        this.offset += size;
 
         return this;
     }
