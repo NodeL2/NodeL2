@@ -1,3 +1,5 @@
+// User define
+let Config = require('./Config');
 let ServerPacket = require('./ServerPacket');
 
 class ServerMethods {
@@ -17,8 +19,8 @@ class ServerMethods {
 
         packet
             .writeC(0x03)
-            .writeD(0x55555555) // Session Key (first)
-            .writeD(0x44444444) // Session Key (last)
+            .writeD(Config.sessionKey[0]) // Session Key (first)
+            .writeD(Config.sessionKey[1]) // Session Key (last)
             .writeD(0x00)
             .writeD(0x00)
             .writeD(0x000003ea)

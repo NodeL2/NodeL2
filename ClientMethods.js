@@ -26,7 +26,7 @@ class ClientMethods {
         return {
             sessionKey: [
                 packet.data[1],
-	            packet.data[2],
+                packet.data[2],
             ]
         };
     }
