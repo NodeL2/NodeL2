@@ -3,6 +3,7 @@ let Config = require('./Config');
 let Blowfish = require('./Blowfish');
 let ServerMethods = require('./ServerMethods');
 let ClientMethods = require('./ClientMethods');
+let Utils = require('./Utils');
 
 class ServerSession {
     constructor(socket) {
@@ -42,7 +43,7 @@ class ServerSession {
                 break;
 
             default:
-                console.log('LS:: unknown opcode 0x%s', Number(opcode).toString(16).padStart(2, '0'));
+                console.log('LS:: unknown opcode 0x%s', Utils.toHex(decryptedPacket[0], 2));
                 break;
         }
     }

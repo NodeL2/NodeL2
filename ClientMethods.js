@@ -1,4 +1,6 @@
-let ClientPacket = require('./ClientPacket.js');
+// User define
+let ClientPacket = require('./ClientPacket');
+let Utils = require('./Utils');
 
 class ClientMethods {
     static authorizeLogin(buffer) {
@@ -10,8 +12,8 @@ class ClientMethods {
             .readS(16); // Password
 
         return {
-            username: packet.data[1].toString('ascii').replace(/\u0000/gi, ''),
-            password: packet.data[2].toString('ascii').replace(/\u0000/gi, ''),
+            username: Utils.toAsciiStripNull(packet.data[1]),
+            password: Utils.toAsciiStripNull(packet.data[2]),
         };
     }
 

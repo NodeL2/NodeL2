@@ -18,7 +18,7 @@ class ServerMethods {
         let packet = new ServerPacket(48);
 
         packet
-            .writeC(0x03)
+            .writeC(0x03)                 // Opcode
             .writeD(Config.sessionKey[0]) // Session Key (first)
             .writeD(Config.sessionKey[1]) // Session Key (last)
             .writeD(0x00)
