@@ -10,21 +10,19 @@ let ClientMethods = require('./ClientMethods');
 class Server {
     constructor() {
         net.createServer(this.onSocket).listen(Config.loginServer.port, Config.loginServer.host, () => {
-            console.info('LS listening on ' + Config.loginServer.host + ':' + Config.loginServer.port);
+            console.info('LS:: listening on %s:%s', Config.loginServer.host, Config.loginServer.port);
         });
     }
 
     onSocket(socket) {
-        console.info('Connected to LS -> ' + socket.remoteAddress + ':' + socket.remotePort);
+        console.info('LS:: incoming connection from %s:%s', socket.remoteAddress, socket.remotePort);
 
         // Callback: Received data
         socket.on('data', (data) => {
-            var packet = new Buffer.from(data, 'binary').slice(2).swap32();
-            console.log(packet);
-            var decipher = crypto.createDecipheriv('bf-ecb', Config.blowfishKey, '');
+            let packet = new Buffer.from(data, 'binary').slice(2).swap32();
+            let decipher = crypto.createDecipheriv('bf-ecb', Config.blowfishKey, '');
             decipher.setAutoPadding(false);
             packet = Buffer.concat([decipher.update(packet), decipher.final()]).swap32();
-            console.log(packet);
 
             let opcode = packet[0];
 
@@ -42,7 +40,7 @@ class Server {
 
         // Callback: Connection closed
         socket.on('close', () => {
-            console.log('Connection from %s closed', socket.remoteAddress);
+            console.log('LS:: connection from %s:%s closed', socket.remoteAddress, socket.remotePort);
         });
 
         // Callback: Unknown error
