@@ -29,6 +29,12 @@ class ServerSession {
                 {
                     let data = ClientMethods.authorizeLogin(decryptedPacket);
                     this.sendData(ServerMethods.loginSuccess());
+
+                    // 0x01 - System error
+                    // 0x02 - Password does not match this account
+                    // 0x04 - Access failed
+                    // 0x07 - The account is already in use
+                    //this.sendData(ServerMethods.loginFail(0x01));
                 }
                 break;
 
@@ -37,7 +43,7 @@ class ServerSession {
                     let data = ClientMethods.serverList(decryptedPacket);
 
                     if (Config.sessionKey.toString() === data.sessionKey.toString()) {
-                        console.log('LS:: send Server List');
+                        this.sendData(ServerMethods.serverList());
                     }
                 }
                 break;
