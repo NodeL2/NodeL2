@@ -1,7 +1,6 @@
-let crypto = require('crypto');
-
 // User define
 let Config = require('./Config');
+let Blowfish = require('./Blowfish');
 let ServerMethods = require('./ServerMethods');
 let ClientMethods = require('./ClientMethods');
 
@@ -13,35 +12,21 @@ class ServerSession {
     sendData(data, encrypt = true) {
         let header = new Buffer.from([data.length + 2, 0x00]);
 
-        if (encrypt) {
-            let cipher = crypto.createCipheriv('bf-ecb', Config.blowfishKey, '');
-            cipher.setAutoPadding(false);
-            data = cipher.update((new Buffer.from(data)).swap32());
-
-            this.socket.write(
-                Buffer.concat([header, data.swap32()]) // Packet
-            );
-        }
-        else {
-            this.socket.write(
-                Buffer.concat([header, data]) // Packet
-            );
-        }
+        this.socket.write(
+            Buffer.concat([header, encrypt ? Blowfish.encrypt(data) : data]) // encryptedPacket
+        )
     }
 
     receiveData(data) {
-        let packet = new Buffer.from(data, 'binary').slice(2).swap32();
-        let decipher = crypto.createDecipheriv('bf-ecb', Config.blowfishKey, '');
-        decipher.setAutoPadding(false);
-        packet = Buffer.concat([decipher.update(packet), decipher.final()]).swap32();
+        let decryptedPacket = Blowfish.decrypt(
+            new Buffer.from(data, 'binary').slice(2)
+        );
 
-        let opcode = packet[0];
-
-        switch (opcode) {
+        // Opcodes
+        switch (decryptedPacket[0]) {
             case 0x00:
-                let credentials = ClientMethods.authorizeLogin(packet);
+                let credentials = ClientMethods.authorizeLogin(decryptedPacket);
                 console.log(credentials);
-                // Check user
                 this.sendData(ServerMethods.loginSuccess());
                 break;
 

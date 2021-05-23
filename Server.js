@@ -17,10 +17,10 @@ class Server {
 
     onSocket(socket) {
         console.log('LS:: incoming connection from %s:%s', socket.remoteAddress, socket.remotePort);
-        socket.setEncoding('binary');
+        //socket.setEncoding('binary');
 
         let session = new ServerSession(socket);
-        socket.on( 'data', session.receiveData.bind(session));
+        socket.on('data', session.receiveData.bind(session));
         socket.on('close', session.connectionClosed.bind(session));
         socket.on('error', session.connectionError.bind(session));
 
