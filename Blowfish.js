@@ -8,7 +8,7 @@ class Blowfish {
         let cipher = crypto.createCipheriv('bf-ecb', Config.blowfishKey, '');
         cipher.setAutoPadding(false);
 
-        data = (new Buffer.from(data)).swap32(); // Endianess: Big
+        data.swap32(); // Endianess: Big
         data = cipher.update(data);
         data.swap32(); // Endianess: Little
 
