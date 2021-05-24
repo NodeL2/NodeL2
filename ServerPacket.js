@@ -1,4 +1,4 @@
-class AuthServerPacket {
+class ServerPacket {
     constructor(size) {
         this.buffer = new Buffer.alloc(size + 4 + (size + 4) % 8);
         this.offset = 0;
@@ -26,4 +26,4 @@ class AuthServerPacket {
     }
 }
 
-module.exports = AuthServerPacket;
+module.exports = ServerPacket;

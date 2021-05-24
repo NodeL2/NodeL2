@@ -1,10 +1,10 @@
 // User define
 let Config = require('./Config');
-let AuthServerPacket = require('./AuthServerPacket');
+let ServerPacket = require('./ServerPacket');
 
 class AuthServerMethods {
     static handshake() {
-        let packet = new AuthServerPacket(9);
+        let packet = new ServerPacket(9);
 
         packet
             .writeC(0x00)       // Opcode
@@ -15,7 +15,7 @@ class AuthServerMethods {
     }
 
     static loginSuccess() {
-        let packet = new AuthServerPacket(48);
+        let packet = new ServerPacket(48);
 
         packet
             .writeC(0x03)                 // Opcode
@@ -32,7 +32,7 @@ class AuthServerMethods {
     }
 
     static loginFail(errorCode) {
-        let packet = new AuthServerPacket(16);
+        let packet = new ServerPacket(16);
 
         packet
             .writeC(0x01)       // Opcode
@@ -44,7 +44,7 @@ class AuthServerMethods {
     static serverList(host, port) {
         host = host.split('.');
 
-        let packet = new AuthServerPacket(20);
+        let packet = new ServerPacket(20);
 
         packet
             .writeC(0x04)    // Opcode
@@ -66,7 +66,7 @@ class AuthServerMethods {
     }
 
     static playOk(sessionKey) {
-        let packet = new AuthServerPacket(12);
+        let packet = new ServerPacket(12);
 
         packet
             .writeC(0x07)           // Opcode
@@ -77,7 +77,7 @@ class AuthServerMethods {
     }
 
     static playFail(errorCode) {
-        let packet = new AuthServerPacket(12);
+        let packet = new ServerPacket(12);
 
         packet
             .writeC(0x06)       // Opcode

@@ -1,4 +1,4 @@
-class AuthClientPacket {
+class ClientPacket {
     constructor(buffer) {
         this.buffer = buffer;
         this.data   = [];
@@ -33,4 +33,4 @@ class AuthClientPacket {
     }
 }
 
-module.exports = AuthClientPacket;
+module.exports = ClientPacket;
