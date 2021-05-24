@@ -4,6 +4,7 @@ let net = require('net');
 let Config = require('./Config');
 let AuthServerSession = require('./AuthServerSession');
 let AuthServerMethods = require('./AuthServerMethods');
+let GameServer = require('./GameServer');
 
 class AuthServer {
     constructor() {
@@ -29,3 +30,4 @@ class AuthServer {
 }
 
 new AuthServer();
+new GameServer(); // Temp

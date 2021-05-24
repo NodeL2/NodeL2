@@ -15,6 +15,8 @@ class Config {
         0x55555555,
         0x44444444,
     ];
+
+    static protocolVersion = 419;
 }
 
 module.exports = Config;

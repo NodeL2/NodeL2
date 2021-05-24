@@ -41,16 +41,6 @@ class AuthServerSession {
                 }
                 break;
 
-            case 0x05: // Server List
-                {
-                    let data = AuthClientMethods.serverList(decryptedPacket);
-
-                    if (Config.sessionKey.toString() === data.sessionKey.toString()) {
-                        this.sendData(AuthServerMethods.serverList(Config.gameServer.host, Config.gameServer.port));
-                    }
-                }
-                break;
-
             case 0x02: // Game Login
                 {
                     let data = AuthClientMethods.gameLogin(decryptedPacket);
@@ -65,6 +55,16 @@ class AuthServerSession {
                             // 0x07 The account is already in use
                             this.sendData(AuthServerMethods.playFail(0x01));
                         }
+                    }
+                }
+                break;
+
+            case 0x05: // Server List
+                {
+                    let data = AuthClientMethods.serverList(decryptedPacket);
+
+                    if (Config.sessionKey.toString() === data.sessionKey.toString()) {
+                        this.sendData(AuthServerMethods.serverList(Config.gameServer.host, Config.gameServer.port));
                     }
                 }
                 break;
