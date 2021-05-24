@@ -1,10 +1,10 @@
 // User define
-let ClientPacket = require('./ClientPacket');
+let AuthClientPacket = require('./AuthClientPacket');
 let Utils = require('./Utils');
 
-class ClientMethods {
+class AuthClientMethods {
     static authorizeLogin(buffer) {
-        let packet = new ClientPacket(buffer);
+        let packet = new AuthClientPacket(buffer);
 
         packet
             .readC()
@@ -18,7 +18,7 @@ class ClientMethods {
     }
 
     static serverList(buffer) {
-        let packet = new ClientPacket(buffer);
+        let packet = new AuthClientPacket(buffer);
 
         packet
             .readC()
@@ -34,7 +34,7 @@ class ClientMethods {
     }
 
     static gameLogin(buffer) {
-        let packet = new ClientPacket(buffer);
+        let packet = new AuthClientPacket(buffer);
 
         packet
             .readC()
@@ -52,4 +52,4 @@ class ClientMethods {
     }
 }
 
-module.exports = ClientMethods;
+module.exports = AuthClientMethods;

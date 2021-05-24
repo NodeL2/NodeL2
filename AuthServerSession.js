@@ -1,11 +1,11 @@
 // User define
 let Config = require('./Config');
 let Blowfish = require('./Blowfish');
-let ServerMethods = require('./ServerMethods');
-let ClientMethods = require('./ClientMethods');
+let AuthServerMethods = require('./AuthServerMethods');
+let AuthClientMethods = require('./AuthClientMethods');
 let Utils = require('./Utils');
 
-class ServerSession {
+class AuthServerSession {
     constructor(socket) {
         this.socket = socket;
     }
@@ -27,35 +27,44 @@ class ServerSession {
         switch (decryptedPacket[0]) {
             case 0x00: // Authorize Login
                 {
-                    let data = ClientMethods.authorizeLogin(decryptedPacket);
-                    this.sendData(ServerMethods.loginSuccess());
+                    let data = AuthClientMethods.authorizeLogin(decryptedPacket);
 
-                    // 0x01 System error
-                    // 0x02 Password does not match this account
-                    // 0x04 Access failed
-                    // 0x07 The account is already in use
-                    //this.sendData(ServerMethods.loginFail(0x01));
+                    if (true) {
+                        this.sendData(AuthServerMethods.loginSuccess());
+                    } else {
+                        // 0x01 System error
+                        // 0x02 Password does not match this account
+                        // 0x04 Access failed
+                        // 0x07 The account is already in use
+                        this.sendData(AuthServerMethods.loginFail(0x01));
+                    }
                 }
                 break;
 
             case 0x05: // Server List
                 {
-                    let data = ClientMethods.serverList(decryptedPacket);
+                    let data = AuthClientMethods.serverList(decryptedPacket);
 
                     if (Config.sessionKey.toString() === data.sessionKey.toString()) {
-                        this.sendData(ServerMethods.serverList(
-                            Config.gameServer.host, Config.gameServer.port
-                        ));
+                        this.sendData(AuthServerMethods.serverList(Config.gameServer.host, Config.gameServer.port));
                     }
                 }
                 break;
 
             case 0x02: // Game Login
                 {
-                    let data = ClientMethods.gameLogin(decryptedPacket);
-                    
+                    let data = AuthClientMethods.gameLogin(decryptedPacket);
+
                     if (Config.sessionKey.toString() === data.sessionKey.toString()) {
-                        console.log('LS:: Connect to GS %d', data.serverID);
+                        if (true) {
+                            this.sendData(AuthServerMethods.playOk(Config.sessionKey));
+                        } else {
+                            // 0x01 System error
+                            // 0x02 Password does not match this account
+                            // 0x04 Access failed
+                            // 0x07 The account is already in use
+                            this.sendData(AuthServerMethods.playFail(0x01));
+                        }
                     }
                 }
                 break;
@@ -75,4 +84,4 @@ class ServerSession {
     }
 }
 
-module.exports = ServerSession;
+module.exports = AuthServerSession;

@@ -1,10 +1,10 @@
 // User define
 let Config = require('./Config');
-let ServerPacket = require('./ServerPacket');
+let AuthServerPacket = require('./AuthServerPacket');
 
-class ServerMethods {
+class AuthServerMethods {
     static handshake() {
-        let packet = new ServerPacket(9);
+        let packet = new AuthServerPacket(9);
 
         packet
             .writeC(0x00)       // Opcode
@@ -15,7 +15,7 @@ class ServerMethods {
     }
 
     static loginSuccess() {
-        let packet = new ServerPacket(48);
+        let packet = new AuthServerPacket(48);
 
         packet
             .writeC(0x03)                 // Opcode
@@ -31,12 +31,12 @@ class ServerMethods {
         return packet.buffer;
     }
 
-    static loginFail(reason) {
-        let packet = new ServerPacket(16);
+    static loginFail(errorCode) {
+        let packet = new AuthServerPacket(16);
 
         packet
-            .writeC(0x01)    // Opcode
-            .writeC(reason); // Failure reason
+            .writeC(0x01)       // Opcode
+            .writeC(errorCode); // Failure reason
 
         return packet.buffer;
     }
@@ -44,7 +44,7 @@ class ServerMethods {
     static serverList(host, port) {
         host = host.split('.');
 
-        let packet = new ServerPacket(20);
+        let packet = new AuthServerPacket(20);
 
         packet
             .writeC(0x04)    // Opcode
@@ -64,6 +64,27 @@ class ServerMethods {
 
         return packet.buffer;
     }
+
+    static playOk(sessionKey) {
+        let packet = new AuthServerPacket(12);
+
+        packet
+            .writeC(0x07)           // Opcode
+            .writeD(sessionKey[0])  // Session Key (first)
+            .writeD(sessionKey[1]); // Session Key (last)
+
+        return packet.buffer;
+    }
+
+    static playFail(errorCode) {
+        let packet = new AuthServerPacket(12);
+
+        packet
+            .writeC(0x06)       // Opcode
+            .writeC(errorCode); // Failure reason
+
+        return packet.buffer;
+    }
 }
 
-module.exports = ServerMethods;
+module.exports = AuthServerMethods;
