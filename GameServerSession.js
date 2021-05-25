@@ -8,6 +8,7 @@ let Utils = require('./Utils');
 class GameServerSession {
     constructor(socket) {
         this.socket = socket;
+        this.data   = 0;
     }
 
     sendData(data, encrypt = true) {
@@ -24,13 +25,15 @@ class GameServerSession {
         // Opcodes
         switch (packet[0]) {
             case 0x00: // Protocol Version
-                {
-                    let data = GameClientMethods.protocolVersion(packet);
+                this.data = GameClientMethods.protocolVersion(packet);
 
-                    if (Config.protocolVersion === data.protocolVersion) {
-                        this.sendData(GameServerMethods.CryptInit(), false);
-                    }
+                if (Config.protocolVersion === this.data.protocolVersion) {
+                    this.sendData(GameServerMethods.cryptInit(Config.xorKey), false);
                 }
+                break;
+
+            case 0x08:
+                this.sendData(GameServerMethods.charSelectInfo(), false);
                 break;
 
             default:
