@@ -5,6 +5,8 @@ let GameServerMethods = require('./GameServerMethods');
 let GameClientMethods = require('./GameClientMethods');
 let Utils = require('./Utils');
 
+let storedCharacters = require('./Database.json');
+
 class GameServerSession {
     constructor(socket) {
         this.socket = socket;
@@ -12,7 +14,8 @@ class GameServerSession {
     }
 
     sendData(data, encrypt = true) {
-        let header = new Buffer.from([data.length + 2, 0x00]);
+        let header = new Buffer.from([0x00, 0x00]);
+        header.writeInt16LE(data.length + 2);
 
         this.socket.write(
             Buffer.concat([header, encrypt ? Blowfish.encrypt(data) : data]) // encryptedPacket
@@ -33,10 +36,11 @@ class GameServerSession {
                 break;
 
             case 0x08:
-                console.log(data);
                 this.data = GameClientMethods.requestAuthLogin(packet);
-                console.log(this.data);
-                //this.sendData(GameServerMethods.charSelectInfo(), false);
+
+                if (Config.sessionKey.toString() === this.data.sessionKey.toString()) {
+                    this.sendData(GameServerMethods.charSelectInfo(storedCharacters.characters), false);
+                }
                 break;
 
             // case 0x0e:

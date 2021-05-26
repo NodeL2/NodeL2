@@ -20,12 +20,88 @@ class GameServerMethods {
         return packet.buffer;
     }
 
-    static charSelectInfo() {
-        let packet = new ServerPacket(10);
+    static charSelectInfo(characters) {
+        let packet = new ServerPacket(characters ? characters.length * 400 : 10);
 
         packet
-            .writeC(0x1f)
-            .writeD(0x00);
+            .writeC(0x1f);
+
+        if (characters) {
+            packet
+                .writeD(characters.length);
+                
+            for (let i = 0; i < characters.length; i++) {
+                packet
+                    .writeS(characters[i].name)
+                    .writeD(characters[i].id)
+                    .writeS(characters[i].accountId)
+                    .writeD(0x55555555)
+                    .writeD(characters[i].clanId)
+                    .writeD(0x00)
+                    .writeD(characters[i].gender)
+                    .writeD(characters[i].raceId)
+                    .writeD(characters[i].classId)
+                    .writeD(0x01)
+                    .writeD(characters[i].x) // No effect ?
+                    .writeD(characters[i].y) // No effect ?
+                    .writeD(characters[i].z) // No effect ?
+                    .writeF(characters[i].hp)
+                    .writeF(characters[i].mp)
+                    .writeD(characters[i].sp)
+                    .writeD(characters[i].exp)
+                    .writeD(characters[i].level)
+                    .writeD(characters[i].karma)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(0x00)
+                    .writeD(characters[i].hairStyle)
+                    .writeD(characters[i].hairColor)
+                    .writeD(characters[i].face)
+                    .writeF(characters[i].maximumHp)
+                    .writeF(characters[i].maximumMp)
+                    .writeD(0x00);
+            }
+        }
+        else {
+            packet
+                .writeD(0x00);
+        }
 
         return packet.buffer;
     }

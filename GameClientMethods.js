@@ -27,8 +27,8 @@ class GameClientMethods {
 
         return {
             sessionKey: [
-                packet.data[2],
                 packet.data[3],
+                packet.data[2],
             ]
         };
     }

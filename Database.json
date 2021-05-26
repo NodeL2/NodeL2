@@ -1,7 +1,7 @@
 {
     "characters": [{
         "id": 1,
-        "accountId": 1,
+        "accountId": "e",
         "clanId": 0,
         "name": "Anima",
         "title": "",
@@ -18,6 +18,9 @@
         "karma": 0,
         "face": 0,
         "hairStyle": 0,
-        "hairColor": 0
+        "hairColor": 0,
+        "x": -70880,
+        "y": 257360,
+        "z": -3080
     }]
 }

@@ -19,8 +19,23 @@ class ServerPacket {
     }
 
     writeD(data) {
-        this.buffer.writeUInt32LE(data, this.offset);
+        this.buffer.writeInt32LE(data, this.offset);
         this.offset += 4;
+
+        return this;
+    }
+
+    writeF(value) {
+        this.buffer.writeDoubleLE(value, this.offset);
+        this.offset += 8;
+
+        return this;
+    }
+
+    writeS(string) {
+        this.buffer.write(string, this.offset, 'ucs2');
+        this.offset += Buffer.byteLength(string, 'ucs2') + 2;
+        this.buffer.writeInt16LE(0, this.offset - 2);
 
         return this;
     }
