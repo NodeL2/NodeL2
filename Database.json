@@ -22,5 +22,29 @@
         "x": -70880,
         "y": 257360,
         "z": -3080
+    },
+    {
+        "id": 2,
+        "accountId": "e",
+        "clanId": 0,
+        "name": "Denacious",
+        "title": "",
+        "level": 32,
+        "gender": 1,
+        "raceId": 3,
+        "classId": 1,
+        "maximumHp": 1256,
+        "hp": 1192,
+        "maximumMp": 1256,
+        "mp": 1192,
+        "exp": 20000,
+        "sp": 1000,
+        "karma": 10,
+        "face": 0,
+        "hairStyle": 0,
+        "hairColor": 0,
+        "x": -70880,
+        "y": 257360,
+        "z": -3080
     }]
 }

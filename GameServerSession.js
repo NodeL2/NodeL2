@@ -46,7 +46,7 @@ class GameServerSession {
             case 0x0d:
                 this.data = GameClientMethods.characterSelected(packet);
                 console.log(this.data);
-                this.sendData(GameServerMethods.characterSelected(storedCharacters.characters[0]), false);
+                this.sendData(GameServerMethods.characterSelected(storedCharacters.characters[1]), false);
                 break;
 
             case 0x63:
@@ -59,7 +59,7 @@ class GameServerSession {
             case 0x03:
                 this.data = GameClientMethods.enterWorld(packet);
                 console.log(this.data);
-                this.sendData(GameServerMethods.userInfo(storedCharacters.characters[0]), false);
+                this.sendData(GameServerMethods.userInfo(storedCharacters.characters[1]), false);
                 break;
 
             // case 0x0e:
