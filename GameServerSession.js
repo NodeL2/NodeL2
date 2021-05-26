@@ -59,7 +59,7 @@ class GameServerSession {
             case 0x03:
                 this.data = GameClientMethods.enterWorld(packet);
                 console.log(this.data);
-                this.sendData(GameServerMethods.userInfo(), false);
+                this.sendData(GameServerMethods.userInfo(storedCharacters.characters[0]), false);
                 break;
 
             // case 0x0e:
