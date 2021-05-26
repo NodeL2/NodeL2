@@ -17,8 +17,8 @@
         "sp": 0,
         "karma": 0,
         "face": 0,
-        "hairStyle": 0,
-        "hairColor": 0,
+        "hairStyle": 1,
+        "hairColor": 1,
         "x": -70880,
         "y": 257360,
         "z": -3080

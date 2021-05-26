@@ -43,6 +43,25 @@ class GameServerSession {
                 }
                 break;
 
+            case 0x0d:
+                this.data = GameClientMethods.characterSelected(packet);
+                console.log(this.data);
+                this.sendData(GameServerMethods.characterSelected(storedCharacters.characters[0]), false);
+                break;
+
+            case 0x63:
+                //RequestQuestList
+                this.data = GameClientMethods.requestQuestList(packet);
+                console.log(this.data);
+                this.sendData(GameServerMethods.questList(), false);
+                break;
+
+            case 0x03:
+                this.data = GameClientMethods.enterWorld(packet);
+                console.log(this.data);
+                this.sendData(GameServerMethods.userInfo(), false);
+                break;
+
             // case 0x0e:
             //     this.data = GameClientMethods.newCharacter(packet);
                 

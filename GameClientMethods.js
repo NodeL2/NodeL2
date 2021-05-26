@@ -33,6 +33,18 @@ class GameClientMethods {
         };
     }
 
+    static characterSelected(buffer) {
+        let packet = new ClientPacket(buffer);
+
+        packet
+            .readC()
+            .readD();
+
+        return {
+            slot: packet.data[1]
+        };
+    }
+
     static newCharacter(buffer) {
         let packet = new ClientPacket(buffer);
 
@@ -41,6 +53,26 @@ class GameClientMethods {
 
         return {
             status: packet.data[0]
+        };
+    }
+
+    static requestQuestList(buffer) {
+        let packet = new ClientPacket(buffer);
+
+        packet
+            .readC();
+
+        return {
+        };
+    }
+
+    static enterWorld(buffer) {
+        let packet = new ClientPacket(buffer);
+
+        packet
+            .readC();
+
+        return {
         };
     }
 }
