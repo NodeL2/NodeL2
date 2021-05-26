@@ -1,0 +1,23 @@
+{
+    "characters": [{
+        "id": 1,
+        "accountId": 1,
+        "clanId": 0,
+        "name": "Anima",
+        "title": "",
+        "level": 1,
+        "gender": 0,
+        "raceId": 0,
+        "classId": 0,
+        "maximumHp": 256,
+        "hp": 192,
+        "maximumMp": 256,
+        "mp": 192,
+        "exp": 0,
+        "sp": 0,
+        "karma": 0,
+        "face": 0,
+        "hairStyle": 0,
+        "hairColor": 0
+    }]
+}

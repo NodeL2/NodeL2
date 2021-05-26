@@ -29,6 +29,16 @@ class GameServerMethods {
 
         return packet.buffer;
     }
+
+    static charTemplates() {
+        let packet = new ServerPacket(10);
+
+        packet
+            .writeC(0x23)
+            .writeD(0x00);
+
+        return packet.buffer;
+    }
 }
 
 module.exports = GameServerMethods;

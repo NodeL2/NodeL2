@@ -33,8 +33,22 @@ class GameServerSession {
                 break;
 
             case 0x08:
-                this.sendData(GameServerMethods.charSelectInfo(), false);
+                console.log(data);
+                this.data = GameClientMethods.requestAuthLogin(packet);
+                console.log(this.data);
+                //this.sendData(GameServerMethods.charSelectInfo(), false);
                 break;
+
+            // case 0x0e:
+            //     this.data = GameClientMethods.newCharacter(packet);
+                
+            //     if (this.data.status === 0x0e) {
+            //         this.sendData(GameServerMethods.charTemplates(), false);
+            //     }
+            //     break;
+
+            // case 0x0b:
+            //     break;
 
             default:
                 console.log('GS:: unknown opcode 0x%s', Utils.toHex(packet[0], 2));

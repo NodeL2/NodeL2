@@ -19,15 +19,23 @@ class ClientPacket {
             this.buffer.readUInt32LE(this.offset)
         );
         this.offset += 4;
-    
+
         return this;
     }
 
-    readS = function(size) {
+    readS() {
+        let i;
+
+        for (i = this.offset; i < this.buffer.length; i += 2) {
+            if (this.buffer.readUInt16LE(i) === 0x00) {
+                break;
+            }
+        }
+
         this.data.push(
-            this.buffer.slice(this.offset, this.offset + size)
+            this.buffer.toString('ucs2', this.offset, i)
         );
-        this.offset += size;
+        this.offset += i + 1;
 
         return this;
     }
