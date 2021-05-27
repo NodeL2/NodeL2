@@ -16,7 +16,7 @@ class ClientPacket {
 
     readD() {
         this.data.push(
-            this.buffer.readUInt32LE(this.offset)
+            this.buffer.readInt32LE(this.offset)
         );
         this.offset += 4;
 

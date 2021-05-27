@@ -45,21 +45,23 @@ class GameServerSession {
 
             case 0x0d:
                 this.data = GameClientMethods.characterSelected(packet);
-                console.log(this.data);
                 this.sendData(GameServerMethods.characterSelected(storedCharacters.characters[1]), false);
                 break;
 
             case 0x63:
                 //RequestQuestList
                 this.data = GameClientMethods.requestQuestList(packet);
-                console.log(this.data);
                 this.sendData(GameServerMethods.questList(), false);
                 break;
 
             case 0x03:
                 this.data = GameClientMethods.enterWorld(packet);
-                console.log(this.data);
                 this.sendData(GameServerMethods.userInfo(storedCharacters.characters[1]), false);
+                break;
+
+            case 0x01:
+                this.data = GameClientMethods.moveBackwardToLocation(packet);
+                this.sendData(GameServerMethods.moveToLocation(storedCharacters.characters[1].id, this.data), false);
                 break;
 
             // case 0x0e:

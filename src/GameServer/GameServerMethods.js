@@ -242,8 +242,8 @@ class GameServerMethods {
             .writeD(0x01) // M. Def
             .writeD(0x00) // pvp flag 0 - non pvp, 0x 1 - pvp = violett name
             .writeD(0x00) // Karma
-            .writeD(115) // getRunSpeed
-            .writeD(80) // getWalkSpeed
+            .writeD(215) // getRunSpeed
+            .writeD(280) // getWalkSpeed
             .writeD(0x32) // swimspeed
             .writeD(0x32) // swimspeed
             .writeD(115) // getFloatingRunSpeed
@@ -271,6 +271,22 @@ class GameServerMethods {
             .writeD(0x00) // getPvpKills
             .writeH(0x00) // cubic count
             .writeC(0x00); //1-find party members
+
+        return packet.buffer;
+    }
+
+    static moveToLocation(id, coords) {
+        let packet = new ServerPacket(29);
+
+        packet
+            .writeC(0x01)
+            .writeD(id)
+            .writeD(coords.target.x)
+            .writeD(coords.target.y)
+            .writeD(coords.target.z)
+            .writeD(coords.origin.x)
+            .writeD(coords.origin.y)
+            .writeD(coords.origin.z);
 
         return packet.buffer;
     }
