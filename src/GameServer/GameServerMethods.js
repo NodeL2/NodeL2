@@ -1,5 +1,5 @@
 // User define
-let ServerPacket = require('./ServerPacket');
+let ServerPacket = require(__basedir + '/src/ServerPacket');
 
 class GameServerMethods {
     static cryptInit(xorKey) {

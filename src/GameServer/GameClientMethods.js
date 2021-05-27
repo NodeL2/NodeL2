@@ -1,5 +1,5 @@
 // User define
-let ClientPacket = require('./ClientPacket');
+let ClientPacket = require(__basedir + '/src/ClientPacket');
 
 class GameClientMethods {
     static protocolVersion(buffer) {

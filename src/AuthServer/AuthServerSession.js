@@ -1,9 +1,9 @@
 // User define
-let Config = require('./Config');
-let Blowfish = require('./Blowfish');
-let AuthServerMethods = require('./AuthServerMethods');
-let AuthClientMethods = require('./AuthClientMethods');
-let Utils = require('./Utils');
+let Config = require(__basedir + '/src/Config');
+let Blowfish = require(__basedir + '/src/Blowfish');
+let AuthServerMethods = require(__basedir + '/src/AuthServer/AuthServerMethods');
+let AuthClientMethods = require(__basedir + '/src/AuthServer/AuthClientMethods');
+let Utils = require(__basedir + '/src/Utils');
 
 class AuthServerSession {
     constructor(socket) {

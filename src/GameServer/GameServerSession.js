@@ -1,11 +1,11 @@
 // User define
-let Config = require('./Config');
-let Blowfish = require('./Blowfish');
-let GameServerMethods = require('./GameServerMethods');
-let GameClientMethods = require('./GameClientMethods');
-let Utils = require('./Utils');
+let Config = require(__basedir + '/src/Config');
+let Blowfish = require(__basedir + '/src/Blowfish');
+let GameServerMethods = require(__basedir + '/src/GameServer/GameServerMethods');
+let GameClientMethods = require(__basedir + '/src/GameServer/GameClientMethods');
+let Utils = require(__basedir + '/src/Utils');
 
-let storedCharacters = require('./Database.json');
+let storedCharacters = require(__basedir + '/Database.json');
 
 class GameServerSession {
     constructor(socket) {

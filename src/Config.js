@@ -3,24 +3,20 @@ let ini = require('ini');
 
 class Config {
     static defaults = ini.parse(
-        fs.readFileSync('./Config.ini', 'utf-8')
+        fs.readFileSync(__basedir + '/Config.ini', 'utf-8')
     );
 
-    // static loginServer = {
-    //     host: this.defaults.AuthServer.host
-    // };
-
-    static protocolVersion = 419;
-
     static loginServer = {
-        host: '127.0.0.1',
-        port: 2106
+        host: this.defaults.AuthServer.host || '127.0.0.1',
+        port: parseInt(this.defaults.AuthServer.port) || 2106
     };
 
     static gameServer = {
-        host: '127.0.0.1',
-        port: 7777
+        host: this.defaults.GameServer.host || '127.0.0.1',
+        port: parseInt(this.defaults.GameServer.port) || 7777
     };
+
+    static protocolVersion = 419;
 
     static blowfishKey = '[;\'.]94-31==-%&@!^+]\u0000';
 

@@ -1,15 +1,13 @@
 let net = require('net');
 
 // User define
-let Config = require('./Config');
-let AuthServerSession = require('./AuthServerSession');
-let AuthServerMethods = require('./AuthServerMethods');
-let GameServer = require('./GameServer');
+let Config = require(__basedir + '/src/Config');
+let AuthServerSession = require(__basedir + '/src/AuthServer/AuthServerSession');
+let AuthServerMethods = require(__basedir + '/src/AuthServer/AuthServerMethods');
+let GameServer = require(__basedir + '/src/GameServer/GameServer');
 
 class AuthServer {
     constructor() {
-        console.log(Config.defaults);
-
         let host = Config.loginServer.host;
         let port = Config.loginServer.port;
 
@@ -31,5 +29,4 @@ class AuthServer {
     }
 }
 
-new AuthServer();
-new GameServer(); // Temp
+module.exports = AuthServer;

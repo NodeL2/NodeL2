@@ -1,7 +1,7 @@
 let crypto = require('crypto');
 
 // User define
-let Config = require('./Config');
+let Config = require(__basedir + '/src/Config');
 
 class Blowfish {
     static encrypt(data) {

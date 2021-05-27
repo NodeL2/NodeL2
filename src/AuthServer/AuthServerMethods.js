@@ -1,6 +1,6 @@
 // User define
-let Config = require('./Config');
-let ServerPacket = require('./ServerPacket');
+let Config = require(__basedir + '/src/Config');
+let ServerPacket = require(__basedir + '/src/ServerPacket');
 
 class AuthServerMethods {
     static handshake() {

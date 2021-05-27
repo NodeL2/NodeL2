@@ -1,6 +1,6 @@
 // User define
-let ClientPacket = require('./ClientPacket');
-let Utils = require('./Utils');
+let ClientPacket = require(__basedir + '/src/ClientPacket');
+let Utils = require(__basedir + '/src/Utils');
 
 class AuthClientMethods {
     static authorizeLogin(buffer) {

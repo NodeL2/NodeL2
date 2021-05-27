@@ -1,8 +1,8 @@
 let net = require('net');
 
 // User define
-let Config = require('./Config');
-let GameServerSession = require('./GameServerSession');
+let Config = require(__basedir + '/src/Config');
+let GameServerSession = require(__basedir + '/src/GameServer/GameServerSession');
 
 class GameServer {
     constructor() {
@@ -23,5 +23,4 @@ class GameServer {
     }
 }
 
-//new GameServer();
 module.exports = GameServer;
