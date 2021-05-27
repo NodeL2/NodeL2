@@ -8,6 +8,8 @@ let GameServer = require('./GameServer');
 
 class AuthServer {
     constructor() {
+        console.log(Config.defaults);
+
         let host = Config.loginServer.host;
         let port = Config.loginServer.port;
 

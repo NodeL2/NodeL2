@@ -1,4 +1,15 @@
+let fs = require('fs');
+let ini = require('ini');
+
 class Config {
+    static defaults = ini.parse(
+        fs.readFileSync('./Config.ini', 'utf-8')
+    );
+
+    // static loginServer = {
+    //     host: this.defaults.AuthServer.host
+    // };
+
     static protocolVersion = 419;
 
     static loginServer = {
