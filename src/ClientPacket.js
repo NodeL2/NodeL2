@@ -7,7 +7,7 @@ class ClientPacket {
 
     readC() {
         this.data.push(
-            this.buffer.readInt8(this.offset)
+            this.buffer.readUInt8(this.offset)
         );
         this.offset += 1;
 
