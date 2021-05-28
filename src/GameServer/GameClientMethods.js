@@ -37,6 +37,18 @@ class GameClientMethods {
         }
     }
 
+    static logout(buffer, callback) {
+        if (callback) {
+            let packet = new ClientPacket(buffer);
+
+            packet
+                .readC();
+
+            callback({
+            });
+        }
+    }
+
     static characterSelected(buffer, callback) {
         if (callback) {
             let packet = new ClientPacket(buffer);

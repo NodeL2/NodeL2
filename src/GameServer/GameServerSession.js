@@ -3,6 +3,7 @@ let Config = require(__basedir + '/src/Config');
 let Blowfish = require(__basedir + '/src/Blowfish');
 let GameServerMethods = require(__basedir + '/src/GameServer/GameServerMethods');
 let GameClientMethods = require(__basedir + '/src/GameServer/GameClientMethods');
+let Actor = require(__basedir + '/src/Actor');
 let Utils = require(__basedir + '/src/Utils');
 
 let characterDB = require(__basedir + '/Database.json');
@@ -10,11 +11,7 @@ let characterDB = require(__basedir + '/Database.json');
 class GameServerSession {
     constructor(socket) {
         this.socket = socket;
-
-        this.player = {
-            objectId: -1,
-            characterSlot: -1
-        };
+        this.player = new Actor();
     }
 
     sendData(data, encrypt = true) {
@@ -46,7 +43,7 @@ class GameServerSession {
             case 0x01: // Move to Location
                 GameClientMethods.moveBackwardToLocation(packet, (response) => {
                     this.sendData(
-                        GameServerMethods.moveToLocation(characterDB.characters[this.player.characterSlot].id, response), false
+                        GameServerMethods.moveToLocation(this.player.id, response), false
                     );
                 });
                 break;
@@ -54,7 +51,7 @@ class GameServerSession {
             case 0x03: // Enter World
                 GameClientMethods.enterWorld(packet, (response) => {
                     this.sendData(
-                        GameServerMethods.userInfo(characterDB.characters[this.player.characterSlot]), false
+                        GameServerMethods.userInfo(this.player), false
                     );
                 });
                 break;
@@ -71,12 +68,22 @@ class GameServerSession {
                 });
                 break;
 
+            case 0x09: // Logout
+                GameClientMethods.logout(packet, (response) => {
+                    this.sendData(
+                        GameServerMethods.logoutOk(), false
+                    );
+                });
+                break;
+
             case 0x0d: // Character Selected
                 GameClientMethods.characterSelected(packet, (response) => {
-                    this.player.characterSlot = response.characterSlot;
+                    this.player.setProperties( // Set player properties
+                        characterDB.characters[response.characterSlot]
+                    );
 
                     this.sendData(
-                        GameServerMethods.characterSelected(characterDB.characters[this.player.characterSlot]), false
+                        GameServerMethods.characterSelected(this.player), false
                     );
                 });
                 break;

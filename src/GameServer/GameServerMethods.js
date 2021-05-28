@@ -20,6 +20,15 @@ class GameServerMethods {
         return packet.buffer;
     }
 
+    static logoutOk() {
+        let packet = new ServerPacket(1);
+
+        packet
+            .writeC(0x96);
+
+        return packet.buffer;
+    }
+
     static charSelectInfo(characters) {
         let packet = new ServerPacket(characters ? characters.length * 400 : 10);
 
@@ -30,72 +39,48 @@ class GameServerMethods {
             packet
                 .writeD(characters.length);
 
-            for (let i = 0; i < characters.length; i++) {
+            for (let character of characters) {
                 packet
-                    .writeS(characters[i].name)
-                    .writeD(characters[i].id)
-                    .writeS(characters[i].accountId)
+                    .writeS(character.name)
+                    .writeD(character.id)
+                    .writeS(character.accountId)
                     .writeD(0x55555555)
-                    .writeD(characters[i].clanId)
-                    .writeD(0x00)
-                    .writeD(characters[i].gender)
-                    .writeD(characters[i].raceId)
-                    .writeD(characters[i].classId)
-                    .writeD(0x01)
-                    .writeD(characters[i].x) // No effect?
-                    .writeD(characters[i].y) // No effect?
-                    .writeD(characters[i].z) // No effect?
-                    .writeF(characters[i].hp)
-                    .writeF(characters[i].mp)
-                    .writeD(characters[i].sp)
-                    .writeD(characters[i].exp)
-                    .writeD(characters[i].level)
-                    .writeD(characters[i].karma)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(0x00)
-                    .writeD(characters[i].hairStyle)
-                    .writeD(characters[i].hairColor)
-                    .writeD(characters[i].face)
-                    .writeF(characters[i].maximumHp)
-                    .writeF(characters[i].maximumMp)
-                    .writeD(0x00);
+                    .writeD(0x00)  // ?
+                    .writeD(0x00)  // ?
+                    .writeD(character.gender)
+                    .writeD(character.raceId)
+                    .writeD(character.classId)
+                    .writeD(0x01)  // ?
+                    .writeD(character.x)
+                    .writeD(character.y)
+                    .writeD(character.z)
+                    .writeF(character.hp)
+                    .writeF(character.mp)
+                    .writeD(character.sp)
+                    .writeD(character.exp)
+                    .writeD(character.level)
+                    .writeD(character.karma)
+                    .writeD(0x00)  // ?
+                    .writeD(0x00)  // ?
+                    .writeD(0x00)  // ?
+                    .writeD(0x00)  // ?
+                    .writeD(0x00)  // ?
+                    .writeD(0x00)  // ?
+                    .writeD(0x00)  // ?
+                    .writeD(0x00); // ?
+
+                for (let i = 0; i < 31; i++) {
+                    packet
+                        .writeD(0x00);
+                }
+
+                packet
+                    .writeD(character.hairStyle)
+                    .writeD(character.hairColor)
+                    .writeD(character.face)
+                    .writeF(character.maxHp)
+                    .writeF(character.maxMp)
+                    .writeD(0x00); // Days before deletion
             }
         }
         else {
@@ -106,37 +91,39 @@ class GameServerMethods {
         return packet.buffer;
     }
 
-    static characterSelected(character) {
-        let packet = new ServerPacket(230 + ServerPacket.strlen(character.name) + ServerPacket.strlen(character.title));
+    static characterSelected(player) {
+        let packet = new ServerPacket(
+            230 + ServerPacket.strlen(player.name) + ServerPacket.strlen(player.title)
+        );
 
         packet
             .writeC(0x21)
-            .writeS(character.name)
-            .writeD(character.objectId)
-            .writeS(character.title)
+            .writeS(player.name)
+            .writeD(player.id)
+            .writeS(player.title)
             .writeD(0x55555555)
-            .writeD(character.clanId)
-            .writeD(0x00)
-            .writeD(character.gender)
-            .writeD(character.raceId)
-            .writeD(character.classId)
-            .writeD(0x01)
-            .writeD(character.x)
-            .writeD(character.y)
-            .writeD(character.z)
-            .writeF(character.hp)
-            .writeF(character.mp)
-            .writeD(character.sp)
-            .writeD(character.exp)
-            .writeD(character.level)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00);
+            .writeD(0x00)  // Clan ID
+            .writeD(0x00)  // ?
+            .writeD(player.gender)
+            .writeD(player.raceId)
+            .writeD(player.classId)
+            .writeD(0x01)  // ?
+            .writeD(player.x)
+            .writeD(player.y)
+            .writeD(player.z)
+            .writeF(player.hp)
+            .writeF(player.mp)
+            .writeD(player.sp)
+            .writeD(player.exp)
+            .writeD(player.level)
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // Property: INT
+            .writeD(0x00)  // Property: STR
+            .writeD(0x00)  // Property: CON
+            .writeD(0x00)  // Property: MEN
+            .writeD(0x00)  // Property: DEX
+            .writeD(0x00); // Property: WIT
 
         for (let i = 0; i < 30; i++) {
             packet
@@ -170,107 +157,107 @@ class GameServerMethods {
         return packet.buffer;
     }
 
-    static userInfo(character) {
+    static userInfo(player) {
         let packet = new ServerPacket(600);
 
         packet
             .writeC(0x04)
-            .writeD(character.x)
-            .writeD(character.y)
-            .writeD(character.z)
-            .writeD(0x00) // getHeading
-            .writeD(character.id) // getObjectId
-            .writeS(character.name)
-            .writeD(character.raceId)
-            .writeD(character.gender)
-            .writeD(character.classId)
-            .writeD(character.level)
-            .writeD(character.exp)
-            .writeD(0x01) // STR
-            .writeD(0x01) // DEX
-            .writeD(0x01) // CON
-            .writeD(0x01) // INT
-            .writeD(0x01) // WIT
-            .writeD(0x01) // MEN
-            .writeD(character.maximumHp)
-            .writeD(character.hp)
-            .writeD(character.maximumMp)
-            .writeD(character.mp)
-            .writeD(character.sp)
-            .writeD(0x01) // getLoad
-            .writeD(81900) // getMaximumLoad
-            .writeD(0x28)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x01) // P. Attk
-            .writeD(0x01) // Speed
-            .writeD(0x01) // P. Def
-            .writeD(0x01) // Evasion
-            .writeD(0x01) // Accuracy
-            .writeD(0x01) // Critical
-            .writeD(0x01) // M. Attk
-            .writeD(0x01) // M. Speed
-            .writeD(0x01) // Speed
-            .writeD(0x01) // M. Def
-            .writeD(0x00) // pvp flag 0 - non pvp, 0x 1 - pvp = violett name
-            .writeD(0x00) // Karma
-            .writeD(215) // getRunSpeed
-            .writeD(280) // getWalkSpeed
-            .writeD(0x32) // swimspeed
-            .writeD(0x32) // swimspeed
-            .writeD(115) // getFloatingRunSpeed
-            .writeD(115) // getFloatingWalkSpeed
-            .writeD(115) // getFlyingRunSpeed
-            .writeD(115) // getFlyingWalkSpeed
-            .writeF(1.1) // getMovementMultiplier
-            .writeF(1.188) // getAttackSpeedMultiplier
-            .writeF(9) // getCollisionRadius
-            .writeF(23) // getCollisionHeight
-            .writeD(character.hairStyle)
-            .writeD(character.hairColor)
-            .writeD(character.face)
-            .writeD(0x00) // if GM - 0x01
-            .writeS('') // getTitle
-            .writeD(character.clanId) // pledge id
-            .writeD(character.clanId) // pledge crest id
-            .writeD(0x00) // getAllyId - ally id
-            .writeD(0x00) // ally crest id
-            .writeD(0x00) // 0x60 ???
-            .writeC(0x00)
-            .writeC(0x00) // getPrivateStoreType
-            .writeC(0x00) // Can craft
-            .writeD(0x00) // getPkKills
-            .writeD(0x00) // getPvpKills
-            .writeH(0x00) // cubic count
-            .writeC(0x00); //1-find party members
+            .writeD(player.x)
+            .writeD(player.y)
+            .writeD(player.z)
+            .writeD(0x00)  // Heading
+            .writeD(player.id)
+            .writeS(player.name)
+            .writeD(player.raceId)
+            .writeD(player.gender)
+            .writeD(player.classId)
+            .writeD(player.level)
+            .writeD(player.exp)
+            .writeD(0x01)  // Property: STR
+            .writeD(0x01)  // Property: DEX
+            .writeD(0x01)  // Property: CON
+            .writeD(0x01)  // Property: INT
+            .writeD(0x01)  // Property: WIT
+            .writeD(0x01)  // Property: MEN
+            .writeD(player.maxHp)
+            .writeD(player.hp)
+            .writeD(player.maxMp)
+            .writeD(player.mp)
+            .writeD(player.sp)
+            .writeD(0x01)  // Load
+            .writeD(81900) // Maximum Load
+            .writeD(0x28)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x01)  // Physical Attack
+            .writeD(0x01)  // Speed
+            .writeD(0x01)  // Physical Defense
+            .writeD(0x01)  // Evasion
+            .writeD(0x01)  // Accuracy
+            .writeD(0x01)  // Critical
+            .writeD(0x01)  // Magic Attack
+            .writeD(0x01)  // Magic Speed
+            .writeD(0x01)  // Speed
+            .writeD(0x01)  // Magic Defense
+            .writeD(0x00)  // Purple = 0x01
+            .writeD(player.karma)
+            .writeD(215)   // Run Speed
+            .writeD(280)   // Walk Speed
+            .writeD(0x32)  // Swim Speed
+            .writeD(0x32)  // Swim Speed
+            .writeD(115)   // Floating Run Speed
+            .writeD(115)   // Floating Walk Speed
+            .writeD(115)   // Flying Run Speed
+            .writeD(115)   // Flying Walk Speed
+            .writeF(1.1)   // Movement Multiplier
+            .writeF(1.188) // Attack Speed Multiplier
+            .writeF(9)     // Collision Radius
+            .writeF(23)    // Collision Height
+            .writeD(player.hairStyle)
+            .writeD(player.hairColor)
+            .writeD(player.face)
+            .writeD(0x00)  // GM = 0x01
+            .writeS(player.title)
+            .writeD(0x00)  // Clan ID
+            .writeD(0x00)  // Clan Crest ID
+            .writeD(0x00)  // Ally ID
+            .writeD(0x00)  // Ally Crest ID
+            .writeD(0x00)  // ?
+            .writeC(0x00)  // ?
+            .writeC(0x00)  // Private Store Type
+            .writeC(0x00)  // Can Craft
+            .writeD(0x00)  // PK Kills
+            .writeD(0x00)  // PVP Kills
+            .writeH(0x00)  // Cubic Count
+            .writeC(0x00); // Find Party Members = 0x01
 
         return packet.buffer;
     }
