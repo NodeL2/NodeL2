@@ -2,22 +2,22 @@
 let ClientPacket = require(__basedir + '/src/ClientPacket');
 
 class GameClientMethods {
-    static protocolVersion(buffer, callback) {
-        if (callback) {
+    static protocolVersion(buffer) {
+        return new Promise((success, _) => {
             let packet = new ClientPacket(buffer);
 
             packet
                 .readC()
                 .readD(); // Protocol Version
 
-            callback({
+            return success({
                 protocolVersion: packet.data[1]
             });
-        }
+        });
     }
 
-    static requestAuthLogin(buffer, callback) {
-        if (callback) {
+    static requestAuthLogin(buffer) {
+        return new Promise((success, _) => {
             let packet = new ClientPacket(buffer);
 
             packet
@@ -28,80 +28,80 @@ class GameClientMethods {
                 .readD()
                 .readD();
 
-            callback({
+            return success({
                 sessionKey: [
                     packet.data[3],
                     packet.data[2],
                 ]
             });
-        }
+        });
     }
 
-    static logout(buffer, callback) {
-        if (callback) {
+    static logout(buffer) {
+        return new Promise((success, _) => {
             let packet = new ClientPacket(buffer);
 
             packet
                 .readC();
 
-            callback({
+            return success({
             });
-        }
+        });
     }
 
-    static characterSelected(buffer, callback) {
-        if (callback) {
+    static characterSelected(buffer) {
+        return new Promise((success, _) => {
             let packet = new ClientPacket(buffer);
 
             packet
                 .readC()
                 .readD();
 
-            callback({
+            return success({
                 characterSlot: packet.data[1]
             });
-        }
+        });
     }
 
-    static newCharacter(buffer, callback) {
-        if (callback) {
+    static newCharacter(buffer) {
+        return new Promise((success, _) => {
             let packet = new ClientPacket(buffer);
 
             packet
                 .readC(); // Status
 
-            callback({
+            return success({
                 status: packet.data[0]
             });
-        }
+        });
     }
 
-    static requestQuestList(buffer, callback) {
-        if (callback) {
+    static requestQuestList(buffer) {
+        return new Promise((success, _) => {
             let packet = new ClientPacket(buffer);
 
             packet
                 .readC();
 
-            callback({
+            return success({
             });
-        }
+        });
     }
 
-    static enterWorld(buffer, callback) {
-        if (callback) {
+    static enterWorld(buffer) {
+        return new Promise((success, _) => {
             let packet = new ClientPacket(buffer);
 
             packet
                 .readC();
 
-            callback({
+            return success({
             });
-        }
+        });
     }
 
-    static moveBackwardToLocation(buffer, callback) {
-        if (callback) {
+    static moveBackwardToLocation(buffer) {
+        return new Promise((success, _) => {
             let packet = new ClientPacket(buffer);
 
             packet
@@ -113,7 +113,7 @@ class GameClientMethods {
                 .readD()
                 .readD();
 
-            callback({
+            return success({
                 origin: {
                     x: packet.data[4],
                     y: packet.data[5],
@@ -125,7 +125,7 @@ class GameClientMethods {
                     z: packet.data[3],
                 }
             });
-        }
+        });
     }
 }
 

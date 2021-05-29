@@ -29,71 +29,83 @@ class GameServerSession {
         // Opcodes
         switch (packet[0]) {
             case 0x00: // Protocol Version
-                GameClientMethods.protocolVersion(packet, (response) => {
-                    if (Config.protocolVersion !== response.protocolVersion) {
-                        return;
-                    }
+                GameClientMethods.protocolVersion(packet)
+                    .then((data) => {
 
-                    this.sendData(
-                        GameServerMethods.cryptInit(Config.xorKey), false
-                    );
-                });
+                        if (data.protocolVersion !== Config.protocolVersion) {
+                            return;
+                        }
+
+                        this.sendData(
+                            GameServerMethods.cryptInit(Config.xorKey), false
+                        );
+                    });
                 break;
 
             case 0x01: // Move to Location
-                GameClientMethods.moveBackwardToLocation(packet, (response) => {
-                    this.sendData(
-                        GameServerMethods.moveToLocation(this.player.id, response), false
-                    );
-                });
+                GameClientMethods.moveBackwardToLocation(packet)
+                    .then((data) => {
+
+                        this.sendData(
+                            GameServerMethods.moveToLocation(this.player.id, data), false
+                        );
+                    });
                 break;
 
             case 0x03: // Enter World
-                GameClientMethods.enterWorld(packet, (response) => {
-                    this.sendData(
-                        GameServerMethods.userInfo(this.player), false
-                    );
-                });
+                GameClientMethods.enterWorld(packet)
+                    .then((data) => {
+
+                        this.sendData(
+                            GameServerMethods.userInfo(this.player), false
+                        );
+                    });
                 break;
 
             case 0x08: // Authorize Login
-                GameClientMethods.requestAuthLogin(packet, (response) => {
-                    if (Config.sessionKey.toString() !== response.sessionKey.toString()) {
-                        return;
-                    }
+                GameClientMethods.requestAuthLogin(packet)
+                    .then((data) => {
 
-                    this.sendData(
-                        GameServerMethods.charSelectInfo(characterDB.characters), false
-                    );
-                });
+                        if (data.sessionKey.isEqualTo(Config.sessionKey)) {
+                            this.sendData(
+                                GameServerMethods.charSelectInfo(characterDB.characters), false
+                            );
+                        }
+                    });
                 break;
 
             case 0x09: // Logout
-                GameClientMethods.logout(packet, (response) => {
-                    this.sendData(
-                        GameServerMethods.logoutOk(), false
-                    );
-                });
+                GameClientMethods.logout(packet)
+                    .then((data) => {
+
+                        this.sendData(
+                            GameServerMethods.logoutOk(), false
+                        );
+                    });
                 break;
 
             case 0x0d: // Character Selected
-                GameClientMethods.characterSelected(packet, (response) => {
-                    this.player.setProperties( // Set player properties
-                        characterDB.characters[response.characterSlot]
-                    );
+                GameClientMethods.characterSelected(packet)
+                    .then((data) => {
 
-                    this.sendData(
-                        GameServerMethods.characterSelected(this.player), false
-                    );
-                });
+                        this.player.setProperties( // Set player properties
+                            characterDB.characters[data.characterSlot]
+                        );
+
+                        this.sendData(
+                            GameServerMethods.characterSelected(this.player), false
+                        );
+                    });
                 break;
 
             case 0x63: // Quest List
-                GameClientMethods.requestQuestList(packet, (response) => {
-                    this.sendData(
-                        GameServerMethods.questList(), false
-                    );
-                });
+                GameClientMethods.requestQuestList(packet)
+                    .then((data) => {
+
+                        this.sendData(
+                            GameServerMethods.questList(), false
+                        );
+                    });
                 break;
 
             // case 0x0e:
