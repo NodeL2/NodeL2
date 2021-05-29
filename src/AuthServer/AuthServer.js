@@ -5,7 +5,6 @@ let Config = require(__basedir + '/src/Config');
 let Database = require(__basedir + '/src/Database');
 let AuthServerSession = require(__basedir + '/src/AuthServer/AuthServerSession');
 let AuthServerMethods = require(__basedir + '/src/AuthServer/AuthServerMethods');
-let GameServer = require(__basedir + '/src/GameServer/GameServer');
 
 class AuthServer {
     constructor() {
@@ -30,7 +29,7 @@ class AuthServer {
         socket.on('close', session.connectionClosed.bind(session));
         socket.on('error', session.connectionError.bind(session));
 
-        session.sendData(AuthServerMethods.handshake(), false);
+        session.sendData(AuthServerMethods.init(), false);
     }
 }
 

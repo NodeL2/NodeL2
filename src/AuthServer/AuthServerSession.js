@@ -39,7 +39,7 @@ class AuthServerSession {
                             .then((rows) => {
 
                                 if (rows[0]?.password === data.password) {
-                                    this.sendData(AuthServerMethods.loginSuccess());
+                                    this.sendData(AuthServerMethods.loginOk());
                                 }
                                 else {
                                     // 0x01 System error

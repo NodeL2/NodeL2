@@ -3,7 +3,7 @@ let Config = require(__basedir + '/src/Config');
 let ServerPacket = require(__basedir + '/src/ServerPacket');
 
 class AuthServerMethods {
-    static handshake() {
+    static init() {
         let packet = new ServerPacket(9);
 
         packet
@@ -14,7 +14,7 @@ class AuthServerMethods {
         return packet.buffer;
     }
 
-    static loginSuccess() {
+    static loginOk() {
         let packet = new ServerPacket(48);
 
         packet
