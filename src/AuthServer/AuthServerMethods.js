@@ -7,7 +7,7 @@ class AuthServerMethods {
         let packet = new ServerPacket(9);
 
         packet
-            .writeC(0x00)       // Opcode
+            .writeC(0x00)
             .writeD(0x03ed779c) // Session ID
             .writeD(0x785a);    // Protocol
 
@@ -18,7 +18,7 @@ class AuthServerMethods {
         let packet = new ServerPacket(48);
 
         packet
-            .writeC(0x03)                 // Opcode
+            .writeC(0x03)
             .writeD(Config.sessionKey[0]) // Session Key (first)
             .writeD(Config.sessionKey[1]) // Session Key (last)
             .writeD(0x00)
@@ -35,7 +35,7 @@ class AuthServerMethods {
         let packet = new ServerPacket(16);
 
         packet
-            .writeC(0x01)       // Opcode
+            .writeC(0x01)
             .writeC(errorCode); // Failure reason
 
         return packet.buffer;
@@ -47,7 +47,7 @@ class AuthServerMethods {
         let packet = new ServerPacket(20);
 
         packet
-            .writeC(0x04)    // Opcode
+            .writeC(0x04)
             .writeC(1)       // Number of servers
             .writeC(0)       // LS Number
             .writeC(1)       // Server ID
@@ -69,7 +69,7 @@ class AuthServerMethods {
         let packet = new ServerPacket(12);
 
         packet
-            .writeC(0x07)           // Opcode
+            .writeC(0x07)
             .writeD(sessionKey[0])  // Session Key (first)
             .writeD(sessionKey[1]); // Session Key (last)
 
@@ -80,7 +80,7 @@ class AuthServerMethods {
         let packet = new ServerPacket(12);
 
         packet
-            .writeC(0x06)       // Opcode
+            .writeC(0x06)
             .writeC(errorCode); // Failure reason
 
         return packet.buffer;

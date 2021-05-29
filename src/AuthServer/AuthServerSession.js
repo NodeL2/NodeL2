@@ -39,14 +39,18 @@ class AuthServerSession {
                             .then((rows) => {
 
                                 if (rows[0]?.password === data.password) {
-                                    this.sendData(AuthServerMethods.loginOk());
+                                    this.sendData(
+                                        AuthServerMethods.loginOk()
+                                    );
                                 }
                                 else {
                                     // 0x01 System error
                                     // 0x02 Password does not match this account
                                     // 0x04 Access failed
                                     // 0x07 The account is already in use
-                                    this.sendData(AuthServerMethods.loginFail(0x02));
+                                    this.sendData(
+                                        AuthServerMethods.loginFail(0x02)
+                                    );
                                 }
                             });
                     });
@@ -58,13 +62,17 @@ class AuthServerSession {
 
                         if (data.sessionKey.isEqualTo(Config.sessionKey)) {
                             if (true) {
-                                this.sendData(AuthServerMethods.playOk(Config.sessionKey));
+                                this.sendData(
+                                    AuthServerMethods.playOk(Config.sessionKey)
+                                );
                             } else {
                                 // 0x01 System error
                                 // 0x02 Password does not match this account
                                 // 0x04 Access failed
                                 // 0x07 The account is already in use
-                                this.sendData(AuthServerMethods.playFail(0x01));
+                                this.sendData(
+                                    AuthServerMethods.playFail(0x01)
+                                );
                             }
                         }
                     });
@@ -75,7 +83,9 @@ class AuthServerSession {
                     .then((data) => {
 
                         if (data.sessionKey.isEqualTo(Config.sessionKey)) {
-                            this.sendData(AuthServerMethods.serverList(Config.gameServer.host, Config.gameServer.port));
+                            this.sendData(
+                                AuthServerMethods.serverList(Config.gameServer.host, Config.gameServer.port)
+                            );
                         }
                     });
                 break;
