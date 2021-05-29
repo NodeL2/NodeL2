@@ -9,6 +9,7 @@
   "author": "Dennis",
   "license": "ISC",
   "dependencies": {
-    "ini": "^2.0.0"
+    "ini": "^2.0.0",
+    "mariadb": "^2.5.3"
   }
 }

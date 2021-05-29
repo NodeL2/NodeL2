@@ -2,12 +2,17 @@ let net = require('net');
 
 // User define
 let Config = require(__basedir + '/src/Config');
+let Database = require(__basedir + '/src/Database');
 let AuthServerSession = require(__basedir + '/src/AuthServer/AuthServerSession');
 let AuthServerMethods = require(__basedir + '/src/AuthServer/AuthServerMethods');
 let GameServer = require(__basedir + '/src/GameServer/GameServer');
 
 class AuthServer {
     constructor() {
+        // Start with db
+        Database.connection();
+
+        // Proceed with sockets
         let host = Config.loginServer.host;
         let port = Config.loginServer.port;
 

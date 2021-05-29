@@ -7,14 +7,22 @@ class Config {
     );
 
     static loginServer = {
-        host: this.defaults.AuthServer.host || '127.0.0.1',
-        port: parseInt(this.defaults.AuthServer.port) || 2106
+        host: this.defaults.AuthServer.Hostname || '127.0.0.1',
+        port: parseInt(this.defaults.AuthServer.Port) || 2106
     };
 
     static gameServer = {
-        host: this.defaults.GameServer.host || '127.0.0.1',
-        port: parseInt(this.defaults.GameServer.port) || 7777
+        host: this.defaults.GameServer.Hostname || '127.0.0.1',
+        port: parseInt(this.defaults.GameServer.Port) || 7777
     };
+
+    static database = {
+        host: this.defaults.Database.Hostname || '127.0.0.1',
+        port: parseInt(this.defaults.Database.Port) || 3306,
+        username: this.defaults.Database.Username || 'root',
+        password: this.defaults.Database.Password || '',
+        name: this.defaults.Database.Name || 'nodel2'
+    }
 
     static protocolVersion = 419;
 

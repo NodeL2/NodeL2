@@ -23,6 +23,15 @@ class ClientPacket {
         return this;
     }
 
+    readB(length) {
+        this.data.push(
+            this.buffer.slice(this.offset, this.offset + length)
+        );
+        this.offset += length;
+
+        return this;
+    }
+
     readS() {
         let i;
 
