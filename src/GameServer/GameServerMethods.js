@@ -1,5 +1,5 @@
 // User define
-let ServerPacket = require(__basedir + '/src/ServerPacket');
+let ServerPacket = invoke('ServerPacket');
 
 class GameServerMethods {
     static cryptInit(xorKey) {
@@ -43,13 +43,13 @@ class GameServerMethods {
                 packet
                     .writeS(character.name)
                     .writeD(character.id)
-                    .writeS(character.accountId)
+                    .writeS(character.username)
                     .writeD(0x55555555)
                     .writeD(0x00)  // ?
                     .writeD(0x00)  // ?
                     .writeD(character.gender)
-                    .writeD(character.raceId)
-                    .writeD(character.classId)
+                    .writeD(character.race_id)
+                    .writeD(character.class_id)
                     .writeD(0x01)  // ?
                     .writeD(character.x)
                     .writeD(character.y)
@@ -75,11 +75,11 @@ class GameServerMethods {
                 }
 
                 packet
-                    .writeD(character.hairStyle)
-                    .writeD(character.hairColor)
+                    .writeD(character.hair_style)
+                    .writeD(character.hair_color)
                     .writeD(character.face)
-                    .writeF(character.maxHp)
-                    .writeF(character.maxMp)
+                    .writeF(character.max_hp)
+                    .writeF(character.max_mp)
                     .writeD(0x00); // Days before deletion
             }
         }

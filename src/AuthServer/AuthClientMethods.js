@@ -1,6 +1,6 @@
 // User define
-let ClientPacket = require(__basedir + '/src/ClientPacket');
-let Utils = require(__basedir + '/src/Utils');
+let ClientPacket = invoke('ClientPacket');
+let Utils = invoke('Utils');
 
 class AuthClientMethods {
     static authorizeLogin(buffer) {

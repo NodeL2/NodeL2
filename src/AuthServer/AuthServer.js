@@ -1,10 +1,10 @@
 let net = require('net');
 
 // User define
-let Config = require(__basedir + '/src/Config');
-let Database = require(__basedir + '/src/Database');
-let AuthServerSession = require(__basedir + '/src/AuthServer/AuthServerSession');
-let AuthServerMethods = require(__basedir + '/src/AuthServer/AuthServerMethods');
+let Config = invoke('Config');
+let Database = invoke('Database');
+let AuthServerSession = invoke('AuthServer/AuthServerSession');
+let AuthServerMethods = invoke('AuthServer/AuthServerMethods');
 
 class AuthServer {
     constructor() {

@@ -1,7 +1,7 @@
 let mariadb = require('mariadb/callback');
 
 // User define
-let Config = require(__basedir + '/src/Config');
+let Config = invoke('Config');
 
 class Database {
     static connection() {
@@ -23,6 +23,19 @@ class Database {
     static getAccountPassword(username) {
         return new Promise((success, failure) => {
             const sql = 'SELECT password FROM accounts WHERE username = "' + username + '" LIMIT 1';
+            this.conn.query(sql, (err, results, fields) => {
+                if (err) {
+                    return failure(err);
+                }
+
+                return success(results);
+            });
+        });
+    }
+
+    static getCharacters(username) {
+        return new Promise((success, failure) => {
+            const sql = 'SELECT * FROM characters WHERE username = "' + username + '"';
             this.conn.query(sql, (err, results, fields) => {
                 if (err) {
                     return failure(err);

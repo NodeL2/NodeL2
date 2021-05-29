@@ -1,5 +1,5 @@
 // User define
-let ClientPacket = require(__basedir + '/src/ClientPacket');
+let ClientPacket = invoke('ClientPacket');
 
 class GameClientMethods {
     static protocolVersion(buffer) {
@@ -29,6 +29,7 @@ class GameClientMethods {
                 .readD();
 
             return success({
+                username: packet.data[1],
                 sessionKey: [
                     packet.data[3],
                     packet.data[2],

@@ -1,10 +1,10 @@
 // User define
-let Config = require(__basedir + '/src/Config');
-let Database = require(__basedir + '/src/Database');
-let Blowfish = require(__basedir + '/src/Blowfish');
-let AuthServerMethods = require(__basedir + '/src/AuthServer/AuthServerMethods');
-let AuthClientMethods = require(__basedir + '/src/AuthServer/AuthClientMethods');
-let Utils = require(__basedir + '/src/Utils');
+let Config = invoke('Config');
+let Database = invoke('Database');
+let Blowfish = invoke('Blowfish');
+let AuthServerMethods = invoke('AuthServer/AuthServerMethods');
+let AuthClientMethods = invoke('AuthServer/AuthClientMethods');
+let Utils = invoke('Utils');
 
 Array.prototype.isEqualTo = function(targetArray) {
     return (this.toString() === targetArray.toString());

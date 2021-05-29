@@ -1,7 +1,9 @@
-global.__basedir = __dirname;
+global.invoke = function(name) {
+    return require(__dirname + '/src/' + name);
+}
 
-let AuthServer = require(__basedir + '/src/AuthServer/AuthServer');
-let GameServer = require(__basedir + '/src/GameServer/GameServer');
+let AuthServer = invoke('AuthServer/AuthServer');
+let GameServer = invoke('GameServer/GameServer');
 
 new AuthServer();
 new GameServer();

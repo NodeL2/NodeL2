@@ -1,8 +1,8 @@
 let net = require('net');
 
 // User define
-let Config = require(__basedir + '/src/Config');
-let GameServerSession = require(__basedir + '/src/GameServer/GameServerSession');
+let Config = invoke('Config');
+let GameServerSession = invoke('GameServer/GameServerSession');
 
 class GameServer {
     constructor() {

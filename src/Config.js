@@ -3,7 +3,7 @@ let ini = require('ini');
 
 class Config {
     static defaults = ini.parse(
-        fs.readFileSync(__basedir + '/Config.ini', 'utf-8')
+        fs.readFileSync('./Config.ini', 'utf-8')
     );
 
     static loginServer = {

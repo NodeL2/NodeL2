@@ -1,17 +1,17 @@
 class Actor {
     setProperties(character) {
         this.id        = character.id;
-        this.accountId = character.accountId;
+        this.accountId = character.username;
         this.name      = character.name;
-        this.title     = character.title;
-        this.raceId    = character.raceId;
-        this.classId   = character.classId;
+        this.title     = character.title || '';
+        this.raceId    = character.race_id;
+        this.classId   = character.class_id;
 
         // Vitals
         this.level = character.level;
-        this.maxHp = character.maxHp;
+        this.maxHp = character.max_hp;
         this.hp    = character.hp;
-        this.maxMp = character.maxMp;
+        this.maxMp = character.max_mp;
         this.mp    = character.mp;
         this.exp   = character.exp;
         this.sp    = character.sp;
@@ -20,8 +20,8 @@ class Actor {
         // Appearance
         this.gender    = character.gender;
         this.face      = character.face;
-        this.hairStyle = character.hairStyle;
-        this.hairColor = character.hairColor;
+        this.hairStyle = character.hair_style;
+        this.hairColor = character.hair_color;
 
         // Position
         this.x = character.x;

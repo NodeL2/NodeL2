@@ -1,6 +1,6 @@
 // User define
-let Config = require(__basedir + '/src/Config');
-let ServerPacket = require(__basedir + '/src/ServerPacket');
+let Config = invoke('Config');
+let ServerPacket = invoke('ServerPacket');
 
 class AuthServerMethods {
     static init() {

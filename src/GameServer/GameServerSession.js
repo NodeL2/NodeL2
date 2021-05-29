@@ -1,12 +1,11 @@
 // User define
-let Config = require(__basedir + '/src/Config');
-let Blowfish = require(__basedir + '/src/Blowfish');
-let GameServerMethods = require(__basedir + '/src/GameServer/GameServerMethods');
-let GameClientMethods = require(__basedir + '/src/GameServer/GameClientMethods');
-let Actor = require(__basedir + '/src/Actor');
-let Utils = require(__basedir + '/src/Utils');
-
-let characterDB = require(__basedir + '/Database.json');
+let Config = invoke('Config');
+let Database = invoke('Database');
+let Blowfish = invoke('Blowfish');
+let GameServerMethods = invoke('GameServer/GameServerMethods');
+let GameClientMethods = invoke('GameServer/GameClientMethods');
+let Actor = invoke('Actor');
+let Utils = invoke('Utils');
 
 class GameServerSession {
     constructor(socket) {
@@ -32,13 +31,11 @@ class GameServerSession {
                 GameClientMethods.protocolVersion(packet)
                     .then((data) => {
 
-                        if (data.protocolVersion !== Config.protocolVersion) {
-                            return;
+                        if (data.protocolVersion === Config.protocolVersion) {
+                            this.sendData(
+                                GameServerMethods.cryptInit(Config.xorKey), false
+                            );
                         }
-
-                        this.sendData(
-                            GameServerMethods.cryptInit(Config.xorKey), false
-                        );
                     });
                 break;
 
@@ -67,9 +64,14 @@ class GameServerSession {
                     .then((data) => {
 
                         if (data.sessionKey.isEqualTo(Config.sessionKey)) {
-                            this.sendData(
-                                GameServerMethods.charSelectInfo(characterDB.characters), false
-                            );
+
+                            Database.getCharacters(data.username)
+                                .then((rows) => {
+
+                                    this.sendData(
+                                        GameServerMethods.charSelectInfo(rows), false
+                                    );
+                                });
                         }
                     });
                 break;
@@ -88,13 +90,17 @@ class GameServerSession {
                 GameClientMethods.characterSelected(packet)
                     .then((data) => {
 
-                        this.player.setProperties( // Set player properties
-                            characterDB.characters[data.characterSlot]
-                        );
+                        Database.getCharacters('dkoluris')
+                            .then((rows) => {
 
-                        this.sendData(
-                            GameServerMethods.characterSelected(this.player), false
-                        );
+                                this.player.setProperties( // Set player properties
+                                    rows[data.characterSlot]
+                                );
+        
+                                this.sendData(
+                                    GameServerMethods.characterSelected(this.player), false
+                                );
+                            });
                     });
                 break;
 
