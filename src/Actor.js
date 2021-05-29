@@ -1,11 +1,14 @@
 class Actor {
+    setAccountID(username) {
+        this.accountId = username;
+    }
+
     setProperties(character) {
-        this.id        = character.id;
-        this.accountId = character.username;
-        this.name      = character.name;
-        this.title     = character.title || '';
-        this.raceId    = character.race_id;
-        this.classId   = character.class_id;
+        this.id      = character.id;
+        this.name    = character.name;
+        this.title   = character.title || '';
+        this.raceId  = character.race_id;
+        this.classId = character.class_id;
 
         // Vitals
         this.level = character.level;

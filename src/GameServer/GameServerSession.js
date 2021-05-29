@@ -64,8 +64,9 @@ class GameServerSession {
                     .then((data) => {
 
                         if (data.sessionKey.isEqualTo(Config.sessionKey)) {
+                            this.player.setAccountID(data.username);
 
-                            Database.getCharacters(data.username)
+                            Database.getCharacters(this.player.accountId)
                                 .then((rows) => {
 
                                     this.sendData(
@@ -90,7 +91,7 @@ class GameServerSession {
                 GameClientMethods.characterSelected(packet)
                     .then((data) => {
 
-                        Database.getCharacters('dkoluris')
+                        Database.getCharacters(this.player.accountId)
                             .then((rows) => {
 
                                 this.player.setProperties( // Set player properties
