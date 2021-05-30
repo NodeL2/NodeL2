@@ -42,7 +42,7 @@ class ServerPacket {
 
     static strlen(str) {
         return Buffer.byteLength(str, 'ucs2') + 2;
-	}
+    }
 }
 
 module.exports = ServerPacket;
