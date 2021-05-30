@@ -141,6 +141,9 @@ class GameServerSession {
                     });
                 break;
 
+            case 0x46: // Restart?
+                break;
+
             case 0x63: // Quest List
                 GameClientMethods.requestQuestList(packet)
                     .then((data) => {
