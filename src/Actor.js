@@ -30,6 +30,10 @@ class Actor {
         this.x = character.x;
         this.y = character.y;
         this.z = character.z;
+
+        //
+        this.isStanding = true;
+        this.isRunning  = true;
     }
 }
 

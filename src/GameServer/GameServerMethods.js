@@ -240,7 +240,7 @@ class GameServerMethods {
             .writeD(0x00)  // Purple = 0x01
             .writeD(player.karma)
             .writeD(215)   // Run Speed
-            .writeD(280)   // Walk Speed
+            .writeD(125)   // Walk Speed
             .writeD(0x32)  // Swim Speed
             .writeD(0x32)  // Swim Speed
             .writeD(115)   // Floating Run Speed
@@ -293,6 +293,42 @@ class GameServerMethods {
 
         packet
             .writeC(0x28);
+
+        return packet.buffer;
+    }
+
+    static inventory() {
+        let packet = new ServerPacket(5);
+
+        packet
+            .writeC(0x27)
+            .writeH(0x01)
+            .writeH(0x00);
+
+        return packet.buffer;
+    }
+
+    static changeWaitType(player) {
+        let packet = new ServerPacket(21);
+
+        packet
+            .writeC(0x3f)
+            .writeD(player.id)
+            .writeD(player.isStanding)
+            .writeD(player.x)
+            .writeD(player.y)
+            .writeD(player.z);
+
+        return packet.buffer;
+    }
+
+    static changeMoveType(player) {
+        let packet = new ServerPacket(9);
+
+        packet
+            .writeC(0x3e)
+            .writeD(player.id)
+            .writeD(player.isRunning);
 
         return packet.buffer;
     }

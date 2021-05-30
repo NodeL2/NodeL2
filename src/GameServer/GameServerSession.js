@@ -136,7 +136,43 @@ class GameServerSession {
                     .then((data) => {
 
                         if (data.status === 0x0e) {
-                            this.sendData(GameServerMethods.charTemplates(), false);
+                            this.sendData(
+                                GameServerMethods.charTemplates(), false
+                            );
+                        }
+                    });
+                break;
+
+            case 0x0f: // Show Inventory
+                GameClientMethods.showInventory(packet)
+                    .then(() => {
+
+                        this.sendData(
+                            GameServerMethods.inventory(), false
+                        )
+                    });
+                break;
+
+            case 0x45: // Request Action Use
+                GameClientMethods.requestActionUse(packet)
+                    .then((data) => {
+                        
+                        switch (data.actionId) {
+                            case 0: // Stand/Sit
+                                this.player.isStanding = !this.player.isStanding;
+
+                                this.sendData(
+                                    GameServerMethods.changeWaitType(this.player), false
+                                );
+                                break;
+
+                            case 1: // Run/Walk
+                                this.player.isRunning = !this.player.isRunning;
+
+                                this.sendData(
+                                    GameServerMethods.changeMoveType(this.player), false
+                                );
+                                break;
                         }
                     });
                 break;
