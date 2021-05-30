@@ -19,7 +19,7 @@ class Config {
     static database = {
         host: this.defaults.Database.Hostname || '127.0.0.1',
         port: parseInt(this.defaults.Database.Port) || 3306,
-        username: this.defaults.Database.Username || 'root',
+        user: this.defaults.Database.User || 'root',
         password: this.defaults.Database.Password || '',
         name: this.defaults.Database.Name || 'nodel2'
     }

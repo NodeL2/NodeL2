@@ -7,10 +7,10 @@ class Database {
     static connection() {
         this.conn = mariadb.createConnection({
             host: Config.database.host,
-            database: Config.database.name,
-            user: Config.database.username,
+            port: Config.database.port,
+            user: Config.database.user,
             password: Config.database.password,
-            port: Config.database.port
+            database: Config.database.name
         });
 
         this.conn.connect(err => {
@@ -20,10 +20,9 @@ class Database {
         });
     }
 
-    static getAccountPassword(username) {
+    static sqlQuery(query) {
         return new Promise((success, failure) => {
-            const sql = 'SELECT password FROM accounts WHERE username = "' + username + '" LIMIT 1';
-            this.conn.query(sql, (err, results, fields) => {
+            this.conn.query(query, (err, results, fields) => {
                 if (err) {
                     return failure(err);
                 }
@@ -33,17 +32,16 @@ class Database {
         });
     }
 
-    static getCharacters(username) {
-        return new Promise((success, failure) => {
-            const sql = 'SELECT * FROM characters WHERE username = "' + username + '"';
-            this.conn.query(sql, (err, results, fields) => {
-                if (err) {
-                    return failure(err);
-                }
+    static getAccountPassword(username) {
+        return this.sqlQuery(
+            'SELECT password FROM accounts WHERE username = "' + username + '" LIMIT 1'
+        );
+    }
 
-                return success(results);
-            });
-        });
+    static getCharacters(username) {
+        return this.sqlQuery(
+            'SELECT * FROM characters WHERE username = "' + username + '"'
+        );
     }
 }
 

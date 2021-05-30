@@ -105,6 +105,16 @@ class GameServerSession {
                     });
                 break;
 
+            case 0x0e: // Create New Character
+                GameClientMethods.newCharacter(packet)
+                    .then((data) => {
+
+                        if (data.status === 0x0e) {
+                            this.sendData(GameServerMethods.charTemplates(), false);
+                        }
+                    });
+                break;
+
             case 0x63: // Quest List
                 GameClientMethods.requestQuestList(packet)
                     .then((data) => {
@@ -114,14 +124,6 @@ class GameServerSession {
                         );
                     });
                 break;
-
-            // case 0x0e:
-            //     this.data = GameClientMethods.newCharacter(packet);
-                
-            //     if (this.data.status === 0x0e) {
-            //         this.sendData(GameServerMethods.charTemplates(), false);
-            //     }
-            //     break;
 
             // case 0x0b:
             //     break;
