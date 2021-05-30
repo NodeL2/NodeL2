@@ -146,6 +146,16 @@ class GameServerMethods {
         return packet.buffer;
     }
 
+    static characterCreateSuccess() {
+        let packet = new ServerPacket(5);
+
+        packet
+            .writeC(0x25)
+            .writeD(0x01);
+
+        return packet.buffer;
+    }
+
     static questList() {
         let packet = new ServerPacket(5);
 

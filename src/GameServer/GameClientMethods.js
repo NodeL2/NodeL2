@@ -77,6 +77,38 @@ class GameClientMethods {
         });
     }
 
+    static characterCreate(buffer) {
+        return new Promise((success, _) => {
+            let packet = new ClientPacket(buffer);
+
+            packet
+                .readC()
+                .readS()  // Name
+                .readD()  // Race
+                .readD()  // Gender
+                .readD()  // Class ID
+                .readD()
+                .readD()
+                .readD()
+                .readD()
+                .readD()
+                .readD()
+                .readD()  // Hair Style
+                .readD()  // Hair Color
+                .readD(); // Face
+
+            return success({
+                name: packet.data[1],
+                race: packet.data[2],
+                gender: packet.data[3],
+                classId: packet.data[4],
+                hairStyle: packet.data[11],
+                hairColor: packet.data[12],
+                face: packet.data[13]
+            });
+        });
+    }
+
     static requestQuestList(buffer) {
         return new Promise((success, _) => {
             let packet = new ClientPacket(buffer);

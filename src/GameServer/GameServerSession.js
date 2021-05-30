@@ -87,6 +87,26 @@ class GameServerSession {
                     });
                 break;
 
+            case 0x0b: // Create Character
+                GameClientMethods.characterCreate(packet)
+                    .then((data) => {
+
+                        console.info(data);
+
+                        this.sendData(
+                            GameServerMethods.characterCreateSuccess(), false
+                        );
+
+                        Database.getCharacters(this.player.accountId)
+                            .then((rows) => {
+
+                                this.sendData(
+                                    GameServerMethods.charSelectInfo(rows), false
+                                );
+                            });
+                    });
+                break;
+
             case 0x0d: // Character Selected
                 GameClientMethods.characterSelected(packet)
                     .then((data) => {
@@ -105,7 +125,7 @@ class GameServerSession {
                     });
                 break;
 
-            case 0x0e: // Create New Character
+            case 0x0e: // New Character
                 GameClientMethods.newCharacter(packet)
                     .then((data) => {
 
@@ -124,9 +144,6 @@ class GameServerSession {
                         );
                     });
                 break;
-
-            // case 0x0b:
-            //     break;
 
             default:
                 console.log('GS:: unknown opcode 0x%s', Utils.toHex(packet[0], 2));
