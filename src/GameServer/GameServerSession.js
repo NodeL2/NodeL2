@@ -54,6 +54,10 @@ class GameServerSession {
                     .then((data) => {
 
                         this.sendData(
+                            GameServerMethods.sunrise(), false
+                        );
+
+                        this.sendData(
                             GameServerMethods.userInfo(this.player), false
                         );
                     });

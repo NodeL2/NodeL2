@@ -287,6 +287,15 @@ class GameServerMethods {
 
         return packet.buffer;
     }
+
+    static sunrise() {
+        let packet = new ServerPacket(1);
+
+        packet
+            .writeC(0x28);
+
+        return packet.buffer;
+    }
 }
 
 module.exports = GameServerMethods;
