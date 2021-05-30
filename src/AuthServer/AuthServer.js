@@ -22,7 +22,6 @@ class AuthServer {
 
     onSocket(socket) {
         console.log('LS:: incoming connection from %s:%s', socket.remoteAddress, socket.remotePort);
-        //socket.setEncoding('binary');
 
         let session = new AuthServerSession(socket);
         socket.on('data', session.receiveData.bind(session));

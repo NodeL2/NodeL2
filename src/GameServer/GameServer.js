@@ -16,7 +16,6 @@ class GameServer {
 
     onSocket(socket) {
         console.log('GS:: incoming connection from %s:%s', socket.remoteAddress, socket.remotePort);
-        //socket.setEncoding('binary');
 
         let session = new GameServerSession(socket);
         socket.on('data', session.receiveData.bind(session));

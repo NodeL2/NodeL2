@@ -43,6 +43,19 @@ class Database {
             'SELECT * FROM characters WHERE username = "' + username + '"'
         );
     }
+
+    static getBaseClass(classId) {
+        return this.sqlQuery(
+            'SELECT * FROM classes WHERE class_id = "' + classId + '" LIMIT 1'
+        );
+    }
+
+    static addNewCharacter(username, data) {
+        return this.sqlQuery('\
+            INSERT INTO characters (username, name, race_id, class_id, level, max_hp, hp, max_mp, mp, exp, sp, karma, gender, face, hair_style, hair_color, x, y, z)\
+            VALUES ("' + username + '", "' + data.name + '", ' + data.race + ', ' + data.classId + ', 1, 300, 200, 300, 200, 0, 0, 0, ' + data.gender + ', ' + data.face + ', ' + data.hairStyle + ', ' + data.hairColor + ', 43648, 40352, -3430)\
+        ');
+    }
 }
 
 module.exports = Database;

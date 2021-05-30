@@ -91,18 +91,20 @@ class GameServerSession {
                 GameClientMethods.characterCreate(packet)
                     .then((data) => {
 
-                        console.info(data);
-
-                        this.sendData(
-                            GameServerMethods.characterCreateSuccess(), false
-                        );
-
-                        Database.getCharacters(this.player.accountId)
-                            .then((rows) => {
+                        Database.addNewCharacter(this.player.accountId, data)
+                            .then(() => {
 
                                 this.sendData(
-                                    GameServerMethods.charSelectInfo(rows), false
+                                    GameServerMethods.characterCreateSuccess(), false
                                 );
+
+                                Database.getCharacters(this.player.accountId)
+                                    .then((rows) => {
+
+                                        this.sendData(
+                                            GameServerMethods.charSelectInfo(rows), false
+                                        );
+                                    });
                             });
                     });
                 break;
