@@ -27,12 +27,12 @@ function charSelected(player) {
         .writeD(player.level)
         .writeD(0x00)  // ?
         .writeD(0x00)  // ?
-        .writeD(0x00)  // Property: INT
-        .writeD(0x00)  // Property: STR
-        .writeD(0x00)  // Property: CON
-        .writeD(0x00)  // Property: MEN
-        .writeD(0x00)  // Property: DEX
-        .writeD(0x00); // Property: WIT
+        .writeD(player.int)
+        .writeD(player.str)
+        .writeD(player.con)
+        .writeD(player.men)
+        .writeD(player.dex)
+        .writeD(player.wit);
 
     for (let i = 0; i < 30; i++) {
         packet

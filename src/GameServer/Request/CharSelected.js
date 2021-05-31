@@ -14,15 +14,24 @@ function charSelected(session, buffer) {
     };
 
     Database.getCharacters(session.player.accountId)
-        .then((rows) => {
+        .then((characters) => {
+            let character = characters[data.characterSlot];
 
-            session.player.setProperties( // Set player properties
-                rows[data.characterSlot]
-            );
+            Database.getBaseClass(character.classId)
+                .then((stats) => {
 
-            session.sendData(
-                GameServerResponse.charSelected(session.player), false
-            );
+                    session.player.setProperties( // Set player properties
+                        character
+                    );
+
+                    session.player.setBaseStats(
+                        stats[0]
+                    );
+
+                    session.sendData(
+                        GameServerResponse.charSelected(session.player), false
+                    );
+                });
         });
 }
 

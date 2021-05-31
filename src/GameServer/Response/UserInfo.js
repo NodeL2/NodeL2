@@ -1,3 +1,4 @@
+let Database = invoke('Database');
 let ServerPacket = invoke('ServerPacket');
 
 function userInfo(player) {
@@ -16,12 +17,12 @@ function userInfo(player) {
         .writeD(player.classId)
         .writeD(player.level)
         .writeD(player.exp)
-        .writeD(0x01)  // Property: STR
-        .writeD(0x01)  // Property: DEX
-        .writeD(0x01)  // Property: CON
-        .writeD(0x01)  // Property: INT
-        .writeD(0x01)  // Property: WIT
-        .writeD(0x01)  // Property: MEN
+        .writeD(player.str)
+        .writeD(player.dex)
+        .writeD(player.con)
+        .writeD(player.int)
+        .writeD(player.wit)
+        .writeD(player.men)
         .writeD(player.maxHp)
         .writeD(player.hp)
         .writeD(player.maxMp)

@@ -36,6 +36,15 @@ class Actor {
         this.isStanding = true;
         this.isRunning  = true;
     }
+
+    setBaseStats(stats) {
+        this.str = stats.str;
+        this.dex = stats.dex;
+        this.con = stats.con;
+        this.int = stats.int;
+        this.wit = stats.wit;
+        this.men = stats.men;
+    }
 }
 
 module.exports = Actor;

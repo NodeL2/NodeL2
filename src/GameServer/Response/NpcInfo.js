@@ -8,38 +8,38 @@ function npcInfo() {
         .writeD(432) // ObjectId
         .writeD(1000000 + 432) // Id
         .writeD(0x00)
-        .writeD(43648) // x
-        .writeD(40352) // y
-        .writeD(-3430) // z
-        .writeD(0x00) // getHeading
+        .writeD(43157) // x
+        .writeD(41961) // y
+        .writeD(-3492) // z
+        .writeD(0x00) // Heading
         .writeD(0x00)
-        .writeD(0x00) // getMagicalSpeed
-        .writeD(0x00) // getPhysicalSpeed
-        .writeD(80) // getRunSpeed
-        .writeD(50) // getWalkSpeed
-        .writeD(50)	// swimspeed
-        .writeD(50)	// swimspeed
-        .writeD(100) // getFloatingRunSpeed
-        .writeD(100) // getFloatingWalkSpeed
-        .writeD(100) // getFlyingRunSpeed
-        .writeD(100) // getFlyingWalkSpeed
-        .writeF(1) // getMovementMultiplier
-        .writeF(1) // getAttackSpeedMultiplier
-        .writeF(5.0) // getCollisionRadius
-        .writeF(4.5) // getCollisionHeight
-        .writeD(0x00) // getRightHandItem
+        .writeD(0x00) // Magical Speed
+        .writeD(0x00) // Physical Speed
+        .writeD(80) // Run Speed
+        .writeD(50) // Walk Speed
+        .writeD(50)	// Swim Speed
+        .writeD(50)	// Swim Speed
+        .writeD(100) // Floating Run Speed
+        .writeD(100) // Floating Walk Speed
+        .writeD(100) // Flying Run Speed
+        .writeD(100) // Flying Walk Speed
+        .writeF(1) // Movement Multiplier
+        .writeF(1) // Attack Speed Multiplier
+        .writeF(5.0) // Collision Radius
+        .writeF(4.5) // Collision Height
+        .writeD(0x00) // Right Hand Item
         .writeD(0)
-        .writeD(0x00) // getLeftHandItem
-        .writeC(1) // name above char 1=true ... ??
-        .writeC(0) // walking=0 
-        .writeC(0) // attacking 1=true
-        .writeC(0) // dead 1=true
-        .writeC(0) // invisible ?? 0=false  1=true   2=summoned (only works if model has a summon animation)
+        .writeD(0x00) // Left Hand Item
+        .writeC(0x01) // Name Above Character = 0x01
+        .writeC(0x00) // Walking = 0x00
+        .writeC(0x00) // Attacking = 0x01
+        .writeC(0x00) // Dead = 0x01
+        .writeC(0x00) // Invisible = 0x01
         .writeS('Elpy') // Name
         .writeS('') // Title
-        .writeD(0)
-        .writeD(0)
-        .writeD(0);
+        .writeD(0x00)
+        .writeD(0x00)
+        .writeD(0x00);
 
     return packet.buffer;
 }
