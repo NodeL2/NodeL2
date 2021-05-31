@@ -2,7 +2,7 @@
 let Config = invoke('Config');
 let Database = invoke('Database');
 let Blowfish = invoke('Blowfish');
-let GameServerMethods = invoke('GameServer/GameServerMethods');
+let GameServerResponse = invoke('GameServer/GameServerResponse');
 let GameClientMethods = invoke('GameServer/GameClientMethods');
 let Actor = invoke('Actor');
 let Utils = invoke('Utils');
@@ -33,7 +33,7 @@ class GameServerSession {
 
                         if (data.protocolVersion === Config.protocolVersion) {
                             this.sendData(
-                                GameServerMethods.cryptInit(Config.xorKey), false
+                                GameServerResponse.cryptInit(Config.xorKey), false
                             );
                         }
                     });
@@ -44,7 +44,7 @@ class GameServerSession {
                     .then((data) => {
 
                         this.sendData(
-                            GameServerMethods.moveToLocation(this.player.id, data), false
+                            GameServerResponse.moveToLocation(this.player.id, data), false
                         );
                     });
                 break;
@@ -54,11 +54,11 @@ class GameServerSession {
                     .then((data) => {
 
                         this.sendData(
-                            GameServerMethods.sunrise(), false
+                            GameServerResponse.sunrise(), false
                         );
 
                         this.sendData(
-                            GameServerMethods.userInfo(this.player), false
+                            GameServerResponse.userInfo(this.player), false
                         );
                     });
                 break;
@@ -74,7 +74,7 @@ class GameServerSession {
                                 .then((rows) => {
 
                                     this.sendData(
-                                        GameServerMethods.charSelectInfo(rows), false
+                                        GameServerResponse.charSelectInfo(rows), false
                                     );
                                 });
                         }
@@ -86,7 +86,7 @@ class GameServerSession {
                     .then((data) => {
 
                         this.sendData(
-                            GameServerMethods.logoutOk(), false
+                            GameServerResponse.logoutOk(), false
                         );
                     });
                 break;
@@ -99,14 +99,14 @@ class GameServerSession {
                             .then(() => {
 
                                 this.sendData(
-                                    GameServerMethods.characterCreateSuccess(), false
+                                    GameServerResponse.charCreateSuccess(), false
                                 );
 
                                 Database.getCharacters(this.player.accountId)
                                     .then((rows) => {
 
                                         this.sendData(
-                                            GameServerMethods.charSelectInfo(rows), false
+                                            GameServerResponse.charSelectInfo(rows), false
                                         );
                                     });
                             });
@@ -125,7 +125,7 @@ class GameServerSession {
                                 );
         
                                 this.sendData(
-                                    GameServerMethods.characterSelected(this.player), false
+                                    GameServerResponse.charSelected(this.player), false
                                 );
                             });
                     });
@@ -137,7 +137,7 @@ class GameServerSession {
 
                         if (data.status === 0x0e) {
                             this.sendData(
-                                GameServerMethods.charTemplates(), false
+                                GameServerResponse.charTemplates(), false
                             );
                         }
                     });
@@ -148,7 +148,7 @@ class GameServerSession {
                     .then(() => {
 
                         this.sendData(
-                            GameServerMethods.inventory(), false
+                            GameServerResponse.inventory(), false
                         )
                     });
                 break;
@@ -162,7 +162,7 @@ class GameServerSession {
                                 this.player.isStanding = !this.player.isStanding;
 
                                 this.sendData(
-                                    GameServerMethods.changeWaitType(this.player), false
+                                    GameServerResponse.changeWaitType(this.player), false
                                 );
                                 break;
 
@@ -170,7 +170,7 @@ class GameServerSession {
                                 this.player.isRunning = !this.player.isRunning;
 
                                 this.sendData(
-                                    GameServerMethods.changeMoveType(this.player), false
+                                    GameServerResponse.changeMoveType(this.player), false
                                 );
                                 break;
                         }
@@ -185,7 +185,7 @@ class GameServerSession {
                     .then((data) => {
 
                         this.sendData(
-                            GameServerMethods.questList(), false
+                            GameServerResponse.questList(), false
                         );
                     });
                 break;

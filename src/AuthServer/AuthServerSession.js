@@ -5,10 +5,6 @@ let Config = invoke('Config');
 let Database = invoke('Database');
 let Utils = invoke('Utils');
 
-Array.prototype.isEqualTo = function(targetArray) {
-    return (this.toString() === targetArray.toString());
-};
-
 class AuthServerSession {
     constructor(socket) {
         this.socket = socket;
