@@ -6,6 +6,8 @@ let AuthServerMethods = invoke('AuthServer/AuthServerMethods');
 let AuthClientMethods = invoke('AuthServer/AuthClientMethods');
 let Utils = invoke('Utils');
 
+let AuthClientRequest = invoke('AuthServer/AuthClientRequest/AuthClientRequest');
+
 Array.prototype.isEqualTo = function(targetArray) {
     return (this.toString() === targetArray.toString());
 };
@@ -32,28 +34,7 @@ class AuthServerSession {
         // Opcodes
         switch (decryptedPacket[0]) {
             case 0x00: // Authorize Login
-                AuthClientMethods.authorizeLogin(decryptedPacket)
-                    .then((data) => {
-
-                        Database.getAccountPassword(data.username)
-                            .then((rows) => {
-
-                                if (rows[0]?.password === data.password) {
-                                    this.sendData(
-                                        AuthServerMethods.loginOk()
-                                    );
-                                }
-                                else {
-                                    // 0x01 System error
-                                    // 0x02 Password does not match this account
-                                    // 0x04 Access failed
-                                    // 0x07 The account is already in use
-                                    this.sendData(
-                                        AuthServerMethods.loginFail(0x02)
-                                    );
-                                }
-                            });
-                    });
+                AuthClientRequest.authorizeLogin(this, decryptedPacket);
                 break;
 
             case 0x02: // Game Login
