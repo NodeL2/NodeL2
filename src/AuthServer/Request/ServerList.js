@@ -1,4 +1,4 @@
-let AuthServerMethods = invoke('AuthServer/AuthServerMethods');
+let AuthServerResponse = invoke('AuthServer/AuthServerResponse');
 let ClientPacket = invoke('ClientPacket');
 let Config = invoke('Config');
 let Utils = invoke('Utils');
@@ -20,7 +20,7 @@ function serverList(session, buffer) {
 
     if (data.sessionKey.isEqualTo(Config.sessionKey)) {
         session.sendData(
-            AuthServerMethods.serverList(Config.gameServer.host, Config.gameServer.port)
+            AuthServerResponse.serverList(Config.gameServer.host, Config.gameServer.port)
         );
     }
 }

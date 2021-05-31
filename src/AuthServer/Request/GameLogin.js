@@ -1,4 +1,4 @@
-let AuthServerMethods = invoke('AuthServer/AuthServerMethods');
+let AuthServerResponse = invoke('AuthServer/AuthServerResponse');
 let ClientPacket = invoke('ClientPacket');
 let Config = invoke('Config');
 let Utils = invoke('Utils');
@@ -23,7 +23,7 @@ function gameLogin(session, buffer) {
     if (data.sessionKey.isEqualTo(Config.sessionKey)) {
         if (true) {
             session.sendData(
-                AuthServerMethods.playOk(Config.sessionKey)
+                AuthServerResponse.playOk(Config.sessionKey)
             );
         } else {
             // 0x01 System error
@@ -31,7 +31,7 @@ function gameLogin(session, buffer) {
             // 0x04 Access failed
             // 0x07 The account is already in use
             session.sendData(
-                AuthServerMethods.playFail(0x01)
+                AuthServerResponse.playFail(0x01)
             );
         }
     }

@@ -1,6 +1,5 @@
 // User define
 let AuthClientRequest = invoke('AuthServer/AuthClientRequest');
-let AuthServerMethods = invoke('AuthServer/AuthServerMethods');
 let Blowfish = invoke('Blowfish');
 let Config = invoke('Config');
 let Database = invoke('Database');
