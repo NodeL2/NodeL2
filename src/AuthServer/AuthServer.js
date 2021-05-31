@@ -1,10 +1,10 @@
 let net = require('net');
 
 // User define
+let AuthServerResponse = invoke('AuthServer/AuthServerResponse');
+let AuthServerSession = invoke('AuthServer/AuthServerSession');
 let Config = invoke('Config');
 let Database = invoke('Database');
-let AuthServerSession = invoke('AuthServer/AuthServerSession');
-let AuthServerMethods = invoke('AuthServer/AuthServerMethods');
 
 class AuthServer {
     constructor() {
@@ -28,7 +28,9 @@ class AuthServer {
         socket.on('close', session.connectionClosed.bind(session));
         socket.on('error', session.connectionError.bind(session));
 
-        session.sendData(AuthServerMethods.init(), false);
+        session.sendData(
+            AuthServerResponse.init(), false
+        );
     }
 }
 

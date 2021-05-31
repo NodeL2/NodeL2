@@ -1,6 +1,6 @@
+let AuthServerResponse = invoke('AuthServer/AuthServerResponse');
 let ClientPacket = invoke('ClientPacket');
 let Database = invoke('Database');
-let AuthServerMethods = invoke('AuthServer/AuthServerMethods');
 let Utils = invoke('Utils');
 
 function authorizeLogin(session, buffer) {
@@ -21,7 +21,7 @@ function authorizeLogin(session, buffer) {
 
             if (rows[0]?.password === data.password) {
                 session.sendData(
-                    AuthServerMethods.loginOk()
+                    AuthServerResponse.loginOk()
                 );
             }
             else {
@@ -30,7 +30,7 @@ function authorizeLogin(session, buffer) {
                 // 0x04 Access failed
                 // 0x07 The account is already in use
                 session.sendData(
-                    AuthServerMethods.loginFail(0x02)
+                    AuthServerResponse.loginFail(0x02)
                 );
             }
         });

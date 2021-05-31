@@ -1,12 +1,10 @@
 // User define
+let AuthClientRequest = invoke('AuthServer/AuthClientRequest');
+let AuthServerMethods = invoke('AuthServer/AuthServerMethods');
+let Blowfish = invoke('Blowfish');
 let Config = invoke('Config');
 let Database = invoke('Database');
-let Blowfish = invoke('Blowfish');
-let AuthServerMethods = invoke('AuthServer/AuthServerMethods');
-let AuthClientMethods = invoke('AuthServer/AuthClientMethods');
 let Utils = invoke('Utils');
-
-let AuthClientRequest = invoke('AuthServer/AuthClientRequest/AuthClientRequest');
 
 Array.prototype.isEqualTo = function(targetArray) {
     return (this.toString() === targetArray.toString());
@@ -38,37 +36,11 @@ class AuthServerSession {
                 break;
 
             case 0x02: // Game Login
-                AuthClientMethods.gameLogin(decryptedPacket)
-                    .then((data) => {
-
-                        if (data.sessionKey.isEqualTo(Config.sessionKey)) {
-                            if (true) {
-                                this.sendData(
-                                    AuthServerMethods.playOk(Config.sessionKey)
-                                );
-                            } else {
-                                // 0x01 System error
-                                // 0x02 Password does not match this account
-                                // 0x04 Access failed
-                                // 0x07 The account is already in use
-                                this.sendData(
-                                    AuthServerMethods.playFail(0x01)
-                                );
-                            }
-                        }
-                    });
+                AuthClientRequest.gameLogin(this, decryptedPacket);
                 break;
 
             case 0x05: // Server List
-                AuthClientMethods.serverList(decryptedPacket)
-                    .then((data) => {
-
-                        if (data.sessionKey.isEqualTo(Config.sessionKey)) {
-                            this.sendData(
-                                AuthServerMethods.serverList(Config.gameServer.host, Config.gameServer.port)
-                            );
-                        }
-                    });
+                AuthClientRequest.serverList(this, decryptedPacket);
                 break;
 
             default:

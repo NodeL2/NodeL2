@@ -3,44 +3,6 @@ let Config = invoke('Config');
 let ServerPacket = invoke('ServerPacket');
 
 class AuthServerMethods {
-    static init() {
-        let packet = new ServerPacket(9);
-
-        packet
-            .writeC(0x00)
-            .writeD(0x03ed779c) // Session ID
-            .writeD(0x785a);    // Protocol
-
-        return packet.buffer;
-    }
-
-    static loginOk() {
-        let packet = new ServerPacket(48);
-
-        packet
-            .writeC(0x03)
-            .writeD(Config.sessionKey[0]) // Session Key (first)
-            .writeD(Config.sessionKey[1]) // Session Key (last)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x000003ea)
-            .writeD(0x00)
-            .writeD(0x00)
-            .writeD(0x02);
-
-        return packet.buffer;
-    }
-
-    static loginFail(errorCode) {
-        let packet = new ServerPacket(16);
-
-        packet
-            .writeC(0x01)
-            .writeC(errorCode); // Failure reason
-
-        return packet.buffer;
-    }
-
     static serverList(host, port) {
         host = host.split('.');
 
