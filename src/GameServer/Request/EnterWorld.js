@@ -17,6 +17,10 @@ function enterWorld(session, buffer) {
     session.sendData(
         GameServerResponse.userInfo(session.player), false
     );
+
+    session.sendData(
+        GameServerResponse.npcInfo(), false
+    );
 }
 
 module.exports = enterWorld;
