@@ -1,13 +1,15 @@
 module.exports = {
-          actionUse: invoke('GameServer/Request/actionUse'),
-     authorizeLogin: invoke('GameServer/Request/authorizeLogin'),
-         charCreate: invoke('GameServer/Request/charCreate'),
-       charSelected: invoke('GameServer/Request/charSelected'),
-         enterWorld: invoke('GameServer/Request/enterWorld'),
-             logout: invoke('GameServer/Request/logout'),
-     moveToLocation: invoke('GameServer/Request/moveToLocation'),
-       newCharacter: invoke('GameServer/Request/newCharacter'),
-    protocolVersion: invoke('GameServer/Request/protocolVersion'),
-          questList: invoke('GameServer/Request/questList'),
-      showInventory: invoke('GameServer/Request/showInventory')
+           actionUse: invoke('GameServer/Request/ActionUse'),
+      authorizeLogin: invoke('GameServer/Request/AuthorizeLogin'),
+          charCreate: invoke('GameServer/Request/CharCreate'),
+        charSelected: invoke('GameServer/Request/CharSelected'),
+          enterWorld: invoke('GameServer/Request/EnterWorld'),
+              logout: invoke('GameServer/Request/Logout'),
+      moveToLocation: invoke('GameServer/Request/MoveToLocation'),
+        newCharacter: invoke('GameServer/Request/NewCharacter'),
+     protocolVersion: invoke('GameServer/Request/ProtocolVersion'),
+           questList: invoke('GameServer/Request/QuestList'),
+       showInventory: invoke('GameServer/Request/ShowInventory'),
+            stopMove: invoke('GameServer/Request/StopMove'),
+    validatePosition: invoke('GameServer/Request/ValidatePosition')
 };

@@ -62,11 +62,19 @@ class GameServerSession {
                 GameClientRequest.showInventory(this, packet);
                 break;
 
+            case 0x36: // Stop Move
+                GameClientRequest.stopMove(this, packet);
+                break;
+
             case 0x45: // Request Action Use
                 GameClientRequest.actionUse(this, packet);
                 break;
 
             case 0x46: // Restart?
+                break;
+
+            case 0x48: // Validate Position
+                GameClientRequest.validatePosition(this, packet);
                 break;
 
             case 0x63: // Quest List
