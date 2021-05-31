@@ -62,8 +62,16 @@ class GameServerSession {
                 GameClientRequest.showInventory(this, packet);
                 break;
 
+            case 0x1b: // Social Action
+                GameClientRequest.socialAction(this, packet);
+                break;
+
             case 0x36: // Stop Move
                 GameClientRequest.stopMove(this, packet);
+                break;
+
+            case 0x38: // Say
+                GameClientRequest.say(this, packet);
                 break;
 
             case 0x45: // Request Action Use

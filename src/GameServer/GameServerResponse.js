@@ -10,6 +10,7 @@ module.exports = {
                 logoutOk: invoke('GameServer/Response/LogoutOk'),
           moveToLocation: invoke('GameServer/Response/MoveToLocation'),
                questList: invoke('GameServer/Response/QuestList'),
+            socialAction: invoke('GameServer/Response/SocialAction'),
     stopMoveWithLocation: invoke('GameServer/Response/StopMoveWithLocation'),
                  sunrise: invoke('GameServer/Response/Sunrise'),
                 userInfo: invoke('GameServer/Response/UserInfo')
