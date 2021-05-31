@@ -5,6 +5,7 @@ module.exports = {
             charSelected: invoke('GameServer/Response/CharSelected'),
           charSelectInfo: invoke('GameServer/Response/CharSelectInfo'),
            charTemplates: invoke('GameServer/Response/CharTemplates'),
+               createSay: invoke('GameServer/Response/CreateSay'),
                cryptInit: invoke('GameServer/Response/CryptInit'),
                inventory: invoke('GameServer/Response/Inventory'),
                 logoutOk: invoke('GameServer/Response/LogoutOk'),
