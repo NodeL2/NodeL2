@@ -1,6 +1,18 @@
 let GameServerResponse = invoke('GameServer/GameServerResponse');
 
 class Actor {
+    constructor() {
+        this.isStanding = true;
+        this.isRunning = true;
+
+        this.npc = {
+            id: -1,
+            type: 'monster',
+            isSelected: false,
+            inCombat: false
+        };
+    }
+
     setAccountID(username) {
         this.accountId = username;
     }
@@ -31,10 +43,6 @@ class Actor {
         this.y = character.y;
         this.z = character.z;
         this.heading = 0; // ?
-
-        //
-        this.isStanding = true;
-        this.isRunning = true;
     }
 
     setBaseStats(stats) {
