@@ -12,6 +12,7 @@ module.exports = {
           moveToLocation: invoke('GameServer/Response/MoveToLocation'),
                  npcInfo: invoke('GameServer/Response/NpcInfo'),
                questList: invoke('GameServer/Response/QuestList'),
+                 showMap: invoke('GameServer/Response/ShowMap'),
             socialAction: invoke('GameServer/Response/SocialAction'),
     stopMoveWithLocation: invoke('GameServer/Response/StopMoveWithLocation'),
                  sunrise: invoke('GameServer/Response/Sunrise'),

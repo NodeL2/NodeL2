@@ -12,7 +12,7 @@ function showInventory(session, buffer) {
 
     session.sendData(
         GameServerResponse.inventory(), false
-    )
+    );
 }
 
 module.exports = showInventory;

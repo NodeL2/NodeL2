@@ -11,6 +11,7 @@ module.exports = {
      protocolVersion: invoke('GameServer/Request/ProtocolVersion'),
            questList: invoke('GameServer/Request/QuestList'),
                  say: invoke('GameServer/Request/Say'),
+           showBoard: invoke('GameServer/Request/ShowBoard'),
        showInventory: invoke('GameServer/Request/ShowInventory'),
         socialAction: invoke('GameServer/Request/SocialAction'),
             stopMove: invoke('GameServer/Request/StopMove'),

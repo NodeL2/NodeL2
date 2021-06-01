@@ -93,6 +93,10 @@ class GameServerSession {
                 GameClientRequest.validatePosition(this, packet);
                 break;
 
+            case 0x57: // Show Board
+                GameClientRequest.showBoard(this, packet);
+                break;
+
             case 0x63: // Quest List
                 GameClientRequest.questList(this, packet);
                 break;
