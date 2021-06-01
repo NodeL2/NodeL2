@@ -38,6 +38,10 @@ class GameServerSession {
                 GameClientRequest.enterWorld(this, packet);
                 break;
 
+            case 0x04: // Action
+                GameClientRequest.action(this, packet);
+                break;
+
             case 0x08: // Authorize Login
                 GameClientRequest.authorizeLogin(this, packet);
                 break;
@@ -68,6 +72,10 @@ class GameServerSession {
 
             case 0x36: // Stop Move
                 GameClientRequest.stopMove(this, packet);
+                break;
+
+            case 0x37: // Target Cancel
+                GameClientRequest.targetCancel(this, packet);
                 break;
 
             case 0x38: // Say

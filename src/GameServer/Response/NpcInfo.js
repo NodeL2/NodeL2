@@ -7,7 +7,7 @@ function npcInfo() {
         .writeC(0x22)
         .writeD(432) // ObjectId
         .writeD(1000000 + 432) // Id
-        .writeD(0x00)
+        .writeD(0x01) // Attackable = 0x01
         .writeD(43157) // x
         .writeD(41961) // y
         .writeD(-3492) // z
@@ -28,7 +28,7 @@ function npcInfo() {
         .writeF(5.0) // Collision Radius
         .writeF(4.5) // Collision Height
         .writeD(0x00) // Right Hand Item
-        .writeD(0)
+        .writeD(0x00)
         .writeD(0x00) // Left Hand Item
         .writeC(0x01) // Name Above Character = 0x01
         .writeC(0x00) // Walking = 0x00

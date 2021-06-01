@@ -15,5 +15,7 @@ module.exports = {
             socialAction: invoke('GameServer/Response/SocialAction'),
     stopMoveWithLocation: invoke('GameServer/Response/StopMoveWithLocation'),
                  sunrise: invoke('GameServer/Response/Sunrise'),
+          targetSelected: invoke('GameServer/Response/TargetSelected'),
+        targetUnselected: invoke('GameServer/Response/TargetUnselected'),
                 userInfo: invoke('GameServer/Response/UserInfo')
 };
