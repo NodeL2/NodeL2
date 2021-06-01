@@ -50,6 +50,10 @@ class GameServerSession {
                 GameClientRequest.logout(this, packet);
                 break;
 
+            case 0x0a: // Attack
+                GameClientRequest.attack(this, packet);
+                break;
+
             case 0x0b: // Create Character
                 GameClientRequest.charCreate(this, packet);
                 break;

@@ -1,7 +1,7 @@
 let ClientPacket = invoke('ClientPacket');
 let GameServerResponse = invoke('GameServer/GameServerResponse');
 
-function action(session, buffer) {
+function attack(session, buffer) {
     let packet = new ClientPacket(buffer);
 
     packet
@@ -20,13 +20,13 @@ function action(session, buffer) {
         type: packet.data[5]
     };
 
-    session.sendData(
-        GameServerResponse.targetSelected(data.id), false
-    );
+    //session.player.attack(data.id);
+
+    console.log(data);
 
     session.sendData(
-        GameServerResponse.statusUpdate(data.id, 80, 100), false
+        GameServerResponse.autoAttackStart(data.id), false
     );
 }
 
-module.exports = action;
+module.exports = attack;

@@ -1,6 +1,7 @@
 module.exports = {
               action: invoke('GameServer/Request/Action'),
            actionUse: invoke('GameServer/Request/ActionUse'),
+              attack: invoke('GameServer/Request/Attack'),
       authorizeLogin: invoke('GameServer/Request/AuthorizeLogin'),
           charCreate: invoke('GameServer/Request/CharCreate'),
         charSelected: invoke('GameServer/Request/CharSelected'),

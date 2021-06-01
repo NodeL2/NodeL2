@@ -1,3 +1,5 @@
+let GameServerResponse = invoke('GameServer/GameServerResponse');
+
 class Actor {
     setAccountID(username) {
         this.accountId = username;
@@ -72,6 +74,12 @@ class Actor {
             this.collisionHeight = stats.female_height;
         }
     }
+
+    // attack(session, id) {
+    //     session.sendData(
+    //         GameServerResponse.autoAttackStart(id), false
+    //     );
+    // }
 }
 
 module.exports = Actor;

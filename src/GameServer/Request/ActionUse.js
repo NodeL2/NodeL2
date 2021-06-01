@@ -3,7 +3,7 @@ let GameServerResponse = invoke('GameServer/GameServerResponse');
 
 function actionUse(session, buffer) {
     let packet = new ClientPacket(buffer);
-    
+
     packet
         .readC()
         .readD()  // Action ID

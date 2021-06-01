@@ -1,4 +1,5 @@
 module.exports = {
+         autoAttackStart: invoke('GameServer/Response/AutoAttackStart'),
           changeMoveType: invoke('GameServer/Response/ChangeMoveType'),
           changeWaitType: invoke('GameServer/Response/ChangeWaitType'),
        charCreateSuccess: invoke('GameServer/Response/CharCreateSuccess'),
@@ -14,6 +15,7 @@ module.exports = {
                questList: invoke('GameServer/Response/QuestList'),
                  showMap: invoke('GameServer/Response/ShowMap'),
             socialAction: invoke('GameServer/Response/SocialAction'),
+            statusUpdate: invoke('GameServer/Response/StatusUpdate'),
     stopMoveWithLocation: invoke('GameServer/Response/StopMoveWithLocation'),
                  sunrise: invoke('GameServer/Response/Sunrise'),
           targetSelected: invoke('GameServer/Response/TargetSelected'),
