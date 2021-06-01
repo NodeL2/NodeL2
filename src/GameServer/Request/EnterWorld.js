@@ -1,5 +1,6 @@
 let ClientPacket = invoke('ClientPacket');
 let GameServerResponse = invoke('GameServer/GameServerResponse');
+let World = invoke('GameServer/World');
 
 function enterWorld(session, buffer) {
     let packet = new ClientPacket(buffer);
@@ -18,9 +19,7 @@ function enterWorld(session, buffer) {
         GameServerResponse.userInfo(session.player), false
     );
 
-    session.sendData(
-        GameServerResponse.npcInfo(), false
-    );
+    World.insertNpcs(session);
 }
 
 module.exports = enterWorld;

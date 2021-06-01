@@ -3,9 +3,13 @@ let net = require('net');
 // User define
 let Config = invoke('Config');
 let GameServerSession = invoke('GameServer/GameServerSession');
+let World = invoke('GameServer/World');
 
 class GameServer {
     constructor() {
+        // Start with world
+        World.initialize();
+
         let host = Config.gameServer.host;
         let port = Config.gameServer.port;
 
