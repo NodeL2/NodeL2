@@ -31,19 +31,23 @@ function charCreate(session, buffer) {
         face: packet.data[13]
     };
 
-    Database.addNewCharacter(session.player.accountId, data)
-        .then(() => {
+    Database.getBaseClass(data.classId)
+        .then((stats) => {
 
-            session.sendData(
-                GameServerResponse.charCreateSuccess(), false
-            );
-
-            Database.getCharacters(session.player.accountId)
-                .then((rows) => {
+            Database.addNewCharacter(session.player.accountId, data, stats[0])
+                .then(() => {
 
                     session.sendData(
-                        GameServerResponse.charSelectInfo(rows), false
+                        GameServerResponse.charCreateSuccess(), false
                     );
+
+                    Database.getCharacters(session.player.accountId)
+                        .then((rows) => {
+
+                            session.sendData(
+                                GameServerResponse.charSelectInfo(rows), false
+                            );
+                        });
                 });
         });
 }

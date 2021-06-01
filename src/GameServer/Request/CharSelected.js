@@ -17,7 +17,7 @@ function charSelected(session, buffer) {
         .then((characters) => {
             let character = characters[data.characterSlot];
 
-            Database.getBaseClass(character.classId)
+            Database.getBaseClass(character.class_id)
                 .then((stats) => {
 
                     session.player.setProperties( // Set player properties

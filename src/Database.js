@@ -50,10 +50,10 @@ class Database {
         );
     }
 
-    static addNewCharacter(username, data) {
+    static addNewCharacter(username, data, stats) {
         return this.sqlQuery('\
             INSERT INTO characters (username, name, race_id, class_id, level, max_hp, hp, max_mp, mp, exp, sp, karma, gender, face, hair_style, hair_color, x, y, z)\
-            VALUES ("' + username + '", "' + data.name + '", ' + data.race + ', ' + data.classId + ', 1, 300, 200, 300, 200, 0, 0, 0, ' + data.gender + ', ' + data.face + ', ' + data.hairStyle + ', ' + data.hairColor + ', 43648, 40352, -3430)\
+            VALUES ("' + username + '", "' + data.name + '", ' + data.race + ', ' + data.classId + ', 1, ' + stats.hp + ', 48, ' + stats.mp + ', ' + stats.mp + ', 0, 0, 0, ' + data.gender + ', ' + data.face + ', ' + data.hairStyle + ', ' + data.hairColor + ', 43648, 40352, -3430)\
         ');
     }
 }

@@ -28,8 +28,8 @@ function userInfo(player) {
         .writeD(player.maxMp)
         .writeD(player.mp)
         .writeD(player.sp)
-        .writeD(0x01)  // Load
-        .writeD(81900) // Maximum Load
+        .writeD(0x00)  // Load
+        .writeD(player.weightLimit)
         .writeD(0x28)  // ?
         .writeD(0x00)  // ?
         .writeD(0x00)  // ?
@@ -61,30 +61,30 @@ function userInfo(player) {
         .writeD(0x00)  // ?
         .writeD(0x00)  // ?
         .writeD(0x00)  // ?
-        .writeD(0x01)  // Physical Attack
-        .writeD(0x01)  // Speed
-        .writeD(0x01)  // Physical Defense
-        .writeD(0x01)  // Evasion
-        .writeD(0x01)  // Accuracy
-        .writeD(0x01)  // Critical
-        .writeD(0x01)  // Magic Attack
-        .writeD(0x01)  // Magic Speed
-        .writeD(0x01)  // Speed
-        .writeD(0x01)  // Magic Defense
+        .writeD(player.pAtk)
+        .writeD(player.atkSpeed)
+        .writeD(player.pDef)
+        .writeD(player.evasion)
+        .writeD(player.accuracy)
+        .writeD(player.critical)
+        .writeD(player.mAtk)
+        .writeD(player.castingSpd)
+        .writeD(player.speed)
+        .writeD(player.mDef)
         .writeD(0x00)  // Purple = 0x01
         .writeD(player.karma)
-        .writeD(215)   // Run Speed
-        .writeD(125)   // Walk Speed
-        .writeD(0x32)  // Swim Speed
-        .writeD(0x32)  // Swim Speed
-        .writeD(115)   // Floating Run Speed
-        .writeD(115)   // Floating Walk Speed
-        .writeD(115)   // Flying Run Speed
-        .writeD(115)   // Flying Walk Speed
+        .writeD(player.groundSpdHigh)
+        .writeD(player.groundSpdLow)
+        .writeD(player.waterSpd)
+        .writeD(player.waterSpd)
+        .writeD(0x00)  // Floating Run Speed
+        .writeD(0x00)  // Floating Walk Speed
+        .writeD(0x00)  // Flying Run Speed
+        .writeD(0x00)  // Flying Walk Speed
         .writeF(1.1)   // Movement Multiplier
         .writeF(1.188) // Attack Speed Multiplier
-        .writeF(9)     // Collision Radius
-        .writeF(23)    // Collision Height
+        .writeF(player.collisionRadius)
+        .writeF(player.collisionHeight)
         .writeD(player.hairStyle)
         .writeD(player.hairColor)
         .writeD(player.face)
@@ -97,7 +97,7 @@ function userInfo(player) {
         .writeD(0x00)  // ?
         .writeC(0x00)  // ?
         .writeC(0x00)  // Private Store Type
-        .writeC(0x00)  // Can Craft
+        .writeC(player.canCraft)
         .writeD(0x00)  // PK Kills
         .writeD(0x00)  // PVP Kills
         .writeH(0x00)  // Cubic Count
