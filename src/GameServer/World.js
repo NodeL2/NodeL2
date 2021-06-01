@@ -16,6 +16,7 @@ class World {
             let theta = Math.random() * 2 * Math.PI;
             let x = centerX + r * Math.cos(theta);
             let y = centerY + r * Math.sin(theta);
+            let heading = Math.floor(Math.random() * 65536)
 
             this.npc.push({
                 id: 1000000 + i,
@@ -24,7 +25,7 @@ class World {
                 x: x,
                 y: y,
                 z: -3492,
-                heading: 0,
+                heading: heading,
                 collisionRadius: 5.0,
                 collisionHeight: 4.5,
                 name: 'Elpy'
