@@ -26,6 +26,13 @@ function moveToLocation(session, buffer) {
         }
     };
 
+    if (session.player.inCombat) {
+        session.sendData(
+            GameServerResponse.attackCanceled(session.player), false
+        );
+        return;
+    }
+
     session.sendData(
         GameServerResponse.moveToLocation(session.player.id, data), false
     );
