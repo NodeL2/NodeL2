@@ -70,6 +70,13 @@ function attack(session, buffer) {
                 session.sendData(
                     GameServerResponse.die(npc.id), false
                 );
+
+                // Delete NPC from world
+                setTimeout(function() {
+                    session.sendData(
+                        GameServerResponse.deleteObject(npc.id), false
+                    );
+                }, 5000);
             }
         }, 950); // Until hit point
 
