@@ -1,41 +1,31 @@
 let ClientPacket = invoke('ClientPacket');
-let GameServerResponse = invoke('GameServer/GameServerResponse');
 
-function moveToLocation(session, buffer) {
-    let packet = new ClientPacket(buffer);
+function moveToLocation(buffer) {
+    return new Promise((success) => {
+        let packet = new ClientPacket(buffer);
 
-    packet
-        .readC()
-        .readD()
-        .readD()
-        .readD()
-        .readD()
-        .readD()
-        .readD();
+        packet
+            .readC()
+            .readD()
+            .readD()
+            .readD()
+            .readD()
+            .readD()
+            .readD();
 
-    let data = {
-        origin: {
-            x: packet.data[4],
-            y: packet.data[5],
-            z: packet.data[6],
-        },
-        target: {
-            x: packet.data[1],
-            y: packet.data[2],
-            z: packet.data[3],
-        }
-    };
-
-    if (session.player.inCombat) {
-        session.sendData(
-            GameServerResponse.attackCanceled(session.player), false
-        );
-        return;
-    }
-
-    session.sendData(
-        GameServerResponse.moveToLocation(session.player.id, data), false
-    );
+        return success({
+            origin: {
+                x: packet.data[4],
+                y: packet.data[5],
+                z: packet.data[6],
+            },
+            target: {
+                x: packet.data[1],
+                y: packet.data[2],
+                z: packet.data[3],
+            }
+        });
+    });
 }
 
 module.exports = moveToLocation;

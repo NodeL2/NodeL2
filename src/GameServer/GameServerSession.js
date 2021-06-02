@@ -31,7 +31,10 @@ class GameServerSession {
                 break;
 
             case 0x01: // Move to Location
-                GameClientRequest.moveToLocation(this, packet);
+                GameClientRequest.moveToLocation(packet)
+                    .then((data) => {
+                        this.player.move(this, data);
+                    });
                 break;
 
             case 0x03: // Enter World
@@ -39,7 +42,10 @@ class GameServerSession {
                 break;
 
             case 0x04: // Action
-                GameClientRequest.action(this, packet);
+                GameClientRequest.action(packet)
+                    .then((data) => {
+                        this.player.select(this, data);
+                    });
                 break;
 
             case 0x08: // Authorize Login
@@ -51,7 +57,10 @@ class GameServerSession {
                 break;
 
             case 0x0a: // Attack
-                GameClientRequest.attack(this, packet);
+                GameClientRequest.attack(packet)
+                    .then((data) => {
+                        this.player.attack(this, data);
+                    });
                 break;
 
             case 0x0b: // Create Character

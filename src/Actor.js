@@ -1,4 +1,5 @@
 let GameServerResponse = invoke('GameServer/GameServerResponse');
+let World = invoke('GameServer/World');
 
 class Actor {
     constructor() {
@@ -6,12 +7,12 @@ class Actor {
         this.isRunning = true;
         this.inCombat = false;
 
-        this.npc = {
-            id: -1,
-            type: 'monster',
-            isSelected: false,
-            inCombat: false
-        };
+        // this.npc = {
+        //     id: -1,
+        //     type: 'monster',
+        //     isSelected: false,
+        //     inCombat: false
+        // };
     }
 
     setAccountID(username) {
@@ -84,11 +85,98 @@ class Actor {
         }
     }
 
-    // attack(session, id) {
-    //     session.sendData(
-    //         GameServerResponse.autoAttackStart(id), false
-    //     );
-    // }
+    select(session, data) {
+        // Select NPC
+        session.sendData(
+            GameServerResponse.targetSelected(data.id), false
+        );
+
+        // Get NPC statistics
+        let npc = World.fetchNpcWithId(data.id);
+
+        if (npc !== undefined) {
+            session.sendData(
+                GameServerResponse.statusUpdate(data.id, npc.hp, npc.maxHp), false
+            );
+        }
+    }
+
+    move(session, data) {
+        // Check if we're in combat mode
+        if (session.player.inCombat) {
+            session.sendData(
+                GameServerResponse.attackCanceled(session.player), false
+            );
+            return;
+        }
+
+        session.sendData(
+            GameServerResponse.moveToLocation(session.player.id, data), false
+        );
+    }
+
+    attack(session, data) {
+        // Check if we're in combat mode
+        if (session.player.inCombat) {
+            session.sendData(
+                GameServerResponse.attackCanceled(session.player), false
+            );
+            return;
+        }
+
+        // Get NPC statistics
+        let npc = World.fetchNpcWithId(data.id);
+
+        if (npc !== undefined) {
+            session.player.inCombat = true;
+
+            // Select NPC
+            session.sendData(
+                GameServerResponse.targetSelected(data.id), false
+            );
+
+            // Update NPC statistics
+            session.sendData(
+                GameServerResponse.statusUpdate(data.id, npc.hp, npc.maxHp), false
+            );
+
+            // Attack NPC
+            session.sendData(
+                GameServerResponse.attack(session.player, data.id), false
+            );
+
+            setTimeout(function() { // Needs rework
+                let hitDamage = 15 + Math.floor(Math.random() * 10);
+                npc.hp = Math.max(0, npc.hp - hitDamage); // HP bar would disappear if less than zero
+
+                session.sendData(
+                    GameServerResponse.statusUpdate(data.id, npc.hp, npc.maxHp), false
+                );
+
+                session.sendData(
+                    GameServerResponse.systemMessage(hitDamage), false
+                );
+
+                // Death of NPC
+                if (npc.hp === 0) {
+                    session.sendData(
+                        GameServerResponse.die(npc.id), false
+                    );
+
+                    // Delete NPC from world
+                    setTimeout(function() {
+                        session.sendData(
+                            GameServerResponse.deleteObject(npc.id), false
+                        );
+                    }, 5000);
+                }
+            }, 950); // Until hit point
+
+            setTimeout(function() {
+                session.player.inCombat = false;
+            }, 1650); // Until end of combat
+        }
+    }
 }
 
 module.exports = Actor;
