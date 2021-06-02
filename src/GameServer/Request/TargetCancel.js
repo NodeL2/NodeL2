@@ -1,18 +1,15 @@
 let ClientPacket = invoke('ClientPacket');
-let GameServerResponse = invoke('GameServer/GameServerResponse');
 
-function targetCancel(session, buffer) {
-    let packet = new ClientPacket(buffer);
+function targetCancel(buffer) {
+    return new Promise((success) => {
+        let packet = new ClientPacket(buffer);
 
-    packet
-        .readC();
+        packet
+            .readC();
 
-    let data = {
-    };
-
-    session.sendData(
-        GameServerResponse.targetUnselected(session.player), false
-    );
+        return success({
+        });
+    });
 }
 
 module.exports = targetCancel;

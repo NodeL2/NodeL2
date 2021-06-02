@@ -22,16 +22,17 @@ class World {
             this.npc.push({
                 id: 1000000 + i,
                 npcId: 1000000 + 440,
-                attackable: 1,
+                name: 'Elder Brown Fox',
+                type: NpcType.MONSTER,
+                attackable: true,
+                hp: hp,
+                maxHp: 95,
+                collisionRadius: 9.5,
+                collisionHeight: 10,
                 x: x,
                 y: y,
                 z: -3492,
-                heading: heading,
-                collisionRadius: 9.5,
-                collisionHeight: 10,
-                maxHp: 95,
-                hp: hp,
-                name: 'Elder Brown Fox'
+                heading: heading
             });
 
             session.sendData(

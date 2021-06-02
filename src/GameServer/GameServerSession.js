@@ -91,7 +91,10 @@ class GameServerSession {
                 break;
 
             case 0x37: // Target Cancel
-                GameClientRequest.targetCancel(this, packet);
+                GameClientRequest.targetCancel(packet)
+                    .then((data) => {
+                        this.player.unselect(this, data);
+                    })
                 break;
 
             case 0x38: // Say

@@ -8,12 +8,8 @@ class Actor {
         this.inCombat = false;
         this.inWaitTypeSwitch = false;
 
-        // this.npc = {
-        //     id: -1,
-        //     type: 'monster',
-        //     isSelected: false,
-        //     inCombat: false
-        // };
+        // Selected NPC (npc, mob, item)
+        this.npc = undefined;
     }
 
     setAccountID(username) {
@@ -87,6 +83,16 @@ class Actor {
     }
 
     select(session, data) {
+        // Already selected?
+        if (this.npc?.id === data.id) {
+            // Is it an attackable monster?
+            if (this.npc?.attackable && this.npc?.type === NpcType.MONSTER) {
+                session.player.attack(session, data);
+            }
+
+            return;
+        }
+
         // Select NPC
         session.sendData(
             GameServerResponse.targetSelected(data.id), false
@@ -96,10 +102,20 @@ class Actor {
         let npc = World.fetchNpcWithId(data.id);
 
         if (npc !== undefined) {
+            this.npc = npc;
+
             session.sendData(
                 GameServerResponse.statusUpdate(data.id, npc.hp, npc.maxHp), false
             );
         }
+    }
+
+    unselect(session, data) {
+        this.npc = undefined;
+
+        session.sendData(
+            GameServerResponse.targetUnselected(session.player), false
+        );
     }
 
     move(session, data) {
