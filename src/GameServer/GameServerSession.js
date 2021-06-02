@@ -80,7 +80,10 @@ class GameServerSession {
                 break;
 
             case 0x1b: // Social Action
-                GameClientRequest.socialAction(this, packet);
+                GameClientRequest.socialAction(packet)
+                    .then((data) => {
+                        this.player.socialAction(this, data);
+                    });
                 break;
 
             case 0x36: // Stop Move
@@ -95,8 +98,11 @@ class GameServerSession {
                 GameClientRequest.say(this, packet);
                 break;
 
-            case 0x45: // Request Action Use
-                GameClientRequest.actionUse(this, packet);
+            case 0x45: // Action Use
+                GameClientRequest.actionUse(packet)
+                    .then((data) => {
+                        this.player.action(this, data);
+                    });
                 break;
 
             case 0x46: // Restart?

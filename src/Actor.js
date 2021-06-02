@@ -6,6 +6,7 @@ class Actor {
         this.isStanding = true;
         this.isRunning = true;
         this.inCombat = false;
+        this.inWaitTypeSwitch = false;
 
         // this.npc = {
         //     id: -1,
@@ -102,8 +103,8 @@ class Actor {
     }
 
     move(session, data) {
-        // Check if we're in combat mode
-        if (session.player.inCombat) {
+        // Check if we're already doing a task
+        if (session.player.inCombat || session.player.inWaitTypeSwitch) {
             session.sendData(
                 GameServerResponse.attackCanceled(session.player), false
             );
@@ -116,8 +117,8 @@ class Actor {
     }
 
     attack(session, data) {
-        // Check if we're in combat mode
-        if (session.player.inCombat) {
+        // Check if we're already doing a task
+        if (session.player.inCombat || session.player.inWaitTypeSwitch) {
             session.sendData(
                 GameServerResponse.attackCanceled(session.player), false
             );
@@ -145,7 +146,7 @@ class Actor {
                 GameServerResponse.attack(session.player, data.id), false
             );
 
-            setTimeout(function() { // Needs rework
+            setTimeout(() => { // Needs rework
                 let hitDamage = 15 + Math.floor(Math.random() * 10);
                 npc.hp = Math.max(0, npc.hp - hitDamage); // HP bar would disappear if less than zero
 
@@ -164,7 +165,7 @@ class Actor {
                     );
 
                     // Delete NPC from world
-                    setTimeout(function() {
+                    setTimeout(() => {
                         session.sendData(
                             GameServerResponse.deleteObject(npc.id), false
                         );
@@ -172,10 +173,50 @@ class Actor {
                 }
             }, 950); // Until hit point
 
-            setTimeout(function() {
+            setTimeout(() => {
                 session.player.inCombat = false;
             }, 1650); // Until end of combat
         }
+    }
+
+    action(session, data) {
+        switch (data.actionId) {
+            case 0: // Stand/Sit
+                if (session.player.inWaitTypeSwitch) {
+                    return;
+                }
+
+                session.player.inWaitTypeSwitch = true;
+                session.player.isStanding = !session.player.isStanding;
+
+                session.sendData(
+                    GameServerResponse.changeWaitType(session.player), false
+                );
+
+                setTimeout(() => {
+                    session.player.inWaitTypeSwitch = false;
+                }, 3000);
+                break;
+
+            case 1: // Run/Walk
+                session.player.isRunning = !session.player.isRunning;
+
+                session.sendData(
+                    GameServerResponse.changeMoveType(session.player), false
+                );
+                break;
+        }
+    }
+
+    socialAction(session, data) {
+        // Check if we're already doing a task
+        if (session.player.inCombat || session.player.inWaitTypeSwitch || !session.player.isStanding) {
+            return;
+        }
+
+        session.sendData(
+            GameServerResponse.socialAction(session.player, data.actionId), false
+        );
     }
 }
 
