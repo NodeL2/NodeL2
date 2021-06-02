@@ -1,5 +1,6 @@
 module.exports = {
                   attack: invoke('GameServer/Response/Attack'),
+          attackCanceled: invoke('GameServer/Response/AttackCanceled'),
          autoAttackStart: invoke('GameServer/Response/AutoAttackStart'),
           changeMoveType: invoke('GameServer/Response/ChangeMoveType'),
           changeWaitType: invoke('GameServer/Response/ChangeWaitType'),

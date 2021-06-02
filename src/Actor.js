@@ -4,6 +4,7 @@ class Actor {
     constructor() {
         this.isStanding = true;
         this.isRunning = true;
+        this.inCombat = false;
 
         this.npc = {
             id: -1,

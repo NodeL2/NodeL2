@@ -24,6 +24,16 @@ function attack(session, buffer) {
     //     GameServerResponse.autoAttackStart(data.id), false
     // );
 
+    // Check player's combat mode
+    if (session.player.inCombat) {
+        session.sendData(
+            GameServerResponse.attackCanceled(session.player), false
+        );
+        return;
+    }
+
+    session.player.inCombat = true;
+
     // Attack NPC
     session.sendData(
         GameServerResponse.attack(session.player, data.id), false
@@ -33,11 +43,18 @@ function attack(session, buffer) {
     let npc = World.fetchNpcWithId(data.id);
 
     if (npc !== undefined) {
-        npc.hp--; // Too early, appears before hit animation
+        setTimeout(function() { // Nope
+            npc.hp -= 5;
 
-        session.sendData(
-            GameServerResponse.statusUpdate(data.id, npc.hp, npc.maxHp), false
-        );
+            session.sendData(
+                GameServerResponse.statusUpdate(data.id, npc.hp, npc.maxHp), false
+            );
+        }, 950);
+
+        setTimeout(function() {
+            // Player out of combat mode
+            session.player.inCombat = false;
+        }, 1650);
     }
 }
 
