@@ -21,6 +21,7 @@ module.exports = {
             statusUpdate: invoke('GameServer/Response/StatusUpdate'),
     stopMoveWithLocation: invoke('GameServer/Response/StopMoveWithLocation'),
                  sunrise: invoke('GameServer/Response/Sunrise'),
+           systemMessage: invoke('GameServer/Response/SystemMessage'),
           targetSelected: invoke('GameServer/Response/TargetSelected'),
         targetUnselected: invoke('GameServer/Response/TargetUnselected'),
                 userInfo: invoke('GameServer/Response/UserInfo')

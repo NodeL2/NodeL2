@@ -38,28 +38,44 @@ function attack(session, buffer) {
     if (npc !== undefined) {
         session.player.inCombat = true;
 
+        // Select NPC
+        session.sendData(
+            GameServerResponse.targetSelected(data.id), false
+        );
+
+        // Update NPC statistics
+        session.sendData(
+            GameServerResponse.statusUpdate(data.id, npc.hp, npc.maxHp), false
+        );
+
         // Attack NPC
         session.sendData(
             GameServerResponse.attack(session.player, data.id), false
         );
 
-        setTimeout(function() { // Nope
-            npc.hp -= 10;
+        setTimeout(function() { // Needs rework
+            let hitDamage = 15 + Math.floor(Math.random() * 10);
+            npc.hp = Math.max(0, npc.hp - hitDamage); // HP bar would disappear if less than zero
 
             session.sendData(
                 GameServerResponse.statusUpdate(data.id, npc.hp, npc.maxHp), false
             );
 
-            if (npc.hp <= 0) {
+            session.sendData(
+                GameServerResponse.systemMessage(hitDamage), false
+            );
+
+            // Death of NPC
+            if (npc.hp === 0) {
                 session.sendData(
                     GameServerResponse.die(npc.id), false
                 );
             }
-        }, 950);
+        }, 950); // Until hit point
 
         setTimeout(function() {
             session.player.inCombat = false;
-        }, 1650);
+        }, 1650); // Until end of combat
     }
 }
 
