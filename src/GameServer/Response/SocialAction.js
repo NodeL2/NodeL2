@@ -1,7 +1,7 @@
 let ServerPacket = invoke('ServerPacket');
 
 function socialAction(player, actionId) {
-    let packet = new ServerPacket(5);
+    let packet = new ServerPacket(9);
 
     packet
         .writeC(0x3d)

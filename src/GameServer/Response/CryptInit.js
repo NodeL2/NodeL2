@@ -1,7 +1,7 @@
 let ServerPacket = invoke('ServerPacket');
 
 function cryptInit(xorKey) {
-    let packet = new ServerPacket(12);
+    let packet = new ServerPacket(10);
 
     packet
         .writeC(0x00)

@@ -1,7 +1,7 @@
 let ServerPacket = invoke('ServerPacket');
 
 function charTemplates() {
-    let packet = new ServerPacket(10);
+    let packet = new ServerPacket(5);
 
     packet
         .writeC(0x23)

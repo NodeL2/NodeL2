@@ -1,7 +1,7 @@
 let ServerPacket = invoke('ServerPacket');
 
 function charSelectInfo(characters) {
-    let packet = new ServerPacket(characters ? characters.length * 400 : 10);
+    let packet = new ServerPacket(characters ? characters.length * 400 : 5);
 
     packet
         .writeC(0x1f);

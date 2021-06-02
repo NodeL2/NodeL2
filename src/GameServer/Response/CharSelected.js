@@ -2,7 +2,7 @@ let ServerPacket = invoke('ServerPacket');
 
 function charSelected(player) {
     let packet = new ServerPacket(
-        230 + ServerPacket.strlen(player.name) + ServerPacket.strlen(player.title)
+        229 + ServerPacket.strlen(player.name) + ServerPacket.strlen(player.title)
     );
 
     packet

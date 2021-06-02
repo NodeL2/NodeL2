@@ -5,11 +5,11 @@ function targetUnselected(player) {
 
     packet
         .writeC(0x3a)
-        .writeD(player.id)
+        .writeD(player.id)  // Object ID
         .writeD(player.x)
         .writeD(player.y)
         .writeD(player.z)
-        .writeD(player.id);
+        .writeD(player.id); // Target ID
 
     return packet.buffer;
 }
