@@ -16,7 +16,8 @@ class World {
             let theta = Math.random() * 2 * Math.PI;
             let x = centerX + r * Math.cos(theta);
             let y = centerY + r * Math.sin(theta);
-            let heading = Math.floor(Math.random() * 65536)
+            let heading = Math.floor(Math.random() * 65536);
+            let hp = Math.floor(Math.random() * 95)
 
             this.npc.push({
                 id: 1000000 + i,
@@ -28,6 +29,8 @@ class World {
                 heading: heading,
                 collisionRadius: 5.0,
                 collisionHeight: 4.5,
+                maxHp: 95,
+                hp: hp,
                 name: 'Elpy'
             });
         }
@@ -37,6 +40,10 @@ class World {
                 GameServerResponse.npcInfo(this.npc[i]), false
             );
         }
+    }
+
+    static fetchNpcWithId(id) {
+        return this.npc.find(o => o.id === id);
     }
 }
 
