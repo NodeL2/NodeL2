@@ -32,27 +32,32 @@ function attack(session, buffer) {
         return;
     }
 
-    session.player.inCombat = true;
-
-    // Attack NPC
-    session.sendData(
-        GameServerResponse.attack(session.player, data.id), false
-    );
-
     // Get NPC statistics
     let npc = World.fetchNpcWithId(data.id);
 
     if (npc !== undefined) {
+        session.player.inCombat = true;
+
+        // Attack NPC
+        session.sendData(
+            GameServerResponse.attack(session.player, data.id), false
+        );
+
         setTimeout(function() { // Nope
-            npc.hp -= 5;
+            npc.hp -= 10;
 
             session.sendData(
                 GameServerResponse.statusUpdate(data.id, npc.hp, npc.maxHp), false
             );
+
+            if (npc.hp <= 0) {
+                session.sendData(
+                    GameServerResponse.die(npc.id), false
+                );
+            }
         }, 950);
 
         setTimeout(function() {
-            // Player out of combat mode
             session.player.inCombat = false;
         }, 1650);
     }

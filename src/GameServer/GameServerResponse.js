@@ -10,6 +10,7 @@ module.exports = {
            charTemplates: invoke('GameServer/Response/CharTemplates'),
                createSay: invoke('GameServer/Response/CreateSay'),
                cryptInit: invoke('GameServer/Response/CryptInit'),
+                     die: invoke('GameServer/Response/Die'),
                inventory: invoke('GameServer/Response/Inventory'),
                 logoutOk: invoke('GameServer/Response/LogoutOk'),
           moveToLocation: invoke('GameServer/Response/MoveToLocation'),

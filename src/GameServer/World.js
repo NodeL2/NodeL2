@@ -10,7 +10,7 @@ class World {
 
             let centerX = 41819.5;
             let centerY = 41705.1;
-            let R = 1000;
+            let R = 1500;
 
             let r = R * Math.sqrt(Math.random());
             let theta = Math.random() * 2 * Math.PI;
@@ -21,21 +21,19 @@ class World {
 
             this.npc.push({
                 id: 1000000 + i,
-                npcId: 1000000 + 432,
+                npcId: 1000000 + 440,
                 attackable: 1,
                 x: x,
                 y: y,
                 z: -3492,
                 heading: heading,
-                collisionRadius: 5.0,
-                collisionHeight: 4.5,
+                collisionRadius: 9.5,
+                collisionHeight: 10,
                 maxHp: 95,
                 hp: hp,
-                name: 'Elpy'
+                name: 'Elder Brown Fox'
             });
-        }
 
-        for (let i = 0; i < 20; i++) {
             session.sendData(
                 GameServerResponse.npcInfo(this.npc[i]), false
             );
