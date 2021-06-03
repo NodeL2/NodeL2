@@ -42,23 +42,6 @@ class Actor {
         this.z = character.z;
         this.heading = 0; // ?
 
-        // this.paperdoll = {
-        //     right: {
-        //         hand: {
-        //             id: 0,
-        //             itemId: 0
-        //         }
-        //     },
-        //     chest: {
-        //         id: 0,
-        //         itemId: 0
-        //     },
-        //     legs: {
-        //         id: 0,
-        //         itemId: 0
-        //     }
-        // };
-
         this.paperdoll = {};
         this.paperdoll[BodyPart.RIGHT_HAND] = { id: 0, itemId: 0 };
         this.paperdoll[BodyPart.CHEST]      = { id: 0, itemId: 0 };
