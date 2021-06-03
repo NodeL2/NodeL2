@@ -11,7 +11,7 @@ function showInventory(session, buffer) {
     };
 
     session.sendData(
-        GameServerResponse.inventory(), false
+        GameServerResponse.inventory(session.player), false
     );
 }
 

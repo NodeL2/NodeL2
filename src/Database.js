@@ -56,6 +56,12 @@ class Database {
             VALUES ("' + username + '", "' + data.name + '", ' + data.race + ', ' + data.classId + ', 1, ' + stats.hp + ', 48, ' + stats.mp + ', ' + stats.mp + ', 0, 0, 0, ' + data.gender + ', ' + data.face + ', ' + data.hairStyle + ', ' + data.hairColor + ', 43648, 40352, -3430)\
         ');
     }
+
+    static getInventoryItems(characterId) {
+        return this.sqlQuery(
+            'SELECT * FROM items WHERE character_id = "' + characterId + '"'
+        );
+    }
 }
 
 module.exports = Database;

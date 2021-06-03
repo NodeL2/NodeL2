@@ -1,4 +1,3 @@
-let Database = invoke('Database');
 let ServerPacket = invoke('ServerPacket');
 
 function userInfo(player) {
@@ -40,11 +39,11 @@ function userInfo(player) {
         .writeD(0x00)  // Finger right
         .writeD(0x00)  // Finger left
         .writeD(0x00)  // Head
-        .writeD(268435572)  // Hand right
+        .writeD(player.paperdoll.right.hand.id)  // Hand right
         .writeD(0x00)  // Hand left
         .writeD(0x00)  // Gloves
-        .writeD(0x00)  // Chest
-        .writeD(0x00)  // Legs
+        .writeD(player.paperdoll.chest.id)  // Chest
+        .writeD(player.paperdoll.legs.id)  // Legs
         .writeD(0x00)  // Feet
         .writeD(0x00)  // Back
         .writeD(0x00)  // Hand left & right
@@ -57,11 +56,11 @@ function userInfo(player) {
         .writeD(0x00)  // Finger right
         .writeD(0x00)  // Finger left
         .writeD(0x00)  // Head
-        .writeD(2369)  // Hand right
+        .writeD(player.paperdoll.right.hand.itemId)  // Hand right
         .writeD(0x00)  // Hand left
         .writeD(0x00)  // Gloves
-        .writeD(0x00)  // Chest
-        .writeD(0x00)  // Legs
+        .writeD(player.paperdoll.chest.itemId)  // Chest
+        .writeD(player.paperdoll.legs.itemId)  // Legs
         .writeD(0x00)  // Feet
         .writeD(0x00)  // Back
         .writeD(0x00)  // Hand left & right

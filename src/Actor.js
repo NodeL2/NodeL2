@@ -1,3 +1,4 @@
+let Database = invoke('Database');
 let GameServerResponse = invoke('GameServer/GameServerResponse');
 let World = invoke('GameServer/World');
 
@@ -10,6 +11,8 @@ class Actor {
 
         // Selected NPC (npc, mob, item)
         this.npc = undefined;
+
+        this.items = [];
     }
 
     setAccountID(username) {
@@ -42,6 +45,57 @@ class Actor {
         this.y = character.y;
         this.z = character.z;
         this.heading = 0; // ?
+
+        this.paperdoll = {
+            right: {
+                hand: {
+                    id: 0,
+                    itemId: 0
+                }
+            },
+            chest: {
+                id: 0,
+                itemId: 0
+            },
+            legs: {
+                id: 0,
+                itemId: 0
+            }
+        };
+
+        Database.getInventoryItems(this.id)
+            .then((rows) => {
+
+                for (let row of rows) {
+                    this.items.push({
+                        id: 2000000 + row.id,
+                        itemId: row.item_id,
+                        bodyPart: row.body_part,
+                        type1: row.type_1,
+                        type2: row.type_2,
+                        isEquipped: row.is_equipped
+                    });
+
+                    switch (row.body_part) {
+                        case 128:
+                            this.paperdoll.right.hand.id = row.id;
+                            this.paperdoll.right.hand.itemId = row.item_id;
+                            break;
+
+                        case 1024:
+                            this.paperdoll.chest.id = row.id;
+                            this.paperdoll.chest.itemId = row.item_id;
+                            break;
+
+                        case 2048:
+                            this.paperdoll.legs.id = row.id;
+                            this.paperdoll.legs.itemId = row.item_id;
+                            break;
+                    }
+                }
+
+                console.log(this.paperdoll);
+            });
     }
 
     setBaseStats(stats) {
