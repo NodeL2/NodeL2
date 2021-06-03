@@ -12,6 +12,12 @@ global.NpcType = {
     ITEM: 'item'
 };
 
+global.BodyPart = {
+    RIGHT_HAND: 128,
+    CHEST: 1024,
+    LEGS: 2048
+}
+
 let AuthServer = invoke('AuthServer/AuthServer');
 let GameServer = invoke('GameServer/GameServer');
 

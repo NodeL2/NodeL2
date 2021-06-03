@@ -18,5 +18,6 @@ module.exports = {
         socialAction: invoke('GameServer/Request/SocialAction'),
             stopMove: invoke('GameServer/Request/StopMove'),
         targetCancel: invoke('GameServer/Request/TargetCancel'),
+         unequipItem: invoke('GameServer/Request/UnequipItem'),
     validatePosition: invoke('GameServer/Request/ValidatePosition')
 };

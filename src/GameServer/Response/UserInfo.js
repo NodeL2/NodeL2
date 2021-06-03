@@ -39,11 +39,11 @@ function userInfo(player) {
         .writeD(0x00)  // Finger right
         .writeD(0x00)  // Finger left
         .writeD(0x00)  // Head
-        .writeD(player.paperdoll.right.hand.id)  // Hand right
+        .writeD(player.paperdoll[BodyPart.RIGHT_HAND].id)
         .writeD(0x00)  // Hand left
         .writeD(0x00)  // Gloves
-        .writeD(player.paperdoll.chest.id)  // Chest
-        .writeD(player.paperdoll.legs.id)  // Legs
+        .writeD(player.paperdoll[BodyPart.CHEST].id)
+        .writeD(player.paperdoll[BodyPart.LEGS].id)
         .writeD(0x00)  // Feet
         .writeD(0x00)  // Back
         .writeD(0x00)  // Hand left & right
@@ -56,11 +56,11 @@ function userInfo(player) {
         .writeD(0x00)  // Finger right
         .writeD(0x00)  // Finger left
         .writeD(0x00)  // Head
-        .writeD(player.paperdoll.right.hand.itemId)  // Hand right
+        .writeD(player.paperdoll[BodyPart.RIGHT_HAND].itemId)
         .writeD(0x00)  // Hand left
         .writeD(0x00)  // Gloves
-        .writeD(player.paperdoll.chest.itemId)  // Chest
-        .writeD(player.paperdoll.legs.itemId)  // Legs
+        .writeD(player.paperdoll[BodyPart.CHEST].itemId)
+        .writeD(player.paperdoll[BodyPart.LEGS].itemId)
         .writeD(0x00)  // Feet
         .writeD(0x00)  // Back
         .writeD(0x00)  // Hand left & right

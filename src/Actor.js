@@ -42,22 +42,27 @@ class Actor {
         this.z = character.z;
         this.heading = 0; // ?
 
-        this.paperdoll = {
-            right: {
-                hand: {
-                    id: 0,
-                    itemId: 0
-                }
-            },
-            chest: {
-                id: 0,
-                itemId: 0
-            },
-            legs: {
-                id: 0,
-                itemId: 0
-            }
-        };
+        // this.paperdoll = {
+        //     right: {
+        //         hand: {
+        //             id: 0,
+        //             itemId: 0
+        //         }
+        //     },
+        //     chest: {
+        //         id: 0,
+        //         itemId: 0
+        //     },
+        //     legs: {
+        //         id: 0,
+        //         itemId: 0
+        //     }
+        // };
+
+        this.paperdoll = {};
+        this.paperdoll[BodyPart.RIGHT_HAND] = { id: 0, itemId: 0 };
+        this.paperdoll[BodyPart.CHEST]      = { id: 0, itemId: 0 };
+        this.paperdoll[BodyPart.LEGS]       = { id: 0, itemId: 0 };
 
         Database.getInventoryItems(this.id)
             .then((rows) => {
@@ -72,22 +77,9 @@ class Actor {
                         isEquipped: row.is_equipped
                     });
 
-                    switch (row.body_part) {
-                        case 128:
-                            this.paperdoll.right.hand.id = row.id;
-                            this.paperdoll.right.hand.itemId = row.item_id;
-                            break;
-
-                        case 1024:
-                            this.paperdoll.chest.id = row.id;
-                            this.paperdoll.chest.itemId = row.item_id;
-                            break;
-
-                        case 2048:
-                            this.paperdoll.legs.id = row.id;
-                            this.paperdoll.legs.itemId = row.item_id;
-                            break;
-                    }
+                    // Paperdoll equipment
+                    this.paperdoll[row.body_part].id = 2000000 + row.id;
+                    this.paperdoll[row.body_part].itemId = row.item_id;
                 }
             });
     }
@@ -283,6 +275,13 @@ class Actor {
         session.sendData(
             GameServerResponse.socialAction(session.player, data.actionId), false
         );
+    }
+
+    unequipFrom(session, bodyPart) {
+        let item = session.player.items.find(obj => obj.id === this.paperdoll[bodyPart].id);
+        item.isEquipped = false;
+        this.paperdoll[bodyPart].id = 0;
+        this.paperdoll[bodyPart].itemId = 0;
     }
 }
 

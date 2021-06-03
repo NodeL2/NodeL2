@@ -83,6 +83,10 @@ class GameServerSession {
                 GameClientRequest.showInventory(this, packet);
                 break;
 
+            case 0x11: // Unequip
+                GameClientRequest.unequipItem(this, packet);
+                break;
+
             case 0x14: // Use Item
                 break;
 
