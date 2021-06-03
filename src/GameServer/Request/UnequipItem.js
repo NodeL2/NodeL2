@@ -12,7 +12,7 @@ function unequipItem(session, buffer) {
         bodyPart: packet.data[1]
     };
 
-    session.player.unequipFrom(session, data.bodyPart);
+    session.player.unequipBodyPart(session, data.bodyPart);
 
     session.sendData(
         GameServerResponse.userInfo(session.player), false

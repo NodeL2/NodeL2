@@ -45,8 +45,19 @@ class World {
         return this.npc.find(obj => obj.id === id);
     }
 
-    static removeNpcWithId(id) {
+    static removeNpcWithId(session, id) {
         this.npc = this.npc.filter(obj => obj.id !== id);
+
+        session.sendData(
+            GameServerResponse.die(id), false
+        );
+
+        // Delete NPC from world
+        setTimeout(() => {
+            session.sendData(
+                GameServerResponse.deleteObject(id), false
+            );
+        }, 5000);
     }
 }
 

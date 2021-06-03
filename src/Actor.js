@@ -127,7 +127,7 @@ class Actor {
         if (this.npc?.id === data.id) {
             // Is it an attackable monster?
             if (this.npc?.attackable && this.npc?.type === NpcType.MONSTER) {
-                session.player.attack(session, data);
+                this.attack(session, data);
             }
 
             return;
@@ -154,13 +154,13 @@ class Actor {
         this.npc = undefined;
 
         session.sendData(
-            GameServerResponse.targetUnselected(session.player), false
+            GameServerResponse.targetUnselected(this), false
         );
     }
 
     move(session, data) {
         // Check if we're already doing a task
-        if (session.player.inCombat || session.player.inWaitTypeSwitch) {
+        if (this.inCombat || this.inWaitTypeSwitch) {
             session.sendData(
                 GameServerResponse.actionFailed(), false
             );
@@ -168,13 +168,13 @@ class Actor {
         }
 
         session.sendData(
-            GameServerResponse.moveToLocation(session.player.id, data), false
+            GameServerResponse.moveToLocation(this.id, data), false
         );
     }
 
     attack(session, data) {
         // Check if we're already doing a task
-        if (session.player.inCombat || session.player.inWaitTypeSwitch) {
+        if (this.inCombat || this.inWaitTypeSwitch) {
             session.sendData(
                 GameServerResponse.actionFailed(), false
             );
@@ -185,7 +185,7 @@ class Actor {
         let npc = World.fetchNpcWithId(data.id);
 
         if (npc !== undefined) {
-            session.player.inCombat = true;
+            this.inCombat = true;
 
             // Select NPC
             session.sendData(
@@ -199,7 +199,7 @@ class Actor {
 
             // Attack NPC
             session.sendData(
-                GameServerResponse.attack(session.player, data.id), false
+                GameServerResponse.attack(this, data.id), false
             );
 
             setTimeout(() => { // Needs rework
@@ -216,23 +216,12 @@ class Actor {
 
                 // Death of NPC
                 if (npc.hp === 0) {
-                    World.removeNpcWithId(npc.id);
-
-                    session.sendData(
-                        GameServerResponse.die(npc.id), false
-                    );
-
-                    // Delete NPC from world
-                    setTimeout(() => {
-                        session.sendData(
-                            GameServerResponse.deleteObject(npc.id), false
-                        );
-                    }, 5000);
+                    World.removeNpcWithId(session, npc.id);
                 }
             }, 950); // Until hit point
 
             setTimeout(() => {
-                session.player.inCombat = false;
+                this.inCombat = false;
             }, 1650); // Until end of combat
         }
     }
@@ -240,27 +229,27 @@ class Actor {
     action(session, data) {
         switch (data.actionId) {
             case 0: // Stand/Sit
-                if (session.player.inWaitTypeSwitch) {
+                if (this.inWaitTypeSwitch) {
                     return;
                 }
 
-                session.player.inWaitTypeSwitch = true;
-                session.player.isStanding = !session.player.isStanding;
+                this.inWaitTypeSwitch = true;
+                this.isStanding = !this.isStanding;
 
                 session.sendData(
-                    GameServerResponse.changeWaitType(session.player), false
+                    GameServerResponse.changeWaitType(this), false
                 );
 
                 setTimeout(() => {
-                    session.player.inWaitTypeSwitch = false;
+                    this.inWaitTypeSwitch = false;
                 }, 3000);
                 break;
 
             case 1: // Run/Walk
-                session.player.isRunning = !session.player.isRunning;
+                this.isRunning = !this.isRunning;
 
                 session.sendData(
-                    GameServerResponse.changeMoveType(session.player), false
+                    GameServerResponse.changeMoveType(this), false
                 );
                 break;
         }
@@ -268,20 +257,30 @@ class Actor {
 
     socialAction(session, data) {
         // Check if we're already doing a task
-        if (session.player.inCombat || session.player.inWaitTypeSwitch || !session.player.isStanding) {
+        if (this.inCombat || this.inWaitTypeSwitch || !this.isStanding) {
             return;
         }
 
         session.sendData(
-            GameServerResponse.socialAction(session.player, data.actionId), false
+            GameServerResponse.socialAction(this, data.actionId), false
         );
     }
 
-    unequipFrom(session, bodyPart) {
-        let item = session.player.items.find(obj => obj.id === this.paperdoll[bodyPart].id);
-        item.isEquipped = false;
-        this.paperdoll[bodyPart].id = 0;
-        this.paperdoll[bodyPart].itemId = 0;
+    unequipBodyPart(session, bodyPart) {
+        let part = this.paperdoll[bodyPart];
+
+        // Find item and set as unequipped
+        let item = this.items.find(item =>
+            item.id === part.id
+        );
+
+        if (item !== undefined) {
+            item.isEquipped = false
+        }
+
+        // Unequip from paperdoll
+        part.id = 0;
+        part.itemId = 0;
     }
 }
 
