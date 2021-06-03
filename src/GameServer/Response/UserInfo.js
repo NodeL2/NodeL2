@@ -31,36 +31,41 @@ function userInfo(player) {
         .writeD(0x00)  // Load
         .writeD(player.weightLimit)
         .writeD(0x28)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
+
+        // Object ID
+        .writeD(0x00)  // Underwear
+        .writeD(0x00)  // Ear right
+        .writeD(0x00)  // Ear left
+        .writeD(0x00)  // Neck
+        .writeD(0x00)  // Finger right
+        .writeD(0x00)  // Finger left
+        .writeD(0x00)  // Head
+        .writeD(268435572)  // Hand right
+        .writeD(0x00)  // Hand left
+        .writeD(0x00)  // Gloves
+        .writeD(0x00)  // Chest
+        .writeD(0x00)  // Legs
+        .writeD(0x00)  // Feet
+        .writeD(0x00)  // Back
+        .writeD(0x00)  // Hand left & right
+
+        // Item ID
+        .writeD(0x00)  // Underwear
+        .writeD(0x00)  // Ear right
+        .writeD(0x00)  // Ear left
+        .writeD(0x00)  // Neck
+        .writeD(0x00)  // Finger right
+        .writeD(0x00)  // Finger left
+        .writeD(0x00)  // Head
+        .writeD(2369)  // Hand right
+        .writeD(0x00)  // Hand left
+        .writeD(0x00)  // Gloves
+        .writeD(0x00)  // Chest
+        .writeD(0x00)  // Legs
+        .writeD(0x00)  // Feet
+        .writeD(0x00)  // Back
+        .writeD(0x00)  // Hand left & right
+
         .writeD(player.pAtk)
         .writeD(player.atkSpeed)
         .writeD(player.pDef)

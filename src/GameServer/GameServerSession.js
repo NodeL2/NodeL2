@@ -79,6 +79,9 @@ class GameServerSession {
                 GameClientRequest.showInventory(this, packet);
                 break;
 
+            case 0x14: // Use Item
+                break;
+
             case 0x1b: // Social Action
                 GameClientRequest.socialAction(packet)
                     .then((data) => {
