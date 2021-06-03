@@ -11,6 +11,7 @@ module.exports = {
         newCharacter: invoke('GameServer/Request/NewCharacter'),
      protocolVersion: invoke('GameServer/Request/ProtocolVersion'),
            questList: invoke('GameServer/Request/QuestList'),
+             restart: invoke('GameServer/Request/Restart'),
                  say: invoke('GameServer/Request/Say'),
            showBoard: invoke('GameServer/Request/ShowBoard'),
        showInventory: invoke('GameServer/Request/ShowInventory'),

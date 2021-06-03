@@ -42,7 +42,11 @@ class World {
     }
 
     static fetchNpcWithId(id) {
-        return this.npc.find(o => o.id === id);
+        return this.npc.find(obj => obj.id === id);
+    }
+
+    static removeNpcWithId(id) {
+        this.npc = this.npc.filter(obj => obj.id !== id);
     }
 }
 

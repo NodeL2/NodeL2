@@ -1,4 +1,5 @@
 module.exports = {
+            actionFailed: invoke('GameServer/Response/ActionFailed'),
                   attack: invoke('GameServer/Response/Attack'),
           attackCanceled: invoke('GameServer/Response/AttackCanceled'),
          autoAttackStart: invoke('GameServer/Response/AutoAttackStart'),
@@ -17,6 +18,7 @@ module.exports = {
           moveToLocation: invoke('GameServer/Response/MoveToLocation'),
                  npcInfo: invoke('GameServer/Response/NpcInfo'),
                questList: invoke('GameServer/Response/QuestList'),
+                 restart: invoke('GameServer/Response/Restart'),
                  showMap: invoke('GameServer/Response/ShowMap'),
             socialAction: invoke('GameServer/Response/SocialAction'),
             statusUpdate: invoke('GameServer/Response/StatusUpdate'),

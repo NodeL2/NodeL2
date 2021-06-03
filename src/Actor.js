@@ -122,7 +122,7 @@ class Actor {
         // Check if we're already doing a task
         if (session.player.inCombat || session.player.inWaitTypeSwitch) {
             session.sendData(
-                GameServerResponse.attackCanceled(session.player), false
+                GameServerResponse.actionFailed(), false
             );
             return;
         }
@@ -136,7 +136,7 @@ class Actor {
         // Check if we're already doing a task
         if (session.player.inCombat || session.player.inWaitTypeSwitch) {
             session.sendData(
-                GameServerResponse.attackCanceled(session.player), false
+                GameServerResponse.actionFailed(), false
             );
             return;
         }
@@ -176,6 +176,8 @@ class Actor {
 
                 // Death of NPC
                 if (npc.hp === 0) {
+                    World.removeNpcWithId(npc.id);
+
                     session.sendData(
                         GameServerResponse.die(npc.id), false
                     );

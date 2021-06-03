@@ -108,7 +108,8 @@ class GameServerSession {
                     });
                 break;
 
-            case 0x46: // Restart?
+            case 0x46: // Restart
+                GameClientRequest.restart(this, packet);
                 break;
 
             case 0x48: // Validate Position
