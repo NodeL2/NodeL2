@@ -23,9 +23,9 @@ function authorizeLogin(session, buffer) {
     };
 
     if (data.sessionKey.isEqualTo(Config.sessionKey)) {
-        session.player.setAccountID(data.username);
+        session.accountId = data.username;
 
-        Database.getCharacters(session.player.accountId)
+        Database.getCharacters(session.accountId)
             .then((rows) => {
 
                 session.sendData(

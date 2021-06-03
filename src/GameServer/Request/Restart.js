@@ -15,7 +15,7 @@ function restart(session, buffer) {
         GameServerResponse.restart(), false
     );
 
-    Database.getCharacters(session.player.accountId)
+    Database.getCharacters(session.accountId)
         .then((rows) => {
 
             session.sendData(

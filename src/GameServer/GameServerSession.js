@@ -9,6 +9,10 @@ let Utils = invoke('Utils');
 class GameServerSession {
     constructor(socket) {
         this.socket = socket;
+        this.accountId = '';
+    }
+
+    initPlayer() {
         this.player = new Actor();
     }
 

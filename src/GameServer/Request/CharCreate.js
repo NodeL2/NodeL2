@@ -34,14 +34,14 @@ function charCreate(session, buffer) {
     Database.getBaseClass(data.classId)
         .then((stats) => {
 
-            Database.addNewCharacter(session.player.accountId, data, stats[0])
+            Database.addNewCharacter(session.accountId, data, stats[0])
                 .then(() => {
 
                     session.sendData(
                         GameServerResponse.charCreateSuccess(), false
                     );
 
-                    Database.getCharacters(session.player.accountId)
+                    Database.getCharacters(session.accountId)
                         .then((rows) => {
 
                             session.sendData(

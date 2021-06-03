@@ -15,10 +15,6 @@ class Actor {
         this.items = [];
     }
 
-    setAccountID(username) {
-        this.accountId = username;
-    }
-
     setProperties(character) {
         this.id = character.id;
         this.name = character.name;
@@ -93,8 +89,6 @@ class Actor {
                             break;
                     }
                 }
-
-                console.log(this.paperdoll);
             });
     }
 

@@ -13,7 +13,11 @@ function charSelected(session, buffer) {
         characterSlot: packet.data[1]
     };
 
-    Database.getCharacters(session.player.accountId)
+    // New player instance
+    session.initPlayer();
+
+    // Fill-in player specs
+    Database.getCharacters(session.accountId)
         .then((characters) => {
             let character = characters[data.characterSlot];
 
