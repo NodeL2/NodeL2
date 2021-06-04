@@ -19,5 +19,6 @@ module.exports = {
             stopMove: invoke('GameServer/Request/StopMove'),
         targetCancel: invoke('GameServer/Request/TargetCancel'),
          unequipItem: invoke('GameServer/Request/UnequipItem'),
+             useItem: invoke('GameServer/Request/UseItem'),
     validatePosition: invoke('GameServer/Request/ValidatePosition')
 };

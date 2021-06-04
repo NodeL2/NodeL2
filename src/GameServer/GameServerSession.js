@@ -88,6 +88,7 @@ class GameServerSession {
                 break;
 
             case 0x14: // Use Item
+                GameClientRequest.useItem(this, packet);
                 break;
 
             case 0x1b: // Social Action

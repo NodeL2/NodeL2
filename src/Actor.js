@@ -54,6 +54,7 @@ class Actor {
                     this.items.push({
                         id: 2000000 + row.id,
                         itemId: row.item_id,
+                        category: row.category,
                         bodyPart: row.body_part,
                         type1: row.type_1,
                         type2: row.type_2,
@@ -249,21 +250,49 @@ class Actor {
         );
     }
 
-    unequipBodyPart(session, bodyPart) {
-        let part = this.paperdoll[bodyPart];
-
-        // Find item and set as unequipped
-        let item = this.items.find(item =>
-            item.id === part.id
+    useItem(session, id) {
+        // Find item use/equip
+        let item = this.items.find(obj =>
+            obj.id === id
         );
 
         if (item !== undefined) {
-            item.isEquipped = false
-        }
+            if (item.category === WearableItemType.WEAPON || item.category === WearableItemType.ARMOR) {
+                // Unequip previous item
+                this.unequipBodyPart(session, item.bodyPart);
 
-        // Unequip from paperdoll
-        part.id = 0;
-        part.itemId = 0;
+                // Equip paperdoll
+                this.paperdoll[item.bodyPart].id = item.id;
+                this.paperdoll[item.bodyPart].itemId = item.itemId;
+
+                item.isEquipped = true;
+            }
+            else {
+                // TODO: Consumables
+            }
+        }
+    }
+
+    unequipBodyPart(session, bodyPart) {
+        // Find item and set as unequipped
+        let item = this.items.find(obj =>
+            obj.id === this.paperdoll[bodyPart].id
+        );
+
+        if (item !== undefined) {
+            // Unequip from paperdoll
+            this.paperdoll[bodyPart].id = 0;
+            this.paperdoll[bodyPart].itemId = 0;
+
+            item.isEquipped = false;
+
+            // Move item to the end
+            this.items = this.items.filter(obj =>
+                obj.id !== item.id
+            );
+
+            this.items.push(item);
+        }
     }
 }
 
