@@ -109,7 +109,13 @@ class Actor {
     }
 
     isBusy() {
-        return (this.inCombat || this.inWaitTypeSwitch || !this.isStanding || this.isPickingUp);
+        if (this.inCombat || this.isPickingUp || this.inWaitTypeSwitch || !this.isStanding) {
+            session.sendData(
+                GameServerResponse.actionFailed(), false
+            );
+            return true;
+        }
+        return false;
     }
 
     select(session, data) {
@@ -140,12 +146,7 @@ class Actor {
             }
         }
         else {
-            // Check if we're already doing a task
             if (this.isBusy()) {
-                session.sendData(
-                    GameServerResponse.actionFailed(), false
-                );
-
                 return;
             }
 
@@ -178,12 +179,7 @@ class Actor {
     }
 
     move(session, data) {
-        // Check if we're already doing a task
         if (this.isBusy()) {
-            session.sendData(
-                GameServerResponse.actionFailed(), false
-            );
-
             return;
         }
 
@@ -194,10 +190,6 @@ class Actor {
 
     attack(session, data) {
         if (this.isBusy()) {
-            session.sendData(
-                GameServerResponse.actionFailed(), false
-            );
-
             return;
         }
 
