@@ -108,6 +108,10 @@ class Actor {
         }
     }
 
+    isBusy() {
+        return (this.inCombat || this.inWaitTypeSwitch || !this.isStanding || this.isPickingUp);
+    }
+
     select(session, data) {
         if (World.fetchNpcWithId(data.id)) {
             // Already selected?
@@ -116,32 +120,32 @@ class Actor {
                 if (this.npc?.attackable && this.npc?.type === NpcType.MONSTER) {
                     this.attack(session, data);
                 }
-
-                return;
             }
-
-            // Select NPC
-            session.sendData(
-                GameServerResponse.targetSelected(data.id), false
-            );
-
-            // Get NPC statistics
-            let npc = World.fetchNpcWithId(data.id);
-
-            if (npc !== undefined) {
-                this.npc = npc;
-
+            else {
+                // Select NPC
                 session.sendData(
-                    GameServerResponse.statusUpdate(data.id, npc.hp, npc.maxHp), false
+                    GameServerResponse.targetSelected(data.id), false
                 );
+
+                // Get NPC statistics
+                let npc = World.fetchNpcWithId(data.id);
+
+                if (npc !== undefined) {
+                    this.npc = npc;
+
+                    session.sendData(
+                        GameServerResponse.statusUpdate(data.id, npc.hp, npc.maxHp), false
+                    );
+                }
             }
         }
         else {
             // Check if we're already doing a task
-            if (this.inCombat || this.inWaitTypeSwitch || !this.isStanding || this.isPickingUp) {
+            if (this.isBusy()) {
                 session.sendData(
                     GameServerResponse.actionFailed(), false
                 );
+
                 return;
             }
 
@@ -161,9 +165,7 @@ class Actor {
 
             setTimeout(() => {
                 this.isPickingUp = false;
-            }, 1000);
-
-            return;
+            }, 750);
         }
     }
 
@@ -177,10 +179,11 @@ class Actor {
 
     move(session, data) {
         // Check if we're already doing a task
-        if (this.inCombat || this.inWaitTypeSwitch || !this.isStanding || this.isPickingUp) {
+        if (this.isBusy()) {
             session.sendData(
                 GameServerResponse.actionFailed(), false
             );
+
             return;
         }
 
@@ -190,11 +193,11 @@ class Actor {
     }
 
     attack(session, data) {
-        // Check if we're already doing a task
-        if (this.inCombat || this.inWaitTypeSwitch || !this.isStanding || this.isPickingUp) {
+        if (this.isBusy()) {
             session.sendData(
                 GameServerResponse.actionFailed(), false
             );
+
             return;
         }
 
@@ -273,8 +276,7 @@ class Actor {
     }
 
     socialAction(session, data) {
-        // Check if we're already doing a task
-        if (this.inCombat || this.inWaitTypeSwitch || !this.isStanding || this.isPickingUp) {
+        if (this.isBusy()) {
             return;
         }
 
