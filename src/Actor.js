@@ -62,8 +62,10 @@ class Actor {
                     });
 
                     // Paperdoll equipment
-                    this.paperdoll[row.body_part].id = 2000000 + row.id;
-                    this.paperdoll[row.body_part].itemId = row.item_id;
+                    if (row.is_equipped) {
+                        this.paperdoll[row.body_part].id = 2000000 + row.id;
+                        this.paperdoll[row.body_part].itemId = row.item_id;
+                    }
                 }
             });
     }
