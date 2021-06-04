@@ -109,30 +109,61 @@ class Actor {
     }
 
     select(session, data) {
-        // Already selected?
-        if (this.npc?.id === data.id) {
-            // Is it an attackable monster?
-            if (this.npc?.attackable && this.npc?.type === NpcType.MONSTER) {
-                this.attack(session, data);
+        if (World.fetchNpcWithId(data.id)) {
+            // Already selected?
+            if (this.npc?.id === data.id) {
+                // Is it an attackable monster?
+                if (this.npc?.attackable && this.npc?.type === NpcType.MONSTER) {
+                    this.attack(session, data);
+                }
+
+                return;
             }
 
-            return;
+            // Select NPC
+            session.sendData(
+                GameServerResponse.targetSelected(data.id), false
+            );
+
+            // Get NPC statistics
+            let npc = World.fetchNpcWithId(data.id);
+
+            if (npc !== undefined) {
+                this.npc = npc;
+
+                session.sendData(
+                    GameServerResponse.statusUpdate(data.id, npc.hp, npc.maxHp), false
+                );
+            }
         }
+        else {
+            // Check if we're already doing a task
+            if (this.inCombat || this.inWaitTypeSwitch || !this.isStanding || this.isPickingUp) {
+                session.sendData(
+                    GameServerResponse.actionFailed(), false
+                );
+                return;
+            }
 
-        // Select NPC
-        session.sendData(
-            GameServerResponse.targetSelected(data.id), false
-        );
-
-        // Get NPC statistics
-        let npc = World.fetchNpcWithId(data.id);
-
-        if (npc !== undefined) {
-            this.npc = npc;
+            this.isPickingUp = true;
 
             session.sendData(
-                GameServerResponse.statusUpdate(data.id, npc.hp, npc.maxHp), false
+                GameServerResponse.getItem(this, data), false
             );
+
+            session.sendData(
+                GameServerResponse.deleteObject(data.id), false
+            );
+
+            session.sendData(
+                GameServerResponse.actionFailed(), false
+            );
+
+            setTimeout(() => {
+                this.isPickingUp = false;
+            }, 1000);
+
+            return;
         }
     }
 
@@ -146,7 +177,7 @@ class Actor {
 
     move(session, data) {
         // Check if we're already doing a task
-        if (this.inCombat || this.inWaitTypeSwitch) {
+        if (this.inCombat || this.inWaitTypeSwitch || !this.isStanding || this.isPickingUp) {
             session.sendData(
                 GameServerResponse.actionFailed(), false
             );
@@ -160,7 +191,7 @@ class Actor {
 
     attack(session, data) {
         // Check if we're already doing a task
-        if (this.inCombat || this.inWaitTypeSwitch) {
+        if (this.inCombat || this.inWaitTypeSwitch || !this.isStanding || this.isPickingUp) {
             session.sendData(
                 GameServerResponse.actionFailed(), false
             );
@@ -243,7 +274,7 @@ class Actor {
 
     socialAction(session, data) {
         // Check if we're already doing a task
-        if (this.inCombat || this.inWaitTypeSwitch || !this.isStanding) {
+        if (this.inCombat || this.inWaitTypeSwitch || !this.isStanding || this.isPickingUp) {
             return;
         }
 
