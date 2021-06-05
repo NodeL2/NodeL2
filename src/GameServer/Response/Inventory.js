@@ -17,7 +17,7 @@ function inventory(player) {
             .writeH(item.type2)
             .writeH(0xff)
             .writeH(item.isEquipped)
-            .writeD(item.bodyPart)
+            .writeD(item.bodyPartId)
             .writeH(0x00) // Enchant level
             .writeH(0x00);
     }

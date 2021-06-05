@@ -36,7 +36,7 @@ class World {
             });
 
             session.sendData(
-                GameServerResponse.npcInfo(this.npc[i]), false
+                GameServerResponse.npcInfo(this.npc[i])
             );
         }
 
@@ -52,7 +52,7 @@ class World {
             let y = centerY + r * Math.sin(theta);
 
             session.sendData(
-                GameServerResponse.spawnItem(i, x, y), false
+                GameServerResponse.spawnItem(i, x, y)
             );
         }
     }
@@ -65,13 +65,13 @@ class World {
         this.npc = this.npc.filter(obj => obj.id !== id);
 
         session.sendData(
-            GameServerResponse.die(id), false
+            GameServerResponse.die(id)
         );
 
         // Delete NPC from world
         setTimeout(() => {
             session.sendData(
-                GameServerResponse.deleteObject(id), false
+                GameServerResponse.deleteObject(id)
             );
         }, 5000);
     }

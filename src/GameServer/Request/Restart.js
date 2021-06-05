@@ -12,14 +12,14 @@ function restart(session, buffer) {
     };
 
     session.sendData(
-        GameServerResponse.restart(), false
+        GameServerResponse.restart()
     );
 
     Database.getCharacters(session.accountId)
         .then((rows) => {
 
             session.sendData(
-                GameServerResponse.charSelectInfo(rows), false
+                GameServerResponse.charSelectInfo(rows)
             );
         });
 }

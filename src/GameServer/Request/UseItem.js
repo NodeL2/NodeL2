@@ -15,11 +15,11 @@ function useItem(session, buffer) {
     session.player.useItem(session, data.id);
 
     session.sendData(
-        GameServerResponse.userInfo(session.player), false
+        GameServerResponse.userInfo(session.player)
     );
 
     session.sendData(
-        GameServerResponse.inventory(session.player), false
+        GameServerResponse.inventory(session.player)
     );
 }
 

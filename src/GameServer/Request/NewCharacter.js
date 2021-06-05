@@ -13,7 +13,7 @@ function newCharacter(session, buffer) {
 
     if (data.status === 0x0e) {
         session.sendData(
-            GameServerResponse.charTemplates(), false
+            GameServerResponse.charTemplates()
         );
     }
 }

@@ -12,12 +12,6 @@ global.NpcType = {
     ITEM: 'item'
 };
 
-global.BodyPart = {
-    RIGHT_HAND: 128,
-    CHEST: 1024,
-    LEGS: 2048
-};
-
 global.WearableItemType = {
     WEAPON: 'weapon',
     ARMOR: 'armor'

@@ -16,7 +16,7 @@ function say(session, buffer) {
     };
 
     session.sendData(
-        GameServerResponse.createSay(session.player, data.text, data.type), false
+        GameServerResponse.createSay(session.player, data.text, data.type)
     );
 }
 

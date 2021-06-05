@@ -29,7 +29,7 @@ function authorizeLogin(session, buffer) {
             .then((rows) => {
 
                 session.sendData(
-                    GameServerResponse.charSelectInfo(rows), false
+                    GameServerResponse.charSelectInfo(rows)
                 );
             });
     }

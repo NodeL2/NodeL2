@@ -12,11 +12,11 @@ function enterWorld(session, buffer) {
     };
 
     session.sendData(
-        GameServerResponse.sunrise(), false
+        GameServerResponse.sunrise()
     );
 
     session.sendData(
-        GameServerResponse.userInfo(session.player), false
+        GameServerResponse.userInfo(session.player)
     );
 
     World.insertNpcs(session);

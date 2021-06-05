@@ -12,7 +12,7 @@ function showBoard(session, buffer) {
     };
 
     session.sendData(
-        GameServerResponse.showMap(1665), false
+        GameServerResponse.showMap(1665)
     );
 }
 

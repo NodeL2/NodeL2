@@ -38,14 +38,14 @@ function charCreate(session, buffer) {
                 .then(() => {
 
                     session.sendData(
-                        GameServerResponse.charCreateSuccess(), false
+                        GameServerResponse.charCreateSuccess()
                     );
 
                     Database.getCharacters(session.accountId)
                         .then((rows) => {
 
                             session.sendData(
-                                GameServerResponse.charSelectInfo(rows), false
+                                GameServerResponse.charSelectInfo(rows)
                             );
                         });
                 });

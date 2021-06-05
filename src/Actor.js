@@ -1,5 +1,6 @@
 let Database = invoke('Database');
 let GameServerResponse = invoke('GameServer/GameServerResponse');
+let Paperdoll = invoke('Paperdoll');
 let World = invoke('GameServer/World');
 
 class Actor {
@@ -9,9 +10,8 @@ class Actor {
         this.inCombat = false;
         this.inWaitTypeSwitch = false;
 
-        // Selected NPC (npc, mob, item)
-        this.npc = undefined;
-
+        this.paperdoll = new Paperdoll();
+        this.npcId = undefined;
         this.items = [];
     }
 
@@ -42,11 +42,6 @@ class Actor {
         this.z = character.z;
         this.heading = 0; // ?
 
-        this.paperdoll = {};
-        this.paperdoll[BodyPart.RIGHT_HAND] = { id: 0, itemId: 0 };
-        this.paperdoll[BodyPart.CHEST]      = { id: 0, itemId: 0 };
-        this.paperdoll[BodyPart.LEGS]       = { id: 0, itemId: 0 };
-
         Database.getInventoryItems(this.id)
             .then((rows) => {
 
@@ -55,16 +50,16 @@ class Actor {
                         id: 2000000 + row.id,
                         itemId: row.item_id,
                         category: row.category,
-                        bodyPart: row.body_part,
+                        bodyPartId: row.body_part,
                         type1: row.type_1,
                         type2: row.type_2,
                         isEquipped: row.is_equipped
                     });
+                }
 
-                    // Paperdoll equipment
-                    if (row.is_equipped) {
-                        this.paperdoll[row.body_part].id = 2000000 + row.id;
-                        this.paperdoll[row.body_part].itemId = row.item_id;
+                for (let item of this.items) {
+                    if (item.isEquipped) {
+                        this.paperdoll.equip(item.bodyPartId, item.id, item.itemId);
                     }
                 }
             });
@@ -108,10 +103,10 @@ class Actor {
         }
     }
 
-    isBusy() {
+    isBusy(session) {
         if (this.inCombat || this.isPickingUp || this.inWaitTypeSwitch || !this.isStanding) {
             session.sendData(
-                GameServerResponse.actionFailed(), false
+                GameServerResponse.actionFailed()
             );
             return true;
         }
@@ -119,49 +114,45 @@ class Actor {
     }
 
     select(session, data) {
-        if (World.fetchNpcWithId(data.id)) {
+        let worldNpc = World.fetchNpcWithId(data.id);
+
+        if (worldNpc !== undefined) {
             // Already selected?
-            if (this.npc?.id === data.id) {
+            if (this.npcId === worldNpc.id) {
                 // Is it an attackable monster?
-                if (this.npc?.attackable && this.npc?.type === NpcType.MONSTER) {
+                if (worldNpc.attackable && worldNpc.type === NpcType.MONSTER) {
                     this.attack(session, data);
                 }
             }
             else {
-                // Select NPC
+                this.npcId = worldNpc.id;
+
                 session.sendData(
-                    GameServerResponse.targetSelected(data.id), false
+                    GameServerResponse.targetSelected(worldNpc.id)
                 );
 
-                // Get NPC statistics
-                let npc = World.fetchNpcWithId(data.id);
-
-                if (npc !== undefined) {
-                    this.npc = npc;
-
-                    session.sendData(
-                        GameServerResponse.statusUpdate(data.id, npc.hp, npc.maxHp), false
-                    );
-                }
+                session.sendData(
+                    GameServerResponse.statusUpdate(worldNpc.id, worldNpc.hp, worldNpc.maxHp)
+                );
             }
         }
         else {
-            if (this.isBusy()) {
+            if (this.isBusy(session)) {
                 return;
             }
 
             this.isPickingUp = true;
 
             session.sendData(
-                GameServerResponse.getItem(this, data), false
+                GameServerResponse.getItem(this, data)
             );
 
             session.sendData(
-                GameServerResponse.deleteObject(data.id), false
+                GameServerResponse.deleteObject(data.id)
             );
 
             session.sendData(
-                GameServerResponse.actionFailed(), false
+                GameServerResponse.actionFailed()
             );
 
             setTimeout(() => {
@@ -171,64 +162,52 @@ class Actor {
     }
 
     unselect(session, data) {
-        this.npc = undefined;
+        this.npcId = undefined;
 
         session.sendData(
-            GameServerResponse.targetUnselected(this), false
+            GameServerResponse.targetUnselected(this)
         );
     }
 
     move(session, data) {
-        if (this.isBusy()) {
+        if (this.isBusy(session)) {
             return;
         }
 
         session.sendData(
-            GameServerResponse.moveToLocation(this.id, data), false
+            GameServerResponse.moveToLocation(this.id, data)
         );
     }
 
     attack(session, data) {
-        if (this.isBusy()) {
+        if (this.isBusy(session)) {
             return;
         }
 
-        // Get NPC statistics
-        let npc = World.fetchNpcWithId(data.id);
+        this.inCombat = true;
 
-        if (npc !== undefined) {
-            this.inCombat = true;
+        let worldNpc = World.fetchNpcWithId(data.id);
 
-            // Select NPC
+        if (worldNpc !== undefined) {
             session.sendData(
-                GameServerResponse.targetSelected(data.id), false
-            );
-
-            // Update NPC statistics
-            session.sendData(
-                GameServerResponse.statusUpdate(data.id, npc.hp, npc.maxHp), false
-            );
-
-            // Attack NPC
-            session.sendData(
-                GameServerResponse.attack(this, data.id), false
+                GameServerResponse.attack(this, worldNpc.id)
             );
 
             setTimeout(() => { // Needs rework
                 let hitDamage = 15 + Math.floor(Math.random() * 10);
-                npc.hp = Math.max(0, npc.hp - hitDamage); // HP bar would disappear if less than zero
+                worldNpc.hp = Math.max(0, worldNpc.hp - hitDamage); // HP bar would disappear if less than zero
 
                 session.sendData(
-                    GameServerResponse.statusUpdate(data.id, npc.hp, npc.maxHp), false
+                    GameServerResponse.statusUpdate(worldNpc.id, worldNpc.hp, worldNpc.maxHp)
                 );
 
                 session.sendData(
-                    GameServerResponse.systemMessage(hitDamage), false
+                    GameServerResponse.systemMessage(hitDamage)
                 );
 
                 // Death of NPC
-                if (npc.hp === 0) {
-                    World.removeNpcWithId(session, npc.id);
+                if (worldNpc.hp === 0) {
+                    World.removeNpcWithId(session, worldNpc.id);
                 }
             }, 950); // Until hit point
 
@@ -249,7 +228,7 @@ class Actor {
                 this.isStanding = !this.isStanding;
 
                 session.sendData(
-                    GameServerResponse.changeWaitType(this), false
+                    GameServerResponse.changeWaitType(this)
                 );
 
                 setTimeout(() => {
@@ -261,19 +240,19 @@ class Actor {
                 this.isRunning = !this.isRunning;
 
                 session.sendData(
-                    GameServerResponse.changeMoveType(this), false
+                    GameServerResponse.changeMoveType(this)
                 );
                 break;
         }
     }
 
     socialAction(session, data) {
-        if (this.isBusy()) {
+        if (this.isBusy(session)) {
             return;
         }
 
         session.sendData(
-            GameServerResponse.socialAction(this, data.actionId), false
+            GameServerResponse.socialAction(this, data.actionId)
         );
     }
 
@@ -285,13 +264,8 @@ class Actor {
 
         if (item !== undefined) {
             if (item.category === WearableItemType.WEAPON || item.category === WearableItemType.ARMOR) {
-                // Unequip previous item
-                this.unequipBodyPart(session, item.bodyPart);
-
-                // Equip paperdoll
-                this.paperdoll[item.bodyPart].id = item.id;
-                this.paperdoll[item.bodyPart].itemId = item.itemId;
-
+                this.unequipBodyPart(session, item.bodyPartId);
+                this.paperdoll.equip(item.bodyPartId, item.id, item.itemId);
                 item.isEquipped = true;
             }
             else {
@@ -300,17 +274,14 @@ class Actor {
         }
     }
 
-    unequipBodyPart(session, bodyPart) {
+    unequipBodyPart(session, bodyPartId) {
         // Find item and set as unequipped
         let item = this.items.find(obj =>
-            obj.id === this.paperdoll[bodyPart].id
+            obj.id === this.paperdoll.raw[bodyPartId].id
         );
 
         if (item !== undefined) {
-            // Unequip from paperdoll
-            this.paperdoll[bodyPart].id = 0;
-            this.paperdoll[bodyPart].itemId = 0;
-
+            this.paperdoll.unequip(bodyPartId);
             item.isEquipped = false;
 
             // Move item to the end

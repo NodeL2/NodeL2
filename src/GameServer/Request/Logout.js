@@ -11,7 +11,7 @@ function logout(session, buffer) {
     };
 
     session.sendData(
-        GameServerResponse.logoutOk(), false
+        GameServerResponse.logoutOk()
     );
 }
 

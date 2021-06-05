@@ -16,7 +16,7 @@ class GameServerSession {
         this.player = new Actor();
     }
 
-    sendData(data, encrypt = true) {
+    sendData(data, encrypt = false) {
         let header = new Buffer.from([0x00, 0x00]);
         header.writeInt16LE(data.length + 2);
 

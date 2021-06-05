@@ -11,7 +11,7 @@ function questList(session, buffer) {
     };
 
     session.sendData(
-        GameServerResponse.questList(), false
+        GameServerResponse.questList()
     );
 }
 

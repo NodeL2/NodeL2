@@ -15,11 +15,11 @@ function unequipItem(session, buffer) {
     session.player.unequipBodyPart(session, data.bodyPart);
 
     session.sendData(
-        GameServerResponse.userInfo(session.player), false
+        GameServerResponse.userInfo(session.player)
     );
 
     session.sendData(
-        GameServerResponse.inventory(session.player), false
+        GameServerResponse.inventory(session.player)
     );
 }
 

@@ -33,7 +33,7 @@ function charSelected(session, buffer) {
                     );
 
                     session.sendData(
-                        GameServerResponse.charSelected(session.player), false
+                        GameServerResponse.charSelected(session.player)
                     );
                 });
         });
