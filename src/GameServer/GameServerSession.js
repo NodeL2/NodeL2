@@ -1,5 +1,4 @@
-// User define
-let Actor = invoke('Actor');
+let Actor = invoke('GameServer/Actor');
 let Blowfish = invoke('Blowfish');
 let Config = invoke('Config');
 let Database = invoke('Database');
@@ -96,6 +95,10 @@ class GameServerSession {
                     .then((data) => {
                         this.player.socialAction(this, data);
                     });
+                break;
+
+            case 0x33: // Add Shortcut
+                GameClientRequest.addShortcut(this, packet);
                 break;
 
             case 0x36: // Stop Move

@@ -85,8 +85,8 @@ function userInfo(player) {
         .writeD(0x00)  // Floating Walk Speed
         .writeD(0x00)  // Flying Run Speed
         .writeD(0x00)  // Flying Walk Speed
-        .writeF(1.1)   // Movement Multiplier
-        .writeF(1.188) // Attack Speed Multiplier
+        .writeF(1.0)   // Movement Multiplier
+        .writeF(player.atkSpeed / 277.77777777777777)   // Attack Speed Multiplier
         .writeF(player.collisionRadius)
         .writeF(player.collisionHeight)
         .writeD(player.hairStyle)

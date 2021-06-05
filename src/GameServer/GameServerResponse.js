@@ -1,4 +1,5 @@
 module.exports = {
+           addShortcutOk: invoke('GameServer/Response/AddShortcutOk'),
             actionFailed: invoke('GameServer/Response/ActionFailed'),
                   attack: invoke('GameServer/Response/Attack'),
           attackCanceled: invoke('GameServer/Response/AttackCanceled'),

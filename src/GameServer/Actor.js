@@ -1,6 +1,6 @@
 let Database = invoke('Database');
 let GameServerResponse = invoke('GameServer/GameServerResponse');
-let Paperdoll = invoke('Paperdoll');
+let Paperdoll = invoke('GameServer/Paperdoll');
 let World = invoke('GameServer/World');
 
 class Actor {
@@ -192,14 +192,20 @@ class Actor {
             return;
         }
 
-        this.inCombat = true;
-
         let worldNpc = World.fetchNpcWithId(data.id);
 
         if (worldNpc !== undefined) {
+            if (worldNpc.hp === 0) {
+                return;
+            }
+
+            this.inCombat = true;
+
             session.sendData(
                 GameServerResponse.attack(this, worldNpc.id)
             );
+
+            let singleAttackCycle = 500000 / this.atkSpeed;
 
             setTimeout(() => { // Needs rework
                 let hitDamage = 15 + Math.floor(Math.random() * 10);
@@ -217,11 +223,11 @@ class Actor {
                 if (worldNpc.hp === 0) {
                     World.removeNpcWithId(session, worldNpc.id);
                 }
-            }, 950); // Until hit point
+            }, singleAttackCycle / 2); // Until hit point
 
             setTimeout(() => {
                 this.inCombat = false;
-            }, 1650); // Until end of combat
+            }, singleAttackCycle); // Until end of combat
         }
     }
 

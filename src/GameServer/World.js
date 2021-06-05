@@ -69,7 +69,7 @@ class World {
     }
 
     static removeNpcWithId(session, id) {
-        this.npc = this.npcs.filter(obj => obj.id !== id);
+        this.npcs = this.npcs.filter(obj => obj.id !== id);
 
         session.sendData(
             GameServerResponse.die(id)
