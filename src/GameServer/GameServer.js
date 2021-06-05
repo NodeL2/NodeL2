@@ -28,8 +28,6 @@ class GameServer {
         // console.log(318 / 1.1448); // Orc Fighter
         // console.log(312 / 1.1232); // Orc Mage
         // console.log(327 / 1.1772); // Dwarven Fighter
-
-        //console.log(327 / 277.77777777777777);
     }
 
     onSocket(socket) {

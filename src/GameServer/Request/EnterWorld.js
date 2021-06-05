@@ -20,6 +20,7 @@ function enterWorld(session, buffer) {
     );
 
     // Samples
+    World.insertPlayer(session);
     World.insertNpcs(session);
     World.insertItems(session);
 }

@@ -16,7 +16,7 @@ class Actor {
             isPickingUp        : false,
             isSitting          : false,
             isWalking          : false,
-        }
+        };
     }
 
     setProperties(character) {

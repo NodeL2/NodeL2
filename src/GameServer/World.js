@@ -65,6 +65,32 @@ class World {
             );
         }, 5000);
     }
+
+    // Players
+
+    static insertPlayer(session) {
+        // Residue?
+        this.removePlayer(session.player.id);
+
+        this.players.push({
+            socket: session.socket,
+            player: session.player
+        });
+
+        console.log(this.players);
+    }
+
+    static removePlayer(id) {
+        this.players = this.players.filter(obj =>
+            obj.player.id !== id
+        );
+    }
+
+    static fetchPlayer(id) {
+        return this.players.find(obj =>
+            obj.player.id === id
+        );
+    }
 }
 
 module.exports = World;
