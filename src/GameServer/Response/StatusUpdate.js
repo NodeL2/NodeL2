@@ -6,11 +6,11 @@ function statusUpdate(id, hp, maxHp) {
     packet
         .writeC(0x1a)
         .writeD(id)
-        .writeD(2)     // Attributes Count
-        .writeD(0x09)  // HP ID
-        .writeD(hp)    // HP Value
-        .writeD(0x0a)  // Max HP ID
-        .writeD(maxHp) // Max HP Value
+        .writeD(2)
+        .writeD(0x09)
+        .writeD(hp)
+        .writeD(0x0a)
+        .writeD(maxHp);
 
     return packet.buffer;
 }

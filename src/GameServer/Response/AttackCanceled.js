@@ -1,11 +1,11 @@
 let ServerPacket = invoke('ServerPacket');
 
-function attackCanceled(player) {
+function attackCanceled(playerId) {
     let packet = new ServerPacket(5);
 
     packet
         .writeC(0x0a)
-        .writeD(player.id);
+        .writeD(playerId);
 
     return packet.buffer;
 }

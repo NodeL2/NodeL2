@@ -5,14 +5,18 @@ let World = invoke('GameServer/World');
 
 class Actor {
     constructor() {
-        this.isStanding = true;
-        this.isRunning = true;
-        this.inCombat = false;
-        this.inWaitTypeSwitch = false;
-
         this.paperdoll = new Paperdoll();
         this.npcId = undefined;
         this.items = [];
+
+        this.state = {
+            isChangingWaitType : false,
+            isFighting         : false,
+            isMoving           : false,
+            isPickingUp        : false,
+            isSitting          : false,
+            isWalking          : false,
+        }
     }
 
     setProperties(character) {
@@ -104,7 +108,7 @@ class Actor {
     }
 
     isBusy(session) {
-        if (this.inCombat || this.isPickingUp || this.inWaitTypeSwitch || !this.isStanding) {
+        if (this.state.isChangingWaitType || this.state.isFighting || this.state.isPickingUp || this.state.isSitting) {
             session.sendData(
                 GameServerResponse.actionFailed()
             );
@@ -149,7 +153,7 @@ class Actor {
                 return;
             }
 
-            this.isPickingUp = true;
+            this.state.isPickingUp = true;
 
             session.sendData(
                 GameServerResponse.getItem(this, data)
@@ -164,7 +168,7 @@ class Actor {
             );
 
             setTimeout(() => {
-                this.isPickingUp = false;
+                this.state.isPickingUp = false;
             }, 750);
         }
     }
@@ -199,7 +203,7 @@ class Actor {
                 return;
             }
 
-            this.inCombat = true;
+            this.state.isFighting = true;
 
             session.sendData(
                 GameServerResponse.attack(this, worldNpc.id)
@@ -226,36 +230,40 @@ class Actor {
             }, singleAttackCycle * 0.644); // Until hit point
 
             setTimeout(() => {
-                this.inCombat = false;
+                this.state.isFighting = false;
             }, singleAttackCycle); // Until end of combat
         }
     }
 
     action(session, data) {
         switch (data.actionId) {
-            case 0: // Stand/Sit
-                if (this.inWaitTypeSwitch) {
+            case 0: // Sit / Stand
+                if (this.state.isChangingWaitType) {
                     return;
                 }
 
-                this.inWaitTypeSwitch = true;
-                this.isStanding = !this.isStanding;
+                this.state.isChangingWaitType = true;
+                this.state.isSitting = !this.state.isSitting;
 
                 session.sendData(
                     GameServerResponse.changeWaitType(this)
                 );
 
                 setTimeout(() => {
-                    this.inWaitTypeSwitch = false;
+                    this.state.isChangingWaitType = false;
                 }, 3000);
                 break;
 
-            case 1: // Run/Walk
-                this.isRunning = !this.isRunning;
+            case 1: // Walk / Run
+                this.state.isWalking = !this.state.isWalking;
 
                 session.sendData(
                     GameServerResponse.changeMoveType(this)
                 );
+                break;
+
+            default:
+                console.log('GS:: unknown action %d', data.actionId);
                 break;
         }
     }
@@ -266,7 +274,7 @@ class Actor {
         }
 
         session.sendData(
-            GameServerResponse.socialAction(this, data.actionId)
+            GameServerResponse.socialAction(this.id, data.actionId)
         );
     }
 
