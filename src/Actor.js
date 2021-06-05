@@ -114,6 +114,14 @@ class Actor {
     }
 
     select(session, data) {
+        if (this.id === data.id) {
+            this.unselect(session, data);
+            session.sendData(
+                GameServerResponse.targetSelected(this.id)
+            );
+            return;
+        }
+
         let worldNpc = World.fetchNpcWithId(data.id);
 
         if (worldNpc !== undefined) {

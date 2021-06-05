@@ -19,7 +19,9 @@ function enterWorld(session, buffer) {
         GameServerResponse.userInfo(session.player)
     );
 
+    // Samples
     World.insertNpcs(session);
+    World.insertItems(session);
 }
 
 module.exports = enterWorld;

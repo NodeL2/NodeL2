@@ -2,7 +2,8 @@ let GameServerResponse = invoke('GameServer/GameServerResponse');
 
 class World {
     static initialize() {
-        this.npc = [];
+        this.players = [];
+        this.npcs = [];
     }
 
     static insertNpcs(session) {
@@ -19,7 +20,7 @@ class World {
             let heading = Math.floor(Math.random() * 65536);
             let hp = Math.floor(Math.random() * 95)
 
-            this.npc.push({
+            this.npcs.push({
                 id: 1000000 + i,
                 npcId: 1000000 + 440,
                 name: 'Elder Brown Fox',
@@ -36,10 +37,12 @@ class World {
             });
 
             session.sendData(
-                GameServerResponse.npcInfo(this.npc[i])
+                GameServerResponse.npcInfo(this.npcs[i])
             );
         }
+    }
 
+    static insertItems(session) {
         for (let i = 0; i < 100; i++) {
 
             let centerX = 41819.5;
@@ -57,12 +60,16 @@ class World {
         }
     }
 
+    static fetchPlayerWithId(id) {
+        return this.players.find(obj => obj.id === id);
+    }
+
     static fetchNpcWithId(id) {
-        return this.npc.find(obj => obj.id === id);
+        return this.npcs.find(obj => obj.id === id);
     }
 
     static removeNpcWithId(session, id) {
-        this.npc = this.npc.filter(obj => obj.id !== id);
+        this.npc = this.npcs.filter(obj => obj.id !== id);
 
         session.sendData(
             GameServerResponse.die(id)
