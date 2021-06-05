@@ -1,15 +1,15 @@
 {
-  "name": "NodeL2",
-  "version": "1.0.0",
-  "description": "Node implementation of a L2 server emulator",
-  "main": "Server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Dennis",
-  "license": "ISC",
-  "dependencies": {
-    "ini": "^2.0.0",
-    "mariadb": "^2.5.3"
-  }
+    "name": "NodeL2",
+    "version": "1.0.0",
+    "description": "Node implementation of a L2 server emulator",
+    "main": "Server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Dennis",
+    "license": "ISC",
+    "dependencies": {
+        "ini": "^2.0.0",
+        "mariadb": "^2.5.3"
+    }
 }

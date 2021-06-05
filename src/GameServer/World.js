@@ -9,7 +9,7 @@ class World {
 
     static insertNpcs(session) {
         for (let i = 0; i < 20; i++) { // 20 Mobs
-            const coords = Utils.createRandomCoordinates(41819.5, 41705.1, 1500);
+            const coords = Utils.createRandomCoordinates(41819.5, 41705.1, 1200);
             const hp = Utils.createRandomNumber(95);
             const heading = Utils.createRandomNumber(65536);
 
@@ -44,9 +44,7 @@ class World {
         }
     }
 
-    static fetchPlayerWithId(id) {
-        return this.players.find(obj => obj.id === id);
-    }
+    // Npc
 
     static fetchNpcWithId(id) {
         return this.npcs.find(obj => obj.id === id);
@@ -76,8 +74,6 @@ class World {
             socket: session.socket,
             player: session.player
         });
-
-        console.log(this.players);
     }
 
     static removePlayer(id) {

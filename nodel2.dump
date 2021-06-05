@@ -35,7 +35,7 @@ CREATE TABLE `accounts` (
 
 LOCK TABLES `accounts` WRITE;
 /*!40000 ALTER TABLE `accounts` DISABLE KEYS */;
-INSERT INTO `accounts` VALUES ('dkoluris','alosi1453');
+INSERT INTO `accounts` VALUES ('q','q');
 /*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -78,7 +78,7 @@ CREATE TABLE `characters` (
 
 LOCK TABLES `characters` WRITE;
 /*!40000 ALTER TABLE `characters` DISABLE KEYS */;
-INSERT INTO `characters` VALUES ('dkoluris',15,'Machindra',NULL,3,44,1,133,48,39,39,0,0,0,0,0,0,0,43648,40352,-3430),('dkoluris',16,'Salome',NULL,0,10,1,99,48,59,59,0,0,0,1,0,1,0,43648,40352,-3430),('dkoluris',17,'Denacious',NULL,4,53,1,129,48,39,39,0,0,0,1,0,3,1,43648,40352,-3430),('dkoluris',18,'Wassah',NULL,1,25,1,96,48,59,59,0,0,0,1,0,0,1,43648,40352,-3430),('dkoluris',19,'Douche',NULL,2,38,1,95,48,58,58,0,0,0,0,1,3,1,43648,40352,-3430),('dkoluris',20,'Christ',NULL,0,0,1,126,48,38,38,0,0,0,0,1,1,1,43648,40352,-3430);
+INSERT INTO `characters` VALUES ('q',15,'Machindra',NULL,3,44,1,133,48,39,39,0,0,0,0,0,0,0,43648,40352,-3430),('q',16,'Salome',NULL,0,10,1,99,48,59,59,0,0,0,1,0,1,0,43648,40352,-3430),('q',17,'Denacious',NULL,4,53,1,129,48,39,39,0,0,0,1,0,3,1,43648,40352,-3430),('q',18,'Wassah',NULL,1,25,1,96,48,59,59,0,0,0,1,0,0,1,43648,40352,-3430),('q',19,'Douche',NULL,2,38,1,95,48,58,58,0,0,0,0,1,3,1,43648,40352,-3430),('q',20,'Christ',NULL,0,0,1,126,48,38,38,0,0,0,0,1,1,1,43648,40352,-3430);
 /*!40000 ALTER TABLE `characters` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,4 +202,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-05 17:10:19
+-- Dump completed on 2021-06-05 20:51:09
