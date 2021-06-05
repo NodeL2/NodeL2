@@ -223,7 +223,7 @@ class Actor {
                 if (worldNpc.hp === 0) {
                     World.removeNpcWithId(session, worldNpc.id);
                 }
-            }, singleAttackCycle / 2); // Until hit point
+            }, singleAttackCycle * 0.644); // Until hit point
 
             setTimeout(() => {
                 this.inCombat = false;

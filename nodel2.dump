@@ -148,12 +148,13 @@ CREATE TABLE `items` (
   `id` int(20) NOT NULL AUTO_INCREMENT,
   `character_id` int(10) NOT NULL,
   `item_id` int(5) NOT NULL,
+  `category` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `body_part` int(5) NOT NULL,
   `type_1` int(1) NOT NULL,
   `type_2` int(1) NOT NULL,
   `is_equipped` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -162,8 +163,30 @@ CREATE TABLE `items` (
 
 LOCK TABLES `items` WRITE;
 /*!40000 ALTER TABLE `items` DISABLE KEYS */;
-INSERT INTO `items` VALUES (1,17,2369,128,0,0,1),(7,17,1146,1024,1,1,1),(8,17,1147,2048,1,1,1);
+INSERT INTO `items` VALUES (1,19,2369,'weapon',128,0,0,1),(7,19,1146,'armor',1024,1,1,1),(8,19,1147,'armor',2048,1,1,1),(9,19,395,'armor',1024,1,1,0),(10,19,417,'armor',2048,1,1,0),(11,19,233,'weapon',128,0,0,0);
 /*!40000 ALTER TABLE `items` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `shortcuts`
+--
+
+DROP TABLE IF EXISTS `shortcuts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `shortcuts` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `shortcuts`
+--
+
+LOCK TABLES `shortcuts` WRITE;
+/*!40000 ALTER TABLE `shortcuts` DISABLE KEYS */;
+/*!40000 ALTER TABLE `shortcuts` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -179,4 +202,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-03 21:19:58
+-- Dump completed on 2021-06-05 17:10:19
