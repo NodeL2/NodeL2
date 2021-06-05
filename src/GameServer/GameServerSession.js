@@ -29,113 +29,113 @@ class GameServerSession {
 
         // Opcodes
         switch (packet[0]) {
-            case 0x00: // Protocol Version
+            case PacketType.PROTOCOL_VER:
                 GameClientRequest.protocolVersion(this, packet);
                 break;
 
-            case 0x01: // Move to Location
+            case PacketType.MOVE_TO:
                 GameClientRequest.moveToLocation(packet)
                     .then((data) => {
                         this.player.move(this, data);
                     });
                 break;
 
-            case 0x03: // Enter World
+            case PacketType.ENTER_WORLD:
                 GameClientRequest.enterWorld(this, packet);
                 break;
 
-            case 0x04: // Action
+            case PacketType.ACTION:
                 GameClientRequest.action(packet)
                     .then((data) => {
                         this.player.select(this, data);
                     });
                 break;
 
-            case 0x08: // Authorize Login
+            case PacketType.AUTH_LOGIN:
                 GameClientRequest.authorizeLogin(this, packet);
                 break;
 
-            case 0x09: // Logout
+            case PacketType.LOGOUT:
                 GameClientRequest.logout(this, packet);
                 break;
 
-            case 0x0a: // Attack
+            case PacketType.ATTACK:
                 GameClientRequest.attack(packet)
                     .then((data) => {
                         this.player.attack(this, data);
                     });
                 break;
 
-            case 0x0b: // Create Character
+            case PacketType.CREATE_CHAR:
                 GameClientRequest.charCreate(this, packet);
                 break;
 
-            case 0x0d: // Character Selected
+            case PacketType.CHAR_SELECTED:
                 GameClientRequest.charSelected(this, packet);
                 break;
 
-            case 0x0e: // New Character
+            case PacketType.NEW_CHAR:
                 GameClientRequest.newCharacter(this, packet);
                 break;
 
-            case 0x0f: // Show Inventory
+            case PacketType.SHOW_INVENTORY:
                 GameClientRequest.showInventory(this, packet);
                 break;
 
-            case 0x11: // Unequip
+            case PacketType.UNEQUIP:
                 GameClientRequest.unequipItem(this, packet);
                 break;
 
-            case 0x14: // Use Item
+            case PacketType.USE_ITEM:
                 GameClientRequest.useItem(this, packet);
                 break;
 
-            case 0x1b: // Social Action
+            case PacketType.SOCIAL_ACTION:
                 GameClientRequest.socialAction(packet)
                     .then((data) => {
                         this.player.socialAction(this, data);
                     });
                 break;
 
-            case 0x33: // Add Shortcut
+            case PacketType.ADD_SHORTCUT:
                 GameClientRequest.addShortcut(this, packet);
                 break;
 
-            case 0x36: // Stop Move
+            case PacketType.STOP_MOVE:
                 GameClientRequest.stopMove(this, packet);
                 break;
 
-            case 0x37: // Target Cancel
+            case PacketType.TARGET_CANCEL:
                 GameClientRequest.targetCancel(packet)
                     .then((data) => {
                         this.player.unselect(this, data);
                     })
                 break;
 
-            case 0x38: // Say
+            case PacketType.SAY:
                 GameClientRequest.say(this, packet);
                 break;
 
-            case 0x45: // Action Use
+            case PacketType.ACTION_USE:
                 GameClientRequest.actionUse(packet)
                     .then((data) => {
                         this.player.action(this, data);
                     });
                 break;
 
-            case 0x46: // Restart
+            case PacketType.RESTART:
                 GameClientRequest.restart(this, packet);
                 break;
 
-            case 0x48: // Validate Position
+            case PacketType.VALIDATE_POS:
                 GameClientRequest.validatePosition(this, packet);
                 break;
 
-            case 0x57: // Show Board
+            case PacketType.SHOW_BOARD:
                 GameClientRequest.showBoard(this, packet);
                 break;
 
-            case 0x63: // Quest List
+            case PacketType.QUEST_LIST:
                 GameClientRequest.questList(this, packet);
                 break;
 

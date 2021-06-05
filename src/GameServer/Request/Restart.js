@@ -1,6 +1,7 @@
 let ClientPacket = invoke('ClientPacket');
 let Database = invoke('Database');
 let GameServerResponse = invoke('GameServer/GameServerResponse');
+let World = invoke('GameServer/World');
 
 function restart(session, buffer) {
     let packet = new ClientPacket(buffer);
@@ -14,6 +15,8 @@ function restart(session, buffer) {
     session.sendData(
         GameServerResponse.restart()
     );
+
+    World.removePlayer(session.player.id);
 
     Database.getCharacters(session.accountId)
         .then((rows) => {
