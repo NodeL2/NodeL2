@@ -1,7 +1,7 @@
 global.BodyPart = {
-    RIGHT_HAND: 128,
-    CHEST: 1024,
-    LEGS: 2048
+    RIGHT_HAND :  128,
+    CHEST      : 1024,
+    LEGS       : 2048,
 };
 
 class Paperdoll {

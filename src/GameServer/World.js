@@ -1,4 +1,5 @@
 let GameServerResponse = invoke('GameServer/GameServerResponse');
+let Utils = invoke('Utils');
 
 class World {
     static initialize() {
@@ -8,17 +9,9 @@ class World {
 
     static insertNpcs(session) {
         for (let i = 0; i < 20; i++) { // 20 Mobs
-
-            let centerX = 41819.5;
-            let centerY = 41705.1;
-            let R = 1500;
-
-            let r = R * Math.sqrt(Math.random());
-            let theta = Math.random() * 2 * Math.PI;
-            let x = centerX + r * Math.cos(theta);
-            let y = centerY + r * Math.sin(theta);
-            let heading = Math.floor(Math.random() * 65536);
-            let hp = Math.floor(Math.random() * 95)
+            const coords = Utils.createRandomCoordinates(41819.5, 41705.1, 1500);
+            const hp = Utils.createRandomNumber(95);
+            const heading = Utils.createRandomNumber(65536);
 
             this.npcs.push({
                 id: 1000000 + i,
@@ -30,8 +23,8 @@ class World {
                 maxHp: 95,
                 collisionRadius: 9.5,
                 collisionHeight: 10,
-                x: x,
-                y: y,
+                x: coords.x,
+                y: coords.y,
                 z: -3492,
                 heading: heading
             });
@@ -44,18 +37,9 @@ class World {
 
     static insertItems(session) {
         for (let i = 0; i < 100; i++) {
-
-            let centerX = 41819.5;
-            let centerY = 41705.1;
-            let R = 1500;
-
-            let r = R * Math.sqrt(Math.random());
-            let theta = Math.random() * 2 * Math.PI;
-            let x = centerX + r * Math.cos(theta);
-            let y = centerY + r * Math.sin(theta);
-
+            const coords = Utils.createRandomCoordinates(41819.5, 41705.1, 1500);
             session.sendData(
-                GameServerResponse.spawnItem(i, x, y)
+                GameServerResponse.spawnItem(i, coords.x, coords.y)
             );
         }
     }
@@ -76,7 +60,6 @@ class World {
         // Delete NPC from world
         setTimeout(() => {
             this.npcs = this.npcs.filter(obj => obj.id !== id);
-
             session.sendData(
                 GameServerResponse.deleteObject(id)
             );
