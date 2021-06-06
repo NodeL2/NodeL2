@@ -20,6 +20,15 @@ class Utils {
             y: centerY + r * Math.sin(theta),
         };
     }
+
+    static isWithinRadius(x1, y1, x2, y2, radius) {
+        let dx = x2 - x1;
+        let dy = y2 - y1;
+        let sqrtDistance = (dx * dx) + (dy * dy);
+        let sqrtRadius = radius * radius;
+
+        return sqrtDistance < sqrtRadius;
+    }
 }
 
 module.exports = Utils;

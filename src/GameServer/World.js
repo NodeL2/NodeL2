@@ -5,6 +5,7 @@ class World {
     static initialize() {
         this.players = [];
         this.npcs = [];
+        this.items = [];
     }
 
     static insertNpcs(session) {
@@ -38,10 +39,25 @@ class World {
     static insertItems(session) {
         for (let i = 0; i < 100; i++) {
             const coords = Utils.createRandomCoordinates(41819.5, 41705.1, 1500);
+
+            this.items.push({
+                id: 2000100 + i,
+                itemId: 426,
+                x: coords.x,
+                y: coords.y,
+                z: -3492
+            });
+
             session.sendData(
-                GameServerResponse.spawnItem(i, coords.x, coords.y)
+                GameServerResponse.spawnItem(this.items[i])
             );
         }
+    }
+
+    // Items
+
+    static fetchItem(id) {
+        return this.items.find(obj => obj.id === id);
     }
 
     // Npc

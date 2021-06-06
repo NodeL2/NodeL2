@@ -1,14 +1,14 @@
 let ServerPacket = invoke('ServerPacket');
 
-function spawnItem(id, x, y) {
+function spawnItem(item) {
     let packet = new ServerPacket(29);
 
     packet
         .writeC(0x15)
-        .writeD(2000100 + id) // ID
-        .writeD(426) // Item ID
-        .writeD(x) // x
-        .writeD(y) // y
+        .writeD(item.id) // ID
+        .writeD(item.itemId) // Item ID
+        .writeD(item.x) // x
+        .writeD(item.y) // y
         .writeD(-3430) // z
         .writeD(0)
         .writeD(1); // How many

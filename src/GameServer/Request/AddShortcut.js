@@ -1,6 +1,6 @@
 let ClientPacket = invoke('ClientPacket');
 
-function addShortcut(session, buffer) {
+function addShortcut(buffer) {
     return new Promise((success) => {
         let packet = new ClientPacket(buffer);
 

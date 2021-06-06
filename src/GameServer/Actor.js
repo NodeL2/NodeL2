@@ -1,3 +1,6 @@
+const Utils = require("../Utils");
+
+let ActorAutomation = invoke('GameServer/ActorAutomation');
 let Database = invoke('Database');
 let GameServerResponse = invoke('GameServer/GameServerResponse');
 let Paperdoll = invoke('GameServer/Paperdoll');
@@ -6,6 +9,7 @@ let World = invoke('GameServer/World');
 class Actor {
     constructor() {
         this.paperdoll = new Paperdoll();
+        this.automation = new ActorAutomation();
         this.npcId = undefined;
         this.items = [];
 
@@ -153,23 +157,33 @@ class Actor {
                 return;
             }
 
-            this.state.isPickingUp = true;
+            let item = World.fetchItem(data.id);
 
-            session.sendData(
-                GameServerResponse.getItem(this, data)
-            );
+            if (item !== undefined) {
 
-            session.sendData(
-                GameServerResponse.deleteObject(data.id)
-            );
+                this.automation.requestMove(session, data, item, 10, () => {
 
-            session.sendData(
-                GameServerResponse.actionFailed()
-            );
+                    if (World.fetchItem(data.id)) { // Still available?
+                        this.state.isPickingUp = true;
 
-            setTimeout(() => {
-                this.state.isPickingUp = false;
-            }, 750);
+                        session.sendData(
+                            GameServerResponse.getItem(this, data)
+                        );
+
+                        session.sendData(
+                            GameServerResponse.deleteObject(data.id)
+                        );
+
+                        session.sendData(
+                            GameServerResponse.actionFailed()
+                        );
+
+                        setTimeout(() => {
+                            this.state.isPickingUp = false;
+                        }, 750);
+                    }
+                });
+            }
         }
     }
 
@@ -186,6 +200,8 @@ class Actor {
             return;
         }
 
+        this.automation.abort();
+
         session.sendData(
             GameServerResponse.moveToLocation(this.id, data)
         );
@@ -195,6 +211,8 @@ class Actor {
         if (this.isBusy(session)) {
             return;
         }
+
+        this.automation.abort();
 
         let worldNpc = World.fetchNpcWithId(data.id);
 
@@ -241,6 +259,8 @@ class Actor {
                 if (this.state.isChangingWaitType) {
                     return;
                 }
+
+                this.automation.abort();
 
                 this.state.isChangingWaitType = true;
                 this.state.isSitting = !this.state.isSitting;
