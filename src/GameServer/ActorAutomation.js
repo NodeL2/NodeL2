@@ -4,22 +4,25 @@ let Utils = invoke('Utils');
 class ActorAutomation {
     constructor() {
         this.timer = undefined;
+        this.busy  = false;
     }
 
-    requestMoveToNpc(session, target, radius, callback) {
-        // Abort, already in progress
-        if (this.timer) {
+    requestMoveToNpc(session, target, callback) {
+        // Abort, already in process
+        if (this.busy) {
             session.sendData(
                 GameServerResponse.actionFailed()
             );
             return;
         }
 
-        // Check distance from Npc
+        // Check if we're OK for attack
         if (Utils.distance(session.player.x, session.player.y, target.x, target.y) < 5000) {
             callback();
             return;
         }
+
+        this.busy = true;
 
         session.sendData(
             GameServerResponse.moveToPawn(session.player, target.id)
@@ -27,22 +30,33 @@ class ActorAutomation {
 
         this.timer = setInterval(() => {
             if (Utils.distance(session.player.x, session.player.y, target.x, target.y) < 25000) {
+
+                this.abortTimer();
+
                 setTimeout(() => {
-                    this.abort();
+                    this.busy = false;
                     callback();
                 }, 500);
             }
         }, 100);
     }
 
-    requestMoveToItem(session, target, radius, callback) {
+    requestMoveToItem(session, target, callback) {
         // Abort, already in progress
-        if (this.timer) {
+        if (this.busy) {
             session.sendData(
                 GameServerResponse.actionFailed()
             );
             return;
         }
+
+        // Check if we're OK for pickup
+        if (Utils.distance(session.player.x, session.player.y, target.x, target.y) < 5000) {
+            callback();
+            return;
+        }
+
+        this.busy = true;
 
         const coordinates = {
             origin: {
@@ -62,18 +76,26 @@ class ActorAutomation {
         );
 
         this.timer = setInterval(() => {
-            //console.log('playerX:%d, targetX:%d, playerY:%d, targetY:%d', session.player.x, target.x, session.player.y, target.y);
-            if (Utils.isWithinRadius(session.player.x, session.player.y, target.x, target.y, radius)) {
-                console.log(1);
-                this.abort();
-                callback();
+            if (Utils.distance(session.player.x, session.player.y, target.x, target.y) < 25000) {
+
+                this.abortTimer();
+
+                setTimeout(() => {
+                    this.busy = false;
+                    callback();
+                }, 500);
             }
         }, 100);
     }
 
-    abort() {
+    abortTimer() {
         clearInterval(this.timer);
         this.timer = undefined;
+    }
+
+    abort() {
+        this.abortTimer();
+        this.busy = false;
     }
 }
 
