@@ -1,67 +1,60 @@
+let GameServerResponse = invoke('GameServer/GameServerResponse');
+
 class ActorState {
     constructor() {
-        this.state = [
-            {
-                id  : StateType.IS_CHANGING_WAIT_TYPE,
-                now : false,
-            },
-            {
-                id  : StateType.IS_SITTING,
-                now : false,
-            },
-            {
-                id  : StateType.IS_CASTING,
-                now : false,
-            },
-            {
-                id  : StateType.IS_FIGHTING,
-                now : false,
-            },
-            {
-                id  : StateType.IS_PICKING_UP,
-                now : false,
-            },
-            {
-                id  : StateType.IS_MOVING_TO_TARGET,
-                now : false,
-            },
-            {
-                id  : StateType.IS_USING_SOCIAL_ACTION,
-                now : false,
-            }
-        ];
-
-        this.state = [];
-        this.state[StateType.IS_CHANGING_WAIT_TYPE] = false;
-        this.state[StateType.IS_SITTING] = false;
-        this.state[StateType.IS_CASTING] = false;
-        this.state[StateType.IS_FIGHTING] = false;
-        this.state[StateType.IS_PICKING_UP] = false;
-        this.state[StateType.IS_MOVING_TO_TARGET] = false;
-        this.state[StateType.IS_USING_SOCIAL_ACTION] = false;
+        this.raw = {
+            isCastingMagic     : false,
+            isChangingWaitType : false,
+            isFighting         : false,
+            isMoving           : false,
+            isPickingUp        : false,
+            isSitting          : false,
+            isWalking          : false,
+        };
     }
 
-    requestChangeWaitType() {
-        return !CASTING;
+    isBusy(session) {
+        if (this.raw.isCastingMagic ||
+            this.raw.isChangingWaitType ||
+            this.raw.isFighting  ||
+            this.raw.isPickingUp ||
+            this.raw.isSitting) {
+
+            session.sendData(
+                GameServerResponse.actionFailed()
+            );
+            return true;
+        }
+        return false;
     }
 
-    requestCastMagic() {
-        return !CHANGING_WAIT_TYPE && !SITTING && !CASTING;
+    isCastingMagic(value) {
+        this.raw.isCastingMagic = value;
     }
 
-    requestFight() {
-        return !CHANGING_WAIT_TYPE && !SITTING && !CASTING && !FIGHTING && !PICKING_UP;
+    isChangingWaitType(value) {
+        this.raw.isChangingWaitType = value;
     }
 
-    requestPickUp() {
-        return !CHANGING_WAIT_TYPE && !SITTING && !CASTING && !FIGHTING && !PICKING_UP;
+    isFighting(value) {
+        this.raw.isFighting = value;
     }
 
-    requestMove() {
-        return !CHANGING_WAIT_TYPE && !SITTING && !CASTING && !FIGHTING && !PICKING_UP;
+    isMoving(value) {
+        this.raw.isMoving = value;
     }
 
-    requestUseSocialAction() {
-        return !CHANGING_WAIT_TYPE && !SITTING && !CASTING && !FIGHTING && !PICKING_UP;
+    isPickingUp(value) {
+        this.raw.isPickingUp = value;
+    }
+
+    isSitting(value) {
+        this.raw.isSitting = value;
+    }
+
+    isWalking(value) {
+        this.raw.isWalking = value;
     }
 }
+
+module.exports = ActorState;

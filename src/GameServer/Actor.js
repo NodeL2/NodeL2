@@ -1,4 +1,5 @@
 let ActorAutomation = invoke('GameServer/ActorAutomation');
+let ActorState = invoke('GameServer/ActorState');
 let Database = invoke('Database');
 let GameServerResponse = invoke('GameServer/GameServerResponse');
 let Paperdoll = invoke('GameServer/Paperdoll');
@@ -7,19 +8,12 @@ let World = invoke('GameServer/World');
 
 class Actor {
     constructor() {
-        this.paperdoll = new Paperdoll();
+        this.state = new ActorState();
         this.automation = new ActorAutomation();
-        this.npcId = undefined;
-        this.items = [];
+        this.paperdoll  = new Paperdoll();
 
-        this.state = {
-            isChangingWaitType : false,
-            isFighting         : false,
-            isMoving           : false,
-            isPickingUp        : false,
-            isSitting          : false,
-            isWalking          : false,
-        };
+        this.items = [];
+        this.npcId = undefined;
     }
 
     setProperties(character) {
@@ -110,16 +104,6 @@ class Actor {
         }
     }
 
-    isBusy(session) {
-        if (this.state.isChangingWaitType || this.state.isFighting || this.state.isPickingUp || this.state.isSitting) {
-            session.sendData(
-                GameServerResponse.actionFailed()
-            );
-            return true;
-        }
-        return false;
-    }
-
     select(session, data) {
         if (this.id === data.id) {
             this.unselect(session, data);
@@ -154,7 +138,7 @@ class Actor {
             }
         }
         else {
-            if (this.isBusy(session)) {
+            if (this.state.isBusy(session)) {
                 return;
             }
 
@@ -165,7 +149,7 @@ class Actor {
                 this.automation.requestMoveToItem(session, item, () => {
 
                     if (World.fetchItem(data.id)) { // Still available?
-                        this.state.isPickingUp = true;
+                        this.state.isPickingUp(true);
 
                         session.sendData(
                             GameServerResponse.getItem(this, data)
@@ -180,8 +164,8 @@ class Actor {
                         );
 
                         setTimeout(() => {
-                            this.state.isPickingUp = false;
-                        }, 750);
+                            this.state.isPickingUp(false);
+                        }, 500);
                     }
                 });
             }
@@ -197,7 +181,7 @@ class Actor {
     }
 
     move(session, data) {
-        if (this.isBusy(session)) {
+        if (this.state.isBusy(session)) {
             return;
         }
 
@@ -209,7 +193,7 @@ class Actor {
     }
 
     attack(session, data) {
-        if (this.isBusy(session)) {
+        if (this.state.isBusy(session)) {
             return;
         }
 
@@ -222,7 +206,7 @@ class Actor {
                 return;
             }
 
-            this.state.isFighting = true;
+            this.state.isFighting(true);
 
             session.sendData(
                 GameServerResponse.attack(this, npc.id)
@@ -249,7 +233,7 @@ class Actor {
             }, singleAttackCycle * 0.644); // Until hit point
 
             setTimeout(() => {
-                this.state.isFighting = false;
+                this.state.isFighting(false);
             }, singleAttackCycle); // Until end of combat
         }
     }
@@ -257,26 +241,26 @@ class Actor {
     action(session, data) {
         switch (data.actionId) {
             case 0: // Sit / Stand
-                if (this.state.isChangingWaitType) {
+                if (this.state.raw.isChangingWaitType) {
                     return;
                 }
 
                 this.automation.abort();
 
-                this.state.isChangingWaitType = true;
-                this.state.isSitting = !this.state.isSitting;
+                this.state.isChangingWaitType(true);
+                this.state.isSitting(!this.state.raw.isSitting);
 
                 session.sendData(
                     GameServerResponse.changeWaitType(this)
                 );
 
                 setTimeout(() => {
-                    this.state.isChangingWaitType = false;
+                    this.state.isChangingWaitType(false);
                 }, 3000);
                 break;
 
             case 1: // Walk / Run
-                this.state.isWalking = !this.state.isWalking;
+                this.state.isWalking(!this.state.raw.isWalking);
 
                 session.sendData(
                     GameServerResponse.changeMoveType(this)
@@ -290,7 +274,7 @@ class Actor {
     }
 
     socialAction(session, data) {
-        if (this.isBusy(session)) {
+        if (this.state.isBusy(session)) {
             return;
         }
 
