@@ -137,7 +137,9 @@ class Actor {
             if (this.npcId === worldNpc.id) {
                 // Is it an attackable monster?
                 if (worldNpc.attackable && worldNpc.type === NpcType.MONSTER) {
-                    this.attack(session, data);
+                    this.automation.requestMoveToNpc(session, worldNpc, 100, () => {
+                        this.attack(session, data);
+                    });
                 }
             }
             else {
@@ -161,7 +163,7 @@ class Actor {
 
             if (item !== undefined) {
 
-                this.automation.requestMove(session, data, item, 10, () => {
+                this.automation.requestMoveToItem(session, item, 100, () => {
 
                     if (World.fetchItem(data.id)) { // Still available?
                         this.state.isPickingUp = true;

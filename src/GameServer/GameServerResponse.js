@@ -18,6 +18,7 @@ module.exports = {
                inventory: invoke('GameServer/Response/Inventory'),
                 logoutOk: invoke('GameServer/Response/LogoutOk'),
           moveToLocation: invoke('GameServer/Response/MoveToLocation'),
+              moveToPawn: invoke('GameServer/Response/MoveToPawn'),
                  npcInfo: invoke('GameServer/Response/NpcInfo'),
                questList: invoke('GameServer/Response/QuestList'),
                  restart: invoke('GameServer/Response/Restart'),

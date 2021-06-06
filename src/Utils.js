@@ -21,13 +21,20 @@ class Utils {
         };
     }
 
-    static isWithinRadius(x1, y1, x2, y2, radius) {
-        let dx = x2 - x1;
-        let dy = y2 - y1;
+    static isWithinRadius(x, y, centerX, centerY, radius) {
+        let dx = x - centerX;
+        let dy = y - centerY;
         let sqrtDistance = (dx * dx) + (dy * dy);
         let sqrtRadius = radius * radius;
 
         return sqrtDistance < sqrtRadius;
+    }
+
+    static distance(x, y, centerX, centerY) {
+        let dx = x - centerX;
+        let dy = y - centerY;
+
+        return (dx * dx) + (dy * dy);
     }
 }
 
