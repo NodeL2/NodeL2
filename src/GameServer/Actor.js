@@ -1,9 +1,8 @@
-const Utils = require("../Utils");
-
 let ActorAutomation = invoke('GameServer/ActorAutomation');
 let Database = invoke('Database');
 let GameServerResponse = invoke('GameServer/GameServerResponse');
 let Paperdoll = invoke('GameServer/Paperdoll');
+let Utils = invoke('Utils');
 let World = invoke('GameServer/World');
 
 class Actor {
@@ -130,27 +129,27 @@ class Actor {
             return;
         }
 
-        let worldNpc = World.fetchNpcWithId(data.id);
+        let npc = World.fetchNpcWithId(data.id);
 
-        if (worldNpc !== undefined) {
+        if (npc !== undefined) {
             // Already selected?
-            if (this.npcId === worldNpc.id) {
+            if (this.npcId === npc.id) {
                 // Is it an attackable monster?
-                if (worldNpc.attackable && worldNpc.type === NpcType.MONSTER) {
-                    this.automation.requestMoveToNpc(session, worldNpc, () => {
+                if (npc.type === NpcType.MONSTER && npc.attackable) {
+                    this.automation.requestMoveToNpc(session, npc, () => {
                         this.attack(session, data);
                     });
                 }
             }
             else {
-                this.npcId = worldNpc.id;
+                this.npcId = npc.id;
 
                 session.sendData(
-                    GameServerResponse.targetSelected(worldNpc.id)
+                    GameServerResponse.targetSelected(npc.id)
                 );
 
                 session.sendData(
-                    GameServerResponse.statusUpdate(worldNpc.id, worldNpc.hp, worldNpc.maxHp)
+                    GameServerResponse.statusUpdate(npc.id, npc.hp, npc.maxHp)
                 );
             }
         }
@@ -214,29 +213,29 @@ class Actor {
             return;
         }
 
-        this.automation.abort();
+        this.automation.abort(); // ?
 
-        let worldNpc = World.fetchNpcWithId(data.id);
+        let npc = World.fetchNpcWithId(data.id);
 
-        if (worldNpc !== undefined) {
-            if (worldNpc.hp === 0) {
+        if (npc !== undefined) {
+            if (npc.hp === 0) {
                 return;
             }
 
             this.state.isFighting = true;
 
             session.sendData(
-                GameServerResponse.attack(this, worldNpc.id)
+                GameServerResponse.attack(this, npc.id)
             );
 
             let singleAttackCycle = 500000 / this.atkSpeed;
 
             setTimeout(() => { // Needs rework
                 let hitDamage = 15 + Math.floor(Math.random() * 10);
-                worldNpc.hp = Math.max(0, worldNpc.hp - hitDamage); // HP bar would disappear if less than zero
+                npc.hp = Math.max(0, npc.hp - hitDamage); // HP bar would disappear if less than zero
 
                 session.sendData(
-                    GameServerResponse.statusUpdate(worldNpc.id, worldNpc.hp, worldNpc.maxHp)
+                    GameServerResponse.statusUpdate(npc.id, npc.hp, npc.maxHp)
                 );
 
                 session.sendData(
@@ -244,8 +243,8 @@ class Actor {
                 );
 
                 // Death of NPC
-                if (worldNpc.hp === 0) {
-                    World.removeNpcWithId(session, worldNpc.id);
+                if (npc.hp === 0) {
+                    World.removeNpcWithId(session, npc.id);
                 }
             }, singleAttackCycle * 0.644); // Until hit point
 
