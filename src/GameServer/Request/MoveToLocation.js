@@ -6,12 +6,12 @@ function moveToLocation(buffer) {
 
         packet
             .readC()
-            .readD()
-            .readD()
-            .readD()
-            .readD()
-            .readD()
-            .readD();
+            .readD()  // Destination X
+            .readD()  // Destination Y
+            .readD()  // Destination Z
+            .readD()  // Source X
+            .readD()  // Source Y
+            .readD(); // Source Z
 
         return success({
             origin: {

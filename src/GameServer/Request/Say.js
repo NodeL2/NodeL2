@@ -6,13 +6,12 @@ function say(session, buffer) {
 
     packet
         .readC()
-        .readS()
-        .readD();
+        .readS()  // Text
+        .readD(); // Type
 
     let data = {
         text: packet.data[1],
         type: packet.data[2],
-        target: packet.data[3]
     };
 
     session.sendData(

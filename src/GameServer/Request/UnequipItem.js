@@ -6,7 +6,7 @@ function unequipItem(session, buffer) {
 
     packet
         .readC()
-        .readD();
+        .readD(); // Body part
 
     let data = {
         bodyPart: packet.data[1]

@@ -6,7 +6,7 @@ function showBoard(session, buffer) {
 
     packet
         .readC()
-        .readD();
+        .readD(); // ?
 
     let data = {
     };

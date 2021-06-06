@@ -8,14 +8,16 @@ function authorizeLogin(session, buffer) {
 
     packet
         .readC()
-        .readS()
-        .readD()
-        .readD()
-        .readD()
-        .readD();
+        .readS()  // Username
+        .readD()  // Session Key (last)
+        .readD()  // Session Key (first)
+        .readD()  // ?
+        .readD(); // ?
 
     let data = {
-        username: packet.data[1],
+        username:
+            packet.data[1],
+
         sessionKey: [
             packet.data[3],
             packet.data[2],

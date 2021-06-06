@@ -6,7 +6,7 @@ function socialAction(buffer) {
 
         packet
             .readC()
-            .readD();
+            .readD(); // Action ID
 
         return success({
             actionId: packet.data[1]

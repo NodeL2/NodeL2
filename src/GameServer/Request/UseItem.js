@@ -6,7 +6,7 @@ function useItem(session, buffer) {
 
     packet
         .readC()
-        .readD();
+        .readD(); // Item ID
 
     let data = {
         id: packet.data[1]

@@ -7,8 +7,8 @@ function actionUse(buffer) {
         packet
             .readC()
             .readD()  // Action ID
-            .readD()
-            .readC();
+            .readD()  // ?
+            .readC(); // ?
 
         return success({
             actionId: packet.data[1]

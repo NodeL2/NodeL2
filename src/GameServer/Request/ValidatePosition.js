@@ -5,17 +5,17 @@ function validatePosition(session, buffer) {
 
     packet
         .readC()
-        .readD()
-        .readD()
-        .readD()
-        .readD()
-        .readD();
+        .readD()  // X
+        .readD()  // Y
+        .readD()  // Z
+        .readD()  // Heading
+        .readD(); // ?
 
     let data = {
-        x: packet.data[1],
-        y: packet.data[2],
-        z: packet.data[3],
-        heading: packet.data[4]
+        x       : packet.data[1],
+        y       : packet.data[2],
+        z       : packet.data[3],
+        heading : packet.data[4],
     };
 
     session.player.x = data.x;

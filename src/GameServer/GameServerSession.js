@@ -1,3 +1,5 @@
+const Shortcuts = require("./Shortcuts");
+
 let Actor = invoke('GameServer/Actor');
 let Blowfish = invoke('Blowfish');
 let Config = invoke('Config');
@@ -124,7 +126,10 @@ class GameServerSession {
                 break;
 
             case PacketType.ADD_SHORTCUT:
-                GameClientRequest.addShortcut(this, packet);
+                GameClientRequest.addShortcut(packet)
+                    .then((data) => {
+                        Shortcuts.add(this, data);
+                    });
                 break;
 
             case PacketType.STOP_MOVE:

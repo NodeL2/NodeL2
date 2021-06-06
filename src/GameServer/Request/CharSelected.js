@@ -7,7 +7,7 @@ function charSelected(session, buffer) {
 
     packet
         .readC()
-        .readD();
+        .readD(); // Character Slot
 
     let data = {
         characterSlot: packet.data[1]
