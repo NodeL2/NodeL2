@@ -155,7 +155,7 @@ class Actor {
     action(session, data) {
         switch (data.actionId) {
             case 0: // Sit / Stand
-                if (this.state.raw.isChangingWaitType) {
+                if (this.state.raw.isChangingWaitType || this.state.raw.isFighting) {
                     return;
                 }
 

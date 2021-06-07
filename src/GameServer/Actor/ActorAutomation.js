@@ -57,15 +57,7 @@ class ActorAutomation {
     }
 
     requestMoveToNpc(session, npc, callback) {
-        if (session.player.state.isBusy(session)) {
-            return;
-        }
-
-        // Abort, already in process
-        if (this.busy) {
-            session.sendData(
-                GameServerResponse.actionFailed()
-            );
+        if (session.player.state.isBusy(session) || this.busy) {
             return;
         }
 
