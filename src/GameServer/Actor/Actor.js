@@ -1,18 +1,16 @@
-let ActorAutomation = invoke('GameServer/ActorAutomation');
-let ActorState = invoke('GameServer/ActorState');
-let Database = invoke('Database');
+let ActorAutomation = invoke('GameServer/Actor/ActorAutomation');
+let ActorPaperdoll = invoke('GameServer/Actor/ActorPaperdoll');
+let ActorState = invoke('GameServer/Actor/ActorState');
 let GameServerResponse = invoke('GameServer/GameServerResponse');
-let Paperdoll = invoke('GameServer/Paperdoll');
-let Utils = invoke('Utils');
 let World = invoke('GameServer/World');
 
 class Actor {
     constructor() {
         this.state = new ActorState();
         this.automation = new ActorAutomation();
-        this.paperdoll  = new Paperdoll();
+        this.inventory  = new ActorInventory();
+        this.paperdoll  = new ActorPaperdoll();
 
-        this.items = [];
         this.npcId = undefined;
     }
 
@@ -43,27 +41,7 @@ class Actor {
         this.z = character.z;
         this.heading = 0; // ?
 
-        Database.getInventoryItems(this.id)
-            .then((rows) => {
-
-                for (let row of rows) {
-                    this.items.push({
-                        id: 2000000 + row.id,
-                        itemId: row.item_id,
-                        category: row.category,
-                        bodyPartId: row.body_part,
-                        type1: row.type_1,
-                        type2: row.type_2,
-                        isEquipped: row.is_equipped
-                    });
-                }
-
-                for (let item of this.items) {
-                    if (item.isEquipped) {
-                        this.paperdoll.equip(item.bodyPartId, item.id, item.itemId);
-                    }
-                }
-            });
+        this.inventory.populate(this);
     }
 
     setBaseStats(stats) {
@@ -105,15 +83,50 @@ class Actor {
     }
 
     select(session, data) {
-        if (this.id === data.id) {
+        if (this.id === data.id) { // Self selected
             this.unselect(session, data);
-            session.sendData(
-                GameServerResponse.targetSelected(this.id)
-            );
+            session.sendData(GameServerResponse.targetSelected(this.id));
             return;
         }
 
-        let npc = World.fetchNpcWithId(data.id);
+        World.fetchNpcWithId(data.id)
+        .then((npc) => { // Npc selected
+            if (this.npcId === npc.id) {
+                if (npc.type === NpcType.MONSTER && npc.attackable) {
+                    this.automation.requestMoveToNpc(session, npc, () => {
+                        this.attack(session, data);
+                    });
+                }
+            }
+            else {
+                this.npcId = npc.id;
+                session.sendData(GameServerResponse.targetSelected(npc.id));
+                session.sendData(GameServerResponse.statusUpdate(npc.id, npc.hp, npc.maxHp));
+            }
+        })
+        .catch(() => { // Pickup item
+            if (this.state.isBusy(session)) {
+                return;
+            }
+
+            let item = World.fetchItem(data.id);
+
+            if (item !== undefined) {
+                this.automation.requestMoveToItem(session, item, () => {
+                    if (World.fetchItem(data.id)) { // Still available?
+                        this.state.isPickingUp(true);
+
+                        session.sendData(GameServerResponse.getItem(this, data));
+                        session.sendData(GameServerResponse.deleteObject(data.id));
+                        session.sendData(GameServerResponse.actionFailed());
+
+                        setTimeout(() => {
+                            this.state.isPickingUp(false);
+                        }, 500);
+                    }
+                });
+            }
+        });
 
         if (npc !== undefined) {
             // Already selected?
@@ -128,13 +141,8 @@ class Actor {
             else {
                 this.npcId = npc.id;
 
-                session.sendData(
-                    GameServerResponse.targetSelected(npc.id)
-                );
-
-                session.sendData(
-                    GameServerResponse.statusUpdate(npc.id, npc.hp, npc.maxHp)
-                );
+                session.sendData(GameServerResponse.targetSelected(npc.id));
+                session.sendData(GameServerResponse.statusUpdate(npc.id, npc.hp, npc.maxHp));
             }
         }
         else {
@@ -151,17 +159,9 @@ class Actor {
                     if (World.fetchItem(data.id)) { // Still available?
                         this.state.isPickingUp(true);
 
-                        session.sendData(
-                            GameServerResponse.getItem(this, data)
-                        );
-
-                        session.sendData(
-                            GameServerResponse.deleteObject(data.id)
-                        );
-
-                        session.sendData(
-                            GameServerResponse.actionFailed()
-                        );
+                        session.sendData(GameServerResponse.getItem(this, data));
+                        session.sendData(GameServerResponse.deleteObject(data.id));
+                        session.sendData(GameServerResponse.actionFailed());
 
                         setTimeout(() => {
                             this.state.isPickingUp(false);
@@ -199,18 +199,14 @@ class Actor {
 
         this.automation.abort(); // ?
 
-        let npc = World.fetchNpcWithId(data.id);
-
-        if (npc !== undefined) {
+        World.fetchNpcWithId(data.id)
+        .then((npc) => {
             if (npc.hp === 0) {
                 return;
             }
 
             this.state.isFighting(true);
-
-            session.sendData(
-                GameServerResponse.attack(this, npc.id)
-            );
+            session.sendData(GameServerResponse.attack(this, npc.id));
 
             let singleAttackCycle = 500000 / this.atkSpeed;
 
@@ -218,13 +214,8 @@ class Actor {
                 let hitDamage = 15 + Math.floor(Math.random() * 10);
                 npc.hp = Math.max(0, npc.hp - hitDamage); // HP bar would disappear if less than zero
 
-                session.sendData(
-                    GameServerResponse.statusUpdate(npc.id, npc.hp, npc.maxHp)
-                );
-
-                session.sendData(
-                    GameServerResponse.systemMessage(hitDamage)
-                );
+                session.sendData(GameServerResponse.statusUpdate(npc.id, npc.hp, npc.maxHp));
+                session.sendData(GameServerResponse.systemMessage(hitDamage));
 
                 // Death of NPC
                 if (npc.hp === 0) {
@@ -235,7 +226,7 @@ class Actor {
             setTimeout(() => {
                 this.state.isFighting(false);
             }, singleAttackCycle); // Until end of combat
-        }
+        });
     }
 
     action(session, data) {
@@ -249,10 +240,7 @@ class Actor {
 
                 this.state.isChangingWaitType(true);
                 this.state.isSitting(!this.state.raw.isSitting);
-
-                session.sendData(
-                    GameServerResponse.changeWaitType(this)
-                );
+                session.sendData(GameServerResponse.changeWaitType(this));
 
                 setTimeout(() => {
                     this.state.isChangingWaitType(false);
@@ -261,10 +249,7 @@ class Actor {
 
             case 1: // Walk / Run
                 this.state.isWalking(!this.state.raw.isWalking);
-
-                session.sendData(
-                    GameServerResponse.changeMoveType(this)
-                );
+                session.sendData(GameServerResponse.changeMoveType(this));
                 break;
 
             default:
@@ -278,46 +263,7 @@ class Actor {
             return;
         }
 
-        session.sendData(
-            GameServerResponse.socialAction(this.id, data.actionId)
-        );
-    }
-
-    useItem(session, id) {
-        // Find item use/equip
-        let item = this.items.find(obj =>
-            obj.id === id
-        );
-
-        if (item !== undefined) {
-            if (item.category === WearableItemType.WEAPON || item.category === WearableItemType.ARMOR) {
-                this.unequipBodyPart(session, item.bodyPartId);
-                this.paperdoll.equip(item.bodyPartId, item.id, item.itemId);
-                item.isEquipped = true;
-            }
-            else {
-                // TODO: Consumables
-            }
-        }
-    }
-
-    unequipBodyPart(session, bodyPartId) {
-        // Find item and set as unequipped
-        let item = this.items.find(obj =>
-            obj.id === this.paperdoll.raw[bodyPartId].id
-        );
-
-        if (item !== undefined) {
-            this.paperdoll.unequip(bodyPartId);
-            item.isEquipped = false;
-
-            // Move item to the end
-            this.items = this.items.filter(obj =>
-                obj.id !== item.id
-            );
-
-            this.items.push(item);
-        }
+        session.sendData(GameServerResponse.socialAction(this.id, data.actionId));
     }
 }
 

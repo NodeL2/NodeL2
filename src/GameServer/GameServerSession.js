@@ -1,6 +1,6 @@
 const Shortcuts = require("./Shortcuts");
 
-let Actor = invoke('GameServer/Actor');
+let Actor = invoke('GameServer/Actor/Actor');
 let Blowfish = invoke('Blowfish');
 let Config = invoke('Config');
 let Database = invoke('Database');

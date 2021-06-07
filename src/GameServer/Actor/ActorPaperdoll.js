@@ -4,7 +4,7 @@ global.BodyPart = {
     LEGS       : 2048,
 };
 
-class Paperdoll {
+class ActorPaperdoll {
     constructor() {
         this.raw = [];
         this.raw[BodyPart.RIGHT_HAND] = { id: 0, itemId: 0 };
@@ -23,4 +23,4 @@ class Paperdoll {
     }
 }
 
-module.exports = Paperdoll;
+module.exports = ActorPaperdoll;

@@ -63,7 +63,10 @@ class World {
     // Npc
 
     static fetchNpcWithId(id) {
-        return this.npcs.find(obj => obj.id === id);
+        return new Promise((success, fail) => {
+            let npc = this.npcs.find(obj => obj.id === id);
+            return npc ? success(npc) : fail();
+        });
     }
 
     static removeNpcWithId(session, id) {

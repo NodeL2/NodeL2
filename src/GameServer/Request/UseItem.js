@@ -12,7 +12,7 @@ function useItem(session, buffer) {
         id: packet.data[1]
     };
 
-    session.player.useItem(session, data.id);
+    session.player.inventory.useItem(session, data.id);
 
     session.sendData(
         GameServerResponse.userInfo(session.player)

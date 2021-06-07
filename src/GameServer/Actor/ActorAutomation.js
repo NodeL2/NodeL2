@@ -59,16 +59,8 @@ class ActorAutomation {
         this.busy = true;
 
         const coordinates = {
-            origin: {
-                x: session.player.x,
-                y: session.player.y,
-                z: session.player.z,
-            },
-            target: {
-                x: target.x,
-                y: target.y,
-                z: target.z,
-            }
+            origin: session.player,
+            target: target
         };
 
         session.sendData(
