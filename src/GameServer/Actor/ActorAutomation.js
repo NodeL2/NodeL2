@@ -56,7 +56,7 @@ class ActorAutomation {
         });
     }
 
-    requestMoveToNpc(session, npc, callback) {
+    moveTowardsNpc(session, npc, callback) {
         if (session.player.state.isBusy(session) || this.busy) {
             return;
         }
@@ -99,7 +99,7 @@ class ActorAutomation {
         // }, 100);
     }
 
-    requestMoveToItem(session, target, callback) {
+    moveTowardsItem(session, target, callback) {
         // Abort, already in progress
         if (this.busy) {
             session.sendData(

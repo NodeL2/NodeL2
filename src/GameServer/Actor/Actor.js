@@ -94,12 +94,14 @@ class Actor {
         .then((npc) => { // Npc selected
             if (this.npcId === npc.id) {
                 if (npc.type === NpcType.MONSTER && npc.attackable) {
-                    this.automation.requestMoveToNpc(session, npc, () => {
+                    this.automation.moveTowardsNpc(session, npc, () => {
                         this.automation.autoAttack(session, npc);
                     });
                 }
                 else {
-                    // TODO: Some other non-attackable npc
+                    this.automation.moveTowardsNpc(session, npc, () => {
+                        // TODO: Some other non-attackable npc
+                    });
                 }
             }
             else {
@@ -113,23 +115,20 @@ class Actor {
                 return;
             }
 
-            let item = World.fetchItem(data.id);
+            World.fetchItem(data.id)
+            .then((item) => {
+                this.automation.moveTowardsItem(session, item, () => {
+                    this.state.isPickingUp(true);
 
-            if (item !== undefined) {
-                this.automation.requestMoveToItem(session, item, () => {
-                    if (World.fetchItem(data.id)) { // Still available?
-                        this.state.isPickingUp(true);
+                    session.sendData(GameServerResponse.getItem(this, item));
+                    session.sendData(GameServerResponse.deleteObject(item.id));
+                    session.sendData(GameServerResponse.actionFailed());
 
-                        session.sendData(GameServerResponse.getItem(this, data));
-                        session.sendData(GameServerResponse.deleteObject(data.id));
-                        session.sendData(GameServerResponse.actionFailed());
-
-                        setTimeout(() => {
-                            this.state.isPickingUp(false);
-                        }, 500);
-                    }
+                    setTimeout(() => {
+                        this.state.isPickingUp(false);
+                    }, 500);
                 });
-            }
+            });
         });
     }
 

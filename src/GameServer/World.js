@@ -57,7 +57,10 @@ class World {
     // Items
 
     static fetchItem(id) {
-        return this.items.find(obj => obj.id === id);
+        return new Promise((success, fail) => {
+            let item = this.items.find(obj => obj.id === id);
+            return item ? success(item) : fail();
+        });
     }
 
     // Npc
