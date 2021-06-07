@@ -6,7 +6,7 @@ function changeMoveType(player) {
     packet
         .writeC( 0x3e)
         .writeD( player.id)
-        .writeD(!player.state.isWalking);
+        .writeD(!player.state.raw.isWalking);
 
     return packet.buffer;
 }

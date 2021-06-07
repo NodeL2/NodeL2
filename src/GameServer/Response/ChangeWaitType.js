@@ -6,7 +6,7 @@ function changeWaitType(player) {
     packet
         .writeC( 0x3f)
         .writeD( player.id)
-        .writeD(!player.state.isSitting)
+        .writeD(!player.state.raw.isSitting)
         .writeD( player.x)
         .writeD( player.y)
         .writeD( player.z);

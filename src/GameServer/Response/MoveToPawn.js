@@ -7,7 +7,7 @@ function moveToPawn(player, targetId, radius) {
         .writeC(0x75)
         .writeD(player.id)
         .writeD(targetId)
-        .writeD(1) // Distance
+        .writeD(20) // Distance
         .writeD(player.x)
         .writeD(player.y)
         .writeD(player.z);

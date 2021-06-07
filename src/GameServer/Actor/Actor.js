@@ -1,4 +1,5 @@
 let ActorAutomation = invoke('GameServer/Actor/ActorAutomation');
+let ActorInventory = invoke('GameServer/Actor/ActorInventory');
 let ActorPaperdoll = invoke('GameServer/Actor/ActorPaperdoll');
 let ActorState = invoke('GameServer/Actor/ActorState');
 let GameServerResponse = invoke('GameServer/GameServerResponse');
@@ -94,7 +95,7 @@ class Actor {
             if (this.npcId === npc.id) {
                 if (npc.type === NpcType.MONSTER && npc.attackable) {
                     this.automation.requestMoveToNpc(session, npc, () => {
-                        this.attack(session, data);
+                        this.automation.autoAttack(session, npc);
                     });
                 }
                 else {
@@ -138,6 +139,10 @@ class Actor {
     }
 
     move(session, data) {
+        if (this.state.raw.isFighting) {
+            this.automation.queueMovement(data);
+        }
+
         if (this.state.isBusy(session)) {
             return;
         }
@@ -145,43 +150,6 @@ class Actor {
         this.automation.abort();
 
         session.sendData(GameServerResponse.moveToLocation(this.id, data));
-    }
-
-    attack(session, data) {
-        if (this.state.isBusy(session)) {
-            return;
-        }
-
-        this.automation.abort(); // ?
-
-        World.fetchNpcWithId(data.id)
-        .then((npc) => {
-            if (npc.hp === 0) {
-                return;
-            }
-
-            this.state.isFighting(true);
-            session.sendData(GameServerResponse.attack(this, npc.id));
-
-            let singleAttackCycle = 500000 / this.atkSpeed;
-
-            setTimeout(() => { // Needs rework
-                let hitDamage = 15 + Math.floor(Math.random() * 10);
-                npc.hp = Math.max(0, npc.hp - hitDamage); // HP bar would disappear if less than zero
-
-                session.sendData(GameServerResponse.statusUpdate(npc.id, npc.hp, npc.maxHp));
-                session.sendData(GameServerResponse.systemMessage(hitDamage));
-
-                // Death of NPC
-                if (npc.hp === 0) {
-                    World.removeNpcWithId(session, npc.id);
-                }
-            }, singleAttackCycle * 0.644); // Until hit point
-
-            setTimeout(() => {
-                this.state.isFighting(false);
-            }, singleAttackCycle); // Until end of combat
-        });
     }
 
     action(session, data) {

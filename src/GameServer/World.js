@@ -11,7 +11,7 @@ class World {
     static insertNpcs(session) {
         for (let i = 0; i < 20; i++) { // 20 Mobs
             const coords = Utils.createRandomCoordinates(41819.5, 41705.1, 1200);
-            const hp = Utils.createRandomNumber(95);
+            const hp = 10 + Utils.createRandomNumber(85);
             const heading = Utils.createRandomNumber(65536);
 
             this.npcs.push({
