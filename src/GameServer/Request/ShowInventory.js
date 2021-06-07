@@ -10,9 +10,7 @@ function showInventory(session, buffer) {
     let data = {
     };
 
-    session.sendData(
-        GameServerResponse.inventory(session.player)
-    );
+    session.sendData(GameServerResponse.inventory(session.player.inventory.items));
 }
 
 module.exports = showInventory;

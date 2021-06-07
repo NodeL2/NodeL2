@@ -13,14 +13,8 @@ function unequipItem(session, buffer) {
     };
 
     session.player.inventory.unequipBodyPart(session, data.bodyPart);
-
-    session.sendData(
-        GameServerResponse.userInfo(session.player)
-    );
-
-    session.sendData(
-        GameServerResponse.inventory(session.player)
-    );
+    session.sendData(GameServerResponse.userInfo(session.player));
+    session.sendData(GameServerResponse.inventory(session.player.inventory.items));
 }
 
 module.exports = unequipItem;

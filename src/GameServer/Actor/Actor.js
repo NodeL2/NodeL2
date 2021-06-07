@@ -97,6 +97,9 @@ class Actor {
                         this.attack(session, data);
                     });
                 }
+                else {
+                    // TODO: Some other non-attackable npc
+                }
             }
             else {
                 this.npcId = npc.id;
@@ -127,57 +130,11 @@ class Actor {
                 });
             }
         });
-
-        if (npc !== undefined) {
-            // Already selected?
-            if (this.npcId === npc.id) {
-                // Is it an attackable monster?
-                if (npc.type === NpcType.MONSTER && npc.attackable) {
-                    this.automation.requestMoveToNpc(session, npc, () => {
-                        this.attack(session, data);
-                    });
-                }
-            }
-            else {
-                this.npcId = npc.id;
-
-                session.sendData(GameServerResponse.targetSelected(npc.id));
-                session.sendData(GameServerResponse.statusUpdate(npc.id, npc.hp, npc.maxHp));
-            }
-        }
-        else {
-            if (this.state.isBusy(session)) {
-                return;
-            }
-
-            let item = World.fetchItem(data.id);
-
-            if (item !== undefined) {
-
-                this.automation.requestMoveToItem(session, item, () => {
-
-                    if (World.fetchItem(data.id)) { // Still available?
-                        this.state.isPickingUp(true);
-
-                        session.sendData(GameServerResponse.getItem(this, data));
-                        session.sendData(GameServerResponse.deleteObject(data.id));
-                        session.sendData(GameServerResponse.actionFailed());
-
-                        setTimeout(() => {
-                            this.state.isPickingUp(false);
-                        }, 500);
-                    }
-                });
-            }
-        }
     }
 
     unselect(session, data) {
         this.npcId = undefined;
-
-        session.sendData(
-            GameServerResponse.targetUnselected(this)
-        );
+        session.sendData(GameServerResponse.targetUnselected(this));
     }
 
     move(session, data) {
@@ -187,9 +144,7 @@ class Actor {
 
         this.automation.abort();
 
-        session.sendData(
-            GameServerResponse.moveToLocation(this.id, data)
-        );
+        session.sendData(GameServerResponse.moveToLocation(this.id, data));
     }
 
     attack(session, data) {

@@ -22,9 +22,7 @@ function stopMove(session, buffer) {
     session.player.y = data.y;
     session.player.z = data.z;
 
-    session.sendData(
-        GameServerResponse.stopMoveWithLocation(session.player)
-    );
+    session.sendData(GameServerResponse.stopMoveWithLocation(session.player));
 }
 
 module.exports = stopMove;

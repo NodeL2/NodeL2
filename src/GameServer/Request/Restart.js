@@ -12,19 +12,14 @@ function restart(session, buffer) {
     let data = {
     };
 
-    session.sendData(
-        GameServerResponse.restart()
-    );
-
+    session.sendData(GameServerResponse.restart());
     World.removePlayer(session.player.id);
 
     Database.getCharacters(session.accountId)
-        .then((rows) => {
+    .then((rows) => {
 
-            session.sendData(
-                GameServerResponse.charSelectInfo(rows)
-            );
-        });
+        session.sendData(GameServerResponse.charSelectInfo(rows));
+    });
 }
 
 module.exports = restart;

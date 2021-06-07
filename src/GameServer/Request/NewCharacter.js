@@ -10,9 +10,7 @@ function newCharacter(session, buffer) {
     let data = {
     };
 
-    session.sendData(
-        GameServerResponse.charTemplates()
-    );
+    session.sendData(GameServerResponse.charTemplates());
 }
 
 module.exports = newCharacter;

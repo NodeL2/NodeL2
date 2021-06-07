@@ -1,14 +1,14 @@
 let ServerPacket = invoke('ServerPacket');
 
-function inventory(player) {
-    let packet = new ServerPacket(5 + (28 * player.items.length));
+function inventory(items) {
+    let packet = new ServerPacket(5 + (28 * items.length));
 
     packet
         .writeC(0x27)
         .writeH(0x01)
-        .writeH(player.items.length); // Items amount
+        .writeH(items.length); // Items amount
 
-    for (item of player.items) {
+    for (item of items) {
         packet
             .writeH(item.type1)
             .writeD(item.id)

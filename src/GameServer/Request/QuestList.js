@@ -10,9 +10,7 @@ function questList(session, buffer) {
     let data = {
     };
 
-    session.sendData(
-        GameServerResponse.questList()
-    );
+    session.sendData(GameServerResponse.questList());
 }
 
 module.exports = questList;

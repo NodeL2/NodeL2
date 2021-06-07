@@ -11,9 +11,7 @@ function showBoard(session, buffer) {
     let data = {
     };
 
-    session.sendData(
-        GameServerResponse.showMap(1665)
-    );
+    session.sendData(GameServerResponse.showMap(1665));
 }
 
 module.exports = showBoard;

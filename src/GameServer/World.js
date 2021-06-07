@@ -4,8 +4,8 @@ let Utils = invoke('Utils');
 class World {
     static initialize() {
         this.players = [];
-        this.npcs = [];
-        this.items = [];
+        this.npcs    = [];
+        this.items   = [];
     }
 
     static insertNpcs(session) {

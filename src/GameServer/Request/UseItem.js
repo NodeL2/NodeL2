@@ -13,14 +13,8 @@ function useItem(session, buffer) {
     };
 
     session.player.inventory.useItem(session, data.id);
-
-    session.sendData(
-        GameServerResponse.userInfo(session.player)
-    );
-
-    session.sendData(
-        GameServerResponse.inventory(session.player)
-    );
+    session.sendData(GameServerResponse.userInfo(session.player));
+    session.sendData(GameServerResponse.inventory(session.player.inventory.items));
 }
 
 module.exports = useItem;

@@ -11,16 +11,12 @@ function enterWorld(session, buffer) {
     let data = {
     };
 
-    session.sendData(
-        GameServerResponse.sunrise()
-    );
+    session.sendData(GameServerResponse.sunrise());
+    session.sendData(GameServerResponse.userInfo(session.player));
 
-    session.sendData(
-        GameServerResponse.userInfo(session.player)
-    );
+    World.insertPlayer(session);
 
     // Samples
-    World.insertPlayer(session);
     World.insertNpcs(session);
     World.insertItems(session);
 }

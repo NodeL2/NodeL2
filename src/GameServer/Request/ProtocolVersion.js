@@ -14,9 +14,7 @@ function protocolVersion(session, buffer) {
     };
 
     if (data.protocolVersion === Config.protocolVersion) {
-        session.sendData(
-            GameServerResponse.cryptInit(Config.xorKey)
-        );
+        session.sendData(GameServerResponse.cryptInit(Config.xorKey));
     }
 }
 

@@ -14,9 +14,7 @@ function say(session, buffer) {
         type: packet.data[2],
     };
 
-    session.sendData(
-        GameServerResponse.createSay(session.player, data.text, data.type)
-    );
+    session.sendData(GameServerResponse.createSay(session.player, data.text, data.type));
 }
 
 module.exports = say;

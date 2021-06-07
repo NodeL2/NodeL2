@@ -32,24 +32,20 @@ function charCreate(session, buffer) {
     };
 
     Database.getBaseClass(data.classId)
-        .then((stats) => {
+    .then((stats) => {
 
-            Database.addNewCharacter(session.accountId, data, stats[0])
-                .then(() => {
+        Database.addNewCharacter(session.accountId, data, stats[0])
+        .then(() => {
 
-                    session.sendData(
-                        GameServerResponse.charCreateSuccess()
-                    );
+            session.sendData(GameServerResponse.charCreateSuccess());
 
-                    Database.getCharacters(session.accountId)
-                        .then((rows) => {
+            Database.getCharacters(session.accountId)
+            .then((rows) => {
 
-                            session.sendData(
-                                GameServerResponse.charSelectInfo(rows)
-                            );
-                        });
-                });
+                session.sendData(GameServerResponse.charSelectInfo(rows));
+            });
         });
+    });
 }
 
 module.exports = charCreate;

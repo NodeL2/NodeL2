@@ -10,9 +10,7 @@ function logout(session, buffer) {
     let data = {
     };
 
-    session.sendData(
-        GameServerResponse.logoutOk()
-    );
+    session.sendData(GameServerResponse.logoutOk());
 }
 
 module.exports = logout;
