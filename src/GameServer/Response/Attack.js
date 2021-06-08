@@ -9,9 +9,9 @@ function attack(player, npcId) {
         .writeD(npcId)
         .writeD(1) // Damage
         .writeC(0) // Hit
-        .writeD(player.x)
-        .writeD(player.y)
-        .writeD(player.z)
+        .writeD(player.model.x)
+        .writeD(player.model.y)
+        .writeD(player.model.z)
         .writeH(0);
 
     return packet.buffer;

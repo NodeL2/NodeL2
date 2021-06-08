@@ -24,17 +24,11 @@ function charSelected(session, buffer) {
         Database.getBaseClass(character.class_id)
         .then((stats) => {
 
-            session.player.setProperties( // Set player properties
-                character
-            );
+            session.player.model.parseBasicInfo(session.player, character);
+            session.player.model.parseStatisticsInfo(session.player, stats[0]);
+            session.player.inventory.populate(session.player);
 
-            session.player.setBaseStats(
-                stats[0]
-            );
-
-            session.sendData(
-                GameServerResponse.charSelected(session.player)
-            );
+            session.sendData(GameServerResponse.charSelected(session.player));
         });
     });
 }

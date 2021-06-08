@@ -13,26 +13,26 @@ function charSelected(player) {
         .writeD(0x55555555)
         .writeD(0x00)  // Clan ID
         .writeD(0x00)  // ?
-        .writeD(player.gender)
+        .writeD(player.model.gender)
         .writeD(player.raceId)
         .writeD(player.classId)
         .writeD(0x01)  // ?
-        .writeD(player.x)
-        .writeD(player.y)
-        .writeD(player.z)
-        .writeF(player.hp)
-        .writeF(player.mp)
-        .writeD(player.sp)
-        .writeD(player.exp)
-        .writeD(player.level)
+        .writeD(player.model.x)
+        .writeD(player.model.y)
+        .writeD(player.model.z)
+        .writeF(player.model.hp)
+        .writeF(player.model.mp)
+        .writeD(player.model.sp)
+        .writeD(player.model.exp)
+        .writeD(player.model.level)
         .writeD(0x00)  // ?
         .writeD(0x00)  // ?
-        .writeD(player.int)
-        .writeD(player.str)
-        .writeD(player.con)
-        .writeD(player.men)
-        .writeD(player.dex)
-        .writeD(player.wit);
+        .writeD(player.model.int)
+        .writeD(player.model.str)
+        .writeD(player.model.con)
+        .writeD(player.model.men)
+        .writeD(player.model.dex)
+        .writeD(player.model.wit);
 
     for (let i = 0; i < 30; i++) {
         packet

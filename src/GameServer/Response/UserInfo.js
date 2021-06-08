@@ -5,30 +5,30 @@ function userInfo(player) {
 
     packet
         .writeC(0x04)
-        .writeD(player.x)
-        .writeD(player.y)
-        .writeD(player.z)
+        .writeD(player.model.x)
+        .writeD(player.model.y)
+        .writeD(player.model.z)
         .writeD(0x00)  // Heading
         .writeD(player.id)
         .writeS(player.name)
         .writeD(player.raceId)
-        .writeD(player.gender)
+        .writeD(player.model.gender)
         .writeD(player.classId)
-        .writeD(player.level)
-        .writeD(player.exp)
-        .writeD(player.str)
-        .writeD(player.dex)
-        .writeD(player.con)
-        .writeD(player.int)
-        .writeD(player.wit)
-        .writeD(player.men)
-        .writeD(player.maxHp)
-        .writeD(player.hp)
-        .writeD(player.maxMp)
-        .writeD(player.mp)
-        .writeD(player.sp)
+        .writeD(player.model.level)
+        .writeD(player.model.exp)
+        .writeD(player.model.str)
+        .writeD(player.model.dex)
+        .writeD(player.model.con)
+        .writeD(player.model.int)
+        .writeD(player.model.wit)
+        .writeD(player.model.men)
+        .writeD(player.model.maxHp)
+        .writeD(player.model.hp)
+        .writeD(player.model.maxMp)
+        .writeD(player.model.mp)
+        .writeD(player.model.sp)
         .writeD(0x00)  // Load
-        .writeD(player.weightLimit)
+        .writeD(player.model.weightLimit)
         .writeD(0x28)  // ?
 
         // Object ID
@@ -65,33 +65,33 @@ function userInfo(player) {
         .writeD(0x00)  // Back
         .writeD(0x00)  // Hand left & right
 
-        .writeD(player.pAtk)
-        .writeD(player.atkSpeed)
-        .writeD(player.pDef)
-        .writeD(player.evasion)
-        .writeD(player.accuracy)
-        .writeD(player.critical)
-        .writeD(player.mAtk)
-        .writeD(player.castingSpd)
-        .writeD(player.speed)
-        .writeD(player.mDef)
+        .writeD(player.model.pAtk)
+        .writeD(player.model.atkSpeed)
+        .writeD(player.model.pDef)
+        .writeD(player.model.evasion)
+        .writeD(player.model.accuracy)
+        .writeD(player.model.critical)
+        .writeD(player.model.mAtk)
+        .writeD(player.model.castingSpd)
+        .writeD(player.model.speed)
+        .writeD(player.model.mDef)
         .writeD(0x00)  // Purple = 0x01
-        .writeD(player.karma)
-        .writeD(player.groundSpdHigh)
-        .writeD(player.groundSpdLow)
-        .writeD(player.waterSpd)
-        .writeD(player.waterSpd)
+        .writeD(player.model.karma)
+        .writeD(player.model.groundSpdHigh)
+        .writeD(player.model.groundSpdLow)
+        .writeD(player.model.waterSpd)
+        .writeD(player.model.waterSpd)
         .writeD(0x00)  // Floating Run Speed
         .writeD(0x00)  // Floating Walk Speed
         .writeD(0x00)  // Flying Run Speed
         .writeD(0x00)  // Flying Walk Speed
         .writeF(1.0)   // Movement Multiplier
-        .writeF(player.atkSpeed / 277.77777777777777)   // Attack Speed Multiplier
-        .writeF(player.collisionRadius)
-        .writeF(player.collisionHeight)
-        .writeD(player.hairStyle)
-        .writeD(player.hairColor)
-        .writeD(player.face)
+        .writeF(player.model.atkSpeed / 277.77777777777777)   // Attack Speed Multiplier
+        .writeF(player.model.collisionRadius)
+        .writeF(player.model.collisionHeight)
+        .writeD(player.model.hairStyle)
+        .writeD(player.model.hairColor)
+        .writeD(player.model.face)
         .writeD(0x00)  // GM = 0x01
         .writeS(player.title)
         .writeD(0x00)  // Clan ID
@@ -101,7 +101,7 @@ function userInfo(player) {
         .writeD(0x00)  // ?
         .writeC(0x00)  // ?
         .writeC(0x00)  // Private Store Type
-        .writeC(player.canCraft)
+        .writeC(player.model.canCraft)
         .writeD(0x00)  // PK Kills
         .writeD(0x00)  // PVP Kills
         .writeH(0x00)  // Cubic Count

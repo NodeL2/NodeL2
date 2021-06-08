@@ -62,7 +62,7 @@ class ActorAutomation {
         }
 
         // Check if we're OK for attack
-        if (Utils.distance(session.player.x, session.player.y, npc.x, npc.y) < 5000) {
+        if (Utils.distance(session.player.model.x, session.player.model.y, npc.x, npc.y) < 5000) {
             callback();
             return;
         }
@@ -74,7 +74,7 @@ class ActorAutomation {
         );
 
         this.timer = setInterval(() => {
-            let distance  = Utils.distance(session.player.x, session.player.y, npc.x, npc.y);
+            let distance  = Utils.distance(session.player.model.x, session.player.model.y, npc.x, npc.y);
             this.failsafe = distance === this.previousDistance ? (this.failsafe + 1) : 0;
 
             if (this.failsafe >= 15) {
@@ -109,7 +109,7 @@ class ActorAutomation {
         }
 
         // Check if we're OK for pickup
-        if (Utils.distance(session.player.x, session.player.y, target.x, target.y) < 5000) {
+        if (Utils.distance(session.player.model.x, session.player.model.y, target.x, target.y) < 5000) {
             callback();
             return;
         }
@@ -126,7 +126,7 @@ class ActorAutomation {
         );
 
         this.timer = setInterval(() => {
-            let distance  = Utils.distance(session.player.x, session.player.y, target.x, target.y);
+            let distance  = Utils.distance(session.player.model.x, session.player.model.y, target.x, target.y);
             this.failsafe = distance === this.previousDistance ? (this.failsafe + 1) : 0;
 
             if (this.failsafe >= 15) {

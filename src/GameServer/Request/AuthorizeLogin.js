@@ -28,12 +28,12 @@ function authorizeLogin(session, buffer) {
         session.accountId = data.username;
 
         Database.getCharacters(session.accountId)
-            .then((rows) => {
+        .then((rows) => {
 
-                session.sendData(
-                    GameServerResponse.charSelectInfo(rows)
-                );
-            });
+            session.sendData(
+                GameServerResponse.charSelectInfo(rows)
+            );
+        });
     }
 }
 

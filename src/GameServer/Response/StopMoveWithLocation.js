@@ -6,9 +6,9 @@ function stopMoveWithLocation(player) {
     packet
         .writeC(0x5f)
         .writeD(player.id)
-        .writeD(player.x)
-        .writeD(player.y)
-        .writeD(player.z);
+        .writeD(player.model.x)
+        .writeD(player.model.y)
+        .writeD(player.model.z);
 
     return packet.buffer;
 }

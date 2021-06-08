@@ -12,15 +12,14 @@ function stopMove(session, buffer) {
         .readD(); // Heading
 
     let data = {
-        x       : packet.data[1],
-        y       : packet.data[2],
-        z       : packet.data[3],
-        heading : packet.data[4],
+        x: packet.data[1],
+        y: packet.data[2],
+        z: packet.data[3],
     };
 
-    session.player.x = data.x;
-    session.player.y = data.y;
-    session.player.z = data.z;
+    session.player.model.x = data.x;
+    session.player.model.y = data.y;
+    session.player.model.z = data.z;
 
     session.sendData(GameServerResponse.stopMoveWithLocation(session.player));
 }

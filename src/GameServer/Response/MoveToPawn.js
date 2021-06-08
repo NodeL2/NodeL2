@@ -8,9 +8,9 @@ function moveToPawn(player, targetId, radius) {
         .writeD(player.id)
         .writeD(targetId)
         .writeD(20) // Distance
-        .writeD(player.x)
-        .writeD(player.y)
-        .writeD(player.z);
+        .writeD(player.model.x)
+        .writeD(player.model.y)
+        .writeD(player.model.z);
 
     return packet.buffer;
 }

@@ -7,9 +7,9 @@ function changeWaitType(player) {
         .writeC( 0x3f)
         .writeD( player.id)
         .writeD(!player.state.raw.isSitting)
-        .writeD( player.x)
-        .writeD( player.y)
-        .writeD( player.z);
+        .writeD( player.model.x)
+        .writeD( player.model.y)
+        .writeD( player.model.z);
 
     return packet.buffer;
 }
