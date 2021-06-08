@@ -25,7 +25,7 @@ class ActorAutomation {
                 return;
             }
 
-            const speed = 500000 / session.player.atkSpeed;
+            const speed = 500000 / session.player.model.atkSpeed;
             session.sendData(GameServerResponse.attack(session.player, npc.id));
             session.player.state.isFighting(true);
 
