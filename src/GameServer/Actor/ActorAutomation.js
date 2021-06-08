@@ -117,7 +117,7 @@ class ActorAutomation {
         this.busy = true;
 
         const coordinates = {
-            origin: session.player,
+            origin: session.player.model,
             target: target
         };
 
