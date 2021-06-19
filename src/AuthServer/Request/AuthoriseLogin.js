@@ -9,11 +9,13 @@ function authoriseLogin(buffer) {
         .readB(14)  // Username
         .readB(16); // Password
 
-    let data = {
+    consume({
         username: Utils.toAsciiStripNull(packet.data[0]),
         password: Utils.toAsciiStripNull(packet.data[1]),
-    };
+    });
+}
 
+function consume(data) {
     Database.fetchAccountPassword(data.username)
     .then((rows) => {
 
