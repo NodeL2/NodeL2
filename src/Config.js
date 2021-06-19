@@ -23,6 +23,8 @@ class Config {
         host     :  this.ini.GameServer.Hostname ?? '127.0.0.1',
         port     : +this.ini.GameServer.Port     ?? 7777
     };
+
+    static blowfishKey = '[;\'.]94-31==-%&@!^+]\u0000';
 }
 
 module.exports = Config;

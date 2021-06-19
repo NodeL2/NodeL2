@@ -19,6 +19,12 @@ class Database {
             console.log('DB:: failed to create connection');
         })
     }
+
+    static fetchAccountPassword(username) {
+        return this.conn.query(
+            'SELECT password FROM accounts WHERE username = "' + username + '" LIMIT 1'
+        );
+    }
 }
 
 module.exports = Database;

@@ -21,7 +21,7 @@ class AuthServer {
 
         // First handshake with client
         session.sendData(
-            ServerResponse.init()
+            ServerResponse.init(), false
         );
     }
 }
