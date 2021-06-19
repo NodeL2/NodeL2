@@ -1,16 +1,10 @@
-let Config = invoke('Config');
-
 // Module imports
 let net = require('net');
 
 class GameServer {
-    constructor() {
-
-        let host = Config.gameServer.host;
-        let port = Config.gameServer.port;
-
-        this.server = net.createServer(this.onSocket).listen(port, host, () => {
-            console.log('GameServer:: initialised for %s:%d', host, port);
+    constructor(config) {
+        this.server = net.createServer(this.onSocket).listen(config.port, config.host, () => {
+            console.log('GameServer:: initialised for %s:%d', config.host, config.port);
         });
     }
 

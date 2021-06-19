@@ -1,12 +1,8 @@
-let Config = invoke('Config');
-
 // Module imports
 let db = require('mariadb');
 
 class Database {
-    static init(callback) {
-        let config = Config.database;
-
+    static init(config, callback) {
         db.createConnection({
             host     : config.host,
             port     : config.port,
