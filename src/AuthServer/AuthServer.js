@@ -1,11 +1,14 @@
-let net = require('net');
 let AuthSession = invoke('AuthServer/Session');
+let Config = invoke('Config');
+
+// Module imports
+let net = require('net');
 
 class AuthServer {
     constructor() {
 
-        let host = '127.0.0.1';
-        let port = 2106;
+        let host = Config.authServer.host;
+        let port = Config.authServer.port;
 
         this.server = net.createServer(this.onSocket).listen(port, host, () => {
             console.log('AuthServer:: initialised for %s:%d', host, port);
