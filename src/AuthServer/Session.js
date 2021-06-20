@@ -18,6 +18,10 @@ class Session {
                 ClientRequest.authoriseLogin(this, decryptedPacket);
                 break;
 
+            case 0x02:
+                ClientRequest.gameLogin(this, decryptedPacket);
+                break;
+
             case 0x05:
                 ClientRequest.serverList(this, decryptedPacket);
                 break;

@@ -24,7 +24,7 @@ function consume(session, data) {
             ServerResponse.serverList(Config.gameServer)
         );
     }
-    else {
+    else { // Session keys don't match
         session.sendData(
             ServerResponse.loginFail(0x01)
         );

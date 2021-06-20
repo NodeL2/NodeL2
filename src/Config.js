@@ -24,7 +24,8 @@ class Config {
 
     static gameServer = {
         host        :  this.ini.GameServer.Hostname    ?? '127.0.0.1',
-        port        : +this.ini.GameServer.Port        ?? 7777
+        port        : +this.ini.GameServer.Port        ?? 7777,
+        id          : +this.ini.GameServer.Id          ?? 1
     };
 
     static client = {

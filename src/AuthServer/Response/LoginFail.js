@@ -10,4 +10,9 @@ function loginFail(errorCode) {
     return packet.buffer;
 }
 
+// 0x01 System error
+// 0x02 Password does not match this account
+// 0x04 Access failed
+// 0x07 The account is already in use
+
 module.exports = loginFail;
