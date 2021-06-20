@@ -26,7 +26,9 @@ class Config {
     };
 
     static client = {
-        chronicle   : +this.ini.Client.Chronicle       ?? 1
+        chronicle   : +this.ini.Client.Chronicle       ?? 1,
+        sessionKey1 : +this.ini.Client.SessionKey1     ?? 0x55555555,
+        sessionKey2 : +this.ini.Client.SessionKey2     ?? 0x44444444
     };
 }
 

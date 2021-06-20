@@ -3,7 +3,7 @@ let net = require('net');
 
 class GameServer {
     constructor(config) {
-        this.server = net.createServer(this.onSocket).listen(config.port, config.host, () => {
+        net.createServer(this.onSocket).listen(config.port, config.host, () => {
             console.log('GameServer:: initialised for %s:%d', config.host, config.port);
         });
     }

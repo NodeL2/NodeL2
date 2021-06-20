@@ -6,7 +6,7 @@ let net = require('net');
 
 class AuthServer {
     constructor(config) {
-        this.server = net.createServer(this.onSocket).listen(config.port, config.host, () => {
+        net.createServer(this.onSocket).listen(config.port, config.host, () => {
             console.log('AuthServer:: initialised for %s:%d', config.host, config.port);
         });
     }

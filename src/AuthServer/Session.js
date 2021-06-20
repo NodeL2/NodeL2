@@ -15,7 +15,7 @@ class Session {
         // Opcodes
         switch (decryptedPacket[0]) {
             case 0x00:
-                ClientRequest.authoriseLogin(decryptedPacket);
+                ClientRequest.authoriseLogin(this, decryptedPacket);
                 break;
 
             default:
