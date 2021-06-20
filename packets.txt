@@ -1,0 +1,253 @@
+C2 N/A:
+- AttackCanceled
+- LeaveWorld
+- AuthLoginSuccess
+- AuthLoginFail
+- EquipItem
+- UnequipItem
+- EquipItemSuccess
+- EquipItemFail
+- UnEquipItemSuccess
+- UnEquipItemFail
+- NetworkFail
+- StopMoveWithLocation
+
+00 VersionCheck
+01 MoveToLocation
+02 NpcSay
+03 CharInfo
+04 UserInfo
+05 Attack ------------------------ 06
+06 Die --------------------------- 0B
+07 Revive ------------------------ 0C
+08 AttackOutofRange -------------- 0D
+09 AttackinCoolTime -------------- 0E
+0A AttackDeadTarget -------------- 0F
+0B SpawnItem --------------------- 15
+0C DropItem ---------------------- 16
+0D GetItem ----------------------- 17
+0E StatusUpdate ------------------ 1A
+0F NpcHtmlMessage ---------------- 1B
+10 SellList ---------------------- 1C
+11 BuyList ----------------------- 1D
+12 DeleteObject ------------------ 1E
+13 CharacterSelectionInfo -------- 1F
+14 LoginFail --------------------- 20
+15 CharacterSelected ------------- 21
+16 NpcInfo ----------------------- 22
+17 NewCharacterSuccess ----------- 23
+18 NewCharacterFail -------------- 24
+19 CharacterCreateSuccess -------- 25
+1A CharacterCreateFail ----------- 26
+1B ItemList ---------------------- 27
+1C SunRise ----------------------- 28
+1D SunSet ------------------------ 29
+1E TradeStart -------------------- 2E
+1F TradeStartOk ------------------ 2F
+20 TradeOwnAdd ------------------- 30
+21 TradeOtherAdd ----------------- 31
+22 TradeDone --------------------- 32
+23 CharacterDeleteSuccess -------- 33
+24 CharacterDeleteFail ----------- 34
+25 ActionFail -------------------- 35
+26 ServerClose ------------------- 36
+27 InventoryUpdate --------------- 37
+28 TeleportToLocation ------------ 38
+29 TargetSelected ---------------- 39
+2A TargetUnselected -------------- 3A
+2B AutoAttackStart --------------- 3B
+2C AutoAttackStop ---------------- 3C
+2D SocialAction ------------------ 3D
+2E ChangeMoveType ---------------- 3E
+2F ChangeWaitType ---------------- 3F
+30 ManagePledgePower ------------- *** N/A
+31 CreatePledge ------------------ 43
+32 AskJoinPledge ----------------- 44
+33 JoinPledge -------------------- 45
+34 WithdrawalPledge -------------- 46
+35 OustPledgeMember -------------- 47
+36 SetOustPledgeMember ----------- 48
+37 DismissPledge ----------------- 49
+38 SetDismissPledge -------------- 4A
+39 AskJoinParty ------------------ 4B
+3A JoinParty --------------------- 4C
+3B WithdrawalParty --------------- 4D
+3C OustPartyMember --------------- 4E
+3D SetOustPartyMember ------------ 4F
+3E DismissParty ------------------ 50
+3F SetDismissParty --------------- 51
+40 MagicAndSkillList ------------- 52
+41 WareHouseDepositList ---------- 53
+42 WareHouseWithdrawList --------- 54
+43 WareHouseDone ----------------- 55
+44 ShortCutRegister -------------- 56
+45 ShortCutInit ------------------ 57
+46 ShortCutDelete ---------------- 58
+47 StopMove ---------------------- 59
+48 MagicSkillUse ----------------- 5A
+49 MagicSkillCanceled ------------ 5B
+4A Say2 -------------------------- 5D
+4B EquipUpdate ------------------- 5E
+4C DoorInfo ---------------------- 60
+4D DoorStatusUpdate -------------- 61
+4E PartySmallWindowAll ----------- 63
+4F PartySmallWindowAdd ----------- 64
+50 PartySmallWindowDeleteAll ----- 65
+51 PartySmallWindowDelete -------- 66
+52 PartySmallWindowUpdate -------- 67
+53 PledgeShowMemberListAll ------- 68
+54 PledgeShowMemberListUpdate ---- 69
+55 PledgeShowMemberListAdd ------- 6A
+56 PledgeShowMemberListDelete ---- 6B
+57 MagicList --------------------- 6C
+58 SkillList --------------------- 6D
+59 VehicleInfo ------------------- 6E
+5A VehicleDeparture -------------- 6F
+5B VehicleCheckLocation ---------- 70
+5C GetOnVehicle ------------------ 71
+5D GetOffVehicle ----------------- 72
+5E TradeRequest ------------------ 73
+5F RestartResponse --------------- 74
+60 MoveToPawn -------------------- 75
+61 ValidateLocation -------------- 76
+62 StartRotating ----------------- 77
+63 FinishRotating ---------------- 78
+64 SystemMessage ----------------- 7A
+65 StartPledgeWar ---------------- 7D
+66 ReplyStartPledgeWar ----------- 7E
+67 StopPledgeWar ----------------- 7F
+68 ReplyStopPledgeWar ------------ 80
+69 SurrenderPledgeWar ------------ 81
+6A ReplySurrenderPledgeWar ------- 82
+6B SetPledgeCrest ---------------- 83
+6C PledgeCrest ------------------- 84
+6D SetupGauge -------------------- 85
+6E ShowBoard --------------------- 86
+6F ChooseInventoryItem ----------- 87
+70 Dummy_70
+71 MoveToLocationInVehicle ------- 89
+72 StopMoveInVehicle ------------- 8A
+73 ValidateLocationInVehicle ----- 8B
+74 TradeUpdate ------------------- 8C
+75 TradePressOwnOk --------------- 8D
+76 MagicSkillLaunched ------------ 8E
+77 FriendAddRequestResult -------- 8F
+78 FriendAdd --------------------- 90
+79 FriendRemove ------------------ 91
+7A FriendList -------------------- 92
+7B FriendStatus ------------------ 93
+7C TradePressOtherOk ------------- 94
+7D FriendAddRequest -------------- 95
+7E LogOutOk ---------------------- 96
+7F AbnormalStatusUpdate ---------- 97
+80 QuestList --------------------- 98
+81 EnchantResult ----------------- 99
+82 PledgeShowMemberListDeleteAll - 9B
+83 PledgeInfo -------------------- 9C
+84 PledgeExtendedInfo ------------ 9D
+85 SurrenderPersonally ----------- 9E
+86 Ride -------------------------- 9F
+87 GiveNickNameDone -------------- A0
+88 PledgeShowInfoUpdate ---------- A1
+89 ClientAction ------------------ A2
+8A AcquireSkillList -------------- A3
+8B AcquireSkillInfo -------------- A4
+8C ServerObjectInfo -------------- A5
+8D GMHide ------------------------ A6
+8E AcquireSkillDone -------------- A7
+8F GMViewCharacterInfo ----------- A8
+90 GMViewPledgeInfo -------------- A9
+91 GMViewSkillInfo --------------- AA
+92 GMViewMagicInfo --------------- AB
+93 GMViewQuestInfo --------------- AC
+94 GMViewItemList ---------------- AD
+95 GMViewWarehouseWithdrawList --- AE
+96 PartyMatchList ---------------- AF
+97 PartyMatchDetail -------------- B0
+98 PlaySound --------------------- B1
+99 StaticObject ------------------ B2
+9A PrivateStoreSellManageList ---- B3
+9B PrivateStoreSellList ---------- B4
+9C PrivateStoreSellMsg ----------- B5
+9D ShowMinimap ------------------- B6
+9E ReviveRequest ----------------- B7
+9F AbnormalVisualEffect ---------- B8
+A0 TutorialShowHtml -------------- B9
+A1 ShowTutorialMark -------------- BA
+A2 TutorialEnableClientEvent ----- BB
+A3 TutorialCloseHtml ------------- BC
+A4 ShowRadar --------------------- BD
+A5 DeleteRadar ------------------- BE
+A6 MyTargetSelected -------------- BF
+A7 PartyMemberPosition ----------- C0
+A8 AskJoinAlliance --------------- C1
+A9 JoinAlliance ------------------ C2
+AA WithdrawAlliance -------------- C3
+AB OustAllianceMemberPledge ------ C4
+AC DismissAlliance --------------- C5
+AD SetAllianceCrest -------------- C6
+AE AllianceCrest ----------------- C7
+AF ServerCloseSocket ------------- C8
+B0 PetStatusShow ----------------- C9
+B1 PetInfo ----------------------- CA
+B2 PetItemList ------------------- CB
+B3 PetInventoryUpdate ------------ CC
+B4 AllianceInfo ------------------ CD
+B5 PetStatusUpdate --------------- CE
+B6 PetDelete --------------------- CF
+B7 PrivateStoreBuyManageList ----- D0
+B8 PrivateStoreBuyList ----------- D1
+B9 PrivateStoreBuyMsg ------------ D2
+BA VehicleStart ------------------ D3
+BB RequestTimeCheck -------------- D4
+BC StartAllianceWar -------------- D5
+BD ReplyStartAllianceWar --------- D6
+BE StopAllianceWar --------------- D7
+BF ReplyStopAllianceWar ---------- D8
+C0 SurrenderAllianceWar ---------- D9
+C1 SkillCoolTime ----------------- DA
+C2 PackageToList ----------------- DB
+C3 PackageSendableList ----------- DC
+C4 EarthQuake -------------------- DD
+C5 FlyToLocation ----------------- DE
+C6 BlockList --------------------- DF
+C7 SpecialCamera ----------------- E0
+C8 NormalCamera ------------------ E1
+C9 CastleSiegeInfo --------------- E2
+CA CastleSiegeAttackerList ------- E3
+CB CastleSiegeDefenderList ------- E4
+CC NickNameChanged --------------- E5
+CD PledgeStatusChanged ----------- E6
+CE RelationChanged --------------- E7
+CF EventTrigger ------------------ E8
+D0 MultiSellList ----------------- E9
+D1 SetSummonRemainTime ----------- EA
+D2 SkillRemainSec ---------------- EB
+D3 NetPing ----------------------- EC
+D4 Dice -------------------------- *** N/A
+D5 Snoop ------------------------- *** N/A
+D6 RecipeBookItemList ------------ *** N/A
+D7 RecipeItemMakeInfo ------------ *** N/A
+D8 RecipeShopManageList ---------- *** N/A
+D9 RecipeShopSellList ------------ *** N/A
+DA RecipeShopItemInfo ------------ *** N/A
+DB RecipeShopMsg ----------------- *** N/A
+DC ShowCalc ---------------------- *** N/A
+DD MonRaceInfo ------------------- *** N/A
+DE ShowTownMap ------------------- *** N/A
+DF ObserverStart ----------------- *** N/A
+E0 ObserverEnd ------------------- *** N/A
+E1 ChairSit ---------------------- *** N/A
+E2 HennaEquipList ---------------- *** N/A
+E3 HennaItemInfo ----------------- *** N/A
+E4 HennaInfo --------------------- *** N/A
+E5 HennaUnequipList -------------- *** N/A
+E6 HennaUnequipInfo -------------- *** N/A
+E7 MacroList --------------------- *** N/A
+E8 BuyListSeed ------------------- *** N/A
+E9 SellListProcure --------------- *** N/A
+EA GMHennaInfo ------------------- *** N/A
+EB RadarControl ------------------ *** N/A
+EC ShowXMasSeal ------------------ *** N/A
+ED GameGuardQuery ---------------- *** N/A
+EE Dummy_EE
