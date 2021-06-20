@@ -1,4 +1,5 @@
 let ClientPacket   = invoke('ClientPacket');
+let Config         = invoke('Config');
 let Database       = invoke('Database');
 let ServerResponse = invoke('AuthServer/Response');
 let Utils          = invoke('Utils');
@@ -22,7 +23,7 @@ function consume(session, data) {
 
         if (data.password === rows[0]?.password) {
             session.sendData(
-                ServerResponse.loginSuccess()
+                ServerResponse.loginSuccess(Config.client)
             );
         }
         else {

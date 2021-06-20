@@ -14,6 +14,15 @@ class ClientPacket {
         return this;
     }
 
+    readD() {
+        this.data.push(
+            this.buffer.readInt32LE(this.offset)
+        );
+        this.offset += 4;
+
+        return this;
+    }
+
     readB(size) {
         this.data.push(
             this.buffer.slice(this.offset, this.offset + size)

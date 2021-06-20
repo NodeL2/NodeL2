@@ -18,6 +18,10 @@ class Session {
                 ClientRequest.authoriseLogin(this, decryptedPacket);
                 break;
 
+            case 0x05:
+                ClientRequest.serverList(this, decryptedPacket);
+                break;
+
             default:
                 console.log('AuthServer:: unknown opcode 0x%s', Utils.toHex(decryptedPacket[0], 2));
                 break;

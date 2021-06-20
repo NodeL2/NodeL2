@@ -11,6 +11,13 @@ class ServerPacket {
         return this;
     }
 
+    writeH(data) {
+        this.buffer.writeUInt16LE(data, this.offset);
+        this.offset += 2;
+
+        return this;
+    }
+
     writeD(data) {
         this.buffer.writeInt32LE(data, this.offset);
         this.offset += 4;

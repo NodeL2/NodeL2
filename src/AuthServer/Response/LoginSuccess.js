@@ -1,13 +1,12 @@
-let Config       = invoke('Config');
 let ServerPacket = invoke('ServerPacket');
 
-function loginSuccess() {
-    let packet = new ServerPacket(48);
+function loginSuccess(config) {
+    let packet = new ServerPacket(40);
 
     packet
         .writeC(0x03)
-        .writeD(Config.client.sessionKey1) // Session Key (first)
-        .writeD(Config.client.sessionKey2) // Session Key (last)
+        .writeD(config.sessionKey1) // Session Key (first)
+        .writeD(config.sessionKey2) // Session Key (last)
         .writeD(0x00)
         .writeD(0x00)
         .writeD(0x000003ea)

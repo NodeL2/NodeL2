@@ -6,6 +6,8 @@ class Config {
         fs.readFileSync('./config.ini', 'utf-8')
     );
 
+    // Default values for L2 Chronicle C1
+
     static database = {
         host        :  this.ini.Database.Hostname      ?? '127.0.0.1',
         port        : +this.ini.Database.Port          ?? 3306,
@@ -27,6 +29,7 @@ class Config {
 
     static client = {
         chronicle   : +this.ini.Client.Chronicle       ?? 1,
+        protocol    : +this.ini.Client.Protocol        ?? 419,
         sessionKey1 : +this.ini.Client.SessionKey1     ?? 0x55555555,
         sessionKey2 : +this.ini.Client.SessionKey2     ?? 0x44444444
     };
