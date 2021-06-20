@@ -1,7 +1,7 @@
 let ServerPacket = invoke('ServerPacket');
 
 function loginFail(errorCode) {
-    let packet = new ServerPacket(16);
+    let packet = new ServerPacket(8); // 2
 
     packet
         .writeC(0x01)

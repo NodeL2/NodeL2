@@ -1,7 +1,7 @@
 let ServerPacket = invoke('ServerPacket');
 
 function loginSuccess(config) {
-    let packet = new ServerPacket(40);
+    let packet = new ServerPacket(40); // 33
 
     packet
         .writeC(0x03)

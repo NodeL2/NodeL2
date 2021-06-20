@@ -1,7 +1,7 @@
 let ServerPacket = invoke('ServerPacket');
 
 function init() {
-    let packet = new ServerPacket(9);
+    let packet = new ServerPacket(16); // 9
 
     packet
         .writeC(0x00)

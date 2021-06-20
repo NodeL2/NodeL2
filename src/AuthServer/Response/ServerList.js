@@ -1,7 +1,7 @@
 let ServerPacket = invoke('ServerPacket');
 
 function serverList(config) {
-    let packet = new ServerPacket(24);
+    let packet = new ServerPacket(24); // 19
 
     let host = config.host.split('.');
     let port = config.port;
