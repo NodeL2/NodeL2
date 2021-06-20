@@ -1,3 +1,5 @@
+let GameSession = invoke('GameServer/Session');
+
 // Module imports
 let net = require('net');
 
@@ -12,6 +14,9 @@ class GameServer {
         console.log(
             'GameServer:: new connection from %s:%d', socket.remoteAddress, socket.remotePort
         );
+
+        let session = new GameSession(socket);
+        socket.on('data', session.receiveData.bind(session));
     }
 }
 
