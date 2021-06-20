@@ -1,4 +1,4 @@
-C2 N/A:
+C2/C3 N/A:
 - AttackCanceled
 - LeaveWorld
 - AuthLoginSuccess
@@ -12,11 +12,13 @@ C2 N/A:
 - NetworkFail
 - StopMoveWithLocation
 
-00 VersionCheck
-01 MoveToLocation
-02 NpcSay
-03 CharInfo
-04 UserInfo
+C2                                 C1
+_____________________________________
+00 VersionCheck ------------------ ** Same
+01 MoveToLocation ---------------- ** Same
+02 NpcSay ------------------------ ** Same
+03 CharInfo ---------------------- ** Same
+04 UserInfo ---------------------- ** Same
 05 Attack ------------------------ 06
 06 Die --------------------------- 0B
 07 Revive ------------------------ 0C
@@ -60,7 +62,7 @@ C2 N/A:
 2D SocialAction ------------------ 3D
 2E ChangeMoveType ---------------- 3E
 2F ChangeWaitType ---------------- 3F
-30 ManagePledgePower ------------- *** N/A
+30 ManagePledgePower ------------- ** N/A
 31 CreatePledge ------------------ 43
 32 AskJoinPledge ----------------- 44
 33 JoinPledge -------------------- 45
@@ -124,7 +126,7 @@ C2 N/A:
 6D SetupGauge -------------------- 85
 6E ShowBoard --------------------- 86
 6F ChooseInventoryItem ----------- 87
-70 Dummy_70
+70 Dummy_70 ---------------------- ** Unknown
 71 MoveToLocationInVehicle ------- 89
 72 StopMoveInVehicle ------------- 8A
 73 ValidateLocationInVehicle ----- 8B
@@ -224,30 +226,30 @@ D0 MultiSellList ----------------- E9
 D1 SetSummonRemainTime ----------- EA
 D2 SkillRemainSec ---------------- EB
 D3 NetPing ----------------------- EC
-D4 Dice -------------------------- *** N/A
-D5 Snoop ------------------------- *** N/A
-D6 RecipeBookItemList ------------ *** N/A
-D7 RecipeItemMakeInfo ------------ *** N/A
-D8 RecipeShopManageList ---------- *** N/A
-D9 RecipeShopSellList ------------ *** N/A
-DA RecipeShopItemInfo ------------ *** N/A
-DB RecipeShopMsg ----------------- *** N/A
-DC ShowCalc ---------------------- *** N/A
-DD MonRaceInfo ------------------- *** N/A
-DE ShowTownMap ------------------- *** N/A
-DF ObserverStart ----------------- *** N/A
-E0 ObserverEnd ------------------- *** N/A
-E1 ChairSit ---------------------- *** N/A
-E2 HennaEquipList ---------------- *** N/A
-E3 HennaItemInfo ----------------- *** N/A
-E4 HennaInfo --------------------- *** N/A
-E5 HennaUnequipList -------------- *** N/A
-E6 HennaUnequipInfo -------------- *** N/A
-E7 MacroList --------------------- *** N/A
-E8 BuyListSeed ------------------- *** N/A
-E9 SellListProcure --------------- *** N/A
-EA GMHennaInfo ------------------- *** N/A
-EB RadarControl ------------------ *** N/A
-EC ShowXMasSeal ------------------ *** N/A
-ED GameGuardQuery ---------------- *** N/A
-EE Dummy_EE
+D4 Dice -------------------------- ** N/A
+D5 Snoop ------------------------- ** N/A
+D6 RecipeBookItemList ------------ ** N/A
+D7 RecipeItemMakeInfo ------------ ** N/A
+D8 RecipeShopManageList ---------- ** N/A
+D9 RecipeShopSellList ------------ ** N/A
+DA RecipeShopItemInfo ------------ ** N/A
+DB RecipeShopMsg ----------------- ** N/A
+DC ShowCalc ---------------------- ** N/A
+DD MonRaceInfo ------------------- ** N/A
+DE ShowTownMap ------------------- ** N/A
+DF ObserverStart ----------------- ** N/A
+E0 ObserverEnd ------------------- ** N/A
+E1 ChairSit ---------------------- ** N/A
+E2 HennaEquipList ---------------- ** N/A
+E3 HennaItemInfo ----------------- ** N/A
+E4 HennaInfo --------------------- ** N/A
+E5 HennaUnequipList -------------- ** N/A
+E6 HennaUnequipInfo -------------- ** N/A
+E7 MacroList --------------------- ** N/A
+E8 BuyListSeed ------------------- ** N/A
+E9 SellListProcure --------------- ** N/A
+EA GMHennaInfo ------------------- ** N/A
+EB RadarControl ------------------ ** N/A
+EC ShowXMasSeal ------------------ ** N/A
+ED GameGuardQuery ---------------- ** N/A
+EE Dummy_EE ---------------------- ** Unknown

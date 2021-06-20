@@ -5,7 +5,7 @@ let crypto = require('crypto');
 
 class Blowfish {
     static encrypt(data) {
-        let cipher = crypto.createCipheriv('bf-ecb', Config.blowfishKey, '');
+        let cipher = crypto.createCipheriv('bf-ecb', Config.authServer.blowfishKey, '');
         cipher.setAutoPadding(false);
 
         data.swap32(); // Endianness: Big
@@ -16,7 +16,7 @@ class Blowfish {
     }
 
     static decrypt(data) {
-        let decipher = crypto.createDecipheriv('bf-ecb', Config.blowfishKey, '');
+        let decipher = crypto.createDecipheriv('bf-ecb', Config.authServer.blowfishKey, '');
         decipher.setAutoPadding(false);
 
         data.swap32(); // Endianness: Big
