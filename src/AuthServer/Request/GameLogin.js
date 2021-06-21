@@ -1,6 +1,7 @@
 let ClientPacket   = invoke('ClientPacket');
 let Config         = invoke('Config');
 let ServerResponse = invoke('AuthServer/Response');
+let Utils          = invoke('Utils');
 
 function gameLogin(session, buffer) {
     let packet = new ClientPacket(buffer);
@@ -18,7 +19,7 @@ function gameLogin(session, buffer) {
 }
 
 function consume(session, data) {
-    if (session.matchSessionKeys(data, Config.client)) {
+    if (Utils.matchSessionKeys(data, Config.client)) {
         if (data.serverId === Config.gameServer.id) {
             session.sendData(
                 ServerResponse.gameSuccess(Config.client)

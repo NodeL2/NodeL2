@@ -25,6 +25,12 @@ class Database {
             'SELECT password FROM accounts WHERE username = "' + username + '" LIMIT 1'
         );
     }
+
+    static fetchCharacters(username) {
+        return this.conn.query(
+            'SELECT * FROM characters WHERE username = "' + username + '"'
+        );
+    }
 }
 
 module.exports = Database;

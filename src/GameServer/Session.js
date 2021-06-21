@@ -3,7 +3,8 @@ let Utils         = invoke('Utils');
 
 class Session {
     constructor(socket) {
-        this.socket = socket;
+        this.socket    = socket;
+        this.accountId = '';
     }
 
     receiveData(data) {
@@ -13,6 +14,10 @@ class Session {
         switch (decryptedPacket[0]) {
             case 0x00:
                 ClientRequest.protocolVersion(this, decryptedPacket);
+                break;
+
+            case 0x08:
+                ClientRequest.authoriseLogin(this, decryptedPacket);
                 break;
 
             default:

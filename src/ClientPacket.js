@@ -31,6 +31,23 @@ class ClientPacket {
 
         return this;
     }
+
+    readS() {
+        let i;
+
+        for (i = this.offset; i < this.buffer.length; i += 2) {
+            if (this.buffer.readUInt16LE(i) === 0x00) {
+                break;
+            }
+        }
+
+        this.data.push(
+            this.buffer.toString('ucs2', this.offset, i)
+        );
+        this.offset += i + 1;
+
+        return this;
+    }
 }
 
 module.exports = ClientPacket;
