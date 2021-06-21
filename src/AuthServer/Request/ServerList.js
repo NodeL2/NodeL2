@@ -16,10 +16,7 @@ function serverList(session, buffer) {
 }
 
 function consume(session, data) {
-
-    let config = Config.client;
-
-    if ((data.sessionKey1 === config.sessionKey1) && (data.sessionKey2 === config.sessionKey2)) {
+    if (session.matchSessionKeys(data, Config.client)) {
         session.sendData(
             ServerResponse.serverList(Config.gameServer)
         );

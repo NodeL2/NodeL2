@@ -40,6 +40,10 @@ class Session {
             Buffer.concat([header, encrypt ? Blowfish.encrypt(data) : data])
         );
     }
+
+    matchSessionKeys(pair1, pair2) {
+        return (pair1.sessionKey1 === pair2.sessionKey1) && (pair1.sessionKey2 === pair2.sessionKey2);
+    }
 }
 
 module.exports = Session;
