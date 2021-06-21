@@ -21,7 +21,7 @@ function consume(session, data) {
     if (session.matchSessionKeys(data, Config.client)) {
         if (data.serverId === Config.gameServer.id) {
             session.sendData(
-                ServerResponse.gameSuccess(config)
+                ServerResponse.gameSuccess(Config.client)
             );
         }
         else { // Invalid server id selected
