@@ -9,9 +9,7 @@ function authoriseLogin(session, buffer) {
     packet
         .readS()  // Username
         .readD()  // Session Key (last)
-        .readD()  // Session Key (first)
-        .readD()  // ?
-        .readD(); // ?
+        .readD(); // Session Key (first)
 
     consume(session, {
         username    : packet.data[0],
