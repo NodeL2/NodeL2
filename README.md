@@ -6,6 +6,7 @@ Node implementation of a L2 server emulator
 * Install `NodeJS`
 * Import `nodel2.dump` backup into `nodel2` SQL database
 * Run `npm install -i`
+* Fix database password on `Config.ini`
 * Run `node LaunchServer`
 * Default credentials are username `q` and password `q`
 
