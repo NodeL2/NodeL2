@@ -18,7 +18,7 @@ class Actor {
     }
 
     select(session, data) {
-        if (this.id === data.id) { // Self selected
+        if (this.id === data.id) { // Click on self
             this.unselect(session, data);
             session.sendData(GameServerResponse.targetSelected(this.id));
             return;
@@ -26,19 +26,18 @@ class Actor {
 
         World.fetchNpcWithId(data.id)
         .then((npc) => { // Npc selected
-            if (this.npcId === npc.id) {
-                if (npc.type === NpcType.MONSTER && npc.attackable) {
-                    this.automation.moveTowardsNpc(session, npc, () => {
+            if (this.npcId === npc.id) { // Second click on same NPC
+                this.automation.moveTowardsNpc(session, npc, () => {
+                    if (npc.type === NpcType.MONSTER && npc.attackable) {
                         this.automation.autoAttack(session, npc);
-                    });
-                }
-                else {
-                    this.automation.moveTowardsNpc(session, npc, () => {
+                    }
+                    else {
                         // TODO: Some other non-attackable npc
-                    });
-                }
+                        console.log('GS:: Run towards non-attackable npc');
+                    }
+                });
             }
-            else {
+            else { // First click on a NPC
                 this.npcId = npc.id;
                 session.sendData(GameServerResponse.targetSelected(npc.id));
                 session.sendData(GameServerResponse.statusUpdate(npc.id, npc.hp, npc.maxHp));
@@ -62,6 +61,10 @@ class Actor {
                         this.state.isPickingUp(false);
                     }, 500);
                 });
+            })
+            .catch(() => {
+                // TODO: Unlikely
+                console.log('GS:: You shouldn\'t pickup a non-item');
             });
         });
     }
