@@ -9,6 +9,9 @@ Node implementation of a L2 server emulator
 * Run `node LaunchServer`
 * Default credentials are username `q` and password `q`
 
+<h2>Credits</h2>
+Main source of inspiration is <a href="https://github.com/lineage2js/lineage2js">lineage2js</a>, please support it!
+
 <h2>License</h2>
 
 Open-source under [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0).
