@@ -24,6 +24,21 @@ class ServerPacket {
 
         return this;
     }
+
+    writeF(value) {
+        this.buffer.writeDoubleLE(value, this.offset);
+        this.offset += 8;
+
+        return this;
+    }
+
+    writeS(str) {
+        this.buffer.write(str, this.offset, 'ucs2');
+        this.offset += Buffer.byteLength(str, 'ucs2') + 2;
+        this.buffer.writeInt16LE(0, this.offset - 2);
+
+        return this;
+    }
 }
 
 module.exports = ServerPacket;
