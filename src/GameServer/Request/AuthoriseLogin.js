@@ -1,7 +1,8 @@
-let ClientPacket = invoke('ClientPacket');
-let Config       = invoke('Config');
-let Database     = invoke('Database');
-let Utils        = invoke('Utils');
+let ClientPacket   = invoke('ClientPacket');
+let Config         = invoke('Config');
+let Database       = invoke('Database');
+let ServerResponse = invoke('GameServer/Response');
+let Utils          = invoke('Utils');
 
 function authoriseLogin(session, buffer) {
     let packet = new ClientPacket(buffer);
@@ -25,7 +26,9 @@ function consume(session, data) {
         Database.fetchCharacters(session.accountId)
         .then((rows) => {
 
-            console.log(rows);
+            session.sendData(
+                ServerResponse.charSelectInfo(rows)
+            );
         });
     }
 }
