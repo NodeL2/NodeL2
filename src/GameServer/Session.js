@@ -20,6 +20,10 @@ class Session {
                 ClientRequest.authoriseLogin(this, decryptedPacket);
                 break;
 
+            case 0x0b:
+                ClientRequest.createNewChar(this, decryptedPacket);
+                break;
+
             case 0x0e:
                 ClientRequest.charCreationScreen(this, decryptedPacket);
                 break;
