@@ -37,6 +37,10 @@ class Session {
                 ClientRequest.charCreationScreen(this, decryptedPacket);
                 break;
 
+            case 0x63:
+                ClientRequest.questList(this, decryptedPacket);
+                break;
+
             default:
                 console.log('GameServer:: unknown opcode 0x%s', Utils.toHex(decryptedPacket[0], 2));
                 break;
