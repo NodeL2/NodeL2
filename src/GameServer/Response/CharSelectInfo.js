@@ -1,4 +1,3 @@
-let Database     = invoke('Database');
 let ServerPacket = invoke('ServerPacket');
 
 function charSelectInfo(characters) {
@@ -11,13 +10,7 @@ function charSelectInfo(characters) {
         packet
             .writeD(characters.length);
 
-        for (var character of characters) {
-            Database.fetchClassInformation(character.classId).then((classInfo) => {
-                character = {
-                    ...character, ...classInfo
-                };
-            });
-
+        for (let character of characters) {
             packet
                 .writeS(character.name)
                 .writeD(character.id)

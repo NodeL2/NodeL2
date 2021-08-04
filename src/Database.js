@@ -39,7 +39,7 @@ class Database {
         const path = 'GameServer/Data/Classes';
 
         return new Promise((success, fail) => {
-            fs.readdir(process.cwd() + '/src/' + path, function (error, files) {
+            fs.readdirSync(process.cwd() + '/src/' + path, function (error, files) {
                 let result = files.find(text =>
                     text.includes('[' + classId + ']')
                 );
