@@ -18,9 +18,7 @@ function authoriseLogin(session, buffer) {
 }
 
 function consume(session, data) {
-    Database.fetchAccountPassword(data.username)
-    .then((rows) => {
-
+    Database.fetchAccountPassword(data.username).then((rows) => {
         if (data.password === rows[0]?.password) {
             session.sendData(
                 ServerResponse.loginSuccess(Config.client)

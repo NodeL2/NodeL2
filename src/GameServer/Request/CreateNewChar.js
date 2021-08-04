@@ -32,9 +32,7 @@ function createNewChar(session, buffer) {
 }
 
 function consume(session, data) {
-    Database.fetchCharacters(session.accountId)
-    .then((rows) => {
-
+    Database.fetchCharacters(session.accountId).then((rows) => {
         session.sendData(
             ServerResponse.charSelectInfo(rows)
         );

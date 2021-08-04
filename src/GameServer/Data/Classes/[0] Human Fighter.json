@@ -1,0 +1,45 @@
+{
+    "class_id"   : 0,
+    "class_name" : "Human Fighter",
+
+    "stats": {
+        "hp" : 126,
+        "mp" : 38,
+
+        "str" : 40,
+        "dex" : 30,
+        "con" : 43,
+        "int" : 21,
+        "wit" : 11,
+        "men" : 25,
+
+        "p_atk"    : 0,
+        "m_atk"    : 0,
+        "p_def"    : 0,
+        "m_def"    : 0,
+        "accuracy" : 0,
+        "evasion"  : 0,
+        "critical" : 0,
+        "speed"    : 0,
+        "atk_spd"  : 0,
+        "cast_spd" : 0,
+
+        "weight_limit" : 81900
+    },
+
+    "speed": {
+        "walk" : 80,
+        "run"  : 115,
+        "swim" : 50
+    },
+
+    "metrics": {
+        "m_radius" : 9,
+        "m_height" : 23,
+        "f_radius" : 8,
+        "f_height" : 23.5
+    },
+
+    "race_id"   : 0,
+    "can_craft" : false
+}

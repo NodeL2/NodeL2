@@ -1,5 +1,6 @@
 // Module imports
 let db = require('mariadb');
+let fs = require('fs');
 
 class Database {
     static init(config, callback) {
@@ -30,6 +31,22 @@ class Database {
         return this.conn.query(
             'SELECT * FROM characters WHERE username = "' + username + '"'
         );
+    }
+
+    // Constant information
+
+    static fetchClassInformation(classId) {
+        const path = 'GameServer/Data/Classes';
+
+        return new Promise((success, fail) => {
+            fs.readdir(process.cwd() + '/src/' + path, function (error, files) {
+                let result = files.find(text =>
+                    text.includes('[' + classId + ']')
+                );
+
+                return result ? success(invoke(path + '/' + result)) : fail();
+            });
+        });
     }
 }
 

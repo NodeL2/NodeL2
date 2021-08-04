@@ -1,3 +1,4 @@
+let Actor         = invoke('GameServer/Actor/Actor');
 let ClientRequest = invoke('GameServer/Request');
 let Utils         = invoke('Utils');
 
@@ -5,6 +6,10 @@ class Session {
     constructor(socket) {
         this.socket    = socket;
         this.accountId = '';
+    }
+
+    initPlayer() {
+        this.player = new Actor();
     }
 
     receiveData(data) {
@@ -22,6 +27,10 @@ class Session {
 
             case 0x0b:
                 ClientRequest.createNewChar(this, decryptedPacket);
+                break;
+
+            case 0x0d:
+                ClientRequest.charSelected(this, decryptedPacket);
                 break;
 
             case 0x0e:

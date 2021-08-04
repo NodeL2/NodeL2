@@ -23,9 +23,7 @@ function consume(session, data) {
     if (Utils.matchSessionKeys(data, Config.client)) {
         session.accountId = data.username;
 
-        Database.fetchCharacters(session.accountId)
-        .then((rows) => {
-
+        Database.fetchCharacters(session.accountId).then((rows) => {
             session.sendData(
                 ServerResponse.charSelectInfo(rows)
             );
