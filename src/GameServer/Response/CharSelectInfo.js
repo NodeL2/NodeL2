@@ -1,3 +1,4 @@
+let Database     = invoke('Database');
 let ServerPacket = invoke('ServerPacket');
 
 function charSelectInfo(characters) {
@@ -10,7 +11,13 @@ function charSelectInfo(characters) {
         packet
             .writeD(characters.length);
 
-        for (let character of characters) {
+        for (var character of characters) {
+            Database.fetchClassInformation(character.classId).then((classInfo) => {
+                character = {
+                    ...character, ...classInfo
+                };
+            });
+
             packet
                 .writeS(character.name)
                 .writeD(character.id)
@@ -19,8 +26,8 @@ function charSelectInfo(characters) {
                 .writeD(0x00)  // ?
                 .writeD(0x00)  // ?
                 .writeD(character.gender)
-                .writeD(character.race_id)
-                .writeD(character.class_id)
+                .writeD(character.raceId)
+                .writeD(character.classId)
                 .writeD(0x01)  // ?
                 .writeD(character.x)
                 .writeD(character.y)
@@ -38,11 +45,11 @@ function charSelectInfo(characters) {
             }
 
             packet
-                .writeD(character.hair_style)
-                .writeD(character.hair_color)
+                .writeD(character.hairStyle)
+                .writeD(character.hairColor)
                 .writeD(character.face)
-                .writeF(character.max_hp)
-                .writeF(character.max_mp)
+                .writeF(character.maxHp)
+                .writeF(character.maxMp)
                 .writeD(0x00);  // Days before deletion
         }
     }

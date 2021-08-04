@@ -10,6 +10,10 @@ class Utils {
     static matchSessionKeys(pair1, pair2) {
         return (pair1.sessionKey1 === pair2.sessionKey1) && (pair1.sessionKey2 === pair2.sessionKey2);
     }
+
+    static textLength(string) {
+        return Buffer.byteLength(string, 'ucs2') + 2;
+    }
 }
 
 module.exports = Utils;

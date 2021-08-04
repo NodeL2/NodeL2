@@ -21,7 +21,14 @@ function consume(session, data) {
     Database.fetchCharacters(session.accountId).then((characters) => {
         let character = characters[data.characterSlot];
 
-        Database.fetchClassInformation(character.class_id).then((classInfo) => {
+        Database.fetchClassInformation(character.classId).then((classInfo) => {
+            session.player.model = {
+                ...character, ...classInfo
+            };
+
+            session.sendData(
+                ServerResponse.charSelected(session.player)
+            );
         });
     });
 }

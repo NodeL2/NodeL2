@@ -1,3 +1,5 @@
+let Utils = invoke('Utils');
+
 class ServerPacket {
     constructor(size) {
         this.buffer = Buffer.alloc(size + 4 + (size + 4) % 8);
@@ -34,7 +36,7 @@ class ServerPacket {
 
     writeS(str) {
         this.buffer.write(str, this.offset, 'ucs2');
-        this.offset += Buffer.byteLength(str, 'ucs2') + 2;
+        this.offset += Utils.textLength(str);
 
         return this;
     }
