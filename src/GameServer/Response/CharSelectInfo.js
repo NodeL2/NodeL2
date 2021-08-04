@@ -16,7 +16,7 @@ function charSelectInfo(characters) {
                 .writeD(character.id)
                 .writeS(character.username)
                 .writeD(0x55555555)
-                .writeD(0x00)  // ?
+                .writeD(0x00)  // Clan Id
                 .writeD(0x00)  // ?
                 .writeD(character.gender)
                 .writeD(character.raceId)
