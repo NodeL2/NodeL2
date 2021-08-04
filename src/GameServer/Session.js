@@ -5,19 +5,9 @@ let Utils         = invoke('Utils');
 class Session {
     constructor(socket) {
         this.socket  = socket;
-        this.opcodes = [];
-
-        this.createOpcodeTable()
-    }
-
-    initPlayer() {
-        this.player = new Actor();
-    }
-
-    createOpcodeTable() {
-        for (var i = 0; i < 0xff; i++) {
-            this.opcodes[i] = this.unknownOpcode;
-        }
+        this.opcodes = Array(0xff).fill((_, decryptedPacket) => {
+            console.log('GameServer:: unknown opcode 0x%s', Utils.toHex(decryptedPacket[0], 2));
+        });
 
         this.opcodes[0x00] = ClientRequest.protocolVersion;
         this.opcodes[0x03] = ClientRequest.enterWorld;
@@ -28,8 +18,8 @@ class Session {
         this.opcodes[0x63] = ClientRequest.questList;
     }
 
-    unknownOpcode(session, decryptedPacket) {
-        console.log('GameServer:: unknown opcode 0x%s', Utils.toHex(decryptedPacket[0], 2));
+    initPlayer() {
+        this.player = new Actor();
     }
 
     receiveData(data) {
