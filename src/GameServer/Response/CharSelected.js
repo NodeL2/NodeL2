@@ -1,5 +1,6 @@
-let ServerPacket = invoke('ServerPacket');
-let Utils        = invoke('Utils');
+let ChroniclePacket = invoke('GameServer/ChroniclePacket');
+let ServerPacket    = invoke('ServerPacket');
+let Utils           = invoke('Utils');
 
 function charSelected(player) { // 229 bytes without strings
     let packet = new ServerPacket(
@@ -7,7 +8,7 @@ function charSelected(player) { // 229 bytes without strings
     );
 
     packet
-        .writeC(0x21)
+        .writeC(ChroniclePacket.code('charSelected'))
         .writeS(player.model.name)
         .writeD(player.model.id)
         .writeS(player.model.title)

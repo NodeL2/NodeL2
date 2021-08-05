@@ -1,10 +1,11 @@
-let ServerPacket = invoke('ServerPacket');
+let ChroniclePacket = invoke('GameServer/ChroniclePacket');
+let ServerPacket    = invoke('ServerPacket');
 
 function charTemplates() {
     let packet = new ServerPacket(8);
 
     packet
-        .writeC(0x23)
+        .writeC(ChroniclePacket.code('charTemplates'))
         .writeD(0x00);
 
     return packet.buffer;

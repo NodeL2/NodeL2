@@ -1,10 +1,11 @@
-let ServerPacket = invoke('ServerPacket');
+let ChroniclePacket = invoke('GameServer/ChroniclePacket');
+let ServerPacket    = invoke('ServerPacket');
 
 function questList() {
     let packet = new ServerPacket(8);
 
     packet
-        .writeC(0x98)
+        .writeC(ChroniclePacket.code('questList'))
         .writeH(0x00)
         .writeH(0x00);
 

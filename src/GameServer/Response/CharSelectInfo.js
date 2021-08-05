@@ -1,10 +1,11 @@
-let ServerPacket = invoke('ServerPacket');
+let ChroniclePacket = invoke('GameServer/ChroniclePacket');
+let ServerPacket    = invoke('ServerPacket');
 
 function charSelectInfo(characters) {
     let packet = new ServerPacket(characters ? characters.length * 296 : 8);
 
     packet
-        .writeC(0x1f);
+        .writeC(ChroniclePacket.code('charSelectInfo'));
 
     if (characters) {
         packet

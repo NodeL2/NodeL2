@@ -1,5 +1,6 @@
-let ServerPacket = invoke('ServerPacket');
-let Utils        = invoke('Utils');
+let ChroniclePacket = invoke('GameServer/ChroniclePacket');
+let ServerPacket    = invoke('ServerPacket');
+let Utils           = invoke('Utils');
 
 function userInfo(player) { // 379 bytes without strings
     let packet = new ServerPacket(
@@ -7,7 +8,7 @@ function userInfo(player) { // 379 bytes without strings
     );
 
     packet
-        .writeC(0x04)
+        .writeC(ChroniclePacket.code('userInfo'))
         .writeD(player.model.x)
         .writeD(player.model.y)
         .writeD(player.model.z)
