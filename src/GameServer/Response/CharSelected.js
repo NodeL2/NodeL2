@@ -5,7 +5,7 @@ function charSelected(player) {
     let info   = player.model;
     let packet = new ServerPacket(
         232 + Utils.textLength(info.name) + Utils.textLength(info.title ?? '')
-    ); //229
+    ); // 229
 
     packet
         .writeC(0x21)
@@ -29,12 +29,12 @@ function charSelected(player) {
         .writeD(info.level)
         .writeD(0x00)  // ?
         .writeD(0x00)  // ?
-        .writeD(info.int)
-        .writeD(info.str)
-        .writeD(info.con)
-        .writeD(info.men)
-        .writeD(info.dex)
-        .writeD(info.wit);
+        .writeD(info.stats.int)
+        .writeD(info.stats.str)
+        .writeD(info.stats.con)
+        .writeD(info.stats.men)
+        .writeD(info.stats.dex)
+        .writeD(info.stats.wit);
 
     for (let i = 0; i < 30; i++) {
         packet
