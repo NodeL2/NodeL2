@@ -1,7 +1,10 @@
 let ServerPacket = invoke('ServerPacket');
+let Utils        = invoke('Utils');
 
-function userInfo(player) {
-    let packet = new ServerPacket(600); // 379 + Utils.textLength(info.name) + Utils.textLength(info.title ?? '')
+function userInfo(player) { // 379 bytes without strings
+    let packet = new ServerPacket(
+        384 + Utils.textLength(player.model.name) + Utils.textLength(player.model.title)
+    );
 
     packet
         .writeC(0x04)
@@ -93,7 +96,7 @@ function userInfo(player) {
         .writeD(player.model.hairColor)
         .writeD(player.model.face)
         .writeD(0x00)  // GM = 0x01
-        .writeS(player.title ?? '')
+        .writeS(player.model.title)
         .writeD(0x00)  // Clan ID
         .writeD(0x00)  // Clan Crest ID
         .writeD(0x00)  // Ally ID

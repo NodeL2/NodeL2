@@ -22,9 +22,9 @@ function consume(session, data) {
         let character = characters[data.characterSlot];
 
         Database.fetchClassInformation(character.classId).then((classInfo) => {
-            session.player.model = {
+            session.player.setModel({
                 ...character, ...classInfo
-            };
+            });
 
             session.sendData(
                 ServerResponse.charSelected(session.player)

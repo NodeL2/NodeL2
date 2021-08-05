@@ -1,7 +1,7 @@
 let ServerPacket = invoke('ServerPacket');
 
 function versionCheck(isProtocolValid) {
-    let packet = new ServerPacket(16); // 10
+    let packet = new ServerPacket(16);
 
     packet
         .writeC(0x00)

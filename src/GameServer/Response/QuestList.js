@@ -1,7 +1,7 @@
 let ServerPacket = invoke('ServerPacket');
 
 function questList() {
-    let packet = new ServerPacket(5);
+    let packet = new ServerPacket(8);
 
     packet
         .writeC(0x98)
