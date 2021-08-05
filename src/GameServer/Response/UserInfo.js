@@ -1,14 +1,13 @@
 let ChroniclePacket = invoke('GameServer/ChroniclePacket');
-let ServerPacket    = invoke('ServerPacket');
 let Utils           = invoke('Utils');
 
 function userInfo(player) { // 379 bytes without strings
-    let packet = new ServerPacket(
+    let packet = new ChroniclePacket(
+        userInfo.name,
         384 + Utils.textLength(player.model.name) + Utils.textLength(player.model.title)
     );
 
     packet
-        .writeC(ChroniclePacket.code('userInfo'))
         .writeD(player.model.x)
         .writeD(player.model.y)
         .writeD(player.model.z)
