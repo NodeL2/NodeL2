@@ -5,15 +5,15 @@ class ChroniclePacket extends ServerPacket {
     constructor(key, size) {
         super(size);
 
-        // Combination of Chronicle 1 / Chronicle 2 packet codes
+        // Combination of Chronicle 0/1/2 packet codes
         this.values = {
-              charSelected: [0x21, 0x15],
-            charSelectInfo: [0x1f, 0x13],
-             charTemplates: [0x23, 0x17],
-                 questList: [0x98, 0x80],
-                   sunrise: [0x28, 0x1c],
-                  userInfo: [0x04, 0x04],
-              versionCheck: [0x00, 0x00],
+              charSelected: [0x00, 0x21, 0x15],
+            charSelectInfo: [0x00, 0x1f, 0x13],
+             charTemplates: [0x00, 0x23, 0x17],
+                 questList: [0x00, 0x98, 0x80],
+                   sunrise: [0x00, 0x28, 0x1c],
+                  userInfo: [0x00, 0x04, 0x04],
+              versionCheck: [0x00, 0x00, 0x00],
         };
 
         if (!key in this.values) {
@@ -22,7 +22,7 @@ class ChroniclePacket extends ServerPacket {
 
         // Write correct Chronicle packet code in buffer
         this.writeC(
-            this.values[key][Config.client.chronicle - 1]
+            this.values[key][Config.client.chronicle]
         );
     }
 }
