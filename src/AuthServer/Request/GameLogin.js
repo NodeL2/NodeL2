@@ -19,8 +19,8 @@ function gameLogin(session, buffer) {
 }
 
 function consume(session, data) {
-    if (Utils.matchSessionKeys(data, Config.client)) {
-        if (data.serverId === Config.gameServer.id) {
+    if (Utils.matchSessionKeys(Config.client, data)) {
+        if (Config.gameServer.id === data.serverId) {
             session.sendData(
                 ServerResponse.gameSuccess(Config.client)
             );

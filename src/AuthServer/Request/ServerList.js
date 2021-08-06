@@ -17,7 +17,7 @@ function serverList(session, buffer) {
 }
 
 function consume(session, data) {
-    if (Utils.matchSessionKeys(data, Config.client)) {
+    if (Utils.matchSessionKeys(Config.client, data)) {
         session.sendData(
             ServerResponse.serverList(Config.gameServer)
         );
