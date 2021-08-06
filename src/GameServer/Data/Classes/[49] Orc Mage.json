@@ -3,41 +3,41 @@
     "className" : "Orc Mage",
 
     "stats": {
-        "maxHp" : 126,
-        "maxMp" : 38,
+        "maxHp" : 105,
+        "maxMp" : 60,
 
-        "str" : 40,
-        "dex" : 30,
-        "con" : 43,
-        "int" : 21,
-        "wit" : 11,
-        "men" : 25,
+        "str" : 27,
+        "dex" : 24,
+        "con" : 31,
+        "int" : 31,
+        "wit" : 15,
+        "men" : 42,
 
-        "pAtk"     : 0,
-        "mAtk"     : 0,
-        "pDef"     : 0,
-        "mDef"     : 0,
-        "accuracy" : 0,
-        "evasion"  : 0,
-        "critical" : 0,
-        "speed"    : 0,
-        "atkSpd"   : 0,
-        "castSpd"  : 0,
+        "pAtk"     : 2,
+        "mAtk"     : 4,
+        "pDef"     : 48,
+        "mDef"     : 56,
+        "accuracy" : 30,
+        "evasion"  : 30,
+        "critical" : 41,
+        "speed"    : 126,
+        "atkSpd"   : 312,
+        "castSpd"  : 265,
 
-        "weightLimit" : 81900
+        "weightLimit" : 68000
     },
 
     "speed": {
-        "walk" : 80,
-        "run"  : 115,
+        "walk" : 85,
+        "run"  : 121,
         "swim" : 50
     },
 
     "metrics": {
-        "maleR" : 9,
-        "maleH" : 23,
+        "maleR" : 7,
+        "maleH" : 27.5,
         "femlR" : 8,
-        "femlH" : 23.5
+        "femlH" : 25.5
     },
 
     "raceId"   : 3,

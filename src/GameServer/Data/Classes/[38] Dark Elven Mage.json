@@ -3,40 +3,40 @@
     "className" : "Dark Elven Mage",
 
     "stats": {
-        "maxHp" : 126,
-        "maxMp" : 38,
+        "maxHp" : 95,
+        "maxMp" : 58,
 
-        "str" : 40,
-        "dex" : 30,
-        "con" : 43,
-        "int" : 21,
-        "wit" : 11,
-        "men" : 25,
+        "str" : 23,
+        "dex" : 23,
+        "con" : 24,
+        "int" : 44,
+        "wit" : 19,
+        "men" : 37,
 
-        "pAtk"     : 0,
-        "mAtk"     : 0,
-        "pDef"     : 0,
-        "mDef"     : 0,
-        "accuracy" : 0,
-        "evasion"  : 0,
-        "critical" : 0,
-        "speed"    : 0,
-        "atkSpd"   : 0,
-        "castSpd"  : 0,
+        "pAtk"     : 2,
+        "mAtk"     : 7,
+        "pDef"     : 48,
+        "mDef"     : 53,
+        "accuracy" : 29,
+        "evasion"  : 29,
+        "critical" : 41,
+        "speed"    : 126,
+        "atkSpd"   : 309,
+        "castSpd"  : 316,
 
-        "weightLimit" : 81900
+        "weightLimit" : 61000
     },
 
     "speed": {
-        "walk" : 80,
-        "run"  : 115,
+        "walk" : 85,
+        "run"  : 122,
         "swim" : 50
     },
 
     "metrics": {
-        "maleR" : 9,
-        "maleH" : 23,
-        "femlR" : 8,
+        "maleR" : 7.5,
+        "maleH" : 24,
+        "femlR" : 7,
         "femlH" : 23.5
     },
 

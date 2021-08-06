@@ -3,41 +3,41 @@
     "className" : "Orc Fighter",
 
     "stats": {
-        "maxHp" : 126,
-        "maxMp" : 38,
+        "maxHp" : 133,
+        "maxMp" : 39,
 
         "str" : 40,
-        "dex" : 30,
-        "con" : 43,
-        "int" : 21,
-        "wit" : 11,
-        "men" : 25,
+        "dex" : 26,
+        "con" : 47,
+        "int" : 18,
+        "wit" : 12,
+        "men" : 27,
 
-        "pAtk"     : 0,
-        "mAtk"     : 0,
-        "pDef"     : 0,
-        "mDef"     : 0,
-        "accuracy" : 0,
-        "evasion"  : 0,
-        "critical" : 0,
-        "speed"    : 0,
-        "atkSpd"   : 0,
-        "castSpd"  : 0,
+        "pAtk"     : 4,
+        "mAtk"     : 2,
+        "pDef"     : 72,
+        "mDef"     : 48,
+        "accuracy" : 31,
+        "evasion"  : 31,
+        "critical" : 42,
+        "speed"    : 126,
+        "atkSpd"   : 318,
+        "castSpd"  : 226,
 
-        "weightLimit" : 81900
+        "weightLimit" : 87000
     },
 
     "speed": {
-        "walk" : 80,
-        "run"  : 115,
+        "walk" : 82,
+        "run"  : 117,
         "swim" : 50
     },
 
     "metrics": {
-        "maleR" : 9,
-        "maleH" : 23,
-        "femlR" : 8,
-        "femlH" : 23.5
+        "maleR" : 11,
+        "maleH" : 28,
+        "femlR" : 7,
+        "femlH" : 27
     },
 
     "raceId"   : 3,

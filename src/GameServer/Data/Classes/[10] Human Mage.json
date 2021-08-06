@@ -3,41 +3,41 @@
     "className" : "Human Mage",
 
     "stats": {
-        "maxHp" : 126,
-        "maxMp" : 38,
+        "maxHp" : 99,
+        "maxMp" : 59,
 
-        "str" : 40,
-        "dex" : 30,
-        "con" : 43,
-        "int" : 21,
-        "wit" : 11,
-        "men" : 25,
+        "str" : 22,
+        "dex" : 21,
+        "con" : 27,
+        "int" : 41,
+        "wit" : 20,
+        "men" : 39,
 
-        "pAtk"     : 0,
-        "mAtk"     : 0,
-        "pDef"     : 0,
-        "mDef"     : 0,
-        "accuracy" : 0,
-        "evasion"  : 0,
-        "critical" : 0,
-        "speed"    : 0,
-        "atkSpd"   : 0,
-        "castSpd"  : 0,
+        "pAtk"     : 2,
+        "mAtk"     : 7,
+        "pDef"     : 48,
+        "mDef"     : 54,
+        "accuracy" : 28,
+        "evasion"  : 28,
+        "critical" : 40,
+        "speed"    : 126,
+        "atkSpd"   : 303,
+        "castSpd"  : 333,
 
-        "weightLimit" : 81900
+        "weightLimit" : 62500
     },
 
     "speed": {
-        "walk" : 80,
-        "run"  : 115,
+        "walk" : 84,
+        "run"  : 120,
         "swim" : 50
     },
 
     "metrics": {
-        "maleR" : 9,
-        "maleH" : 23,
-        "femlR" : 8,
-        "femlH" : 23.5
+        "maleR" : 7.5,
+        "maleH" : 22.8,
+        "femlR" : 6.5,
+        "femlH" : 22.5
     },
 
     "raceId"   : 0,

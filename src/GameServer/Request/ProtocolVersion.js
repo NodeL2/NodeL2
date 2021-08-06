@@ -15,7 +15,7 @@ function protocolVersion(session, buffer) {
 
 function consume(session, data) {
     session.sendData(
-        ServerResponse.versionCheck(Config.ClientPacket.protocol === data.protocolVersion)
+        ServerResponse.versionCheck(Config.client.protocol === data.protocolVersion)
     );
 }
 

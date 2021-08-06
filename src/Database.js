@@ -33,6 +33,13 @@ class Database {
         );
     }
 
+    static addNewCharacter(username, data, classInfo) {
+        return this.conn.query('\
+            INSERT INTO characters (username, name, raceId, classId, level, maxHp, hp, maxMp, mp, exp, sp, karma, gender, face, hairStyle, hairColor, x, y, z)\
+            VALUES ("' + username + '", "' + data.name + '", ' + data.raceId + ', ' + data.classId + ', 1, ' + classInfo.stats.maxHp + ', 48, ' + classInfo.stats.maxMp + ', ' + classInfo.stats.maxMp + ', 0, 0, 0, ' + data.gender + ', ' + data.face + ', ' + data.hairStyle + ', ' + data.hairColor + ', 43648, 40352, -3430)\
+        ');
+    }
+
     // Constant information
 
     static fetchClassInformation(classId) {

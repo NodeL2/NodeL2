@@ -22,7 +22,7 @@ function createNewChar(session, buffer) {
 
     consume(session, {
         name      : packet.data[ 0],
-        race      : packet.data[ 1],
+        raceId    : packet.data[ 1],
         gender    : packet.data[ 2],
         classId   : packet.data[ 3],
         hairStyle : packet.data[10],
@@ -32,10 +32,14 @@ function createNewChar(session, buffer) {
 }
 
 function consume(session, data) {
-    Database.fetchCharacters(session.accountId).then((rows) => {
-        session.sendData(
-            ServerResponse.charSelectInfo(rows)
-        );
+    Database.fetchClassInformation(data.classId).then((classInfo) => {
+        Database.addNewCharacter(session.accountId, data, classInfo).then(() => {
+            Database.fetchCharacters(session.accountId).then((rows) => {
+                session.sendData(
+                    ServerResponse.charSelectInfo(rows)
+                );
+            });
+        });
     });
 }
 
