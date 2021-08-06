@@ -6,7 +6,7 @@ class Session {
     constructor(socket) {
         this.socket = socket;
         this.opcodes = Array(0xff).fill((_, decryptedPacket) => {
-            console.log('AuthServer:: unknown opcode 0x%s', Utils.toHex(decryptedPacket[0], 2));
+            fatalError('AuthServer:: unknown opcode 0x%s', Utils.toHex(decryptedPacket[0], 2));
         });
 
         this.opcodes[0x00] = ClientRequest.authoriseLogin;

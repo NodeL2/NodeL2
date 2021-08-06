@@ -17,8 +17,7 @@ class ChroniclePacket extends ServerPacket {
         };
 
         if (!key in this.values) {
-            console.log('GS:: unknown chronicle packet code -> %s', key)
-            process.exit();
+            fatalError('GS:: unknown chronicle packet code -> %s', key);
         }
 
         // Write correct Chronicle packet code in buffer

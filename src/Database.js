@@ -17,7 +17,7 @@ class Database {
             callback();
         })
         .catch(error => {
-            console.log('DB:: failed to create connection');
+            fatalError('DB:: failed to create connection');
         })
     }
 
