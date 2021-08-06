@@ -5,7 +5,7 @@ Node implementation of a C0/C1/C2 Lineage 2 server emulator
 
 * Install `NodeJS`
 * Import `nodel2beta.dump` backup into `nodel2beta` SQL database
-* Fix database password, chronicle version, and protocol on `config.ini`
+* Fix database password, chronicle version, and protocol in `config.ini`
 * Run `npm install -i`
 * Run `node src/Server`
 * Default credentials are username `q` and password `q`
