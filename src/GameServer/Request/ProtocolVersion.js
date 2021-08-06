@@ -1,4 +1,5 @@
 let ClientPacket   = invoke('ClientPacket');
+let Config         = invoke('Config');
 let ServerResponse = invoke('GameServer/Response');
 
 function protocolVersion(session, buffer) {
@@ -12,9 +13,9 @@ function protocolVersion(session, buffer) {
     });
 }
 
-function consume(session, data) { // TODO: Proper check on final code
+function consume(session, data) {
     session.sendData(
-        ServerResponse.versionCheck(data.protocolVersion >= 419)
+        ServerResponse.versionCheck(Config.ClientPacket.protocol === data.protocolVersion)
     );
 }
 
