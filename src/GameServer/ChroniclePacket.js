@@ -5,6 +5,7 @@ class ChroniclePacket extends ServerPacket {
     constructor(key, size) {
         super(size);
 
+        // Combination of Chronicle 1 / Chronicle 2 packet codes
         this.values = {
               charSelected: [0x21, 0x15],
             charSelectInfo: [0x1f, 0x13],
@@ -15,14 +16,15 @@ class ChroniclePacket extends ServerPacket {
               versionCheck: [0x00, 0x00],
         };
 
-        if (!(key in this.values)) {
-            console.log('GS:: chronicle packet code invalid -> %s', key)
+        if (!key in this.values) {
+            console.log('GS:: unknown chronicle packet code -> %s', key)
             process.exit();
         }
-        
-        let code = this.values[key][Config.client.chronicle - 1];
-        this.buffer.writeUInt8(code, this.offset);
-        this.offset += 1;
+
+        // Write correct Chronicle packet code in buffer
+        this.writeC(
+            this.values[key][Config.client.chronicle - 1]
+        );
     }
 }
 
