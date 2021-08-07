@@ -7,6 +7,8 @@ module.exports = {
      logoutSuccess: invoke('GameServer/Response/LogoutSuccess'),
            restart: invoke('GameServer/Response/Restart'),
                say: invoke('GameServer/Response/Say'),
+     showInventory: invoke('GameServer/Response/ShowInventory'),
+           showMap: invoke('GameServer/Response/ShowMap'),
       socialAction: invoke('GameServer/Response/SocialAction'),
            sunrise: invoke('GameServer/Response/Sunrise'),
           userInfo: invoke('GameServer/Response/UserInfo'),
