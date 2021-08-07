@@ -9,5 +9,6 @@ module.exports = {
              questList: invoke('GameServer/Request/QuestList'),
        protocolVersion: invoke('GameServer/Request/ProtocolVersion'),
                restart: invoke('GameServer/Request/Restart'),
+                   say: invoke('GameServer/Request/Say'),
       validatePosition: invoke('GameServer/Request/ValidatePosition'),
 };

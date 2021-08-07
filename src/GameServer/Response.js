@@ -6,6 +6,7 @@ module.exports = {
          questList: invoke('GameServer/Response/QuestList'),
      logoutSuccess: invoke('GameServer/Response/LogoutSuccess'),
            restart: invoke('GameServer/Response/Restart'),
+               say: invoke('GameServer/Response/Say'),
            sunrise: invoke('GameServer/Response/Sunrise'),
           userInfo: invoke('GameServer/Response/UserInfo'),
       versionCheck: invoke('GameServer/Response/VersionCheck')
