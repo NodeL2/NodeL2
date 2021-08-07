@@ -10,5 +10,6 @@ module.exports = {
        protocolVersion: invoke('GameServer/Request/ProtocolVersion'),
                restart: invoke('GameServer/Request/Restart'),
                    say: invoke('GameServer/Request/Say'),
+          socialAction: invoke('GameServer/Request/SocialAction'),
       validatePosition: invoke('GameServer/Request/ValidatePosition'),
 };

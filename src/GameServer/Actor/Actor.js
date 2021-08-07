@@ -14,6 +14,12 @@ class Actor {
             ServerResponse.moveToLocation(this.model.id, data)
         );
     }
+
+    socialAction(session, data) {
+        session.sendData(
+            ServerResponse.socialAction(this.model.id, data.actionId)
+        );
+    }
 }
 
 module.exports = Actor;
