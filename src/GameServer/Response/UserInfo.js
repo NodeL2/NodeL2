@@ -89,7 +89,7 @@ function userInfo(player) { // 379 bytes without strings
         .writeD(0x00)  // Flying Run Speed
         .writeD(0x00)  // Flying Walk Speed
         .writeF(1.0)   // Movement Multiplier
-        .writeF(player.model.stats.atkSpd / 277.77777777777777)   // Attack Speed Multiplier
+        .writeF(player.model.stats.atkSpd / 277.77777777777777)  // Attack Speed Multiplier
         .writeF(player.model.metrics.maleR)
         .writeF(player.model.metrics.maleH)
         .writeD(player.model.hairStyle)
