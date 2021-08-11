@@ -1,11 +1,9 @@
-let OSAttributes = require('os');
 let ServerPacket = invoke('ServerPacket');
 
-function serverList(config) {
+function serverList(config, ipAddress) {
     let packet = new ServerPacket(24); // 19
 
-    let network    = OSAttributes.networkInterfaces();
-    let host       = network['en0'][1].address.split('.');
+    let host       = ipAddress.split('.');
     let port       = config.port;
     let maxPlayers = config.maxPlayers
 
