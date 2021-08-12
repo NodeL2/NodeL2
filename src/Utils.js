@@ -1,4 +1,4 @@
-let OSAttributes = require('os');
+let os = require('os');
 
 class Utils {
     static toHex(value, padding) {
@@ -18,7 +18,7 @@ class Utils {
     }
 
     static fetchIPv4Address() {
-        let network = OSAttributes.networkInterfaces();
+        let network = os.networkInterfaces();
         let adapter = network['en0'];
         let ipv4    = adapter.filter(item => item.family === 'IPv4');
         return ipv4[0].address;
