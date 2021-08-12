@@ -1,3 +1,5 @@
+let OSAttributes = require('os');
+
 class Utils {
     static toHex(value, padding) {
         return Number(value).toString(16).padStart(padding, '0');
@@ -13,6 +15,13 @@ class Utils {
 
     static textLength(string) {
         return Buffer.byteLength(string, 'ucs2') + 2;
+    }
+
+    static fetchIPv4Address() {
+        let network = OSAttributes.networkInterfaces();
+        let adapter = network['en0'];
+        let ipv4    = adapter.filter(item => item.family === 'IPv4');
+        return ipv4[0].address;
     }
 }
 

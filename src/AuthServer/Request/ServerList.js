@@ -3,9 +3,6 @@ let Config         = invoke('Config');
 let ServerResponse = invoke('AuthServer/Response');
 let Utils          = invoke('Utils');
 
-// Module imports
-let OSAttributes = require('os');
-
 function serverList(session, buffer) {
     let packet = new ClientPacket(buffer);
 
@@ -22,7 +19,7 @@ function serverList(session, buffer) {
 function consume(session, data) {
     if (Utils.matchSessionKeys(Config.client, data)) {
         session.sendData(
-            ServerResponse.serverList(Config.gameServer, fetchIPAddressType(session))
+            ServerResponse.serverList(Config.gameServer, fetchGameServerIPAddress(session))
         );
     }
     else { // Session keys don't match
@@ -32,20 +29,21 @@ function consume(session, data) {
     }
 }
 
-function fetchIPAddressType(session) {
-    let host = session.socket.remoteAddress.split('.');
+function fetchGameServerIPAddress(session) {
+    let remoteAddr = session.socket.remoteAddress;
+    let host = remoteAddr.split('.');
 
-    if (host[0] === '127') { // Localhost
-        return session.socket.remoteAddress
-    } else
-    if (host[0] === '192' && host[1] === '168') { // LAN
-        let network = OSAttributes.networkInterfaces();
-        let adapter = network['en0'];
-        let ipv4    = adapter.filter(item => item.family === 'IPv4');
-        return ipv4[0].address;
-    } else { // Likely WAN
-        fatalError('AuthServer:: unhandled WAN address');
+    switch (host[0]) {
+        case '127': // Localhost
+            return remoteAddr;
+
+        case '192': // LAN
+            return Utils.fetchIPv4Address();
     }
+
+    // WAN / Internet
+    fatalError('AuthServer:: unhandled WAN address');
+    return '';
 }
 
 module.exports = serverList;
