@@ -10,6 +10,7 @@ module.exports = {
      showInventory: invoke('GameServer/Response/ShowInventory'),
            showMap: invoke('GameServer/Response/ShowMap'),
       socialAction: invoke('GameServer/Response/SocialAction'),
+          stopMove: invoke('GameServer/Response/StopMove'),
            sunrise: invoke('GameServer/Response/Sunrise'),
           userInfo: invoke('GameServer/Response/UserInfo'),
       versionCheck: invoke('GameServer/Response/VersionCheck')

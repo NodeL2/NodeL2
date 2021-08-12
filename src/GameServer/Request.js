@@ -13,5 +13,6 @@ module.exports = {
              showBoard: invoke('GameServer/Request/ShowBoard'),
          showInventory: invoke('GameServer/Request/ShowInventory'),
           socialAction: invoke('GameServer/Request/SocialAction'),
+              stopMove: invoke('GameServer/Request/StopMove'),
       validatePosition: invoke('GameServer/Request/ValidatePosition'),
 };

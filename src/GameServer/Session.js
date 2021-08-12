@@ -19,6 +19,7 @@ class Session {
         this.opcodes[0x0e] = ClientRequest.charCreationScreen;
         this.opcodes[0x0f] = ClientRequest.showInventory;
         this.opcodes[0x1b] = ClientRequest.socialAction;
+        this.opcodes[0x36] = ClientRequest.stopMove;
         this.opcodes[0x38] = ClientRequest.say;
         this.opcodes[0x46] = ClientRequest.restart;
         this.opcodes[0x48] = ClientRequest.validatePosition;

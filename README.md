@@ -4,7 +4,7 @@ Node implementation of a C0/C1/C2 Lineage 2 server emulator
 <h2>How to</h2>
 
 * Install `NodeJS`
-* Import `nodel2beta.dump` backup into `nodel2beta` SQL database
+* Import `nodel2beta.dump` backup into `nodel2beta` MariaDB SQL database
 * Fix database password, chronicle version, and protocol in `config.ini`
 * Run `npm install -i`
 * Run `node src/Server`
