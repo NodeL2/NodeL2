@@ -40,7 +40,9 @@ function fetchIPAddressType(session) {
     } else
     if (host[0] === '192' && host[1] === '168') { // LAN
         let network = OSAttributes.networkInterfaces();
-        return network['en0'][1].address;
+        let adapter = network['en0'];
+        let ipv4    = adapter.filter(item => item.family === 'IPv4');
+        return ipv4[0].address;
     } else { // Likely WAN
         fatalError('AuthServer:: unhandled WAN address');
     }
