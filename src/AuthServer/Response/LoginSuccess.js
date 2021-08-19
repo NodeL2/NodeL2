@@ -13,8 +13,6 @@ function loginSuccess(config) {
         .writeD(0x00)
         .writeD(0x02);
 
-    console.log(packet.fetchBuffer());
-
     return packet.fetchBuffer();
 }
 
