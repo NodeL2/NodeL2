@@ -1,5 +1,3 @@
-let Utils = invoke('Utils');
-
 class ServerPacket {
     constructor(opcode) {
         this.buffer = Buffer.from([opcode]);
@@ -56,14 +54,19 @@ class ServerPacket {
     // Buffer
 
     fetchBuffer(checksum = true) {
-        // 32-Bits align
+        // 32-bit align
+        let size = this.buffer.byteLength;
+
         this.buffer = Buffer.concat([
-            this.buffer, Buffer.alloc((Math.ceil(this.buffer.byteLength / 4) * 4) - this.buffer.byteLength)
+            this.buffer, Buffer.alloc((Math.ceil(size / 4) * 4) - size)
         ]);
 
-        // Checksum
-        let ext = Buffer.alloc(4 + (this.buffer.byteLength + 4) % 8);
-        return (checksum) ? Buffer.concat([this.buffer, ext]) : this.buffer;
+        if (checksum) {
+            return Buffer.concat([
+                this.buffer, Buffer.alloc(4 + (this.buffer.byteLength + 4) % 8)
+            ]);
+        }
+        else return this.buffer;
     }
 }
 
