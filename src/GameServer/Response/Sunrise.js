@@ -1,9 +1,9 @@
 let ChroniclePacket = invoke('GameServer/ChroniclePacket');
 
 function sunrise() {
-    let packet = new ChroniclePacket(sunrise.name, 8);
+    let packet = new ChroniclePacket(sunrise.name);
 
-    return packet.buffer;
+    return packet.fetchBuffer();
 }
 
 module.exports = sunrise;

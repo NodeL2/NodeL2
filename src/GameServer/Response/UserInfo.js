@@ -1,11 +1,7 @@
 let ChroniclePacket = invoke('GameServer/ChroniclePacket');
-let Utils           = invoke('Utils');
 
-function userInfo(player) { // 379 bytes without strings
-    let packet = new ChroniclePacket(
-        userInfo.name,
-        384 + Utils.textLength(player.model.name) + Utils.textLength(player.model.title)
-    );
+function userInfo(player) {
+    let packet = new ChroniclePacket(userInfo.name);
 
     packet
         .writeD(player.model.x)
@@ -110,7 +106,7 @@ function userInfo(player) { // 379 bytes without strings
         .writeH(0x00)  // Cubic Count
         .writeC(0x00); // Find Party Members = 0x01
 
-    return packet.buffer;
+    return packet.fetchBuffer();
 }
 
 module.exports = userInfo;

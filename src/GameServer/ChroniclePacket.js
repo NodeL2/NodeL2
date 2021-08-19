@@ -2,9 +2,7 @@ let Config       = invoke('Config');
 let ServerPacket = invoke('ServerPacket');
 
 class ChroniclePacket extends ServerPacket {
-    constructor(key, size) {
-        super(size);
-
+    constructor(key) {
         // Combination of Chronicle 0/1/2 packet codes
         this.values = {
               charSelected: [0x21, 0x21, 0x15],
@@ -29,9 +27,12 @@ class ChroniclePacket extends ServerPacket {
         }
 
         // Write correct Chronicle packet code in buffer
-        this.writeC(
-            this.values[key][Config.client.chronicle]
-        );
+        super(this.values[key][Config.client.chronicle]);
+
+        
+        // this.writeC(
+        //     this.values[key][Config.client.chronicle]
+        // );
     }
 }
 

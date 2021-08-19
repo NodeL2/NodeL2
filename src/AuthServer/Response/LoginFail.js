@@ -1,13 +1,12 @@
 let ServerPacket = invoke('ServerPacket');
 
 function loginFail(errorCode) {
-    let packet = new ServerPacket(8); // 2
+    let packet = new ServerPacket(0x01);
 
     packet
-        .writeC(0x01)
         .writeC(errorCode); // Failure reason
 
-    return packet.buffer;
+    return packet.fetchBuffer();
 }
 
 // 0x01 System error

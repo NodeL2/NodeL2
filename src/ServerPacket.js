@@ -1,44 +1,61 @@
-let Utils = invoke('Utils');
-
 class ServerPacket {
-    constructor(size) {
-        this.buffer = Buffer.alloc(size + 4 + (size + 4) % 8);
-        this.offset = 0;
+    constructor(opcode) {
+        this.buffer = Buffer.from([opcode]);
     }
 
-    writeC(data) {
-        this.buffer.writeUInt8(data, this.offset);
-        this.offset += 1;
+    // Standard data types
 
+    write(value, size) {
+        let data = new DataView(new ArrayBuffer(size));
+
+        switch (size) {
+            case 1: data.setUint8  (0, value, true); break;
+            case 2: data.setUint16 (0, value, true); break;
+            case 4: data.setInt32 (0, value, true); break;
+            case 8: data.setFloat64(0, value, true); break;
+        }
+
+        this.buffer = Buffer.concat([this.buffer, Buffer.from(data.buffer)]);
         return this;
     }
 
-    writeH(data) {
-        this.buffer.writeUInt16LE(data, this.offset);
-        this.offset += 2;
-
-        return this;
+    writeC(value) {
+        return this.write(value, 1);
     }
 
-    writeD(data) {
-        this.buffer.writeInt32LE(data, this.offset);
-        this.offset += 4;
+    writeH(value) {
+        return this.write(value, 2);
+    }
 
-        return this;
+    writeD(value) {
+        return this.write(value, 4);
     }
 
     writeF(value) {
-        this.buffer.writeDoubleLE(value, this.offset);
-        this.offset += 8;
+        return this.write(value, 8);
+    }
 
+    // Special cases
+
+    writeB(array) {
+        this.buffer = Buffer.concat([
+            this.buffer, new Uint8Array(array.reverse())
+        ]);
         return this;
     }
 
-    writeS(str) {
-        this.buffer.write(str, this.offset, 'ucs2');
-        this.offset += Utils.textLength(str);
-
+    writeS(text) {
+        this.buffer = Buffer.concat([
+            this.buffer, Buffer.from(text, 'ucs2'), Buffer.alloc(2)
+        ]);
         return this;
+    }
+
+    // Buffer
+
+    fetchBuffer(checksum = true) {
+        let ext = Buffer.alloc(4 + (this.buffer.byteLength + 4) % 8);
+        return (checksum) ? Buffer.concat([this.buffer, ext]) : this.buffer;
     }
 }
 

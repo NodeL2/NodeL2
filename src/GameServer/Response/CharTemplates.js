@@ -1,12 +1,12 @@
 let ChroniclePacket = invoke('GameServer/ChroniclePacket');
 
 function charTemplates() {
-    let packet = new ChroniclePacket(charTemplates.name, 8);
+    let packet = new ChroniclePacket(charTemplates.name);
 
     packet
         .writeD(0x00);
 
-    return packet.buffer;
+    return packet.fetchBuffer();
 }
 
 module.exports = charTemplates;

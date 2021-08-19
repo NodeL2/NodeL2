@@ -1,14 +1,13 @@
 let ServerPacket = invoke('ServerPacket');
 
 function serverList(config, ipAddress) {
-    let packet = new ServerPacket(24); // 19
+    let packet = new ServerPacket(0x04);
 
     let host       = ipAddress.split('.');
     let port       = config.port;
     let maxPlayers = config.maxPlayers
 
     packet
-        .writeC(0x04)
         .writeC(1)          // Number of servers
         .writeC(0)          // LS Number
         .writeC(1)          // Server ID
@@ -23,7 +22,7 @@ function serverList(config, ipAddress) {
         .writeH(maxPlayers) // Max players
         .writeC(1);         // Status ? 1 = Up, 0 = Down
 
-    return packet.buffer;
+    return packet.fetchBuffer();
 }
 
 module.exports = serverList;

@@ -1,7 +1,7 @@
 let ChroniclePacket = invoke('GameServer/ChroniclePacket');
 
 function stopMove(player) {
-    let packet = new ChroniclePacket(stopMove.name, 24); // 17
+    let packet = new ChroniclePacket(stopMove.name);
 
     packet
         .writeD(player.model.id)
@@ -9,7 +9,7 @@ function stopMove(player) {
         .writeD(player.model.y)
         .writeD(player.model.z);
 
-    return packet.buffer;
+    return packet.fetchBuffer();
 }
 
 module.exports = stopMove;

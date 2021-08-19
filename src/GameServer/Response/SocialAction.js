@@ -1,13 +1,13 @@
 let ChroniclePacket = invoke('GameServer/ChroniclePacket');
 
 function socialAction(playerId, actionId) {
-    let packet = new ChroniclePacket(socialAction.name, 9);
+    let packet = new ChroniclePacket(socialAction.name);
 
     packet
         .writeD(playerId)
         .writeD(actionId);
 
-    return packet.buffer;
+    return packet.fetchBuffer();
 }
 
 module.exports = socialAction;

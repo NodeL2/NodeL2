@@ -1,7 +1,7 @@
 let ChroniclePacket = invoke('GameServer/ChroniclePacket');
 
 function versionCheck(isProtocolValid) {
-    let packet = new ChroniclePacket(versionCheck.name, 16);
+    let packet = new ChroniclePacket(versionCheck.name);
 
     packet
         .writeC(isProtocolValid)
@@ -14,7 +14,7 @@ function versionCheck(isProtocolValid) {
         .writeC(0x00)  // Exclusive OR Key 7
         .writeC(0x00); // Exclusive OR Key 8
 
-    return packet.buffer;
+    return packet.fetchBuffer();
 }
 
 module.exports = versionCheck;

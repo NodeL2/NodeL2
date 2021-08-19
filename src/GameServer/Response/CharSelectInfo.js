@@ -1,7 +1,7 @@
 let ChroniclePacket = invoke('GameServer/ChroniclePacket');
 
 function charSelectInfo(characters) {
-    let packet = new ChroniclePacket(charSelectInfo.name, characters ? characters.length * 296 : 8);
+    let packet = new ChroniclePacket(charSelectInfo.name);
 
     if (characters) {
         packet
@@ -48,7 +48,7 @@ function charSelectInfo(characters) {
             .writeD(0x00);
     }
 
-    return packet.buffer;
+    return packet.fetchBuffer();
 }
 
 module.exports = charSelectInfo;

@@ -1,11 +1,7 @@
 let ChroniclePacket = invoke('GameServer/ChroniclePacket');
-let Utils           = invoke('Utils');
 
-function charSelected(player) { // 229 bytes without strings
-    let packet = new ChroniclePacket(
-        charSelected.name,
-        232 + Utils.textLength(player.model.name) + Utils.textLength(player.model.title)
-    );
+function charSelected(player) {
+    let packet = new ChroniclePacket(charSelected.name);
 
     packet
         .writeS(player.model.name)
@@ -43,7 +39,7 @@ function charSelected(player) { // 229 bytes without strings
     packet
         .writeD(0x00); // In-game time
 
-    return packet.buffer;
+    return packet.fetchBuffer();
 }
 
 module.exports = charSelected;

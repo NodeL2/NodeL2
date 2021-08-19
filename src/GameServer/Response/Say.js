@@ -1,11 +1,7 @@
 let ChroniclePacket = invoke('GameServer/ChroniclePacket');
-let Utils           = invoke('Utils');
 
 function say(player, text, type) {
-    let packet = new ChroniclePacket(
-        say.name,
-        9 + Utils.textLength(player.model.name) + Utils.textLength(text)
-    );
+    let packet = new ChroniclePacket(say.name);
 
     packet
         .writeD(player.model.id)
@@ -13,7 +9,7 @@ function say(player, text, type) {
         .writeS(player.model.name)
         .writeS(text);
 
-    return packet.buffer;
+    return packet.fetchBuffer();
 }
 
 module.exports = say;

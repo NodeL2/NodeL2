@@ -1,7 +1,7 @@
 let ChroniclePacket = invoke('GameServer/ChroniclePacket');
 
 function moveToLocation(id, coords) {
-    let packet = new ChroniclePacket(moveToLocation.name, 32); // 29
+    let packet = new ChroniclePacket(moveToLocation.name);
 
     packet
         .writeD(id)
@@ -12,7 +12,7 @@ function moveToLocation(id, coords) {
         .writeD(coords.origin.y)
         .writeD(coords.origin.z);
 
-    return packet.buffer;
+    return packet.fetchBuffer();
 }
 
 module.exports = moveToLocation;
