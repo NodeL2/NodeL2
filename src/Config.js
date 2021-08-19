@@ -19,13 +19,13 @@ class Config {
     static authServer = {
         host        :  this.ini.AuthServer.Hostname    ?? '127.0.0.1',
         port        : +this.ini.AuthServer.Port        ?? 2106,
-        maxPlayers  : +this.ini.AuthServer.MaxPlayers  ?? 1000,
         blowfishKey :  this.ini.AuthServer.BlowfishKey ?? '[;\'.]94-31==-%&@!^+]\u0000'
     };
 
     static gameServer = {
         host        :  this.ini.GameServer.Hostname    ?? '127.0.0.1',
         port        : +this.ini.GameServer.Port        ?? 7777,
+        maxPlayers  : +this.ini.GameServer.MaxPlayers  ?? 1000,
         id          : +this.ini.GameServer.Id          ?? 1
     };
 
