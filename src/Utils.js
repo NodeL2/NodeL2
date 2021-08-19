@@ -17,11 +17,6 @@ class Utils {
         return Buffer.byteLength(string, 'ucs2') + 2;
     }
 
-    static align32Bit(buffer) {
-        let remainder = (Math.ceil(buffer.byteLength / 4) * 4) - buffer.byteLength;
-        return Buffer.concat([buffer, Buffer.alloc(remainder)]);
-    }
-
     static fetchIPv4Address() {
         let network = os.networkInterfaces();
         let adapter = network['en0'];

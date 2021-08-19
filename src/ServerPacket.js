@@ -56,7 +56,12 @@ class ServerPacket {
     // Buffer
 
     fetchBuffer(checksum = true) {
-        this.buffer = Utils.align32Bit(this.buffer);
+        // 32-Bits align
+        this.buffer = Buffer.concat([
+            this.buffer, Buffer.alloc((Math.ceil(this.buffer.byteLength / 4) * 4) - this.buffer.byteLength)
+        ]);
+
+        // Checksum
         let ext = Buffer.alloc(4 + (this.buffer.byteLength + 4) % 8);
         return (checksum) ? Buffer.concat([this.buffer, ext]) : this.buffer;
     }
