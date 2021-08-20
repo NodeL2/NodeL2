@@ -3,6 +3,10 @@ class ServerPacket {
         this.buffer = Buffer.from([opcode]);
     }
 
+    append(array) {
+        this.buffer = Buffer.concat([this.buffer, array]);
+    }
+
     // Standard data types
 
     write(value, size) {
@@ -15,7 +19,7 @@ class ServerPacket {
             case 8: data.setFloat64(0, value, true); break;
         }
 
-        this.buffer = Buffer.concat([this.buffer, Buffer.from(data.buffer)]);
+        this.append(Buffer.from(data.buffer));
         return this;
     }
 
@@ -38,16 +42,13 @@ class ServerPacket {
     // Special cases
 
     writeB(array) {
-        this.buffer = Buffer.concat([
-            this.buffer, new Uint8Array(array.reverse())
-        ]);
+        this.append(new Uint8Array(array.reverse()));
         return this;
     }
 
     writeS(text) {
-        this.buffer = Buffer.concat([
-            this.buffer, Buffer.from(text, 'ucs2'), Buffer.alloc(2)
-        ]);
+        this.append(Buffer.from(text, 'ucs2'));
+        this.append(Buffer.alloc(2));
         return this;
     }
 
@@ -56,17 +57,12 @@ class ServerPacket {
     fetchBuffer(checksum = true) {
         // 32-bit align
         let size = this.buffer.byteLength;
-
-        this.buffer = Buffer.concat([
-            this.buffer, Buffer.alloc((Math.ceil(size / 4) * 4) - size)
-        ]);
+        this.append(Buffer.alloc((Math.ceil(size / 4) * 4) - size));
 
         if (checksum) {
-            return Buffer.concat([
-                this.buffer, Buffer.alloc(4 + (this.buffer.byteLength + 4) % 8)
-            ]);
+            this.append(Buffer.alloc(4 + (this.buffer.byteLength + 4) % 8));
         }
-        else return this.buffer;
+        return this.buffer;
     }
 }
 
