@@ -46,14 +46,19 @@ class ClientPacket {
     }
 
     readS() {
-        for (let size = this.offset; size < this.buffer.length; size += 2) {
+        let i;
+
+        for (i = this.offset; i < this.buffer.length; i += 2) {
             if (this.buffer.readUInt16LE(i) === 0x0000) {
-                this.append(this.buffer.toString('ucs2', this.offset, size));
-                this.offset += size + 1;
                 break;
             }
         }
 
+        this.append(
+            this.buffer.toString('ucs2', this.offset, i)
+        );
+        
+        this.offset += i + 1;
         return this;
     }
 }
