@@ -57,7 +57,7 @@ class ClientPacket {
         this.append(
             this.buffer.toString('ucs2', this.offset, i)
         );
-        
+
         this.offset += i + 1;
         return this;
     }
