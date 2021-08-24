@@ -1,40 +1,22 @@
+let os = require('os');
+
 class Utils {
     static toHex(value, padding) {
         return Number(value).toString(16).padStart(padding, '0');
     }
 
     static toAsciiStripNull(value) {
-        return value.toString('ascii').replace(/\u0000/gi, '');
+        return value.toString().replace(/\u0000/gi, '');
     }
 
-    static createRandomNumber(limit) {
-        return Math.floor(Math.random() * limit);
+    static matchSessionKeys(pair1, pair2) {
+        return (pair1.sessionKey1 === pair2.sessionKey1) && (pair1.sessionKey2 === pair2.sessionKey2);
     }
 
-    static createRandomCoordinates(centerX, centerY, radius) {
-        const r = radius * Math.sqrt(Math.random());
-        const theta = Math.random() * 2 * Math.PI;
-
-        return {
-            x: centerX + r * Math.cos(theta),
-            y: centerY + r * Math.sin(theta),
-        };
-    }
-
-    static isWithinRadius(x, y, centerX, centerY, radius) {
-        let dx = x - centerX;
-        let dy = y - centerY;
-        let sqrtDistance = (dx * dx) + (dy * dy);
-        let sqrtRadius = radius * radius;
-
-        return sqrtDistance < sqrtRadius;
-    }
-
-    static distance(x, y, centerX, centerY) {
-        let dx = x - centerX;
-        let dy = y - centerY;
-
-        return (dx * dx) + (dy * dy);
+    static fetchIPv4Address() {
+        let network = os.networkInterfaces();
+        let ipv4 = network['en0'].filter(item => item.family === 'IPv4');
+        return ipv4[0].address;
     }
 }
 

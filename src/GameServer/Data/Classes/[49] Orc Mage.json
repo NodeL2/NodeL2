@@ -1,0 +1,45 @@
+{
+    "classId"   : 49,
+    "className" : "Orc Mage",
+
+    "stats": {
+        "maxHp" : 105,
+        "maxMp" : 60,
+
+        "str" : 27,
+        "dex" : 24,
+        "con" : 31,
+        "int" : 31,
+        "wit" : 15,
+        "men" : 42,
+
+        "pAtk"     : 2,
+        "mAtk"     : 4,
+        "pDef"     : 48,
+        "mDef"     : 56,
+        "accuracy" : 30,
+        "evasion"  : 30,
+        "critical" : 41,
+        "speed"    : 126,
+        "atkSpd"   : 312,
+        "castSpd"  : 265,
+
+        "weightLimit" : 68000
+    },
+
+    "speed": {
+        "walk" : 85,
+        "run"  : 121,
+        "swim" : 50
+    },
+
+    "metrics": {
+        "maleR" : 7,
+        "maleH" : 27.5,
+        "femlR" : 8,
+        "femlH" : 25.5
+    },
+
+    "raceId"   : 3,
+    "canCraft" : false
+}

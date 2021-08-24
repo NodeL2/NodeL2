@@ -1,35 +1,27 @@
+let AuthSession    = invoke('AuthServer/Session');
+let ServerResponse = invoke('AuthServer/Response');
+
+// Module imports
 let net = require('net');
 
-// User define
-let AuthServerResponse = invoke('AuthServer/AuthServerResponse');
-let AuthServerSession = invoke('AuthServer/AuthServerSession');
-let Config = invoke('Config');
-let Database = invoke('Database');
-
 class AuthServer {
-    constructor() {
-        // Start with db
-        Database.connection();
-
-        // Proceed with sockets
-        let host = Config.loginServer.host;
-        let port = Config.loginServer.port;
-
-        net.createServer(this.onSocket).listen(port, host, () => {
-            console.log('LS:: listening on %s:%s', host, port);
+    constructor(config) {
+        net.createServer(this.onSocket).listen(config.port, config.host, () => {
+            console.log('AuthServer:: initialised for %s:%d', config.host, config.port);
         });
     }
 
     onSocket(socket) {
-        console.log('LS:: incoming connection from %s:%s', socket.remoteAddress, socket.remotePort);
+        console.log(
+            'AuthServer:: new connection from %s:%d', socket.remoteAddress, socket.remotePort
+        );
 
-        let session = new AuthServerSession(socket);
+        let session = new AuthSession(socket);
         socket.on('data', session.receiveData.bind(session));
-        socket.on('close', session.connectionClosed.bind(session));
-        socket.on('error', session.connectionError.bind(session));
 
+        // First handshake with client
         session.sendData(
-            AuthServerResponse.init(), false
+            ServerResponse.init(), false
         );
     }
 }

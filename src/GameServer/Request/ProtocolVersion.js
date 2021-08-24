@@ -1,21 +1,22 @@
-let ClientPacket = invoke('ClientPacket');
-let Config = invoke('Config');
-let GameServerResponse = invoke('GameServer/GameServerResponse');
+let ClientPacket   = invoke('ClientPacket');
+let Config         = invoke('Config');
+let ServerResponse = invoke('GameServer/Response');
 
 function protocolVersion(session, buffer) {
     let packet = new ClientPacket(buffer);
 
     packet
-        .readC()
         .readD(); // Protocol Version
 
-    let data = {
-        protocolVersion: packet.data[1]
-    };
+    consume(session, {
+        protocolVersion: packet.data[0]
+    });
+}
 
-    if (data.protocolVersion === Config.protocolVersion) {
-        session.sendData(GameServerResponse.cryptInit(Config.xorKey));
-    }
+function consume(session, data) {
+    session.sendData(
+        ServerResponse.versionCheck(Config.client.protocol === data.protocolVersion)
+    );
 }
 
 module.exports = protocolVersion;

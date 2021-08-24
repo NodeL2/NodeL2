@@ -1,16 +1,17 @@
-let ClientPacket = invoke('ClientPacket');
-let GameServerResponse = invoke('GameServer/GameServerResponse');
+let ClientPacket   = invoke('ClientPacket');
+let ServerResponse = invoke('GameServer/Response');
 
 function logout(session, buffer) {
     let packet = new ClientPacket(buffer);
 
-    packet
-        .readC();
+    consume(session, {
+    });
+}
 
-    let data = {
-    };
-
-    session.sendData(GameServerResponse.logoutOk());
+function consume(session, data) {
+    session.sendData(
+        ServerResponse.logoutSuccess()
+    );
 }
 
 module.exports = logout;

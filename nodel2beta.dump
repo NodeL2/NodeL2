@@ -1,0 +1,150 @@
+-- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: nodel2beta
+-- ------------------------------------------------------
+-- Server version	5.5.5-10.6.3-MariaDB
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `accounts`
+--
+
+DROP TABLE IF EXISTS `accounts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `accounts` (
+  `username` varchar(32) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `password` varchar(32) COLLATE utf8mb3_unicode_ci NOT NULL,
+  PRIMARY KEY (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `accounts`
+--
+
+LOCK TABLES `accounts` WRITE;
+/*!40000 ALTER TABLE `accounts` DISABLE KEYS */;
+INSERT INTO `accounts` VALUES ('q','q');
+/*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `characters`
+--
+
+DROP TABLE IF EXISTS `characters`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `characters` (
+  `username` varchar(32) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `title` varchar(32) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `classId` int(5) NOT NULL,
+  `raceId` int(5) NOT NULL,
+  `level` int(5) NOT NULL,
+  `hp` int(5) NOT NULL,
+  `maxHp` int(5) NOT NULL,
+  `mp` int(5) NOT NULL,
+  `maxMp` int(5) NOT NULL,
+  `exp` int(20) NOT NULL,
+  `sp` int(10) NOT NULL,
+  `karma` int(10) NOT NULL,
+  `gender` int(5) NOT NULL,
+  `face` int(5) NOT NULL,
+  `hairStyle` int(5) NOT NULL,
+  `hairColor` int(5) NOT NULL,
+  `x` float NOT NULL,
+  `y` float NOT NULL,
+  `z` float NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `characters`
+--
+
+LOCK TABLES `characters` WRITE;
+/*!40000 ALTER TABLE `characters` DISABLE KEYS */;
+INSERT INTO `characters` VALUES ('q',23,'Machindra',NULL,49,3,1,48,105,60,60,0,0,0,0,0,1,0,43648,40352,-3430),('q',24,'Salome',NULL,10,0,1,48,99,59,59,0,0,0,1,0,1,0,43648,40352,-3430),('q',25,'Christ',NULL,0,0,1,48,126,38,38,0,0,0,0,0,4,0,43648,40352,-3430),('q',26,'Douche',NULL,38,2,1,48,95,58,58,0,0,0,1,0,5,1,43648,40352,-3430),('q',27,'Denacious',NULL,53,4,1,48,129,39,39,0,0,0,1,0,3,0,43648,40352,-3430),('q',28,'Wassah',NULL,18,1,1,48,113,39,39,0,0,0,1,0,6,1,43648,40352,-3430);
+/*!40000 ALTER TABLE `characters` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `items`
+--
+
+DROP TABLE IF EXISTS `items`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `items` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `characterId` int(10) NOT NULL,
+  `itemId` int(5) NOT NULL,
+  `category` varchar(32) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `bodyPart` int(5) NOT NULL,
+  `type1` int(1) NOT NULL,
+  `type2` int(1) NOT NULL,
+  `isEquipped` int(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `items`
+--
+
+LOCK TABLES `items` WRITE;
+/*!40000 ALTER TABLE `items` DISABLE KEYS */;
+INSERT INTO `items` VALUES (1,19,2369,'weapon',128,0,0,1),(7,19,1146,'armor',1024,1,1,1),(8,19,1147,'armor',2048,1,1,1),(9,19,395,'armor',1024,1,1,0),(10,19,417,'armor',2048,1,1,0),(11,19,233,'weapon',128,0,0,0);
+/*!40000 ALTER TABLE `items` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `shortcuts`
+--
+
+DROP TABLE IF EXISTS `shortcuts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `shortcuts` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `shortcuts`
+--
+
+LOCK TABLES `shortcuts` WRITE;
+/*!40000 ALTER TABLE `shortcuts` DISABLE KEYS */;
+/*!40000 ALTER TABLE `shortcuts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'nodel2beta'
+--
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2021-08-06 23:52:23

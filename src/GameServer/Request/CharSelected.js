@@ -1,34 +1,34 @@
-let ClientPacket = invoke('ClientPacket');
-let Database = invoke('Database');
-let GameServerResponse = invoke('GameServer/GameServerResponse');
+let ClientPacket   = invoke('ClientPacket');
+let Database       = invoke('Database');
+let ServerResponse = invoke('GameServer/Response');
 
 function charSelected(session, buffer) {
     let packet = new ClientPacket(buffer);
 
     packet
-        .readC()
         .readD(); // Character Slot
 
-    let data = {
-        characterSlot: packet.data[1]
-    };
+    consume(session, {
+        characterSlot: packet.data[0]
+    });
+}
 
+function consume(session, data) {
     // New player instance
     session.initPlayer();
 
-    // Fill-in player specs
-    Database.getCharacters(session.accountId)
-    .then((characters) => {
+    // Fill-in player base stats
+    Database.fetchCharacters(session.accountId).then((characters) => {
         let character = characters[data.characterSlot];
 
-        Database.getBaseClass(character.class_id)
-        .then((stats) => {
+        Database.fetchClassInformation(character.classId).then((classInfo) => {
+            session.player.setModel({
+                ...character, ...classInfo
+            });
 
-            session.player.model.parseBasicInfo(session.player, character);
-            session.player.model.parseStatisticsInfo(session.player, stats[0]);
-            session.player.inventory.populate(session.player);
-
-            session.sendData(GameServerResponse.charSelected(session.player));
+            session.sendData(
+                ServerResponse.charSelected(session.player)
+            );
         });
     });
 }

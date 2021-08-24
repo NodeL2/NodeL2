@@ -1,13 +1,12 @@
-let ServerPacket = invoke('ServerPacket');
+let ChroniclePacket = invoke('GameServer/ChroniclePacket');
 
 function restart() {
-    let packet = new ServerPacket(5);
+    let packet = new ChroniclePacket(restart.name);
 
     packet
-        .writeC(0x74)
         .writeD(1);
 
-    return packet.buffer;
+    return packet.fetchBuffer();
 }
 
 module.exports = restart;

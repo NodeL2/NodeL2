@@ -1,47 +1,68 @@
 class ServerPacket {
-    constructor(size) {
-        this.buffer = new Buffer.alloc(size + 4 + (size + 4) % 8);
-        this.offset = 0;
+    constructor(opcode) {
+        this.buffer = Buffer.from([opcode]);
     }
 
-    writeC(data) {
-        this.buffer.writeUInt8(data, this.offset);
-        this.offset += 1;
+    append(array) {
+        this.buffer = Buffer.concat([this.buffer, array]);
+    }
 
+    // Standard data types
+
+    write(value, size) {
+        let data = new DataView(new ArrayBuffer(size));
+
+        switch (size) {
+            case 1: data.setUint8  (0, value, true); break;
+            case 2: data.setUint16 (0, value, true); break;
+            case 4: data.setUint32 (0, value, true); break;
+            case 8: data.setFloat64(0, value, true); break;
+        }
+
+        this.append(Buffer.from(data.buffer));
         return this;
     }
 
-    writeH(data) {
-        this.buffer.writeUInt16LE(data, this.offset);
-        this.offset += 2;
-
-        return this;
+    writeC(value) {
+        return this.write(value, 1);
     }
 
-    writeD(data) {
-        this.buffer.writeInt32LE(data, this.offset);
-        this.offset += 4;
+    writeH(value) {
+        return this.write(value, 2);
+    }
 
-        return this;
+    writeD(value) {
+        return this.write(value, 4);
     }
 
     writeF(value) {
-        this.buffer.writeDoubleLE(value, this.offset);
-        this.offset += 8;
+        return this.write(value, 8);
+    }
 
+    // Special cases
+
+    writeB(array) {
+        this.append(new Uint8Array(array.reverse()));
         return this;
     }
 
-    writeS(str) {
-        this.buffer.write(str, this.offset, 'ucs2');
-        this.offset += Buffer.byteLength(str, 'ucs2') + 2;
-        this.buffer.writeInt16LE(0, this.offset - 2);
-
+    writeS(text) {
+        this.append(Buffer.from(text, 'ucs2'));
+        this.append(Buffer.alloc(2));
         return this;
     }
 
-    static strlen(str) {
-        return Buffer.byteLength(str, 'ucs2') + 2;
+    // Buffer
+
+    fetchBuffer(checksum = true) {
+        // 32-bit align
+        let size = this.buffer.byteLength;
+        this.append(Buffer.alloc((Math.ceil(size / 4) * 4) - size));
+
+        if (checksum) {
+            this.append(Buffer.alloc(4 + (this.buffer.byteLength + 4) % 8));
+        }
+        return this.buffer;
     }
 }
 

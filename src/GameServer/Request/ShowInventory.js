@@ -1,16 +1,17 @@
-let ClientPacket = invoke('ClientPacket');
-let GameServerResponse = invoke('GameServer/GameServerResponse');
+let ClientPacket   = invoke('ClientPacket');
+let ServerResponse = invoke('GameServer/Response');
 
 function showInventory(session, buffer) {
     let packet = new ClientPacket(buffer);
 
-    packet
-        .readC();
+    consume(session, {
+    });
+}
 
-    let data = {
-    };
-
-    session.sendData(GameServerResponse.inventory(session.player.inventory.items));
+function consume(session, data) {
+    session.sendData(
+        ServerResponse.showInventory()
+    );
 }
 
 module.exports = showInventory;

@@ -1,17 +1,20 @@
-let ClientPacket = invoke('ClientPacket');
-let GameServerResponse = invoke('GameServer/GameServerResponse');
+let ClientPacket   = invoke('ClientPacket');
+let ServerResponse = invoke('GameServer/Response');
 
 function showBoard(session, buffer) {
     let packet = new ClientPacket(buffer);
 
     packet
-        .readC()
         .readD(); // ?
 
-    let data = {
-    };
+    consume(session, {
+    });
+}
 
-    session.sendData(GameServerResponse.showMap(1665));
+function consume(session, data) {
+    session.sendData(
+        ServerResponse.showMap(1665)
+    );
 }
 
 module.exports = showBoard;

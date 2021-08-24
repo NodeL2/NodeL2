@@ -1,34 +1,33 @@
-let ServerPacket = invoke('ServerPacket');
+let ChroniclePacket = invoke('GameServer/ChroniclePacket');
 
 function userInfo(player) {
-    let packet = new ServerPacket(600);
+    let packet = new ChroniclePacket(userInfo.name);
 
     packet
-        .writeC(0x04)
         .writeD(player.model.x)
         .writeD(player.model.y)
         .writeD(player.model.z)
         .writeD(0x00)  // Heading
-        .writeD(player.id)
-        .writeS(player.name)
-        .writeD(player.raceId)
+        .writeD(player.model.id)
+        .writeS(player.model.name)
+        .writeD(player.model.raceId)
         .writeD(player.model.gender)
-        .writeD(player.classId)
+        .writeD(player.model.classId)
         .writeD(player.model.level)
         .writeD(player.model.exp)
-        .writeD(player.model.str)
-        .writeD(player.model.dex)
-        .writeD(player.model.con)
-        .writeD(player.model.int)
-        .writeD(player.model.wit)
-        .writeD(player.model.men)
+        .writeD(player.model.stats.str)
+        .writeD(player.model.stats.dex)
+        .writeD(player.model.stats.con)
+        .writeD(player.model.stats.int)
+        .writeD(player.model.stats.wit)
+        .writeD(player.model.stats.men)
         .writeD(player.model.maxHp)
         .writeD(player.model.hp)
         .writeD(player.model.maxMp)
         .writeD(player.model.mp)
         .writeD(player.model.sp)
         .writeD(0x00)  // Load
-        .writeD(player.model.weightLimit)
+        .writeD(player.model.stats.weightLimit)
         .writeD(0x28)  // ?
 
         // Object ID
@@ -39,11 +38,11 @@ function userInfo(player) {
         .writeD(0x00)  // Finger right
         .writeD(0x00)  // Finger left
         .writeD(0x00)  // Head
-        .writeD(player.paperdoll.raw[BodyPart.RIGHT_HAND].id)
+        .writeD(0x00)
         .writeD(0x00)  // Hand left
         .writeD(0x00)  // Gloves
-        .writeD(player.paperdoll.raw[BodyPart.CHEST].id)
-        .writeD(player.paperdoll.raw[BodyPart.LEGS].id)
+        .writeD(0x00)
+        .writeD(0x00)
         .writeD(0x00)  // Feet
         .writeD(0x00)  // Back
         .writeD(0x00)  // Hand left & right
@@ -56,44 +55,44 @@ function userInfo(player) {
         .writeD(0x00)  // Finger right
         .writeD(0x00)  // Finger left
         .writeD(0x00)  // Head
-        .writeD(player.paperdoll.raw[BodyPart.RIGHT_HAND].itemId)
+        .writeD(0x00)
         .writeD(0x00)  // Hand left
         .writeD(0x00)  // Gloves
-        .writeD(player.paperdoll.raw[BodyPart.CHEST].itemId)
-        .writeD(player.paperdoll.raw[BodyPart.LEGS].itemId)
+        .writeD(0x00)
+        .writeD(0x00)
         .writeD(0x00)  // Feet
         .writeD(0x00)  // Back
         .writeD(0x00)  // Hand left & right
 
-        .writeD(player.model.pAtk)
-        .writeD(player.model.atkSpeed)
-        .writeD(player.model.pDef)
-        .writeD(player.model.evasion)
-        .writeD(player.model.accuracy)
-        .writeD(player.model.critical)
-        .writeD(player.model.mAtk)
-        .writeD(player.model.castingSpd)
-        .writeD(player.model.speed)
-        .writeD(player.model.mDef)
+        .writeD(player.model.stats.pAtk)
+        .writeD(player.model.stats.atkSpd)
+        .writeD(player.model.stats.pDef)
+        .writeD(player.model.stats.evasion)
+        .writeD(player.model.stats.accuracy)
+        .writeD(player.model.stats.critical)
+        .writeD(player.model.stats.mAtk)
+        .writeD(player.model.stats.castSpd)
+        .writeD(player.model.stats.speed)
+        .writeD(player.model.stats.mDef)
         .writeD(0x00)  // Purple = 0x01
         .writeD(player.model.karma)
-        .writeD(player.model.groundSpdHigh)
-        .writeD(player.model.groundSpdLow)
-        .writeD(player.model.waterSpd)
-        .writeD(player.model.waterSpd)
+        .writeD(player.model.speed.run)
+        .writeD(player.model.speed.walk)
+        .writeD(player.model.speed.swim)
+        .writeD(player.model.speed.swim)
         .writeD(0x00)  // Floating Run Speed
         .writeD(0x00)  // Floating Walk Speed
         .writeD(0x00)  // Flying Run Speed
         .writeD(0x00)  // Flying Walk Speed
         .writeF(1.0)   // Movement Multiplier
-        .writeF(player.model.atkSpeed / 277.77777777777777)   // Attack Speed Multiplier
-        .writeF(player.model.collisionRadius)
-        .writeF(player.model.collisionHeight)
+        .writeF(player.model.stats.atkSpd / 277.77777777777777)  // Attack Speed Multiplier
+        .writeF(player.model.metrics.maleR)
+        .writeF(player.model.metrics.maleH)
         .writeD(player.model.hairStyle)
         .writeD(player.model.hairColor)
         .writeD(player.model.face)
         .writeD(0x00)  // GM = 0x01
-        .writeS(player.title)
+        .writeS(player.model.title)
         .writeD(0x00)  // Clan ID
         .writeD(0x00)  // Clan Crest ID
         .writeD(0x00)  // Ally ID
@@ -107,7 +106,7 @@ function userInfo(player) {
         .writeH(0x00)  // Cubic Count
         .writeC(0x00); // Find Party Members = 0x01
 
-    return packet.buffer;
+    return packet.fetchBuffer();
 }
 
 module.exports = userInfo;

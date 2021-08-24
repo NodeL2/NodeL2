@@ -1,21 +1,18 @@
-let ServerPacket = invoke('ServerPacket');
+let ChroniclePacket = invoke('GameServer/ChroniclePacket');
 
 function charSelected(player) {
-    let packet = new ServerPacket(
-        229 + ServerPacket.strlen(player.name) + ServerPacket.strlen(player.title)
-    );
+    let packet = new ChroniclePacket(charSelected.name);
 
     packet
-        .writeC(0x21)
-        .writeS(player.name)
-        .writeD(player.id)
-        .writeS(player.title)
+        .writeS(player.model.name)
+        .writeD(player.model.id)
+        .writeS(player.model.title)
         .writeD(0x55555555)
         .writeD(0x00)  // Clan ID
         .writeD(0x00)  // ?
         .writeD(player.model.gender)
-        .writeD(player.raceId)
-        .writeD(player.classId)
+        .writeD(player.model.raceId)
+        .writeD(player.model.classId)
         .writeD(0x01)  // ?
         .writeD(player.model.x)
         .writeD(player.model.y)
@@ -27,12 +24,12 @@ function charSelected(player) {
         .writeD(player.model.level)
         .writeD(0x00)  // ?
         .writeD(0x00)  // ?
-        .writeD(player.model.int)
-        .writeD(player.model.str)
-        .writeD(player.model.con)
-        .writeD(player.model.men)
-        .writeD(player.model.dex)
-        .writeD(player.model.wit);
+        .writeD(player.model.stats.int)
+        .writeD(player.model.stats.str)
+        .writeD(player.model.stats.con)
+        .writeD(player.model.stats.men)
+        .writeD(player.model.stats.dex)
+        .writeD(player.model.stats.wit);
 
     for (let i = 0; i < 30; i++) {
         packet
@@ -42,7 +39,7 @@ function charSelected(player) {
     packet
         .writeD(0x00); // In-game time
 
-    return packet.buffer;
+    return packet.fetchBuffer();
 }
 
 module.exports = charSelected;

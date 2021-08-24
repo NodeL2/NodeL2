@@ -1,17 +1,18 @@
 let ClientPacket = invoke('ClientPacket');
 
-function socialAction(buffer) {
-    return new Promise((success) => {
-        let packet = new ClientPacket(buffer);
+function socialAction(session, buffer) {
+    let packet = new ClientPacket(buffer);
 
-        packet
-            .readC()
-            .readD(); // Action ID
+    packet
+        .readD(); // Action ID
 
-        return success({
-            actionId: packet.data[1]
-        });
+    consume(session, {
+        actionId: packet.data[0]
     });
+}
+
+function consume(session, data) {
+    session.player.socialAction(session, data);
 }
 
 module.exports = socialAction;

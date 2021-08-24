@@ -1,14 +1,13 @@
-let ServerPacket = invoke('ServerPacket');
+let ChroniclePacket = invoke('GameServer/ChroniclePacket');
 
 function questList() {
-    let packet = new ServerPacket(5);
+    let packet = new ChroniclePacket(questList.name);
 
     packet
-        .writeC(0x98)
         .writeH(0x00)
         .writeH(0x00);
 
-    return packet.buffer;
+    return packet.fetchBuffer();
 }
 
 module.exports = questList;

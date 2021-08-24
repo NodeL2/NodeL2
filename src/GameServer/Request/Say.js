@@ -1,20 +1,23 @@
-let ClientPacket = invoke('ClientPacket');
-let GameServerResponse = invoke('GameServer/GameServerResponse');
+let ClientPacket   = invoke('ClientPacket');
+let ServerResponse = invoke('GameServer/Response');
 
 function say(session, buffer) {
     let packet = new ClientPacket(buffer);
 
     packet
-        .readC()
         .readS()  // Text
         .readD(); // Type
 
-    let data = {
-        text: packet.data[1],
-        type: packet.data[2],
-    };
+    consume(session, {
+        text: packet.data[0],
+        type: packet.data[1],
+    });
+}
 
-    session.sendData(GameServerResponse.createSay(session.player, data.text, data.type));
+function consume(session, data) {
+    session.sendData(
+        ServerResponse.say(session.player, data.text, data.type)
+    );
 }
 
 module.exports = say;

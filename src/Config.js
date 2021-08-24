@@ -1,41 +1,40 @@
-let fs = require('fs');
-let ini = require('ini');
+// Module imports
+let fs = require('fs'), ini = require('ini');
 
 class Config {
-    static defaults = ini.parse(
-        fs.readFileSync('./Config.ini', 'utf-8')
+    static ini = ini.parse(
+        fs.readFileSync('./config.ini', 'utf-8')
     );
 
-    static loginServer = {
-        host: this.defaults.AuthServer.Hostname || '127.0.0.1',
-        port: parseInt(this.defaults.AuthServer.Port) || 2106
+    // Default values for L2 Chronicle C1
+
+    static database = {
+        host        :  this.ini.Database.Hostname      ?? '127.0.0.1',
+        port        : +this.ini.Database.Port          ?? 3306,
+        user        :  this.ini.Database.User          ?? 'root',
+        password    :  this.ini.Database.Password      ?? '',
+        db          :  this.ini.Database.Name          ?? 'nodel2'
+    };
+
+    static authServer = {
+        host        :  this.ini.AuthServer.Hostname    ?? '127.0.0.1',
+        port        : +this.ini.AuthServer.Port        ?? 2106,
+        blowfishKey :  this.ini.AuthServer.BlowfishKey ?? '[;\'.]94-31==-%&@!^+]\u0000'
     };
 
     static gameServer = {
-        host: this.defaults.GameServer.Hostname || '127.0.0.1',
-        port: parseInt(this.defaults.GameServer.Port) || 7777
+        host        :  this.ini.GameServer.Hostname    ?? '127.0.0.1',
+        port        : +this.ini.GameServer.Port        ?? 7777,
+        maxPlayers  : +this.ini.GameServer.MaxPlayers  ?? 1000,
+        id          : +this.ini.GameServer.Id          ?? 1
     };
 
-    static database = {
-        host: this.defaults.Database.Hostname || '127.0.0.1',
-        port: parseInt(this.defaults.Database.Port) || 3306,
-        user: this.defaults.Database.User || 'root',
-        password: this.defaults.Database.Password || '',
-        name: this.defaults.Database.Name || 'nodel2'
-    }
-
-    static protocolVersion = 419;
-
-    static blowfishKey = '[;\'.]94-31==-%&@!^+]\u0000';
-
-    static xorKey = [
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-    ];
-
-    static sessionKey = [
-        0x55555555,
-        0x44444444,
-    ];
+    static client = {
+        chronicle   : +this.ini.Client.Chronicle       ?? 1,
+        protocol    : +this.ini.Client.Protocol        ?? 419,
+        sessionKey1 : +this.ini.Client.SessionKey1     ?? 0x55555555,
+        sessionKey2 : +this.ini.Client.SessionKey2     ?? 0x44444444
+    };
 }
 
 module.exports = Config;

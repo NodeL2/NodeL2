@@ -1,24 +1,16 @@
-let ClientPacket = invoke('ClientPacket');
-let GameServerResponse = invoke('GameServer/GameServerResponse');
-let World = invoke('GameServer/World');
+let ClientPacket   = invoke('ClientPacket');
+let ServerResponse = invoke('GameServer/Response');
 
 function enterWorld(session, buffer) {
     let packet = new ClientPacket(buffer);
 
-    packet
-        .readC();
+    consume(session, {
+    });
+}
 
-    let data = {
-    };
-
-    session.sendData(GameServerResponse.sunrise());
-    session.sendData(GameServerResponse.userInfo(session.player));
-
-    World.insertPlayer(session);
-
-    // Samples
-    World.insertNpcs(session);
-    World.insertItems(session);
+function consume(session, data) {
+    session.sendData(ServerResponse.sunrise());
+    session.sendData(ServerResponse.userInfo(session.player));
 }
 
 module.exports = enterWorld;

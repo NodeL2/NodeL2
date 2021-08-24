@@ -1,66 +1,59 @@
-let mariadb = require('mariadb/callback');
-
-// User define
-let Config = invoke('Config');
+// Module imports
+let db = require('mariadb');
+let fs = require('fs');
 
 class Database {
-    static connection() {
-        this.conn = mariadb.createConnection({
-            host: Config.database.host,
-            port: Config.database.port,
-            user: Config.database.user,
-            password: Config.database.password,
-            database: Config.database.name
-        });
-
-        this.conn.connect(err => {
-            if (err) {
-                return console.log('DB:: Failed to create connection');
-            }
-        });
+    static init(config, callback) {
+        db.createConnection({
+            host     : config.host,
+            port     : config.port,
+            user     : config.user,
+            password : config.password,
+            database : config.db
+        })
+        .then(conn => {
+            console.log('DB:: connection successful');
+            this.conn = conn;
+            callback();
+        })
+        .catch(error => {
+            fatalError('DB:: failed to create connection');
+        })
     }
 
-    static sqlQuery(query) {
-        return new Promise((success, failure) => {
-            this.conn.query(query, (err, results, fields) => {
-                if (err) {
-                    return failure(err);
-                }
-
-                return success(results);
-            });
-        });
-    }
-
-    static getAccountPassword(username) {
-        return this.sqlQuery(
+    static fetchAccountPassword(username) {
+        return this.conn.query(
             'SELECT password FROM accounts WHERE username = "' + username + '" LIMIT 1'
         );
     }
 
-    static getCharacters(username) {
-        return this.sqlQuery(
+    static fetchCharacters(username) {
+        return this.conn.query(
             'SELECT * FROM characters WHERE username = "' + username + '"'
         );
     }
 
-    static getBaseClass(classId) {
-        return this.sqlQuery(
-            'SELECT * FROM classes WHERE class_id = "' + classId + '" LIMIT 1'
-        );
-    }
-
-    static addNewCharacter(username, data, stats) {
-        return this.sqlQuery('\
-            INSERT INTO characters (username, name, race_id, class_id, level, max_hp, hp, max_mp, mp, exp, sp, karma, gender, face, hair_style, hair_color, x, y, z)\
-            VALUES ("' + username + '", "' + data.name + '", ' + data.race + ', ' + data.classId + ', 1, ' + stats.hp + ', 48, ' + stats.mp + ', ' + stats.mp + ', 0, 0, 0, ' + data.gender + ', ' + data.face + ', ' + data.hairStyle + ', ' + data.hairColor + ', 43648, 40352, -3430)\
+    static addNewCharacter(username, data, classInfo) {
+        return this.conn.query('\
+            INSERT INTO characters (username, name, raceId, classId, level, maxHp, hp, maxMp, mp, exp, sp, karma, gender, face, hairStyle, hairColor, x, y, z)\
+            VALUES ("' + username + '", "' + data.name + '", ' + data.raceId + ', ' + data.classId + ', 1, ' + classInfo.stats.maxHp + ', 48, ' + classInfo.stats.maxMp + ', ' + classInfo.stats.maxMp + ', 0, 0, 0, ' + data.gender + ', ' + data.face + ', ' + data.hairStyle + ', ' + data.hairColor + ', 43648, 40352, -3430)\
         ');
     }
 
-    static getInventoryItems(characterId) {
-        return this.sqlQuery(
-            'SELECT * FROM items WHERE character_id = "' + characterId + '"'
-        );
+    // Constant information
+
+    static fetchClassInformation(classId) {
+        const path = 'GameServer/Data/Classes';
+
+        return new Promise((success, fail) => {
+            fs.readdir(process.cwd() + '/src/' + path, (error, files) => {
+                let result = files.find(text =>
+                    text.includes('[' + classId + ']')
+                );
+
+                return result ? success(invoke(path + '/' + result)) : fail();
+            });
+        });
     }
 }
 

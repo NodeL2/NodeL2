@@ -1,24 +1,23 @@
-let ClientPacket = invoke('ClientPacket');
-let Database = invoke('Database');
-let GameServerResponse = invoke('GameServer/GameServerResponse');
-let World = invoke('GameServer/World');
+let ClientPacket   = invoke('ClientPacket');
+let Database       = invoke('Database');
+let ServerResponse = invoke('GameServer/Response');
 
 function restart(session, buffer) {
     let packet = new ClientPacket(buffer);
 
-    packet
-        .readC();
+    consume(session, {
+    });
+}
 
-    let data = {
-    };
+function consume(session, data) {
+    session.sendData(
+        ServerResponse.restart()
+    );
 
-    session.sendData(GameServerResponse.restart());
-    World.removePlayer(session.player.id);
-
-    Database.getCharacters(session.accountId)
-    .then((rows) => {
-
-        session.sendData(GameServerResponse.charSelectInfo(rows));
+    Database.fetchCharacters(session.accountId).then((rows) => {
+        session.sendData(
+            ServerResponse.charSelectInfo(rows)
+        );
     });
 }
 

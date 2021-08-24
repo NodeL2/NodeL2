@@ -1,13 +1,13 @@
 # NodeL2
-Node implementation of a C1/C2 Lineage 2 server emulator
+Node implementation of a C0/C1/C2 Lineage 2 server emulator
 
 <h2>How to</h2>
 
 * Install `NodeJS`
-* Import `nodel2.dump` backup into `nodel2` SQL database
-* Fix database password on `Config.ini`
+* Import `nodel2beta.dump` backup into `nodel2beta` MariaDB SQL database
+* Fix database password, chronicle version, and protocol in `config.ini`
 * Run `npm install -i`
-* Run `node LaunchServer`
+* Run `node src/Server`
 * Default credentials are username `q` and password `q`
 
 <h2>Credits</h2>

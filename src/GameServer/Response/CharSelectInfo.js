@@ -1,10 +1,7 @@
-let ServerPacket = invoke('ServerPacket');
+let ChroniclePacket = invoke('GameServer/ChroniclePacket');
 
 function charSelectInfo(characters) {
-    let packet = new ServerPacket(characters ? characters.length * 400 : 5);
-
-    packet
-        .writeC(0x1f);
+    let packet = new ChroniclePacket(charSelectInfo.name);
 
     if (characters) {
         packet
@@ -16,11 +13,11 @@ function charSelectInfo(characters) {
                 .writeD(character.id)
                 .writeS(character.username)
                 .writeD(0x55555555)
-                .writeD(0x00)  // ?
+                .writeD(0x00)  // Clan Id
                 .writeD(0x00)  // ?
                 .writeD(character.gender)
-                .writeD(character.race_id)
-                .writeD(character.class_id)
+                .writeD(character.raceId)
+                .writeD(character.classId)
                 .writeD(0x01)  // ?
                 .writeD(character.x)
                 .writeD(character.y)
@@ -30,28 +27,20 @@ function charSelectInfo(characters) {
                 .writeD(character.sp)
                 .writeD(character.exp)
                 .writeD(character.level)
-                .writeD(character.karma)
-                .writeD(0x00)  // ?
-                .writeD(0x00)  // ?
-                .writeD(0x00)  // ?
-                .writeD(0x00)  // ?
-                .writeD(0x00)  // ?
-                .writeD(0x00)  // ?
-                .writeD(0x00)  // ?
-                .writeD(0x00); // ?
+                .writeD(character.karma);
 
-            for (let i = 0; i < 31; i++) {
+            for (let i = 0; i < 39; i++) {
                 packet
                     .writeD(0x00);
             }
 
             packet
-                .writeD(character.hair_style)
-                .writeD(character.hair_color)
+                .writeD(character.hairStyle)
+                .writeD(character.hairColor)
                 .writeD(character.face)
-                .writeF(character.max_hp)
-                .writeF(character.max_mp)
-                .writeD(0x00); // Days before deletion
+                .writeF(character.maxHp)
+                .writeF(character.maxMp)
+                .writeD(0x00);  // Days before deletion
         }
     }
     else {
@@ -59,7 +48,7 @@ function charSelectInfo(characters) {
             .writeD(0x00);
     }
 
-    return packet.buffer;
+    return packet.fetchBuffer();
 }
 
 module.exports = charSelectInfo;
