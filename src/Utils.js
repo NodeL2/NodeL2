@@ -13,10 +13,6 @@ class Utils {
         return (pair1.sessionKey1 === pair2.sessionKey1) && (pair1.sessionKey2 === pair2.sessionKey2);
     }
 
-    static textLength(string) {
-        return Buffer.byteLength(string, 'ucs2') + 2;
-    }
-
     static fetchIPv4Address() {
         let network = os.networkInterfaces();
         let adapter = network['en0'];
