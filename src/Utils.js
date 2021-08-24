@@ -15,8 +15,7 @@ class Utils {
 
     static fetchIPv4Address() {
         let network = os.networkInterfaces();
-        let adapter = network['en0'];
-        let ipv4    = adapter.filter(item => item.family === 'IPv4');
+        let ipv4 = network['en0'].filter(item => item.family === 'IPv4');
         return ipv4[0].address;
     }
 }
