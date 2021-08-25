@@ -11,7 +11,7 @@ class ClientPacket {
         switch (size) {
             case 1: this.data.push(this.buffer.readUInt8    (this.offset)); break;
             case 2: this.data.push(this.buffer.readUInt16LE (this.offset)); break;
-            case 4: this.data.push(this.buffer.readUInt32LE (this.offset)); break;
+            case 4: this.data.push(this.buffer.readInt32LE  (this.offset)); break;
         }
 
         this.offset += size;
