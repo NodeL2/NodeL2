@@ -21,19 +21,22 @@ function consume(session, data) {
     Database.fetchAccountPassword(data.username).then((rows) => {
         const password = rows[0]?.password;
 
+        // Username exists in database
         if (password) {
             session.sendData(
                 data.password === password ? ServerResponse.loginSuccess(Config.client) : ServerResponse.loginFail(0x02)
             );
         }
-        else {
+        else { // User account does not exist, create if needed
             if (Config.authServer.autoCreate) {
                 Database.addNewAccount(data.username, data.password).then(() => {
                     consume(session, data);
                 });
             }
             else {
-                ServerResponse.loginFail(0x04)
+                session.sendData(
+                    ServerResponse.loginFail(0x04)
+                );
             }
         }
     });
