@@ -5,17 +5,13 @@ class ClientPacket {
         this.data   = [];
     }
 
-    append(value) {
-        this.data.push(value);
-    }
-
     // Standard data types
 
     read(size) {
         switch (size) {
-            case 1: this.append(this.buffer.readUInt8    (this.offset)); break;
-            case 2: this.append(this.buffer.readUInt16LE (this.offset)); break;
-            case 4: this.append(this.buffer.readUInt32LE (this.offset)); break;
+            case 1: this.data.push(this.buffer.readUInt8    (this.offset)); break;
+            case 2: this.data.push(this.buffer.readUInt16LE (this.offset)); break;
+            case 4: this.data.push(this.buffer.readUInt32LE (this.offset)); break;
         }
 
         this.offset += size;
@@ -37,7 +33,7 @@ class ClientPacket {
     // Special cases
 
     readB(size) {
-        this.append(
+        this.data.push(
             this.buffer.slice(this.offset, this.offset + size)
         );
 
@@ -48,7 +44,7 @@ class ClientPacket {
     readS() {
         const index = this.buffer.indexOf(0x0000, this.offset) + 1;
         if (index > 0) {
-            this.append(
+            this.data.push(
                 this.buffer.toString('ucs2', this.offset, index)
             );
             this.offset += index + 1;

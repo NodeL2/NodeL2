@@ -3,8 +3,8 @@ class ServerPacket {
         this.buffer = Buffer.from([opcode]);
     }
 
-    append(array) {
-        this.buffer = Buffer.concat([this.buffer, array]);
+    append(data) {
+        this.buffer = Buffer.concat([this.buffer, data]);
     }
 
     // Standard data types
