@@ -2,7 +2,7 @@
     "name": "node-l2",
     "version": "1.0.0",
     "dependencies": {
-        "ini": "^2.0.0",
+        "@xan105/ini": "1.0.0",
         "mariadb": "^2.5.3"
     }
 }

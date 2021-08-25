@@ -1,9 +1,8 @@
-// Module imports
-let fs = require('fs'), ini = require('ini');
+let fs = require('fs');
 
 class Config {
-    static ini = ini.parse(
-        fs.readFileSync('./config.ini', 'utf-8')
+    static ini = require('@xan105/ini').parse(
+        fs.readFileSync('./config.ini', 'utf-8'), { autoType: true }
     );
 
     // Default values for L2 Chronicle C1
@@ -20,7 +19,8 @@ class Config {
         host        :  this.ini.AuthServer.Hostname    ?? '127.0.0.1',
         port        : +this.ini.AuthServer.Port        ?? 2106,
         protocol    : +this.ini.AuthServer.Protocol    ?? 0x785a,
-        blowfishKey :  this.ini.AuthServer.BlowfishKey ?? '[;\'.]94-31==-%&@!^+]\u0000'
+        blowfishKey :  this.ini.AuthServer.BlowfishKey ?? '[;\'.]94-31==-%&@!^+]',
+        autoCreate  :  this.ini.AuthServer.Autocreate  ?? true
     };
 
     static gameServer = {

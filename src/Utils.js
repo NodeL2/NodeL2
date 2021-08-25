@@ -1,5 +1,3 @@
-let os = require('os');
-
 class Utils {
     static toHex(value, padding) {
         return Number(value).toString(16).padStart(padding, '0');
@@ -14,7 +12,7 @@ class Utils {
     }
 
     static fetchIPv4Address() {
-        let network = os.networkInterfaces();
+        let network = require('os').networkInterfaces();
         let ipv4 = network['en0'].filter(item => item.family === 'IPv4');
         return ipv4[0].address;
     }

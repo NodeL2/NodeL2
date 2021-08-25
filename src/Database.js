@@ -1,10 +1,8 @@
-// Module imports
-let db = require('mariadb');
 let fs = require('fs');
 
 class Database {
     static init(config, callback) {
-        db.createConnection({
+        require('mariadb').createConnection({
             host     : config.host,
             port     : config.port,
             user     : config.user,
@@ -22,15 +20,21 @@ class Database {
     }
 
     static fetchAccountPassword(username) {
-        return this.conn.query(
-            'SELECT password FROM accounts WHERE username = "' + username + '" LIMIT 1'
-        );
+        return this.conn.query('\
+            SELECT password FROM accounts WHERE username = "' + username + '" LIMIT 1\
+        ');
     }
 
     static fetchCharacters(username) {
-        return this.conn.query(
-            'SELECT * FROM characters WHERE username = "' + username + '"'
-        );
+        return this.conn.query('\
+            SELECT * FROM characters WHERE username = "' + username + '"\
+        ');
+    }
+
+    static addNewAccount(username, password) {
+        return this.conn.query('\
+            INSERT INTO accounts (username, password) VALUES ("' + username + '", "' + password + '")\
+        ');
     }
 
     static addNewCharacter(username, data, classInfo) {

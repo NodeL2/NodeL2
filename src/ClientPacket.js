@@ -42,7 +42,7 @@ class ClientPacket {
     }
 
     readS() {
-        const index = this.buffer.indexOf(0x0000, this.offset) + 1;
+        const index = this.buffer.indexOf(Buffer.alloc(2), this.offset) + 1;
         if (index > 0) {
             this.data.push(
                 this.buffer.toString('ucs2', this.offset, index)

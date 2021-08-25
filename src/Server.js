@@ -7,7 +7,6 @@ global.fatalError = (...args) => {
     process.exit();
 }
 
-let Config     = invoke('Config');
 let Database   = invoke('Database');
 let AuthServer = invoke('AuthServer/AuthServer');
 let GameServer = invoke('GameServer/GameServer');
@@ -20,7 +19,7 @@ console.log('# Build date: ....... 2021.08.12 15:20');
 console.log('# NodeJS version: ... 14.17.x');
 console.log('# ====================================\n');
 
-Database.init(Config.database, () => {
-    new AuthServer(Config.authServer);
-    new GameServer(Config.gameServer);
+Database.init(invoke('Config').database, () => {
+    new AuthServer();
+    new GameServer();
 });

@@ -19,15 +19,22 @@ function authoriseLogin(session, buffer) {
 
 function consume(session, data) {
     Database.fetchAccountPassword(data.username).then((rows) => {
-        if (data.password === rows[0]?.password) {
+        const password = rows[0]?.password;
+
+        if (password) {
             session.sendData(
-                ServerResponse.loginSuccess(Config.client)
+                data.password === password ? ServerResponse.loginSuccess(Config.client) : ServerResponse.loginFail(0x02)
             );
         }
         else {
-            session.sendData(
-                ServerResponse.loginFail(0x02)
-            );
+            if (Config.authServer.autoCreate) {
+                Database.addNewAccount(data.username, data.password).then(() => {
+                    consume(session, data);
+                });
+            }
+            else {
+                ServerResponse.loginFail(0x04)
+            }
         }
     });
 }

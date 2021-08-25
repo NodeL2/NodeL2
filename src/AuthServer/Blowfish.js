@@ -1,11 +1,10 @@
-let Config = invoke('Config');
-
-// Module imports
 let crypto = require('crypto');
 
 class Blowfish {
+    static key = invoke('Config').authServer.blowfishKey + '\u0000';
+
     static encrypt(data) {
-        let cipher = crypto.createCipheriv('bf-ecb', Config.authServer.blowfishKey, '');
+        let cipher = crypto.createCipheriv('bf-ecb', Blowfish.key, '');
         cipher.setAutoPadding(false);
 
         data.swap32(); // Endianness: Big
@@ -16,7 +15,7 @@ class Blowfish {
     }
 
     static decrypt(data) {
-        let decipher = crypto.createDecipheriv('bf-ecb', Config.authServer.blowfishKey, '');
+        let decipher = crypto.createDecipheriv('bf-ecb', Blowfish.key, '');
         decipher.setAutoPadding(false);
 
         data.swap32(); // Endianness: Big
