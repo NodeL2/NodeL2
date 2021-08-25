@@ -25,7 +25,7 @@ function createNewChar(session, buffer) {
         raceId    : packet.data[ 1],
         gender    : packet.data[ 2],
         classId   : packet.data[ 3],
-        hairStyle : packet.data[10],
+        hairId    : packet.data[10],
         hairColor : packet.data[11],
         face      : packet.data[12],
     });

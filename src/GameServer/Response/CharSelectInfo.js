@@ -35,7 +35,7 @@ function charSelectInfo(characters) {
             }
 
             packet
-                .writeD(character.hairStyle)
+                .writeD(character.hairId)
                 .writeD(character.hairColor)
                 .writeD(character.face)
                 .writeF(character.maxHp)
