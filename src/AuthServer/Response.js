@@ -1,5 +1,5 @@
 module.exports = {
-            init: invoke('AuthServer/Response/Init'),
+          initLS: invoke('AuthServer/Response/InitLS'),
         gameFail: invoke('AuthServer/Response/GameFail'),
      gameSuccess: invoke('AuthServer/Response/GameSuccess'),
        loginFail: invoke('AuthServer/Response/LoginFail'),

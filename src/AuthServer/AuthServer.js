@@ -6,6 +6,9 @@ let net = require('net');
 
 class AuthServer {
     constructor(config) {
+        // Keep reference until `initLS` method call
+        this.serverProtocol = config.protocol;
+
         net.createServer(this.onSocket).listen(config.port, config.host, () => {
             console.log('AuthServer:: initialised for %s:%d', config.host, config.port);
         });
@@ -21,7 +24,7 @@ class AuthServer {
 
         // First handshake with client
         session.sendData(
-            ServerResponse.init(), false
+            ServerResponse.initLS(this.serverProtocol), false
         );
     }
 }

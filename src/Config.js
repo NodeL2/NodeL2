@@ -19,6 +19,7 @@ class Config {
     static authServer = {
         host        :  this.ini.AuthServer.Hostname    ?? '127.0.0.1',
         port        : +this.ini.AuthServer.Port        ?? 2106,
+        protocol    : +this.ini.AuthServer.Protocol    ?? 0x785a,
         blowfishKey :  this.ini.AuthServer.BlowfishKey ?? '[;\'.]94-31==-%&@!^+]\u0000'
     };
 
