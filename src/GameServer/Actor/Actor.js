@@ -5,7 +5,7 @@ class Actor {
     }
 
     setModel(data) {
-        if (!data.title) { data.title = ''; }
+        data.title = data.title ?? '';
         this.model = data;
     }
 
