@@ -10,16 +10,16 @@ class ServerPacket {
     // Standard data types
 
     write(value, size) {
-        let data = new DataView(new ArrayBuffer(size));
+        let data = Buffer.alloc(size);
 
         switch (size) {
-            case 1: data.setUint8  (0, value, true); break;
-            case 2: data.setUint16 (0, value, true); break;
-            case 4: data.setUint32 (0, value, true); break;
-            case 8: data.setFloat64(0, value, true); break;
+            case 1: data.writeUInt8    (value); break;
+            case 2: data.writeUInt16LE (value); break;
+            case 4: data.writeUInt32LE (value); break;
+            case 8: data.writeDoubleLE (value); break;
         }
 
-        this.append(Buffer.from(data.buffer));
+        this.append(data);
         return this;
     }
 
@@ -42,7 +42,7 @@ class ServerPacket {
     // Special cases
 
     writeB(array) {
-        this.append(new Uint8Array(array.reverse()));
+        this.append(Buffer.from(array.reverse()));
         return this;
     }
 

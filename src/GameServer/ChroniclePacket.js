@@ -21,7 +21,6 @@ const values = {
 };
 
 class ChroniclePacket extends ServerPacket {
-
     constructor(key) {
         if (!key in values) {
             fatalError('GS:: unknown chronicle packet code -> %s', key);
