@@ -54,7 +54,7 @@ class Database {
                   classId: data.classId,
                     level: 1,
                     maxHp: classInfo.stats.maxHp,
-                       hp: 48,
+                       hp: classInfo.stats.maxHp,
                     maxMp: classInfo.stats.maxMp,
                        mp: classInfo.stats.maxMp,
                       exp: 0,
@@ -64,9 +64,9 @@ class Database {
                      face: data.face,
                    hairId: data.hairId,
                 hairColor: data.hairColor,
-                        x: 43648,
-                        y: 40352,
-                        z:-3430
+                        x: 43648, // TODO: Depends on race and class
+                        y: 40352, // TODO: Depends on race and class
+                        z:-3430   // TODO: Depends on race and class
             }).text
         );
     }
