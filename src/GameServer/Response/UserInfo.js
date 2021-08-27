@@ -88,7 +88,7 @@ function userInfo(player) {
         .writeF(player.model.stats.atkSpd / 277.77777777777777)  // Attack Speed Multiplier
         .writeF(player.model.metrics.maleR)
         .writeF(player.model.metrics.maleH)
-        .writeD(player.model.hairStyle)
+        .writeD(player.model.hairId)
         .writeD(player.model.hairColor)
         .writeD(player.model.face)
         .writeD(0x00)  // GM = 0x01

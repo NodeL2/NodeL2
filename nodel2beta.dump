@@ -63,7 +63,7 @@ CREATE TABLE `characters` (
   `karma` int(10) NOT NULL,
   `gender` int(5) NOT NULL,
   `face` int(5) NOT NULL,
-  `hairStyle` int(5) NOT NULL,
+  `hairId` int(5) NOT NULL,
   `hairColor` int(5) NOT NULL,
   `x` float NOT NULL,
   `y` float NOT NULL,

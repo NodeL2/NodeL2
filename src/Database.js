@@ -1,4 +1,5 @@
-let fs = require('fs');
+let fs  = require('fs');
+let sql = require('sql-query-generator');
 
 class Database {
     static init(config, callback) {
@@ -20,28 +21,54 @@ class Database {
     }
 
     static fetchAccountPassword(username) {
-        return this.conn.query('\
-            SELECT password FROM accounts WHERE username = "' + username + '" LIMIT 1\
-        ');
+        return this.conn.query(
+            sql.select('accounts', 'password').where({
+                username: username
+            }).limit(1).text
+        );
     }
 
     static fetchCharacters(username) {
-        return this.conn.query('\
-            SELECT * FROM characters WHERE username = "' + username + '"\
-        ');
+        return this.conn.query(
+            sql.select('characters', '*').where({
+                username: username
+            }).text
+        );
     }
 
     static addNewAccount(username, password) {
-        return this.conn.query('\
-            INSERT INTO accounts (username, password) VALUES ("' + username + '", "' + password + '")\
-        ');
+        return this.conn.query(
+            sql.insert('accounts', {
+                username: username,
+                password: password
+            }).text
+        );
     }
 
     static addNewCharacter(username, data, classInfo) {
-        return this.conn.query('\
-            INSERT INTO characters (username, name, raceId, classId, level, maxHp, hp, maxMp, mp, exp, sp, karma, gender, face, hairStyle, hairColor, x, y, z)\
-            VALUES ("' + username + '", "' + data.name + '", ' + data.raceId + ', ' + data.classId + ', 1, ' + classInfo.stats.maxHp + ', 48, ' + classInfo.stats.maxMp + ', ' + classInfo.stats.maxMp + ', 0, 0, 0, ' + data.gender + ', ' + data.face + ', ' + data.hairStyle + ', ' + data.hairColor + ', 43648, 40352, -3430)\
-        ');
+        return this.conn.query(
+            sql.insert('characters', {
+                 username: username,
+                     name: data.name,
+                   raceId: data.raceId,
+                  classId: data.classId,
+                    level: 1,
+                    maxHp: classInfo.stats.maxHp,
+                       hp: classInfo.stats.maxHp,
+                    maxMp: classInfo.stats.maxMp,
+                       mp: classInfo.stats.maxMp,
+                      exp: 0,
+                       sp: 0,
+                    karma: 0,
+                   gender: data.gender,
+                     face: data.face,
+                   hairId: data.hairId,
+                hairColor: data.hairColor,
+                        x: 43648, // TODO: Depends on race and class
+                        y: 40352, // TODO: Depends on race and class
+                        z:-3430   // TODO: Depends on race and class
+            }).text
+        );
     }
 
     // Constant information

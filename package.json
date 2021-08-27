@@ -2,7 +2,8 @@
     "name": "node-l2",
     "version": "1.0.0",
     "dependencies": {
-        "@xan105/ini": "1.0.0",
-        "mariadb": "^2.5.3"
+        "@xan105/ini": "^1.0.0",
+        "mariadb": "^2.5.3",
+        "sql-query-generator": "^1.4.2"
     }
 }
