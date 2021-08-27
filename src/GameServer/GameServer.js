@@ -1,8 +1,11 @@
 let GameSession = invoke('GameServer/Session');
 let Config      = invoke('Config');
+let World       = invoke('GameServer/World');
 
 class GameServer {
     constructor() {
+        World.init();
+
         let config = Config.gameServer;
 
         require('net').createServer(this.onSocket).listen(config.port, config.host, () => {

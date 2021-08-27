@@ -3,6 +3,7 @@ module.exports = {
     charSelectInfo: invoke('GameServer/Response/CharSelectInfo'),
      charTemplates: invoke('GameServer/Response/CharTemplates'),
     moveToLocation: invoke('GameServer/Response/MoveToLocation'),
+           npcInfo: invoke('GameServer/Response/NpcInfo'),
          questList: invoke('GameServer/Response/QuestList'),
      logoutSuccess: invoke('GameServer/Response/LogoutSuccess'),
            restart: invoke('GameServer/Response/Restart'),

@@ -16,6 +16,20 @@ class Utils {
         let ipv4 = network['en0'].filter(item => item.family === 'IPv4');
         return ipv4[0].address;
     }
+
+    static createRandomNumber(limit) {
+        return Math.floor(Math.random() * limit);
+    }
+
+    static createRandomCoordinates(centerX, centerY, radius) {
+        const r = radius * Math.sqrt(Math.random());
+        const theta = Math.random() * 2 * Math.PI;
+
+        return {
+            x: centerX + r * Math.cos(theta),
+            y: centerY + r * Math.sin(theta),
+        };
+    }
 }
 
 module.exports = Utils;

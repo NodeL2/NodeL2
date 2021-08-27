@@ -14,6 +14,10 @@ function protocolVersion(session, buffer) {
 }
 
 function consume(session, data) {
+    if (data.protocolVersion < 0 || data.protocolVersion >= 0xffff) { // C2 causes this problem, temp fix...
+        return;
+    }
+
     session.sendData(
         ServerResponse.versionCheck(Config.client.protocol === data.protocolVersion)
     );
