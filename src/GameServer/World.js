@@ -26,7 +26,7 @@ class World {
                         hp: hp,
                      maxHp: 95,
                     radius: npc.collision_radius,
-                      size: npc.collision_height,
+                    height: npc.collision_height,
                          x: coords.x,
                          y: coords.y,
                          z: -3492,

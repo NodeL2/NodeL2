@@ -30,6 +30,10 @@ class Utils {
             y: centerY + r * Math.sin(theta),
         };
     }
+
+    static replaceSQLParams(text) {
+        return text.replace(/\$\w+/gi, '?');
+    }
 }
 
 module.exports = Utils;

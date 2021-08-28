@@ -24,8 +24,8 @@ function npcInfo(npc) {
         .writeD(100) // Flying Walk Speed
         .writeF(1) // Movement Multiplier
         .writeF(1) // Attack Speed Multiplier
-        .writeF(npc.collisionRadius) // Collision Radius
-        .writeF(npc.collisionHeight) // Collision Height
+        .writeF(npc.radius) // Collision Radius
+        .writeF(npc.height) // Collision Height
         .writeD(0x00) // Right Hand Item
         .writeD(0x00)
         .writeD(0x00) // Left Hand Item

@@ -17,36 +17,42 @@ class Database {
         })
         .catch(error => {
             fatalError('DB:: failed to create connection');
-        })
+        });
+    }
+
+    static completeQuery(query) {
+        return this.conn.query(
+            invoke('Utils').replaceSQLParams(query.text), query.values
+        );
     }
 
     static fetchAccountPassword(username) {
-        return this.conn.query(
+        return this.completeQuery(
             sql.select('accounts', 'password').where({
                 username: username
-            }).limit(1).text
+            }).limit(1)
         );
     }
 
     static fetchCharacters(username) {
-        return this.conn.query(
+        return this.completeQuery(
             sql.select('characters', '*').where({
                 username: username
-            }).text
+            })
         );
     }
 
     static addNewAccount(username, password) {
-        return this.conn.query(
+        return this.completeQuery(
             sql.insert('accounts', {
                 username: username,
                 password: password
-            }).text
+            })
         );
     }
 
     static addNewCharacter(username, data, classInfo) {
-        return this.conn.query(
+        return this.completeQuery(
             sql.insert('characters', {
                  username: username,
                      name: data.name,
@@ -67,7 +73,7 @@ class Database {
                         x: 43648, // TODO: Depends on race and class
                         y: 40352, // TODO: Depends on race and class
                         z:-3430   // TODO: Depends on race and class
-            }).text
+            })
         );
     }
 
