@@ -21,7 +21,7 @@ class World {
                         id: 1000000 + i,
                      npcId: npc.id,
                       name: npc.name,
-                      type: npc.class,
+                      type: npc.type,
                 attackable: true,
                         hp: hp,
                      maxHp: 100,
