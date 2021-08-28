@@ -10,7 +10,7 @@ class World {
     static insertNpcs(session) {
         for (let i = 0; i < 20; i++) { // 20 Mobs
             const coords  = Utils.createRandomCoordinates(41819.5, 41705.1, 1200);
-            const hp      = Utils.createRandomNumber(85) + 10;
+            const hp      = Utils.createRandomNumber(100);
             const heading = Utils.createRandomNumber(65536);
 
             let npc = this.npcDatabase[
@@ -24,9 +24,9 @@ class World {
                       type: npc.class,
                 attackable: true,
                         hp: hp,
-                     maxHp: 95,
-                    radius: npc.collision_radius,
-                    height: npc.collision_height,
+                     maxHp: 100,
+                collisionR: npc.collisionR,
+                collisionH: npc.collisionH,
                          x: coords.x,
                          y: coords.y,
                          z: -3492,
