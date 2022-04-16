@@ -14,8 +14,8 @@ let GameServer = invoke('GameServer/GameServer');
 console.log('# ====================================');
 console.log('# Server Name: ...... NodeL2 [768]');
 console.log('# Build Revision: ... 0.02');
-console.log('# Chronicle: ........ C2');
-console.log('# Build date: ....... 2021.08.12 15:20');
+console.log('# Chronicle: ........ C1');
+console.log('# Build date: ....... 2022.04.15 17:48');
 console.log('# NodeJS version: ... 14.17.x');
 console.log('# ====================================\n');
 
