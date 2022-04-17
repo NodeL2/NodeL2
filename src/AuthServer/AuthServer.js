@@ -1,28 +1,17 @@
-let AuthSession    = invoke('AuthServer/Session');
-let ServerResponse = invoke('AuthServer/Response');
-let Config         = invoke('Config');
+let { optnAuthServer } = require('../Config');
 
 class AuthServer {
     constructor() {
-        let config = Config.authServer;
+        let host = optnAuthServer.hostname;
+        let port = optnAuthServer.port;
 
-        require('net').createServer(this.onSocket).listen(config.port, config.host, () => {
-            console.log('AuthServer:: initialised for %s:%d', config.host, config.port);
+        require('net').createServer(this.onSocket).listen(port, host, () => {
+            console.log('AuthServer:: Successful init for %s:%d', host, port);
         });
     }
 
     onSocket(socket) {
-        console.log(
-            'AuthServer:: new connection from %s:%d', socket.remoteAddress, socket.remotePort
-        );
-
-        let session = new AuthSession(socket);
-        socket.on('data', session.receiveData.bind(session));
-
-        // First handshake with client
-        session.sendData(
-            ServerResponse.initLS(Config.authServer.protocol), false
-        );
+        // TODO
     }
 }
 

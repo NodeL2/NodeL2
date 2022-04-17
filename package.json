@@ -1,9 +1,9 @@
 {
-    "name": "node-l2",
-    "version": "1.0.0",
+    "name": "nodel2",
+    "version": "0.0.1",
+    "description": "L2 Server implemented in Node",
     "dependencies": {
-        "@xan105/ini": "^1.0.1",
-        "mariadb": "^3.0.0",
-        "sql-query-generator": "^1.4.2"
+        "ini": "^3.0.0",
+        "mariadb": "^3.0.0"
     }
 }
