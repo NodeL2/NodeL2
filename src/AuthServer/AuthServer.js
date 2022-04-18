@@ -1,7 +1,7 @@
-let { optnAuthServer } = require('../Config');
-
 class AuthServer {
     constructor() {
+        let { optnAuthServer } = invoke('Config');
+
         let host = optnAuthServer.hostname;
         let port = optnAuthServer.port;
 

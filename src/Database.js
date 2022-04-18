@@ -1,8 +1,8 @@
-let { optnDatabase } = require('./Config');
-
 let conn;
 
-function initDatabase(callback) {
+exports.initDatabase = (callback) => {
+    let { optnDatabase } = invoke('Config');
+
     require('mariadb').createConnection({
         host     : optnDatabase.hostname,
         port     : optnDatabase.port,
@@ -15,5 +15,3 @@ function initDatabase(callback) {
         callback();
     });
 }
-
-exports.initDatabase = initDatabase;

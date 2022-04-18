@@ -1,5 +1,9 @@
-let AuthServer = require('./AuthServer/AuthServer');
+global.invoke = (module) => {
+    return require(__dirname + '/' + module);
+};
 
-require('./Database').initDatabase(() => {
+let AuthServer = invoke('AuthServer/AuthServer');
+
+invoke('Database').initDatabase(() => {
     new AuthServer();
 });
