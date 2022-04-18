@@ -1,14 +1,14 @@
 let conn;
 
 exports.initDatabase = (callback) => {
-    let { optnDatabase } = invoke('Config');
+    let { optnDatabase: optn } = invoke('Config');
 
     require('mariadb').createConnection({
-        host     : optnDatabase.hostname,
-        port     : optnDatabase.port,
-        user     : optnDatabase.user,
-        password : optnDatabase.password,
-        database : optnDatabase.name
+        host     : optn.hostname,
+        port     : optn.port,
+        user     : optn.user,
+        password : optn.password,
+        database : optn.name
 
     }).then(instance => {
         console.log('DB:: Connected');
