@@ -8,10 +8,14 @@ exports.initDatabase = (callback) => {
         port     : optnDatabase.port,
         user     : optnDatabase.user,
         password : optnDatabase.password,
-        database : optnDatabase.name,
+        database : optnDatabase.name
+
     }).then(instance => {
         console.log('DB:: Connected');
         conn = instance;
         callback();
+
+    }).catch(error => {
+        console.log('DB:: Failed(%d) -> %s', error.errno, error.text);
     });
 }
