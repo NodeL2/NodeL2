@@ -1,3 +1,5 @@
+let AuthSession = invoke('AuthServer/Session');
+
 class AuthServer {
     constructor() {
         let { optnAuthServer } = invoke('Config');
@@ -11,7 +13,11 @@ class AuthServer {
     }
 
     onSocket(socket) {
-        // TODO
+        console.log(
+            'AuthServer:: New connection received from %s:%d', socket.remoteAddress, socket.remotePort
+        );
+
+        let session = new AuthSession(socket);
     }
 }
 
