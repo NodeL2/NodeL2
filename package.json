@@ -3,6 +3,7 @@
     "version": "0.0.1",
     "description": "L2 Server implementation in Node",
     "dependencies": {
+        "jshint": "^2.13.4",
         "ini": "^3.0.0",
         "mariadb": "^3.0.0"
     }

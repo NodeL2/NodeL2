@@ -18,4 +18,4 @@ exports.initDatabase = (callback) => {
     }).catch(error => {
         console.log('DB:: Failed(%d) -> %s', error.errno, error.text);
     });
-}
+};
