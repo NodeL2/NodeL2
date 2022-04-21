@@ -1,13 +1,25 @@
-let { Fish } = require('raptor-blowfish');
+let { createDecipheriv, createCipheriv } = require('crypto');
 
-class Blowfish {
-    constructor() {
-        let { optnAuthServer: optn } = invoke('Config');
+const blowfishKey = invoke('Config').optnAuthServer.blowfishKey + '\u0000';
 
-        let cipher = Fish.createCipher(optn.blowfishKey);
-        let encrypted = cipher.encrypt('Dennis');
-        console.log(encrypted);
-    }
-}
+exports.blowfishDecrypt = (data) => {
+    let decipher = createDecipheriv('bf-ecb', blowfishKey, '');
+    decipher.setAutoPadding(false);
 
-module.exports = Blowfish;
+    data.swap32();
+    data = Buffer.concat([decipher.update(data), decipher.final()]);
+    data.swap32();
+
+    return data;
+};
+
+exports.blowfishEncrypt = (data) => {
+    let cipher = createCipheriv('bf-ecb', blowfishKey, '');
+    cipher.setAutoPadding(false);
+
+    data.swap32();
+    data = cipher.update(data);
+    data.swap32();
+
+    return data;
+};
