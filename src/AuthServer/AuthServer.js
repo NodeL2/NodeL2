@@ -7,6 +7,9 @@ class AuthServer {
         require('net').createServer(this.onSocket).listen(optn.port, optn.hostname, () => {
             console.log('AuthServer:: Successful init for %s:%d', optn.hostname, optn.port);
         });
+
+        let haha = invoke('AuthServer/Blowfish');
+        new haha();
     }
 
     onSocket(socket) {
