@@ -6,9 +6,8 @@ class Session {
         this.socket.on('data', this.receiveData);
 
         // First handshake with client
-        let { optnAuthServer: optn } = invoke('Config');
         this.sendData(
-            initLS(optn.protocol), false
+            initLS(invoke('Config').optnAuthServer.protocol), false
         );
     }
 
