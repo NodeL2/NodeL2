@@ -3,17 +3,17 @@ global.invoke = (module) => {
 };
 
 let AuthServer = invoke('AuthServer/AuthServer');
-let { buildNumber, currentDate, nodeVersion } = invoke('Utils');
+let Utils      = invoke('Utils');
 
 console.log('# ================================');
 console.log('# Server Name: ...... NodeL2 [768]');
-console.log('# Build Revision: ... %s', buildNumber());
+console.log('# Build Revision: ... %s', Utils.buildNumber());
 console.log('# Chronicle: ........ C4');
-console.log('# Build date: ....... %s', currentDate());
-console.log('# NodeJS version: ... %s', nodeVersion());
+console.log('# Build date: ....... %s', Utils.currentDate());
+console.log('# NodeJS version: ... %s', Utils.nodeVersion());
 console.log('# ================================\n');
 
-invoke('Database').initDatabase(() => {
+invoke('Database').init(() => {
     new AuthServer();
 });
 

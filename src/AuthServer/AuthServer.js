@@ -2,7 +2,7 @@ let AuthSession = invoke('AuthServer/Session');
 
 class AuthServer {
     constructor() {
-        let { optnAuthServer: optn } = invoke('Config');
+        let optn = invoke('Config').authServer;
 
         require('net').createServer(this.onSocket).listen(optn.port, optn.hostname, () => {
             console.log('AuthServer:: Successful init for %s:%d', optn.hostname, optn.port);

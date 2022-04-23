@@ -1,6 +1,6 @@
-let { initLS } = invoke('AuthServer/Response/InitLS');
-let { blowfishDecrypt, blowfishEncrypt } = invoke('AuthServer/Blowfish');
-let { authGG } = invoke('AuthServer/Request/GGAuth');
+let Blowfish       = invoke('Blowfish');
+let ClientRequest  = invoke('AuthServer/Request');
+let ServerResponse = invoke('AuthServer/Response');
 
 class Session {
     constructor(socket) {
@@ -11,11 +11,11 @@ class Session {
             fatalError('AuthServer:: unknown opcode 0x%s', Utils.toHex(decryptedPacket[0], 2));
         });
 
-        this.opcodes[0x07] = authGG;
+        this.opcodes[0x07] = ClientRequest.authGG;
 
         // First handshake with client
         this.sendData(
-            initLS(invoke('Config').optnAuthServer.protocol), false
+            ServerResponse.initLS(invoke('Config').optnAuthServer.protocol), false
         );
     }
 
@@ -24,12 +24,12 @@ class Session {
         header.writeInt16LE(data.length + 2);
 
         this.socket.write(
-            Buffer.concat([header, encrypt ? blowfishEncrypt(data) : data])
+            Buffer.concat([header, encrypt ? Blowfish.encrypt(data) : data])
         );
     }
 
     receiveData(data) {
-        let decryptedPacket = blowfishDecrypt(Buffer.from(data).slice(2));
+        let decryptedPacket = Blowfish.decrypt(Buffer.from(data).slice(2));
         this.opcodes[decryptedPacket[0]](this, decryptedPacket);
     }
 }

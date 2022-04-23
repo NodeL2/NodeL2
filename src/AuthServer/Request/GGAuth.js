@@ -1,8 +1,7 @@
-let ClientPacket = invoke('ClientPacket');
-let { authGG } = invoke('AuthServer/Response/GGAuth');
-let { toHex } = invoke('Utils');
+let ClientPacket   = invoke('ClientPacket');
+let ServerResponse = invoke('AuthServer/Response');
 
-exports.authGG = (session, buffer) => {
+function authGG(session, buffer) {
     let packet = new ClientPacket(buffer);
 
     packet
@@ -11,11 +10,13 @@ exports.authGG = (session, buffer) => {
     consume(session, {
         sessionKey : packet.data[0]
     });
-};
+}
 
 function consume(session, data) {
-    console.log(toHex(data.sessionKey, 8));
+    console.log(invoke('Utils').toHex(data.sessionKey, 8));
     session.sendData(
         authGG()
     );
 }
+
+module.exports = authGG;
