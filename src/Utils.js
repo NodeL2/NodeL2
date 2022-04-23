@@ -9,3 +9,7 @@ exports.nodeVersion = () => {
 exports.buildNumber = () => {
     return require('../package').version;
 };
+
+exports.toHex = (value, padding) => {
+    return Number(value).toString(16).padStart(padding, '0');
+};

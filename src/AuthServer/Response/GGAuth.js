@@ -1,7 +1,7 @@
 let ServerPacket = invoke('ServerPacket');
 
-exports.initLS = (serverProtocol) => {
-    let packet = new ServerPacket(0x00);
+exports.authGG = (serverProtocol) => {
+    let packet = new ServerPacket(0x07);
 
     packet
         .writeD(0x00228afd)      // Session ID
