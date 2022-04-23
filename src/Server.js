@@ -2,6 +2,11 @@ global.invoke = (module) => {
     return require(__dirname + '/' + module);
 };
 
+global.fatalError = (...args) => {
+    console.log.apply(this, args);
+    process.exit();
+};
+
 let AuthServer = invoke('AuthServer/AuthServer');
 let Utils      = invoke('Utils');
 

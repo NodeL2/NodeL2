@@ -13,9 +13,8 @@ function authGG(session, buffer) {
 }
 
 function consume(session, data) {
-    console.log(invoke('Utils').toHex(data.sessionKey, 8));
     session.sendData(
-        authGG()
+        ServerResponse.authGG(data.sessionKey)
     );
 }
 

@@ -12,12 +12,12 @@ const Database = {
             database : optn.name
 
         }).then(instance => {
-            console.log('DB:: Connected');
+            console.log('DB:: connected');
             conn = instance;
             callback();
 
         }).catch(error => {
-            console.log('DB:: Failed(%d) -> %s', error.errno, error.text);
+            console.log('DB:: failed(%d) -> %s', error.errno, error.text);
         });
     }
 };

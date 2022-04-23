@@ -1,6 +1,7 @@
 let Blowfish       = invoke('Blowfish');
 let ClientRequest  = invoke('AuthServer/Request');
 let ServerResponse = invoke('AuthServer/Response');
+let Utils          = invoke('Utils');
 
 class Session {
     constructor(socket) {
@@ -11,11 +12,12 @@ class Session {
             fatalError('AuthServer:: unknown opcode 0x%s', Utils.toHex(decryptedPacket[0], 2));
         });
 
+        this.opcodes[0x00] = ClientRequest.authLogin;
         this.opcodes[0x07] = ClientRequest.authGG;
 
         // First handshake with client
         this.sendData(
-            ServerResponse.initLS(invoke('Config').optnAuthServer.protocol), false
+            ServerResponse.initLS(invoke('Config').authServer.protocol), false
         );
     }
 

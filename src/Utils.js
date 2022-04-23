@@ -11,8 +11,14 @@ const Utils = {
         return require('../package').version;
     },
 
-    toHex: () => {
+    toHex: (value, padding) => {
         return Number(value).toString(16).padStart(padding, '0');
+    },
+
+    dumpBuffer: (array) => {
+        console.dir(array, {
+            colors: true, depth: null, maxArrayLength: null
+        });
     }
 };
 
