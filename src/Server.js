@@ -37,8 +37,10 @@ invoke('Database').init(() => {
 let crypto = require('crypto');
 
 let keyPair = crypto.generateKeyPairSync('rsa', { modulusLength: 1024 });
-console.log(keyPair. publicKey.export({ type:  'spki', format: 'der' }));
-console.log(keyPair.privateKey.export({ type: 'pkcs8', format: 'pem' }));
+let publicKey = keyPair.publicKey.export({ type: 'pkcs1', format: 'der' });
+console.log(publicKey.byteLength);
+let privateKey = keyPair.privateKey.export({ type: 'pkcs1', format: 'der'});
+console.log(privateKey.byteLength);
 
 // crypto.generateKeyPair('rsa', {
 //          modulusLength: 1024,
