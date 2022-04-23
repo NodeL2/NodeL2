@@ -33,3 +33,21 @@ invoke('Database').init(() => {
 // Chronicle 6 (Interlude)
 // [0x6b,0x60,0xcb,0x5b,0x82,0xce,0x90,0xb1,0xcc,0x2b,0x6c,0x55,0x6c,0x6c,0x6c,0x6c]
 // k`Ë[‚Î±Ì+lUllllk\000
+
+let crypto = require('crypto');
+
+let keyPair = crypto.generateKeyPairSync('rsa', { modulusLength: 1024 });
+console.log(keyPair. publicKey.export({ type:  'spki', format: 'der' }));
+console.log(keyPair.privateKey.export({ type: 'pkcs8', format: 'pem' }));
+
+// crypto.generateKeyPair('rsa', {
+//          modulusLength: 1024,
+//      publicKeyEncoding: { type:  'spki', format: 'pem' },
+//     privateKeyEncoding: { type: 'pkcs8', format: 'pem' },
+
+// }, (error, public, private) => {
+//     // const encrypted = crypto. publicEncrypt( public, Buffer.from('Hello suckers!'));
+//     // const decrypted = crypto.privateDecrypt(private, encrypted);
+    
+//     // console.log(decrypted.toString('utf8'));
+// });
