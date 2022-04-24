@@ -38,24 +38,14 @@ let crypto = require('crypto');
 
 let keyPair = crypto.generateKeyPairSync('rsa', { modulusLength: 1024 });
 let publicKey = keyPair.publicKey.export({ type: 'pkcs1', format: 'pem' });
-console.log(publicKey);
 let privateKey = keyPair.privateKey.export({ type: 'pkcs1', format: 'der'});
-console.log(privateKey.byteLength);
 
 const pem2jwk = require('pem-jwk').pem2jwk;
 let modulus = pem2jwk(publicKey).n;
-let hi = Buffer.from(modulus, 'base64url');
-console.log(hi.byteLength);
-invoke('Utils').dumpBuffer(hi);
+let arrayBuffer = Buffer.from(modulus, 'base64url');
+console.log(arrayBuffer.byteLength);
+invoke('Utils').dumpBuffer(arrayBuffer);
 
-// crypto.generateKeyPair('rsa', {
-//          modulusLength: 1024,
-//      publicKeyEncoding: { type:  'spki', format: 'pem' },
-//     privateKeyEncoding: { type: 'pkcs8', format: 'pem' },
-
-// }, (error, public, private) => {
-//     // const encrypted = crypto. publicEncrypt( public, Buffer.from('Hello suckers!'));
-//     // const decrypted = crypto.privateDecrypt(private, encrypted);
-    
-//     // console.log(decrypted.toString('utf8'));
-// });
+// const encrypted = crypto. publicEncrypt( public, Buffer.from('Hello suckers!'));
+// const decrypted = crypto.privateDecrypt(private, encrypted);
+// console.log(decrypted.toString('utf8'));

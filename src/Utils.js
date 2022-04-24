@@ -16,9 +16,7 @@ const Utils = {
     },
 
     dumpBuffer: (array) => {
-        console.dir(array, {
-            colors: true, depth: null, maxArrayLength: null
-        });
+        console.log(array.toString('hex').match(/../g).join(' '));
     }
 };
 
