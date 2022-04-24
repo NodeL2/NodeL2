@@ -33,19 +33,3 @@ invoke('Database').init(() => {
 // Chronicle 6 (Interlude)
 // [0x6b,0x60,0xcb,0x5b,0x82,0xce,0x90,0xb1,0xcc,0x2b,0x6c,0x55,0x6c,0x6c,0x6c,0x6c]
 // k`Ë[‚Î±Ì+lUllllk\000
-
-let crypto = require('crypto');
-
-let keyPair = crypto.generateKeyPairSync('rsa', { modulusLength: 1024 });
-let publicKey = keyPair.publicKey.export({ type: 'pkcs1', format: 'pem' });
-let privateKey = keyPair.privateKey.export({ type: 'pkcs1', format: 'der'});
-
-const pem2jwk = require('pem-jwk').pem2jwk;
-let modulus = pem2jwk(publicKey).n;
-let arrayBuffer = Buffer.from(modulus, 'base64url');
-console.log(arrayBuffer.byteLength);
-invoke('Utils').dumpBuffer(arrayBuffer);
-
-// const encrypted = crypto. publicEncrypt( public, Buffer.from('Hello suckers!'));
-// const decrypted = crypto.privateDecrypt(private, encrypted);
-// console.log(decrypted.toString('utf8'));
