@@ -25,9 +25,9 @@ const RSA = {
             [n[i], n[0x4d + i]] = [n[0x4d + i], n[i]];
         }
 
-        for (i = 0; i < 0x40; i++) { n[0x00 + i] = n[0x00 + i] ^ n[0x40 + i]; }
-        for (i = 0; i < 0x04; i++) { n[0x0d + i] = n[0x0d + i] ^ n[0x34 + i]; }
-        for (i = 0; i < 0x40; i++) { n[0x40 + i] = n[0x40 + i] ^ n[0x00 + i]; }
+        for (i = 0; i < 0x40; i++) { n[0x00 + i] ^= n[0x40 + i]; }
+        for (i = 0; i < 0x04; i++) { n[0x0d + i] ^= n[0x34 + i]; }
+        for (i = 0; i < 0x40; i++) { n[0x40 + i] ^= n[0x00 + i]; }
 
         return n;
     },
