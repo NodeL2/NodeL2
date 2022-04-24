@@ -21,6 +21,17 @@ class ClientPacket {
     readD() {
         return this.read(4);
     }
+
+    // Special cases
+
+    readB(size) {
+        this.data.push(
+            this.buffer.slice(this.offset, this.offset + size)
+        );
+
+        this.offset += size;
+        return this;
+    }
 }
 
 module.exports = ClientPacket;

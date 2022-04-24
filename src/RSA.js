@@ -1,10 +1,16 @@
 let NodeRSA = require('node-rsa');
 
 let key = new NodeRSA({b: 1024});
+key.setOptions({
+    encryptionScheme: 'pkcs1',
+    signingScheme: 'pkcs1'
+});
+
+console.log(key);
 
 const RSA = {
     fetchPublicKey: () => {
-        return key.exportKey('pkcs8-public-der'); // pkcs1-pem
+        return key.exportKey('pkcs1-public-der'); // pkcs1-pem
     },
 
     fetchModulus: () => {
