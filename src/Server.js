@@ -37,10 +37,16 @@ invoke('Database').init(() => {
 let crypto = require('crypto');
 
 let keyPair = crypto.generateKeyPairSync('rsa', { modulusLength: 1024 });
-let publicKey = keyPair.publicKey.export({ type: 'pkcs1', format: 'der' });
-console.log(publicKey.byteLength);
+let publicKey = keyPair.publicKey.export({ type: 'pkcs1', format: 'pem' });
+console.log(publicKey);
 let privateKey = keyPair.privateKey.export({ type: 'pkcs1', format: 'der'});
 console.log(privateKey.byteLength);
+
+const pem2jwk = require('pem-jwk').pem2jwk;
+let modulus = pem2jwk(publicKey).n;
+let hi = Buffer.from(modulus, 'base64url');
+console.log(hi.byteLength);
+invoke('Utils').dumpBuffer(hi);
 
 // crypto.generateKeyPair('rsa', {
 //          modulusLength: 1024,
