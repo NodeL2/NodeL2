@@ -1,8 +1,19 @@
 let NodeRSA = require('node-rsa');
 
 let key = new NodeRSA({ b: 1024 });
+// key.setOptions({
+//     encryptionScheme: 'pkcs1',
+//     encryptionSchemeOptions: { hash: 'sha256', label: null }
+// });
+
 key.setOptions({
-    encryptionScheme: 'pkcs1'
+    encryptionScheme: {
+        scheme: 'pkcs1',
+        padding: require('constants').RSA_NO_PADDING,
+        toString: function () {
+          return 'pkcs1-nopadding';
+        }
+    }
 });
 
 const RSA = {
