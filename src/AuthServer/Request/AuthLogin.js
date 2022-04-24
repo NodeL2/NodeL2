@@ -2,7 +2,7 @@ let ClientPacket = invoke('ClientPacket');
 
 function authLogin(session, buffer) {
     let packet = new ClientPacket(buffer);
-    invoke('Utils').dumpBuffer(packet.buffer);
+    //invoke('Utils').dumpBuffer(packet.buffer);
     
     packet
         .readB(128);
@@ -13,8 +13,8 @@ function authLogin(session, buffer) {
 }
 
 function consume(session, data) {
-    invoke('Utils').dumpBuffer(data.encryptedRSA);
-    console.log(data.encryptedRSA.byteLength);
+    //invoke('Utils').dumpBuffer(data.encryptedRSA);
+    //console.log(data.encryptedRSA.byteLength);
 
     let RSA = invoke('RSA');
     console.log(RSA.decrypt(data.encryptedRSA));

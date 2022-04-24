@@ -1,11 +1,12 @@
 let ServerPacket = invoke('ServerPacket');
 let RSA = invoke('RSA');
 
-let modulus = RSA.fetchModulus();
-let scrambledModulus = RSA.scrambleModulus(modulus);
-
 function initLS(serverProtocol) {
     let packet = new ServerPacket(0x00);
+
+    let scrambledModulus = RSA.scrambleModulus(
+        RSA.fetchModulus()
+    );
 
     packet
         .writeD(0x00228afd)        // Session ID

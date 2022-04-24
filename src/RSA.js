@@ -1,12 +1,9 @@
 let NodeRSA = require('node-rsa');
 
-let key = new NodeRSA({b: 1024});
+let key = new NodeRSA({ b: 1024 });
 key.setOptions({
-    encryptionScheme: 'pkcs1',
-    signingScheme: 'pkcs1'
+    encryptionScheme: 'pkcs1'
 });
-
-console.log(key);
 
 const RSA = {
     fetchPublicKey: () => {
@@ -19,6 +16,10 @@ const RSA = {
 
     scrambleModulus: (modulus) => {
         let i, n = Buffer.from(modulus);
+
+        if (n.byteLength === 0x81 && n[0] === 0x00) {
+            n = n.slice(1, n.byteLength);
+        }
 
         for (i = 0; i < 4; i++) {
             [n[i], n[0x4d + i]] = [n[0x4d + i], n[i]];
