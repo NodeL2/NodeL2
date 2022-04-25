@@ -3,13 +3,9 @@ let NodeRSA = require('node-rsa');
 const key = new NodeRSA({ b: 1024 });
 key.setOptions({
     encryptionScheme: {
-          scheme: 'pkcs1',
-         padding: require('constants').RSA_NO_PADDING,
-        toString: () => {
-          return 'pkcs1-nopadding';
-        }
-    },
-    signingScheme: 'pkcs1-sha'
+         scheme: 'pkcs1',
+        padding: require('constants').RSA_NO_PADDING
+    }
 });
 
 const RSA = {
@@ -19,7 +15,8 @@ const RSA = {
 
     scrambleModulus: () => {
         let modulus = key.exportKey('components-public').n;
-        let i, scrambled = Buffer.from(modulus.slice(1, modulus.byteLength)).swap32();
+        console.log(modulus[0] === 0 && modulus.length === 129);
+        let i, scrambled = Buffer.from(modulus.slice(1, modulus.byteLength));
 
         for (i = 0; i < 4; i++) {
             [scrambled[i], scrambled[0x4d + i]] = [scrambled[0x4d + i], scrambled[i]];

@@ -7,7 +7,7 @@ function authLogin(session, buffer) {
         .readB(128);
 
     consume(session, {
-        encryptedRSA : packet.data[1]
+        encryptedRSA : packet.data[0]
     });
 }
 
@@ -16,12 +16,10 @@ function consume(session, data) {
     invoke('Utils').dumpBuffer(data.encryptedRSA);
     let decrypted = RSA.decrypt(data.encryptedRSA);
     invoke('Utils').dumpBuffer(decrypted);
-    let username = decrypted.slice(0x5e, 0x5e + 14);
-    let password = decrypted.slice(0x6c, 0x6c + 16);
-    console.log(username.toString('utf16le'));
-    console.log(password.toString('ucs2'));
-    console.log(invoke('Utils').toAsciiStripNull(username));
-    console.log(invoke('Utils').toAsciiStripNull(password));
+    //let username = decrypted.slice(0x5e, 0x5e + 14);
+    //let password = decrypted.slice(0x6c, 0x6c + 16);
+    console.log(decrypted.toString('ucs2'));
+    console.log(invoke('Utils').toAsciiStripNull(decrypted));
 }
 
 module.exports = authLogin;
