@@ -8,7 +8,8 @@ key.setOptions({
         toString: () => {
           return 'pkcs1-nopadding';
         }
-    }
+    },
+    signingScheme: 'pkcs1-sha'
 });
 
 const RSA = {
