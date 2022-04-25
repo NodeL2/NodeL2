@@ -1,16 +1,11 @@
 let NodeRSA = require('node-rsa');
 
-let key = new NodeRSA({ b: 1024 });
-// key.setOptions({
-//     encryptionScheme: 'pkcs1',
-//     encryptionSchemeOptions: { hash: 'sha256', label: null }
-// });
-
+const key = new NodeRSA({ b: 1024 });
 key.setOptions({
     encryptionScheme: {
-        scheme: 'pkcs1',
-        padding: require('constants').RSA_NO_PADDING,
-        toString: function () {
+          scheme: 'pkcs1',
+         padding: require('constants').RSA_NO_PADDING,
+        toString: () => {
           return 'pkcs1-nopadding';
         }
     }
@@ -21,34 +16,23 @@ const RSA = {
         return key.exportKey('pkcs1-public-der'); // pkcs1-pem
     },
 
-    fetchModulus: () => {
-        return key.exportKey('components-public').n;
-    },
-
-    scrambleModulus: (modulus) => {
-        let i, n = Buffer.from(modulus);
-
-        if (n.byteLength === 0x81 && n[0] === 0x00) {
-            n = n.slice(1, n.byteLength);
-        }
+    scrambleModulus: () => {
+        let modulus = key.exportKey('components-public').n;
+        let i, scrambled = Buffer.from(modulus, 1, modulus.byteLength);
 
         for (i = 0; i < 4; i++) {
-            [n[i], n[0x4d + i]] = [n[0x4d + i], n[i]];
+            [scrambled[i], scrambled[0x4d + i]] = [scrambled[0x4d + i], scrambled[i]];
         }
 
-        for (i = 0; i < 0x40; i++) { n[0x00 + i] ^= n[0x40 + i]; }
-        for (i = 0; i < 0x04; i++) { n[0x0d + i] ^= n[0x34 + i]; }
-        for (i = 0; i < 0x40; i++) { n[0x40 + i] ^= n[0x00 + i]; }
+        for (i = 0; i < 0x40; i++) { scrambled[0x00 + i] ^= scrambled[0x40 + i]; }
+        for (i = 0; i < 0x04; i++) { scrambled[0x0d + i] ^= scrambled[0x34 + i]; }
+        for (i = 0; i < 0x40; i++) { scrambled[0x40 + i] ^= scrambled[0x00 + i]; }
 
-        return n;
+        return scrambled;
     },
 
-    decrypt: (encryptedText) => {
-        return key.decrypt(encryptedText, 'utf8');
-    },
-
-    encrypt: (text) => {
-        return key.encrypt(text, 'base64');
+    decrypt: (data) => {
+        return key.decrypt(data);
     }
 };
 
