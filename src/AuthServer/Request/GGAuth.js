@@ -14,7 +14,7 @@ function authGG(session, buffer) {
 
 function consume(session, data) {
     session.sendData(
-        ServerResponse.authGG(data.sessionKey)
+        ServerResponse.authGG() // data.sessionKey
     );
 }
 
