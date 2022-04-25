@@ -21,7 +21,7 @@ const Utils = {
     },
 
     toAsciiStripNull: (value) => {
-        return value.toString().replace(/\u0000/gi, '');
+        return value.toString('ascii').replace(/\u0000/gi, '');
     }
 };
 

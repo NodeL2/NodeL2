@@ -9,13 +9,9 @@ key.setOptions({
 });
 
 const RSA = {
-    fetchPublicKey: () => {
-        return key.exportKey('pkcs1-public-der'); // pkcs1-pem
-    },
-
     scrambleModulus: () => {
-        let modulus = key.exportKey('components-public').n;
-        let i, scrambled = Buffer.from(modulus.slice(1, modulus.byteLength));
+        let modulus = Buffer.from(key.exportKey('components-public').n);
+        let i, scrambled = modulus.slice(1, modulus.byteLength);
 
         for (i = 0; i < 4; i++) {
             [scrambled[i], scrambled[0x4d + i]] = [scrambled[0x4d + i], scrambled[i]];
@@ -26,6 +22,10 @@ const RSA = {
         for (i = 0; i < 0x40; i++) { scrambled[0x40 + i] ^= scrambled[0x00 + i]; }
 
         return scrambled;
+    },
+
+    decryptAscii: (data) => {
+        return key.decrypt(data, 'ascii');
     },
 
     decrypt: (data) => {
