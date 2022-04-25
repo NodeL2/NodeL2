@@ -16,10 +16,12 @@ function consume(session, data) {
     invoke('Utils').dumpBuffer(data.encryptedRSA);
     let decrypted = RSA.decrypt(data.encryptedRSA);
     invoke('Utils').dumpBuffer(decrypted);
-    //let username = decrypted.slice(0x5e, 0x5e + 14); // 0x62
-    //let password = decrypted.slice(0x6c, 0x6c + 16); // 0x70
+    let username = decrypted.slice(0x62, 0x62 + 14);
+    let password = decrypted.slice(0x70, 0x70 + 16);
     console.log(decrypted.toString('ucs2'));
     console.log(invoke('Utils').toAsciiStripNull(decrypted));
+    console.log(invoke('Utils').toAsciiStripNull(username));
+    console.log(invoke('Utils').toAsciiStripNull(password));
 }
 
 module.exports = authLogin;

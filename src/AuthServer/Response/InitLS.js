@@ -6,12 +6,8 @@ function initLS(serverProtocol) {
 
     packet
         .writeD(0x00228afd)     // Session ID
-        .writeD(0xc621) // Protocol
-        .writeB(rsa)           // RSA Public Key
-        .writeD(0x29dd954e)
-        .writeD(0x77c39cfc)
-        .writeD(0x97adb620)
-        .writeD(0x07bde0f7);
+        .writeD(serverProtocol) // Protocol
+        .writeB(rsa);           // RSA Public Key
 
     return packet.fetchBuffer(false);
 }

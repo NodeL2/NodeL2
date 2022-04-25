@@ -15,7 +15,6 @@ const RSA = {
 
     scrambleModulus: () => {
         let modulus = key.exportKey('components-public').n;
-        console.log(modulus[0] === 0 && modulus.length === 129);
         let i, scrambled = Buffer.from(modulus.slice(1, modulus.byteLength));
 
         for (i = 0; i < 4; i++) {
