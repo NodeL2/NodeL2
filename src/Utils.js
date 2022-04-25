@@ -17,6 +17,11 @@ const Utils = {
 
     dumpBuffer: (array) => {
         console.log(array.toString('hex').match(/../g).join(' '));
+        console.log('\n');
+    },
+
+    toAsciiStripNull: (value) => {
+        return value.toString().replace(/\u0000/gi, '');
     }
 };
 

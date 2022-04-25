@@ -18,6 +18,14 @@ class ClientPacket {
         return this;
     }
 
+    readC() {
+        return this.read(1);
+    }
+
+    readH() {
+        return this.read(2);
+    }
+
     readD() {
         return this.read(4);
     }
