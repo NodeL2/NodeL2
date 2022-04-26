@@ -24,3 +24,10 @@ const RSA = {
 };
 
 module.exports = RSA;
+
+const crypto = require('crypto');
+const { publicKey, privateKey } = crypto.generateKeyPairSync("rsa", {
+    modulusLength: 1024,
+});
+const decryptedData = crypto.privateDecrypt({ key: privateKey, padding: crypto.constants.RSA_NO_PADDING }, encryptedData);
+console.log("decrypted data: ", decryptedData.toString());
