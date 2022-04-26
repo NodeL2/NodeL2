@@ -15,8 +15,10 @@ function authLogin(session, buffer) {
 function consume(session, data) {
     let RSA = invoke('RSA');
     let decrypted = RSA.decrypt(data.encryptedRSA);
-    invoke('Utils').dumpBuffer(decrypted);
-    
+    console.log(decrypted);
+
+    //invoke('Utils').dumpBuffer(decrypted);
+
     //console.log(invoke('Utils').toAsciiStripNull(decrypted));
     //invoke('Utils').dumpBuffer(decrypted);
     //let username = decrypted.slice(0x62, 0x62 + 14);

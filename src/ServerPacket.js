@@ -38,7 +38,7 @@ class ServerPacket {
     // Special cases
 
     writeB(array) {
-        this.append(Buffer.from(array).reverse());
+        this.append(Buffer.from(array));
         return this;
     }
 
