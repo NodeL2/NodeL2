@@ -1,13 +1,12 @@
-let forge = require('node-forge');
-
-var rsa = forge.pki.rsa;
-var keypair = rsa.generateKeyPair({bits: 1024, e: 0x10001});
-const modulus = Buffer.from(keypair.publicKey.n.toString(16), 'hex');
-//console.log(modulus.length);
+const keyPair = require('node-forge').pki.rsa.generateKeyPair({
+    bits: 1024, e: 0x10001
+});
 
 const RSA = {
     scrambleModulus: () => {
-        let i, scrambled = Buffer.from(modulus);
+        let i, scrambled = Buffer.from(
+            keyPair.publicKey.n.toString(16), 'hex'
+        );
 
         for (i = 0; i < 4; i++) {
             [scrambled[i], scrambled[0x4d + i]] = [scrambled[0x4d + i], scrambled[i]];
@@ -21,7 +20,7 @@ const RSA = {
     },
 
     decrypt: (data) => {
-        return keypair.privateKey.decrypt(data);
+        return keyPair.privateKey.decrypt(data);
     }
 };
 
