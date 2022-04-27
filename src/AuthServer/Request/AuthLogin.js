@@ -27,12 +27,9 @@ function consume(session, data) {
 
         // Username exists in database
         if (password) {
-            if (data.password === password) {
-                session.sendData(ServerResponse.loginSuccess(Config.client));
-            }
-            else {
-                console.log('Username exists... but failed at password');
-            }
+            session.sendData(
+                data.password === password ? ServerResponse.loginSuccess(Config.client) : ServerResponse.loginFail(0x02)
+            );
         }
         else { // User account does not exist, create if needed
             if (Config.authServer.autoCreate) {
@@ -41,7 +38,9 @@ function consume(session, data) {
                 });
             }
             else {
-                console.log('Username does not exist, fail');
+                session.sendData(
+                    ServerResponse.loginFail(0x04)
+                );
             }
         }
     });
