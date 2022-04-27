@@ -5,7 +5,7 @@ const keyPair = require('node-forge').pki.rsa.generateKeyPair({
 const RSA = {
     scrambleModulus: () => {
         let modulus = Buffer.from(keyPair.publicKey.n.toByteArray());
-        let i, scrambled = modulus.slice(1, modulus.byteLength);
+        let i, scrambled = modulus.slice(1);
 
         for (i = 0; i < 4; i++) {
             [scrambled[i], scrambled[0x4d + i]] = [scrambled[0x4d + i], scrambled[i]];
