@@ -15,7 +15,8 @@ const Config = {
         hostname    :   (ini.AuthServer.Hostname    ?? '127.0.0.1'),
         port        : + (ini.AuthServer.Port        ?? '2106'),
         protocol    : + (ini.AuthServer.Protocol    ?? '0x785a'),
-        blowfishKey :   (ini.AuthServer.blowfishKey ?? '_;5.]94-31==-%xT!^[$')
+        blowfishKey :   (ini.AuthServer.blowfishKey ?? '_;5.]94-31==-%xT!^[$'),
+        autoCreate  :   (ini.AuthServer.Autocreate  ?? true)
     }
 };
 
