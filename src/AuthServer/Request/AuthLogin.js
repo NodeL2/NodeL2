@@ -1,5 +1,6 @@
-let Database     = invoke('Database');
 let ClientPacket = invoke('ClientPacket');
+let Config       = invoke('Config');
+let Database     = invoke('Database');
 let Utils        = invoke('Utils');
 
 function authLogin(session, buffer) {
@@ -9,27 +10,33 @@ function authLogin(session, buffer) {
         .readB(128) // Encrypted Block
         .readD();   // Session ID
 
-    let decrypted = invoke('RSA').decrypt(packet.data[0]);
+    let decrypted = invoke('RSA').decrypt(
+        packet.data[0]
+    );
 
     consume(session, {
-        username: decrypted.slice(0x62, 0x62 + 14),
-        password: decrypted.slice(0x70, 0x70 + 16),
+        username: Utils.stripNull(decrypted.slice(0x62, 0x62 + 14)),
+        password: Utils.stripNull(decrypted.slice(0x70, 0x70 + 16)),
     });
 }
 
 function consume(session, data) {
-    let username = Utils.stripNull(data.username);
-    let password = Utils.stripNull(data.password);
-
-    Database.fetchUserPassword(username).then(rows => {
+    Database.fetchUserPassword(data.username).then((rows) => {
         const password = rows[0]?.password;
 
         // Username exists in database
         if (password) {
             console.log('Username exists, check password');
         }
-        else {
-            console.log('Username does not exist, create account');
+        else { // User account does not exist, create if needed
+            if (Config.authServer.autoCreate) {
+                Database.createAccount(data.username, data.password).then(() => {
+                    consume(session, data);
+                });
+            }
+            else {
+                console.log('Username does not exist, fail');
+            }
         }
     });
 }

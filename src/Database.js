@@ -1,5 +1,4 @@
-let sql = require('sql-query');
-let sqlSelect = sql.Query().select();
+let sql = require('sql-query').Query();
 
 let conn;
 
@@ -14,7 +13,7 @@ const Database = {
             password : optn.password,
             database : optn.name
 
-        }).then(instance => {
+        }).then((instance) => {
             console.log('DB:: connected');
             conn = instance;
             callback();
@@ -24,9 +23,18 @@ const Database = {
         });
     },
 
+    createAccount: (username, password) => {
+        return conn.query(
+            sql.insert().into('accounts').set({
+                username: username,
+                password: password
+            }).build()
+        );
+    },
+
     fetchUserPassword: (username) => {
         return conn.query(
-            sqlSelect.from('accounts').select('password').where({
+            sql.select().from('accounts').select('password').where({
                 username: username
             }).limit(1).build()
         );
