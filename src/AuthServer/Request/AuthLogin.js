@@ -1,7 +1,8 @@
-let ClientPacket = invoke('ClientPacket');
-let Config       = invoke('Config');
-let Database     = invoke('Database');
-let Utils        = invoke('Utils');
+let ClientPacket   = invoke('ClientPacket');
+let Config         = invoke('Config');
+let Database       = invoke('Database');
+let ServerResponse = invoke('AuthServer/Response');
+let Utils          = invoke('Utils');
 
 function authLogin(session, buffer) {
     let packet = new ClientPacket(buffer);
@@ -27,7 +28,7 @@ function consume(session, data) {
         // Username exists in database
         if (password) {
             if (data.password === password) {
-                console.log('Username exists, password matched!');
+                session.sendData(ServerResponse.loginSuccess(Config.client));
             }
             else {
                 console.log('Username exists... but failed at password');
