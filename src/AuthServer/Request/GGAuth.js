@@ -8,7 +8,7 @@ function authGG(session, buffer) {
         .readD(); // Session ID
 
     consume(session, {
-        sessionId : packet.data[0]
+        sessionId: packet.data[0]
     });
 }
 

@@ -8,11 +8,12 @@ class Session {
         this.socket = socket;
         this.socket.on('data', this.receiveData.bind(this));
 
-        this.opcodes = Array(0xff).fill((_, decryptedPacket) => {
+        this.opcodes = new Array(0xff).fill((_, decryptedPacket) => {
             fatalError('AuthServer:: unknown opcode 0x%s', Utils.toHex(decryptedPacket[0], 2));
         });
 
         this.opcodes[0x00] = ClientRequest.authLogin;
+        this.opcodes[0x05] = ClientRequest.serverList;
         this.opcodes[0x07] = ClientRequest.authGG;
 
         // First handshake with client

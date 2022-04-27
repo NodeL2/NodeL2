@@ -16,12 +16,15 @@ const Utils = {
     },
 
     dumpBuffer: (array) => {
-        console.log(array.toString('hex').match(/../g).join(' '));
-        console.log('\n');
+        console.log('%s\n', array.toString('hex').match(/../g).join(' '));
     },
 
     stripNull: (value) => {
         return value.replace(/\u0000/gi, '');
+    },
+
+    matchSessionKeys: (pair1, pair2) => {
+        return (pair1.sessionKey1 === pair2.sessionKey1) && (pair1.sessionKey2 === pair2.sessionKey2);
     }
 };
 
