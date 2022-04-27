@@ -8,21 +8,17 @@ function authLogin(session, buffer) {
         .readD();   // Session ID
 
     consume(session, {
-        encryptedRSA : packet.data[0]
+        encrypted : packet.data[0]
     });
 }
 
 function consume(session, data) {
-    let RSA = invoke('RSA');
-    let decrypted = RSA.decrypt(data.encryptedRSA);
-    console.log(decrypted);
+    let decrypted = invoke('RSA').decrypt(data.encrypted);
+    let username  = decrypted.slice(0x62, 0x62 + 14);
+    let password  = decrypted.slice(0x70, 0x70 + 16);
 
-    //invoke('Utils').dumpBuffer(decrypted);
-
-    //console.log(invoke('Utils').toAsciiStripNull(decrypted));
-    //invoke('Utils').dumpBuffer(decrypted);
-    //let username = decrypted.slice(0x62, 0x62 + 14);
-    //let password = decrypted.slice(0x70, 0x70 + 16);
+    console.log(username);
+    console.log(password);
 }
 
 module.exports = authLogin;

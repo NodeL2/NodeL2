@@ -19,15 +19,8 @@ const RSA = {
     },
 
     decrypt: (data) => {
-        return keyPair.privateKey.decrypt(data, 'NONE');
+        return keyPair.privateKey.decrypt(data, 'RAW');
     }
 };
 
 module.exports = RSA;
-
-const crypto = require('crypto');
-const { publicKey, privateKey } = crypto.generateKeyPairSync("rsa", {
-    modulusLength: 1024,
-});
-const decryptedData = crypto.privateDecrypt({ key: privateKey, padding: crypto.constants.RSA_NO_PADDING }, encryptedData);
-console.log("decrypted data: ", decryptedData.toString());
