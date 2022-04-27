@@ -1,3 +1,6 @@
+let sql = require('sql-query');
+let sqlSelect = sql.Query().select();
+
 let conn;
 
 const Database = {
@@ -19,6 +22,14 @@ const Database = {
         }).catch(error => {
             console.log('DB:: failed(%d) -> %s', error.errno, error.text);
         });
+    },
+
+    fetchUserPassword: (username) => {
+        return conn.query(
+            sqlSelect.from('accounts').select('password').where({
+                username: username
+            }).limit(1).build()
+        );
     }
 };
 

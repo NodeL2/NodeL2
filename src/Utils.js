@@ -20,8 +20,8 @@ const Utils = {
         console.log('\n');
     },
 
-    toAsciiStripNull: (value) => {
-        return value.toString('ascii').replace(/\u0000/gi, '');
+    stripNull: (value) => {
+        return value.replace(/\u0000/gi, '');
     }
 };
 
