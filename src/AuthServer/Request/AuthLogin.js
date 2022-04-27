@@ -26,7 +26,12 @@ function consume(session, data) {
 
         // Username exists in database
         if (password) {
-            console.log('Username exists, check password');
+            if (data.password === password) {
+                console.log('Username exists, password matched!');
+            }
+            else {
+                console.log('Username exists... but failed at password');
+            }
         }
         else { // User account does not exist, create if needed
             if (Config.authServer.autoCreate) {
