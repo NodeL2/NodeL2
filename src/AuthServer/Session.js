@@ -1,4 +1,4 @@
-let Blowfish       = invoke('Blowfish');
+let Blowfish       = invoke('Cipher/Blowfish');
 let ClientRequest  = invoke('AuthServer/Request');
 let ServerResponse = invoke('AuthServer/Response');
 let Utils          = invoke('Utils');
