@@ -7,8 +7,8 @@ global.fatalError = (...args) => {
     process.exit();
 };
 
-let AuthServer = invoke('AuthServer/AuthServer');
-let Utils      = invoke('Utils');
+let AuthSession = invoke('AuthServer/Session');
+let Utils       = invoke('Utils');
 
 console.log('# ================================');
 console.log('# Server Name: ...... NodeL2 [768]');
@@ -18,8 +18,28 @@ console.log('# Build date: ....... %s', Utils.currentDate());
 console.log('# NodeJS version: ... %s', Utils.nodeVersion());
 console.log('# ================================\n');
 
+class Server {
+    constructor(name, optn, callback) {
+        let parameters = { name: name, callback: callback };
+
+        require('net').createServer(this.onSocket.bind(parameters)).listen(optn.port, optn.hostname, () => {
+            console.log('%s:: successful init for %s:%d', name, optn.hostname, optn.port);
+        });
+    }
+
+    onSocket(socket) {
+        console.log(
+            '%s:: new connection received from %s:%d', this.name, socket.remoteAddress, socket.remotePort
+        );
+
+        this.callback(socket);
+    }
+}
+
 invoke('Database').init(() => {
-    new AuthServer();
+    new Server(
+        'AuthServer', invoke('Config').authServer, (socket) => { new AuthSession(socket); }
+    );
 });
 
 // Chronicle 0/1/2
