@@ -1,4 +1,4 @@
-let ClientPacket   = invoke('ClientPacket');
+let ClientPacket   = invoke('Packet/Client');
 let Config         = invoke('Config');
 let Database       = invoke('Database');
 let ServerResponse = invoke('AuthServer/Response');
