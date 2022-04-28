@@ -1,18 +1,12 @@
 let Blowfish       = invoke('Cipher/Blowfish');
 let ClientRequest  = invoke('AuthServer/Request');
 let ServerResponse = invoke('AuthServer/Response');
+let Opcodes        = invoke('AuthServer/Opcodes');
 let Utils          = invoke('Utils');
 
 class Session {
     constructor(socket) {
-        this.socket  = socket;
-        this.opcodes = new Array(0xff).fill((_, decryptedPacket) => {
-            fatalError('AuthServer:: unknown opcode 0x%s', Utils.toHex(decryptedPacket[0], 2));
-        });
-
-        this.opcodes[0x00] = ClientRequest.authLogin;
-        this.opcodes[0x05] = ClientRequest.serverList;
-        this.opcodes[0x07] = ClientRequest.authGG;
+        this.socket = socket;
 
         // First handshake with client
         this.sendData(
@@ -31,7 +25,7 @@ class Session {
 
     receiveData(data) {
         let decryptedPacket = Blowfish.decrypt(Buffer.from(data).slice(2));
-        this.opcodes[decryptedPacket[0]](this, decryptedPacket);
+        Opcodes.table[decryptedPacket[0]](this, decryptedPacket);
     }
 }
 
