@@ -11,7 +11,7 @@ function authLogin(session, buffer) {
         .readB(128) // Encrypted Block
         .readD();   // Session ID
 
-    let decrypted = invoke('RSA').decrypt(
+    let decrypted = invoke('Cipher/RSA').decrypt(
         packet.data[0]
     );
 
