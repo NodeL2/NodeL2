@@ -18,7 +18,7 @@ console.log('# Build date: ....... %s', Utils.currentDate());
 console.log('# NodeJS version: ... %s', Utils.nodeVersion());
 console.log('# ================================\n');
 
-// Generic class `Server` used for both AuthServer & GameServer
+// Generic class `Server` used by both AuthServer & GameServer
 
 class Server {
     constructor(name, optn, callback) {
@@ -35,7 +35,7 @@ class Server {
             '%s:: new connection received from %s:%d', this.name, socket.remoteAddress, socket.remotePort
         );
 
-        // Generate a new `Session` for the respective `Server`. Either `AuthServer` or `GameServer`
+        // Generate a new `Session` for the respective `Server`. Either `AuthSession` or `GameSession`
         this.callback(socket);
     }
 }
