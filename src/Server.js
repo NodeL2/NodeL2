@@ -18,10 +18,13 @@ console.log('# Build date: ....... %s', Utils.currentDate());
 console.log('# NodeJS version: ... %s', Utils.nodeVersion());
 console.log('# ================================\n');
 
+// Generic class `Server` used for both AuthServer & GameServer
+
 class Server {
     constructor(name, optn, callback) {
         let parameters = { name: name, callback: callback };
 
+        // Create a new listening `Server`
         require('net').createServer(this.onSocket.bind(parameters)).listen(optn.port, optn.hostname, () => {
             console.log('%s:: successful init for %s:%d', name, optn.hostname, optn.port);
         });
@@ -32,14 +35,15 @@ class Server {
             '%s:: new connection received from %s:%d', this.name, socket.remoteAddress, socket.remotePort
         );
 
+        // Generate a new `Session` for the respective `Server`. Either `AuthServer` or `GameServer`
         this.callback(socket);
     }
 }
 
+// Startup procedure, first `Database`, then `AuthServer`, finally `GameServer`
+
 invoke('Database').init(() => {
-    new Server(
-        'AuthServer', invoke('Config').authServer, (socket) => { new AuthSession(socket); }
-    );
+    new Server('AuthServer', invoke('Config').authServer, (socket) => { new AuthSession(socket); });
 });
 
 // Chronicle 0/1/2
