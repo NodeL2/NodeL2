@@ -1,6 +1,4 @@
-let sql = require('sql-query').Query();
-
-let conn;
+let conn, sql = require('sql-query').Query();
 
 const Database = {
     init: (callback) => {

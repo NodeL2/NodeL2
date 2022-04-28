@@ -1,4 +1,4 @@
-let ini = require('ini').parse(
+const ini = require('ini').parse(
     require('fs').readFileSync('./config.ini', 'utf-8')
 );
 
