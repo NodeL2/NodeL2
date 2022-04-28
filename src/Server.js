@@ -13,8 +13,9 @@ class Server {
             '%s:: new connection received from %s:%d', this.name, socket.remoteAddress, socket.remotePort
         );
 
-        // Generate a new `Session` for the respective `Server`. Either `AuthSession` or `GameSession`
-        this.callback(socket);
+        // Generates a new `Session` for the respective `Server`. Either `AuthSession` or `GameSession`
+        let session = this.callback(socket);
+        socket.on('data', session.receiveData.bind(session));
     }
 }
 

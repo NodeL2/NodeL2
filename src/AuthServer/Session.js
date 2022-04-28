@@ -5,9 +5,7 @@ let Utils          = invoke('Utils');
 
 class Session {
     constructor(socket) {
-        this.socket = socket;
-        this.socket.on('data', this.receiveData.bind(this));
-
+        this.socket  = socket;
         this.opcodes = new Array(0xff).fill((_, decryptedPacket) => {
             fatalError('AuthServer:: unknown opcode 0x%s', Utils.toHex(decryptedPacket[0], 2));
         });

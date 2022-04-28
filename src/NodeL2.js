@@ -19,5 +19,5 @@ console.log('# ================================\n');
 // Startup procedure, first `Database`, then `AuthServer`, finally `GameServer`
 
 Database.init(() => {
-    new Server('AuthServer', Config.authServer, (socket) => { new AuthSession(socket); });
+    new Server('AuthServer', Config.authServer, (socket) => { return new AuthSession(socket); });
 });
