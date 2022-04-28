@@ -20,8 +20,8 @@ const Config = {
     },
 
     client: {
-        sessionKey1 : + (ini.Client.SessionKey1     ?? 0x55555555),
-        sessionKey2 : + (ini.Client.SessionKey2     ?? 0x44444444)
+        sessionKey1 : + (ini.Client.SessionKey1     ?? '0x55555555'),
+        sessionKey2 : + (ini.Client.SessionKey2     ?? '0x44444444')
     }
 };
 
