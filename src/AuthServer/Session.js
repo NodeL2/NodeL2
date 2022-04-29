@@ -1,5 +1,6 @@
+let Opcodes        = invoke('AuthServer/Opcodes');
 let ServerResponse = invoke('AuthServer/Response');
-let Transaction    = invoke('AuthServer/Transaction');
+let Transaction    = invoke('Transaction');
 
 class Session {
     constructor(socket) {
@@ -16,7 +17,7 @@ class Session {
     }
 
     dataReceive(data) {
-        Transaction.receive(this, data);
+        Transaction.receive(this, data, Opcodes.table);
     }
 }
 
