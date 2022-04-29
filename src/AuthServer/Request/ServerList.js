@@ -16,8 +16,28 @@ function serverList(session, buffer) {
     });
 }
 
+function establishGameServerIPAddress(session) {
+    let remoteAddr = session.socket.remoteAddress;
+    let host = remoteAddr.split('.');
+
+    switch (host[0]) {
+        case '127': // Localhost
+            return remoteAddr;
+
+        case '192': // LAN
+            return Utils.fetchIPv4Address();
+    }
+
+    // WAN / Internet
+    fatalError('AuthServer:: unhandled WAN address');
+    return '';
+}
+
 function consume(session, data) {
     if (Utils.matchSessionKeys(Config.client, data)) {
+        session.dataSend(
+            ServerResponse.serverList(Config.gameServer, establishGameServerIPAddress(session))
+        );
     }
     else { // Session keys don't match
         session.dataSend(
