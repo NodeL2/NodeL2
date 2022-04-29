@@ -18,3 +18,21 @@ global.fatalError = (...args) => {
 // Chronicle 6 (Interlude)
 // [0x6b,0x60,0xcb,0x5b,0x82,0xce,0x90,0xb1,0xcc,0x2b,0x6c,0x55,0x6c,0x6c,0x6c,0x6c]
 // k`Ë[‚Î±Ì+lUllllk\000
+
+const State = {
+    clients: new Set(),
+
+    newClient: (socket) => {
+        State.clients.add(socket);
+    },
+
+    removeClient: (socket) => {
+        State.clients.delete(socket);
+    },
+
+    broadcast: (data) => {
+        for (let socket of State.clients) {
+            socket.write(data);
+        }
+    }
+};
