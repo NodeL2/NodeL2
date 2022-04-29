@@ -9,5 +9,9 @@
         "ecmaVersion": "latest"
     },
     "rules": {
+    },
+    "globals": {
+        "invoke": "readonly",
+        "fatalError": "readonly"
     }
 }
