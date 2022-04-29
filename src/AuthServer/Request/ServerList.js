@@ -20,7 +20,7 @@ function consume(session, data) {
     if (Utils.matchSessionKeys(Config.client, data)) {
     }
     else { // Session keys don't match
-        session.sendData(
+        session.dataSend(
             ServerResponse.loginFail(0x01)
         );
     }

@@ -27,7 +27,7 @@ function consume(session, data) {
 
         // Username exists in database
         if (password) {
-            session.sendData(
+            session.dataSend(
                 data.password === password ? ServerResponse.loginSuccess(Config.client) : ServerResponse.loginFail(0x02)
             );
         }
@@ -38,7 +38,7 @@ function consume(session, data) {
                 });
             }
             else {
-                session.sendData(
+                session.dataSend(
                     ServerResponse.loginFail(0x04)
                 );
             }
