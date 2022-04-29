@@ -4,7 +4,6 @@
     "description": "L2 Server implementation in Node",
     "devDependencies": {
         "eslint": "^8.14.0",
-        "jshint": "^2.13.4",
         "ini": "^3.0.0",
         "mariadb": "^3.0.0",
         "node-forge": "^1.3.1",
