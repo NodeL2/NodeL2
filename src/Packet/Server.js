@@ -1,6 +1,6 @@
 class ServerPacket {
     constructor(opcode) {
-        this.buffer = Buffer.from([opcode]);
+        this.buffer = Buffer.from(opcode);
     }
 
     append(data) {

@@ -1,8 +1,8 @@
 class ClientPacket {
     constructor(buffer) {
         this.buffer = buffer;
+        this.data   = new Array();
         this.offset = 1; // Skip the opcode id
-        this.data   = [];
     }
 
     // Standard data types
