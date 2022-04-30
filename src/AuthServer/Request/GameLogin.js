@@ -21,18 +21,18 @@ function gameLogin(session, buffer) {
 function consume(session, data) {
     if (Utils.matchSessionKeys(Config.client, data)) {
         if (Config.gameServer.id === data.serverId) {
-            session.sendData(
+            session.dataSend(
                 ServerResponse.gameSuccess(Config.client)
             );
         }
         else { // Invalid server id selected
-            session.sendData(
+            session.dataSend(
                 ServerResponse.gameFail(0x01)
             );
         }
     }
     else { // Session keys don't match
-        session.sendData(
+        session.dataSend(
             ServerResponse.gameFail(0x01)
         );
     }
