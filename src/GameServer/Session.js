@@ -1,17 +1,19 @@
-let Opcodes     = invoke('GameServer/Opcodes');
-let Transaction = invoke('Transaction');
+let Opcodes = invoke('GameServer/Opcodes');
 
 class Session {
     constructor(socket) {
         this.socket = socket;
     }
 
-    dataSend(data, encrypt = true) {
-        Transaction.send(this, data, encrypt);
+    dataSend(data) {
+        let header = Buffer.alloc(2);
+        header.writeInt16LE(data.byteLength + 2);
+        this.socket.write(Buffer.concat([header, data]));
     }
 
     dataReceive(data) {
-        Transaction.receive(this, data, Opcodes.table);
+        let decryptedPacket = Buffer.from(data).slice(2);
+        Opcodes.table[decryptedPacket[0]](this, decryptedPacket);
     }
 }
 

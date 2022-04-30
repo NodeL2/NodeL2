@@ -9,7 +9,7 @@ function serverList(config, ipAddress) {
 
     packet
         .writeC(0x01)        // Amount of Servers
-        .writeC(0x01)        // Last Server ID
+        .writeC(0x00)        // Last Server ID
         .writeC(0x01)        // Server ID
         .writeC(hostname[0]) // Server IP
         .writeC(hostname[1]) // Server IP

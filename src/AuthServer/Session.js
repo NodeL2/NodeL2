@@ -1,6 +1,6 @@
+let Blowfish       = invoke('Cipher/Blowfish');
 let Opcodes        = invoke('AuthServer/Opcodes');
 let ServerResponse = invoke('AuthServer/Response');
-let Transaction    = invoke('Transaction');
 
 class Session {
     constructor(socket) {
@@ -13,11 +13,14 @@ class Session {
     }
 
     dataSend(data, encrypt = true) {
-        Transaction.send(this, data, encrypt);
+        let header = Buffer.alloc(2);
+        header.writeInt16LE(data.byteLength + 2);
+        this.socket.write(Buffer.concat([header, encrypt ? Blowfish.encrypt(data) : data]));
     }
 
     dataReceive(data) {
-        Transaction.receive(this, data, Opcodes.table);
+        let decryptedPacket = Blowfish.decrypt(Buffer.from(data).slice(2));
+        Opcodes.table[decryptedPacket[0]](this, decryptedPacket);
     }
 }
 
