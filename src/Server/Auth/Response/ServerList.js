@@ -1,4 +1,4 @@
-let ServerPacket = invoke('Packet/Server');
+let ServerPacket = require('@ServerPacket');
 
 function serverList(config, ipAddress) {
     let packet = new ServerPacket(0x04);

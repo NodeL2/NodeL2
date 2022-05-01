@@ -2,12 +2,12 @@ require('./Globals');
 
 // User imports
 
-let AuthSession = invoke('AuthServer/Session');
-let GameSession = invoke('GameServer/Session');
-let Config      = invoke('Config');
-let Database    = invoke('Database');
-let Server      = invoke('Server');
-let Utils       = invoke('Utils');
+let AuthSession = require('@Auth/Session');
+let GameSession = require('@Game/Session');
+let Config      = require('@Config');
+let Database    = require('@Database');
+let Server      = require('@Server');
+let Utils       = require('@Utils');
 
 console.log('# ================================');
 console.log('# Server Name: ...... NodeL2 [768]');

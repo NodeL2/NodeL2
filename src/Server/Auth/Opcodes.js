@@ -1,5 +1,5 @@
-let ClientRequest = invoke('AuthServer/Request');
-let Utils = invoke('Utils');
+let ClientRequest = require('@Auth/Requests');
+let Utils = require('@Utils');
 
 const Opcodes = {
     table: (() => {

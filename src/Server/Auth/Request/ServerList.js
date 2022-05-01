@@ -1,7 +1,7 @@
-let ClientPacket   = invoke('Packet/Client');
-let Config         = invoke('Config');
-let ServerResponse = invoke('AuthServer/Response');
-let Utils          = invoke('Utils');
+let ServerResponse = require('@Auth/Response');
+let ClientPacket   = require('@ClientPacket');
+let Config         = require('@Config');
+let Utils          = require('@Utils');
 
 function serverList(session, buffer) {
     let packet = new ClientPacket(buffer);

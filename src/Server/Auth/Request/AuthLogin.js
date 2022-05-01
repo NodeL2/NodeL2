@@ -1,8 +1,8 @@
-let ClientPacket   = invoke('Packet/Client');
-let Config         = invoke('Config');
-let Database       = invoke('Database');
-let ServerResponse = invoke('AuthServer/Response');
-let Utils          = invoke('Utils');
+let ServerResponse = require('@Auth/Response');
+let ClientPacket   = require('@ClientPacket');
+let Config         = require('@Config');
+let Database       = require('@Database');
+let Utils          = require('@Utils');
 
 function authLogin(session, buffer) {
     let packet = new ClientPacket(buffer);
@@ -11,7 +11,7 @@ function authLogin(session, buffer) {
         .readB(128) // Encrypted Block
         .readD();   // Session ID
 
-    let decrypted = invoke('Cipher/RSA').decrypt(
+    let decrypted = require('@RSA').decrypt(
         packet.data[0]
     );
 

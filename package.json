@@ -2,16 +2,38 @@
     "name": "nodel2",
     "version": "0.0.2",
     "description": "L2 Server implementation in Node",
+    "_moduleAliases": {
+        "@Auth/Requests" : "src/Server/Auth/Request",
+        "@Auth/Response" : "src/Server/Auth/Response",
+        "@Auth/Opcodes"  : "src/Server/Auth/Opcodes",
+        "@Auth/Session"  : "src/Server/Auth/Session",
+
+        "@Game/Opcodes"  : "src/Server/Game/Opcodes",
+        "@Game/Session"  : "src/Server/Game/Session",
+
+        "@ClientPacket" : "src/Packet/Client",
+        "@ServerPacket" : "src/Packet/Server",
+
+        "@Blowfish" : "src/Cipher/Blowfish",
+        "@RSA"      : "src/Cipher/RSA",
+
+        "@Config"   : "src/Config",
+        "@Database" : "src/Database",
+        "@Server"   : "src/Server",
+        "@Utils"    : "src/Utils"
+    },
     "devDependencies": {
         "eslint": "^8.14.0",
         "ini": "^3.0.0",
         "mariadb": "^3.0.0",
+        "module-alias": "^2.2.2",
         "node-forge": "^1.3.1",
         "sql-query": "^0.1.27"
     },
     "dependencies": {
         "ini": "^3.0.0",
         "mariadb": "^3.0.0",
+        "module-alias": "^2.2.2",
         "node-forge": "^1.3.1",
         "sql-query": "^0.1.27"
     }

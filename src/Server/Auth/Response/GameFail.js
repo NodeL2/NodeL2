@@ -1,4 +1,4 @@
-let ServerPacket = invoke('Packet/Server');
+let ServerPacket = require('@ServerPacket');
 
 function gameFail(errorCode) {
     let packet = new ServerPacket(0x06);
