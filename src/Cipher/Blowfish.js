@@ -4,7 +4,7 @@ let { createDecipheriv, createCipheriv } = require('crypto');
 let key = invoke('Config').authServer.blowfishKey + '\u0000';
 
 const Blowfish = {
-    decrypt: function(data) { // Switch endianness to decode
+    decrypt: (data) => { // Switch endianness to decode
         let decipher = createDecipheriv('bf-ecb', key, '').setAutoPadding(false);
 
         data = Buffer.concat([
@@ -14,7 +14,7 @@ const Blowfish = {
         return data.swap32();
     },
 
-    encrypt: function(data) { // Switch endianness to encode
+    encrypt: (data) => { // Switch endianness to encode
         let cipher = createCipheriv('bf-ecb', key, '').setAutoPadding(false);
         data = cipher.update(data.swap32());
 
