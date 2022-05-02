@@ -1,8 +1,8 @@
-let ServerPacket = require('@ServerPacket');
+let ServerPacket = invoke('Packet/Server');
 
 function initLS(serverProtocol) {
     let packet = new ServerPacket(0x00);
-    let rsa = require('@RSA').scrambleModulus();
+    let rsa = invoke('Cipher/RSA').scrambleModulus();
 
     packet
         .writeD(0x00228afd)     // Session ID

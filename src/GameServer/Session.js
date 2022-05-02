@@ -1,4 +1,4 @@
-let Opcodes = require('@Game/Opcodes');
+let Opcodes = invoke('GameServer/Opcodes');
 
 class Session {
     constructor(socket) {

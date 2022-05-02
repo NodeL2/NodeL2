@@ -1,7 +1,7 @@
 let { createDecipheriv, createCipheriv } = require('crypto');
 
 // Before L2 C6 interlude, the Blowfish secret was hardcoded in the clients. We know it beforehand.
-let key = require('@Config').authServer.blowfishKey + '\u0000';
+let key = invoke('Config').authServer.blowfishKey + '\u0000';
 
 const Blowfish = {
     decrypt: (data) => { // Switch endianness to decode

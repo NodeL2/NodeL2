@@ -1,6 +1,6 @@
-let Opcodes        = require('@Auth/Opcodes');
-let ServerResponse = require('@Auth/Response');
-let Blowfish       = require('@Blowfish');
+let Blowfish       = invoke('Cipher/Blowfish');
+let Opcodes        = invoke('AuthServer/Opcodes');
+let ServerResponse = invoke('AuthServer/Response');
 
 class Session {
     constructor(socket) {
@@ -8,7 +8,7 @@ class Session {
 
         // First handshake with client
         this.dataSend(
-            ServerResponse.initLS(require('@Config').authServer.protocol), false
+            ServerResponse.initLS(invoke('Config').authServer.protocol), false
         );
     }
 

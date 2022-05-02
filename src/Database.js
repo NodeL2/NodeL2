@@ -2,7 +2,7 @@ let conn, sql = require('sql-query').Query();
 
 const Database = {
     init: (callback) => {
-        let optn = require('@Config').database;
+        let optn = invoke('Config').database;
 
         require('mariadb').createConnection({
             host     : optn.hostname,

@@ -1,7 +1,7 @@
-let ServerResponse = require('@Auth/Response');
-let ClientPacket   = require('@ClientPacket');
-let Config         = require('@Config');
-let Utils          = require('@Utils');
+let ClientPacket   = invoke('Packet/Client');
+let Config         = invoke('Config');
+let ServerResponse = invoke('AuthServer/Response');
+let Utils          = invoke('Utils');
 
 function gameLogin(session, buffer) {
     let packet = new ClientPacket(buffer);

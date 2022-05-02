@@ -1,4 +1,4 @@
-let Utils = require('@Utils');
+let Utils = invoke('Utils');
 
 const Opcodes = {
     table: (() => {

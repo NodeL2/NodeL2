@@ -1,5 +1,5 @@
-let ServerResponse = require('@Auth/Response');
-let ClientPacket   = require('@ClientPacket');
+let ClientPacket   = invoke('Packet/Client');
+let ServerResponse = invoke('AuthServer/Response');
 
 function authGG(session, buffer) {
     let packet = new ClientPacket(buffer);

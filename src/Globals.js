@@ -1,5 +1,3 @@
-require('module-alias/register');
-
 global.invoke = (module) => {
     return require(__dirname + '/' + module);
 };
