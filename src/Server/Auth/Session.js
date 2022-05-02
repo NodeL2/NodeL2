@@ -1,6 +1,6 @@
+let ServerResponse = invoke('Server/Auth/Response');
+let Opcodes        = invoke('Server/Auth/Opcodes');
 let Blowfish       = invoke('Cipher/Blowfish');
-let Opcodes        = invoke('AuthServer/Opcodes');
-let ServerResponse = invoke('AuthServer/Response');
 
 class Session {
     constructor(socket) {

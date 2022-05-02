@@ -1,5 +1,5 @@
+let ServerResponse = invoke('Server/Auth/Response');
 let ClientPacket   = invoke('Packet/Client');
-let ServerResponse = invoke('AuthServer/Response');
 
 function authGG(session, buffer) {
     let packet = new ClientPacket(buffer);

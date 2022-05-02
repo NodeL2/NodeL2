@@ -2,8 +2,8 @@ require('./Globals');
 
 // User imports
 
-let AuthSession = invoke('AuthServer/Session');
-let GameSession = invoke('GameServer/Session');
+let AuthSession = invoke('Server/Auth/Session');
+let GameSession = invoke('Server/Game/Session');
 let Config      = invoke('Config');
 let Database    = invoke('Database');
 let Server      = invoke('Server');

@@ -1,6 +1,6 @@
+let ServerResponse = invoke('Server/Auth/Response');
 let ClientPacket   = invoke('Packet/Client');
 let Config         = invoke('Config');
-let ServerResponse = invoke('AuthServer/Response');
 let Utils          = invoke('Utils');
 
 function serverList(session, buffer) {

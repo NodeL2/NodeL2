@@ -1,7 +1,7 @@
+let ServerResponse = invoke('Server/Auth/Response');
 let ClientPacket   = invoke('Packet/Client');
 let Config         = invoke('Config');
 let Database       = invoke('Database');
-let ServerResponse = invoke('AuthServer/Response');
 let Utils          = invoke('Utils');
 
 function authLogin(session, buffer) {

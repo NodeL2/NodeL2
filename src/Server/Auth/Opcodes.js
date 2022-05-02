@@ -1,4 +1,4 @@
-let ClientRequest = invoke('AuthServer/Request');
+let ClientRequest = invoke('Server/Auth/Request');
 let Utils = invoke('Utils');
 
 const Opcodes = {
