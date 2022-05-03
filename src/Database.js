@@ -22,28 +22,31 @@ const Database = {
         });
     },
 
+    execute: (sql) => {
+        return conn.query(sql[0], sql[1]);
+    },
+
     // Creates a new User Account in the Database with provided credentials
     createAccount: (username, password) => {
-        const [sql, values] = builder.insert('accounts', {
-            username: username, password: password
-        });
-        return conn.query(
-            sql, values
+        return Database.execute(
+            builder.insert('accounts', {
+                username: username,
+                password: password
+            })
         );
     },
 
     // Gets the User Password from provided Username account
     fetchUserPassword: (username) => {
-        const [sql, values] = builder.selectOne('accounts', ['password'], 'username = ?', username);
-        return conn.query(
-            sql, values
+        return Database.execute(
+            builder.selectOne('accounts', ['password'], 'username = ?', username)
         );
     },
 
+    // Gets the User defined Characters based on account
     fetchCharacters: (username) => {
-        const [sql, values] = builder.selectOne('characters', ['*'], 'username = ?', username);
-        return conn.query(
-            sql, values
+        return Database.execute(
+            builder.selectOne('characters', ['*'], 'username = ?', username)
         );
     }
 };
