@@ -1,4 +1,5 @@
-let conn, sql = require('sql-query').Query();
+const SQL = require('like-sql'), builder = new SQL();
+let conn;
 
 const Database = {
     init: (callback) => {
@@ -23,20 +24,26 @@ const Database = {
 
     // Creates a new User Account in the Database with provided credentials
     createAccount: (username, password) => {
+        const [sql, values] = builder.insert('accounts', {
+            username: username, password: password
+        });
         return conn.query(
-            sql.insert().into('accounts').set({
-                username: username,
-                password: password
-            }).build()
+            sql, values
         );
     },
 
     // Gets the User Password from provided Username account
     fetchUserPassword: (username) => {
+        const [sql, values] = builder.selectOne('accounts', ['password'], 'username = ?', username);
         return conn.query(
-            sql.select().from('accounts').select('password').where({
-                username: username
-            }).limit(1).build()
+            sql, values
+        );
+    },
+
+    fetchCharacters: (username) => {
+        const [sql, values] = builder.selectOne('characters', ['*'], 'username = ?', username);
+        return conn.query(
+            sql, values
         );
     }
 };

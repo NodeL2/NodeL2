@@ -1,4 +1,8 @@
+let ServerResponse = invoke('Server/Game/Response');
 let ClientPacket   = invoke('Packet/Client');
+let Config         = invoke('Config');
+let Database       = invoke('Database');
+let Utils          = invoke('Utils');
 
 function authLogin(session, buffer) {
     let packet = new ClientPacket(buffer);
@@ -16,9 +20,11 @@ function authLogin(session, buffer) {
 }
 
 function consume(session, data) {
-    console.log(data.username);
-    console.log(data.sessionKey1);
-    console.log(data.sessionKey2);
+    if (Utils.matchSessionKeys(Config.client, data)) {
+        Database.fetchCharacters(data.username).then((rows) => {
+            console.log(rows);
+        });
+    }
 }
 
 module.exports = authLogin;
