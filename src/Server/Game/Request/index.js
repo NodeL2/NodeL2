@@ -1,4 +1,5 @@
 module.exports = {
-          authLogin: require('./AuthLogin'),
-    protocolVersion: require('./ProtocolVersion')
+             authLogin: require('./AuthLogin'),
+    charCreationScreen: require('./CharCreationScreen'),
+       protocolVersion: require('./ProtocolVersion')
 };

@@ -36,14 +36,14 @@ const Database = {
         );
     },
 
-    // Gets the User Password from provided Username account
+    // Gets the Password from a provided Username account
     fetchUserPassword: (username) => {
         return Database.execute(
             builder.selectOne('accounts', ['password'], 'username = ?', username)
         );
     },
 
-    // Gets the User defined Characters based on account
+    // Gets the Characters defined on a user's account
     fetchCharacters: (username) => {
         return Database.execute(
             builder.selectOne('characters', ['*'], 'username = ?', username)

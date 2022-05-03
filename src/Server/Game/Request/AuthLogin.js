@@ -22,7 +22,9 @@ function authLogin(session, buffer) {
 function consume(session, data) {
     if (Utils.matchSessionKeys(Config.client, data)) {
         Database.fetchCharacters(data.username).then((rows) => {
-            console.log(rows);
+            session.dataSend(
+                ServerResponse.charSelectInfo()
+            );
         });
     }
 }

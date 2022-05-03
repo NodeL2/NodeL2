@@ -1,3 +1,5 @@
 module.exports = {
-    versionCheck: require('./VersionCheck')
+    charSelectInfo: require('./CharSelectInfo'),
+     charTemplates: require('./CharTemplates'),
+      versionCheck: require('./VersionCheck')
 };
