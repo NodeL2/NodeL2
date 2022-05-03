@@ -2,6 +2,7 @@ const ini = require('ini').parse(
     require('fs').readFileSync('./config.ini', 'utf-8')
 );
 
+// Default values appropriate for L2 Chronicle 4 client
 const Config = {
     database: {
         hostname    :   (ini.Database.Hostname      ?? '127.0.0.1'),

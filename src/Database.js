@@ -21,6 +21,7 @@ const Database = {
         });
     },
 
+    // Creates a new User Account in the Database with provided credentials
     createAccount: (username, password) => {
         return conn.query(
             sql.insert().into('accounts').set({
@@ -30,6 +31,7 @@ const Database = {
         );
     },
 
+    // Gets the User Password from provided Username account
     fetchUserPassword: (username) => {
         return conn.query(
             sql.select().from('accounts').select('password').where({

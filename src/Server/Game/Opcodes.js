@@ -1,5 +1,6 @@
 let Utils = invoke('Utils');
 
+// Establishes an `Opcode` table to handle client packets
 const Opcodes = {
     table: (() => {
         let table = new Array(0xff).fill((_, decryptedPacket) => {

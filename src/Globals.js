@@ -1,14 +1,15 @@
+// Override `require` for more convenient referrals
 global.invoke = (module) => {
     return require(__dirname + '/' + module);
 };
 
+// Generic error method to terminate execution
 global.fatalError = (...args) => {
     console.log.apply(this, args);
     process.exit();
 };
 
-// Not used
-
+// TODO: Not used
 const State = {
     clients: new Set(),
 
