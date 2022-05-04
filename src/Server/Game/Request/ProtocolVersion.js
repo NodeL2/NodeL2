@@ -14,8 +14,8 @@ function protocolVersion(session, buffer) {
 }
 
 function consume(session, data) {
-    if (Config.client.protocol !== data.protocolVersion) {
-        fatalError('GameServer:: client protocol version mismatch: %d', data.protocolVersion);
+    if (data.protocolVersion < 0 || data.protocolVersion >= 0xffff) { // TODO: Find root cause of this problem while on `ServerList`
+        return;
     }
 
     session.dataSend(

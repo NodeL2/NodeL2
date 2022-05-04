@@ -2,7 +2,7 @@ const ini = require('ini').parse(
     require('fs').readFileSync('./config.ini', 'utf-8')
 );
 
-// Default values appropriate for L2 Chronicle 4 client
+// Default values appropriate for L2 Chronicle 5 client
 const Config = {
     database: {
         hostname    :   (ini.Database.Hostname      ?? '127.0.0.1'),
@@ -15,7 +15,7 @@ const Config = {
     authServer: {
         hostname    :   (ini.AuthServer.Hostname    ?? '127.0.0.1'),
         port        : + (ini.AuthServer.Port        ?? '2106'),
-        protocol    : + (ini.AuthServer.Protocol    ?? '0x785a'),
+        protocol    : + (ini.AuthServer.Protocol    ?? '0xc621'),
         blowfishKey :   (ini.AuthServer.blowfishKey ?? '_;5.]94-31==-%xT!^[$'),
         autoCreate  :   (ini.AuthServer.Autocreate  ?? true)
     },
@@ -28,7 +28,7 @@ const Config = {
     },
 
     client: {
-        protocol    : + (ini.Client.Protocol        ?? '660'),
+        protocol    : + (ini.Client.Protocol        ?? '709'),
         sessionKey1 : + (ini.Client.SessionKey1     ?? '0x55555555'),
         sessionKey2 : + (ini.Client.SessionKey2     ?? '0x44444444')
     }

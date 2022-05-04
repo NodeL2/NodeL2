@@ -11,7 +11,7 @@ let Utils       = invoke('Utils');
 console.log('# ================================');
 console.log('# Server Name: ...... NodeL2 [768]');
 console.log('# Build Revision: ... %s', Utils.buildNumber());
-console.log('# Chronicle: ........ C4');
+console.log('# Chronicle: ........ C5');
 console.log('# Build date: ....... %s', Utils.currentDate());
 console.log('# NodeJS version: ... %s', Utils.nodeVersion());
 console.log('# ================================\n');
