@@ -2,6 +2,10 @@
     "name": "nodel2",
     "version": "0.0.2",
     "description": "L2 Server implementation in Node",
+    "engines": {
+        "node": "<=16.15.0",
+        "npm": "<=8.8.0"
+    },
     "devDependencies": {
         "eslint": "^8.14.0",
         "ini": "^3.0.0",
