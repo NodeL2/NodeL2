@@ -4,10 +4,10 @@ Node implementation of a C4/C5 Lineage 2 server emulator
 <h2>How to</h2>
 
 * Install `NodeJS 14+`
-* Import `nodel2beta.dump` backup into `nodel2beta` MariaDB SQL database
+* Import `nodel2.dump` backup into `nodel2` MariaDB SQL database
 * Fix database password, chronicle version, and protocol in `config.ini`
 * Run `npm install -i`
-* Run `node src/NodeL2`
+* Run `npm start`
 * Default credentials are username `q` and password `q`
 
 <h2>Credits</h2>
