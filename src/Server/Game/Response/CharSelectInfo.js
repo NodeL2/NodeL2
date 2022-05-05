@@ -30,7 +30,12 @@ function charSelectInfo(characters) {
                 .writeD(character.level)
                 .writeD(character.karma);
 
-            for (let i = 0; i < 41; i++) {
+            for (let i = 0; i <  9; i++) { // ?
+                packet
+                    .writeD(0x00);
+            }
+
+            for (let i = 0; i < 32; i++) { // Paperdoll
                 packet
                     .writeD(0x00);
             }
@@ -45,7 +50,7 @@ function charSelectInfo(characters) {
                 .writeD(0x00)  // Class Id ?
                 .writeD(0x00)  // Selected ?
                 .writeC(0x00)  // Enchanted effect ?
-                .writeD(0x00)  // ???
+                .writeD(0x00)  // ?
                 .writeD(0x00);
         }
     }
