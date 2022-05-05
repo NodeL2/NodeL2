@@ -3,7 +3,8 @@
     "version": "0.0.2",
     "description": "L2 Server implementation in Node",
     "scripts": {
-        "start": "node --openssl-legacy-provider src/NodeL2"
+        "start": "node --openssl-legacy-provider src/NodeL2",
+        "start-lts": "node src/NodeL2"
     },
     "devDependencies": {
         "eslint": "^8.14.0",
