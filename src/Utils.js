@@ -31,6 +31,10 @@ const Utils = {
         let network = require('os').networkInterfaces();
         let ipv4 = network['en0'].filter(item => item.family === 'IPv4');
         return ipv4[0].address;
+    },
+
+    totalMemUsed: () => {
+        console.log('NodeL2:: Total Mem Used -> %f MB', Math.round(process.memoryUsage().heapTotal / 1024 / 1024 * 100) / 100);
     }
 };
 
