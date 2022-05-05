@@ -23,7 +23,7 @@ function consume(session, data) {
     if (Utils.matchSessionKeys(Config.client, data)) {
         Database.fetchCharacters(data.username).then((rows) => {
             session.dataSend(
-                ServerResponse.charSelectInfo()
+                ServerResponse.charSelectInfo(rows)
             );
         });
     }

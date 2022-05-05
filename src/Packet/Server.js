@@ -15,7 +15,7 @@ class ServerPacket {
         switch (size) {
             case 1: data.writeUInt8    (value); break;
             case 2: data.writeUInt16LE (value); break;
-            case 4: data.writeUInt32LE (value); break;
+            case 4: data.writeInt32LE  (value); break;
             case 8: data.writeDoubleLE (value); break;
         }
 
@@ -35,10 +35,20 @@ class ServerPacket {
         return this.write(value, 4);
     }
 
+    writeF(value) {
+        return this.write(value, 8);
+    }
+
     // Special cases
 
     writeB(array) {
         this.append(Buffer.from(array));
+        return this;
+    }
+
+    writeS(text) {
+        this.append(Buffer.from(text, 'ucs2'));
+        this.append(Buffer.alloc(2));
         return this;
     }
 

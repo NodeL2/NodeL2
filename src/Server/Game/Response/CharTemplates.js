@@ -6,7 +6,6 @@ function charTemplates() {
     packet
         .writeD(0x00);
 
-    invoke('Utils').totalMemUsed();
     return packet.fetchBuffer();
 }
 

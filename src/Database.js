@@ -46,7 +46,7 @@ const Database = {
     // Gets the Characters defined on a user's account
     fetchCharacters: (username) => {
         return Database.execute(
-            builder.selectOne('characters', ['*'], 'username = ?', username)
+            builder.select('characters', ['*'], 'username = ?', username)
         );
     }
 };
