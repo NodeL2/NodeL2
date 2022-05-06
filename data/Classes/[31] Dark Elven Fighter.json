@@ -1,0 +1,45 @@
+{
+    "classId"   : 31,
+    "className" : "Dark Elven Fighter",
+
+    "stats": {
+        "maxHp" : 107,
+        "maxMp" : 39,
+
+        "str" : 41,
+        "dex" : 34,
+        "con" : 32,
+        "int" : 25,
+        "wit" : 12,
+        "men" : 26,
+
+        "pAtk"     : 4,
+        "mAtk"     : 3,
+        "pDef"     : 72,
+        "mDef"     : 47,
+        "accuracy" : 35,
+        "evasion"  : 35,
+        "critical" : 45,
+        "speed"    : 126,
+        "atkSpd"   : 342,
+        "castSpd"  : 226,
+
+        "weightLimit" : 69000
+    },
+
+    "speed": {
+        "walk" : 85,
+        "run"  : 122,
+        "swim" : 50
+    },
+
+    "metrics": {
+        "maleR" : 7.5,
+        "maleH" : 24,
+        "femlR" : 7,
+        "femlH" : 23.5
+    },
+
+    "raceId"   : 2,
+    "canCraft" : false
+}

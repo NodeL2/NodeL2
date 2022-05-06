@@ -48,6 +48,21 @@ const Database = {
         return Database.execute(
             builder.select('characters', ['*'], 'username = ?', username)
         );
+    },
+
+    // Gets the Base Stats for a specific Class ID
+    fetchClassInformation: (classId) => {
+        let path = process.cwd() + '/data/Classes';
+
+        return new Promise((success, fail) => {
+            require('fs').readdir(path, (error, files) => {
+                let result = files.find(text =>
+                    text.includes('[' + classId + ']')
+                );
+
+                return result ? success(require(path + '/' + result)) : fail();
+            });
+        });
     }
 };
 

@@ -1,0 +1,45 @@
+{
+    "classId"   : 10,
+    "className" : "Human Mage",
+
+    "stats": {
+        "maxHp" : 99,
+        "maxMp" : 59,
+
+        "str" : 22,
+        "dex" : 21,
+        "con" : 27,
+        "int" : 41,
+        "wit" : 20,
+        "men" : 39,
+
+        "pAtk"     : 2,
+        "mAtk"     : 7,
+        "pDef"     : 48,
+        "mDef"     : 54,
+        "accuracy" : 28,
+        "evasion"  : 28,
+        "critical" : 40,
+        "speed"    : 126,
+        "atkSpd"   : 303,
+        "castSpd"  : 333,
+
+        "weightLimit" : 62500
+    },
+
+    "speed": {
+        "walk" : 84,
+        "run"  : 120,
+        "swim" : 50
+    },
+
+    "metrics": {
+        "maleR" : 7.5,
+        "maleH" : 22.8,
+        "femlR" : 6.5,
+        "femlH" : 22.5
+    },
+
+    "raceId"   : 0,
+    "canCraft" : false
+}

@@ -1,8 +1,13 @@
 let Opcodes = invoke('Server/Game/Opcodes');
+let Actor   = invoke('Server/Game/Actor');
 
 class Session {
     constructor(socket) {
         this.socket = socket;
+    }
+
+    initActor() {
+        this.actor = new Actor();
     }
 
     dataSend(data) {
