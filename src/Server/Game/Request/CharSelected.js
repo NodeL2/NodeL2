@@ -1,5 +1,5 @@
 const ServerResponse = invoke('Server/Game/Response');
-const Actor          = invoke('Server/Game/Actor');
+const Actor          = invoke('Server/Game/Actor/Actor');
 const ClientPacket   = invoke('Packet/Client');
 const Database       = invoke('Database');
 
@@ -23,6 +23,10 @@ function consume(session, data) {
             session.actor = new Actor({
                 ...character, ...classInfo
             });
+
+            session.dataSend(
+                ServerResponse.charSelected(session.actor)
+            );
         });
     });
 }

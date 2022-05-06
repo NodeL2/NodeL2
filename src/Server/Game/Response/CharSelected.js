@@ -1,35 +1,36 @@
 let ServerPacket = invoke('Packet/Server');
 
-function charSelected(player) {
+function charSelected(actor) {
     let packet = new ServerPacket(0x15);
 
     packet
-        .writeS(player.model.name)
-        .writeD(player.model.id)
-        .writeS(player.model.title)
+        .writeS(actor.model.name)
+        .writeD(actor.model.id)
+        .writeS(actor.model.title)
         .writeD(0x55555555)
         .writeD(0x00)  // Clan ID
         .writeD(0x00)  // ?
-        .writeD(player.model.gender)
-        .writeD(player.model.raceId)
-        .writeD(player.model.classId)
+        .writeD(actor.model.gender)
+        .writeD(actor.model.raceId)
+        .writeD(actor.model.classId)
         .writeD(0x01)  // ?
-        .writeD(player.model.x)
-        .writeD(player.model.y)
-        .writeD(player.model.z)
-        .writeF(player.model.hp)
-        .writeF(player.model.mp)
-        .writeD(player.model.sp)
-        .writeD(player.model.exp)
-        .writeD(player.model.level)
+        .writeD(actor.model.x)
+        .writeD(actor.model.y)
+        .writeD(actor.model.z)
+        .writeF(actor.model.hp)
+        .writeF(actor.model.mp)
+        .writeD(actor.model.sp)
+        .writeD(actor.model.exp)
+        .writeD(0x00)  // TODO: This is a hack, `exp` needs `writeQ`
+        .writeD(actor.model.level)
+        .writeD(actor.model.karma)
         .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(player.model.stats.int)
-        .writeD(player.model.stats.str)
-        .writeD(player.model.stats.con)
-        .writeD(player.model.stats.men)
-        .writeD(player.model.stats.dex)
-        .writeD(player.model.stats.wit);
+        .writeD(actor.model.stats.int)
+        .writeD(actor.model.stats.str)
+        .writeD(actor.model.stats.con)
+        .writeD(actor.model.stats.men)
+        .writeD(actor.model.stats.dex)
+        .writeD(actor.model.stats.wit);
 
     for (let i = 0; i < 30; i++) {
         packet
@@ -37,7 +38,7 @@ function charSelected(player) {
     }
 
     packet
-        .writeD(0x00); // In-game time
+        .writeD(0x00); // Game time
 
     return packet.fetchBuffer();
 }
