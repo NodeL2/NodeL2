@@ -15,6 +15,7 @@ function userInfo(actor) {
         .writeD(actor.model.classId)
         .writeD(actor.model.level)
         .writeD(actor.model.exp)
+        .writeD(0x00)  // TODO: This is a hack, `exp` needs `writeQ`
         .writeD(actor.model.stats.str)
         .writeD(actor.model.stats.dex)
         .writeD(actor.model.stats.con)
@@ -28,42 +29,14 @@ function userInfo(actor) {
         .writeD(actor.model.sp)
         .writeD(0x00)  // Load
         .writeD(actor.model.stats.weightLimit)
-        .writeD(0x28)  // ?
+        .writeD(0x28); // ?
 
-        // Object ID
-        .writeD(0x00)  // Underwear
-        .writeD(0x00)  // Ear right
-        .writeD(0x00)  // Ear left
-        .writeD(0x00)  // Neck
-        .writeD(0x00)  // Finger right
-        .writeD(0x00)  // Finger left
-        .writeD(0x00)  // Head
-        .writeD(0x00)
-        .writeD(0x00)  // Hand left
-        .writeD(0x00)  // Gloves
-        .writeD(0x00)
-        .writeD(0x00)
-        .writeD(0x00)  // Feet
-        .writeD(0x00)  // Back
-        .writeD(0x00)  // Hand left & right
+    for (let i = 0; i < 32; i++) { // Paperdoll
+        packet
+            .writeD(0x00);
+    }
 
-        // Item ID
-        .writeD(0x00)  // Underwear
-        .writeD(0x00)  // Ear right
-        .writeD(0x00)  // Ear left
-        .writeD(0x00)  // Neck
-        .writeD(0x00)  // Finger right
-        .writeD(0x00)  // Finger left
-        .writeD(0x00)  // Head
-        .writeD(0x00)
-        .writeD(0x00)  // Hand left
-        .writeD(0x00)  // Gloves
-        .writeD(0x00)
-        .writeD(0x00)
-        .writeD(0x00)  // Feet
-        .writeD(0x00)  // Back
-        .writeD(0x00)  // Hand left & right
-
+    packet
         .writeD(actor.model.stats.pAtk)
         .writeD(actor.model.stats.atkSpd)
         .writeD(actor.model.stats.pDef)
@@ -74,7 +47,7 @@ function userInfo(actor) {
         .writeD(actor.model.stats.castSpd)
         .writeD(actor.model.stats.speed)
         .writeD(actor.model.stats.mDef)
-        .writeD(0x00)  // Purple = 0x01
+        .writeD(0x00)  // 1: Purple
         .writeD(actor.model.karma)
         .writeD(actor.model.speed.run)
         .writeD(actor.model.speed.walk)
@@ -91,7 +64,7 @@ function userInfo(actor) {
         .writeD(actor.model.hairId)
         .writeD(actor.model.hairColor)
         .writeD(actor.model.face)
-        .writeD(0x00)  // GM = 0x01
+        .writeD(0x00)  // 1: GM
         .writeS(actor.model.title)
         .writeD(0x00)  // Clan ID
         .writeD(0x00)  // Clan Crest ID
@@ -101,10 +74,31 @@ function userInfo(actor) {
         .writeC(0x00)  // ?
         .writeC(0x00)  // Private Store Type
         .writeC(actor.model.canCraft)
-        .writeD(0x00)  // PK Kills
-        .writeD(0x00)  // PVP Kills
+        .writeD(actor.model.pk)
+        .writeD(actor.model.pvp)
         .writeH(0x00)  // Cubic Count
-        .writeC(0x00); // Find Party Members = 0x01
+        .writeC(0x00)  // 1: Find Party
+        .writeD(0x00)  // Abnormal effect
+        .writeC(0x00)  // ?
+        .writeD(0x00)  // Clan privileges
+        .writeH(actor.model.recRemain)
+        .writeH(actor.model.recReceive)
+        .writeD(0x00)  // ?
+        .writeH(0x00)  // Inventory Limit
+        .writeD(0x00)  // Class ID
+        .writeD(0x00)  // Special effects
+        .writeD(actor.model.maxCp)
+        .writeD(actor.model.cp)
+        .writeC(0x00)  // 1: Mounted
+        .writeC(0x00)  // Team circle around feet 1: Blue, 2: Red
+        .writeD(0x00)  // Clan Crest ID
+        .writeC(0x00)  // 1: Noble
+        .writeC(0x00)  // 1: Hero Aura
+        .writeC(0x00)  // 1: Fishing Mode
+        .writeD(0x00)  // Fishing x
+        .writeD(0x00)  // Fishing y
+        .writeD(0x00)  // Fishing z
+        .writeD(0x00); // Name Color
 
     return packet.fetchBuffer();
 }

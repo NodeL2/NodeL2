@@ -9,9 +9,8 @@ function enterWorld(session, buffer) {
 }
 
 function consume(session, data) {
-    session.dataSend(
-        ServerResponse.userInfo(session.actor)
-    );
+    session.dataSend(ServerResponse.sunrise());
+    session.dataSend(ServerResponse.userInfo(session.actor));
 }
 
 module.exports = enterWorld;
