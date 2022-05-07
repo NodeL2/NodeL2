@@ -8,10 +8,10 @@ const Opcodes = {
             fatalError('AuthServer:: unknown opcode 0x%s', Utils.toHex(decryptedPacket[0], 2));
         });
 
-        table[0x00] = ClientRequest.authLogin;
-        table[0x02] = ClientRequest.gameLogin;
-        table[0x05] = ClientRequest.serverList;
-        table[0x07] = ClientRequest.authGG;
+        //table[0x00] = ClientRequest.authLogin;
+        //table[0x02] = ClientRequest.gameLogin;
+        //table[0x05] = ClientRequest.serverList;
+        //table[0x07] = ClientRequest.authGG;
 
         return table;
     })()
