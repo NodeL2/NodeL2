@@ -8,7 +8,7 @@ class Session {
 
         // First handshake from `Server` to `Client`
         this.dataSend(
-            ServerResponse.initLS(invoke('Config').authServer.protocol), true
+            ServerResponse.initLS(invoke('Config').authServer.protocol), false
         );
     }
 
