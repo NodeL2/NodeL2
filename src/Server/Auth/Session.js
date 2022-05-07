@@ -8,13 +8,18 @@ class Session {
 
         // First handshake from `Server` to `Client`
         this.dataSend(
-            ServerResponse.initLS(invoke('Config').authServer.protocol), false
+            ServerResponse.initLS(invoke('Config').authServer.protocol), true
         );
     }
 
     dataSend(data, encrypt = true) {
         let header = Buffer.alloc(2);
         header.writeInt16LE(data.byteLength + 2);
+        console.log(data.byteLength);
+        data = data.slice(2);
+        console.log(data.byteLength);
+        data = Buffer.concat([data,Buffer.alloc(2)]);
+        console.log(data.byteLength);
         this.socket.write(Buffer.concat([header, encrypt ? Blowfish.encrypt(data) : data]));
     }
 

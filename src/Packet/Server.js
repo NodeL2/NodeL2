@@ -55,15 +55,17 @@ class ServerPacket {
     // Buffer
 
     fetchBuffer(checksum = true) {
+        this.buffer = Buffer.concat([Buffer.from([0x00, 0x00]), this.buffer]);
+
+        // 32-bit align
+        let size = this.buffer.byteLength;
+        this.append(Buffer.alloc((Math.ceil(size / 4) * 4) - size));
+
         this.append(Buffer.from([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]));
         let xor = new XOR(0);
         invoke('Utils').dumpBuffer(this.buffer);
         this.buffer = xor.encrypt(this.buffer);
         invoke('Utils').dumpBuffer(this.buffer);
-
-        // 32-bit align
-        //let size = this.buffer.byteLength;
-        //this.append(Buffer.alloc((Math.ceil(size / 4) * 4) - size));
 
         if (checksum) {
             this.append(Buffer.alloc(4 + (this.buffer.byteLength + 4) % 8));
@@ -82,13 +84,13 @@ class XOR {
     }
 
     encrypt(data) {
-        for (let i = 4; i < data.byteLength - 8; i += 4) {
+        for (let i = 6; i < data.byteLength - 4; i += 4) {
             let next = data.readInt32LE(i);
             this.key[0] += next;
             next ^= this.key[0];
-            data.writeInt32LE(next, i - 4);
+            data.writeInt32LE(next, i);
         }
-        data.writeInt32LE(this.key[0], 172);
+        //data.writeInt32LE(this.key[0], 170);
         //console.log('0x%s', invoke('Utils').toHex(this.key, 8));
         return data;
     }
