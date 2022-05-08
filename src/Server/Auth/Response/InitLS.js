@@ -9,13 +9,13 @@ function initLS(serverProtocol) {
         .writeD(0x44ec9f5c)     // Session ID
         .writeD(serverProtocol) // Protocol
         .writeB(rsa)            // RSA Public Key
-        //.writeD(0x29dd954e)     // GG
-        //.writeD(0x77c39cfc)     // GG
-        //.writeD(0x97adb620)     // GG
-        //.writeD(0x07bde0f7)     // GG
-        .writeB(Buffer.alloc(16))
+        .writeD(0x29dd954e)     // GG
+        .writeD(0x77c39cfc)     // GG
+        .writeD(0x97adb620)     // GG
+        .writeD(0x07bde0f7)     // GG
+        //.writeB(Buffer.alloc(16))
         .writeB(blowfish)       // BlowFish Key
-        .writeC(0x00);          // Termination
+        .writeB(Buffer.alloc(11));          // Termination
 
     return packet.fetchBuffer(false);
 }

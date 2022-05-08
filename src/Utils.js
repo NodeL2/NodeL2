@@ -16,7 +16,7 @@ const Utils = {
     },
 
     dumpBuffer: (array) => {
-        console.log('%s\n', array.toString('hex').match(/../g).join(' '));
+        console.log('%s\n\n', array.toString('hex').match(/../g).join(' '));
     },
 
     stripNull: (value) => {
