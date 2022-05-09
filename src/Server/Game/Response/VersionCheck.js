@@ -1,7 +1,7 @@
 let ServerPacket = invoke('Packet/Server');
 
 function versionCheck(isProtocolValid) {
-    let packet = new ServerPacket(0x00);
+    let packet = new ServerPacket(0x2e);
 
     packet
         .writeC(isProtocolValid)
@@ -12,7 +12,12 @@ function versionCheck(isProtocolValid) {
         .writeC(0x00)  // Exclusive OR Key 5
         .writeC(0x00)  // Exclusive OR Key 6
         .writeC(0x00)  // Exclusive OR Key 7
-        .writeC(0x00); // Exclusive OR Key 8
+        .writeC(0x00)  // Exclusive OR Key 8
+        .writeD(0x01)  // ?
+        .writeD(0x01)  // Server ID
+        .writeC(0x01)  // ?
+        .writeD(0x00)  // Obfuscation Key
+        .writeC(0x01); // Is Classic
 
     return packet.fetchBuffer();
 }

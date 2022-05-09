@@ -1,7 +1,7 @@
 let ServerPacket = invoke('Packet/Server');
 
 function charSelectInfo(characters) {
-    let packet = new ServerPacket(0x13);
+    let packet = new ServerPacket(0x09);
 
     if (characters) {
         packet

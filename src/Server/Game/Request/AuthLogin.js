@@ -20,15 +20,15 @@ function authLogin(session, buffer) {
 }
 
 function consume(session, data) {
-    if (Utils.matchSessionKeys(Config.client, data)) {
-        session.accountId = data.username;
+    //if (Utils.matchSessionKeys(Config.client, data)) {
+        //session.accountId = data.username;
 
-        Database.fetchCharacters(session.accountId).then((rows) => {
+        Database.fetchCharacters('q').then((rows) => {
             session.dataSend(
                 ServerResponse.charSelectInfo(rows)
             );
         });
-    }
+    //}
 }
 
 module.exports = authLogin;
