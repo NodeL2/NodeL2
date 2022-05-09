@@ -11,7 +11,8 @@ function loginSuccess(config) {
         .writeD(0x000003ea)
         .writeD(0x00)
         .writeD(0x00)
-        .writeD(0x02);
+        .writeD(0x00)
+        .writeB(Buffer.alloc(16));
 
     return packet.fetchBuffer();
 }

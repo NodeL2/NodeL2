@@ -11,10 +11,11 @@ function initLS(serverProtocol) {
         .writeB(rsa)               // RSA Public Key
         .writeB(Buffer.alloc(16))  // GameGuard
         .writeB(blowfish)          // BlowFish Key
-        .writeB(Buffer.alloc(20)); // Termination
+        .writeC(0x00)              // Termination
+        .writeB(Buffer.alloc(14)); // XOR
 
-    // TODO: XOR Encode contents first
-
+    // XOR encode contents
+    packet.buffer = invoke('Cipher/XOR').encrypt(packet.buffer);
     return packet.fetchBuffer(false);
 }
 
