@@ -3,7 +3,7 @@ let ServerPacket = invoke('Packet/Server');
 function initLS(serverProtocol) {
     let packet   = new ServerPacket(0x00);
     let rsa      = invoke('Cipher/RSA').scrambleModulus();
-    let blowfish = Buffer.from(invoke('Config').authServer.blowfishKey, 'hex');
+    let blowfish = invoke('Cipher/Blowfish').key;
 
     packet
         .writeD(0x00dbf3c2)        // Session ID

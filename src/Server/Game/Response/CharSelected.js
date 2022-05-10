@@ -1,7 +1,7 @@
 let ServerPacket = invoke('Packet/Server');
 
 function charSelected(actor) {
-    let packet = new ServerPacket(0x15);
+    let packet = new ServerPacket(0x0b);
 
     packet
         .writeS(actor.model.name)
@@ -20,25 +20,27 @@ function charSelected(actor) {
         .writeF(actor.model.hp)
         .writeF(actor.model.mp)
         .writeD(actor.model.sp)
+        .writeD(0x00)  // TODO: This is a hack, `exp` needs `writeQ`
         .writeD(actor.model.exp)
         .writeD(0x00)  // TODO: This is a hack, `exp` needs `writeQ`
         .writeD(actor.model.level)
-        .writeD(actor.model.karma)
+        .writeD(0x00)  // Reputation, not karma
+        .writeD(actor.model.pk)
+        .writeD(0x00)  // Game time
         .writeD(0x00)  // ?
-        .writeD(actor.model.stats.int)
-        .writeD(actor.model.stats.str)
-        .writeD(actor.model.stats.con)
-        .writeD(actor.model.stats.men)
-        .writeD(actor.model.stats.dex)
-        .writeD(actor.model.stats.wit);
-
-    for (let i = 0; i < 30; i++) {
-        packet
-            .writeD(0x00);
-    }
-
-    packet
-        .writeD(0x00); // Game time
+        .writeD(0x00)  // Class Id
+        .writeB(Buffer.alloc(16))
+        .writeD(0x00)  // ?
+        .writeD(0x00)  // ?
+        .writeD(0x00)  // ?
+        .writeD(0x00)  // ?
+        .writeD(0x00)  // ?
+        .writeD(0x00)  // ?
+        .writeD(0x00)  // ?
+        .writeD(0x00)  // ?
+        .writeD(0x00)  // ?
+        .writeB(Buffer.alloc(28))
+        .writeD(0x00); // ?
 
     return packet.fetchBuffer();
 }
