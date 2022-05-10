@@ -24,20 +24,15 @@ function authLogin(session, buffer) {
 }
 
 function consume(session, data) {
-    console.log('0x%s', Utils.toHex(data.username, 8)); // OK
-    console.log('0x%s', Utils.toHex(data.sessionKey1, 8));
-    console.log('0x%s', Utils.toHex(data.sessionKey2, 8));
-    console.log('0x%s', Utils.toHex(data.loginKey1, 8)); // OK
-    console.log('0x%s', Utils.toHex(data.loginKey2, 8));
-    //if (Utils.matchSessionKeys(Config.client, data)) {
-        //session.accountId = data.username;
+    if (Utils.matchSessionKeys(Config.client, data)) {
+        session.accountId = data.username;
 
-        //Database.fetchCharacters('q').then((rows) => {
-        //    session.dataSend(
-        //        ServerResponse.charSelectInfo(rows)
-        //    );
-        //});
-    //}
+        Database.fetchCharacters(session.accountId).then((rows) => {
+            session.dataSend(
+                ServerResponse.charSelectInfo(rows)
+            );
+        });
+    }
 }
 
 module.exports = authLogin;
