@@ -6,7 +6,7 @@ function initLS(serverProtocol) {
     let blowfish = [0x6b,0x60,0xcb,0x5b,0x82,0xce,0x90,0xb1,0xcc,0x2b,0x6c,0x55,0x6c,0x6c,0x6c,0x6c];
 
     packet
-        .writeD(0x44ec9f5c)        // Session ID
+        .writeD(0x00dbf3c2)        // Session ID
         .writeD(serverProtocol)    // Protocol
         .writeB(rsa)               // RSA Public Key
         .writeB(Buffer.alloc(16))  // GameGuard

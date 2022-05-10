@@ -11,6 +11,7 @@ const Opcodes = {
         //table[0x03] = ClientRequest.enterWorld;
         //table[0x0d] = ClientRequest.charSelected;
         table[0x0e] = ClientRequest.protocolVersion;
+        table[0x13] = ClientRequest.charCreationScreen;
         table[0x2b] = ClientRequest.authLogin;
 
         // TODO: Not handled
