@@ -13,6 +13,7 @@ class Session {
 
     dataReceive(data) {
         let decryptedPacket = Buffer.from(data).slice(2);
+        decryptedPacket = invoke('XOR').gameDecrypt(decryptedPacket);
         Opcodes.table[decryptedPacket[0]](this, decryptedPacket);
     }
 }

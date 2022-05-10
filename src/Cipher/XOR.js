@@ -1,3 +1,6 @@
+let inKey = Buffer.from([0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xc8,0x27,0x93,0x01,0xa1,0x6c,0x31,0x97]);
+let enabled = false;
+
 const XOR = {
     encrypt: (data) => {
         let ecx = 0;
@@ -8,6 +11,30 @@ const XOR = {
             edx ^= ecx;
             data.writeInt32LE(edx, i);
         }
+
+        return data;
+    },
+
+    gameDecrypt: (data) => {
+        if (!enabled) {
+            enabled = true;
+            return data;
+        }
+        let temp = 0;
+        for (let i = 0; i < data.length; ++i) {
+            const temp2 = data[i] & 0xff;
+            data[i] = (temp2 ^ inKey[i & 0xf] ^ temp);
+            temp = temp2;
+        }
+        let old = inKey[8] & 0xff;
+        old |= (inKey[9] << 8 & 0xff00);
+        old |= (inKey[10] << 16 & 0xff0000);
+        old |= (inKey[11] << 24 & 0xff000000);
+        old += data.length;
+        inKey[8] = (old & 0xff);
+        inKey[9] = (old >> 8 & 0xff);
+        inKey[10] = (old >> 16 & 0xff);
+        inKey[11] = (old >> 24 & 0xff);
 
         return data;
     }
