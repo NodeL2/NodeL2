@@ -1,9 +1,8 @@
 let ServerPacket = invoke('Packet/Server');
 
-function initLS(serverProtocol) {
-    let packet   = new ServerPacket(0x00);
-    let rsa      = invoke('Cipher/RSA').scrambleModulus();
-    let blowfish = invoke('Cipher/Blowfish').key;
+function initLS(serverProtocol, blowfish) {
+    let packet = new ServerPacket(0x00);
+    let rsa = invoke('Cipher/RSA').scrambleModulus();
 
     packet
         .writeD(0x00dbf3c2)        // Session ID

@@ -7,6 +7,7 @@
         "start-lts": "node src/NodeL2"
     },
     "devDependencies": {
+        "blowfish-ecb": "^1.0.1",
         "eslint": "^8.14.0",
         "ini": "^3.0.0",
         "like-sql": "^0.1.1",
@@ -14,6 +15,7 @@
         "node-forge": "^1.3.1"
     },
     "dependencies": {
+        "blowfish-ecb": "^1.0.1",
         "ini": "^3.0.0",
         "like-sql": "^0.1.1",
         "mariadb": "^3.0.0",
