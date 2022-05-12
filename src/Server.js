@@ -15,7 +15,10 @@ class Server {
 
         // Generates a new `Session` for the respective `Server`. Either `AuthSession` or `GameSession`
         let session = this.callback(socket);
-        socket.on('data', session.dataReceive.bind(session));
+        socket.on( 'data', session.dataReceive.bind(session));
+        socket.on('close', session.close.bind(session));
+        socket.on(  'end', session.end.bind(session));
+        socket.on('error', session.error.bind(session));
     }
 }
 

@@ -13,9 +13,23 @@ class Session {
     }
 
     dataReceive(data) {
-        let packet = Buffer.from(data).slice(2);
+        // Weird, sometimes the packet is sent twofold/duplicated. I had to split it based on the size header...
+        let packet = data.slice(2, data.readInt16LE());
         let decipheredPacket = invoke('Cipher/XOR').gameDecrypt(packet);
         Opcodes.table[decipheredPacket[0]](this, decipheredPacket);
+    }
+
+    close() {
+        console.log('GameServer:: closed');
+    }
+
+    end() {
+        console.log('GameServer:: ended');
+    }
+
+    error(e) {
+        console.log('GameServer:: exception');
+        console.log(e.stack);
     }
 }
 

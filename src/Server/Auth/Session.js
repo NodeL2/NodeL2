@@ -16,14 +16,28 @@ class Session {
     dataSend(data) {
         let header = Buffer.alloc(2);
         header.writeInt16LE(data.length + 2);
-        let encipheredPacket = require('blowfish-ecb').encipher(this.blowfishSecret, data)
+        let encipheredPacket = require('blowfish-ecb').encipher(this.blowfishSecret, data);
         this.socket.write(Buffer.concat([header, encipheredPacket]));
     }
 
     dataReceive(data) {
-        let packet = Buffer.from(data).slice(2)
+        // Weird, sometimes the packet is sent twofold/duplicated. I had to split it based on the size header...
+        let packet = data.slice(2, data.readInt16LE());
         let decipheredPacket = require('blowfish-ecb').decipher(this.blowfishSecret, packet);
         Opcodes.table[decipheredPacket[0]](this, decipheredPacket);
+    }
+
+    close() {
+        console.log('AuthServer:: closed');
+    }
+
+    end() {
+        console.log('AuthServer:: ended');
+    }
+
+    error(e) {
+        console.log('AuthServer:: exception');
+        console.log(e.stack);
     }
 }
 
