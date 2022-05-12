@@ -2,7 +2,7 @@ let ServerPacket = invoke('Packet/Server');
 
 function initLS(serverProtocol, blowfish) {
     let packet = new ServerPacket(0x00);
-    let rsa = invoke('Cipher/RSA').scrambleModulus();
+    let rsa = require('rsa-raw').scrambleMod();
 
     packet
         .writeD(0x00dbf3c2)        // Session ID

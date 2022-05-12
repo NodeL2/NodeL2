@@ -11,13 +11,13 @@ function authLogin(session, buffer) {
         .readB(128) // Encrypted Block
         .readD();   // Session ID
 
-    let decrypted = invoke('Cipher/RSA').decrypt(
+    let deciphered = require('rsa-raw').decipher(
         packet.data[0]
     );
 
     consume(session, {
-        username: Utils.stripNull(decrypted.slice(0x5e, 0x5e + 14)), // <= C4: 0x62 // C5: 0x5e
-        password: Utils.stripNull(decrypted.slice(0x6c, 0x6c + 16)), // <= C4: 0x70 // C5: 0x6c
+        username: Utils.stripNull(deciphered.slice(0x5e, 0x5e + 14)), // <= C4: 0x62 // C5: 0x5e
+        password: Utils.stripNull(deciphered.slice(0x6c, 0x6c + 16)), // <= C4: 0x70 // C5: 0x6c
     });
 }
 

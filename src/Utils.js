@@ -11,7 +11,7 @@ const Utils = {
         return require('../package').version;
     },
 
-    toHex: (value, padding) => {
+    toHex: (value, padding = 2) => {
         return Number(value).toString(16).padStart(padding, '0');
     },
 
@@ -35,6 +35,11 @@ const Utils = {
 
     totalMemUsed: () => {
         console.log('NodeL2:: Total Mem Used -> %f MB', Math.round(process.memoryUsage().heapTotal / 1024 / 1024 * 100) / 100);
+    },
+
+    pad32Bits: (data) => {
+        let size = data.byteLength;
+        return Buffer.alloc((Math.ceil(size / 4) * 4) - size);
     }
 };
 

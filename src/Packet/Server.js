@@ -55,9 +55,7 @@ class ServerPacket {
     // Buffer
 
     fetchBuffer(checksum = true) {
-        // 32-bit align
-        let size = this.buffer.byteLength;
-        this.append(Buffer.alloc((Math.ceil(size / 4) * 4) - size));
+        this.append(invoke('Utils').pad32Bits(this.buffer));
 
         if (checksum) {
             this.append(Buffer.alloc(4 + (this.buffer.byteLength + 4) % 8));
