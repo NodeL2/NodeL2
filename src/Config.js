@@ -1,5 +1,5 @@
 const ini = require('ini').parse(
-    require('fs').readFileSync('./config.ini', 'utf-8')
+    require('./config.ini', 'utf-8')
 );
 
 // Default values appropriate for L2 Classic 1.0 client

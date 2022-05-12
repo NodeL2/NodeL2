@@ -8,14 +8,14 @@ class Session {
     dataSend(data) {
         let header = Buffer.alloc(2);
         header.writeInt16LE(data.byteLength + 2);
-        data = invoke('Cipher/XOR').gameEncrypt(data);
-        this.socket.write(Buffer.concat([header, data]));
+        let encipheredPacket = invoke('Cipher/XOR').gameEncrypt(data);
+        this.socket.write(Buffer.concat([header, encipheredPacket]));
     }
 
     dataReceive(data) {
-        let decryptedPacket = Buffer.from(data).slice(2);
-        decryptedPacket = invoke('Cipher/XOR').gameDecrypt(decryptedPacket);
-        Opcodes.table[decryptedPacket[0]](this, decryptedPacket);
+        let decipheredPacket = Buffer.from(data).slice(2);
+        decipheredPacket = invoke('Cipher/XOR').gameDecrypt(decipheredPacket);
+        Opcodes.table[decipheredPacket[0]](this, decipheredPacket);
     }
 }
 
