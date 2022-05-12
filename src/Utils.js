@@ -40,6 +40,10 @@ const Utils = {
     pad32Bits: (data) => {
         let size = data.byteLength;
         return Buffer.alloc((Math.ceil(size / 4) * 4) - size);
+    },
+
+    parseRawFile: (filename) => {
+        return require('fs').readFileSync(filename, 'utf8');
     }
 };
 

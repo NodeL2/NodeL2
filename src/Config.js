@@ -1,5 +1,5 @@
 const ini = require('ini').parse(
-    require('./config.ini', 'utf-8')
+    invoke('Utils').parseRawFile('./config.ini')
 );
 
 // Default values appropriate for L2 Classic 1.0 client
@@ -16,7 +16,7 @@ const Config = {
         hostname    :   (ini.AuthServer.Hostname    ?? '127.0.0.1'),
         port        : + (ini.AuthServer.Port        ?? '2106'),
         protocol    : + (ini.AuthServer.Protocol    ?? '0xc621'),
-        blowfishKey :   (ini.AuthServer.blowfishKey ?? '6b60cb5b82ce90b1cc2b6c556c6c6c6c'),
+        blowfishKey :   (ini.AuthServer.BlowfishKey ?? '6b60cb5b82ce90b1cc2b6c556c6c6c6c'),
         autoCreate  :   (ini.AuthServer.Autocreate  ?? true)
     },
 

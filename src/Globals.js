@@ -9,10 +9,6 @@ global.fatalError = (...args) => {
     process.exit();
 };
 
-require.extensions['.ini'] = (module, filename) => {
-    module.exports = require('fs').readFileSync(filename, 'utf8');
-};
-
 // TODO: Not used
 const State = {
     clients: new Set(),
