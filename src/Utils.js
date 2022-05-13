@@ -42,8 +42,8 @@ const Utils = {
         return Buffer.alloc((Math.ceil(size / 4) * 4) - size);
     },
 
-    parseRawFile: (filename) => {
-        return require('fs').readFileSync(filename, 'utf8');
+    parseRawFile: (filename, charset = 'utf8') => {
+        return require('fs').readFileSync(filename, charset);
     },
 
     randomNumber: (max) => {

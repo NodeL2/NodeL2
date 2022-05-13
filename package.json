@@ -1,6 +1,6 @@
 {
     "name": "nodel2",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "L2 Server implementation in Node",
     "scripts": {
         "start": "node --openssl-legacy-provider src/NodeL2",
