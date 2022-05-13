@@ -24,18 +24,13 @@ function consume(session, data) {
             session.dataSend(
                 ServerResponse.gameSuccess(Config.client)
             );
-        }
-        else { // Invalid server id selected
-            session.dataSend(
-                ServerResponse.gameFail(0x01)
-            );
+            return;
         }
     }
-    else { // Session keys don't match
-        session.dataSend(
-            ServerResponse.gameFail(0x01)
-        );
-    }
+
+    session.dataSend( // Invalid Server ID or Session Keys don't match
+        ServerResponse.gameFail(0x01)
+    );
 }
 
 module.exports = gameLogin;

@@ -22,19 +22,22 @@ function authLogin(session, buffer) {
     });
 }
 
+function passwordMatch(session, username) {
+    session.accountId = username;
+    session.dataSend(ServerResponse.loginSuccess(Config.client));
+}
+
+function failure(session, reason) {
+    session.dataSend(ServerResponse.loginFail(reason));
+}
+
 function consume(session, data) { // TODO: Check the Session ID
     Database.fetchUserPassword(data.username).then((rows) => {
         const password = rows[0]?.password;
 
         // Username exists in database
         if (password) {
-            if (data.password === password) {
-                session.accountId = data.username;
-                session.dataSend(ServerResponse.loginSuccess(Config.client));
-            }
-            else {
-                session.dataSend(ServerResponse.loginFail(0x02));
-            }
+            data.password === password ? passwordMatch(session, data.username) : failure(0x02);
         }
         else { // User account does not exist, create if needed
             if (Config.authServer.autoCreate) {
@@ -42,10 +45,8 @@ function consume(session, data) { // TODO: Check the Session ID
                     consume(session, data);
                 });
             }
-            else {
-                session.dataSend(
-                    ServerResponse.loginFail(0x04)
-                );
+            else { // Auto-create not permitted
+                failure(0x04);
             }
         }
     });
