@@ -1,11 +1,14 @@
-const secret = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xc8, 0x27, 0x93, 0x01, 0xa1, 0x6c, 0x31, 0x97];
-let key1, key2, enabled = false;
+const secret = [
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xc8, 0x27, 0x93, 0x01, 0xa1, 0x6c, 0x31, 0x97
+];
 
 const XOR = {
-    reset: () => {
-        key1 = Buffer.from(secret);
-        key2 = Buffer.from(secret);
-        console.log(secret);
+    init: () => {
+        return {
+            secret1: Buffer.from(secret),
+            secret2: Buffer.from(secret),
+            enabled: false
+        };
     },
 
     encipher: (data) => {
@@ -21,33 +24,33 @@ const XOR = {
         return data;
     },
 
-    gameDecipher: (data) => {
-        if (!enabled) { return data; }
+    gameDecipher: (xor, data) => {
+        if (!xor.enabled) { return data; }
 
         let ecx = 0;
 
         for(let i = 0; i < data.length; i++) {
             let edx = data[i];
-            data[i] = edx ^ key1[i & 0xf] ^ ecx;
+            data[i] = edx ^ xor.secret1[i & 0xf] ^ ecx;
             ecx = edx;
         }
 
-        key1.writeInt32LE(key1.readInt32LE(8) + data.length, 8);
+        xor.secret1.writeInt32LE(xor.secret1.readInt32LE(8) + data.length, 8);
         return data;
     },
 
-    gameEncipher: (data) => {
-        if (!enabled) { enabled = true; return data; }
+    gameEncipher: (xor, data) => {
+        if (!xor.enabled) { xor.enabled = true; return data; }
 
         let ecx = 0;
 
         for(let i = 0; i < data.length; i++) {
             let edx = data[i];
-            ecx ^= edx ^ key2[i & 0xf];
+            ecx ^= edx ^ xor.secret2[i & 0xf];
             data[i] = ecx;
         }
 
-        key2.writeInt32LE(key2.readInt32LE(8) + data.length, 8);
+        xor.secret2.writeInt32LE(xor.secret2.readInt32LE(8) + data.length, 8);
         return data;
     }
 };
