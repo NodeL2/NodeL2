@@ -44,6 +44,10 @@ const Utils = {
 
     parseRawFile: (filename) => {
         return require('fs').readFileSync(filename, 'utf8');
+    },
+
+    randomNumber: (max) => {
+        return Math.floor(Math.random() * max);
     }
 };
 

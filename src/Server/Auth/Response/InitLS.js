@@ -1,15 +1,14 @@
 let ServerPacket = invoke('Packet/Server');
 
-function initLS(serverProtocol, blowfish) {
+function initLS(sessionId, serverProtocol, blowfish) {
     let packet = new ServerPacket(0x00);
-    let rsa = require('rsa-raw').scrambleMod();
 
     packet
-        .writeD(0x00dbf3c2)        // Session ID
-        .writeD(serverProtocol)    // Protocol
-        .writeB(rsa)               // RSA Public Key
+        .writeD(sessionId)
+        .writeD(serverProtocol)
+        .writeB(require('rsa-raw').scrambleMod())
         .writeB(Buffer.alloc(16))  // GameGuard
-        .writeB(blowfish)          // BlowFish Key
+        .writeB(blowfish)
         .writeC(0x00)              // Termination
         .writeB(Buffer.alloc(14)); // XOR
 

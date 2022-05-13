@@ -1,43 +1,33 @@
 let ServerResponse = invoke('Server/Auth/Response');
 let Opcodes        = invoke('Server/Auth/Opcodes');
-let Config         = invoke('Config');
 
 class Session {
     constructor(socket) {
-        this.socket = socket;
-        this.blowfishSecret = Buffer.from(Config.authServer.blowfishKey, 'hex');
+        const { authServer } = invoke('Config');
+
+        this.socket    = socket;
+        this.sessionId = invoke('Utils').randomNumber(0x80000000);
+        this.protocol  = authServer.protocol;
+        this.blowfish  = Buffer.from(authServer.blowfishKey, 'hex');
 
         // First handshake from `Server` to `Client`
         this.dataSend(
-            ServerResponse.initLS(Config.authServer.protocol, this.blowfishSecret)
+            ServerResponse.initLS(this.sessionId, this.protocol, this.blowfish)
         );
     }
 
     dataSend(data) {
         let header = Buffer.alloc(2);
         header.writeInt16LE(data.length + 2);
-        let encipheredPacket = require('blowfish-ecb').encipher(this.blowfishSecret, data);
+        let encipheredPacket = require('blowfish-ecb').encipher(this.blowfish, data);
         this.socket.write(Buffer.concat([header, encipheredPacket]));
     }
 
     dataReceive(data) {
-        // Weird, sometimes the packet is sent twofold/duplicated. I had to split it based on the size header...
+        // Weird, sometimes the packet is sent twofold/duplicated. I had to limit it based on the header size...
         let packet = data.slice(2, data.readInt16LE());
-        let decipheredPacket = require('blowfish-ecb').decipher(this.blowfishSecret, packet);
+        let decipheredPacket = require('blowfish-ecb').decipher(this.blowfish, packet);
         Opcodes.table[decipheredPacket[0]](this, decipheredPacket);
-    }
-
-    close() {
-        console.log('AuthServer:: closed');
-    }
-
-    end() {
-        console.log('AuthServer:: ended');
-    }
-
-    error(e) {
-        console.log('AuthServer:: exception');
-        console.log(e.stack);
     }
 }
 

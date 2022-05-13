@@ -8,7 +8,7 @@ function authLogin(session, buffer) {
     let packet = new ClientPacket(buffer);
 
     packet
-        .readB(128) // Encrypted Block
+        .readB(128) // Enciphered Block
         .readD();   // Session ID
 
     let deciphered = require('rsa-raw').decipher(
@@ -16,12 +16,13 @@ function authLogin(session, buffer) {
     );
 
     consume(session, {
-        username: Utils.stripNull(deciphered.slice(0x5e, 0x5e + 14)), // <= C4: 0x62 // C5: 0x5e
-        password: Utils.stripNull(deciphered.slice(0x6c, 0x6c + 16)), // <= C4: 0x70 // C5: 0x6c
+        username  : Utils.stripNull(deciphered.slice(0x5e, 0x5e + 14)), // <= C4: 0x62
+        password  : Utils.stripNull(deciphered.slice(0x6c, 0x6c + 16)), // <= C4: 0x70
+        sessionId : packet.data[1]
     });
 }
 
-function consume(session, data) {
+function consume(session, data) { // TODO: Check the Session ID
     Database.fetchUserPassword(data.username).then((rows) => {
         const password = rows[0]?.password;
 

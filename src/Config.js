@@ -17,7 +17,7 @@ const Config = {
         port        : + (ini.AuthServer.Port        ?? '2106'),
         protocol    : + (ini.AuthServer.Protocol    ?? '0xc621'),
         blowfishKey :   (ini.AuthServer.BlowfishKey ?? '6b60cb5b82ce90b1cc2b6c556c6c6c6c'),
-        autoCreate  :   (ini.AuthServer.Autocreate  ?? true)
+        autoCreate  :   (ini.AuthServer.AutoCreate  ?? true)
     },
 
     gameServer: {
