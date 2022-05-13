@@ -11,7 +11,7 @@ const XOR = {
         };
     },
 
-    encipher: (data) => {
+    authEncipher: (data) => {
         let ecx = 0;
 
         for(let i = 4; i < data.length - 4; i += 4) {
@@ -24,7 +24,7 @@ const XOR = {
         return data;
     },
 
-    gameDecipher: (xor, data) => {
+    decipher: (xor, data) => {
         if (!xor.enabled) { return data; }
 
         let ecx = 0;
@@ -39,7 +39,7 @@ const XOR = {
         return data;
     },
 
-    gameEncipher: (xor, data) => {
+    encipher: (xor, data) => {
         if (!xor.enabled) { xor.enabled = true; return data; }
 
         let ecx = 0;

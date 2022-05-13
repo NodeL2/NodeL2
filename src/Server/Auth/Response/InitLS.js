@@ -13,7 +13,7 @@ function initLS(sessionId, serverProtocol, blowfish) {
         .writeB(Buffer.alloc(14)); // XOR
 
     // XOR encode contents
-    packet.buffer = invoke('Cipher/XOR').encipher(packet.buffer);
+    packet.buffer = invoke('Cipher/XOR').authEncipher(packet.buffer);
     return packet.fetchBuffer(false);
 }
 

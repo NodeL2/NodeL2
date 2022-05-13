@@ -10,14 +10,14 @@ class Session {
     dataSend(data) {
         const header = Buffer.alloc(2);
         header.writeInt16LE(data.length + 2);
-        const encipheredPacket = XOR.gameEncipher(this.xor, data);
+        const encipheredPacket = XOR.encipher(this.xor, data);
         this.socket.write(Buffer.concat([header, encipheredPacket]));
     }
 
     dataReceive(data) {
         // Weird, sometimes the packet is sent twofold/duplicated. I had to limit it based on the header size...
         const packet = data.slice(2, data.readInt16LE());
-        const decipheredPacket = XOR.gameDecipher(this.xor, packet);
+        const decipheredPacket = XOR.decipher(this.xor, packet);
         Opcodes.table[decipheredPacket[0]](this, decipheredPacket);
     }
 
