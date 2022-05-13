@@ -22,15 +22,6 @@ function authLogin(session, buffer) {
     });
 }
 
-function passwordMatch(session, username) {
-    session.accountId = username;
-    session.dataSend(ServerResponse.loginSuccess(Config.client));
-}
-
-function failure(session, reason) {
-    session.dataSend(ServerResponse.loginFail(reason));
-}
-
 function consume(session, data) { // TODO: Check the Session ID
     Database.fetchUserPassword(data.username).then((rows) => {
         const password = rows[0]?.password;
@@ -50,6 +41,15 @@ function consume(session, data) { // TODO: Check the Session ID
             }
         }
     });
+}
+
+function passwordMatch(session, username) {
+    session.accountId = username;
+    session.dataSend(ServerResponse.loginSuccess(Config.client));
+}
+
+function failure(session, reason) {
+    session.dataSend(ServerResponse.loginFail(reason));
 }
 
 module.exports = authLogin;

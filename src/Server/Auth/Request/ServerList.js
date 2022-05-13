@@ -17,6 +17,21 @@ function serverList(session, buffer) {
     });
 }
 
+function consume(session, data) {
+    if (Utils.matchSessionKeys(Config.client, data)) {
+        Database.fetchCharacters(session.accountId).then((characters) => {
+            session.dataSend(
+                ServerResponse.serverList(Config.gameServer, detectServerIPAddress(session), characters.length)
+            );
+        });
+    }
+    else { // Session keys don't match
+        session.dataSend(
+            ServerResponse.loginFail(0x01)
+        );
+    }
+}
+
 function detectServerIPAddress(session) {
     let remoteAddr = session.socket.remoteAddress;
     let host = remoteAddr.split('.');
@@ -32,21 +47,6 @@ function detectServerIPAddress(session) {
     // WAN / Internet
     fatalError('AuthServer:: unhandled WAN address');
     return '';
-}
-
-function consume(session, data) {
-    if (Utils.matchSessionKeys(Config.client, data)) {
-        Database.fetchCharacters(session.accountId).then((characters) => {
-            session.dataSend(
-                ServerResponse.serverList(Config.gameServer, detectServerIPAddress(session), characters.length)
-            );
-        });
-    }
-    else { // Session keys don't match
-        session.dataSend(
-            ServerResponse.loginFail(0x01)
-        );
-    }
 }
 
 module.exports = serverList;

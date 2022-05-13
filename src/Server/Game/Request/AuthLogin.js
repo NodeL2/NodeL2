@@ -25,6 +25,8 @@ function authLogin(session, buffer) {
 
 function consume(session, data) {
     if (Utils.matchSessionKeys(Config.client, data)) {
+        session.accountId = data.username;
+
         Database.fetchCharacters(session.accountId).then((rows) => {
             session.dataSend(
                 ServerResponse.charSelectInfo(rows)
