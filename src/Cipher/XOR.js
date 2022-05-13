@@ -3,7 +3,7 @@ let outKey  = Buffer.from([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xc8,
 let enabled = false;
 
 const XOR = {
-    encrypt: (data) => {
+    encipher: (data) => {
         let ecx = 0;
 
         for(let i = 4; i < data.length - 4; i += 4) {
@@ -16,7 +16,7 @@ const XOR = {
         return data;
     },
 
-    gameDecrypt: (data) => {
+    gameDecipher: (data) => {
         if (!enabled) { return data; }
 
         let ecx = 0;
@@ -31,7 +31,7 @@ const XOR = {
         return data;
     },
 
-    gameEncrypt: (data) => {
+    gameEncipher: (data) => {
         if (!enabled) { enabled = true; return data; }
 
         let ecx = 0;

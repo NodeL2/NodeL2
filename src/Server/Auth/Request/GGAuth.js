@@ -1,8 +1,8 @@
-let ServerResponse = invoke('Server/Auth/Response');
-let ClientPacket   = invoke('Packet/Client');
+const ServerResponse = invoke('Server/Auth/Response');
+const ClientPacket   = invoke('Packet/Client');
 
 function authGG(session, buffer) {
-    let packet = new ClientPacket(buffer);
+    const packet = new ClientPacket(buffer);
 
     packet
         .readD(); // Session ID

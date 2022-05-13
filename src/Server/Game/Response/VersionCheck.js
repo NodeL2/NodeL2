@@ -1,7 +1,7 @@
-let ServerPacket = invoke('Packet/Server');
+const ServerPacket = invoke('Packet/Server');
 
 function versionCheck(isProtocolValid) {
-    let packet = new ServerPacket(0x2e);
+    const packet = new ServerPacket(0x2e);
 
     packet
         .writeC(isProtocolValid)

@@ -1,11 +1,11 @@
-let ServerResponse = invoke('Server/Auth/Response');
-let ClientPacket   = invoke('Packet/Client');
-let Config         = invoke('Config');
-let Database       = invoke('Database');
-let Utils          = invoke('Utils');
+const ServerResponse = invoke('Server/Auth/Response');
+const ClientPacket   = invoke('Packet/Client');
+const Config         = invoke('Config');
+const Database       = invoke('Database');
+const Utils          = invoke('Utils');
 
 function serverList(session, buffer) {
-    let packet = new ClientPacket(buffer);
+    const packet = new ClientPacket(buffer);
 
     packet
         .readD()  // Session Key (first)
@@ -33,8 +33,8 @@ function consume(session, data) {
 }
 
 function detectServerIPAddress(session) {
-    let remoteAddr = session.socket.remoteAddress;
-    let host = remoteAddr.split('.');
+    const remoteAddr = session.socket.remoteAddress;
+    const host = remoteAddr.split('.');
 
     switch (host[0]) {
         case '127': // Localhost

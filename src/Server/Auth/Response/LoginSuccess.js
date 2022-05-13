@@ -1,7 +1,7 @@
-let ServerPacket = invoke('Packet/Server');
+const ServerPacket = invoke('Packet/Server');
 
 function loginSuccess(config) {
-    let packet = new ServerPacket(0x03);
+    const packet = new ServerPacket(0x03);
 
     packet
         .writeD(config.sessionKey1) // Session Key (first)

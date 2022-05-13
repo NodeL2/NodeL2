@@ -1,7 +1,7 @@
-let ServerPacket = invoke('Packet/Server');
+const ServerPacket = invoke('Packet/Server');
 
 function charTemplates() {
-    let packet = new ServerPacket(0x0d);
+    const packet = new ServerPacket(0x0d);
 
     packet
         .writeD(0x00);

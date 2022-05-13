@@ -1,11 +1,11 @@
-let ServerResponse = invoke('Server/Game/Response');
-let ClientPacket   = invoke('Packet/Client');
-let Config         = invoke('Config');
-let Database       = invoke('Database');
-let Utils          = invoke('Utils');
+const ServerResponse = invoke('Server/Game/Response');
+const ClientPacket   = invoke('Packet/Client');
+const Config         = invoke('Config');
+const Database       = invoke('Database');
+const Utils          = invoke('Utils');
 
 function authLogin(session, buffer) {
-    let packet = new ClientPacket(buffer);
+    const packet = new ClientPacket(buffer);
 
     packet
         .readS()  // Username

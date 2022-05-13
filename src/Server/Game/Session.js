@@ -1,4 +1,4 @@
-let Opcodes = invoke('Server/Game/Opcodes');
+const Opcodes = invoke('Server/Game/Opcodes');
 
 class Session {
     constructor(socket) {
@@ -6,16 +6,16 @@ class Session {
     }
 
     dataSend(data) {
-        let header = Buffer.alloc(2);
+        const header = Buffer.alloc(2);
         header.writeInt16LE(data.byteLength + 2);
-        let encipheredPacket = invoke('Cipher/XOR').gameEncrypt(data);
+        const encipheredPacket = invoke('Cipher/XOR').gameEncipher(data);
         this.socket.write(Buffer.concat([header, encipheredPacket]));
     }
 
     dataReceive(data) {
         // Weird, sometimes the packet is sent twofold/duplicated. I had to limit it based on the header size...
-        let packet = data.slice(2, data.readInt16LE());
-        let decipheredPacket = invoke('Cipher/XOR').gameDecrypt(packet);
+        const packet = data.slice(2, data.readInt16LE());
+        const decipheredPacket = invoke('Cipher/XOR').gameDecipher(packet);
         Opcodes.table[decipheredPacket[0]](this, decipheredPacket);
     }
 }

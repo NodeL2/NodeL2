@@ -1,20 +1,20 @@
 require('./Globals');
 
 // User imports
-let AuthSession = invoke('Server/Auth/Session');
-let GameSession = invoke('Server/Game/Session');
-let Config      = invoke('Config');
-let Database    = invoke('Database');
-let Server      = invoke('Server');
-let Utils       = invoke('Utils');
+const AuthSession = invoke('Server/Auth/Session');
+const GameSession = invoke('Server/Game/Session');
+const Config      = invoke('Config');
+const Database    = invoke('Database');
+const Server      = invoke('Server');
+const Utils       = invoke('Utils');
 
-console.log('# ================================');
-console.log('# Server Name: ...... NodeL2 [768]');
-console.log('# Build Revision: ... %s', Utils.buildNumber());
-console.log('# Chronicle: ........ C5');
-console.log('# Build date: ....... %s', Utils.currentDate());
-console.log('# NodeJS version: ... %s', Utils.nodeVersion());
-console.log('# ================================\n');
+console.info('# ================================');
+console.info('# Server Name: ...... NodeL2 [768]');
+console.info('# Build Revision: ... %s', Utils.buildNumber());
+console.info('# Chronicle: ........ C5');
+console.info('# Build date: ....... %s', Utils.currentDate());
+console.info('# NodeJS version: ... %s', Utils.nodeVersion());
+console.info('# ================================\n');
 
 // Startup procedure, first `Database`, then `AuthServer`, finally `GameServer`
 Database.init(() => {

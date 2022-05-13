@@ -1,24 +1,25 @@
 const SQL = require('like-sql'), builder = new SQL();
+
 let conn;
 
 const Database = {
     init: (callback) => {
-        let optn = invoke('Config').database;
+        const { database } = invoke('Config');
 
         require('mariadb').createConnection({
-            host     : optn.hostname,
-            port     : optn.port,
-            user     : optn.user,
-            password : optn.password,
-            database : optn.name
+            host     : database.hostname,
+            port     : database.port,
+            user     : database.user,
+            password : database.password,
+            database : database.name
 
         }).then((instance) => {
-            console.log('DB:: connected');
+            console.info('DB:: connected');
             conn = instance;
             callback();
 
         }).catch(error => {
-            console.log('DB:: failed(%d) -> %s', error.errno, error.text);
+            console.info('DB:: failed(%d) -> %s', error.errno, error.text);
         });
     },
 
@@ -52,11 +53,11 @@ const Database = {
 
     // Gets the Base Stats for a specific Class ID
     fetchClassInformation: (classId) => {
-        let path = process.cwd() + '/data/Classes';
+        const path = process.cwd() + '/data/Classes';
 
         return new Promise((success, fail) => {
             require('fs').readdir(path, (error, files) => {
-                let result = files.find(text =>
+                const result = files.find(text =>
                     text.includes('[' + classId + ']')
                 );
 

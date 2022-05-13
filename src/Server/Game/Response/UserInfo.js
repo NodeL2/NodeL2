@@ -1,7 +1,7 @@
-let ServerPacket = invoke('Packet/Server');
+const ServerPacket = invoke('Packet/Server');
 
 function userInfo(actor) {
-    let packet = new ServerPacket(0x32);
+    const packet = new ServerPacket(0x32);
 
     packet
         .writeD(actor.model.x)

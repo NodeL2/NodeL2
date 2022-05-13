@@ -10,7 +10,7 @@ class ServerPacket {
     // Standard data types
 
     write(value, size) {
-        let data = Buffer.alloc(size);
+        const data = Buffer.alloc(size);
 
         switch (size) {
             case 1: data.writeUInt8    (value); break;

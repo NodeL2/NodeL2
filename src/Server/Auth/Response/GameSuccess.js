@@ -1,7 +1,7 @@
-let ServerPacket = invoke('Packet/Server');
+const ServerPacket = invoke('Packet/Server');
 
 function gameSuccess(config) {
-    let packet = new ServerPacket(0x07);
+    const packet = new ServerPacket(0x07);
 
     packet
         .writeD(config.sessionKey1)  // Session Key (first)

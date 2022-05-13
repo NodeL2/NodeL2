@@ -1,10 +1,10 @@
-let ServerResponse = invoke('Server/Auth/Response');
-let ClientPacket   = invoke('Packet/Client');
-let Config         = invoke('Config');
-let Utils          = invoke('Utils');
+const ServerResponse = invoke('Server/Auth/Response');
+const ClientPacket   = invoke('Packet/Client');
+const Config         = invoke('Config');
+const Utils          = invoke('Utils');
 
 function gameLogin(session, buffer) {
-    let packet = new ClientPacket(buffer);
+    const packet = new ClientPacket(buffer);
 
     packet
         .readD()  // Session Key (first)

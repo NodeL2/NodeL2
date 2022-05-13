@@ -1,7 +1,7 @@
-let ServerPacket = invoke('Packet/Server');
+const ServerPacket = invoke('Packet/Server');
 
 function authGG(sessionId) {
-    let packet = new ServerPacket(0x0b);
+    const packet = new ServerPacket(0x0b);
 
     packet
         .writeD(sessionId);

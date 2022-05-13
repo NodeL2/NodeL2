@@ -1,8 +1,8 @@
-let ServerPacket = invoke('Packet/Server');
+const ServerPacket = invoke('Packet/Server');
 
 function serverList(config, ipAddress, characters) {
-    let packet = new ServerPacket(0x04);
-    let hostname = ipAddress.split('.');
+    const packet = new ServerPacket(0x04);
+    const hostname = ipAddress.split('.');
 
     packet
         .writeC(0x01) // Amount of Servers

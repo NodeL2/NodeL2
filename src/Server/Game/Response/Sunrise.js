@@ -1,7 +1,7 @@
-let ServerPacket = invoke('Packet/Server');
+const ServerPacket = invoke('Packet/Server');
 
 function sunrise() {
-    let packet = new ServerPacket(0x12);
+    const packet = new ServerPacket(0x12);
 
     return packet.fetchBuffer();
 }

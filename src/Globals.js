@@ -4,8 +4,8 @@ global.invoke = (module) => {
 };
 
 // Generic error method to terminate execution
-global.fatalError = (...args) => {
-    console.log.apply(this, args);
+global.fatalError = (...params) => {
+    console.info.apply(this, params);
     process.exit();
 };
 
@@ -22,7 +22,7 @@ const State = {
     },
 
     broadcast: (data) => {
-        for (let socket of State.clients) {
+        for (const socket of State.clients) {
             socket.write(data);
         }
     }

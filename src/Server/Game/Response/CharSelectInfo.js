@@ -1,7 +1,7 @@
-let ServerPacket = invoke('Packet/Server');
+const ServerPacket = invoke('Packet/Server');
 
 function charSelectInfo(characters) {
-    let packet = new ServerPacket(0x09);
+    const packet = new ServerPacket(0x09);
 
     packet
         .writeD(characters.length)
@@ -11,7 +11,7 @@ function charSelectInfo(characters) {
         .writeD(0x02)  // 2: EU client
         .writeC(0x00); // 1: Premium account
 
-    for (let character of characters) {
+    for (const character of characters) {
         packet
             .writeS(character.name)
             .writeD(character.id)

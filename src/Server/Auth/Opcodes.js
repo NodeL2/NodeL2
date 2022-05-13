@@ -1,11 +1,11 @@
-let ClientRequest = invoke('Server/Auth/Request');
-let Utils = invoke('Utils');
+const ClientRequest = invoke('Server/Auth/Request');
+const Utils = invoke('Utils');
 
 // Establishes an `Opcode` table to handle client packets
 const Opcodes = {
     table: (() => {
-        let table = new Array(0xff).fill((_, decipheredPacket) => {
-            fatalError('AuthServer:: unknown opcode 0x%s', Utils.toHex(decipheredPacket[0]));
+        const table = new Array(0xff).fill((_, packet) => {
+            fatalError('AuthServer:: unknown opcode 0x%s', Utils.toHex(packet[0]));
         });
 
         table[0x00] = ClientRequest.authLogin;
