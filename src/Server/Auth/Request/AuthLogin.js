@@ -28,9 +28,13 @@ function consume(session, data) { // TODO: Check the Session ID
 
         // Username exists in database
         if (password) {
-            session.dataSend(
-                data.password === password ? ServerResponse.loginSuccess(Config.client) : ServerResponse.loginFail(0x02)
-            );
+            if (data.password === password) {
+                session.accountId = data.username;
+                session.dataSend(ServerResponse.loginSuccess(Config.client));
+            }
+            else {
+                session.dataSend(ServerResponse.loginFail(0x02));
+            }
         }
         else { // User account does not exist, create if needed
             if (Config.authServer.autoCreate) {

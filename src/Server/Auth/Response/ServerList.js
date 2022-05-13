@@ -1,35 +1,29 @@
 let ServerPacket = invoke('Packet/Server');
 
-function serverList(config, ipAddress) {
+function serverList(config, ipAddress, characters) {
     let packet = new ServerPacket(0x04);
-
-    let hostname   = ipAddress.split('.');
-    let port       = config.port;
-    let maxPlayers = config.maxPlayers
+    let hostname = ipAddress.split('.');
 
     packet
         .writeC(0x01)        // Amount of Servers
-        .writeC(0x00)        // Last Server ID
-
-        .writeC(0x01)        // Server ID
+        .writeC(config.id)
+        .writeC(config.id)
         .writeC(hostname[0]) // Server IP
         .writeC(hostname[1]) // Server IP
         .writeC(hostname[2]) // Server IP
         .writeC(hostname[3]) // Server IP
-        .writeD(port)        // Server port
+        .writeD(config.port)
         .writeC(0x00)        // Age limit
-        .writeC(0x00)        // PVP ? Yes = 1, No = 0
+        .writeC(config.pvp)
         .writeH(0x00)        // Connected players
-        .writeH(maxPlayers)  // Max players
+        .writeH(config.maxPlayers)
         .writeC(0x01)        // Status ? Up = 1, Down = 0
-        .writeD(0x00)        // // 1: Normal, 4: Public Test, 8: No Label, 64: Free
-        .writeC(0x00)        // Server Brackets ???
-
-        .writeH(0x00)        // Unknown
-        .writeC(0x02)        // Total Characters
-
-        .writeC(0x01)        // Server ID
-        .writeC(0x02);       // Characters on specific Server ID
+        .writeD(config.type)
+        .writeC(0x00)        // Server Brackets?
+        .writeH(0x00)        // ?
+        .writeC(characters)
+        .writeC(config.id)
+        .writeC(characters);
 
     return packet.fetchBuffer();
 }

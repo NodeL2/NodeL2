@@ -1,6 +1,7 @@
 let ServerResponse = invoke('Server/Auth/Response');
 let ClientPacket   = invoke('Packet/Client');
 let Config         = invoke('Config');
+let Database       = invoke('Database');
 let Utils          = invoke('Utils');
 
 function serverList(session, buffer) {
@@ -16,7 +17,7 @@ function serverList(session, buffer) {
     });
 }
 
-function establishGameServerIPAddress(session) {
+function detectServerIPAddress(session) {
     let remoteAddr = session.socket.remoteAddress;
     let host = remoteAddr.split('.');
 
@@ -35,9 +36,11 @@ function establishGameServerIPAddress(session) {
 
 function consume(session, data) {
     if (Utils.matchSessionKeys(Config.client, data)) {
-        session.dataSend(
-            ServerResponse.serverList(Config.gameServer, establishGameServerIPAddress(session))
-        );
+        Database.fetchCharacters(session.accountId).then((characters) => {
+            session.dataSend(
+                ServerResponse.serverList(Config.gameServer, detectServerIPAddress(session), characters.length)
+            );
+        });
     }
     else { // Session keys don't match
         session.dataSend(

@@ -24,7 +24,9 @@ const Config = {
         hostname    :   (ini.GameServer.Hostname    ?? '127.0.0.1'),
         port        : + (ini.GameServer.Port        ?? '7777'),
         maxPlayers  : + (ini.GameServer.MaxPlayers  ?? '1000'),
-        id          : + (ini.GameServer.Id          ?? '1')
+        id          : + (ini.GameServer.Id          ?? '1'),
+        pvp         :   (ini.GameServer.Pvp         ?? false),
+        type        : + (ini.GameServer.Type        ?? '1')
     },
 
     client: {

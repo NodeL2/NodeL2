@@ -12,7 +12,7 @@ function authGG(session, buffer) {
     });
 }
 
-function consume(session, data) {
+function consume(session, data) { // TODO: Check the Session ID
     session.dataSend(
         ServerResponse.authGG(data.sessionId)
     );
