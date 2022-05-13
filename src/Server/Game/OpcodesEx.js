@@ -1,5 +1,5 @@
-const ClientRequest = invoke('Server/Game/Request');
-const Utils = invoke('Utils');
+const ClientRequestEx = invoke('Server/Game/Request/Ex');
+const Utils           = invoke('Utils');
 
 // Establishes an `OpcodeEx` table to handle client packets
 const OpcodesEx = {
@@ -7,6 +7,8 @@ const OpcodesEx = {
         const table = new Array(0xff).fill((_, packet) => {
             fatalError('GameServer:: unknown extended opcode 0x%s', Utils.toHex(packet[0]));
         });
+
+        table[0xa9] = ClientRequestEx.charNameCreatable;
 
         return table;
     })()

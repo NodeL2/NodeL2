@@ -45,7 +45,7 @@ class ClientPacket {
         const index = this.buffer.indexOf(Buffer.alloc(2), this.offset) + 1;
         if (index > 0) {
             this.data.push(
-                this.buffer.toString('ucs2', this.offset, index)
+                this.buffer.toString('ascii', this.offset, index)
             );
             this.offset += index + 1;
         }

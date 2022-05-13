@@ -18,7 +18,7 @@ const Opcodes = {
 
         // Extended opcodes
         table[0xd0] = (session, packet) => {
-            OpcodesEx.table[packet[0]](session, packet);
+            OpcodesEx.table[packet[1]](session, packet.slice(1));
         };
 
         return table;

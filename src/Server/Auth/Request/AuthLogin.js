@@ -28,7 +28,7 @@ function consume(session, data) { // TODO: Check the Session ID
 
         // Username exists in database
         if (password) {
-            data.password === password ? passwordMatch(session, data.username) : failure(0x02);
+            data.password === password ? passwordMatch(session, data.username) : failure(session, 0x02);
         }
         else { // User account does not exist, create if needed
             if (Config.authServer.autoCreate) {
@@ -37,7 +37,7 @@ function consume(session, data) { // TODO: Check the Session ID
                 });
             }
             else { // Auto-create not permitted
-                failure(0x04);
+                failure(session, 0x04);
             }
         }
     });
