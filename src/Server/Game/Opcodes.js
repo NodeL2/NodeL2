@@ -9,6 +9,7 @@ const Opcodes = {
             fatalError('GameServer:: unknown opcode 0x%s', Utils.toHex(packet[0]));
         });
 
+        table[0x00] = ClientRequest.logout;
         table[0x0e] = ClientRequest.protocolVersion;
         table[0x11] = ClientRequest.enterWorld;
         table[0x12] = ClientRequest.charSelected;

@@ -29,6 +29,11 @@ class Session {
         const decipheredPacket = require('blowfish-ecb').decipher(this.blowfish, packet);
         Opcodes.table[decipheredPacket[0]](this, decipheredPacket);
     }
+
+    error(err) {
+        console.info('AuthServer:: exception');
+        console.info(err.stack);
+    }
 }
 
 module.exports = Session;
