@@ -15,12 +15,26 @@ const Utils = {
         return Number(value).toString(16).padStart(padding, '0');
     },
 
-    dumpBuffer: (array) => {
-        console.log('%s\n\n', array.toString('hex').match(/../g).join(' '));
+    randomNumber: (max) => {
+        return Math.floor(Math.random() * max);
+    },
+
+    isAlphaNumeric: (string) => {
+        return /^[A-Za-z0-9]*$/.test(string);
     },
 
     stripNull: (value) => {
         return value.replace(/\u0000/gi, '');
+    },
+
+    pad32Bits: (data) => {
+        const size = data.length;
+        const pad  = Buffer.alloc((Math.ceil(size / 4) * 4) - size);
+        return Buffer.concat([data, pad]);
+    },
+
+    dumpBuffer: (array) => {
+        console.log('%s\n\n', array.toString('hex').match(/../g).join(' '));
     },
 
     matchSessionKeys: (pair1, pair2) => {
@@ -33,25 +47,12 @@ const Utils = {
         return ipv4[0].address;
     },
 
-    totalMemUsed: () => {
-        console.log('NodeL2:: Total Mem Used -> %f MB', Math.round(process.memoryUsage().heapTotal / 1024 / 1024 * 100) / 100);
-    },
-
-    pad32Bits: (data) => {
-        let size = data.byteLength;
-        return Buffer.alloc((Math.ceil(size / 4) * 4) - size);
-    },
-
     parseRawFile: (filename, charset = 'utf8') => {
         return require('fs').readFileSync(filename, charset);
     },
 
-    randomNumber: (max) => {
-        return Math.floor(Math.random() * max);
-    },
-
-    isAlphaNumeric: (string) => {
-        return /^[A-Za-z0-9]*$/.test(string);
+    totalMemUsed: () => {
+        console.log('NodeL2:: Total Mem Used -> %f MB', Math.round(process.memoryUsage().heapTotal / 1024 / 1024 * 100) / 100);
     }
 };
 

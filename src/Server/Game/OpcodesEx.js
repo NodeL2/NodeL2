@@ -8,6 +8,7 @@ const OpcodesEx = {
             fatalError('GameServer:: unknown extended opcode 0x%s', Utils.toHex(packet[0]));
         });
 
+        table[0x33] = ClientRequestEx.backToHall;
         table[0xa9] = ClientRequestEx.charNameCreatable;
 
         return table;

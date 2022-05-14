@@ -15,8 +15,8 @@ function charSelected(session, buffer) {
 }
 
 function consume(session, data) {
-    Database.fetchCharacters(session.accountId).then((characters) => {
-        const character = characters[data.characterSlot];
+    Database.fetchCharacters(session.accountId).then((userChars) => {
+        const character = userChars[data.characterSlot];
 
         Database.fetchClassInformation(character.classId).then((classInfo) => {
             // Create a new actor instance with info

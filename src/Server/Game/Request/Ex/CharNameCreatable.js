@@ -17,15 +17,15 @@ function charNameCreatable(session, buffer) {
 function consume(session, data) {
     let result = -1;
 
-    Database.fetchCharacters(session.accountId).then((userCharacters) => {
-        Database.fetchCharacterWithName(data.characterName).then((serverCharacters) => {
-            if (serverCharacters[0]) {
+    Database.fetchCharacters(session.accountId).then((userChars) => {
+        Database.fetchCharacterWithName(data.characterName).then((serverChars) => {
+            if (serverChars[0]) {
                 result = 2;
             }
             else if (!Utils.isAlphaNumeric(data.characterName)) {
                 result = 4;
             }
-            else if (userCharacters.length >= 7) {
+            else if (userChars.length >= 7) {
                 result = 8;
             }
 
