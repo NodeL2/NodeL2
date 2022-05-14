@@ -48,6 +48,10 @@ const Utils = {
 
     randomNumber: (max) => {
         return Math.floor(Math.random() * max);
+    },
+
+    isAlphaNumeric: (string) => {
+        return /^[A-Za-z0-9]*$/.test(string);
     }
 };
 

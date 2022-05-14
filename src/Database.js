@@ -44,6 +44,13 @@ const Database = {
         );
     },
 
+    // Check if provided name is taken
+    fetchCharacterWithName: (name) => {
+        return Database.execute(
+            builder.selectOne('characters', ['id'], 'name = ?', name)
+        );
+    },
+
     // Gets the Characters defined on a user's account
     fetchCharacters: (username) => {
         return Database.execute(

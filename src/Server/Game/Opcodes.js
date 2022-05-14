@@ -10,6 +10,7 @@ const Opcodes = {
         });
 
         table[0x00] = ClientRequest.logout;
+        table[0x0c] = ClientRequest.createNewChar;
         table[0x0e] = ClientRequest.protocolVersion;
         table[0x11] = ClientRequest.enterWorld;
         table[0x12] = ClientRequest.charSelected;

@@ -1,6 +1,7 @@
-const ServerResponse = invoke('Server/Game/Response');
-const ClientPacket   = invoke('Packet/Client');
-const Database       = invoke('Database');
+const ServerResponseEx = invoke('Server/Game/Response/Ex');
+const ClientPacket     = invoke('Packet/Client');
+const Database         = invoke('Database');
+const Utils            = invoke('Utils');
 
 function charNameCreatable(session, buffer) {
     const packet = new ClientPacket(buffer);
@@ -9,12 +10,31 @@ function charNameCreatable(session, buffer) {
         .readS();
 
     consume(session, {
-        characterName: packet.data[0]
+        characterName: Utils.stripNull(packet.data[0])
     });
 }
 
-function consume(session, data) { // TODO: Check if name exists in Database
-    console.info(data.characterName);
+function consume(session, data) {
+    let result = -1;
+
+    Database.fetchCharacters(session.accountId).then((userCharacters) => {
+        Database.fetchCharacterWithName(data.characterName).then((serverCharacters) => {
+            if (serverCharacters[0]) {
+                result = 2;
+            }
+            else if (!Utils.isAlphaNumeric(data.characterName)) {
+                result = 4;
+            }
+            else if (userCharacters.length >= 7) {
+                result = 8;
+            }
+
+            // It looks like the amount of letters is capped in the client, so no check for that
+            session.dataSend(
+                ServerResponseEx.charNameCreatable(result)
+            );
+        });
+    });
 }
 
 module.exports = charNameCreatable;
