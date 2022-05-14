@@ -19,7 +19,9 @@ function consume(session, data) {
     }
 
     session.dataSend(
-        ServerResponse.versionCheck(Config.client.protocol === data.protocolVersion)
+        ServerResponse.versionCheck(
+            Config.client.protocol === data.protocolVersion, Config.gameServer
+        )
     );
 }
 

@@ -26,7 +26,8 @@ const Config = {
         id          : + (ini.GameServer.Id          ?? '1'),
         maxPlayers  : + (ini.GameServer.MaxPlayers  ?? '1000'),
         pvp         :   (ini.GameServer.Pvp         ?? false),
-        type        : + (ini.GameServer.Type        ?? '1')
+        type        : + (ini.GameServer.Type        ?? '1'),
+        classic     :   (ini.GameServer.Classic     ?? true)
     },
 
     client: {
