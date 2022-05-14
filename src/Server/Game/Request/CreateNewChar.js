@@ -10,12 +10,12 @@ function createNewChar(session, buffer) {
         .readD()  // Race
         .readD()  // Sex
         .readD()  // Class ID
-        .readD()  // Int
-        .readD()  // Str
-        .readD()  // Con
-        .readD()  // Men
-        .readD()  // Dex
-        .readD()  // Wit
+        .readD()  // Int (constant 0?)
+        .readD()  // Str (constant 0?)
+        .readD()  // Con (constant 0?)
+        .readD()  // Men (constant 0?)
+        .readD()  // Dex (constant 0?)
+        .readD()  // Wit (constant 0?)
         .readD()  // Hair
         .readD()  // Hair Color
         .readD(); // Face

@@ -19,8 +19,8 @@ function charSelectInfo(characters) {
             .writeD(0x55555555)
             .writeD(0x00)  // Clan Id
             .writeD(0x00)  // Builder level
-            .writeD(character.gender)
-            .writeD(character.raceId)
+            .writeD(character.sex)
+            .writeD(character.race)
             .writeD(character.classId)
             .writeD(0x01)  // Game server name
             .writeD(character.x)
@@ -59,7 +59,7 @@ function charSelectInfo(characters) {
             .writeH(0x00)
             .writeH(0x00)
             .writeH(0x01)
-            .writeD(character.hairId)
+            .writeD(character.hair)
             .writeD(character.hairColor)
             .writeD(character.face)
             .writeF(character.maxHp)

@@ -40,6 +40,6 @@
         "femlH" : 23.5
     },
 
-    "raceId"   : 2,
+    "race"     : 2,
     "canCraft" : false
 }

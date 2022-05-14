@@ -10,8 +10,8 @@ function userInfo(actor) {
         .writeD(0x00)  // Heading
         .writeD(actor.model.id)
         .writeS(actor.model.name)
-        .writeD(actor.model.raceId)
-        .writeD(actor.model.gender)
+        .writeD(actor.model.race)
+        .writeD(actor.model.sex)
         .writeD(actor.model.classId)
         .writeD(actor.model.level)
         .writeD(actor.model.exp)
@@ -61,7 +61,7 @@ function userInfo(actor) {
         .writeF(actor.model.stats.atkSpd / 277.77777777777777)  // Attack Speed Multiplier
         .writeF(actor.model.metrics.maleR)
         .writeF(actor.model.metrics.maleH)
-        .writeD(actor.model.hairId)
+        .writeD(actor.model.hair)
         .writeD(actor.model.hairColor)
         .writeD(actor.model.face)
         .writeD(0x00)  // 1: GM

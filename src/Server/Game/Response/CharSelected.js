@@ -10,8 +10,8 @@ function charSelected(actor) {
         .writeD(0x55555555)
         .writeD(0x00)  // Clan ID
         .writeD(0x00)  // ?
-        .writeD(actor.model.gender)
-        .writeD(actor.model.raceId)
+        .writeD(actor.model.sex)
+        .writeD(actor.model.race)
         .writeD(actor.model.classId)
         .writeD(0x01)  // ?
         .writeD(actor.model.x)
