@@ -14,7 +14,7 @@ function versionCheck(isProtocolValid, config) {
         .writeC(0x00) // XOR Key 7
         .writeC(0x00) // XOR Key 8
         .writeD(0x01) // ?
-        .writeD(config.id)  // Server ID
+        .writeD(config.id)
         .writeC(0x01) // ?
         .writeD(0x00) // Obfuscation Key
         .writeC(config.classic);
