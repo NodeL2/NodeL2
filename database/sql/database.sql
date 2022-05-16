@@ -34,5 +34,3 @@ CREATE TABLE `characters`(
     `recAvail` int(5) NOT NULL DEFAULT 0,
     PRIMARY KEY (`id`)
 );
-
-/* mysql -h '127.0.0.1' -u 'root' --password='alosi!$53' 'nodel2' < 'src/accounts.sql' */
