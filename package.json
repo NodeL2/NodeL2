@@ -1,9 +1,10 @@
 {
     "name": "nodel2",
-    "version": "0.0.3",
-    "description": "L2 Server implementation in Node",
+    "version": "0.0.4",
+    "description": "Classic L2 server emulator in Node",
     "scripts": {
-        "start": "node start"
+        "node": "node src/NodeL2",
+        "node17+": "node --openssl-legacy-provider src/NodeL2"
     },
     "devDependencies": {
         "blowfish-ecb": "^1.0.2",
