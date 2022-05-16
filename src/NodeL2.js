@@ -8,13 +8,13 @@ const Database    = invoke('Database');
 const Server      = invoke('Server');
 const Utils       = invoke('Utils');
 
-console.info('# ================================');
-console.info('# Server Name: ...... NodeL2 [768]');
-console.info('# Build Revision: ... %s', Utils.buildNumber());
-console.info('# Chronicle: ........ Classic 1.0');
-console.info('# Build date: ....... %s', Utils.currentDate());
-console.info('# NodeJS version: ... %s', Utils.nodeVersion());
-console.info('# ================================\n');
+console.info('# ==================================');
+console.info('# Server Name: ........ NodeL2 [768]');
+console.info('# Build Revision: ..... %s', Utils.buildNumber());
+console.info('# Chronicle: .......... Classic 1.0');
+console.info('# Build date: ......... %s', Utils.currentDate());
+console.info('# NodeJS version: ..... %s', Utils.nodeVersion());
+console.info('# ==================================\n');
 
 // Startup procedure, first `Database`, then `AuthServer`, finally `GameServer`
 Database.init(() => {
