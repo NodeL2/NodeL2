@@ -3,15 +3,17 @@ Classic L2 server emulator in NodeJS
 
 ## Prerequisites
 * Install `NodeJS 14+`, `MariaDB 16+`
-* For convenience, also install `MS Visual Studio Code`, `TablePlus`
-* All of the above tools are compatible with Windows, Linux, and macOS
+* For convenience, also install `MS Visual Studio Code`, and `TablePlus`.
+* All of the above tools are compatible with **Windows**, **Linux**, and **macOS**
+* Use **Powershell** for **Windows**, and **Terminal** the rest.
 
-## How to
+## Setup
 * Run `.\/database/db-install.bat` for **Windows**, or `/database/db-install.sh` for **Linux** and **macOS**
-* Fix **database password**, **chronicle version**, and **protocol** in `config/config.ini`
-* Run `npm install -i` once in Terminal
-* Run `npm start`
-* Default credentials are username `q` and password `q`
+* Fix **DB password**, and **Chronicle version** in `config/config.ini`
+* Run `npm install -i`
+
+## Run
+* Launch `npm run node` for **NodeJS** <= `16`, and `npm run node17+` for newer **NodeJS** >= `17` versions.
 
 ## Credits
 Main source of inspiration is <a href="https://github.com/lineage2js/lineage2js">lineage2js</a>, please support it!
