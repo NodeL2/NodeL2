@@ -1,7 +1,7 @@
 {
     "name": "nodel2",
-    "version": "0.0.4",
-    "description": "Classic L2 server emulator in Node",
+    "version": "0.0.5",
+    "description": "Classic L2 server emulator in NodeJS",
     "scripts": {
         "node": "node src/NodeL2",
         "node17+": "node --openssl-legacy-provider src/NodeL2"

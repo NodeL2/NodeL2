@@ -37,7 +37,7 @@ const Utils = {
         console.log('%s\n\n', array.toString('hex').match(/../g).join(' '));
     },
 
-    matchSessionKeys: (pair1, pair2) => {
+    sessionMatch: (pair1, pair2) => {
         return (pair1.sessionKey1 === pair2.sessionKey1) && (pair1.sessionKey2 === pair2.sessionKey2);
     },
 

@@ -20,7 +20,7 @@ function authLogin(session, buffer) {
 }
 
 function consume(session, data) {
-    if (Utils.matchSessionKeys(Config.client, data)) {
+    if (Utils.sessionMatch(Config.client, data)) {
         session.accountId = data.username;
 
         Database.fetchCharacters(session.accountId).then((userChars) => {

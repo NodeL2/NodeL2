@@ -16,8 +16,8 @@ function authLogin(session, buffer) {
     );
 
     consume(session, {
-        username  : Utils.stripNull(deciphered.slice(0x5e, 0x5e + 14)), // <= C4: 0x62
-        password  : Utils.stripNull(deciphered.slice(0x6c, 0x6c + 16)), // <= C4: 0x70
+        username  : Utils.stripNull(deciphered.slice(0x5e, 0x5e + 14)), // 0x62 <= C4
+        password  : Utils.stripNull(deciphered.slice(0x6c, 0x6c + 16)), // 0x70 <= C4
         sessionId : packet.data[1]
     });
 }
