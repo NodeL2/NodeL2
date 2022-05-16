@@ -1,19 +1,21 @@
 # NodeL2
-Node implementation of a C4/C5 Lineage 2 server emulator
+Classic L2 server emulator in NodeJS
 
-<h2>How to</h2>
+## Prerequisites
+* Install `NodeJS 14+`, `MariaDB 16+`
+* For convenience, also install `MS Visual Studio Code`, `TablePlus`
+* All of the above tools are compatible with Windows, Linux, and macOS
 
-* Install `NodeJS 14+`
-* Import `nodel2.dump` backup into `nodel2` MariaDB SQL database
-* Fix database password, chronicle version, and protocol in `config.ini`
-* Run `npm install -i`
+## How to
+* Run `db-install` from **Terminal**
+* Optional, run `db-sample` to insert a new **Account** and **Character**
+* Fix **database password**, **chronicle version**, and **protocol** in `config.ini`
+* Run `npm install -i` once in Terminal
 * Run `npm start`
 * Default credentials are username `q` and password `q`
 
-<h2>Credits</h2>
-
+## Credits
 Main source of inspiration is <a href="https://github.com/lineage2js/lineage2js">lineage2js</a>, please support it!
 
-<h2>License</h2>
-
+## License
 Open-source under [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0).
