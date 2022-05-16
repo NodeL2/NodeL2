@@ -7,9 +7,9 @@ Classic L2 server emulator in NodeJS
 * All of the above tools are compatible with Windows, Linux, and macOS
 
 ## How to
-* Run `db-install` from **Terminal**
-* Optional, run `db-sample` to insert a new **Account** and **Character**
-* Fix **database password**, **chronicle version**, and **protocol** in `config.ini`
+* Run `database/db-install` from **Terminal**
+* Optional, run `database/db-sample` to insert a new **Account** and **Character**
+* Fix **database password**, **chronicle version**, and **protocol** in `config/config.ini`
 * Run `npm install -i` once in Terminal
 * Run `npm start`
 * Default credentials are username `q` and password `q`

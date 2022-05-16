@@ -1,5 +1,5 @@
 const ini = require('ini').parse(
-    invoke('Utils').parseRawFile('./config.ini')
+    invoke('Utils').parseRawFile('./config/config.ini')
 );
 
 // Default values appropriate for L2 Classic 1.0 client
