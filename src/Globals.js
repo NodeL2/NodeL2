@@ -5,18 +5,9 @@ global.invoke = (module) => {
 
 // Generic error method to terminate execution
 global.fatalError = (...params) => {
-    console.info.apply(this, params);
+    console.info('\x1b[31m' + require('util').format(...params) + '\x1b[0m');
     process.exit();
 };
-
-// Colorful console
-const colors = require('colors');
-
-colors.setTheme({
-       ok: 'green',
-     warn: 'yellow',
-    error: 'red'
-});
 
 // TODO: Not used
 const State = {

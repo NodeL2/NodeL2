@@ -8,7 +8,6 @@
     },
     "devDependencies": {
         "blowfish-ecb": "^1.0.2",
-        "colors": "^1.4.0",
         "eslint": "^8.14.0",
         "ini": "^3.0.0",
         "like-sql": "^0.1.1",
@@ -17,7 +16,6 @@
     },
     "dependencies": {
         "blowfish-ecb": "^1.0.2",
-        "colors": "^1.4.0",
         "ini": "^3.0.0",
         "like-sql": "^0.1.1",
         "mariadb": "^3.0.0",

@@ -31,7 +31,7 @@ class Session {
     }
 
     error(err) {
-        console.info('AuthServer:: exception'.fail);
+        console.info('AuthServer:: exception');
         console.info(err.stack);
     }
 }
