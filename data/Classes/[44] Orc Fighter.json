@@ -1,6 +1,7 @@
 {
-    "classId"   : 44,
-    "className" : "Orc Fighter",
+    "classId" : 44,
+    "race"    : 3,
+    "crafter" : false,
 
     "stats": {
         "maxHp" : 133,
@@ -13,18 +14,18 @@
         "wit" : 12,
         "men" : 27,
 
-        "pAtk"     : 4,
-        "mAtk"     : 2,
-        "pDef"     : 72,
-        "mDef"     : 48,
-        "accuracy" : 31,
-        "evasion"  : 31,
-        "critical" : 42,
-        "speed"    : 126,
-        "atkSpd"   : 318,
-        "castSpd"  : 226,
+        "pAtk"      : 4,
+        "mAtk"      : 2,
+        "pDef"      : 72,
+        "mDef"      : 48,
+        "accuracie" : 31,
+        "evasion"   : 31,
+        "critical"  : 42,
+        "speed"     : 126,
+        "atkSpd"    : 318,
+        "castSpd"   : 226,
 
-        "weightLimit" : 87000
+        "loadLimit" : 87000
     },
 
     "speed": {
@@ -34,12 +35,9 @@
     },
 
     "metrics": {
-        "maleR" : 11,
-        "maleH" : 28,
-        "femlR" : 7,
-        "femlH" : 27
-    },
-
-    "race"     : 3,
-    "canCraft" : false
+        "maleRadius" : 11,
+        "maleSize"   : 28,
+        "fmleRadius" : 7,
+        "fmleSize"   : 27
+    }
 }

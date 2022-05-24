@@ -1,6 +1,7 @@
 {
-    "classId"   : 18,
-    "className" : "Elven Fighter",
+    "classId" : 18,
+    "race"    : 1,
+    "crafter" : false,
 
     "stats": {
         "maxHp" : 113,
@@ -13,18 +14,18 @@
         "wit" : 14,
         "men" : 26,
 
-        "pAtk"     : 4,
-        "mAtk"     : 3,
-        "pDef"     : 72,
-        "mDef"     : 47,
-        "accuracy" : 36,
-        "evasion"  : 36,
-        "critical" : 46,
-        "speed"    : 126,
-        "atkSpd"   : 345,
-        "castSpd"  : 249,
+        "pAtk"      : 4,
+        "mAtk"      : 3,
+        "pDef"      : 72,
+        "mDef"      : 47,
+        "accuracie" : 36,
+        "evasion"   : 36,
+        "critical"  : 46,
+        "speed"     : 126,
+        "atkSpd"    : 345,
+        "castSpd"   : 249,
 
-        "weightLimit" : 73840
+        "loadLimit" : 73840
     },
 
     "speed": {
@@ -34,12 +35,9 @@
     },
 
     "metrics": {
-        "maleR" : 7.5,
-        "maleH" : 24,
-        "femlR" : 7.5,
-        "femlH" : 23
-    },
-
-    "race"     : 1,
-    "canCraft" : false
+        "maleRadius" : 7.5,
+        "maleSize"   : 24,
+        "femlRadius" : 7.5,
+        "fmleSize"   : 23
+    }
 }

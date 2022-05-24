@@ -3,6 +3,7 @@ global.invoke = (module) => {
     return require(__dirname + '/' + module);
 };
 
+// Generic error method to warn user
 global.infoWarn = (...params) => {
     console.info('\x1b[33m' + require('util').format(...params) + '\x1b[0m');
 };

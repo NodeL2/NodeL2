@@ -1,6 +1,7 @@
 {
-    "classId"   : 53,
-    "className" : "Dwarven Fighter",
+    "classId" : 53,
+    "race"    : 4,
+    "crafter" : true,
 
     "stats": {
         "maxHp" : 129,
@@ -13,18 +14,18 @@
         "wit" : 10,
         "men" : 27,
 
-        "pAtk"     : 4,
-        "mAtk"     : 3,
-        "pDef"     : 72,
-        "mDef"     : 48,
-        "accuracy" : 33,
-        "evasion"  : 33,
-        "critical" : 43,
-        "speed"    : 126,
-        "atkSpd"   : 327,
-        "castSpd"  : 203,
+        "pAtk"      : 4,
+        "mAtk"      : 3,
+        "pDef"      : 72,
+        "mDef"      : 48,
+        "accuracie" : 33,
+        "evasion"   : 33,
+        "critical"  : 43,
+        "speed"     : 126,
+        "atkSpd"    : 327,
+        "castSpd"   : 203,
 
-        "weightLimit" : 83000
+        "loadLimit" : 83000
     },
 
     "speed": {
@@ -34,12 +35,9 @@
     },
 
     "metrics": {
-        "maleR" : 9,
-        "maleH" : 18,
-        "femlR" : 5,
-        "femlH" : 19
-    },
-
-    "race"     : 4,
-    "canCraft" : true
+        "maleRadius" : 9,
+        "maleSize"   : 18,
+        "fmleRadius" : 5,
+        "fmleSize"   : 19
+    }
 }

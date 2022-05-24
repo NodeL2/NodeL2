@@ -1,6 +1,7 @@
 {
-    "classId"   : 25,
-    "className" : "Elven Mage",
+    "classId" : 25,
+    "race"    : 1,
+    "crafter" : false,
 
     "stats": {
         "maxHp" : 96,
@@ -13,18 +14,18 @@
         "wit" : 23,
         "men" : 40,
 
-        "pAtk"     : 2,
-        "mAtk"     : 6,
-        "pDef"     : 48,
-        "mDef"     : 54,
-        "accuracy" : 30,
-        "evasion"  : 30,
-        "critical" : 41,
-        "speed"    : 126,
-        "atkSpd"   : 312,
-        "castSpd"  : 386,
+        "pAtk"      : 2,
+        "mAtk"      : 6,
+        "pDef"      : 48,
+        "mDef"      : 54,
+        "accuracie" : 30,
+        "evasion"   : 30,
+        "critical"  : 41,
+        "speed"     : 126,
+        "atkSpd"    : 312,
+        "castSpd"   : 386,
 
-        "weightLimit" : 62400
+        "loadLimit" : 62400
     },
 
     "speed": {
@@ -34,12 +35,9 @@
     },
 
     "metrics": {
-        "maleR" : 7.5,
-        "maleH" : 24,
-        "femlR" : 7.5,
-        "femlH" : 23
-    },
-
-    "race"     : 1,
-    "canCraft" : false
+        "maleRadius" : 7.5,
+        "maleSize"   : 24,
+        "fmleRadius" : 7.5,
+        "fmleSize"   : 23
+    }
 }
