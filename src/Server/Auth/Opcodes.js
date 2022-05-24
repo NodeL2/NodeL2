@@ -5,7 +5,7 @@ const Utils = invoke('Utils');
 const Opcodes = {
     table: (() => {
         const table = new Array(0xff).fill((_, packet) => {
-            fatalError('AuthServer:: unknown opcode 0x%s', Utils.toHex(packet[0]));
+            infoFail('AuthServer:: unknown opcode 0x%s', Utils.toHex(packet[0]));
         });
 
         table[0x00] = ClientRequest.authLogin;

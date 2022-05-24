@@ -12,6 +12,7 @@
     },
     "globals": {
         "invoke": "readonly",
-        "fatalError": "readonly"
+        "infoWarn": "readonly",
+        "infoFail": "readonly"
     }
 }

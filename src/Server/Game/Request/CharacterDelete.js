@@ -14,7 +14,7 @@ function characterDelete(session, buffer) {
 }
 
 function consume(session, data) {
-    console.info(data.characterSlot);
+    infoWarn(data.characterSlot);
 
     Database.fetchCharacters(session.accountId).then((userChars) => { // TODO: The actual implementation :)
         session.dataSend(

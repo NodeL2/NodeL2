@@ -5,7 +5,7 @@ const Utils           = invoke('Utils');
 const OpcodesEx = {
     table: (() => {
         const table = new Array(0xff).fill((_, packet) => {
-            fatalError('GameServer:: unknown extended opcode 0x%s', Utils.toHex(packet[0]));
+            infoFail('GameServer:: unknown extended opcode 0x%s', Utils.toHex(packet[0]));
         });
 
         table[0x33] = ClientRequestEx.backToHall;

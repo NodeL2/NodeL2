@@ -45,7 +45,7 @@ function detectServerIPAddress(session) {
     }
 
     // WAN / Internet
-    fatalError('AuthServer:: unhandled WAN address');
+    infoFail('AuthServer:: unhandled WAN address');
     return '';
 }
 

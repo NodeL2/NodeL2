@@ -3,8 +3,12 @@ global.invoke = (module) => {
     return require(__dirname + '/' + module);
 };
 
+global.infoWarn = (...params) => {
+    console.info('\x1b[33m' + require('util').format(...params) + '\x1b[0m');
+};
+
 // Generic error method to terminate execution
-global.fatalError = (...params) => {
+global.infoFail = (...params) => {
     console.info('\x1b[31m' + require('util').format(...params) + '\x1b[0m');
     process.exit();
 };

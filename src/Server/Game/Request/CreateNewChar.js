@@ -32,7 +32,7 @@ function createNewChar(session, buffer) {
 }
 
 function consume(session, data) {
-    console.info(data);
+    infoWarn(data);
 }
 
 module.exports = createNewChar;

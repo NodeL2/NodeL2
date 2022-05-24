@@ -6,7 +6,7 @@ const Utils         = invoke('Utils');
 const Opcodes = {
     table: (() => {
         const table = new Array(0xff).fill((_, packet) => {
-            fatalError('GameServer:: unknown opcode 0x%s', Utils.toHex(packet[0]));
+            infoFail('GameServer:: unknown opcode 0x%s', Utils.toHex(packet[0]));
         });
 
         table[0x00] = ClientRequest.logout;

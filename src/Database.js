@@ -19,7 +19,7 @@ const Database = {
             callback();
 
         }).catch(error => {
-            console.info('DB:: failed(%d) -> %s', error.errno, error.text);
+            infoFail('DB:: failed(%d) -> %s', error.errno, error.text);
         });
     },
 
