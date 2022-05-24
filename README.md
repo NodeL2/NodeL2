@@ -8,8 +8,7 @@ Classic L2 server emulator in NodeJS
 * Use **Powershell** for **Windows**, and **Terminal** for the rest.
 
 ## Setup
-* Fix `USER`, and `PASS` in `/database` scripts.
-* Run `.\/database/db-install.bat` for **Windows**, or `/database/db-install.sh` for **Linux** and **macOS**
+* Fix **USER**, and **PASS** in `/database` scripts, and run `.\/database/db-install.bat` for **Windows**, or `/database/db-install.sh` for **Linux** and **macOS**
 * Fix **Database password**, and **Protocol version** in `config/config.ini`
 * Run `npm install -i`
 
