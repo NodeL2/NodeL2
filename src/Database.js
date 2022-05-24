@@ -1,4 +1,5 @@
 const SQL = require('like-sql'), builder = new SQL();
+require('colors');
 
 let conn;
 
@@ -14,12 +15,12 @@ const Database = {
             database : database.name
 
         }).then((instance) => {
-            console.info('DB:: connected');
+            console.info('DB:: connected'.ok);
             conn = instance;
             callback();
 
         }).catch(error => {
-            console.info('DB:: failed(%d) -> %s', error.errno, error.text);
+            console.info('DB:: failed(%d) -> %s'.fail, error.errno, error.text);
         });
     },
 

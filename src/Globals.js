@@ -9,6 +9,15 @@ global.fatalError = (...params) => {
     process.exit();
 };
 
+// Colorful console
+const colors = require('colors');
+
+colors.setTheme({
+       ok: 'green',
+     warn: 'yellow',
+    error: 'red'
+});
+
 // TODO: Not used
 const State = {
     clients: new Set(),
