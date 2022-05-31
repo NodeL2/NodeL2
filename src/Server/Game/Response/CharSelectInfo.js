@@ -29,12 +29,12 @@ function charSelectInfo(characters) {
             .writeF(character.hp)
             .writeF(character.mp)
             .writeD(character.sp)
-            .writeD(0x00)  // TODO: This is a hack, `exp` needs `writeQ`
+            .writeD(0x00)  // TODO: This is a hack, needs `writeQ`
             .writeD(character.exp)
-            .writeD(0x00)  // TODO: This is a hack, `exp` needs `writeQ`
+            .writeD(0x00)  // TODO: This is a hack, needs `writeQ`
             .writeF(0.0)   // Exp. percent
             .writeD(character.level)
-            .writeD(0x00)  // Reputation, not karma
+            .writeD(character.reputation)
             .writeD(character.pk)
             .writeD(character.pvp);
 
