@@ -71,6 +71,26 @@ const Database = {
                 return result ? success(require(path + '/' + result)) : fail();
             });
         });
+    },
+
+    createCharacter(username, data, classInfo) {
+        return Database.execute(
+            builder.insert('characters', {
+                 username: username,
+                     name: data.name,
+                     race: data.race,
+                  classId: data.classId,
+                    maxHp: classInfo.stats.maxHp,
+                    maxMp: classInfo.stats.maxMp,
+                      sex: data.sex,
+                     face: data.face,
+                     hair: data.hair,
+                hairColor: data.hairColor,
+                        x: 43648, // TODO: Depends on race and class
+                        y: 40352, // TODO: Depends on race and class
+                        z:-3430   // TODO: Depends on race and class
+            })
+        );
     }
 };
 

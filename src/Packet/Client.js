@@ -44,9 +44,9 @@ class ClientPacket {
     readS() {
         const index = this.buffer.indexOf(Buffer.alloc(2), this.offset) + 1;
         if (index > 0) {
-            this.data.push(
+            this.data.push(invoke('Utils').stripNull(
                 this.buffer.toString('ascii', this.offset, index)
-            );
+            ));
             this.offset += index + 1;
         }
         return this;

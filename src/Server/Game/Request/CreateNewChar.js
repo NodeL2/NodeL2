@@ -1,6 +1,6 @@
-let ServerResponse = invoke('Server/Game/Response');
-let ClientPacket   = invoke('Packet/Client');
-let Database       = invoke('Database');
+const ServerResponse = invoke('Server/Game/Response');
+const ClientPacket   = invoke('Packet/Client');
+const Database       = invoke('Database');
 
 function createNewChar(session, buffer) {
     let packet = new ClientPacket(buffer);
@@ -32,7 +32,15 @@ function createNewChar(session, buffer) {
 }
 
 function consume(session, data) {
-    infoWarn(data);
+    Database.fetchClassInformation(data.classId).then((classInfo) => {
+        Database.createCharacter(session.accountId, data, classInfo).then(() => {
+            Database.fetchCharacters(session.accountId).then((characters) => {
+                session.dataSend(
+                    ServerResponse.charSelectInfo(characters)
+                );
+            });
+        });
+    });
 }
 
 module.exports = createNewChar;

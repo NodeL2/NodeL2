@@ -68,8 +68,8 @@ function charSelectInfo(characters) {
             .writeD(0x00)  // Class Id?
             .writeD(0x00)  // Character active?
             .writeC(0x00)  // Enchanted effect?
-            .writeH(0x00)  // ?
-            .writeH(0x00)  // ?
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
             .writeD(0x00)  // ?
             .writeD(0x00)  // Pet NpcId
             .writeD(0x00)  // Pet level

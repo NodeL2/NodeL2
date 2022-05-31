@@ -10,7 +10,7 @@ function charNameCreatable(session, buffer) {
         .readS();
 
     consume(session, {
-        characterName: Utils.stripNull(packet.data[0])
+        characterName: packet.data[0]
     });
 }
 

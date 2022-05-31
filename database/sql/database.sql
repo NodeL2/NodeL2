@@ -23,6 +23,8 @@ CREATE TABLE `characters`(
     `exp` int(20) NOT NULL DEFAULT 0,
     `sp` int(10) NOT NULL DEFAULT 0,
     `karma` int(10) NOT NULL DEFAULT 0,
+    `pk` int(10) NOT NULL DEFAULT 0,
+    `pvp` int(10) NOT NULL DEFAULT 0,
     `sex` int(5) NOT NULL,
     `face` int(5) NOT NULL,
     `hair` int(5) NOT NULL,
