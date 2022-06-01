@@ -27,7 +27,7 @@ const Database = {
         return conn.query(sql[0], sql[1]);
     },
 
-    // Creates a new User Account in the Database with provided credentials
+    // Creates a `New Account` in the database with provided credentials
     createAccount: (username, password) => {
         return Database.execute(
             builder.insert('accounts', {
@@ -37,28 +37,28 @@ const Database = {
         );
     },
 
-    // Gets the Password from a provided Username account
+    // Returns the `Password` from a provided account
     fetchUserPassword: (username) => {
         return Database.execute(
             builder.selectOne('accounts', ['password'], 'username = ?', username)
         );
     },
 
-    // Check if provided name is taken
+    // Checks if provided `Character Name` is taken
     fetchCharacterWithName: (name) => {
         return Database.execute(
             builder.selectOne('characters', ['id'], 'name = ?', name)
         );
     },
 
-    // Gets the Characters defined on a user's account
+    // Returns the `Characters` stored on a user's account
     fetchCharacters: (username) => {
         return Database.execute(
             builder.select('characters', ['*'], 'username = ?', username)
         );
     },
 
-    // Gets the Base Stats for a specific Class ID
+    // Reads the `Base Stats` for a specific Class ID
     fetchClassInformation: (classId) => {
         const path = process.cwd() + '/data/Classes';
 
@@ -73,6 +73,7 @@ const Database = {
         });
     },
 
+    // Stores a new `Character` in database with provided details
     createCharacter(username, data, classInfo) {
         return Database.execute(
             builder.insert('characters', {
@@ -87,8 +88,8 @@ const Database = {
                      hair: data.hair,
                 hairColor: data.hairColor,
                         x: 43648, // TODO: Depends on race and class
-                        y: 40352, // TODO: Depends on race and class
-                        z:-3430   // TODO: Depends on race and class
+                        y: 40352, // TODO: "
+                        z:-3430   // TODO: "
             })
         );
     }

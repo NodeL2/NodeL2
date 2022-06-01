@@ -20,11 +20,11 @@ function charSelected(actor) {
         .writeF(actor.model.hp)
         .writeF(actor.model.mp)
         .writeD(actor.model.sp)
-        .writeD(0x00)  // TODO: This is a hack, `exp` needs `writeQ`
+        .writeD(0x00)  // TODO: This is a hack, needs `writeQ`
         .writeD(actor.model.exp)
-        .writeD(0x00)  // TODO: This is a hack, `exp` needs `writeQ`
+        .writeD(0x00)  // TODO: This is a hack, needs `writeQ`
         .writeD(actor.model.level)
-        .writeD(0x00)  // Reputation, not karma
+        .writeD(actor.model.reputation)
         .writeD(actor.model.pk)
         .writeD(0x00)  // Game time
         .writeD(0x00)  // ?

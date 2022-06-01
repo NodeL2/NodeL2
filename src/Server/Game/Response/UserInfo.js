@@ -15,7 +15,7 @@ function userInfo(actor) {
         .writeD(actor.model.classId)
         .writeD(actor.model.level)
         .writeD(actor.model.exp)
-        .writeD(0x00)  // TODO: This is a hack, `exp` needs `writeQ`
+        .writeD(0x00)  // TODO: This is a hack, needs `writeQ`
         .writeD(actor.model.stats.str)
         .writeD(actor.model.stats.dex)
         .writeD(actor.model.stats.con)
@@ -27,8 +27,9 @@ function userInfo(actor) {
         .writeD(actor.model.maxMp)
         .writeD(actor.model.mp)
         .writeD(actor.model.sp)
+        .writeD(0x00)  // TODO: This is a hack, needs `writeQ`
         .writeD(0x00)  // Load
-        .writeD(actor.model.stats.weightLimit)
+        .writeD(actor.model.stats.loadLimit)
         .writeD(0x28); // ?
 
     for (let i = 0; i < 32; i++) { // Paperdoll

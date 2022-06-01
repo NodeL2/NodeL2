@@ -2,7 +2,7 @@ const ini = require('ini').parse(
     invoke('Utils').parseRawFile('./config/config.ini')
 );
 
-// Default values appropriate for L2 Classic 1.0 client
+// Default values appropriate for L2 Classic 1.5 (Splendor) client
 const Config = {
     database: {
         hostname    :   (ini.Database.Hostname      ?? '127.0.0.1'),

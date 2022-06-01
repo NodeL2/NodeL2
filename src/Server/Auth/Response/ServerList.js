@@ -19,7 +19,7 @@ function serverList(config, ipAddress, characters) {
         .writeH(config.maxPlayers)
         .writeC(0x01) // Status ? Up = 1, Down = 0
         .writeD(config.type)
-        .writeC(0x00) // Server Brackets?
+        .writeC(0x00) // Server Brackets
         .writeH(0x00) // ?
         .writeC(characters)
         .writeC(config.id)
