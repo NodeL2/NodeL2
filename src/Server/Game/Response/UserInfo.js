@@ -32,7 +32,7 @@ function userInfo(actor) {
         .writeD(actor.model.stats.loadLimit)
         .writeD(0x28); // ?
 
-    for (let i = 0; i < 32; i++) { // Paperdoll
+    for (let i = 0; i < 33; i++) { // Paperdoll
         packet
             .writeD(0x00);
     }
@@ -49,7 +49,7 @@ function userInfo(actor) {
         .writeD(actor.model.stats.speed)
         .writeD(actor.model.stats.mDef)
         .writeD(0x00)  // 1: Purple
-        .writeD(actor.model.karma)
+        .writeD(actor.model.reputation)
         .writeD(actor.model.speed.run)
         .writeD(actor.model.speed.walk)
         .writeD(actor.model.speed.swim)
@@ -60,8 +60,8 @@ function userInfo(actor) {
         .writeD(0x00)  // Flying Walk Speed
         .writeF(1.0)   // Movement Multiplier
         .writeF(actor.model.stats.atkSpd / 277.77777777777777)  // Attack Speed Multiplier
-        .writeF(actor.model.metrics.maleR)
-        .writeF(actor.model.metrics.maleH)
+        .writeF(actor.model.metrics.maleRadius)
+        .writeF(actor.model.metrics.maleSize)
         .writeD(actor.model.hair)
         .writeD(actor.model.hairColor)
         .writeD(actor.model.face)
@@ -74,7 +74,7 @@ function userInfo(actor) {
         .writeD(0x00)  // ?
         .writeC(0x00)  // ?
         .writeC(0x00)  // Private Store Type
-        .writeC(actor.model.canCraft)
+        .writeC(actor.model.crafter)
         .writeD(actor.model.pk)
         .writeD(actor.model.pvp)
         .writeH(0x00)  // Cubic Count

@@ -8,9 +8,12 @@ const OpcodesEx = {
             infoFail('GameServer:: unknown extended opcode 0x%s', Utils.toHex(packet.readUInt16LE()));
         });
 
+        table[0x001] = (_, packet) => {}; // Manor List
+        table[0x021] = (_, packet) => {}; // Key Mapping
         table[0x033] = ClientRequestEx.backToHall;
+        table[0x03a] = (_, packet) => {}; // All Fortress Info
         table[0x0a9] = ClientRequestEx.charNameCreatable;
-        table[0x103] = (_, packet) => {};
+        table[0x103] = (_, packet) => {}; // Executed UI Events Count
 
         return table;
     })()

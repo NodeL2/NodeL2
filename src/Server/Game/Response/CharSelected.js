@@ -13,7 +13,7 @@ function charSelected(actor) {
         .writeD(actor.model.sex)
         .writeD(actor.model.race)
         .writeD(actor.model.classId)
-        .writeD(0x01)  // ?
+        .writeD(0x01)  // Active?
         .writeD(actor.model.x)
         .writeD(actor.model.y)
         .writeD(actor.model.z)
