@@ -6,6 +6,9 @@
     "stats": {
         "maxHp" : 99,
         "maxMp" : 59,
+        "maxCp" : 20,
+        "speed" : 126,
+        "load"  : 62500,
 
         "str" : 22,
         "dex" : 21,
@@ -14,18 +17,18 @@
         "wit" : 20,
         "men" : 39,
 
-        "pAtk"      : 2,
-        "mAtk"      : 7,
-        "pDef"      : 48,
-        "mDef"      : 54,
-        "accuracie" : 28,
-        "evasion"   : 28,
-        "critical"  : 40,
-        "speed"     : 126,
-        "atkSpd"    : 303,
-        "castSpd"   : 333,
-
-        "loadLimit" : 62500
+        "pAtk"     : 2,
+        "pDef"     : 48,
+        "pAccur"   : 28,
+        "pEvasion" : 28,
+        "pCritic"  : 40,
+        "pAtkSpd"  : 303,
+        "mAtk"     : 7,
+        "mDef"     : 54,
+        "mAccur"   : 0,
+        "mEvasion" : 0,
+        "mCritic"  : 0,
+        "mAtkSpd"  : 333
     },
 
     "speed": {

@@ -83,13 +83,14 @@ const Database = {
                   classId: data.classId,
                     maxHp: classInfo.stats.maxHp,
                     maxMp: classInfo.stats.maxMp,
+                    maxCp: classInfo.stats.maxCp,
                       sex: data.sex,
                      face: data.face,
                      hair: data.hair,
                 hairColor: data.hairColor,
-                        x: 43648, // TODO: Depends on race and class
-                        y: 40352, // TODO: "
-                        z:-3430   // TODO: "
+                     locX: 43648, // TODO: Depends on race and class
+                     locY: 40352, // TODO: "
+                     locZ:-3430   // TODO: "
             })
         );
     }

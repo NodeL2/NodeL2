@@ -23,9 +23,9 @@ function charSelectInfo(characters) {
             .writeD(character.race)
             .writeD(character.classId)
             .writeD(0x01)  // Game server name
-            .writeD(character.x)
-            .writeD(character.y)
-            .writeD(character.z)
+            .writeD(character.locX)
+            .writeD(character.locY)
+            .writeD(character.locZ)
             .writeF(character.hp)
             .writeF(character.mp)
             .writeD(character.sp)
@@ -80,9 +80,9 @@ function charSelectInfo(characters) {
             .writeD(0x00)  // Vitality
             .writeD(0x00)  // Vitality Percent
             .writeD(0x00)  // Remaining vitality item uses
-            .writeD(0x01)  // Char is active or not
-            .writeC(0x00)  // Show Noble
-            .writeC(0x00)  // Show Hero Glow
+            .writeD(0x01)  // Character active?
+            .writeC(character.isNoble)
+            .writeC(character.isHero)
             .writeC(0x00); // Show Hair Accessory
     }
 

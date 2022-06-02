@@ -19,7 +19,7 @@ function userInfo(actor) {
     packet
         .writeH(14 + STRING)
         .writeS(actor.model.name)
-        .writeC(0x00)  // Is GM?
+        .writeC(actor.model.isGM)
         .writeC(actor.model.race)
         .writeC(actor.model.sex)
         .writeD(0x00)  // Base Class
@@ -89,20 +89,20 @@ function userInfo(actor) {
 
     packet
         .writeH(56)
-        .writeH(0x00)  // Weapon Flag
+        .writeH(0x00)  // ?
         .writeD(actor.model.stats.pAtk)
-        .writeD(actor.model.stats.atkSpd)
+        .writeD(actor.model.stats.pAtkSpd)
         .writeD(actor.model.stats.pDef)
-        .writeD(actor.model.stats.evasion)
-        .writeD(actor.model.stats.accuracy)
-        .writeD(actor.model.stats.critical)
+        .writeD(actor.model.stats.pEvasion)
+        .writeD(actor.model.stats.pAccur)
+        .writeD(actor.model.stats.pCritic)
         .writeD(actor.model.stats.mAtk)
-        .writeD(actor.model.stats.castSpd)
+        .writeD(actor.model.stats.mAtkSpd)
         .writeD(actor.model.stats.speed)
-        .writeD(0x00)  // mEvasion
+        .writeD(actor.model.stats.mEvasion)
         .writeD(actor.model.stats.mDef)
-        .writeD(0x00)  // mAccuracy
-        .writeD(0x00); // mCritical
+        .writeD(actor.model.stats.mAccur)
+        .writeD(actor.model.stats.mCritic);
 
     // Elementals
 
@@ -119,9 +119,9 @@ function userInfo(actor) {
 
     packet
         .writeH(18)
-        .writeD(actor.model.x)
-        .writeD(actor.model.y)
-        .writeD(actor.model.z)
+        .writeD(actor.model.locX)
+        .writeD(actor.model.locY)
+        .writeD(actor.model.locZ)
         .writeD(0x00); // Vehicle ID
 
     // Speed
@@ -179,12 +179,12 @@ function userInfo(actor) {
         .writeH(22)
         .writeC(0x00)  // PVP Flag
         .writeD(actor.model.reputation)
-        .writeC(0x00)  // Noble
-        .writeC(0x00)  // Hero
+        .writeC(actor.model.isNoble)
+        .writeC(actor.model.isHero)
         .writeC(0x00)  // Pledge Class
         .writeD(actor.model.pk)
         .writeD(actor.model.pvp)
-        .writeH(actor.model.recRemain)
+        .writeH(actor.model.recAvail)
         .writeH(actor.model.recReceive);
 
     // Vital/Fame

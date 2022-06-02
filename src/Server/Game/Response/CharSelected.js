@@ -14,9 +14,9 @@ function charSelected(actor) {
         .writeD(actor.model.race)
         .writeD(actor.model.classId)
         .writeD(0x01)  // Active?
-        .writeD(actor.model.x)
-        .writeD(actor.model.y)
-        .writeD(actor.model.z)
+        .writeD(actor.model.locX)
+        .writeD(actor.model.locY)
+        .writeD(actor.model.locZ)
         .writeF(actor.model.hp)
         .writeF(actor.model.mp)
         .writeD(actor.model.sp)
