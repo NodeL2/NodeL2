@@ -28,7 +28,7 @@ function charSelected(actor) {
         .writeD(actor.model.pk)
         .writeD(0x00)  // Game time
         .writeD(0x00)  // ?
-        .writeD(0x00)  // Base Class ID
+        .writeD(actor.model.classId)  // Base Class ID
         .writeD(0x00)  // ?
         .writeD(0x00)  // ?
         .writeD(0x00)  // ?

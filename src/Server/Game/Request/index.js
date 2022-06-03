@@ -6,5 +6,7 @@ module.exports = {
          createNewChar: require('./CreateNewChar'),
             enterWorld: require('./EnterWorld'),
                 logout: require('./Logout'),
-       protocolVersion: require('./ProtocolVersion')
+        moveToLocation: require('./MoveToLocation'),
+       protocolVersion: require('./ProtocolVersion'),
+      validatePosition: require('./ValidatePosition')
 };

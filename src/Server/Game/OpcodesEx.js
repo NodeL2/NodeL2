@@ -12,6 +12,7 @@ const OpcodesEx = {
         table[0x021] = (_, packet) => {}; // Key Mapping
         table[0x033] = ClientRequestEx.backToHall;
         table[0x03a] = (_, packet) => {}; // All Fortress Info
+        table[0x060] = (_, packet) => {}; // Request Seed Phase
         table[0x0a9] = ClientRequestEx.charNameCreatable;
         table[0x103] = (_, packet) => {}; // Executed UI Events Count
 

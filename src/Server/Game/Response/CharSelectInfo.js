@@ -65,7 +65,7 @@ function charSelectInfo(characters) {
             .writeF(character.maxHp)
             .writeF(character.maxMp)
             .writeD(0x00)  // Days before deletion
-            .writeD(0x00)  // Base Class ID
+            .writeD(character.classId)  // Base Class ID
             .writeD(0x00)  // Character active?
             .writeC(0x00)  // Enchanted effect?
             .writeD(0x00)  // ?
