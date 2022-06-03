@@ -1,4 +1,5 @@
 {
+    "baseId"  : 0,
     "classId" : 38,
     "race"    : 2,
     "crafter" : false,
@@ -33,7 +34,7 @@
 
     "speed": {
         "walk" : 85,
-        "run"  : 122,
+        "run"  : 128,
         "swim" : 50
     },
 

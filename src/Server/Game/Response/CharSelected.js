@@ -28,18 +28,12 @@ function charSelected(actor) {
         .writeD(actor.model.pk)
         .writeD(0x00)  // Game time
         .writeD(0x00)  // ?
-        .writeD(0x00)  // Class Id
-        .writeB(Buffer.alloc(16))
+        .writeD(0x00)  // Base Class ID
         .writeD(0x00)  // ?
         .writeD(0x00)  // ?
         .writeD(0x00)  // ?
         .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeB(Buffer.alloc(28))
+        .writeB(Buffer.alloc(64))
         .writeD(0x00); // ?
 
     return packet.fetchBuffer();
