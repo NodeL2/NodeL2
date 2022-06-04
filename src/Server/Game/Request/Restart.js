@@ -14,9 +14,9 @@ function consume(session, data) {
         ServerResponse.restart()
     );
 
-    Database.fetchCharacters(session.accountId).then((characters) => {
+    Database.fetchCharacters(session.accountId).then((userChars) => {
         session.dataSend(
-            ServerResponse.charSelectInfo(characters)
+            ServerResponse.charSelectInfo(userChars)
         );
     });
 }

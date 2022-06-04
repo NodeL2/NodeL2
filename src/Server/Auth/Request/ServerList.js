@@ -19,9 +19,9 @@ function serverList(session, buffer) {
 
 function consume(session, data) {
     if (Utils.sessionMatch(Config.client, data)) {
-        Database.fetchCharacters(session.accountId).then((characters) => {
+        Database.fetchCharacters(session.accountId).then((userChars) => {
             session.dataSend(
-                ServerResponse.serverList(Config.gameServer, detectServerIPAddress(session), characters.length)
+                ServerResponse.serverList(Config.gameServer, detectServerIPAddress(session), userChars.length)
             );
         });
     }
