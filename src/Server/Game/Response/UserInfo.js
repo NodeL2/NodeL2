@@ -272,7 +272,7 @@ function userInfo(actor) {
     packet
         .writeH(4)
         .writeC(0x00)  // Move Type
-        .writeC(0x00); // Running
+        .writeC(0x01); // Running
 
     // Color
 
