@@ -1,8 +1,5 @@
 const ServerPacket = invoke('Packet/Server');
-
-function strlen(str) {
-    return Buffer.byteLength(str, 'ucs2') + 2;
-}
+const Utils        = invoke('Utils');
 
 function userInfo(actor) {
     const packet = new ServerPacket(0x32);
@@ -79,9 +76,8 @@ function userInfo(actor) {
     // Basic Info
 
     packet
-        .writeH(16 + strlen(actor.model.name))
-        .writeH(actor.model.name.length)
-        .writeS(actor.model.name)
+        .writeH(16 + Utils.textSize(actor.model.name))
+        .writeT(actor.model.name)
         .writeC(actor.model.isGM)
         .writeC(actor.model.race)
         .writeC(actor.model.sex)
@@ -145,7 +141,7 @@ function userInfo(actor) {
         .writeH(6)
         .writeC(0x00)  // Mount Type
         .writeC(0x00)  // Private Store Type
-        .writeC(0x00)
+        .writeC(actor.model.crafter)
         .writeC(0x00); // ?
 
     // Stats
@@ -224,9 +220,8 @@ function userInfo(actor) {
     // Clan
 
     packet
-        .writeH(32 + strlen(actor.model.title))
-        .writeH(actor.model.title.length)
-        .writeS(actor.model.title)
+        .writeH(32 + Utils.textSize(actor.model.title))
+        .writeT(actor.model.title)
         .writeH(0x00)  // Pledge Type
         .writeD(0x00)  // Clan ID
         .writeD(0x00)  // Large Clan Crest ID
@@ -283,7 +278,7 @@ function userInfo(actor) {
 
     packet
         .writeH(10)
-        .writeD(0x00)  // Name Color
+        .writeD(0xffffff)  // Name Color
         .writeD(0x00); // Title Color
 
     // Inventory Limit

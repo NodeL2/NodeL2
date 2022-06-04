@@ -27,6 +27,10 @@ const Utils = {
         return value.replace(/\u0000/gi, '');
     },
 
+    textSize: (string) => {
+        return Buffer.byteLength(string, 'ucs2');
+    },
+
     pad32Bits: (data) => {
         const size = data.length;
         const pad  = Buffer.alloc((Math.ceil(size / 4) * 4) - size);

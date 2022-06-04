@@ -52,6 +52,12 @@ class ServerPacket {
         return this;
     }
 
+    writeT(text) {
+        this.writeH(text.length);
+        this.append(Buffer.from(text, 'ucs2'));
+        return this;
+    }
+
     // Buffer
 
     fetchBuffer(checksum = true) {

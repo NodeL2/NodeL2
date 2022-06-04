@@ -8,5 +8,6 @@ module.exports = {
                 logout: require('./Logout'),
         moveToLocation: require('./MoveToLocation'),
        protocolVersion: require('./ProtocolVersion'),
+               restart: require('./Restart'),
       validatePosition: require('./ValidatePosition')
 };

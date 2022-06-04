@@ -18,6 +18,7 @@ const Opcodes = {
         table[0x12] = ClientRequest.charSelected;
         table[0x13] = ClientRequest.charCreationScreen;
         table[0x2b] = ClientRequest.authLogin;
+        table[0x57] = ClientRequest.restart;
         table[0x59] = ClientRequest.validatePosition;
 
         // Extended opcodes
