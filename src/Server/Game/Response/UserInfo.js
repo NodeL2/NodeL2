@@ -67,9 +67,9 @@ function userInfo(actor) {
 
     packet
         .writeD(actor.model.id)
-        .writeD(100)  // Init Size ?
-        .writeH(23)    // ?
-        .writeB([-1, -1, -2]); // Masks ?
+        .writeD(300)  // Init Size ?
+        .writeH(23)   // ?
+        .writeB([-1, -1, -2]); // Masks
 
     // Relation
 
@@ -79,7 +79,8 @@ function userInfo(actor) {
     // Basic Info
 
     packet
-        .writeH(14 + strlen(actor.model.name))
+        .writeH(16 + strlen(actor.model.name))
+        .writeH(actor.model.name.length)
         .writeS(actor.model.name)
         .writeC(actor.model.isGM)
         .writeC(actor.model.race)
@@ -223,7 +224,8 @@ function userInfo(actor) {
     // Clan
 
     packet
-        .writeH(30 + strlen(actor.model.title))
+        .writeH(32 + strlen(actor.model.title))
+        .writeH(actor.model.title.length)
         .writeS(actor.model.title)
         .writeH(0x00)  // Pledge Type
         .writeD(0x00)  // Clan ID
