@@ -93,6 +93,12 @@ const Database = {
                      locZ:-3430   // TODO: "
             })
         );
+    },
+
+    deleteCharacter(username, name) {
+        return Database.execute(
+            builder.delete('characters', 'username = ? AND name = ?', username, name)
+        );
     }
 };
 

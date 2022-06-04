@@ -14,12 +14,13 @@ function characterDelete(session, buffer) {
 }
 
 function consume(session, data) {
-    infoWarn(data.characterSlot);
+    Database.fetchCharacters(session.accountId).then((userChars) => {
+        const character = userChars[data.characterSlot];
 
-    Database.fetchCharacters(session.accountId).then((userChars) => { // TODO: The actual implementation :)
-        session.dataSend(
-            ServerResponse.charSelectInfo(userChars)
-        );
+        Database.deleteCharacter(session.accountId, character.name).then(() => {
+            userChars.splice(data.characterSlot, 1);
+            session.dataSend(ServerResponse.charSelectInfo(userChars));
+        });
     });
 }
 
