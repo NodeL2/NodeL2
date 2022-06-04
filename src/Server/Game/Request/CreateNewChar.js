@@ -3,7 +3,7 @@ const ClientPacket   = invoke('Packet/Client');
 const Database       = invoke('Database');
 
 function createNewChar(session, buffer) {
-    let packet = new ClientPacket(buffer);
+    const packet = new ClientPacket(buffer);
 
     packet
         .readS()  // Name

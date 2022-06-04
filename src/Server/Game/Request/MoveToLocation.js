@@ -5,7 +5,6 @@ function moveToLocation(session, buffer) {
     const packet = new ClientPacket(buffer);
 
     packet
-        .readC()
         .readD()  // Destination X
         .readD()  // Destination Y
         .readD()  // Destination Z
@@ -14,23 +13,23 @@ function moveToLocation(session, buffer) {
         .readD(); // Source Z
 
     consume(session, {
-        origin: {
-            x: packet.data[3],
-            y: packet.data[4],
-            z: packet.data[5],
+        from: {
+            locX: packet.data[3],
+            locY: packet.data[4],
+            locZ: packet.data[5],
         },
-        target: {
-            x: packet.data[0],
-            y: packet.data[1],
-            z: packet.data[2],
+        to: {
+            locX: packet.data[0],
+            locY: packet.data[1],
+            locZ: packet.data[2],
         }
     });
 }
 
 function consume(session, data) {
-    //session.dataSend(
-    //    ServerResponse.moveToLocation(this.model.id, data)
-    //);
+    session.dataSend(
+        ServerResponse.moveToLocation(session.actor.model.id, data)
+    );
 }
 
 module.exports = moveToLocation;

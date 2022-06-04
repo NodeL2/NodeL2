@@ -1,9 +1,9 @@
-let ServerResponse = invoke('Server/Game/Response');
-let ClientPacket   = invoke('Packet/Client');
-let Database       = invoke('Database');
+const ServerResponse = invoke('Server/Game/Response');
+const ClientPacket   = invoke('Packet/Client');
+const Database       = invoke('Database');
 
 function restart(session, buffer) {
-    let packet = new ClientPacket(buffer);
+    const packet = new ClientPacket(buffer);
 
     consume(session, {
     });

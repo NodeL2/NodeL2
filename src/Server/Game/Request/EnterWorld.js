@@ -9,7 +9,7 @@ function enterWorld(session, buffer) {
 }
 
 function consume(session, data) {
-    //session.dataSend(ServerResponse.sunrise());
+    session.dataSend(ServerResponse.sunrise());
     session.dataSend(ServerResponse.userInfo(session.actor));
 }
 
