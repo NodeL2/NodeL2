@@ -1,6 +1,6 @@
 {
     "name": "nodel2",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "Classic L2 server emulator in NodeJS",
     "scripts": {
         "node": "node src/NodeL2",
