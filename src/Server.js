@@ -1,25 +1,23 @@
-global.invoke = (module) => {
-    return require(__dirname + '/' + module);
-};
+class Server {
+    constructor(name, optn, callback) {
+        const parameters = { name: name, callback: callback };
 
-global.fatalError = (...args) => {
-    console.log.apply(this, args);
-    process.exit();
+        // Create a new listening `Server`
+        require('net').createServer(this.onSocket.bind(parameters)).listen(optn.port, optn.hostname, () => {
+            console.info('%s:: successful init for %s:%d', name, optn.hostname, optn.port);
+        });
+    }
+
+    onSocket(socket) {
+        console.info(
+            '%s:: new connection received from %s:%d', this.name, socket.remoteAddress, socket.remotePort
+        );
+
+        // Generates a new `Session` for the respective `Server`. Either `AuthSession` or `GameSession`
+        const session = this.callback(socket);
+        socket.on( 'data', session.dataReceive.bind(session));
+        socket.on('error', session.error.bind(session));
+    }
 }
 
-let Database   = invoke('Database');
-let AuthServer = invoke('AuthServer/AuthServer');
-let GameServer = invoke('GameServer/GameServer');
-
-console.log('# ====================================');
-console.log('# Server Name: ...... NodeL2 [768]');
-console.log('# Build Revision: ... 0.02');
-console.log('# Chronicle: ........ C1');
-console.log('# Build date: ....... 2022.04.15 17:48');
-console.log('# NodeJS version: ... 14.17.x');
-console.log('# ====================================\n');
-
-Database.init(invoke('Config').database, () => {
-    new AuthServer();
-    new GameServer();
-});
+module.exports = Server;

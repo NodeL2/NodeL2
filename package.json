@@ -1,9 +1,24 @@
 {
-    "name": "node-l2",
-    "version": "1.0.0",
-    "dependencies": {
-        "@xan105/ini": "^1.0.1",
+    "name": "nodel2",
+    "version": "0.0.6",
+    "description": "Classic L2 server emulator in NodeJS",
+    "scripts": {
+        "node": "node src/NodeL2",
+        "node17+": "node --openssl-legacy-provider src/NodeL2"
+    },
+    "devDependencies": {
+        "blowfish-ecb": "^1.0.2",
+        "eslint": "^8.14.0",
+        "ini": "^3.0.0",
+        "like-sql": "^0.1.1",
         "mariadb": "^3.0.0",
-        "sql-query-generator": "^1.4.2"
+        "rsa-raw": "^1.0.1"
+    },
+    "dependencies": {
+        "blowfish-ecb": "^1.0.2",
+        "ini": "^3.0.0",
+        "like-sql": "^0.1.1",
+        "mariadb": "^3.0.0",
+        "rsa-raw": "^1.0.3"
     }
 }

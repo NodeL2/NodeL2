@@ -1,39 +1,63 @@
-class Utils {
-    static toHex(value, padding) {
+const Utils = {
+    currentDate: () => {
+        return new Date().toISOString().slice(0, 10);
+    },
+
+    nodeVersion: () => {
+        return process.versions.node;
+    },
+
+    buildNumber: () => {
+        return require('../package').version;
+    },
+
+    toHex: (value, padding = 2) => {
         return Number(value).toString(16).padStart(padding, '0');
-    }
+    },
 
-    static toAsciiStripNull(value) {
-        return value.toString().replace(/\u0000/gi, '');
-    }
+    randomNumber: (max) => {
+        return Math.floor(Math.random() * max);
+    },
 
-    static matchSessionKeys(pair1, pair2) {
+    isAlphaNumeric: (string) => {
+        return /^[A-Za-z0-9]*$/.test(string);
+    },
+
+    stripNull: (value) => {
+        return value.replace(/\u0000/gi, '');
+    },
+
+    textSize: (string) => {
+        return Buffer.byteLength(string, 'ucs2');
+    },
+
+    pad32Bits: (data) => {
+        const size = data.length;
+        const pad  = Buffer.alloc((Math.ceil(size / 4) * 4) - size);
+        return Buffer.concat([data, pad]);
+    },
+
+    dumpBuffer: (array) => {
+        console.log('%s\n\n', array.toString('hex').match(/../g).join(' '));
+    },
+
+    sessionMatch: (pair1, pair2) => {
         return (pair1.sessionKey1 === pair2.sessionKey1) && (pair1.sessionKey2 === pair2.sessionKey2);
-    }
+    },
 
-    static fetchIPv4Address() {
+    fetchIPv4Address: () => {
         let network = require('os').networkInterfaces();
         let ipv4 = network['en0'].filter(item => item.family === 'IPv4');
         return ipv4[0].address;
-    }
+    },
 
-    static createRandomNumber(limit) {
-        return Math.floor(Math.random() * limit);
-    }
+    parseRawFile: (filename, charset = 'utf8') => {
+        return require('fs').readFileSync(filename, charset);
+    },
 
-    static createRandomCoordinates(centerX, centerY, radius) {
-        const r = radius * Math.sqrt(Math.random());
-        const theta = Math.random() * 2 * Math.PI;
-
-        return {
-            x: centerX + r * Math.cos(theta),
-            y: centerY + r * Math.sin(theta),
-        };
+    totalMemUsed: () => {
+        console.log('NodeL2:: Total Mem Used -> %f MB', Math.round(process.memoryUsage().heapTotal / 1024 / 1024 * 100) / 100);
     }
-
-    static replaceSQLParams(text) {
-        return text.replace(/\$\w+/gi, '?');
-    }
-}
+};
 
 module.exports = Utils;

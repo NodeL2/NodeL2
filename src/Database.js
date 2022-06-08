@@ -1,97 +1,105 @@
-let fs  = require('fs');
-let sql = require('sql-query-generator');
+const SQL = require('like-sql'), builder = new SQL();
 
-class Database {
-    static init(config, callback) {
+let conn;
+
+const Database = {
+    init: (callback) => {
+        const { database } = invoke('Config');
+
         require('mariadb').createConnection({
-            host     : config.host,
-            port     : config.port,
-            user     : config.user,
-            password : config.password,
-            database : config.db
-        })
-        .then(conn => {
-            console.log('DB:: connection successful');
-            this.conn = conn;
+            host     : database.hostname,
+            port     : database.port,
+            user     : database.user,
+            password : database.password,
+            database : database.name
+
+        }).then((instance) => {
+            console.info('DB:: connected');
+            conn = instance;
             callback();
-        })
-        .catch(error => {
-            fatalError('DB:: failed to create connection');
+
+        }).catch(error => {
+            infoFail('DB:: failed(%d) -> %s', error.errno, error.text);
         });
-    }
+    },
 
-    static completeQuery(query) {
-        return this.conn.query(
-            invoke('Utils').replaceSQLParams(query.text), query.values
-        );
-    }
+    execute: (sql) => {
+        return conn.query(sql[0], sql[1]);
+    },
 
-    static fetchAccountPassword(username) {
-        return this.completeQuery(
-            sql.select('accounts', 'password').where({
-                username: username
-            }).limit(1)
-        );
-    }
-
-    static fetchCharacters(username) {
-        return this.completeQuery(
-            sql.select('characters', '*').where({
-                username: username
-            })
-        );
-    }
-
-    static addNewAccount(username, password) {
-        return this.completeQuery(
-            sql.insert('accounts', {
+    // Creates a `New Account` in the database with provided credentials
+    createAccount: (username, password) => {
+        return Database.execute(
+            builder.insert('accounts', {
                 username: username,
                 password: password
             })
         );
-    }
+    },
 
-    static addNewCharacter(username, data, classInfo) {
-        return this.completeQuery(
-            sql.insert('characters', {
-                 username: username,
-                     name: data.name,
-                   raceId: data.raceId,
-                  classId: data.classId,
-                    level: 1,
-                    maxHp: classInfo.stats.maxHp,
-                       hp: classInfo.stats.maxHp,
-                    maxMp: classInfo.stats.maxMp,
-                       mp: classInfo.stats.maxMp,
-                      exp: 0,
-                       sp: 0,
-                    karma: 0,
-                   gender: data.gender,
-                     face: data.face,
-                   hairId: data.hairId,
-                hairColor: data.hairColor,
-                        x: 43648, // TODO: Depends on race and class
-                        y: 40352, // TODO: Depends on race and class
-                        z:-3430   // TODO: Depends on race and class
-            })
+    // Returns the `Password` from a provided account
+    fetchUserPassword: (username) => {
+        return Database.execute(
+            builder.selectOne('accounts', ['password'], 'username = ?', username)
         );
-    }
+    },
 
-    // Constant information
+    // Checks if provided `Character Name` is taken
+    fetchCharacterWithName: (name) => {
+        return Database.execute(
+            builder.selectOne('characters', ['id'], 'name = ?', name)
+        );
+    },
 
-    static fetchClassInformation(classId) {
-        const path = 'GameServer/Data/Classes';
+    // Returns the `Characters` stored on a user's account
+    fetchCharacters: (username) => {
+        return Database.execute(
+            builder.select('characters', ['*'], 'username = ?', username)
+        );
+    },
+
+    // Reads the `Base Stats` for a specific Class ID
+    fetchClassInformation: (classId) => {
+        const path = process.cwd() + '/data/Classes';
 
         return new Promise((success, fail) => {
-            fs.readdir(process.cwd() + '/src/' + path, (error, files) => {
-                let result = files.find(text =>
+            require('fs').readdir(path, (error, files) => {
+                const result = files.find(text =>
                     text.includes('[' + classId + ']')
                 );
 
-                return result ? success(invoke(path + '/' + result)) : fail();
+                return result ? success(require(path + '/' + result)) : fail();
             });
         });
+    },
+
+    // Stores a new `Character` in database with provided details
+    createCharacter(username, data, classInfo) {
+        return Database.execute(
+            builder.insert('characters', {
+                 username: username,
+                     name: data.name,
+                     race: data.race,
+                  classId: data.classId,
+                    maxHp: classInfo.stats.maxHp,
+                    maxMp: classInfo.stats.maxMp,
+                    maxCp: classInfo.stats.maxCp,
+                      sex: data.sex,
+                     face: data.face,
+                     hair: data.hair,
+                hairColor: data.hairColor,
+                     locX: 43648, // TODO: Depends on race and class
+                     locY: 40352, // TODO: "
+                     locZ:-3430   // TODO: "
+            })
+        );
+    },
+
+    deleteCharacter(username, name) {
+        return Database.execute(
+            builder.delete('characters', 'username = ? AND name = ?', username, name)
+        );
     }
-}
+};
 
 module.exports = Database;
