@@ -4,7 +4,7 @@ function restart() {
     const packet = new ServerPacket(0x71);
 
     packet
-        .writeD(1);
+        .writeD(0x01);
 
     return packet.fetchBuffer();
 }

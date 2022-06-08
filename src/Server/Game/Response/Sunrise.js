@@ -1,9 +1,7 @@
 const ServerPacket = invoke('Packet/Server');
 
 function sunrise() {
-    const packet = new ServerPacket(0x12);
-
-    return packet.fetchBuffer();
+    return (new ServerPacket(0x12)).fetchBuffer();
 }
 
 module.exports = sunrise;
