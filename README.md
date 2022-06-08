@@ -15,6 +15,9 @@ Classic L2 server emulator in NodeJS
 ## Run
 * Launch `npm run node` for **NodeJS** <= 16, or `npm run node17+` for newer **NodeJS** >= 17 versions.
 
+## Discussion
+You are welcome to join us on [L2Web Discord](https://discord.com/invite/nxsWZe84ZX) for discussing **Lineage2 Development** with **Web Technologies**.
+
 ## Credits
 Main source of inspiration is <a href="https://github.com/lineage2js/lineage2js">lineage2js</a>, please support it!
 
