@@ -8,6 +8,7 @@ module.exports = {
        moveToLocation: require('./MoveToLocation'),
             questList: require('./QuestList'),
               restart: require('./Restart'),
+         socialAction: require('./SocialAction'),
               sunrise: require('./Sunrise'),
              userInfo: require('./UserInfo'),
          versionCheck: require('./VersionCheck')

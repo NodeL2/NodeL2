@@ -11,5 +11,6 @@ module.exports = {
        protocolVersion: require('./ProtocolVersion'),
              questList: require('./QuestList'),
                restart: require('./Restart'),
+          socialAction: require('./SocialAction'),
       validatePosition: require('./ValidatePosition')
 };
