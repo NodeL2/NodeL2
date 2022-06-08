@@ -65,8 +65,8 @@ function charSelectInfo(characters) {
             .writeF(character.maxHp)
             .writeF(character.maxMp)
             .writeD(0x00)  // Days before deletion
-            .writeD(character.classId)  // Base Class ID
-            .writeD(0x00)  // Character active?
+            .writeD(character.baseId)
+            .writeD(0x00)  // ?
             .writeC(0x00)  // Enchanted effect?
             .writeD(0x00)  // ?
             .writeD(0x00)  // ?
@@ -80,7 +80,7 @@ function charSelectInfo(characters) {
             .writeD(0x00)  // Vitality
             .writeD(0x00)  // Vitality Percent
             .writeD(0x00)  // Remaining vitality item uses
-            .writeD(0x01)  // Character active?
+            .writeD(character.isActive)
             .writeC(character.isNoble)
             .writeC(character.isHero)
             .writeC(0x00); // Show Hair Accessory

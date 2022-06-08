@@ -16,7 +16,7 @@ function userInfo(actor) {
         .writeC(actor.model.isGM)
         .writeC(actor.model.race)
         .writeC(actor.model.sex)
-        .writeD(actor.model.classId) // TODO: Add Base Class instead
+        .writeD(actor.model.baseId)
         .writeD(actor.model.classId)
         .writeC(actor.model.level)
 

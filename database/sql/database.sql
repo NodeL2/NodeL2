@@ -3,8 +3,8 @@ CREATE DATABASE `nodel2` COLLATE utf8_unicode_ci;
 use `nodel2`
 
 CREATE TABLE `accounts` (
-    `username` varchar(16) NOT NULL,
-    `password` varchar(16) NOT NULL,
+    `username`   varchar(16) NOT NULL,
+    `password`   varchar(16) NOT NULL,
     PRIMARY KEY (`username`)
 );
 
@@ -37,6 +37,7 @@ CREATE TABLE `characters`(
     `isHero`     boolean     NOT NULL DEFAULT 0,
     `isNoble`    boolean     NOT NULL DEFAULT 0,
     `isOnline`   boolean     NOT NULL DEFAULT 0,
+    `isActive`   boolean     NOT NULL DEFAULT 1,
     `locX`       float       NOT NULL,
     `locY`       float       NOT NULL,
     `locZ`       float       NOT NULL,

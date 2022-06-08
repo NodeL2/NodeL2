@@ -13,7 +13,7 @@ function charSelected(actor) {
         .writeD(actor.model.sex)
         .writeD(actor.model.race)
         .writeD(actor.model.classId)
-        .writeD(0x01)  // Active?
+        .writeD(actor.model.isActive)
         .writeD(actor.model.locX)
         .writeD(actor.model.locY)
         .writeD(actor.model.locZ)
@@ -28,7 +28,7 @@ function charSelected(actor) {
         .writeD(actor.model.pk)
         .writeD(0x00)  // Game time
         .writeD(0x00)  // ?
-        .writeD(actor.model.classId)  // Base Class ID
+        .writeD(actor.model.baseId)
         .writeD(0x00)  // ?
         .writeD(0x00)  // ?
         .writeD(0x00)  // ?
