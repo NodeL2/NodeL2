@@ -17,9 +17,11 @@ const Opcodes = {
         table[0x11] = ClientRequest.enterWorld;
         table[0x12] = ClientRequest.charSelected;
         table[0x13] = ClientRequest.charCreationScreen;
+        table[0x14] = ClientRequest.itemList;
         table[0x2b] = ClientRequest.authLogin;
         table[0x57] = ClientRequest.restart;
         table[0x59] = ClientRequest.validatePosition;
+        table[0x62] = ClientRequest.questList;
 
         // Extended opcodes
         table[0xd0] = (session, packet) => {
