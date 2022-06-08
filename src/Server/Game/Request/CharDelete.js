@@ -2,7 +2,7 @@ const ServerResponse = invoke('Server/Game/Response');
 const ClientPacket   = invoke('Packet/Client');
 const Database       = invoke('Database');
 
-function characterDelete(session, buffer) {
+function charDelete(session, buffer) {
     const packet = new ClientPacket(buffer);
 
     packet
@@ -24,4 +24,4 @@ function consume(session, data) {
     });
 }
 
-module.exports = characterDelete;
+module.exports = charDelete;
