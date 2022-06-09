@@ -1,4 +1,5 @@
 module.exports = {
+             actionUse: require('./ActionUse'),
              authLogin: require('./AuthLogin'),
        characterDelete: require('./CharDelete'),
     charCreationScreen: require('./CharCreationScreen'),

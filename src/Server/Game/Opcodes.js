@@ -20,6 +20,7 @@ const Opcodes = {
         table[0x14] = ClientRequest.itemList;
         table[0x2b] = ClientRequest.authLogin;
         table[0x34] = ClientRequest.socialAction;
+        table[0x56] = ClientRequest.actionUse;
         table[0x57] = ClientRequest.restart;
         table[0x59] = ClientRequest.validatePosition;
         table[0x62] = ClientRequest.questList;

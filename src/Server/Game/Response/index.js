@@ -1,4 +1,5 @@
 module.exports = {
+        alterMovement: require('./AlterMovement'),
     charCreateSuccess: require('./CharCreateSuccess'),
          charSelected: require('./CharSelected'),
        charSelectInfo: require('./CharSelectInfo'),
