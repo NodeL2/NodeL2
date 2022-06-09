@@ -1,10 +1,10 @@
 const ServerPacket = invoke('Packet/Server');
 
-function socialAction(playerId, actionId) {
+function socialAction(actorId, actionId) {
     const packet = new ServerPacket(0x27);
 
     packet
-        .writeD(playerId)
+        .writeD(actorId)
         .writeD(actionId);
 
     return packet.fetchBuffer();

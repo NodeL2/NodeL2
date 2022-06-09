@@ -1,5 +1,4 @@
-const ServerResponse = invoke('Server/Game/Response');
-const ClientPacket   = invoke('Packet/Client');
+const ClientPacket = invoke('Packet/Client');
 
 function socialAction(session, buffer) {
     const packet = new ClientPacket(buffer);
@@ -13,9 +12,7 @@ function socialAction(session, buffer) {
 }
 
 function consume(session, data) {
-    session.dataSend(
-        ServerResponse.socialAction(session.actor.model.id, data.actionId)
-    );
+    session.actor.socialAction(session, data.actionId);
 }
 
 module.exports = socialAction;
