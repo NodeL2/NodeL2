@@ -9,9 +9,24 @@ class Actor {
 
     basicAction(session, data) {
         switch (data.actionId) {
-            case 1:
+            case 0: // Sit / Stand
                 session.dataSend(
-                    ServerResponse.alterMovement(this.model.id, this.state.isWalking = !this.state.isWalking)
+                    ServerResponse.sitAndStand(
+                        this.model.id,
+                        this.state.isSitting = !this.state.isSitting,
+                        this.model.locX,
+                        this.model.locY,
+                        this.model.locZ
+                    )
+                );
+                break;
+
+            case 1: // Walk / Run
+                session.dataSend(
+                    ServerResponse.walkAndRun(
+                        this.model.id,
+                        this.state.isWalking = !this.state.isWalking
+                    )
                 );
                 break;
 
@@ -19,6 +34,12 @@ class Actor {
                 infoWarn('GameServer:: unknown basic action %d', data.actionId);
                 break;
         }
+    }
+
+    updatePosition(data) {
+        this.model.locX = data.locX;
+        this.model.locY = data.locY;
+        this.model.locZ = data.locZ;
     }
 }
 

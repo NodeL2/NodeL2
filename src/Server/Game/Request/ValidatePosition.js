@@ -1,5 +1,4 @@
-const ServerResponse = invoke('Server/Game/Response');
-const ClientPacket   = invoke('Packet/Client');
+const ClientPacket = invoke('Packet/Client');
 
 function validatePosition(session, buffer) {
     const packet = new ClientPacket(buffer);
@@ -19,6 +18,7 @@ function validatePosition(session, buffer) {
 }
 
 function consume(session, data) {
+    session.actor.updatePosition(data);
 }
 
 module.exports = validatePosition;

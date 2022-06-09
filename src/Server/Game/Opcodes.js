@@ -23,6 +23,7 @@ const Opcodes = {
         table[0x56] = ClientRequest.actionUse;
         table[0x57] = ClientRequest.restart;
         table[0x59] = ClientRequest.validatePosition;
+        table[0x5c] = (_, packet) => {}; // Finish Rotating
         table[0x62] = ClientRequest.questList;
 
         // Extended opcodes

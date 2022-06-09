@@ -1,6 +1,7 @@
 class ActorState {
     constructor() {
         this.isWalking = false;
+        this.isSitting = false;
     }
 }
 
