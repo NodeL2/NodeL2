@@ -78,7 +78,7 @@ const Database = {
         return Database.execute(
             builder.insert('characters', {
                  username: username,
-                     name: data.name,
+                     name: data.name, title: 'NodeL2 Champion',
                      race: data.race,
                   classId: data.classId,
                     maxHp: classInfo.stats.maxHp,

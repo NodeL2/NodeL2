@@ -157,7 +157,7 @@ function userInfo(actor) {
 
         .writeH(10)
         .writeD(0xffffff)
-        .writeD(0x00) // Title Color
+        .writeD(0xffff77)
 
         .writeH(9)
         .writeH(0x00) // ?

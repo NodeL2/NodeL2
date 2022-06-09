@@ -1,11 +1,11 @@
 const ServerPacket = invoke('Packet/Server');
 
-function alterMovement(actor) {
+function alterMovement(actorId, isWalking) {
     const packet = new ServerPacket(0x28);
 
     packet
-        .writeD(actor.model.id)
-        .writeD(0x00)  // Walk: 0, Run: 1
+        .writeD(actorId)
+        .writeD(!isWalking)
         .writeD(0x00); // C2?
 
     return packet.fetchBuffer();

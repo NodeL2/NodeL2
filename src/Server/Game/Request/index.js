@@ -1,7 +1,7 @@
 module.exports = {
              actionUse: require('./ActionUse'),
              authLogin: require('./AuthLogin'),
-       characterDelete: require('./CharDelete'),
+            charDelete: require('./CharDelete'),
     charCreationScreen: require('./CharCreationScreen'),
           charSelected: require('./CharSelected'),
          createNewChar: require('./CreateNewChar'),
