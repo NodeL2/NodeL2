@@ -12,7 +12,7 @@ CREATE TABLE `characters`(
     `id`         int( 8)     NOT NULL AUTO_INCREMENT,
     `username`   varchar(16) NOT NULL,
     `name`       varchar(16) NOT NULL,
-    `title`      varchar(32)          DEFAULT NULL,
+    `title`      varchar(32) NOT NULL DEFAULT "",
     `classId`    int( 5)     NOT NULL,
     `race`       int( 5)     NOT NULL,
     `level`      int( 5)     NOT NULL DEFAULT 1,

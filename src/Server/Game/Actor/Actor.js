@@ -2,7 +2,6 @@ const ServerResponse = invoke('Server/Game/Response');
 
 class Actor {
     constructor(data) {
-        data.title = data.title ?? '';
         this.model = data;
     }
 

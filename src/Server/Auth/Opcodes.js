@@ -1,5 +1,5 @@
 const ClientRequest = invoke('Server/Auth/Request');
-const Utils = invoke('Utils');
+const Utils         = invoke('Utils');
 
 // Establishes an `Opcode` table to handle client packets
 const Opcodes = {
