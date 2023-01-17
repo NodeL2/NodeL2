@@ -27,6 +27,8 @@ function moveToLocation(session, buffer) {
 }
 
 function consume(session, data) {
+    console.info(data.from);
+    console.info(data.to);
     session.actor.moveTo(session, data);
 }
 
