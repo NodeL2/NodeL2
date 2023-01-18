@@ -1,10 +1,14 @@
 const Opcodes = invoke('Server/Game/Opcodes');
+const World   = invoke('Server/Game/World');
 const XOR     = invoke('Cipher/XOR');
 
 class Session {
     constructor(socket) {
         this.socket = socket;
         this.xor = XOR.init();
+
+        // L2 World, show Npcs
+        World.init();
     }
 
     dataSend(data) {
