@@ -1,11 +1,16 @@
+const ServerResponse = invoke('Server/Game/Response');
+
 class World {
     static init() {
-        this.npcDatabase = invoke(process.cwd() + '/data/Npc/30300-30399');
-        this.npcs = [];
+        this.npcs = invoke('../data/Npc/30300-30399');
     }
 
     static insertNpcs(session) {
-        console.info(this.npcDatabase);
+        for (let i = 0; i < this.npcs.length; i++) {
+            session.dataSend(
+                ServerResponse.npcInfo(this.npcs[i])
+            );
+        }
     }
 }
 
