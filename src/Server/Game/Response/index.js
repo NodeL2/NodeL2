@@ -6,6 +6,7 @@ module.exports = {
              itemList: require('./ItemList'),
         logoutSuccess: require('./LogoutSuccess'),
        moveToLocation: require('./MoveToLocation'),
+              npcInfo: require('./NpcInfo'),
             questList: require('./QuestList'),
               restart: require('./Restart'),
           sitAndStand: require('./SitAndStand'),

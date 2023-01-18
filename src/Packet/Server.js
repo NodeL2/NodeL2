@@ -20,10 +20,6 @@ class ServerPacket {
             case 8.0: data.writeDoubleLE(value); break;
         }
 
-        switch (kind) {
-            case ''
-        }
-
         this.append(data);
         return this;
     }
