@@ -1,4 +1,4 @@
-class ComponentMask {
+class NpcMask {
     constructor() {
         this.mask = {
             M_ID           :  0,
@@ -38,7 +38,11 @@ class ComponentMask {
         };
 
         this.componentSize = [
-            4, 1, 4, 2, 12, 4, 4, 8, 8, 12, 1, 1, -99, -99, 1, 1, 4, 4, 4, 4, -99, -99, 4, 4, 4, 4, 4, 4, 1, 8, 2, 4, 4, 1, 4, 20, 0, 1
+            0x04, 0x01, 0x04, 0x02, 0x0c, 0x04, 0x04, 0x08,
+            0x08, 0x0c, 0x01, 0x01, 0xff, 0xff, 0x01, 0x01,
+            0x04, 0x04, 0x04, 0x04, 0xff, 0xff, 0x04, 0x04,
+            0x04, 0x04, 0x04, 0x04, 0x01, 0x08, 0x02, 0x04,
+            0x04, 0x01, 0x04, 0x14, 0x00, 0x01, 0x00, 0x00,
         ];
 
         this.staticBlock = [
@@ -47,9 +51,8 @@ class ComponentMask {
     }
 
     add(masks, component) {
-        masks[component >> 3] |= this.staticBlock[component & 0x7];
-        return masks;
+        return masks[component >> 3] |= this.staticBlock[component & 0x7];
     }
 }
 
-module.exports = ComponentMask;
+module.exports = NpcMask;
