@@ -5,17 +5,17 @@ function npcInfo(npc) {
     const packet = new ServerPacket(0x0c);
 
     packet
-        .writeD(268449299)
-        .writeC(0x01)  // Spawn Animation 0: Teleported 1: Default 2: Summoned
+        .writeD(npc.id)
+        .writeC(0x00)  // Spawn Animation 0: Teleported 1: Default 2: Summoned
         .writeH(37)    // Sections?
         .writeB([-19, -68, 28, -14, 4])
 
-        .writeC(8 + Utils.textSize(npc.title))
+        .writeC(7 + Utils.textSize(npc.title))
         .writeC(0x00)  // Attackable
         .writeD(0x00)  // Relation
-        .writeT(npc.title)
+        .writeS(npc.title)
 
-        .writeH(145 + Utils.textSize(npc.name))
+        .writeH(144 + Utils.textSize(npc.name))
         .writeD(npc.id + 1000000)
         .writeD(npc.loc.x)
         .writeD(npc.loc.y)
@@ -46,7 +46,7 @@ function npcInfo(npc) {
         .writeC(0x00)  // 2: Animation on spawn
         .writeD(0x00)
         .writeD(0x00)
-        .writeT(npc.name)
+        .writeS(npc.name)
         .writeD(0x00)  // NPC Name Id
         .writeD(0x00)  // NPC Title Id
         .writeC(0x00)  // PVP Flag
