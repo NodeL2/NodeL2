@@ -3,7 +3,7 @@ Classic L2 server emulator in NodeJS
 You are welcome to join us on [L2Web Discord](https://discord.com/invite/nxsWZe84ZX) for discussing **Lineage2 Development** with **Web Technologies**.
 
 ## Prerequisites
-* Install [NodeJS 14+](https://nodejs.org/en/), [MariaDB 16+](https://mariadb.org/download/?t=mariadb&p=mariadb&r=10.6.8)
+* Install [NodeJS 14+](https://nodejs.org/en/), [MariaDB 16+](https://mariadb.org/download/?t=mariadb&p=mariadb&r=10.6.11)
 * For convenience, also install [MS Visual Studio Code](https://code.visualstudio.com/download), and [TablePlus](https://tableplus.com/download)
 * All of the above tools are compatible with **Windows**, **Linux**, and **macOS**
 * Use **Powershell** for **Windows**, and **Terminal** for the rest.
