@@ -2,6 +2,6 @@
 
 HOST='127.0.0.1'
 USER='root'
-PASS='alosi1453'
+PASS='alosi!$53'
 
 MYSQL -h $HOST -u $USER --password=$PASS < 'database/sql/database.sql'
