@@ -13,6 +13,7 @@ Classic L2 server emulator in NodeJS
 
 ## Run
 * Launch with `npm run node` for **NodeJS** <= 16, or `npm run node17+` for newer **NodeJS** >= 17 versions.
+* Fire-up **L2 Classic 1.5 Splendor** and authenticate
 
 ## Credits
 Main source of inspiration is <a href="https://github.com/lineage2js/lineage2js">L2JS</a>, please support it!
