@@ -5,8 +5,7 @@ You are welcome to join us on [L2Web Discord](https://discord.com/invite/nxsWZe8
 ## Prerequisites
 * Install [NodeJS 14+](https://nodejs.org/en/), [MariaDB 16+](https://mariadb.org/download/?t=mariadb&p=mariadb&r=10.6.11)
 * For convenience, also install [MS Visual Studio Code](https://code.visualstudio.com/download), and [TablePlus](https://tableplus.com/download)
-* All of the above tools are compatible with **Windows**, **Linux**, and **macOS**
-* Use **Powershell** for **Windows**, and **Terminal** for the rest.
+* Download [L2Classic Splendor 1.5 Client](https://drive.google.com/file/d/1gESVzhTnRUG08y9Yl0pyhiDGQhbGOg0m/view?usp=sharing) that features `110` API protocol
 
 ## Setup
 * Fix **USER**, and **PASS** in `/database` scripts, and run `.\/database/db-install.bat` for **Windows**, or `/database/db-install.sh` for **Linux** and **macOS**
