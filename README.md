@@ -7,7 +7,7 @@ Classic L2 server emulator in NodeJS
 * Download [L2 Classic 1.5 Splendor Client](https://drive.google.com/file/d/1gESVzhTnRUG08y9Yl0pyhiDGQhbGOg0m/view?usp=sharing) that features `28` API protocol
 
 ## Setup
-* Fix `USER`, and `PASS` in `/database` scripts, and run `database/db-install.bat` for **Windows**, or `database/db-install.sh` for **Linux** and **macOS**
+* Fix `USER` and `PASS` in `/database` scripts, and run `database/db-install.bat` for **Windows**, or `database/db-install.sh` for **Linux** and **macOS**
 * Furthermore, fix database credentials in `config/config.ini`
 * Run `npm install -i`
 
