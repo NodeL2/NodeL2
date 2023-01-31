@@ -8,7 +8,7 @@ You are welcome to join us on [L2Web Discord](https://discord.com/invite/nxsWZe8
 * Download [L2Classic Splendor 1.5 Client](https://drive.google.com/file/d/1gESVzhTnRUG08y9Yl0pyhiDGQhbGOg0m/view?usp=sharing) that features `28` API protocol
 
 ## Setup
-* Fix **USER**, and **PASS** in `/database` scripts, and run `.\/database/db-install.bat` for **Windows**, or `/database/db-install.sh` for **Linux** and **macOS**
+* Fix `USER`, and `PASS` in `/database` scripts, and run `database/db-install.bat` for **Windows**, or `database/db-install.sh` for **Linux** and **macOS**
 * Fix **Database password**, and **Protocol version** in `config/config.ini`
 * Run `npm install -i`
 
