@@ -9,7 +9,7 @@ You are welcome to join us on [L2Web Discord](https://discord.com/invite/nxsWZe8
 
 ## Setup
 * Fix `USER`, and `PASS` in `/database` scripts, and run `database/db-install.bat` for **Windows**, or `database/db-install.sh` for **Linux** and **macOS**
-* Fix **Database password**, and **Protocol version** in `config/config.ini`
+* Fix **Database password** in `config/config.ini`
 * Run `npm install -i`
 
 ## Run
