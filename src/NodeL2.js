@@ -1,13 +1,19 @@
 require('./Globals');
 
 // User imports
-const Config = invoke('Config');
-const Utils  = invoke('Utils');
+const Database = invoke('Database');
+const Utils    = invoke('Utils');
 
-console.info('+ ==================================');
-console.info('# Server Name: ......... NodeL2');
-console.info('# Build Revision: ...... %s', Utils.buildNumber());
-console.info('# Chronicle: ........... C2 [485]');
-console.info('# Build date: .......... %s', Utils.currentDate());
-console.info('# NodeJS version: ...... %s', Utils.nodeVersion());
-console.info('+ ==================================\n');
+console.info('\n\
+    + ================================== \n\
+    # Server Name: ......... NodeL2      \n\
+    # Build Revision: ...... %s          \n\
+    # Chronicle: ........... C2 [485]    \n\
+    # Build date: .......... %s          \n\
+    # NodeJS version: ...... %s          \n\
+    + ================================== \n\
+', Utils.buildNumber(), Utils.currentDate(), Utils.nodeVersion());
+
+Database.init(() => {
+    infoSuccess('The callback oh!');
+});
