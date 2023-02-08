@@ -10,7 +10,7 @@ L2 Chronicle 2 server emulator in NodeJS
 * Run `npm install -i`
 
 ## Run
-* Launch server with `npm run NodeL2`
+* Launch server with `npm run --silent NodeL2`
 * Fire-up **L2 Chronicle 2 Splendor** and authenticate
 
 ## License
