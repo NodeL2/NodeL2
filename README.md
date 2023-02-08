@@ -2,9 +2,9 @@
 L2 Chronicle 2 server emulator in NodeJS
 
 ## Prerequisites
-* Install [NodeJS LTS](https://nodejs.org/en/download), [MariaDB 16](https://mariadb.org/download/?t=mariadb&p=mariadb&r=10.6.11)
+* Install [NodeJS LTS](https://nodejs.org/en/download), [MariaDB 16](https://mariadb.org/download/?t=mariadb&p=mariadb&r=10.6.12)
 * For convenience, also install [MS Visual Studio Code](https://code.visualstudio.com/download), and [TablePlus](https://tableplus.com/download)
-* Download [L2 Chronicle 2 Splendor Client]() that features `485` API protocol
+* Download [L2 Chronicle 2 Splendor Client](https://drive.google.com/drive/folders/1kdVS2ymqmK3vzufEt5hUnij6pWS8BcZb?usp=sharing) that features `485` API protocol
 
 ## Setup
 * Run `npm install -i`
