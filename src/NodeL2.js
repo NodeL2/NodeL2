@@ -1,6 +1,7 @@
 require('./Globals');
 
 // User imports
+const Config   = invoke('Config');
 const Database = invoke('Database');
 const Utils    = invoke('Utils');
 
@@ -14,6 +15,6 @@ console.info('\n\
     + ================================== \n\
 ', Utils.buildNumber(), Utils.currentDate(), Utils.nodeVersion());
 
-Database.init(() => {
-    infoSuccess('The callback oh!');
+Database.init(Config.Database, () => {
+    process.exit();
 });

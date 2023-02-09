@@ -8,13 +8,8 @@ global.infoSuccess = (...params) => {
     console.info('\x1b[32m' + require('util').format(...params) + '\x1b[0m');
 };
 
-//const jsonSchema = require('jsonschema');
-//
-//let sampleModel = {
-//    id: 1,
-//    class: "Dark Elf"
-//};
-//
-//let result = jsonSchema.validate(sampleModel, require('./schema.json'));
-//
-//console.info(result.valid);
+// Generic error, terminates execution
+global.infoFail = (...params) => {
+    console.info('\x1b[31m' + require('util').format(...params) + '\x1b[0m');
+    process.exit();
+};

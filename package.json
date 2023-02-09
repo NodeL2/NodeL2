@@ -7,7 +7,7 @@
         "NodeL2": "node --openssl-legacy-provider src/NodeL2"
     },
     "dependencies": {
-        "ini": "^3.0.1",
+        "js-ini": "^1.5.1",
         "jsonschema": "^1.4.1",
         "like-sql": "^0.1.1",
         "mariadb": "^3.0.2"
