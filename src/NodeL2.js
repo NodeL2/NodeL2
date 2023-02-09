@@ -18,8 +18,4 @@ console.info('\n\
 
 Database.init(Config.Database, () => {
     new AuthServer(Config.AuthServer);
-
-    setTimeout(function() {
-        process.exit();
-    }, 5000);
 });
