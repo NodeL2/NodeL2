@@ -1,9 +1,10 @@
 require('./Globals');
 
 // User imports
-const Config   = invoke('Config');
-const Database = invoke('Database');
-const Utils    = invoke('Utils');
+const AuthServer = invoke('AuthServer');
+const Config     = invoke('Config');
+const Database   = invoke('Database');
+const Utils      = invoke('Utils');
 
 console.info('\n\
     + ================================== \n\
@@ -16,5 +17,9 @@ console.info('\n\
 ', Utils.buildNumber(), Utils.currentDate(), Utils.nodeVersion());
 
 Database.init(Config.Database, () => {
-    process.exit();
+    new AuthServer(Config.AuthServer);
+
+    setTimeout(function() {
+        process.exit();
+    }, 5000);
 });
