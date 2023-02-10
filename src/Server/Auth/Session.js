@@ -3,10 +3,10 @@ const Opcodes        = invoke('Server/Auth/Opcodes');
 
 class Session {
     constructor(socket) {
-        const { AuthServer: optn } = invoke('Config');
+        const optn = options.connection.AuthServer;
 
         this.socket    = socket;
-        this.sessionId = invoke('Utils').randomNumber(0x80000000);
+        this.sessionId = utils.randomNumber(0x80000000);
         this.protocol  = optn.protocol;
         this.blowfish  = '[;\'.]94-31==-%&@!^+]\u0000';
 
@@ -31,8 +31,8 @@ class Session {
     }
 
     error(err) {
-        infoWarn('AuthServer:: exception');
-        infoWarn(err.stack);
+        utils.infoWarn('AuthServer:: exception');
+        utils.infoWarn(err.stack);
     }
 }
 

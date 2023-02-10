@@ -4,7 +4,7 @@ let conn;
 
 const Database = {
     init: (callback) => {
-        const { Database: optn } = invoke('Config');
+        const optn = options.connection.Database;
 
         require('mariadb').createConnection({
             host     : optn.hostname,
@@ -14,12 +14,12 @@ const Database = {
             database : optn.databaseName
 
         }).then((instance) => {
-            infoSuccess('DB:: connected');
+            utils.infoSuccess('DB:: connected');
             conn = instance;
             callback();
 
         }).catch(error => {
-            infoFail('DB:: failed(%d) -> %s', error.errno, error.text);
+            utils.infoFail('DB:: failed(%d) -> %s', error.errno, error.text);
         });
     }
 };

@@ -42,7 +42,7 @@ class ServerPacket {
     // Buffer
 
     fetchBuffer(checksum = true) {
-        this.buffer = invoke('Utils').pad32Bits(this.buffer);
+        this.buffer = utils.pad32Bits(this.buffer);
 
         if (checksum) {
             this.append(Buffer.alloc(4 + (this.buffer.byteLength + 4) % 8));

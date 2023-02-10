@@ -4,12 +4,12 @@ class Server {
 
         // Create a new listening `Server`
         require('net').createServer(this.onSocket.bind(parameters)).listen(optn.port, optn.hostname, () => {
-            infoSuccess('%s:: successful init for %s:%d', name, optn.hostname, optn.port);
+            utils.infoSuccess('%s:: successful init for %s:%d', name, optn.hostname, optn.port);
         });
     }
 
     onSocket(socket) {
-        infoSuccess(
+        utils.infoSuccess(
             '%s:: new connection received from %s:%d', this.name, socket.remoteAddress, socket.remotePort
         );
 
