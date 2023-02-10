@@ -1,7 +1,7 @@
 require('./Globals');
 
 // User imports
-const AuthSession = invoke('AuthSession');
+const AuthSession = invoke('Server/Auth/Session');
 const Config      = invoke('Config');
 const Database    = invoke('Database');
 const Server      = invoke('Server');

@@ -15,6 +15,10 @@ const Utils = {
         return require('fs').readFileSync(filename, charset);
     },
 
+    toHex: (value, padding = 2) => {
+        return Number(value).toString(16).padStart(padding, '0');
+    },
+
     randomNumber: (max) => {
         return Math.floor(Math.random() * max);
     },

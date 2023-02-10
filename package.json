@@ -7,6 +7,7 @@
         "NodeL2": "node --openssl-legacy-provider src/NodeL2"
     },
     "dependencies": {
+        "blowfish-ecb": "^1.0.2",
         "js-ini": "^1.5.1",
         "jsonschema": "^1.4.1",
         "like-sql": "^0.1.1",
