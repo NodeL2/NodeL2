@@ -1,10 +1,11 @@
 require('./Globals');
 
 // User imports
-const AuthServer = invoke('AuthServer');
-const Config     = invoke('Config');
-const Database   = invoke('Database');
-const Utils      = invoke('Utils');
+const AuthSession = invoke('AuthSession');
+const Config      = invoke('Config');
+const Database    = invoke('Database');
+const Server      = invoke('Server');
+const Utils       = invoke('Utils');
 
 console.info('\n\
     + ================================== \n\
@@ -16,6 +17,7 @@ console.info('\n\
     + ================================== \n\
 ', Utils.buildNumber(), Utils.currentDate(), Utils.nodeVersion());
 
-Database.init(Config.Database, () => {
-    new AuthServer(Config.AuthServer);
+// Startup procedure, first `Database`, then `AuthServer`, finally `GameServer`
+Database.init(() => {
+    new Server('AuthServer', Config.AuthServer, (socket) => { return new AuthSession(socket); });
 });

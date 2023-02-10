@@ -3,13 +3,15 @@ const SQL = require('like-sql'), builder = new SQL();
 let conn;
 
 const Database = {
-    init: (optn, callback) => {
+    init: (callback) => {
+        const { Database: optn } = invoke('Config');
+
         require('mariadb').createConnection({
-            host     : optn.Hostname,
-            port     : optn.Port,
-            user     : optn.User,
-            password : optn.Password,
-            database : optn.DatabaseName
+            host     : optn.hostname,
+            port     : optn.port,
+            user     : optn.user,
+            password : optn.password,
+            database : optn.databaseName
 
         }).then((instance) => {
             infoSuccess('DB:: connected');

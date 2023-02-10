@@ -8,6 +8,11 @@ global.infoSuccess = (...params) => {
     console.info('\x1b[32m' + require('util').format(...params) + '\x1b[0m');
 };
 
+// Generic method to warn user
+global.infoWarn = (...params) => {
+    console.info('\x1b[33m' + require('util').format(...params) + '\x1b[0m');
+};
+
 // Generic error, terminates execution
 global.infoFail = (...params) => {
     console.info('\x1b[31m' + require('util').format(...params) + '\x1b[0m');

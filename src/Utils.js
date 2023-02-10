@@ -13,6 +13,16 @@ const Utils = {
 
     parseRawFile: (filename, charset = 'utf8') => {
         return require('fs').readFileSync(filename, charset);
+    },
+
+    randomNumber: (max) => {
+        return Math.floor(Math.random() * max);
+    },
+
+    pad32Bits: (data) => {
+        const size = data.length;
+        const pad  = Buffer.alloc((Math.ceil(size / 4) * 4) - size);
+        return Buffer.concat([data, pad]);
     }
 };
 
