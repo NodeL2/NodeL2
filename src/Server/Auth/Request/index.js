@@ -1,3 +1,3 @@
 module.exports = {
-    hi: 0
+    authLogin: require('./AuthLogin')
 };
