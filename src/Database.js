@@ -21,7 +21,28 @@ const Database = {
         }).catch(error => {
             utils.infoFail('DB:: failed(%d) -> %s', error.errno, error.text);
         });
-    }
+    },
+
+    execute: (sql) => {
+        return conn.query(sql[0], sql[1]);
+    },
+
+    // Creates a `New Account` in the database with provided credentials
+    createAccount: (username, password) => {
+        return Database.execute(
+            builder.insert('accounts', {
+                username: username,
+                password: password
+            })
+        );
+    },
+
+    // Returns the `Password` from a provided account
+    fetchUserPassword: (username) => {
+        return Database.execute(
+            builder.selectOne('accounts', ['password'], 'username = ?', username)
+        );
+    },
 };
 
 module.exports = Database;

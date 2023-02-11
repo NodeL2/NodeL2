@@ -8,7 +8,7 @@ global.utils = {
         console.info('\x1b[32m' + require('util').format(...params) + '\x1b[0m');
     },
 
-    infoAlert: (...params) => {
+    infoWarn: (...params) => {
         console.info('\x1b[33m' + require('util').format(...params) + '\x1b[0m');
     },
 
@@ -39,6 +39,10 @@ global.utils = {
 
     randomNumber: (max) => {
         return Math.floor(Math.random() * max);
+    },
+
+    stripNull: (value) => {
+        return value.toString('ascii').replace(/\u0000/gi, '');
     },
 
     pad32Bits: (data) => {

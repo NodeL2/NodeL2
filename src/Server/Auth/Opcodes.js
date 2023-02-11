@@ -7,6 +7,8 @@ const Opcodes = {
             utils.infoFail('AuthServer:: unknown opcode 0x%s', utils.toHex(packet[0]));
         });
 
+        table[0x00] = ClientRequest.authLogin;
+
         return table;
     })()
 };
