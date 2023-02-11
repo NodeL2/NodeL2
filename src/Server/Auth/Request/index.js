@@ -1,3 +1,4 @@
 module.exports = {
-    authLogin: require('./AuthLogin')
+     authLogin: require('./AuthLogin'),
+    serverList: require('./ServerList')
 };

@@ -1,5 +1,6 @@
-const ClientPacket = invoke('Packet/Client');
-const Database     = invoke('Database');
+const ServerResponse = invoke('Server/Auth/Response');
+const ClientPacket   = invoke('Packet/Client');
+const Database       = invoke('Database');
 
 function authLogin(session, buffer) {
     const packet = new ClientPacket(buffer);
@@ -14,7 +15,7 @@ function authLogin(session, buffer) {
     });
 }
 
-function consume(session, data) { // TODO: Check the Session ID
+function consume(session, data) {
     Database.fetchUserPassword(data.username).then((rows) => {
         const password = rows[0]?.password;
 
@@ -23,9 +24,9 @@ function consume(session, data) { // TODO: Check the Session ID
             data.password === password ? passwordMatch(session, data.username) : failure(session, 0x02);
         }
         else { // User account does not exist, create if needed
-            utils.infoWarn('No account bro');
+            const optn = options.connection.AuthServer;
 
-            if (options.connection.AuthServer.autoCreate) {
+            if (optn.autoCreate) {
                 Database.createAccount(data.username, data.password).then(() => {
                     consume(session, data);
                 });
@@ -38,11 +39,12 @@ function consume(session, data) { // TODO: Check the Session ID
 }
 
 function passwordMatch(session, username) {
-    utils.infoSuccess('Password match, ok');
+    session.setAccountId(username);
+    session.dataSend(ServerResponse.loginSuccess(session));
 }
 
 function failure(session, reason) {
-    utils.infoWarn('Wron pass, k?');
+    session.dataSend(ServerResponse.loginFail(reason));
 }
 
 module.exports = authLogin;

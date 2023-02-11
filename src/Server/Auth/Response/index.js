@@ -1,3 +1,6 @@
 module.exports = {
-    initLS: require('./InitLS')
+          initLS: require('./InitLS'),
+       loginFail: require('./LoginFail'),
+    loginSuccess: require('./LoginSuccess'),
+      serverList: require('./ServerList')
 };

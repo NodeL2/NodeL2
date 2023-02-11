@@ -49,6 +49,16 @@ global.utils = {
         const size = data.length;
         const pad  = Buffer.alloc((Math.ceil(size / 4) * 4) - size);
         return Buffer.concat([data, pad]);
+    },
+
+    sessionMatch: (pair1, pair2) => {
+        return (pair1.key1 === pair2.key1) && (pair1.key2 === pair2.key2);
+    },
+
+    fetchIPv4Address: () => {
+        let network = require('os').networkInterfaces();
+        let ipv4 = network['en0'].filter(item => item.family === 'IPv4');
+        return ipv4[0].address;
     }
 };
 

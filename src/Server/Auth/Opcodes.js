@@ -8,6 +8,7 @@ const Opcodes = {
         });
 
         table[0x00] = ClientRequest.authLogin;
+        table[0x05] = ClientRequest.serverList;
 
         return table;
     })()
