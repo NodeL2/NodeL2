@@ -31,7 +31,7 @@ function consume(session, data) { // TODO: Check the Session ID
                 });
             }
             else { // Auto-create not permitted
-                utils.infoWarn('Account auto-created prohibited');
+                failure(session, 0x04);
             }
         }
     });
