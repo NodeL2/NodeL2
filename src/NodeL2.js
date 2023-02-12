@@ -2,6 +2,7 @@ require('./Globals');
 
 // User imports
 const AuthSession = invoke('Server/Auth/Session');
+const GameSession = invoke('Server/Game/Session');
 const Database    = invoke('Database');
 const Server      = invoke('Server');
 
@@ -19,5 +20,9 @@ console.info('\n\
 Database.init(() => {
     new Server('AuthServer', options.connection.AuthServer, (socket) => {
         return new AuthSession(socket);
+    });
+
+    new Server('GameServer', options.connection.GameServer, (socket) => {
+        return new GameSession(socket);
     });
 });

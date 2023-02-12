@@ -3,9 +3,6 @@ const ServerPacket = invoke('Packet/Server');
 function serverList(optn, hostname) {
     const packet = new ServerPacket(0x04);
 
-    console.info(hostname);
-    console.info(optn);
-
     packet
         .writeC(0x01)  // Amount of Servers
         .writeC(0x00)  // LS Number

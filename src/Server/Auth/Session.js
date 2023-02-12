@@ -10,7 +10,7 @@ class Session {
         this.key1     = utils.randomNumber(0x80000000);
         this.key2     = utils.randomNumber(0x80000000);
         this.protocol = optn.protocol;
-        this.blowfish = '[;\'.]94-31==-%&@!^+]\u0000';
+        this.blowfish = optn.blowfishKey + '\u0000';
 
         // First handshake from `Server` to `Client`
         this.dataSend(
