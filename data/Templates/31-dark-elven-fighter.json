@@ -1,47 +1,8 @@
 {
-    "baseId"  : 31,
-    "classId" : 31,
-    "race"    : 2,
-    "crafter" : false,
-
-    "stats": {
-        "maxHp" : 107,
-        "maxMp" : 39,
-        "maxCp" : 20,
-        "speed" : 126,
-        "load"  : 69000,
-
-        "str" : 41,
-        "dex" : 34,
-        "con" : 32,
-        "int" : 25,
-        "wit" : 12,
-        "men" : 26,
-
-        "pAtk"     : 4,
-        "pDef"     : 72,
-        "pAccur"   : 35,
-        "pEvasion" : 35,
-        "pCritic"  : 45,
-        "pAtkSpd"  : 342,
-        "mAtk"     : 3,
-        "mDef"     : 47,
-        "mAccur"   : 0,
-        "mEvasion" : 0,
-        "mCritic"  : 0,
-        "mAtkSpd"  : 226
-    },
-
-    "speed": {
-        "walk" : 85,
-        "run"  : 139,
-        "swim" : 50
-    },
-
-    "metrics": {
-        "maleRadius" : 7.5,
-        "maleSize"   : 24,
-        "fmleRadius" : 7,
-        "fmleSize"   : 23.5
-    }
+    "template": { "baseId": 31, "classId": 31, "race": 2, "crafter": false },
+    "base": { "str": 41, "dex": 34, "con": 32, "int": 25, "wit": 12, "men": 26 },
+    "stats": { "pAtk": 4, "mAtk": 3, "pDef": 72, "mDef": 47, "accur": 35, "evasion": 35, "crit": 45, "speed": 126, "atkSpd": 342, "castSpd": 226 },
+    "vitals": { "maxHp": 107, "maxMp": 39, "load": 69000 },
+    "speed": { "walk": 85, "run": 139, "swim": 50 },
+    "collision": { "radius": 7.5, "size": 24.0 }
 }

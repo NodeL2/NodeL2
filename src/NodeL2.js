@@ -28,6 +28,6 @@ Database.init(() => {
 });
 
 //const jsonSchema = require('jsonschema');
-//const model = require('../data/Templates/0-human-fighter.json');
-//let result = jsonSchema.validate(model, require('../data/Templates/schema.json'));
+//var model = require('../data/Templates/0-human-fighter.json');
+//var result = jsonSchema.validate(model, require('../data/Templates/schema.json'));
 //console.info(result.valid);
