@@ -1,4 +1,4 @@
-let ServerPacket = invoke('Packet/Server');
+const ServerPacket = invoke('Packet/Server');
 
 function cipherInit() { // TODO: Invoke cipher XOR key
     let packet = new ServerPacket(0x00);

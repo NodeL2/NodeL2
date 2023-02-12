@@ -14,7 +14,6 @@ function protocolVersion(session, buffer) {
 
 function consume(session, data) {
     if (data.protocolVersion < 0 || data.protocolVersion >= 0xffff) { // TODO: Find root cause of this problem while on `ServerList`
-        utils.infoFail('GameServer:: protocol version 0x%s', utils.toHex(data.protocolVersion));
         return;
     }
 

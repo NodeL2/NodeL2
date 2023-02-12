@@ -1,3 +1,4 @@
 module.exports = {
-    cipherInit: require('./cipherInit')
+    charSelectInfo: require('./CharSelectInfo'),
+        cipherInit: require('./cipherInit')
 };

@@ -2,8 +2,11 @@ const Opcodes = invoke('Server/Game/Opcodes');
 
 class Session {
     constructor(socket) {
-        const optn  = options.connection.GameServer;
         this.socket = socket;
+    }
+
+    setAccountId(username) {
+        this.accountId = username;
     }
 
     dataReceive(data) {

@@ -30,6 +30,7 @@ CREATE TABLE `characters`(
     `face`       int( 5)     NOT NULL,
     `hair`       int( 5)     NOT NULL,
     `hairColor`  int( 5)     NOT NULL,
+    `karma`      int(10)     NOT NULL DEFAULT 0,
     `recReceive` int( 5)     NOT NULL DEFAULT 0,
     `recAvail`   int( 5)     NOT NULL DEFAULT 0,
     `isGM`       boolean     NOT NULL DEFAULT 0,

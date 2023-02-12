@@ -43,6 +43,13 @@ const Database = {
             builder.selectOne('accounts', ['password'], 'username = ?', username)
         );
     },
+
+    // Returns the `Characters` stored on a user's account
+    fetchCharacters: (username) => {
+        return Database.execute(
+            builder.select('characters', ['*'], 'username = ?', username)
+        );
+    }
 };
 
 module.exports = Database;

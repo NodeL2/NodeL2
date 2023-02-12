@@ -8,6 +8,7 @@ const Opcodes = {
         });
 
         table[0x00] = ClientRequest.protocolVersion;
+        table[0x08] = ClientRequest.authLogin;
 
         return table;
     })()
