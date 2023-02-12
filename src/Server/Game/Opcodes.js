@@ -9,6 +9,8 @@ const Opcodes = {
 
         table[0x00] = ClientRequest.protocolVersion;
         table[0x08] = ClientRequest.authLogin;
+        table[0x0b] = ClientRequest.createNewChar;
+        table[0x0e] = ClientRequest.enterCharCreation;
 
         return table;
     })()

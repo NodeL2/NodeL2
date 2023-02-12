@@ -1,0 +1,47 @@
+{
+    "baseId"  : 10,
+    "classId" : 10,
+    "race"    : 0,
+    "crafter" : false,
+
+    "stats": {
+        "maxHp" : 99,
+        "maxMp" : 59,
+        "maxCp" : 20,
+        "speed" : 126,
+        "load"  : 62500,
+
+        "str" : 22,
+        "dex" : 21,
+        "con" : 27,
+        "int" : 41,
+        "wit" : 20,
+        "men" : 39,
+
+        "pAtk"     : 2,
+        "pDef"     : 48,
+        "pAccur"   : 28,
+        "pEvasion" : 28,
+        "pCritic"  : 40,
+        "pAtkSpd"  : 303,
+        "mAtk"     : 7,
+        "mDef"     : 54,
+        "mAccur"   : 0,
+        "mEvasion" : 0,
+        "mCritic"  : 0,
+        "mAtkSpd"  : 333
+    },
+
+    "speed": {
+        "walk" : 78,
+        "run"  : 124,
+        "swim" : 50
+    },
+
+    "metrics": {
+        "maleRadius" : 7.5,
+        "maleSize"   : 22.8,
+        "fmleRadius" : 6.5,
+        "fmleSize"   : 22.5
+    }
+}
