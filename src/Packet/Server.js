@@ -39,6 +39,19 @@ class ServerPacket {
         return this.write(value, 8);
     }
 
+    // Special cases
+
+    writeB(array) {
+        this.append(Buffer.from(array));
+        return this;
+    }
+
+    writeS(text) {
+        this.append(Buffer.from(text, 'ucs2'));
+        this.append(Buffer.alloc(2));
+        return this;
+    }
+
     // Buffer
 
     fetchBuffer(checksum = true) {
