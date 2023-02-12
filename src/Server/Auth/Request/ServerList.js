@@ -17,7 +17,9 @@ function serverList(session, buffer) {
 
 function consume(session, data) {
     if (utils.sessionMatch(session, data)) {
-        console.info('Session match!')
+        session.dataSend(
+            ServerResponse.serverList(options.connection.GameServer, detectServerIPAddress(session).split('.'))
+        );
     }
     else { // Session keys don't match
         session.dataSend(
