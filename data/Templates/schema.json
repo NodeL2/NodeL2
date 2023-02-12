@@ -1,0 +1,40 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "L2CharachterClassTemplate",
+    "type": "object",
+    "properties": {
+        "template": {
+            "type": "object",
+            "properties": {
+                "baseId": {
+                    "type": "integer"
+                },
+                "classId": {
+                    "type": "integer"
+                },
+                "race": {
+                    "type": "integer"
+                },
+                "crafter": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "base": {
+            "type": "object"
+        },
+        "stats": {
+            "type": "object"
+        },
+        "vitals": {
+            "type": "object"
+        },
+        "speed": {
+            "type": "object"
+        },
+        "collision": {
+            "type": "object"
+        }
+    },
+    "required": ["id", "class"]
+}
