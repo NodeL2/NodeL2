@@ -20,8 +20,6 @@ CREATE TABLE `characters`(
     `maxHp`      int( 5)     NOT NULL,
     `mp`         int( 5)     NOT NULL DEFAULT 0,
     `maxMp`      int( 5)     NOT NULL,
-    `cp`         int( 5)     NOT NULL DEFAULT 0,
-    `maxCp`      int( 5)     NOT NULL,
     `exp`        int(20)     NOT NULL DEFAULT 0,
     `sp`         int(10)     NOT NULL DEFAULT 0,
     `pk`         int(10)     NOT NULL DEFAULT 0,
