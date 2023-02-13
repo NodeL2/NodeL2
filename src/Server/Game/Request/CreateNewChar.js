@@ -33,7 +33,8 @@ function createNewChar(session, buffer) {
 
 function consume(session, data) {
     Database.fetchClassInformation(data.classId).then((classInfo) => {
-        console.info(classInfo);
+        Database.createCharacter(session.accountId, data, classInfo).then(() => {
+        });
     });
 }
 

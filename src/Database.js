@@ -58,7 +58,29 @@ const Database = {
             let model = DataCache.classTemplates.find(ob => ob.classId === classId);
             return model ? success(model) : fail();
         });
-    }
+    },
+
+    // Stores a new `Character` in database with provided details
+    createCharacter(username, data, classInfo) {
+        return Database.execute(
+            builder.insert('characters', {
+                 username: username,
+                     name: data.name, title: 'NodeL2 Champion',
+                     race: data.race,
+                  classId: data.classId,
+                    maxHp: classInfo.vitals.maxHp,
+                    maxMp: classInfo.vitals.maxMp,
+                      sex: data.sex,
+                     face: data.face,
+                     hair: data.hair,
+                hairColor: data.hairColor,
+                     locX: 43648, // TODO: Depends on race and class
+                     locY: 40352, // TODO: "
+                     locZ:-3430   // TODO: "
+            })
+        );
+    },
+
 };
 
 module.exports = Database;
