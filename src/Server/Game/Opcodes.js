@@ -8,12 +8,14 @@ const Opcodes = {
         });
 
         table[0x00] = ClientRequest.protocolVersion;
+        table[0x03] = ClientRequest.enterWorld;
         table[0x08] = ClientRequest.authLogin;
         table[0x09] = ClientRequest.logout;
         table[0x0b] = ClientRequest.createNewChar;
         table[0x0c] = ClientRequest.charDelete;
-        table[0x0d] = ClientRequest.enterWorld;
+        table[0x0d] = ClientRequest.charSelected;
         table[0x0e] = ClientRequest.enterCharCreation;
+        table[0x63] = ClientRequest.questList;
 
         return table;
     })()
