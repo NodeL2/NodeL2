@@ -3,6 +3,7 @@ require('./Globals');
 // User imports
 const AuthSession = invoke('Server/Auth/Session');
 const GameSession = invoke('Server/Game/Session');
+const DataCache   = invoke('DataCache');
 const Database    = invoke('Database');
 const Server      = invoke('Server');
 
@@ -18,6 +19,8 @@ console.info('\n\
 
 // Startup procedure, first `Database`, then `AuthServer`, finally `GameServer`
 Database.init(() => {
+    DataCache.init();
+
     new Server('AuthServer', options.connection.AuthServer, (socket) => {
         return new AuthSession(socket);
     });
@@ -26,13 +29,3 @@ Database.init(() => {
         return new GameSession(socket);
     });
 });
-
-const jsonSchema = require('jsonschema');
-var model = require('../data/Templates/templates.json');
-var result = jsonSchema.validate(model, require('../data/Templates/.schema.json'));
-if (result.valid) {
-    utils.infoSuccess('JSON valid');
-}
-else {
-    utils.infoFail(result.errors[0].stack);
-}
