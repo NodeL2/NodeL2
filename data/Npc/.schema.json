@@ -1,0 +1,150 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "integer"
+            },
+            "template": {
+                "type": "object",
+                "properties": {
+                    "kind": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "hostile": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "kind",
+                    "name",
+                    "title",
+                    "hostile"
+                ]
+            },
+            "stats": {
+                "type": "object",
+                "properties": {
+                    "pAtk": {
+                        "type": "integer"
+                    },
+                    "pDef": {
+                        "type": "integer"
+                    },
+                    "mAtk": {
+                        "type": "integer"
+                    },
+                    "mDef": {
+                        "type": "integer"
+                    },
+                    "atkSpd": {
+                        "type": "integer"
+                    },
+                    "castSpd": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "pAtk",
+                    "pDef",
+                    "mAtk",
+                    "mDef",
+                    "atkSpd",
+                    "castSpd"
+                ]
+            },
+            "vitals": {
+                "type": "object",
+                "properties": {
+                    "level": {
+                        "type": "integer"
+                    },
+                    "maxHp": {
+                        "type": "integer"
+                    },
+                    "maxMp": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "level",
+                    "maxHp",
+                    "maxMp"
+                ]
+            },
+            "speed": {
+                "type": "object",
+                "properties": {
+                    "walk": {
+                        "type": "integer"
+                    },
+                    "run": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "walk",
+                    "run"
+                ]
+            },
+            "collision": {
+                "type": "object",
+                "properties": {
+                    "radius": {
+                        "type": "number"
+                    },
+                    "size": {
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "radius",
+                    "size"
+                ]
+            },
+            "spawns": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "locX": {
+                            "type": "integer"
+                        },
+                        "locY": {
+                            "type": "integer"
+                        },
+                        "locZ": {
+                            "type": "integer"
+                        },
+                        "head": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "locX",
+                        "locY",
+                        "locZ",
+                        "head"
+                    ]
+                }
+            }
+        },
+        "required": [
+            "id",
+            "template",
+            "stats",
+            "vitals",
+            "speed",
+            "collision",
+            "spawns"
+        ]
+    }
+}

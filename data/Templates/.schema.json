@@ -1,0 +1,167 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "classId": {
+                "type": "integer"
+            },
+            "template": {
+                "type": "object",
+                "properties": {
+                    "race": {
+                        "type": "integer"
+                    },
+                    "crafter": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "race",
+                    "crafter"
+                ]
+            },
+            "base": {
+                "type": "object",
+                "properties": {
+                    "str": {
+                        "type": "integer"
+                    },
+                    "dex": {
+                        "type": "integer"
+                    },
+                    "con": {
+                        "type": "integer"
+                    },
+                    "int": {
+                        "type": "integer"
+                    },
+                    "wit": {
+                        "type": "integer"
+                    },
+                    "men": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "str",
+                    "dex",
+                    "con",
+                    "int",
+                    "wit",
+                    "men"
+                ]
+            },
+            "stats": {
+                "type": "object",
+                "properties": {
+                    "pAtk": {
+                        "type": "integer"
+                    },
+                    "mAtk": {
+                        "type": "integer"
+                    },
+                    "pDef": {
+                        "type": "integer"
+                    },
+                    "mDef": {
+                        "type": "integer"
+                    },
+                    "accur": {
+                        "type": "integer"
+                    },
+                    "evasion": {
+                        "type": "integer"
+                    },
+                    "crit": {
+                        "type": "integer"
+                    },
+                    "speed": {
+                        "type": "integer"
+                    },
+                    "atkSpd": {
+                        "type": "integer"
+                    },
+                    "castSpd": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "pAtk",
+                    "mAtk",
+                    "pDef",
+                    "mDef",
+                    "accur",
+                    "evasion",
+                    "crit",
+                    "speed",
+                    "atkSpd",
+                    "castSpd"
+                ]
+            },
+            "vitals": {
+                "type": "object",
+                "properties": {
+                    "maxHp": {
+                        "type": "integer"
+                    },
+                    "maxMp": {
+                        "type": "integer"
+                    },
+                    "load": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "maxHp",
+                    "maxMp",
+                    "load"
+                ]
+            },
+            "speed": {
+                "type": "object",
+                "properties": {
+                    "walk": {
+                        "type": "integer"
+                    },
+                    "run": {
+                        "type": "integer"
+                    },
+                    "swim": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "walk",
+                    "run",
+                    "swim"
+                ]
+            },
+            "collision": {
+                "type": "object",
+                "properties": {
+                    "radius": {
+                        "type": "number"
+                    },
+                    "size": {
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "radius",
+                    "size"
+                ]
+            }
+        },
+        "required": [
+            "classId",
+            "template",
+            "base",
+            "stats",
+            "vitals",
+            "speed",
+            "collision"
+        ]
+    }
+}

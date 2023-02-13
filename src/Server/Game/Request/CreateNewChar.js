@@ -32,6 +32,8 @@ function createNewChar(session, buffer) {
 }
 
 function consume(session, data) {
+    Database.fetchClassInformation(data.classId).then((classInfo) => {
+    });
 }
 
 module.exports = createNewChar;

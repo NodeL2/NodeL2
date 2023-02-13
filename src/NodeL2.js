@@ -27,7 +27,12 @@ Database.init(() => {
     });
 });
 
-//const jsonSchema = require('jsonschema');
-//var model = require('../data/Templates/0-human-fighter.json');
-//var result = jsonSchema.validate(model, require('../data/Templates/schema.json'));
-//console.info(result.valid);
+const jsonSchema = require('jsonschema');
+var model = require('../data/Templates/templates.json');
+var result = jsonSchema.validate(model, require('../data/Templates/.schema.json'));
+if (result.valid) {
+    utils.infoSuccess('JSON valid');
+}
+else {
+    utils.infoFail(result.errors[0].stack);
+}

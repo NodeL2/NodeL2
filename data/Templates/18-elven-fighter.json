@@ -1,8 +1,0 @@
-{
-    "template": { "classId": 18, "race": 1, "crafter": false },
-    "base": { "str": 36, "dex": 35, "con": 36, "int": 23, "wit": 14, "men": 26 },
-    "stats": { "pAtk": 4, "mAtk": 3, "pDef": 72, "mDef": 47, "accur": 36, "evasion": 36, "crit": 46, "speed": 126, "atkSpd": 345, "castSpd": 249 },
-    "vitals": { "maxHp": 113, "maxMp": 39, "load": 73840 },
-    "speed": { "walk": 90, "run": 143, "swim": 50 },
-    "collision": { "radius": 7.5, "size": 24.0 }
-}
