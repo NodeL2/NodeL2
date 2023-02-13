@@ -16,7 +16,7 @@ function validateModel(filepath) {
     const result = validateSchema(model, require(path + '/.schema'));
 
     if (!result.valid) {
-        utils.infoFail('Cache:: failed to parse "%s" -> %s', filepath, result.errors[0].stack);
+        utils.infoWarn('Cache:: failed to parse "%s" -> %s', filepath, result.errors[0].stack);
     }
     
     return model;
