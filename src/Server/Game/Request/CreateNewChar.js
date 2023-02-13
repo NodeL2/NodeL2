@@ -34,6 +34,15 @@ function createNewChar(session, buffer) {
 function consume(session, data) {
     Database.fetchClassInformation(data.classId).then((classInfo) => {
         Database.createCharacter(session.accountId, data, classInfo).then(() => {
+            session.dataSend(
+                ServerResponse.charCreateSuccess()
+            );
+
+            Database.fetchCharacters(session.accountId).then((userChars) => {
+                session.dataSend(
+                    ServerResponse.charSelectInfo(userChars)
+                );
+            });
         });
     });
 }

@@ -81,6 +81,11 @@ const Database = {
         );
     },
 
+    deleteCharacter(username, name) {
+        return Database.execute(
+            builder.delete('characters', 'username = ? AND name = ?', username, name)
+        );
+    }
 };
 
 module.exports = Database;

@@ -1,5 +1,7 @@
 module.exports = {
-    charSelectInfo: require('./CharSelectInfo'),
-     charTemplates: require('./CharTemplates'),
-        cipherInit: require('./cipherInit')
+    charCreateSuccess: require('./CharCreateSuccess'),
+       charSelectInfo: require('./CharSelectInfo'),
+        charTemplates: require('./CharTemplates'),
+           cipherInit: require('./cipherInit'),
+        logoutSuccess: require('./LogoutSuccess')
 };
