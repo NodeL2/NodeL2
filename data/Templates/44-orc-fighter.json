@@ -1,5 +1,5 @@
 {
-    "template": { "baseId": 44, "classId": 44, "race": 3, "crafter": false },
+    "template": { "classId": 44, "race": 3, "crafter": false },
     "base": { "str": 40, "dex": 26, "con": 47, "int": 18, "wit": 12, "men": 27 },
     "stats": { "pAtk": 4, "mAtk": 2, "pDef": 72, "mDef": 48, "accur": 31, "evasion": 31, "crit": 42, "speed": 126, "atkSpd": 318, "castSpd": 226 },
     "vitals": { "maxHp": 133, "maxMp": 39, "load": 87000 },

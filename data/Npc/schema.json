@@ -5,51 +5,28 @@
       "template": {
         "type": "object",
         "properties": {
-          "classId": {
+          "id": {
             "type": "integer"
           },
-          "race": {
-            "type": "integer"
+          "kind": {
+            "type": "string"
           },
-          "crafter": {
+          "name": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "hostile": {
             "type": "boolean"
           }
         },
         "required": [
-          "classId",
-          "race",
-          "crafter"
-        ]
-      },
-      "base": {
-        "type": "object",
-        "properties": {
-          "str": {
-            "type": "integer"
-          },
-          "dex": {
-            "type": "integer"
-          },
-          "con": {
-            "type": "integer"
-          },
-          "int": {
-            "type": "integer"
-          },
-          "wit": {
-            "type": "integer"
-          },
-          "men": {
-            "type": "integer"
-          }
-        },
-        "required": [
-          "str",
-          "dex",
-          "con",
-          "int",
-          "wit",
-          "men"
+          "id",
+          "kind",
+          "name",
+          "title",
+          "hostile"
         ]
       },
       "stats": {
@@ -58,25 +35,13 @@
           "pAtk": {
             "type": "integer"
           },
-          "mAtk": {
-            "type": "integer"
-          },
           "pDef": {
             "type": "integer"
           },
+          "mAtk": {
+            "type": "integer"
+          },
           "mDef": {
-            "type": "integer"
-          },
-          "accur": {
-            "type": "integer"
-          },
-          "evasion": {
-            "type": "integer"
-          },
-          "crit": {
-            "type": "integer"
-          },
-          "speed": {
             "type": "integer"
           },
           "atkSpd": {
@@ -88,13 +53,9 @@
         },
         "required": [
           "pAtk",
-          "mAtk",
           "pDef",
+          "mAtk",
           "mDef",
-          "accur",
-          "evasion",
-          "crit",
-          "speed",
           "atkSpd",
           "castSpd"
         ]
@@ -102,20 +63,20 @@
       "vitals": {
         "type": "object",
         "properties": {
+          "level": {
+            "type": "integer"
+          },
           "maxHp": {
             "type": "integer"
           },
           "maxMp": {
             "type": "integer"
-          },
-          "load": {
-            "type": "integer"
           }
         },
         "required": [
+          "level",
           "maxHp",
-          "maxMp",
-          "load"
+          "maxMp"
         ]
       },
       "speed": {
@@ -126,15 +87,11 @@
           },
           "run": {
             "type": "integer"
-          },
-          "swim": {
-            "type": "integer"
           }
         },
         "required": [
           "walk",
-          "run",
-          "swim"
+          "run"
         ]
       },
       "collision": {
@@ -151,14 +108,42 @@
           "radius",
           "size"
         ]
+      },
+      "spawns": {
+        "type": "array",
+        "items": [
+          {
+            "type": "object",
+            "properties": {
+              "locX": {
+                "type": "integer"
+              },
+              "locY": {
+                "type": "integer"
+              },
+              "locZ": {
+                "type": "integer"
+              },
+              "head": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "locX",
+              "locY",
+              "locZ",
+              "head"
+            ]
+          }
+        ]
       }
     },
     "required": [
       "template",
-      "base",
       "stats",
       "vitals",
       "speed",
-      "collision"
+      "collision",
+      "spawns"
     ]
 }

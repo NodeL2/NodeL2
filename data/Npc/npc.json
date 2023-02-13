@@ -1,0 +1,8 @@
+{
+    "template": { "id": 7370, "kind": "Npc", "name": "Nerupa", "title": "", "hostile": false },
+    "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 0, "castSpd": 0 },
+    "vitals": { "level": 70, "maxHp": 3000, "maxMp": 0 },
+    "speed": { "walk": 80, "run": 120 },
+    "collision": { "radius": 15.0, "size": 26.0 },
+    "spawns": [{ "locX": 46048, "locY": 41200, "locZ": -3504, "head": 17000 }]
+}
