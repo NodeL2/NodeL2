@@ -115,8 +115,8 @@ function userInfo(actor) {
         .writeD(0x00)  // ?
         .writeD(0x00)  // ?
         .writeD(0x00)  // ?
-        .writeH(actor.model.recAvail)
-        .writeH(actor.model.recReceive);
+        .writeH(actor.model.recRemain)
+        .writeH(actor.model.evalScore);
 
     return packet.fetchBuffer();
 }
