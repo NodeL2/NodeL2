@@ -1,5 +1,6 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
 const Creature       = invoke('Server/Game/Actor/Creature');
+const Database       = invoke('Server/Database');
 
 class Actor extends Creature {
     fetchUsername() {
@@ -98,10 +99,18 @@ class Actor extends Creature {
         return this.model.isActive;
     }
 
-    moveTo(session, data) {
+    moveTo(session, coords) {
         session.dataSend(
-            ServerResponse.moveToLocation(this.fetchId(), data)
+            ServerResponse.moveToLocation(this.fetchId(), coords)
         );
+    }
+
+    updatePosition(coords) {
+        this.model.locX = coords.locX;
+        this.model.locY = coords.locY;
+        this.model.locZ = coords.locZ;
+
+        Database.storeCharacterLocation(this.fetchId(), coords);
     }
 }
 

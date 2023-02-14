@@ -85,6 +85,16 @@ const Database = {
         return Database.execute(
             builder.delete('characters', 'username = ? AND name = ?', username, name)
         );
+    },
+
+    storeCharacterLocation(id, coords) {
+        return Database.execute(
+            builder.update('characters', {
+                locX: coords.locX,
+                locY: coords.locY,
+                locZ: coords.locZ,
+            }, 'id = ? LIMIT 1', id)
+        );
     }
 };
 

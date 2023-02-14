@@ -1,16 +1,16 @@
 const SendPacket = invoke('Server/Packet/Send');
 
-function moveToLocation(actorId, data) {
+function moveToLocation(actorId, coords) {
     const packet = new SendPacket(0x01);
 
     packet
         .writeD(actorId)
-        .writeD(data.to.locX)
-        .writeD(data.to.locY)
-        .writeD(data.to.locZ)
-        .writeD(data.from.locX)
-        .writeD(data.from.locY)
-        .writeD(data.from.locZ);
+        .writeD(coords.to.locX)
+        .writeD(coords.to.locY)
+        .writeD(coords.to.locZ)
+        .writeD(coords.from.locX)
+        .writeD(coords.from.locY)
+        .writeD(coords.from.locZ);
 
     return packet.fetchBuffer();
 }
