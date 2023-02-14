@@ -6,6 +6,7 @@ module.exports = {
            cipherInit: require('./cipherInit'),
         logoutSuccess: require('./LogoutSuccess'),
             questList: require('./QuestList'),
+              restart: require('./Restart'),
               sunrise: require('./Sunrise'),
              userInfo: require('./UserInfo')
 };

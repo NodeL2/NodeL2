@@ -15,6 +15,7 @@ const Opcodes = {
         table[0x0c] = ClientRequest.charDelete;
         table[0x0d] = ClientRequest.charSelected;
         table[0x0e] = ClientRequest.enterCharCreation;
+        table[0x46] = ClientRequest.restart;
         table[0x63] = ClientRequest.questList;
 
         return table;

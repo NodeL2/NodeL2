@@ -5,7 +5,8 @@
     "stats": { "pAtk": 4, "mAtk": 3, "pDef": 72, "mDef": 47, "accur": 33, "evasion": 33, "crit": 44, "speed": 126, "atkSpd": 330, "castSpd": 213 },
     "vitals": { "maxHp": 126, "maxMp": 38, "maxLoad": 81900 },
     "speed": { "walk": 80, "run": 132, "swim": 50 },
-    "collision": { "radius": 9.0, "size": 23.0 }
+    "collision": { "radius": 9.0, "size": 23.0 },
+    "bornAt": [{ "locX": 43648, "locY": 40352, "locZ": -3440, "head": -1 }, { "locX": 48912, "locY": 39984, "locZ": -3440, "head": -1 }, { "locX": 48752, "locY": 40304, "locZ": -3440, "head": -1 }]
 },{
     "classId": 10,
     "template": { "race": 0, "crafter": false },
@@ -13,7 +14,8 @@
     "stats": { "pAtk": 2, "mAtk": 7, "pDef": 48, "mDef": 54, "accur": 28, "evasion": 28, "crit": 40, "speed": 126, "atkSpd": 303, "castSpd": 333 },
     "vitals": { "maxHp": 99, "maxMp": 59, "maxLoad": 62500 },
     "speed": { "walk": 78, "run": 124, "swim": 50 },
-    "collision": { "radius": 7.5, "size": 22.8 }
+    "collision": { "radius": 7.5, "size": 22.8 },
+    "bornAt": [{ "locX": 43648, "locY": 40352, "locZ": -3440, "head": -1 }, { "locX": 48912, "locY": 39984, "locZ": -3440, "head": -1 }, { "locX": 48752, "locY": 40304, "locZ": -3440, "head": -1 }]
 },{
     "classId": 18,
     "template": { "race": 1, "crafter": false },
@@ -21,7 +23,8 @@
     "stats": { "pAtk": 4, "mAtk": 3, "pDef": 72, "mDef": 47, "accur": 36, "evasion": 36, "crit": 46, "speed": 126, "atkSpd": 345, "castSpd": 249 },
     "vitals": { "maxHp": 113, "maxMp": 39, "maxLoad": 73840 },
     "speed": { "walk": 90, "run": 143, "swim": 50 },
-    "collision": { "radius": 7.5, "size": 24.0 }
+    "collision": { "radius": 7.5, "size": 24.0 },
+    "bornAt": [{ "locX": 43648, "locY": 40352, "locZ": -3440, "head": -1 }, { "locX": 48912, "locY": 39984, "locZ": -3440, "head": -1 }, { "locX": 48752, "locY": 40304, "locZ": -3440, "head": -1 }]
 },{
     "classId": 25,
     "template": { "race": 1, "crafter": false },
@@ -29,7 +32,8 @@
     "stats": { "pAtk": 2, "mAtk": 6, "pDef": 48, "mDef": 54, "accur": 30, "evasion": 30, "crit": 41, "speed": 126, "atkSpd": 312, "castSpd": 386 },
     "vitals": { "maxHp": 96, "maxMp": 59, "maxLoad": 62400 },
     "speed": { "walk": 85, "run": 129, "swim": 50 },
-    "collision": { "radius": 7.5, "size": 24.0 }
+    "collision": { "radius": 7.5, "size": 24.0 },
+    "bornAt": [{ "locX": 43648, "locY": 40352, "locZ": -3440, "head": -1 }, { "locX": 48912, "locY": 39984, "locZ": -3440, "head": -1 }, { "locX": 48752, "locY": 40304, "locZ": -3440, "head": -1 }]
 },{
     "classId": 31,
     "template": { "race": 2, "crafter": false },
@@ -37,7 +41,8 @@
     "stats": { "pAtk": 4, "mAtk": 3, "pDef": 72, "mDef": 47, "accur": 35, "evasion": 35, "crit": 45, "speed": 126, "atkSpd": 342, "castSpd": 226 },
     "vitals": { "maxHp": 107, "maxMp": 39, "maxLoad": 69000 },
     "speed": { "walk": 85, "run": 139, "swim": 50 },
-    "collision": { "radius": 7.5, "size": 24.0 }
+    "collision": { "radius": 7.5, "size": 24.0 },
+    "bornAt": [{ "locX": 43648, "locY": 40352, "locZ": -3440, "head": -1 }, { "locX": 48912, "locY": 39984, "locZ": -3440, "head": -1 }, { "locX": 48752, "locY": 40304, "locZ": -3440, "head": -1 }]
 },{
     "classId": 38,
     "template": { "race": 2, "crafter": false },
@@ -45,7 +50,8 @@
     "stats": { "pAtk": 2, "mAtk": 7, "pDef": 48, "mDef": 53, "accur": 29, "evasion": 29, "crit": 41, "speed": 126, "atkSpd": 309, "castSpd": 316 },
     "vitals": { "maxHp": 95, "maxMp": 58, "maxLoad": 61000 },
     "speed": { "walk": 85, "run": 128, "swim": 50 },
-    "collision": { "radius": 7.5, "size": 24.0 }
+    "collision": { "radius": 7.5, "size": 24.0 },
+    "bornAt": [{ "locX": 43648, "locY": 40352, "locZ": -3440, "head": -1 }, { "locX": 48912, "locY": 39984, "locZ": -3440, "head": -1 }, { "locX": 48752, "locY": 40304, "locZ": -3440, "head": -1 }]
 },{
     "classId": 44,
     "template": { "race": 3, "crafter": false },
@@ -53,7 +59,8 @@
     "stats": { "pAtk": 4, "mAtk": 2, "pDef": 72, "mDef": 48, "accur": 31, "evasion": 31, "crit": 42, "speed": 126, "atkSpd": 318, "castSpd": 226 },
     "vitals": { "maxHp": 133, "maxMp": 39, "maxLoad": 87000 },
     "speed": { "walk": 70, "run": 130, "swim": 50 },
-    "collision": { "radius": 11.0, "size": 28.0 }
+    "collision": { "radius": 11.0, "size": 28.0 },
+    "bornAt": [{ "locX": 43648, "locY": 40352, "locZ": -3440, "head": -1 }, { "locX": 48912, "locY": 39984, "locZ": -3440, "head": -1 }, { "locX": 48752, "locY": 40304, "locZ": -3440, "head": -1 }]
 },{
     "classId": 49,
     "template": { "race": 3, "crafter": false },
@@ -61,7 +68,8 @@
     "stats": { "pAtk": 2, "mAtk": 4, "pDef": 48, "mDef": 56, "accur": 30, "evasion": 30, "crit": 41, "speed": 126, "atkSpd": 312, "castSpd": 265 },
     "vitals": { "maxHp": 105, "maxMp": 60, "maxLoad": 68000 },
     "speed": { "walk": 70, "run": 128, "swim": 50 },
-    "collision": { "radius": 7.0, "size": 27.5 }
+    "collision": { "radius": 7.0, "size": 27.5 },
+    "bornAt": [{ "locX": 43648, "locY": 40352, "locZ": -3440, "head": -1 }, { "locX": 48912, "locY": 39984, "locZ": -3440, "head": -1 }, { "locX": 48752, "locY": 40304, "locZ": -3440, "head": -1 }]
 },{
     "classId": 53,
     "template": { "race": 4, "crafter": true },
@@ -69,5 +77,6 @@
     "stats": { "pAtk": 4, "mAtk": 3, "pDef": 72, "mDef": 48, "accur": 33, "evasion": 33, "crit": 43, "speed": 126, "atkSpd": 327, "castSpd": 203 },
     "vitals": { "maxHp": 129, "maxMp": 39, "maxLoad": 83000 },
     "speed": { "walk": 80, "run": 131, "swim": 50 },
-    "collision": { "radius": 9.0, "size": 18.0 }
+    "collision": { "radius": 9.0, "size": 18.0 },
+    "bornAt": [{ "locX": 43648, "locY": 40352, "locZ": -3440, "head": -1 }, { "locX": 48912, "locY": 39984, "locZ": -3440, "head": -1 }, { "locX": 48752, "locY": 40304, "locZ": -3440, "head": -1 }]
 }]

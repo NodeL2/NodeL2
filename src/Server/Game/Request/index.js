@@ -7,5 +7,6 @@ module.exports = {
            enterWorld: require('./EnterWorld'),
                logout: require('./Logout'),
       protocolVersion: require('./ProtocolVersion'),
-            questList: require('./QuestList')
+            questList: require('./QuestList'),
+              restart: require('./Restart')
 };

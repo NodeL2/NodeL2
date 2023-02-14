@@ -62,6 +62,12 @@ const Database = {
 
     // Stores a new `Character` in database with provided details
     createCharacter(username, data, classInfo) {
+        const points = classInfo.bornAt;
+        const rand = utils.randomNumber(points.length);
+        const coords = points[rand];
+
+        console.info(rand);
+
         return Database.execute(
             builder.insert('characters', {
                  username: username,
@@ -74,9 +80,9 @@ const Database = {
                      face: data.face,
                      hair: data.hair,
                 hairColor: data.hairColor,
-                     locX: 43648, // TODO: Depends on race and class
-                     locY: 40352, // TODO: "
-                     locZ:-3430   // TODO: "
+                     locX: coords.locX,
+                     locY: coords.locY,
+                     locZ: coords.locZ,
             })
         );
     },
