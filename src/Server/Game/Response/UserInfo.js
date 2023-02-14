@@ -4,31 +4,31 @@ function userInfo(actor) {
     const packet = new ServerPacket(0x04);
 
     packet
-        .writeD(player.model.x)
-        .writeD(player.model.y)
-        .writeD(player.model.z)
+        .writeD(actor.model.locX)
+        .writeD(actor.model.locY)
+        .writeD(actor.model.locZ)
         .writeD(0x00)  // Heading
-        .writeD(player.id)
-        .writeS(player.name)
-        .writeD(player.raceId)
-        .writeD(player.model.gender)
-        .writeD(player.classId)
-        .writeD(player.model.level)
-        .writeD(player.model.exp)
-        .writeD(player.model.str)
-        .writeD(player.model.dex)
-        .writeD(player.model.con)
-        .writeD(player.model.int)
-        .writeD(player.model.wit)
-        .writeD(player.model.men)
-        .writeD(player.model.maxHp)
-        .writeD(player.model.hp)
-        .writeD(player.model.maxMp)
-        .writeD(player.model.mp)
-        .writeD(player.model.sp)
-        .writeD(0x00)  // Load
-        .writeD(player.model.weightLimit)
-        .writeD(0x28)  // ?
+        .writeD(actor.model.id)
+        .writeS(actor.model.name)
+        .writeD(actor.model.race)
+        .writeD(actor.model.sex)
+        .writeD(actor.model.classId)
+        .writeD(actor.model.level)
+        .writeD(actor.model.exp)
+        .writeD(actor.model.str)
+        .writeD(actor.model.dex)
+        .writeD(actor.model.con)
+        .writeD(actor.model.int)
+        .writeD(actor.model.wit)
+        .writeD(actor.model.men)
+        .writeD(actor.model.maxHp)
+        .writeD(actor.model.hp)
+        .writeD(actor.model.maxMp)
+        .writeD(actor.model.mp)
+        .writeD(actor.model.sp)
+        .writeD(0x00)  // Current Load
+        .writeD(actor.model.maxLoad)
+        .writeD(0x28)  // ? 20 no weapon or 40 weapon ?
 
         // Object ID
         .writeD(0x00)  // Underwear
@@ -38,11 +38,11 @@ function userInfo(actor) {
         .writeD(0x00)  // Finger right
         .writeD(0x00)  // Finger left
         .writeD(0x00)  // Head
-        .writeD(player.paperdoll.raw[BodyPart.RIGHT_HAND].id)
+        .writeD(0x00)  // Hand right
         .writeD(0x00)  // Hand left
         .writeD(0x00)  // Gloves
-        .writeD(player.paperdoll.raw[BodyPart.CHEST].id)
-        .writeD(player.paperdoll.raw[BodyPart.LEGS].id)
+        .writeD(0x00)  // Chest
+        .writeD(0x00)  // Legs
         .writeD(0x00)  // Feet
         .writeD(0x00)  // Back
         .writeD(0x00)  // Hand left & right
@@ -55,44 +55,44 @@ function userInfo(actor) {
         .writeD(0x00)  // Finger right
         .writeD(0x00)  // Finger left
         .writeD(0x00)  // Head
-        .writeD(player.paperdoll.raw[BodyPart.RIGHT_HAND].itemId)
+        .writeD(0x00)  // Hand right
         .writeD(0x00)  // Hand left
         .writeD(0x00)  // Gloves
-        .writeD(player.paperdoll.raw[BodyPart.CHEST].itemId)
-        .writeD(player.paperdoll.raw[BodyPart.LEGS].itemId)
+        .writeD(0x00)  // Chest
+        .writeD(0x00)  // Legs
         .writeD(0x00)  // Feet
         .writeD(0x00)  // Back
         .writeD(0x00)  // Hand left & right
 
-        .writeD(player.model.pAtk)
-        .writeD(player.model.atkSpeed)
-        .writeD(player.model.pDef)
-        .writeD(player.model.evasion)
-        .writeD(player.model.accuracy)
-        .writeD(player.model.critical)
-        .writeD(player.model.mAtk)
-        .writeD(player.model.castingSpd)
-        .writeD(player.model.speed)
-        .writeD(player.model.mDef)
+        .writeD(actor.model.pAtk)
+        .writeD(actor.model.atkSpd)
+        .writeD(actor.model.pDef)
+        .writeD(actor.model.evasion)
+        .writeD(actor.model.accur)
+        .writeD(actor.model.crit)
+        .writeD(actor.model.mAtk)
+        .writeD(actor.model.castSpd)
+        .writeD(actor.model.speed)
+        .writeD(actor.model.mDef)
         .writeD(0x00)  // Purple = 0x01
-        .writeD(player.model.karma)
-        .writeD(player.model.groundSpdHigh)
-        .writeD(player.model.groundSpdLow)
-        .writeD(player.model.waterSpd)
-        .writeD(player.model.waterSpd)
+        .writeD(actor.model.karma)
+        .writeD(actor.model.run)
+        .writeD(actor.model.walk)
+        .writeD(actor.model.swim)
+        .writeD(actor.model.swim)
         .writeD(0x00)  // Floating Run Speed
         .writeD(0x00)  // Floating Walk Speed
         .writeD(0x00)  // Flying Run Speed
         .writeD(0x00)  // Flying Walk Speed
         .writeF(1.0)   // Movement Multiplier
-        .writeF(player.model.atkSpeed / 277.77777777777777)   // Attack Speed Multiplier
-        .writeF(player.model.collisionRadius)
-        .writeF(player.model.collisionHeight)
-        .writeD(player.model.hairStyle)
-        .writeD(player.model.hairColor)
-        .writeD(player.model.face)
-        .writeD(0x00)  // GM = 0x01
-        .writeS(player.title)
+        .writeF(actor.model.atkSpeed / 277.77777777777777)
+        .writeF(actor.model.radius)
+        .writeF(actor.model.size)
+        .writeD(actor.model.hair)
+        .writeD(actor.model.hairColor)
+        .writeD(actor.model.face)
+        .writeD(actor.model.isGM)
+        .writeS(actor.model.title)
         .writeD(0x00)  // Clan ID
         .writeD(0x00)  // Clan Crest ID
         .writeD(0x00)  // Ally ID
@@ -100,11 +100,23 @@ function userInfo(actor) {
         .writeD(0x00)  // ?
         .writeC(0x00)  // ?
         .writeC(0x00)  // Private Store Type
-        .writeC(player.model.canCraft)
-        .writeD(0x00)  // PK Kills
-        .writeD(0x00)  // PVP Kills
+        .writeC(actor.model.crafter)
+        .writeD(actor.model.pk)
+        .writeD(actor.model.pvp)
         .writeH(0x00)  // Cubic Count
-        .writeC(0x00); // Find Party Members = 0x01
+        .writeC(0x00)  // Find Party Members = 0x01
+        .writeD(0x00)  // Is invisible?
+        .writeC(0x00)  // ?
+        .writeD(0x00)  // Clan Privileges
+        .writeD(0x00)  // ?
+        .writeD(0x00)  // ?
+        .writeD(0x00)  // ?
+        .writeD(0x00)  // ?
+        .writeD(0x00)  // ?
+        .writeD(0x00)  // ?
+        .writeD(0x00)  // ?
+        .writeH(actor.model.recAvail)
+        .writeH(actor.model.recReceive);
 
     return packet.fetchBuffer();
 }

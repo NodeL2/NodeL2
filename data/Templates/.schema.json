@@ -109,14 +109,14 @@
                     "maxMp": {
                         "type": "integer"
                     },
-                    "load": {
+                    "maxLoad": {
                         "type": "integer"
                     }
                 },
                 "required": [
                     "maxHp",
                     "maxMp",
-                    "load"
+                    "maxLoad"
                 ]
             },
             "speed": {

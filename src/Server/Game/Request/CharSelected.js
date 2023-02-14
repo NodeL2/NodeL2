@@ -21,11 +21,11 @@ function consume(session, data) {
         Database.fetchClassInformation(character.classId).then((classInfo) => {
             // Create a new actor instance with info
             session.actor = new Actor({
-                ...character, ...classInfo
+                ...character, ...classInfo.template, ...classInfo.base, ...classInfo.stats, ...classInfo.vitals, ...classInfo.speed, ...classInfo.collision
             });
 
             session.dataSend(
-                ServerResponse.charSelected(session.actor)
+                ServerResponse.charSelected(session.actor.model)
             );
         });
     });
