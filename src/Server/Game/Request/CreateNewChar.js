@@ -33,7 +33,14 @@ function createNewChar(session, buffer) {
 
 function consume(session, data) {
     Database.fetchClassInformation(data.classId).then((classInfo) => {
-        Database.createCharacter(session.accountId, data, classInfo).then(() => {
+        const points = classInfo.bornAt;
+        const coords = points[utils.randomNumber(points.length)];
+
+        data = {
+            ...data, ...classInfo.vitals, ...coords
+        };
+
+        Database.createCharacter(session.accountId, data).then(() => {
             session.dataSend(
                 ServerResponse.charCreateSuccess()
             );

@@ -61,28 +61,22 @@ const Database = {
     },
 
     // Stores a new `Character` in database with provided details
-    createCharacter(username, data, classInfo) {
-        const points = classInfo.bornAt;
-        const rand = utils.randomNumber(points.length);
-        const coords = points[rand];
-
-        console.info(rand);
-
+    createCharacter(username, data) {
         return Database.execute(
             builder.insert('characters', {
                  username: username,
                      name: data.name, title: 'NodeL2 Champion',
                      race: data.race,
                   classId: data.classId,
-                    maxHp: classInfo.vitals.maxHp,
-                    maxMp: classInfo.vitals.maxMp,
+                    maxHp: data.maxHp,
+                    maxMp: data.maxMp,
                       sex: data.sex,
                      face: data.face,
                      hair: data.hair,
                 hairColor: data.hairColor,
-                     locX: coords.locX,
-                     locY: coords.locY,
-                     locZ: coords.locZ,
+                     locX: data.locX,
+                     locY: data.locY,
+                     locZ: data.locZ,
             })
         );
     },
