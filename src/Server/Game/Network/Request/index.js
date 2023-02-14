@@ -10,5 +10,6 @@ module.exports = {
       protocolVersion: require('./ProtocolVersion'),
             questList: require('./QuestList'),
               restart: require('./Restart'),
+             stopMove: require('./StopMove'),
      validatePosition: require('./ValidatePosition')
 };
