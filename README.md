@@ -1,4 +1,7 @@
 # NodeL2
+
+![GitHub Repo stars](https://img.shields.io/github/stars/dkoluris/nodel2?color=success) ![GitHub license](https://img.shields.io/github/license/dkoluris/nodel2?color=informational)
+
 L2 Chronicle 2 server emulator in NodeJS
 
 ## Prerequisites
