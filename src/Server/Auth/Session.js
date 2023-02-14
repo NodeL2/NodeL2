@@ -1,5 +1,5 @@
-const ServerResponse = invoke('Server/Auth/Response');
-const Opcodes        = invoke('Server/Auth/Opcodes');
+const ServerResponse = invoke('Server/Auth/Network/Response');
+const Opcodes        = invoke('Server/Auth/Network/Opcodes');
 
 class Session {
     constructor(socket) {

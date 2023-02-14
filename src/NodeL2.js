@@ -3,9 +3,9 @@ require('./Globals');
 // User imports
 const AuthSession = invoke('Server/Auth/Session');
 const GameSession = invoke('Server/Game/Session');
-const DataCache   = invoke('DataCache');
-const Database    = invoke('Database');
-const Server      = invoke('Server');
+const DataCache   = invoke('Server/Game/DataCache');
+const Database    = invoke('Server/Database');
+const Server      = invoke('Server/Server');
 
 console.info('\n\
     + ================================== \n\

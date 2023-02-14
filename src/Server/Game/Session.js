@@ -1,4 +1,4 @@
-const Opcodes = invoke('Server/Game/Opcodes');
+const Opcodes = invoke('Server/Game/Network/Opcodes');
 
 class Session {
     constructor(socket) {
