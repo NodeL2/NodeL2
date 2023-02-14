@@ -4,7 +4,7 @@
     "items": {
         "type": "object",
         "properties": {
-            "id": {
+            "npcId": {
                 "type": "integer"
             },
             "template": {
@@ -138,7 +138,7 @@
             }
         },
         "required": [
-            "id",
+            "npcId",
             "template",
             "stats",
             "vitals",

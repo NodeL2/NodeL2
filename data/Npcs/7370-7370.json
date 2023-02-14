@@ -1,5 +1,5 @@
 [{
-    "id": 1,
+    "npcId": 1,
     "template": { "kind": "Monster", "name": "Gremlin", "title": "", "hostile": false },
     "stats": { "pAtk": 4, "pDef": 41, "mAtk": 3, "mDef": 32, "atkSpd": 253, "castSpd": 333 },
     "vitals": { "level": 1, "maxHp": 65, "maxMp": 30 },
@@ -7,7 +7,7 @@
     "collision": { "radius": 10.0, "size": 15.0 },
     "spawns": [{ "locX": 44656, "locY": 40896, "locZ": -3552, "head": -1 }, { "locX": 47488, "locY": 41148, "locZ": -3552, "head": -1 }, { "locX": 46476, "locY": 41884, "locZ": -3552, "head": -1 }, { "locX": 45904, "locY": 41904, "locZ": -3552, "head": -1 }]
 },{
-    "id": 7370,
+    "npcId": 7370,
     "template": { "kind": "Npc", "name": "Nerupa", "title": "", "hostile": false },
     "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
     "vitals": { "level": 70, "maxHp": 3000, "maxMp": 0 },
@@ -15,7 +15,7 @@
     "collision": { "radius": 15.0, "size": 26.0 },
     "spawns": [{ "locX": 46048, "locY": 41200, "locZ": -3504, "head": 17000 }]
 },{
-    "id": 7400,
+    "npcId": 7400,
     "template": { "kind": "Guard", "name": "Newbie Helper", "title": "", "hostile": false },
     "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
     "vitals": { "level": 70, "maxHp": 3000, "maxMp": 0 },
