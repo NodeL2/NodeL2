@@ -59,6 +59,10 @@ global.utils = {
         let network = require('os').networkInterfaces();
         let ipv4 = network['en0'].filter(item => item.family === 'IPv4');
         return ipv4[0].address;
+    },
+
+    crushOb: (ob) => {
+        return require('objcrush')(ob);
     }
 };
 

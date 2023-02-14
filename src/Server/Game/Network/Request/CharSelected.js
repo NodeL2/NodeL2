@@ -19,8 +19,10 @@ function consume(session, data) {
 
         Database.fetchClassInformation(character.classId).then((classInfo) => {
             // Create a new actor instance with info
+            delete classInfo.bornAt;
+
             session.setActor({
-                ...character, ...classInfo.template, ...classInfo.base, ...classInfo.stats, ...classInfo.vitals, ...classInfo.speed, ...classInfo.collision
+                ...character, ...utils.crushOb(classInfo)
             });
 
             session.dataSend(
