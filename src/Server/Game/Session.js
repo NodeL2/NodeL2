@@ -1,4 +1,5 @@
 const Opcodes = invoke('Server/Game/Network/Opcodes');
+const Actor   = invoke('Server/Game/Actor/Actor');
 
 class Session {
     constructor(socket) {
@@ -7,6 +8,10 @@ class Session {
 
     setAccountId(username) {
         this.accountId = username;
+    }
+
+    setActor(properties) {
+        this.actor = new Actor(properties);
     }
 
     dataReceive(data) {

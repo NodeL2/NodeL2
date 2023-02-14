@@ -1,5 +1,4 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
-const Actor          = invoke('Server/Game/Actor/Actor');
 const ReceivePacket  = invoke('Server/Packet/Receive');
 const Database       = invoke('Server/Database');
 
@@ -20,7 +19,7 @@ function consume(session, data) {
 
         Database.fetchClassInformation(character.classId).then((classInfo) => {
             // Create a new actor instance with info
-            session.actor = new Actor({
+            session.setActor({
                 ...character, ...classInfo.template, ...classInfo.base, ...classInfo.stats, ...classInfo.vitals, ...classInfo.speed, ...classInfo.collision
             });
 
