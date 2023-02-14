@@ -1,7 +1,7 @@
-const ServerPacket = invoke('Server/Packet/Server');
+const SendPacket = invoke('Server/Packet/Send');
 
 function loginSuccess(session) {
-    const packet = new ServerPacket(0x03);
+    const packet = new SendPacket(0x03);
 
     packet
         .writeD(session.key1) // Session Key (first)

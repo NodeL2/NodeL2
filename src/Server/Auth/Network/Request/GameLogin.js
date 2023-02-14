@@ -1,8 +1,8 @@
 const ServerResponse = invoke('Server/Auth/Network/Response');
-const ClientPacket   = invoke('Server/Packet/Client');
+const ReceivePacket  = invoke('Server/Packet/Receive');
 
 function gameLogin(session, buffer) {
-    const packet = new ClientPacket(buffer);
+    const packet = new ReceivePacket(buffer);
 
     packet
         .readD()  // Session Key (first)

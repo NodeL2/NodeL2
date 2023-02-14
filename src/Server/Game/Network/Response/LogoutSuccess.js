@@ -1,7 +1,7 @@
-const ServerPacket = invoke('Server/Packet/Server');
+const SendPacket = invoke('Server/Packet/Send');
 
 function logoutSuccess() {
-    return (new ServerPacket(0x7e)).fetchBuffer();
+    return (new SendPacket(0x7e)).fetchBuffer();
 }
 
 module.exports = logoutSuccess;

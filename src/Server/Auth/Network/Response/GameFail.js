@@ -1,7 +1,7 @@
-const ServerPacket = invoke('Server/Packet/Server');
+const SendPacket = invoke('Server/Packet/Send');
 
 function gameFail(errorCode) {
-    const packet = new ServerPacket(0x06);
+    const packet = new SendPacket(0x06);
 
     packet
         .writeC(errorCode); // Failure reason

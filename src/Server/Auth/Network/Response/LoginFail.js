@@ -1,7 +1,7 @@
-const ServerPacket = invoke('Server/Packet/Server');
+const SendPacket = invoke('Server/Packet/Send');
 
 function loginFail(errorCode) {
-    const packet = new ServerPacket(0x01);
+    const packet = new SendPacket(0x01);
 
     packet
         .writeC(errorCode); // Failure reason

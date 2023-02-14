@@ -1,7 +1,7 @@
-const ServerPacket = invoke('Server/Packet/Server');
+const SendPacket = invoke('Server/Packet/Send');
 
 function initLS(sessionId, serverProtocol) {
-    const packet = new ServerPacket(0x00);
+    const packet = new SendPacket(0x00);
 
     packet
         .writeD(sessionId)

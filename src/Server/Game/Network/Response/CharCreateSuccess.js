@@ -1,7 +1,7 @@
-const ServerPacket = invoke('Server/Packet/Server');
+const SendPacket = invoke('Server/Packet/Send');
 
 function charCreateSuccess() {
-    const packet = new ServerPacket(0x19);
+    const packet = new SendPacket(0x19);
 
     packet
         .writeD(0x01);

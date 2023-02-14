@@ -1,8 +1,8 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
-const ClientPacket   = invoke('Server/Packet/Client');
+const ReceivePacket  = invoke('Server/Packet/Receive');
 
 function protocolVersion(session, buffer) {
-    const packet = new ClientPacket(buffer);
+    const packet = new ReceivePacket(buffer);
 
     packet
         .readD(); // Protocol Version

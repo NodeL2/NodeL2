@@ -1,4 +1,4 @@
-class ServerPacket {
+class SendPacket {
     constructor(opcode) {
         this.buffer = Buffer.from([opcode]);
     }
@@ -64,4 +64,4 @@ class ServerPacket {
     }
 }
 
-module.exports = ServerPacket;
+module.exports = SendPacket;

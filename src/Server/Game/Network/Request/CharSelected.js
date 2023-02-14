@@ -1,10 +1,10 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
 const Actor          = invoke('Server/Game/Actor/Actor');
-const ClientPacket   = invoke('Server/Packet/Client');
+const ReceivePacket  = invoke('Server/Packet/Receive');
 const Database       = invoke('Server/Database');
 
 function charSelected(session, buffer) {
-    const packet = new ClientPacket(buffer);
+    const packet = new ReceivePacket(buffer);
 
     packet
         .readD(); // Character Slot

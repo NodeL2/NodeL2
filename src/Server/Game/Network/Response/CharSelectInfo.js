@@ -1,7 +1,7 @@
-const ServerPacket = invoke('Server/Packet/Server');
+const SendPacket = invoke('Server/Packet/Send');
 
 function charSelectInfo(characters) {
-    const packet = new ServerPacket(0x13);
+    const packet = new SendPacket(0x13);
 
     packet
         .writeD(characters.length);

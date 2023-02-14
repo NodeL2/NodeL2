@@ -1,7 +1,7 @@
-const ServerPacket = invoke('Server/Packet/Server');
+const SendPacket = invoke('Server/Packet/Send');
 
 function restart() {
-    const packet = new ServerPacket(0x5f);
+    const packet = new SendPacket(0x5f);
 
     packet
         .writeD(0x01);

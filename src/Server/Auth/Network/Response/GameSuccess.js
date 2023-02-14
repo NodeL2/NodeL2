@@ -1,7 +1,7 @@
-const ServerPacket = invoke('Server/Packet/Server');
+const SendPacket = invoke('Server/Packet/Send');
 
 function gameSuccess(session) {
-    const packet = new ServerPacket(0x07);
+    const packet = new SendPacket(0x07);
 
     packet
         .writeD(session.key1)  // Session Key (first)

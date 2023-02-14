@@ -1,7 +1,7 @@
-const ServerPacket = invoke('Server/Packet/Server');
+const SendPacket = invoke('Server/Packet/Send');
 
 function charSelected(model) {
-    const packet = new ServerPacket(0x15);
+    const packet = new SendPacket(0x15);
 
     packet
         .writeS(model.name)

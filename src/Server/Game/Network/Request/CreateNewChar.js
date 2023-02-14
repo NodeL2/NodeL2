@@ -1,9 +1,9 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
-const ClientPacket   = invoke('Server/Packet/Client');
+const ReceivePacket  = invoke('Server/Packet/Receive');
 const Database       = invoke('Server/Database');
 
 function createNewChar(session, buffer) {
-    const packet = new ClientPacket(buffer);
+    const packet = new ReceivePacket(buffer);
 
     packet
         .readS()  // Name

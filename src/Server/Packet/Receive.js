@@ -1,4 +1,4 @@
-class ClientPacket {
+class ReceivePacket {
     constructor(buffer) {
         this.buffer = buffer;
         this.data   = new Array();
@@ -53,4 +53,4 @@ class ClientPacket {
     }
 }
 
-module.exports = ClientPacket;
+module.exports = ReceivePacket;

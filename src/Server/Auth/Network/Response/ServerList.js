@@ -1,7 +1,7 @@
-const ServerPacket = invoke('Server/Packet/Server');
+const SendPacket = invoke('Server/Packet/Send');
 
 function serverList(optn, hostname) {
-    const packet = new ServerPacket(0x04);
+    const packet = new SendPacket(0x04);
 
     packet
         .writeC(0x01)  // Amount of Servers
