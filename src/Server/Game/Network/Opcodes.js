@@ -8,6 +8,7 @@ const Opcodes = {
         });
 
         table[0x00] = ClientRequest.protocolVersion;
+        table[0x01] = ClientRequest.moveToLocation;
         table[0x03] = ClientRequest.enterWorld;
         table[0x08] = ClientRequest.authLogin;
         table[0x09] = ClientRequest.logout;
@@ -16,6 +17,7 @@ const Opcodes = {
         table[0x0d] = ClientRequest.charSelected;
         table[0x0e] = ClientRequest.enterCharCreation;
         table[0x46] = ClientRequest.restart;
+        table[0x48] = ClientRequest.validatePosition;
         table[0x63] = ClientRequest.questList;
 
         return table;

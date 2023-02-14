@@ -1,4 +1,5 @@
-const Creature = invoke('Server/Game/Actor/Creature');
+const ServerResponse = invoke('Server/Game/Network/Response');
+const Creature       = invoke('Server/Game/Actor/Creature');
 
 class Actor extends Creature {
     fetchUsername() {
@@ -95,6 +96,12 @@ class Actor extends Creature {
 
     fetchIsActive() {
         return this.model.isActive;
+    }
+
+    moveTo(session, data) {
+        session.dataSend(
+            ServerResponse.moveToLocation(this.fetchId(), data)
+        );
     }
 }
 

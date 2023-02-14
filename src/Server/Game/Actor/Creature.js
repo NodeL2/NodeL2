@@ -90,6 +90,12 @@ class Creature {
     fetchHead() {
         return this.model.head;
     }
+
+    updatePosition(data) {
+        this.model.locX = data.locX;
+        this.model.locY = data.locY;
+        this.model.locZ = data.locZ;
+    }
 }
 
 module.exports = Creature;

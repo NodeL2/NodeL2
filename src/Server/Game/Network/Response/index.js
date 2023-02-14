@@ -5,6 +5,7 @@ module.exports = {
         charTemplates: require('./CharTemplates'),
            cipherInit: require('./cipherInit'),
         logoutSuccess: require('./LogoutSuccess'),
+       moveToLocation: require('./MoveToLocation'),
             questList: require('./QuestList'),
               restart: require('./Restart'),
               sunrise: require('./Sunrise'),
