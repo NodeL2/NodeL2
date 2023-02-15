@@ -19,6 +19,7 @@ const Opcodes = {
         table[0x0e] = ClientRequest.enterCharCreation;
         table[0x0f] = ClientRequest.itemsList;
         table[0x1b] = ClientRequest.socialAction;
+        table[0x2f] = ClientRequest.skillUse;
         table[0x36] = ClientRequest.stopMove;
         table[0x37] = ClientRequest.destCancel;
         table[0x38] = ClientRequest.speak;
@@ -27,6 +28,7 @@ const Opcodes = {
         table[0x46] = ClientRequest.restart;
         table[0x48] = ClientRequest.validatePosition;
         table[0x63] = ClientRequest.questList;
+        table[0x9d] = (_, packet) => {}; // Skill Cool Time
 
         return table;
     })()

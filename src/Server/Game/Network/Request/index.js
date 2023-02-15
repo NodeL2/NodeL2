@@ -15,6 +15,7 @@ module.exports = {
             questList: require('./QuestList'),
               restart: require('./Restart'),
            skillsList: require('./SkillsList'),
+             skillUse: require('./SkillUse'),
          socialAction: require('./SocialAction'),
                 speak: require('./Speak'),
              stopMove: require('./StopMove'),

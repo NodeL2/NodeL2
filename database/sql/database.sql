@@ -30,7 +30,7 @@ CREATE TABLE `characters`(
     `hairColor`  int( 5)     NOT NULL,
     `karma`      int(10)     NOT NULL DEFAULT 0,
     `evalScore`  int( 5)     NOT NULL DEFAULT 0,
-    `recRemain`  int( 5)     NOT NULL DEFAULT 3,
+    `recRemain`  int( 5)     NOT NULL DEFAULT 0,
     `isGM`       boolean     NOT NULL DEFAULT 0,
     `isOnline`   boolean     NOT NULL DEFAULT 0,
     `isActive`   boolean     NOT NULL DEFAULT 1,

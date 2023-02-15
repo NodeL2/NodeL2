@@ -134,26 +134,26 @@ class Actor extends Creature {
 
     basicAction(session, data) {
         switch (data.actionId) {
-        case 0: // Sit / Stand
+        case 0x00: // Sit / Stand
             this.state.setSeated(!this.state.fetchSeated());
             session.dataSend(
                 ServerResponse.sitAndStand(this)
             );
             break;
 
-        case 1: // Walk / Run
+        case 0x01: // Walk / Run
             this.state.setWalkin(!this.state.fetchWalkin());
             session.dataSend(
                 ServerResponse.walkAndRun(this)
             );
             break;
 
-        case 40: // Recommend (0xb9 when self is selected...)
-            utils.infoWarn('GameServer:: recommend unimplemented');
+        case 0x28: // Recommend (0xb9 when self is selected...)
+            utils.infoWarn('GameServer:: recommend without preselection...');
             break;
 
         default:
-            utils.infoWarn('GameServer:: unknown basic action %d', data.actionId);
+            utils.infoWarn('GameServer:: unknown basic action 0x%s', utils.toHex(data.actionId));
             break;
         }
     }

@@ -1,0 +1,22 @@
+const ReceivePacket = invoke('Server/Packet/Receive');
+
+function skillUse(session, buffer) {
+    const packet = new ReceivePacket(buffer);
+
+    packet
+        .readD()  // Skill Id
+        .readD()  // Ctrl
+        .readC(); // Shift
+
+    consume(session, {
+        skillId: packet.data[0],
+           ctrl: packet.data[1],
+          shift: packet.data[2],
+    });
+}
+
+function consume(session, data) {
+    console.info(data);
+}
+
+module.exports = skillUse;
