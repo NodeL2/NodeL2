@@ -1,4 +1,5 @@
-const ReceivePacket = invoke('Server/Packet/Receive');
+const ServerResponse = invoke('Server/Game/Network/Response');
+const ReceivePacket  = invoke('Server/Packet/Receive');
 
 function skillUse(session, buffer) {
     const packet = new ReceivePacket(buffer);
@@ -16,7 +17,9 @@ function skillUse(session, buffer) {
 }
 
 function consume(session, data) {
-    console.info(data);
+    session.dataSend(
+        ServerResponse.skillStarted(session.actor, data.skillId)
+    );
 }
 
 module.exports = skillUse;

@@ -13,6 +13,7 @@ module.exports = {
               restart: require('./Restart'),
           sitAndStand: require('./SitAndStand'),
            skillsList: require('./SkillsList'),
+         skillStarted: require('./SkillStarted'),
          socialAction: require('./SocialAction'),
                 speak: require('./Speak'),
              stopMove: require('./StopMove'),
