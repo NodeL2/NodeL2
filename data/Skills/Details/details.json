@@ -1,5 +1,11 @@
-[
-    {
-        "id": 1177, "name": "Wind Strike", "passive": false, "castTime": 0, "reuseTime": 0
-    }
-]
+[{
+    "id": 118, "name": "Magician's Movement", "passive": true, "hitTime": 0, "reuseTime": 0
+},{
+    "id": 163, "name": "Spellcraft", "passive": true, "hitTime": 0, "reuseTime": 0
+},{
+    "id": 194, "name": "Lucky", "passive": true, "hitTime": 0, "reuseTime": 0
+},{
+    "id": 214, "name": "Mana Recovery", "passive": true, "hitTime": 0, "reuseTime": 0
+},{
+    "id": 1177, "name": "Wind Strike", "passive": false, "hitTime": 4000, "reuseTime": 6000
+}]

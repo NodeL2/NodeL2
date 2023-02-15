@@ -1,0 +1,31 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "integer"
+            },
+            "name": {
+                "type": "string"
+            },
+            "passive": {
+                "type": "boolean"
+            },
+            "hitTime": {
+                "type": "integer"
+            },
+            "reuseTime": {
+                "type": "integer"
+            }
+        },
+        "required": [
+            "id",
+            "name",
+            "passive",
+            "hitTime",
+            "reuseTime"
+        ]
+    }
+}

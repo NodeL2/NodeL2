@@ -1,0 +1,42 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "classId": {
+                "type": "integer"
+            },
+            "skills": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "level": {
+                            "type": "integer"
+                        },
+                        "minLvl": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "name",
+                        "level",
+                        "minLvl"
+                    ]
+                }
+            }
+        },
+        "required": [
+            "classId",
+            "skills"
+        ]
+    }
+}
