@@ -2,7 +2,7 @@
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/dkoluris/nodel2?color=success) ![GitHub license](https://img.shields.io/github/license/dkoluris/nodel2?color=informational)
 
-**LINEAGE II** Chronicle 2 server emulator for **NodeJS**. The structure is comprised of **ES6 JS** (as much as possible), **SQL** via **MariaDB**, **JSON** for vast data, and **JSON Schema** for data validation.
+**LINEAGE II** Chronicle 2 server emulator for **NodeJS**. The structure is comprised of **ES6 JavaScript** (as much as possible), **SQL** via **MariaDB**, **JSON** for vast data, and **JSON Schema** for data validation.
 
 ## Prerequisites
 * Install [NodeJS LTS](https://nodejs.org/en/download), and [MariaDB 16](https://mariadb.org/download/?t=mariadb&p=mariadb&r=10.6.12)
