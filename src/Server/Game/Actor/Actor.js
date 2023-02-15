@@ -1,8 +1,11 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
-const Creature       = invoke('Server/Game/Actor/Creature');
+const Creature       = invoke('Server/Game/Creature/Creature');
 const Database       = invoke('Server/Database');
 
 class Actor extends Creature {
+
+    // Get
+
     fetchUsername() {
         return this.model.username;
     }
@@ -99,6 +102,8 @@ class Actor extends Creature {
         return this.model.isActive;
     }
 
+    // Abstract
+
     moveTo(session, coords) {
         session.dataSend(
             ServerResponse.moveToLocation(this.fetchId(), coords)
@@ -106,10 +111,7 @@ class Actor extends Creature {
     }
 
     updatePosition(coords) {
-        this.model.locX = coords.locX;
-        this.model.locY = coords.locY;
-        this.model.locZ = coords.locZ;
-
+        this.setLocXYZ(coords);
         Database.storeCharacterLocation(this.fetchId(), coords);
     }
 
@@ -131,6 +133,29 @@ class Actor extends Creature {
     }
 
     basicAction(session, data) {
+        switch (data.actionId) {
+        case 0: // Sit / Stand
+            this.state.setSeated(!this.state.fetchSeated());
+            session.dataSend(
+                ServerResponse.sitAndStand(this)
+            );
+            break;
+
+        case 1: // Walk / Run
+            this.state.setWalkin(!this.state.fetchWalkin());
+            session.dataSend(
+                ServerResponse.walkAndRun(this)
+            );
+            break;
+
+        case 40: // Recommend (0xb9 when self is selected...)
+            utils.infoWarn('GameServer:: recommend unimplemented');
+            break;
+
+        default:
+            utils.infoWarn('GameServer:: unknown basic action %d', data.actionId);
+            break;
+        }
     }
 
     socialAction(session, actionId) { // TODO: Check if action is prohibited

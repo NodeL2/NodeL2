@@ -1,7 +1,32 @@
+const CreatureState = invoke('Server/Game/Creature/State');
+
 class Creature {
     constructor(data) {
         this.model = data;
+        this.state = new CreatureState();
     }
+
+    // Set
+
+    setLocX(locX) {
+        this.model.locX = locX;
+    }
+
+    setLocY(locY) {
+        this.model.locY = locY;
+    }
+
+    setLocZ(locZ) {
+        this.model.locZ = locZ;
+    }
+
+    setLocXYZ(coords) {
+        this.setLocX(coords.locX);
+        this.setLocY(coords.locY);
+        this.setLocZ(coords.locZ);
+    }
+
+    // Get
 
     fetchId() {
         return this.model.id;

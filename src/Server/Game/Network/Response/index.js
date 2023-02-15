@@ -11,10 +11,12 @@ module.exports = {
        moveToLocation: require('./MoveToLocation'),
             questList: require('./QuestList'),
               restart: require('./Restart'),
+          sitAndStand: require('./SitAndStand'),
            skillsList: require('./SkillsList'),
          socialAction: require('./SocialAction'),
                 speak: require('./Speak'),
              stopMove: require('./StopMove'),
               sunrise: require('./Sunrise'),
-             userInfo: require('./UserInfo')
+             userInfo: require('./UserInfo'),
+           walkAndRun: require('./WalkAndRun')
 };

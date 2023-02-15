@@ -1,6 +1,9 @@
-const Creature = invoke('Server/Game/Actor/Creature');
+const Creature = invoke('Server/Game/Creature/Creature');
 
-class Monster extends Creature {
+class Npc extends Creature {
+
+    // Get
+
     fetchKind() {
         this.model.kind;
     }
@@ -10,4 +13,4 @@ class Monster extends Creature {
     }
 }
 
-module.exports = Monster;
+module.exports = Npc;
