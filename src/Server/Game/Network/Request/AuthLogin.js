@@ -11,9 +11,9 @@ function authLogin(session, buffer) {
         .readD(); // Session Key (first)
 
     consume(session, {
-        username : packet.data[0],
-        key2     : packet.data[1],
-        key1     : packet.data[2],
+        username: packet.data[0],
+            key2: packet.data[1],
+            key1: packet.data[2],
     });
 }
 

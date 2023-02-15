@@ -11,11 +11,11 @@ function action(session, buffer) {
         .readC(); // Action Id (Shift or not)
 
     consume(session, {
-        destId   : packet.data[0],
-        locX     : packet.data[1],
-        locY     : packet.data[2],
-        locZ     : packet.data[3],
-        actionId : packet.data[4],
+          destId: packet.data[0],
+            locX: packet.data[1],
+            locY: packet.data[2],
+            locZ: packet.data[3],
+        actionId: packet.data[4],
     });
 }
 

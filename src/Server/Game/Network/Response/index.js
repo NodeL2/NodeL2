@@ -4,6 +4,7 @@ module.exports = {
        charSelectInfo: require('./CharSelectInfo'),
         charTemplates: require('./CharTemplates'),
            cipherInit: require('./CipherInit'),
+       destDeselected: require('./DestDeselected'),
          destSelected: require('./DestSelected'),
             itemsList: require('./ItemsList'),
         logoutSuccess: require('./LogoutSuccess'),

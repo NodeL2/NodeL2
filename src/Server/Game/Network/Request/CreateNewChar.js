@@ -21,13 +21,13 @@ function createNewChar(session, buffer) {
         .readD(); // Face
 
     consume(session, {
-        name      : packet.data[ 0],
-        race      : packet.data[ 1],
-        sex       : packet.data[ 2],
-        classId   : packet.data[ 3],
-        hair      : packet.data[10],
-        hairColor : packet.data[11],
-        face      : packet.data[12],
+             name: packet.data[ 0],
+             race: packet.data[ 1],
+              sex: packet.data[ 2],
+          classId: packet.data[ 3],
+             hair: packet.data[10],
+        hairColor: packet.data[11],
+             face: packet.data[12],
     });
 }
 

@@ -115,14 +115,22 @@ class Actor extends Creature {
 
     select(session, data) {
         if (this.fetchId() === data.destId) { // Click on self
-            session.dataSend(
-                ServerResponse.destSelected(data.destId)
-            );
+            this.unselect(session);
+            session.dataSend(ServerResponse.destSelected(data.destId));
             return;
         }
         else {
             utils.infoFail('GameServer:: User selection unimplemented')
         }
+    }
+
+    unselect(session) {
+        session.dataSend(
+            ServerResponse.destDeselected(this)
+        );
+    }
+
+    basicAction(session, data) {
     }
 
     socialAction(session, actionId) { // TODO: Check if action is prohibited
