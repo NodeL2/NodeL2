@@ -38,7 +38,6 @@ class Session {
 
     error(err) {
         utils.infoWarn('AuthServer:: exception');
-        utils.infoWarn(err.stack);
     }
 }
 

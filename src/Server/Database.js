@@ -87,6 +87,31 @@ const Database = {
         );
     },
 
+    updateCharacterActive(id) {
+        return Database.execute(
+            builder.update('characters', {
+                isActive: 1
+            }, 'id = ? LIMIT 1', id)
+        );
+    },
+
+    setSkill(skill, characterId) {
+        return Database.execute(
+            builder.insert('skills', {
+                         id: skill.id,
+                       name: skill.name,
+                      level: skill.level,
+                characterId: characterId
+            })
+        );
+    },
+
+    fetchSkill(id, characterId) {
+        return Database.execute(
+            builder.selectOne('skills', [], 'id = ? AND characterId = ?', id, characterId)
+        );
+    },
+
     storeCharacterLocation(id, coords) {
         return Database.execute(
             builder.update('characters', {

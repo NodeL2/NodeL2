@@ -28,7 +28,6 @@ class Session {
 
     error(err) {
         utils.infoWarn('GameServer:: exception');
-        utils.infoWarn(err.stack);
     }
 }
 
