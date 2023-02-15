@@ -33,7 +33,7 @@ CREATE TABLE `characters`(
     `recRemain`   int( 5)     NOT NULL DEFAULT 0,
     `isGM`        boolean     NOT NULL DEFAULT 0,
     `isOnline`    boolean     NOT NULL DEFAULT 0,
-    `isActive`    boolean     NOT NULL DEFAULT 0,
+    `isActive`    boolean     NOT NULL DEFAULT 1,
     `locX`        float       NOT NULL,
     `locY`        float       NOT NULL,
     `locZ`        float       NOT NULL,

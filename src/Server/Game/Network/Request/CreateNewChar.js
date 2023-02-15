@@ -1,4 +1,5 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
+const DataCache      = invoke('Server/Game/DataCache');
 const ReceivePacket  = invoke('Server/Packet/Receive');
 const Database       = invoke('Server/Database');
 
@@ -46,12 +47,32 @@ function consume(session, data) {
             );
 
             Database.fetchCharacters(session.accountId).then((userChars) => {
+                const last = userChars.slice(-1)[0];
+                awardBaseSkills(last.id, last.classId);
+
                 session.dataSend(
                     ServerResponse.charSelectInfo(userChars)
                 );
             });
         });
     });
+}
+
+function awardBaseSkills(id, classId) {
+    const item = DataCache.skillTree.find(ob => ob.classId === classId);
+
+    if (item) {
+        for (const skill of item.skills) {
+            Database.setSkill(skill, id);
+        }
+        return;
+    }
+
+    utils.infoWarn('GameServer:: First run, skills not found for ClassId ' + classId);
+}
+
+function awardBaseGear(id, classId) {
+    utils.infoWarn('GameServer:: First run, items not found for ClassId ' + classId);
 }
 
 module.exports = createNewChar;

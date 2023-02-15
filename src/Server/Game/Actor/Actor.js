@@ -1,34 +1,8 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
 const Creature       = invoke('Server/Game/Creature/Creature');
-const DataCache      = invoke('Server/Game/DataCache');
 const Database       = invoke('Server/Database');
 
 class Actor extends Creature {
-    constructor(data) {
-        // Parent inheritance
-        super(data);
-
-        // First run with this character
-        if (!data.isActive) {
-            this.awardBaseSkills(data.id, data.classId, () => {
-                Database.updateCharacterActive(data.id);
-            });
-        }
-    }
-
-    awardBaseSkills(id, classId, onSuccess) {
-        const item = DataCache.skillTree.find(ob => ob.classId === classId);
-
-        if (item) {
-            for (const skill of item.skills) {
-                Database.setSkill(skill, id);
-            }
-            onSuccess();
-            return;
-        }
-
-        utils.infoWarn('GameServer:: First run, skills not found for ClassId ' + data.classId);
-    }
 
     // Get
 
