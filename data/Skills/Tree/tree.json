@@ -1,0 +1,6 @@
+[
+    {
+        "classId": 25,
+        "skills": [{ "id": 194, "name": "Lucky", "level": 1, "minLvl": 1 }, { "id": 214, "name": "Mana Recovery", "level": 1, "minLvl": 1 }, { "id": 118, "name": "Magician's Movement", "level": 1, "minLvl": 1 }, { "id": 163, "name": "Spellcraft", "level": 1, "minLvl": 1 }, { "id": 1216, "name": "Self Heal", "level": 1, "minLvl": 1 }, { "id": 1177, "name": "Wind Strike", "level": 1, "minLvl": 1 }]
+    }
+]
