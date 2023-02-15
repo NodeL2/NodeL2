@@ -1,15 +1,20 @@
 module.exports = {
+               action: require('./Action'),
             authLogin: require('./AuthLogin'),
            charDelete: require('./CharDelete'),
          charSelected: require('./CharSelected'),
         createNewChar: require('./CreateNewChar'),
     enterCharCreation: require('./EnterCharCreation'),
            enterWorld: require('./EnterWorld'),
+            itemsList: require('./ItemsList'),
                logout: require('./Logout'),
        moveToLocation: require('./MoveToLocation'),
       protocolVersion: require('./ProtocolVersion'),
             questList: require('./QuestList'),
               restart: require('./Restart'),
+           skillsList: require('./SkillsList'),
+         socialAction: require('./SocialAction'),
+                speak: require('./Speak'),
              stopMove: require('./StopMove'),
      validatePosition: require('./ValidatePosition')
 };

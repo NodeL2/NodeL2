@@ -112,6 +112,24 @@ class Actor extends Creature {
 
         Database.storeCharacterLocation(this.fetchId(), coords);
     }
+
+    select(session, data) {
+        if (this.fetchId() === data.destId) { // Click on self
+            session.dataSend(
+                ServerResponse.destSelected(data.destId)
+            );
+            return;
+        }
+        else {
+            utils.infoFail('GameServer:: User selection unimplemented')
+        }
+    }
+
+    socialAction(session, actionId) { // TODO: Check if action is prohibited
+        session.dataSend(
+            ServerResponse.socialAction(this.fetchId(), actionId)
+        );
+    }
 }
 
 module.exports = Actor;

@@ -8,7 +8,7 @@ function validatePosition(session, buffer) {
         .readD()  // Y
         .readD()  // Z
         .readD()  // Head
-        .readD(); // Vehicle ID
+        .readD(); // Vehicle Id
 
     consume(session, {
         locX: packet.data[0],
