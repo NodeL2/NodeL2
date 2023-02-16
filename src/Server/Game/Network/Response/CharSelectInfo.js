@@ -34,12 +34,43 @@ function charSelectInfo(characters) {
             .writeD(0x00)  // ?
             .writeD(0x00)  // ?
             .writeD(0x00)  // ?
+            .writeD(0x00)  // ?
             .writeD(0x00); // ?
 
-        for (let i = 0; i < 31; i++) {
-            packet
-                .writeD(0x00);
-        }
+        console.info(characters.paperdoll);
+
+        packet
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // R-EAR
+            .writeD(0x00)  // L-EAR
+            .writeD(0x00)  // NECK
+            .writeD(0x00)  // R-FINGER
+            .writeD(0x00)  // L-FINGER
+            .writeD(0x00)  // HEAD
+            .writeD(0x00)  // R-HAND
+            .writeD(0x00)  // L-HAND
+            .writeD(0x00)  // GLOVES
+            .writeD(0x00)  // CHEST
+            .writeD(0x00)  // LEGS
+            .writeD(0x00)  // FEET
+            .writeD(0x00)  // BACK
+            .writeD(0x00)  // LR-HAND
+
+            .writeD(0x00)  // ?
+            .writeD(0x00)  // R-EAR
+            .writeD(0x00)  // L-EAR
+            .writeD(0x00)  // NECK
+            .writeD(0x00)  // R-FINGER
+            .writeD(0x00)  // L-FINGER
+            .writeD(0x00)  // HEAD
+            .writeD(0x00)  // R-HAND
+            .writeD(0x00)  // L-HAND
+            .writeD(0x00)  // GLOVES
+            .writeD(0x00)  // CHEST
+            .writeD(0x00)  // LEGS
+            .writeD(0x00)  // FEET
+            .writeD(0x00)  // BACK
+            .writeD(0x00); // LR-HAND
 
         packet
             .writeD(character.hair)
@@ -47,7 +78,7 @@ function charSelectInfo(characters) {
             .writeD(character.face)
             .writeF(character.maxHp)
             .writeF(character.maxMp)
-            .writeD(0x00); // Days before deletion
+            .writeD(0x00); // Time before deletion
     }
 
     return packet.fetchBuffer();

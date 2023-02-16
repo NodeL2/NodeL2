@@ -1,16 +1,12 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
-const Database       = invoke('Server/Database');
+const Common         = invoke('Server/Game/Network/Common');
 
 function restart(session, buffer) {
     session.dataSend(
         ServerResponse.restart()
     );
 
-    Database.fetchCharacters(session.accountId).then((userChars) => {
-        session.dataSend(
-            ServerResponse.charSelectInfo(userChars)
-        );
-    });
+    Common.fetchCharacters(session);
 }
 
 module.exports = restart;

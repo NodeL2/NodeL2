@@ -1,6 +1,6 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
+const Common         = invoke('Server/Game/Network/Common');
 const ReceivePacket  = invoke('Server/Packet/Receive');
-const Database       = invoke('Server/Database');
 
 function authLogin(session, buffer) {
     const packet = new ReceivePacket(buffer);
@@ -19,12 +19,7 @@ function authLogin(session, buffer) {
 
 function consume(session, data) { // TODO: Need to match the Session Keys
     session.accountId = data.username;
-
-    Database.fetchCharacters(session.accountId).then((userChars) => {
-        session.dataSend(
-            ServerResponse.charSelectInfo(userChars)
-        );
-    });
+    Common.fetchCharacters(session);
 }
 
 module.exports = authLogin;

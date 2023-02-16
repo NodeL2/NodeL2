@@ -1,4 +1,5 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
+const Common         = invoke('Server/Game/Network/Common');
 const ReceivePacket  = invoke('Server/Packet/Receive');
 const Database       = invoke('Server/Database');
 
@@ -19,10 +20,10 @@ function consume(session, data) {
 
         Database.deleteCharacter(session.accountId, character.name).then(() => {
 
-            Database.deleteSkills(character.id).then(() => {
-                userChars.splice(data.characterSlot, 1);
-                session.dataSend(ServerResponse.charSelectInfo(userChars));
-            });
+            Database.deleteSkills(character.id);
+            Database.deleteItems (character.id);
+
+            Common.fetchCharacters(session);
         });
     });
 }

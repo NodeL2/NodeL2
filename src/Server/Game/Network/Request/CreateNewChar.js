@@ -1,4 +1,5 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
+const Common         = invoke('Server/Game/Network/Common');
 const DataCache      = invoke('Server/Game/DataCache');
 const ReceivePacket  = invoke('Server/Packet/Receive');
 const Database       = invoke('Server/Database');
@@ -51,9 +52,7 @@ function consume(session, data) {
                 awardBaseSkills(last.id, last.classId);
                 awardBaseGear  (last.id, last.classId);
 
-                session.dataSend(
-                    ServerResponse.charSelectInfo(userChars)
-                );
+                Common.fetchCharacters(session);
             });
         });
     });

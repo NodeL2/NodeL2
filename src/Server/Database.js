@@ -120,6 +120,12 @@ const Database = {
         );
     },
 
+    deleteItems(characterId) {
+        return Database.execute(
+            builder.delete('items', 'characterId = ?', characterId)
+        );
+    },
+
     updateCharacterLocation(id, coords) {
         return Database.execute(
             builder.update('characters', {
