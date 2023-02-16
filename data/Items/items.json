@@ -1,0 +1,28 @@
+[{
+    "id": 6,
+    "template": { "kind": "Weapon", "name": "Apprentice's Wand" }
+},{
+    "id": 10,
+    "template": { "kind": "Weapon", "name": "Dagger" }
+},{
+    "id": 425,
+    "template": { "kind": "Armor", "name": "Apprentice's Tunic" }
+},{
+    "id": 461,
+    "template": { "kind": "Armor", "name": "Apprentice's Stockings" }
+},{
+    "id": 1146,
+    "template": { "kind": "Armor", "name": "Squire's Shirt" }
+},{
+    "id": 1147,
+    "template": { "kind": "Armor", "name": "Squire's Pants" }
+},{
+    "id": 2368,
+    "template": { "kind": "Weapon", "name": "Training Gloves" }
+},{
+    "id": 2369,
+    "template": { "kind": "Weapon", "name": "Squire's Sword" }
+},{
+    "id": 2370,
+    "template": { "kind": "Weapon", "name": "Guild Member's Club" }
+}]

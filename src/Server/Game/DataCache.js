@@ -9,6 +9,8 @@ const DataCache = {
         DataCache.npcs           = validateModel(path + 'Npcs/7370-7370');
         DataCache.skills         = validateModel(path + 'Skills/skills');
         DataCache.skillTree      = validateModel(path + 'Skills/Tree/tree');
+        DataCache.items          = validateModel(path + 'Items/items');
+        DataCache.itemsNewbie    = validateModel(path + 'Items/Newbie/newbie');
     },
 
     // Reads the `Base Stats` for a specific Class ID

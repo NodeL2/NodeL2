@@ -49,6 +49,7 @@ function consume(session, data) {
             Database.fetchCharacters(session.accountId).then((userChars) => {
                 const last = userChars.slice(-1)[0];
                 awardBaseSkills(last.id, last.classId);
+                awardBaseGear  (last.id, last.classId);
 
                 session.dataSend(
                     ServerResponse.charSelectInfo(userChars)
@@ -64,24 +65,13 @@ function awardBaseSkills(id, classId) {
 
     if (level1) {
         for (let skill of level1) {
-            skill.passive = fetchPassive(skill.id);
+            skill.passive = DataCache.skills.find(ob => ob.id === skill.id)?.passive ?? true;
             Database.setSkill(skill, id);
         }
         return;
     }
 
     utils.infoWarn('GameServer:: first run, level 1 skills not found for ClassId ' + classId);
-}
-
-function fetchPassive(id) {
-    const item = DataCache.skills.find(ob => ob.id === id);
-
-    if (item) {
-        return item.passive;
-    }
-
-    utils.infoWarn('GameServer:: passive check not found for SkillId ' + id);
-    return false;
 }
 
 function awardBaseGear(id, classId) {
