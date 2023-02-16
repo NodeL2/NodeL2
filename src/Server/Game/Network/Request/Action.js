@@ -25,7 +25,7 @@ function consume(session, data) {
         return;
     }
 
-    utils.infoWarn('GameServer:: Shift pressed down unimplemented');
+    utils.infoWarn('GameServer:: shift pressed down unimplemented');
 }
 
 module.exports = action;

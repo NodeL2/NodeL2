@@ -59,17 +59,18 @@ function consume(session, data) {
 }
 
 function awardBaseSkills(id, classId) {
-    const item = DataCache.skillTree.find(ob => ob.classId === classId);
+    const item   = DataCache.skillTree.find(ob => ob.classId === classId);
+    const level1 = item?.skills.filter(ob => ob.pLevel === 1);
 
-    if (item) {
-        for (let skill of item.skills) {
+    if (level1) {
+        for (let skill of level1) {
             skill.passive = fetchPassive(skill.id);
             Database.setSkill(skill, id);
         }
         return;
     }
 
-    utils.infoWarn('GameServer:: First run, skills not found for ClassId ' + classId);
+    utils.infoWarn('GameServer:: first run, level 1 skills not found for ClassId ' + classId);
 }
 
 function fetchPassive(id) {
@@ -79,12 +80,12 @@ function fetchPassive(id) {
         return item.passive;
     }
 
-    utils.infoWarn('GameServer:: First run, passive not found for SkillId ' + id);
+    utils.infoWarn('GameServer:: passive check not found for SkillId ' + id);
     return false;
 }
 
 function awardBaseGear(id, classId) {
-    utils.infoWarn('GameServer:: First run, items not found for ClassId ' + classId);
+    utils.infoWarn('GameServer:: first run, items not found for ClassId ' + classId);
 }
 
 module.exports = createNewChar;

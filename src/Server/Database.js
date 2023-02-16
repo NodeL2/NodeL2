@@ -113,6 +113,12 @@ const Database = {
         );
     },
 
+    deleteSkills(characterId) {
+        return Database.execute(
+            builder.delete('skills', 'characterId = ?', characterId)
+        );
+    },
+
     storeCharacterLocation(id, coords) {
         return Database.execute(
             builder.update('characters', {

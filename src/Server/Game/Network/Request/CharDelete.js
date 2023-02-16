@@ -18,8 +18,11 @@ function consume(session, data) {
         const character = userChars[data.characterSlot]
 
         Database.deleteCharacter(session.accountId, character.name).then(() => {
-            userChars.splice(data.characterSlot, 1);
-            session.dataSend(ServerResponse.charSelectInfo(userChars));
+
+            Database.deleteSkills(character.id).then(() => {
+                userChars.splice(data.characterSlot, 1);
+                session.dataSend(ServerResponse.charSelectInfo(userChars));
+            });
         });
     });
 }

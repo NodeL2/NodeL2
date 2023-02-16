@@ -122,7 +122,7 @@ class Actor extends Creature {
             return;
         }
         else {
-            utils.infoFail('GameServer:: User selection unimplemented')
+            utils.infoFail('GameServer:: user selection unimplemented')
         }
     }
 
