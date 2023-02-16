@@ -112,7 +112,7 @@ class Actor extends Creature {
 
     updatePosition(coords) {
         this.setLocXYZ(coords);
-        Database.storeCharacterLocation(this.fetchId(), coords);
+        Database.updateCharacterLocation(this.fetchId(), coords);
     }
 
     select(session, data) {

@@ -65,7 +65,8 @@ const Database = {
         return Database.execute(
             builder.insert('characters', {
                  username: username,
-                     name: data.name, title: 'NodeL2 Champion',
+                     name: data.name,
+                    title: data.title,
                      race: data.race,
                   classId: data.classId,
                     maxHp: data.maxHp,
@@ -84,14 +85,6 @@ const Database = {
     deleteCharacter(username, name) {
         return Database.execute(
             builder.delete('characters', 'username = ? AND name = ?', username, name)
-        );
-    },
-
-    updateCharacterActive(id) {
-        return Database.execute(
-            builder.update('characters', {
-                isActive: 1
-            }, 'id = ? LIMIT 1', id)
         );
     },
 
@@ -119,7 +112,7 @@ const Database = {
         );
     },
 
-    storeCharacterLocation(id, coords) {
+    updateCharacterLocation(id, coords) {
         return Database.execute(
             builder.update('characters', {
                 locX: coords.locX,
