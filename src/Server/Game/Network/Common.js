@@ -2,31 +2,25 @@ const ServerResponse = invoke('Server/Game/Network/Response');
 const Database       = invoke('Server/Database');
 
 const Common = {
-    fetchItems(characterId) {
-        var sequence = Promise.resolve();
-
-        Database.fetchItems(characterId).then((items) => {
-            console.info('Processing');
-            return items.filter(ob => ob.equipped === true);
-        });
-
-        console.info('What');
-        return [];
-    },
-
     fetchCharacters(session) {
         Database.fetchCharacters(session.accountId).then((userChars) => {
-            for (const char of userChars) {
-                char.paperdoll = new Array(0xff).fill(0);
-
-                for (const item of Common.fetchItems(char.id)) {
-                    char.paperdoll[item.slot] = { "id": item.id, "itemId": item.itemId };
-                }
-            }
-
-            session.dataSend(
-                ServerResponse.charSelectInfo(userChars)
-            );
+            userChars.reduce((previous, nextChar) => {
+                return previous.then(() => {
+                    return new Promise((done) => {
+                        Database.fetchItems(nextChar.id).then((items) => {
+                            nextChar.paperdoll = new Array(15).fill({ "id": 0, "itemId": 0 });
+                            for (const item of items.filter(ob => ob.equipped === 1)) {
+                                nextChar.paperdoll[item.slot] = { "id": item.id, "itemId": item.itemId };
+                            }
+                            done();
+                        });
+                    });
+                });
+            }, Promise.resolve()).then(() => {
+                session.dataSend(
+                    ServerResponse.charSelectInfo(userChars)
+                );
+            });
         });
     }
 };
