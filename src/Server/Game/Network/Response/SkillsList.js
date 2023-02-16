@@ -1,20 +1,17 @@
 const SendPacket = invoke('Server/Packet/Send');
 
-function skillsList() {
+function skillsList(skills) {
     const packet = new SendPacket(0x58);
 
     packet
-        .writeD(0x02); // Skills amount
+        .writeD(skills.length);
 
-    packet
-        .writeD(0x00)  // Passive -> 0x01
-        .writeD(0x01)  // Level
-        .writeD(1177); // Skill Id
-
-    packet
-        .writeD(0x00)  // Passive -> 0x01
-        .writeD(0x01)  // Level
-        .writeD(1068); // Skill Id
+    for (const skill of skills) {
+        packet
+            .writeD(skill.passive)
+            .writeD(skill.level)
+            .writeD(skill.id);
+    }
 
     return packet.fetchBuffer();
 }

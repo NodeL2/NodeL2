@@ -62,13 +62,25 @@ function awardBaseSkills(id, classId) {
     const item = DataCache.skillTree.find(ob => ob.classId === classId);
 
     if (item) {
-        for (const skill of item.skills) {
+        for (let skill of item.skills) {
+            skill.passive = fetchPassive(skill.id);
             Database.setSkill(skill, id);
         }
         return;
     }
 
     utils.infoWarn('GameServer:: First run, skills not found for ClassId ' + classId);
+}
+
+function fetchPassive(id) {
+    const item = DataCache.skills.find(ob => ob.id === id);
+
+    if (item) {
+        return item.passive;
+    }
+
+    utils.infoWarn('GameServer:: First run, passive not found for SkillId ' + id);
+    return false;
 }
 
 function awardBaseGear(id, classId) {

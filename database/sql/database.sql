@@ -43,6 +43,7 @@ CREATE TABLE `characters`(
 CREATE TABLE `skills`(
     `id`          int( 5)     NOT NULL,
     `name`        varchar(32) NOT NULL,
+    `passive`     boolean     NOT NULL,
     `level`       int( 5)     NOT NULL,
     `characterId` int( 8)     NOT NULL
 );

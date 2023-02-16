@@ -101,14 +101,15 @@ const Database = {
                          id: skill.id,
                        name: skill.name,
                       level: skill.level,
+                    passive: skill.passive,
                 characterId: characterId
             })
         );
     },
 
-    fetchSkill(id, characterId) {
+    fetchSkills(characterId) {
         return Database.execute(
-            builder.selectOne('skills', [], 'id = ? AND characterId = ?', id, characterId)
+            builder.select('skills', ['*'], 'characterId = ?', characterId)
         );
     },
 
