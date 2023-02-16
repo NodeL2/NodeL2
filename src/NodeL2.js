@@ -29,26 +29,3 @@ Database.init(() => {
         return new GameSession(socket);
     });
 });
-
-//var dude = 0;
-//
-//function hello() {
-//    console.info('hi ' + dude);
-//    dude++;
-//}
-//
-//function hello2() {
-//    return new Promise((success) => {
-//        console.info('hi ' + dude);
-//        dude++;
-//        success(dude);
-//    });
-//}
-//
-//let ids = [1, 2, 3];
-//
-//ids.reduce((previous, nextId) => {
-//    return previous.then(() => {
-//        return hello2(nextId);
-//    });
-//}, Promise.resolve());
