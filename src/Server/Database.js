@@ -51,22 +51,12 @@ const Database = {
         );
     },
 
-    // Reads the `Base Stats` for a specific Class ID
-    fetchClassInformation: (classId) => {
-        const DataCache = invoke('Server/Game/DataCache');
-        return new Promise((success, fail) => {
-            let model = DataCache.classTemplates.find(ob => ob.classId === classId);
-            return model ? success(model) : fail();
-        });
-    },
-
     // Stores a new `Character` in database with provided details
     createCharacter(username, data) {
         return Database.execute(
             builder.insert('characters', {
                  username: username,
                      name: data.name,
-                    title: data.title,
                      race: data.race,
                   classId: data.classId,
                     maxHp: data.maxHp,

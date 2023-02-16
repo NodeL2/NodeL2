@@ -1,4 +1,5 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
+const DataCache      = invoke('Server/Game/DataCache');
 const ReceivePacket  = invoke('Server/Packet/Receive');
 const Database       = invoke('Server/Database');
 
@@ -17,7 +18,7 @@ function consume(session, data) {
     Database.fetchCharacters(session.accountId).then((userChars) => {
         const character = userChars[data.characterSlot];
 
-        Database.fetchClassInformation(character.classId).then((classInfo) => {
+        DataCache.fetchClassInformation(character.classId).then((classInfo) => {
             // Create a new actor instance with info
             delete classInfo.bornAt;
 

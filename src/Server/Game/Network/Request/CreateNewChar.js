@@ -33,7 +33,7 @@ function createNewChar(session, buffer) {
 }
 
 function consume(session, data) {
-    Database.fetchClassInformation(data.classId).then((classInfo) => {
+    DataCache.fetchClassInformation(data.classId).then((classInfo) => {
         const points = classInfo.bornAt;
         const coords = points[utils.randomNumber(points.length)];
 

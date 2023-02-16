@@ -9,7 +9,15 @@ const DataCache = {
         DataCache.npcs           = validateModel(path + 'Npcs/7370-7370');
         DataCache.skills         = validateModel(path + 'Skills/skills');
         DataCache.skillTree      = validateModel(path + 'Skills/Tree/tree');
-    }
+    },
+
+    // Reads the `Base Stats` for a specific Class ID
+    fetchClassInformation: (classId) => {
+        return new Promise((success, fail) => {
+            let model = DataCache.classTemplates.find(ob => ob.classId === classId);
+            return model ? success(model) : fail();
+        });
+    },
 };
 
 function validateModel(filepath) {
