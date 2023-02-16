@@ -8,7 +8,6 @@ function itemsList(items) {
         .writeH(items.length);
 
     for (const item of items) {
-        console.info(item.slot ** 2)
         packet
             .writeH(0x00)    // Kind 1
             .writeD(item.id) // Conflict with other Ids?
