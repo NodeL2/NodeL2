@@ -3,26 +3,26 @@ const Database       = invoke('Server/Database');
 
 const Common = {
     fetchCharacters(session) {
-        function createPaperdoll(nextChar) {
+        const createPaperdoll = (character) => {
             return new Promise((done) => {
-                Database.fetchItems(nextChar.id).then((items) => {
-                    nextChar.paperdoll = new Array(15).fill({ "id": 0, "itemId": 0 });
+                Database.fetchItems(character.id).then((items) => {
+                    character.paperdoll = new Array(15).fill({ "id": 0, "itemId": 0 });
                     for (const item of items.filter(ob => ob.equipped === 1)) {
-                        nextChar.paperdoll[item.slot] = { "id": item.id, "itemId": item.itemId };
+                        character.paperdoll[item.slot] = { "id": item.id, "itemId": item.itemId };
                     }
                     done();
                 });
             });
         }
 
-        Database.fetchCharacters(session.accountId).then((userChars) => {
-            userChars.reduce((previous, nextChar) => {
+        Database.fetchCharacters(session.accountId).then((characters) => {
+            characters.reduce((previous, character) => {
                 return previous.then(() => {
-                    return createPaperdoll(nextChar);
+                    return createPaperdoll(character);
                 });
             }, Promise.resolve()).then(() => {
                 session.dataSend(
-                    ServerResponse.charSelectInfo(userChars)
+                    ServerResponse.charSelectInfo(characters)
                 );
             });
         });
