@@ -1,11 +1,26 @@
 const SendPacket = invoke('Server/Packet/Send');
 
-function itemsList() {
+function itemsList(items) {
     const packet = new SendPacket(0x1b);
 
     packet
         .writeH(0x01)
-        .writeH(0x00); // Items amount
+        .writeH(items.length);
+
+    for (const item of items) {
+        console.info(item.slot ** 2)
+        packet
+            .writeH(0x00)    // Kind 1
+            .writeD(item.id) // Conflict with other Ids?
+            .writeD(item.itemId)
+            .writeD(0x01)    // Amount
+            .writeH(0x00)    // Kind 2
+            .writeH(0xff)    // ?
+            .writeH(item.equipped)
+            .writeD(2 ** item.slot)
+            .writeH(0x00)    // Enchant level
+            .writeH(0x00);   // ?
+    }
 
     return packet.fetchBuffer();
 }

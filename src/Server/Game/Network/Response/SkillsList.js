@@ -10,7 +10,7 @@ function skillsList(skills) {
         packet
             .writeD(skill.passive)
             .writeD(skill.level)
-            .writeD(skill.id);
+            .writeD(skill.skillId);
     }
 
     return packet.fetchBuffer();

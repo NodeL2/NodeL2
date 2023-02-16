@@ -60,12 +60,12 @@ function consume(session, data) {
 }
 
 function awardBaseSkills(id, classId) {
-    const item   = DataCache.skillTree.find(ob => ob.classId === classId);
-    const level1 = item?.skills.filter(ob => ob.pLevel === 1);
+    const skills = DataCache.skillTree.find(ob => ob.classId === classId)?.skills;
+    const level1 = skills?.filter(ob => ob.pLevel === 1);
 
     if (level1) {
-        for (let skill of level1) {
-            skill.passive = DataCache.skills.find(ob => ob.id === skill.id)?.passive ?? true;
+        for (const skill of level1) {
+            skill.passive = DataCache.skills.find(ob => ob.id === skill.id)?.passive ?? false;
             Database.setSkill(skill, id);
         }
         return;
@@ -75,6 +75,16 @@ function awardBaseSkills(id, classId) {
 }
 
 function awardBaseGear(id, classId) {
+    const items = DataCache.itemsNewbie.find(ob => ob.classId === classId)?.items;
+
+    if (items) {
+        for (const item of items) {
+            item.slot = DataCache.items.find(ob => ob.id === item.id)?.template?.slot ?? 0;
+            Database.setItem(item, id);
+        }
+        return;
+    }
+
     utils.infoWarn('GameServer:: first run, items not found for ClassId ' + classId);
 }
 

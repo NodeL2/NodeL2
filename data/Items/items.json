@@ -1,28 +1,28 @@
 [{
     "id": 6,
-    "template": { "kind": "Weapon", "name": "Apprentice's Wand" }
+    "template": { "kind": "Weapon", "name": "Apprentice's Wand", "slot": 7 }
 },{
     "id": 10,
-    "template": { "kind": "Weapon", "name": "Dagger" }
+    "template": { "kind": "Weapon", "name": "Dagger", "slot": 7 }
 },{
     "id": 425,
-    "template": { "kind": "Armor", "name": "Apprentice's Tunic" }
+    "template": { "kind": "Armor", "name": "Apprentice's Tunic", "slot": 10 }
 },{
     "id": 461,
-    "template": { "kind": "Armor", "name": "Apprentice's Stockings" }
+    "template": { "kind": "Armor", "name": "Apprentice's Stockings", "slot": 11 }
 },{
     "id": 1146,
-    "template": { "kind": "Armor", "name": "Squire's Shirt" }
+    "template": { "kind": "Armor", "name": "Squire's Shirt", "slot": 10 }
 },{
     "id": 1147,
-    "template": { "kind": "Armor", "name": "Squire's Pants" }
+    "template": { "kind": "Armor", "name": "Squire's Pants", "slot": 11 }
 },{
     "id": 2368,
-    "template": { "kind": "Weapon", "name": "Training Gloves" }
+    "template": { "kind": "Weapon", "name": "Training Gloves", "slot": 14 }
 },{
     "id": 2369,
-    "template": { "kind": "Weapon", "name": "Squire's Sword" }
+    "template": { "kind": "Weapon", "name": "Squire's Sword", "slot": 7 }
 },{
     "id": 2370,
-    "template": { "kind": "Weapon", "name": "Guild Member's Club" }
+    "template": { "kind": "Weapon", "name": "Guild Member's Club", "slot": 7 }
 }]

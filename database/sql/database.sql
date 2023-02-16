@@ -43,7 +43,7 @@ CREATE TABLE `characters`(
 CREATE TABLE `skills`(
     `id`          int( 8)     NOT NULL AUTO_INCREMENT,
     `skillId`     int( 5)     NOT NULL,
-    `characterId` int( 8)     NOT NULL
+    `characterId` int( 8)     NOT NULL,
     `name`        varchar(48) NOT NULL,
     `passive`     boolean     NOT NULL,
     `level`       int( 5)     NOT NULL,
@@ -56,5 +56,6 @@ CREATE TABLE `items`(
     `characterId` int( 8)     NOT NULL,
     `name`        varchar(48) NOT NULL,
     `equipped`    boolean     NOT NULL,
+    `slot`        int( 5)     NOT NULL,
     PRIMARY KEY (`id`)
 );

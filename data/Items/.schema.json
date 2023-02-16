@@ -15,11 +15,15 @@
                     },
                     "name": {
                         "type": "string"
+                    },
+                    "slot": {
+                        "type": "integer"
                     }
                 },
                 "required": [
                     "kind",
-                    "name"
+                    "name",
+                    "slot"
                 ]
             }
         },

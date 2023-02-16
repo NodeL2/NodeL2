@@ -81,11 +81,11 @@ const Database = {
     setSkill(skill, characterId) {
         return Database.execute(
             builder.insert('skills', {
-                         id: skill.id,
+                    skillId: skill.id,
+                characterId: characterId,
                        name: skill.name,
-                      level: skill.level,
                     passive: skill.passive,
-                characterId: characterId
+                      level: skill.level
             })
         );
     },
@@ -99,6 +99,24 @@ const Database = {
     deleteSkills(characterId) {
         return Database.execute(
             builder.delete('skills', 'characterId = ?', characterId)
+        );
+    },
+
+    setItem(item, characterId) {
+        return Database.execute(
+            builder.insert('items', {
+                     itemId: item.id,
+                characterId: characterId,
+                       name: item.name,
+                   equipped: item.equipped,
+                       slot: item.slot
+            })
+        );
+    },
+
+    fetchItems(characterId) {
+        return Database.execute(
+            builder.select('items', ['*'], 'characterId = ?', characterId)
         );
     },
 
