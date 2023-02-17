@@ -17,13 +17,13 @@ function charDelete(session, buffer) {
 function consume(session, data) {
     Shared.fetchCharacters(session.accountId).then((characters) => {
         const character = characters[data.characterSlot];
-        characters.splice(data.characterSlot, 1);
 
         Database.deleteCharacter(session.accountId, character.name).then(() => {
 
             Database.deleteSkills(character.id);
             Database.deleteItems (character.id);
 
+            characters.splice(data.characterSlot, 1);
             Shared.enterCharacterHall(session, characters);
         });
     });

@@ -13,13 +13,12 @@ const DataCache = {
         DataCache.itemsNewbie    = validateModel(path + 'Items/Newbie/newbie');
     },
 
-    // Reads the `Base Stats` for a specific Class ID
-    //fetchClassInformation: (classId) => {
-    //    return new Promise((success, fail) => {
-    //        let model = DataCache.classTemplates.find(ob => ob.classId === classId);
-    //        return model ? success(model) : fail();
-    //    });
-    //},
+    fetchSkillDetailsFromId(id) {
+        return new Promise((success, fail) => {
+            let skill = DataCache.skills.find(ob => ob.id === id);
+            return (skill) ? success(skill) : fail();
+        });
+    }
 };
 
 function validateModel(filepath) {

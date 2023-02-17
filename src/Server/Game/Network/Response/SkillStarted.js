@@ -1,15 +1,15 @@
 const SendPacket = invoke('Server/Packet/Send');
 
-function skillStarted(actor, skillId) {
+function skillStarted(actor, skill) {
     const packet = new SendPacket(0x48);
 
     packet
         .writeD(actor.fetchId())
         .writeD(actor.fetchId())
-        .writeD(skillId)
+        .writeD(skill.id)
         .writeD(0x01)
-        .writeD(4000)
-        .writeD(6000)
+        .writeD(skill.hitTime)
+        .writeD(skill.reuseTime)
         .writeD(actor.fetchLocX())
         .writeD(actor.fetchLocY())
         .writeD(actor.fetchLocZ())
