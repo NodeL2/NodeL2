@@ -5,13 +5,13 @@
 **LINEAGE II** Chronicle 2 server emulator for **NodeJS**. The structure is comprised of **ES6 JavaScript** (as much as possible), **SQL** via **MariaDB**, **JSON** for vast data, and **JSON Schema** for data validation.
 
 ## What to expect
-You are able to login into the server with credentials. The server recognizes a new account, and creates it; also recognizes an existing account and posts the right error message in case the password is mismatched.
+✅ You are able to login into the server with credentials. The server recognizes a new account, and creates it; also recognizes an existing account and posts the right error message in case the password is mismatched.
 
-You are now in the server selection screen, that's where clicking on the default server redirects to the character selection hall. You can proceed and create a new character; the new character is being given the race class skills, and the newbie starter gear, such as weapon and armor according to race and class. Back to the character selection hall, the new character is selectable for entering the game. You can also delete a selected character.
+✅ You are now in the server selection screen, that's where clicking on the default server redirects to the character selection hall. You can proceed and create a new character; the new character is being given the race class skills, and the newbie starter gear, such as weapon and armor according to race and class. Back to the character selection hall, the new character is selectable for entering the game. You can also delete a selected character.
 
-Entering the Lineage2 world, the character is able to move through the map; open the statistics screen, the right numbers are assigned to the character such as level, name, title, basic abilities, basic stats, pvp, pk etc. Moving to the skills screen, these are clickable to see the skill animation effect, as well as categorized after which ones are active, and which ones are passive. On the actions screen, the character can stand-up or rest, run or walk, and express their emotions with a social action.
+✅ Entering the Lineage2 world, the character is able to move through the map; open the statistics screen, the right numbers are assigned to the character such as level, name, title, basic abilities, basic stats, pvp, pk etc. Moving to the skills screen, these are clickable to see the skill animation effect, as well as categorized after which ones are active, and which ones are passive. On the actions screen, the character can stand-up or rest, run or walk, and express their emotions with a social action.
 
-You can also see the attained items, which ones are equipped, and which ones are not. It is also possible to write text on the chat window and post it on the local, shout, or trade channel.
+✅ You can also see the attained items, which ones are equipped, and which ones are not. It is also possible to write text on the chat window and post it on the local, shout, or trade channel.
 
 ## Prerequisites
 * Install [NodeJS LTS](https://nodejs.org/en/download), and [MariaDB 16](https://mariadb.org/download/?t=mariadb&p=mariadb&r=10.6.12)
