@@ -1,8 +1,14 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
 const Creature       = invoke('Server/Game/Creature/Creature');
+const Paperdoll      = invoke('Server/Game/Actor/Paperdoll');
 const Database       = invoke('Server/Database');
 
 class Actor extends Creature {
+    constructor(data) {
+        // Parent inheritance
+        super(data);
+        this.paperdoll = new Paperdoll(data.paperdoll);
+    }
 
     // Get
 
