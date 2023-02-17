@@ -18,11 +18,11 @@
     "items": [{ "id": 6, "name": "Apprentice's Wand", "amount": 1, "equipped": true }, { "id": 425, "name": "Apprentice's Tunic", "amount": 1, "equipped": true }, { "id": 461, "name": "Apprentice's Stockings", "amount": 1, "equipped": true }]
 },{
     "classId": 44,
-    "items": [{ "id": 1146, "name": "Squire's Shirt", "amount": 1, "equipped": true }, { "id": 1147, "name": "Squire's Pants", "amount": 1, "equipped": true }, { "id": 2369, "name": "Squire's Sword", "amount": 1, "equipped": true }, { "id": 2368, "name": "Training Gloves", "amount": 1, "equipped": false }]
+    "items": [{ "id": 1146, "name": "Squire's Shirt", "amount": 1, "equipped": true }, { "id": 1147, "name": "Squire's Pants", "amount": 1, "equipped": true }, { "id": 2369, "name": "Squire's Sword", "amount": 1, "equipped": false }, { "id": 2368, "name": "Training Gloves", "amount": 1, "equipped": true }]
 },{
     "classId": 49,
     "items": [{ "id": 425, "name": "Apprentice's Tunic", "amount": 1, "equipped": true }, { "id": 461, "name": "Apprentice's Stockings", "amount": 1, "equipped": true }, { "id": 2368, "name": "Training Gloves", "amount": 1, "equipped": true } ]
 },{
     "classId": 53,
-    "items": [{ "id": 1146, "name": "Squire's Shirt", "amount": 1, "equipped": true }, { "id": 1147, "name": "Squire's Pants", "amount": 1, "equipped": true }, { "id": 2369, "name": "Squire's Sword", "amount": 1, "equipped": true }, { "id": 2370, "name": "Guild Member's Club", "amount": 1, "equipped": false }]
+    "items": [{ "id": 1146, "name": "Squire's Shirt", "amount": 1, "equipped": true }, { "id": 1147, "name": "Squire's Pants", "amount": 1, "equipped": true }, { "id": 2369, "name": "Squire's Sword", "amount": 1, "equipped": false }, { "id": 2370, "name": "Guild Member's Club", "amount": 1, "equipped": true }]
 }]
