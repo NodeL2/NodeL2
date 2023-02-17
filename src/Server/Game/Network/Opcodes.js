@@ -18,6 +18,7 @@ const Opcodes = {
         table[0x0d] = ClientRequest.charSelected;
         table[0x0e] = ClientRequest.enterCharCreation;
         table[0x0f] = ClientRequest.itemsList;
+        table[0x11] = ClientRequest.unequipItem;
         table[0x1b] = ClientRequest.socialAction;
         table[0x2f] = ClientRequest.skillUse;
         table[0x36] = ClientRequest.stopMove;

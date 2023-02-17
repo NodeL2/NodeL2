@@ -1,5 +1,6 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
 const Creature       = invoke('Server/Game/Creature/Creature');
+const Backpack       = invoke('Server/Game/Actor/Backpack');
 const Paperdoll      = invoke('Server/Game/Actor/Paperdoll');
 const Database       = invoke('Server/Database');
 
@@ -7,7 +8,12 @@ class Actor extends Creature {
     constructor(data) {
         // Parent inheritance
         super(data);
+
+        this.backpack  = new Backpack (data.items);
         this.paperdoll = new Paperdoll(data.paperdoll);
+
+        delete this.model.items;
+        delete this.model.paperdoll;
     }
 
     // Get

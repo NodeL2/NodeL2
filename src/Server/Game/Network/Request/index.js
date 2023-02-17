@@ -19,5 +19,6 @@ module.exports = {
          socialAction: require('./SocialAction'),
                 speak: require('./Speak'),
              stopMove: require('./StopMove'),
+          unequipItem: require('./UnequipItem'),
      validatePosition: require('./ValidatePosition')
 };

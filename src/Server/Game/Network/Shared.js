@@ -15,9 +15,10 @@ const Shared = {
             const createPaperdoll = (character) => {
                 return new Promise((done) => {
                     Database.fetchItems(character.id).then((items) => {
-                        character.paperdoll = new Array(15).fill({ "id": 0, "itemId": 0 });
+                        character.items = items;
+                        character.paperdoll = new Array(15).fill({ id: 0, itemId: 0 });
                         for (const item of items.filter(ob => ob.equipped === 1)) {
-                            character.paperdoll[item.slot] = { "id": item.id, "itemId": item.itemId };
+                            character.paperdoll[item.slot] = { id: item.id, itemId: item.itemId };
                         }
                         done();
                     });
@@ -25,6 +26,7 @@ const Shared = {
             }
 
             Database.fetchCharacters(accountId).then((characters) => {
+                console.info(characters);
                 characters.reduce((previous, character) => {
                     return previous.then(() => {
                         return createPaperdoll(character);
