@@ -14,6 +14,7 @@ function validatePosition(session, buffer) {
         locX: packet.data[0],
         locY: packet.data[1],
         locZ: packet.data[2],
+        head: packet.data[3],
     });
 }
 

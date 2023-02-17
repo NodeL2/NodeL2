@@ -16,10 +16,10 @@ CREATE TABLE `characters`(
     `classId`     int( 5)     NOT NULL,
     `race`        int( 5)     NOT NULL,
     `level`       int( 5)     NOT NULL DEFAULT 1,
-    `hp`          int( 5)     NOT NULL DEFAULT 50,
-    `maxHp`       int( 5)     NOT NULL,
-    `mp`          int( 5)     NOT NULL DEFAULT 25,
-    `maxMp`       int( 5)     NOT NULL,
+    `hp`          float       NOT NULL DEFAULT 50,
+    `maxHp`       float       NOT NULL,
+    `mp`          float       NOT NULL DEFAULT 25,
+    `maxMp`       float       NOT NULL,
     `exp`         int(20)     NOT NULL DEFAULT 0,
     `sp`          int(10)     NOT NULL DEFAULT 0,
     `pk`          int(10)     NOT NULL DEFAULT 0,
@@ -34,9 +34,10 @@ CREATE TABLE `characters`(
     `isGM`        boolean     NOT NULL DEFAULT 0,
     `isOnline`    boolean     NOT NULL DEFAULT 0,
     `isActive`    boolean     NOT NULL DEFAULT 1,
-    `locX`        float       NOT NULL,
-    `locY`        float       NOT NULL,
-    `locZ`        float       NOT NULL,
+    `locX`        int(10)     NOT NULL,
+    `locY`        int(10)     NOT NULL,
+    `locZ`        int(10)     NOT NULL,
+    `head`        int( 5)     NOT NULL DEFAULT 0,
     PRIMARY KEY (`id`)
 );
 

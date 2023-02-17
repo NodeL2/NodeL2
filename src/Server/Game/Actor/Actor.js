@@ -49,6 +49,34 @@ class Actor extends Creature {
     fetchMen() {
         return this.model.men;
     }
+
+    fetchEvasion() {
+        return this.model.evasion;
+    }
+
+    fetchAccur() {
+        return this.model.accur;
+    }
+
+    fetchCrit() {
+        return this.model.crit;
+    }
+
+    fetchSpeed() {
+        return this.model.speed;
+    }
+
+    fetchLoad() { // TODO: Not in structure. Add it!
+        return this.model.load;
+    }
+
+    fetchMaxLoad() {
+        return this.model.maxLoad;
+    }
+
+    fetchSwim() {
+        return this.model.swim;
+    }
     
     fetchPvp() {
         return this.model.pvp;
@@ -111,7 +139,7 @@ class Actor extends Creature {
     }
 
     updatePosition(coords) {
-        this.setLocXYZ(coords);
+        this.setLocXYZH(coords);
         Database.updateCharacterLocation(this.fetchId(), coords);
     }
 

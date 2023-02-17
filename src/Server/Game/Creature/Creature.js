@@ -20,10 +20,15 @@ class Creature {
         this.model.locZ = locZ;
     }
 
-    setLocXYZ(coords) {
+    setHead(head) {
+        this.model.head = head;
+    }
+
+    setLocXYZH(coords) {
         this.setLocX(coords.locX);
         this.setLocY(coords.locY);
         this.setLocZ(coords.locZ);
+        this.setHead(coords.head);
     }
 
     // Get
