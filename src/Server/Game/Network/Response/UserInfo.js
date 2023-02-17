@@ -8,7 +8,7 @@ function userInfo(actor) {
         .writeD(actor.fetchLocY())
         .writeD(actor.fetchLocZ())
         .writeD(actor.fetchHead())
-        .writeD(actor.fetchId())
+        .writeD(actor.fetchId() + 2000000)
         .writeS(actor.fetchName())
         .writeD(actor.fetchRace())
         .writeD(actor.fetchSex())

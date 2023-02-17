@@ -1,20 +1,23 @@
 class Backpack {
     constructor(items) {
-        this.raw = items;
+        this.items = items;
+    }
+
+    fetchItems() {
+        return this.items;
     }
 
     unequipGear(session, slot) {
-        // Find item and set as unequipped
-        let item = this.items.find(obj => obj.id === session.player.paperdoll.raw[bodyPartId].id);
+        // Find the correct item
+        const item = this.items.find(ob => ob.id === session.actor.paperdoll.fetchId(slot));
+        item.equipped = false;
 
-        if (item !== undefined) {
-            session.player.paperdoll.unequip(bodyPartId);
-            item.isEquipped = false;
+        // Unequip from actor
+        session.actor.paperdoll.unequip(slot);
 
-            // Move item to the end
-            this.items = this.items.filter(obj => obj.id !== item.id);
-            this.items.push(item);
-        }
+        // Move item to the end (not official?)
+        this.items = this.items.filter(ob => ob.id !== item?.id);
+        this.items.push(item);
     }
 }
 
