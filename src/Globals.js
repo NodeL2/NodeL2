@@ -41,6 +41,10 @@ global.utils = {
         return Math.floor(Math.random() * max);
     },
 
+    tupleAlloc(count, data) {
+        return new Array(count).fill(data);
+    },
+
     stripNull: (value) => {
         return value.toString('ascii').replace(/\u0000/gi, '');
     },

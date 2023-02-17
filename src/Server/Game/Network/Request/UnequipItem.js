@@ -12,7 +12,7 @@ function unequipItem(session, buffer) {
 }
 
 function consume(session, data) {
-    console.info(Math.log2(data.slot));
+    session.actor.backpack.unequipGear(session, Math.log2(data.slot));
 }
 
 module.exports = unequipItem;
