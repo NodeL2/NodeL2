@@ -20,12 +20,7 @@ function action(session, buffer) {
 }
 
 function consume(session, data) {
-    if (data.actionId === 0) {
-        session.actor.select(session, data);
-        return;
-    }
-
-    utils.infoWarn('GameServer:: shift pressed down unimplemented');
+    session.actor.select(session, data);
 }
 
 module.exports = action;

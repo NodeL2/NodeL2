@@ -1,5 +1,5 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
-const DataCache      = invoke('Server/Game/DataCache');
+const Shared         = invoke('Server/Game/Network/Shared');
 const ReceivePacket  = invoke('Server/Packet/Receive');
 const Database       = invoke('Server/Database');
 
@@ -15,10 +15,10 @@ function charSelected(session, buffer) {
 }
 
 function consume(session, data) {
-    Database.fetchCharacters(session.accountId).then((userChars) => {
-        const character = userChars[data.characterSlot];
+    Shared.fetchCharacters(session.accountId).then((characters) => {
+        const character = characters[data.characterSlot];
 
-        DataCache.fetchClassInformation(character.classId).then((classInfo) => {
+        Shared.fetchClassInformation(character.classId).then((classInfo) => {
             // Create a new actor instance with info
             delete classInfo.bornAt;
 

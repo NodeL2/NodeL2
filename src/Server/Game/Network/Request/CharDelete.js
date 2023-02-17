@@ -1,5 +1,5 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
-const Common         = invoke('Server/Game/Network/Common');
+const Shared         = invoke('Server/Game/Network/Shared');
 const ReceivePacket  = invoke('Server/Packet/Receive');
 const Database       = invoke('Server/Database');
 
@@ -15,15 +15,16 @@ function charDelete(session, buffer) {
 }
 
 function consume(session, data) {
-    Database.fetchCharacters(session.accountId).then((userChars) => {
-        const character = userChars[data.characterSlot]
+    Shared.fetchCharacters(session.accountId).then((characters) => {
+        const character = characters[data.characterSlot];
+        characters.splice(data.characterSlot, 1);
 
         Database.deleteCharacter(session.accountId, character.name).then(() => {
 
             Database.deleteSkills(character.id);
             Database.deleteItems (character.id);
 
-            Common.fetchCharacters(session);
+            Shared.enterCharacterHall(session, characters);
         });
     });
 }

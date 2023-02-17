@@ -116,13 +116,18 @@ class Actor extends Creature {
     }
 
     select(session, data) {
+        if (data.actionId !== 0) {
+            utils.infoWarn('GameServer:: shift + select unimplemented');
+            return;
+        }
+
         if (this.fetchId() === data.destId) { // Click on self
             this.unselect(session);
             session.dataSend(ServerResponse.destSelected(data.destId));
             return;
         }
         else {
-            utils.infoFail('GameServer:: user selection unimplemented')
+            utils.infoFail('GameServer:: further selection unimplemented');
         }
     }
 
@@ -133,6 +138,11 @@ class Actor extends Creature {
     }
 
     basicAction(session, data) {
+        if (data.shift || data.ctrl) {
+            utils.infoWarn('GameServer:: shift and ctrl unimplemented');
+            return;
+        }
+
         switch (data.actionId) {
         case 0x00: // Sit / Stand
             this.state.setSeated(!this.state.fetchSeated());

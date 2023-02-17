@@ -1,5 +1,5 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
-const Common         = invoke('Server/Game/Network/Common');
+const Shared         = invoke('Server/Game/Network/Shared');
 const DataCache      = invoke('Server/Game/DataCache');
 const ReceivePacket  = invoke('Server/Packet/Receive');
 const Database       = invoke('Server/Database');
@@ -34,7 +34,7 @@ function createNewChar(session, buffer) {
 }
 
 function consume(session, data) {
-    DataCache.fetchClassInformation(data.classId).then((classInfo) => {
+    Shared.fetchClassInformation(data.classId).then((classInfo) => {
         const points = classInfo.bornAt;
         const coords = points[utils.randomNumber(points.length)];
 
@@ -42,17 +42,17 @@ function consume(session, data) {
             ...data, ...classInfo.vitals, ...coords
         };
 
-        Database.createCharacter(session.accountId, data).then(() => {
+        Database.createCharacter(session.accountId, data).then((packet) => {
             session.dataSend(
                 ServerResponse.charCreateSuccess()
             );
 
-            Database.fetchCharacters(session.accountId).then((userChars) => {
-                const last = userChars.slice(-1)[0];
-                awardBaseSkills(last.id, last.classId);
-                awardBaseGear  (last.id, last.classId);
+            const charId = Number(packet.insertId);
+            awardBaseSkills(charId, data.classId);
+            awardBaseGear  (charId, data.classId);
 
-                Common.fetchCharacters(session);
+            Shared.fetchCharacters(session.accountId).then((characters) => {
+                Shared.enterCharacterHall(session, characters);
             });
         });
     });
