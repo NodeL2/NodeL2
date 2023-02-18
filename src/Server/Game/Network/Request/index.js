@@ -20,5 +20,6 @@ module.exports = {
                 speak: require('./Speak'),
              stopMove: require('./StopMove'),
           unequipItem: require('./UnequipItem'),
+              useItem: require('./UseItem'),
      validatePosition: require('./ValidatePosition')
 };
