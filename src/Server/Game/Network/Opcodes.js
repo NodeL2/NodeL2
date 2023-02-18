@@ -3,7 +3,7 @@ const ClientRequest = invoke('Server/Game/Network/Request');
 // Establishes an `Opcode` table to handle client packets
 const Opcodes = {
     table: (() => {
-        const table = new Array(0xff).fill((_, packet) => {
+        const table = utils.tupleAlloc(0xff, (_, packet) => {
             utils.infoFail('GameServer:: unknown opcode 0x%s', utils.toHex(packet[0]));
         });
 
@@ -31,7 +31,7 @@ const Opcodes = {
         table[0x46] = ClientRequest.restart;
         table[0x48] = ClientRequest.validatePosition;
         table[0x63] = ClientRequest.questList;
-        table[0x9d] = (_, packet) => {}; // Skill Cool Time
+        table[0x9d] = (_, _) => {}; // Skill Cool Time, not needed?
 
         return table;
     })()
