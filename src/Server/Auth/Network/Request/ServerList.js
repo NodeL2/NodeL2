@@ -1,6 +1,5 @@
 const ServerResponse = invoke('Server/Auth/Network/Response');
 const ReceivePacket  = invoke('Server/Packet/Receive');
-const Database       = invoke('Server/Database');
 
 function serverList(session, buffer) {
     const packet = new ReceivePacket(buffer);
@@ -37,7 +36,7 @@ function detectServerIPAddress(session) {
             return remoteAddr;
 
         case '192': // LAN
-            return Utils.fetchIPv4Address();
+            return utils.fetchIPv4Address();
     }
 
     // WAN / Internet
