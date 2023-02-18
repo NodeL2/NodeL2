@@ -31,7 +31,7 @@ const Opcodes = {
         table[0x46] = ClientRequest.restart;
         table[0x48] = ClientRequest.validatePosition;
         table[0x63] = ClientRequest.questList;
-        table[0x9d] = (_, _) => {}; // Skill Cool Time, not needed?
+        table[0x9d] = () => {}; // Skill Cool Time, not needed?
 
         return table;
     })()

@@ -1,7 +1,6 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
 const Shared         = invoke('Server/Game/Network/Shared');
 const ReceivePacket  = invoke('Server/Packet/Receive');
-const Database       = invoke('Server/Database');
 
 function charSelected(session, buffer) {
     const packet = new ReceivePacket(buffer);

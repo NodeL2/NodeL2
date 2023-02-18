@@ -1,5 +1,4 @@
-const ServerResponse = invoke('Server/Game/Network/Response');
-const ReceivePacket  = invoke('Server/Packet/Receive');
+const ReceivePacket = invoke('Server/Packet/Receive');
 
 function moveToLocation(session, buffer) {
     const packet = new ReceivePacket(buffer);

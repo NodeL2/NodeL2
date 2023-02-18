@@ -1,4 +1,3 @@
-const ServerResponse = invoke('Server/Game/Network/Response');
 const Shared         = invoke('Server/Game/Network/Shared');
 const ReceivePacket  = invoke('Server/Packet/Receive');
 

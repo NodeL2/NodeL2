@@ -36,7 +36,7 @@ class Session {
         this.socket.write(Buffer.concat([header, encipheredPacket]));
     }
 
-    error(err) {
+    error() {
         utils.infoWarn('AuthServer:: exception');
     }
 }

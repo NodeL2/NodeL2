@@ -1,6 +1,5 @@
-const ServerResponse = invoke('Server/Game/Network/Response');
-const DataCache      = invoke('Server/Game/DataCache');
-const ReceivePacket  = invoke('Server/Packet/Receive');
+const DataCache     = invoke('Server/Game/DataCache');
+const ReceivePacket = invoke('Server/Packet/Receive');
 
 function skillUse(session, buffer) {
     const packet = new ReceivePacket(buffer);
