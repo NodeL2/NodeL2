@@ -1,6 +1,7 @@
 module.exports = {
                action: require('./Action'),
             actionUse: require('./ActionUse'),
+             appeared: require('./Appeared'),
             authLogin: require('./AuthLogin'),
            charDelete: require('./CharDelete'),
          charSelected: require('./CharSelected'),

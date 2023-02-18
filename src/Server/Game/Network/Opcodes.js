@@ -22,6 +22,7 @@ const Opcodes = {
         table[0x14] = ClientRequest.useItem;
         table[0x1b] = ClientRequest.socialAction;
         table[0x2f] = ClientRequest.skillUse;
+        table[0x30] = ClientRequest.appeared;
         table[0x36] = ClientRequest.stopMove;
         table[0x37] = ClientRequest.destCancel;
         table[0x38] = ClientRequest.speak;

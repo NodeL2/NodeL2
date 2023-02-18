@@ -3,7 +3,7 @@ const DataCache      = invoke('Server/Game/DataCache');
 
 class Backpack {
     constructor(rawData) {
-        rawData.push({ id: 1000, itemId: 1665, name: "Apprentice's Wand" }); // TODO: Temp data, please delete
+        rawData.push({ id: 1000, itemId: 1665, name: "World Map" }); // TODO: Temp data, please delete
 
         this.items = [];
         for (let item of rawData) {
@@ -34,7 +34,7 @@ class Backpack {
                 item.equipped = true;
             }
             else {
-                if (item.itemId === 1665) {
+                if (item.itemId === 1665) { // TODO: This needs to be out of here...
                     session.dataSend(
                         ServerResponse.showMap(item.itemId)
                     );
