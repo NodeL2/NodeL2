@@ -41,6 +41,8 @@ CREATE TABLE `characters`(
     PRIMARY KEY (`id`)
 );
 
+ALTER TABLE `characters` AUTO_INCREMENT=2000000;
+
 CREATE TABLE `skills`(
     `id`          int( 8)     NOT NULL AUTO_INCREMENT,
     `skillId`     int( 5)     NOT NULL,

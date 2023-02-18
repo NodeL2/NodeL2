@@ -5,15 +5,15 @@ function useItem(session, buffer) {
     const packet = new ReceivePacket(buffer);
 
     packet
-        .readD(); // Item Id
+        .readD(); // Item (World Id)
 
     consume(session, {
-        itemId: packet.data[0]
+        id: packet.data[0]
     });
 }
 
 function consume(session, data) {
-    session.actor.backpack.useItem(session, data.itemId);
+    session.actor.backpack.useItem(session, data.id);
     session.dataSend(ServerResponse.userInfo (session.actor));
     session.dataSend(ServerResponse.itemsList(session.actor.backpack.fetchItems()));
 }

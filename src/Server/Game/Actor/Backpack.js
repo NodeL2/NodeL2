@@ -7,9 +7,9 @@ class Backpack {
         return this.items;
     }
 
-    useItem(session, itemId) {
+    useItem(session, id) {
         // Find item to use/equip
-        const item = this.items.find(ob => ob.id === itemId);
+        const item = this.items.find(ob => ob.id === id);
 
         if (item) {
             this.unequipGear(session, item.slot);
