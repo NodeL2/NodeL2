@@ -6,11 +6,16 @@ const DataCache = {
         const path = '../data/';
 
         DataCache.classTemplates = validateModel(path + 'Templates/templates');
-        DataCache.npcs           = validateModel(path + 'Npcs/7370-7370');
+        DataCache.npcs           = validateModel(path + 'Npcs/1-7400');
         DataCache.skills         = validateModel(path + 'Skills/skills');
         DataCache.skillTree      = validateModel(path + 'Skills/Tree/tree');
-        DataCache.items          = validateModel(path + 'Items/items');
         DataCache.itemsNewbie    = validateModel(path + 'Items/Newbie/newbie');
+
+        DataCache.items = [
+            ...validateModel(path + 'Items/Armors/armors'),
+            ...validateModel(path + 'Items/Weapons/weapons'),
+            ...validateModel(path + 'Items/Others/others')
+        ];
     },
 
     fetchSkillDetailsFromId(id) {

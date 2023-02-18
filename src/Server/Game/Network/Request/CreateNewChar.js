@@ -78,7 +78,7 @@ function awardBaseGear(id, classId) {
 
     if (items) {
         for (const item of items) {
-            item.slot = DataCache.items.find(ob => ob.id === item.id)?.template?.slot ?? 0;
+            item.slot = DataCache.items.find(ob => ob.itemId === item.itemId)?.etc?.slot ?? 0;
             Database.setItem(item, id);
         }
         return;

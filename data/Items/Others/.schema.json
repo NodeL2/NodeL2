@@ -4,7 +4,7 @@
     "items": {
         "type": "object",
         "properties": {
-            "id": {
+            "itemId": {
                 "type": "integer"
             },
             "template": {
@@ -16,20 +16,36 @@
                     "name": {
                         "type": "string"
                     },
-                    "slot": {
+                    "mass": {
+                        "type": "integer"
+                    },
+                    "price": {
                         "type": "integer"
                     }
                 },
                 "required": [
                     "kind",
                     "name",
-                    "slot"
+                    "mass",
+                    "price"
+                ]
+            },
+            "etc": {
+                "type": "object",
+                "properties": {
+                    "stackable": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "stackable"
                 ]
             }
         },
         "required": [
-            "id",
-            "template"
+            "itemId",
+            "template",
+            "etc"
         ]
     }
 }

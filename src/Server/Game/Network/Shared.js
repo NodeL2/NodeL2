@@ -24,7 +24,7 @@ const Shared = {
                         done();
                     });
                 });
-            }
+            };
 
             Database.fetchCharacters(accountId).then((characters) => {
                 characters.reduce((previous, character) => {

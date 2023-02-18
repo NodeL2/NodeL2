@@ -1,6 +1,22 @@
+const ServerResponse = invoke('Server/Game/Network/Response');
+const DataCache      = invoke('Server/Game/DataCache');
+
 class Backpack {
-    constructor(items) {
-        this.items = items;
+    constructor(rawData) {
+        rawData.push({ id: 1000, itemId: 1665, name: "Apprentice's Wand" }); // TODO: Temp data, please delete
+
+        this.items = [];
+        for (let item of rawData) {
+            const details = DataCache.items.find(ob => ob.itemId === item.itemId);
+            if (details) {
+                this.items.push({
+                    ...item, ...utils.crushOb(details)
+                });
+            }
+            else {
+                utils.infoWarn('GameServer:: can\'t find item details for %d', item.itemId);
+            }
+        }
     }
 
     fetchItems() {
@@ -12,9 +28,21 @@ class Backpack {
         const item = this.items.find(ob => ob.id === id);
 
         if (item) {
-            this.unequipGear(session, item.slot);
-            session.actor.paperdoll.equip(item.slot, item.id, item.itemId);
-            item.equipped = true;
+            if (item.kind === "Armor" || item.kind === "Weapon") {
+                this.unequipGear(session, item.slot);
+                session.actor.paperdoll.equip(item.slot, item.id, item.itemId);
+                item.equipped = true;
+            }
+            else {
+                if (item.itemId === 1665) {
+                    session.dataSend(
+                        ServerResponse.showMap(item.itemId)
+                    );
+                    return;
+                }
+
+                utils.infoWarn('GameServer:: unhandled item action');
+            }
         }
     }
 

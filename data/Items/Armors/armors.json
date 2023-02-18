@@ -1,0 +1,21 @@
+[{
+    "itemId": 425,
+    "template": { "kind": "Armor", "name": "Apprentice's Tunic", "mass": 2150, "price": 26 },
+    "stats": { "pDef": 17, "maxMp": 19 },
+    "etc": { "slot": 10 }
+},{
+    "itemId": 461,
+    "template": { "kind": "Armor", "name": "Apprentice's Stockings", "mass": 1100, "price": 6 },
+    "stats": { "pDef": 10, "maxMp": 10 },
+    "etc": { "slot": 11 }
+},{
+    "itemId": 1146,
+    "template": { "kind": "Armor", "name": "Squire's Shirt", "mass": 3301, "price": 26 },
+    "stats": { "pDef": 33, "maxMp": 0 },
+    "etc": { "slot": 10 }
+},{
+    "itemId": 1147,
+    "template": { "kind": "Armor", "name": "Squire's Pants", "mass": 1750, "price": 6 },
+    "stats": { "pDef": 20, "maxMp": 0 },
+    "etc": { "slot": 11 }
+}]

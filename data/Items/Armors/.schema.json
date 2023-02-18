@@ -1,0 +1,67 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "itemId": {
+                "type": "integer"
+            },
+            "template": {
+                "type": "object",
+                "properties": {
+                    "kind": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "mass": {
+                        "type": "integer"
+                    },
+                    "price": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "kind",
+                    "name",
+                    "mass",
+                    "price"
+                ]
+            },
+            "stats": {
+                "type": "object",
+                "properties": {
+                    "pDef": {
+                        "type": "integer"
+                    },
+                    "maxMp": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "pDef",
+                    "maxMp"
+                ]
+            },
+            "etc": {
+                "type": "object",
+                "properties": {
+                    "slot": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "slot"
+                ]
+            }
+        },
+        "required": [
+            "itemId",
+            "template",
+            "stats",
+            "etc"
+        ]
+    }
+}

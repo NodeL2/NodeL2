@@ -105,7 +105,7 @@ const Database = {
     setItem(item, characterId) {
         return Database.execute(
             builder.insert('items', {
-                     itemId: item.id,
+                     itemId: item.itemId,
                 characterId: characterId,
                        name: item.name,
                    equipped: item.equipped,
