@@ -1,13 +1,8 @@
 class CreatureState {
     constructor() {
-        this.isAsleep   = false;
-        this.isCastin   = false;
-        this.inCombat   = false;
-        this.isPickinUp = false;
-        this.isRooted   = false;
-        this.isSeated   = false;
-        this.isWalkin   = false;
-        this.isMovin    = false;
+        this.isSeated    = false;
+        this.isWalkin    = false;
+        this.inProcedure = false;
     }
 
     // Set
@@ -20,6 +15,10 @@ class CreatureState {
         this.isWalkin = walkin;
     }
 
+    setProcedure(procedure) {
+        this.inProcedure = procedure;
+    }
+
     // Get
 
     fetchSeated() {
@@ -28,6 +27,10 @@ class CreatureState {
 
     fetchWalkin() {
         return this.isWalkin;
+    }
+
+    fetchProcedure() {
+        return this.inProcedure;
     }
 }
 

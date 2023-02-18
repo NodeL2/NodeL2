@@ -185,10 +185,17 @@ class Actor extends Creature {
 
         switch (data.actionId) {
         case 0x00: // Sit / Stand
+            if (this.state.fetchProcedure()) {
+                return;
+            }
+
+            this.state.setProcedure(true);
             this.state.setSeated(!this.state.fetchSeated());
-            session.dataSend(
-                ServerResponse.sitAndStand(this)
-            );
+            session.dataSend(ServerResponse.sitAndStand(this));
+
+            setTimeout(() => {
+                this.state.setProcedure(false);
+            }, 2000);
             break;
 
         case 0x01: // Walk / Run
@@ -208,7 +215,11 @@ class Actor extends Creature {
         }
     }
 
-    socialAction(session, actionId) { // TODO: Check if action is prohibited
+    socialAction(session, actionId) {
+        if (this.state.fetchProcedure() || this.state.fetchSeated()) {
+            return;
+        }
+
         session.dataSend(
             ServerResponse.socialAction(this.fetchId(), actionId)
         );
