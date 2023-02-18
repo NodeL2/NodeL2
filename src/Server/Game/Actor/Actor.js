@@ -177,6 +177,16 @@ class Actor extends Creature {
         );
     }
 
+    requestedSkillAction(session, data) {
+        if (this.state.fetchProcedure() || this.state.fetchSeated()) {
+            return;
+        }
+
+        session.dataSend(
+            ServerResponse.skillStarted(this, data)
+        );
+    }
+
     basicAction(session, data) {
         if (data.shift || data.ctrl) {
             utils.infoWarn('GameServer:: shift and ctrl unimplemented');
@@ -195,7 +205,7 @@ class Actor extends Creature {
 
             setTimeout(() => {
                 this.state.setProcedure(false);
-            }, 2000);
+            }, 2000); // TODO: How to calculate this, based on what?
             break;
 
         case 0x01: // Walk / Run

@@ -23,9 +23,7 @@ function consume(session, data) {
             ...data, ...details
         }
 
-        session.dataSend(
-            ServerResponse.skillStarted(session.actor, utils.crushOb(data))
-        );
+        session.actor.requestedSkillAction(session, data);
     });
 }
 
