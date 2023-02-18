@@ -27,6 +27,7 @@
 ⚠️ It is advised to reset the database with the `database/install` script after **each pull** from the repo. A lot of quintessential implementation is worked on.
 * Launch server with `npm run --silent NodeL2`
 * Fire-up **LINEAGE II C2 Splendor** and authenticate
+* In order to unstuck a character, use this in the chat prompt: `.unstuck`
 
 ## License
 Open-source under [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0).
