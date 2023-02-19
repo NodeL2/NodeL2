@@ -14,13 +14,11 @@ class Paperdoll {
     }
 
     equip(slot, id, itemId) {
-        this.raw[slot].    id = id;
-        this.raw[slot].itemId = itemId;
+        this.raw[slot] = { id: id, itemId: itemId };
     }
 
     unequip(slot) {
-        this.raw[slot].    id = 0;
-        this.raw[slot].itemId = 0;
+        this.raw[slot] = {};
     }
 }
 

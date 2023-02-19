@@ -24,12 +24,21 @@ class Backpack {
     }
 
     useItem(session, id) {
-        // Find item to use/equip
-        const item = this.items.find(ob => ob.id === id);
+        const intentionItem = (id, success, fail = () => {}) => {
+            const item = this.items.find(ob => ob.id === id);
+            item ? success(item) : fail();
+        };
 
-        if (item) {
-            if (item.kind === "Armor" || item.kind === "Weapon") {
+        intentionItem(id, (item) => {
+            if (item.kind === "Armor") {
                 this.unequipGear(session, item.slot);
+                session.actor.paperdoll.equip(item.slot, item.id, item.itemId);
+                item.equipped = true;
+            }
+            else
+            if (item.kind === "Weapon") {
+                this.unequipGear(session,  7); // R-HAND
+                this.unequipGear(session, 14); // B-HAND
                 session.actor.paperdoll.equip(item.slot, item.id, item.itemId);
                 item.equipped = true;
             }
@@ -43,23 +52,24 @@ class Backpack {
 
                 utils.infoWarn('GameServer:: unhandled item action');
             }
-        }
+        });
     }
 
     unequipGear(session, slot) {
-        // Find the correct item
-        const item = this.items.find(ob => ob.id === session.actor.paperdoll.fetchId(slot));
+        const removeItem = (slot, success, fail = () => {}) => {
+            const item = this.items.find(ob => ob.id === session.actor.paperdoll.fetchId(slot));
+            item ? success(item) : fail();
+        };
 
-        if (item) {
-            item.equipped = false;
-
+        removeItem(slot, (item) => {
             // Unequip from actor
             session.actor.paperdoll.unequip(slot);
+            item.equipped = false;
 
             // Move item to the end (not official?)
             this.items = this.items.filter(ob => ob.id !== item?.id);
             this.items.push(item);
-        }
+        });
     }
 }
 
