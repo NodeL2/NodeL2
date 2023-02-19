@@ -3,7 +3,10 @@ const DataCache      = invoke('Server/Game/DataCache');
 
 class Backpack {
     constructor(rawData) {
-        rawData.push({ id: 1000, itemId: 1665, name: "World Map" }); // TODO: Temp data, please delete
+        rawData.push(
+            { id: 1000, itemId: 1665, name: "World Map" },
+            { id: 1001, itemId:   18, name: "Leather Shield" }
+        ); // TODO: Temp data, please delete
 
         this.items = [];
         for (let item of rawData) {
@@ -37,8 +40,14 @@ class Backpack {
             }
             else
             if (item.kind === "Weapon") {
-                this.unequipGear(session,  7); // R-HAND
-                this.unequipGear(session, 14); // B-HAND
+                if (item.slot ===  7 || item.slot === 8) {
+                    this.unequipGear(session, 14); // B-HAND
+                }
+                else
+                if (item.slot === 14) {
+                    this.unequipGear(session,  7); // R-HAND
+                    this.unequipGear(session,  8); // L-HAND
+                }
                 session.actor.paperdoll.equip(item.slot, item.id, item.itemId);
                 item.equipped = true;
             }
@@ -58,7 +67,7 @@ class Backpack {
     unequipGear(session, slot) {
         const removeItem = (slot, success, fail = () => {}) => {
             const item = this.items.find(ob => ob.id === session.actor.paperdoll.fetchId(slot));
-            item ? success(item) : fail();
+            item ? success(item) : fail;
         };
 
         removeItem(slot, (item) => {

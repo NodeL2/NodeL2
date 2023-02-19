@@ -9,6 +9,11 @@
     "stats": { "pAtk": 5, "mAtk": 5, "atkSpd": 433, "crit": 120, "accur": -3.75 },
     "etc": { "slot": 7, "soulshot": 0, "spiritshot": 0 }
 },{
+    "itemId": 18,
+    "template": { "kind": "Weapon", "name": "Leather Shield", "class1": 1, "class2": 1, "mass": 1430, "price": 39 },
+    "stats": { "pAtk": 0, "mAtk": 0, "atkSpd": 0, "crit": 0, "accur": 0.0 },
+    "etc": { "slot": 8, "soulshot": 0, "spiritshot": 0 }
+},{
     "itemId": 2368,
     "template": { "kind": "Weapon", "name": "Training Gloves", "class1": 0, "class2": 0, "mass": 1580, "price": 138 },
     "stats": { "pAtk": 7, "mAtk": 5, "atkSpd": 325, "crit": 60, "accur": 8.0 },
