@@ -31,7 +31,7 @@ function charSelected(model) {
         .writeD(model.dex)
         .writeD(model.wit);
 
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 32; i++) {
         packet
             .writeD(0x00);
     }

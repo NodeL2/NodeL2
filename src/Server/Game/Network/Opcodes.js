@@ -36,6 +36,10 @@ const Opcodes = {
         table[0x63] = ClientRequest.questList;
         table[0x9d] = () => {}; // Skill Cool Time, not needed?
 
+        table[0x4b] = () => {}; // ?
+        table[0xcd] = () => {}; // Map?
+        table[0xd0] = () => {}; // ?
+
         return table;
     })()
 };

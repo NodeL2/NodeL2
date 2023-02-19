@@ -30,12 +30,12 @@ function userInfo(actor) {
         .writeD(actor.fetchMaxLoad())
         .writeD(0x28); // ?
 
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < 16; i++) {
             packet
                 .writeD(actor.paperdoll.fetchId(i));
         }
 
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < 16; i++) {
             packet
                 .writeD(actor.paperdoll.fetchItemId(i));
         }

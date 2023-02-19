@@ -10,6 +10,7 @@ const Opcodes = {
         table[0x00] = ClientRequest.authLogin;
         table[0x02] = ClientRequest.gameLogin;
         table[0x05] = ClientRequest.serverList;
+        table[0x07] = ClientRequest.authGG;
 
         return table;
     })()
