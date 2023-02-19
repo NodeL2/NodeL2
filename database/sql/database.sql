@@ -46,27 +46,29 @@ ALTER TABLE `characters` AUTO_INCREMENT=2000000;
 CREATE TABLE `skills`(
     `id`          int( 8)     NOT NULL AUTO_INCREMENT,
     `skillId`     int( 5)     NOT NULL,
-    `characterId` int( 8)     NOT NULL,
     `name`        varchar(48) NOT NULL,
     `passive`     boolean     NOT NULL,
     `level`       int( 5)     NOT NULL,
+    `characterId` int( 8)     NOT NULL,
     PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `items`(
     `id`          int( 8)     NOT NULL AUTO_INCREMENT,
     `itemId`      int( 5)     NOT NULL,
-    `characterId` int( 8)     NOT NULL,
     `name`        varchar(48) NOT NULL,
     `equipped`    boolean     NOT NULL,
     `slot`        int( 5)     NOT NULL,
+    `characterId` int( 8)     NOT NULL,
     PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `shortcuts`(
     `id`          int( 8)     NOT NULL AUTO_INCREMENT,
-    `worldId`     int( 5)     NOT NULL,
-    `characterId` int( 8)     NOT NULL,
+    `worldId`     int( 8)     NOT NULL,
+    `kind`        int( 5)     NOT NULL,
     `slot`        int( 5)     NOT NULL,
+    `unknown`     int( 5)     NOT NULL,
+    `characterId` int( 8)     NOT NULL,
     PRIMARY KEY (`id`)
 );

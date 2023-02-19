@@ -12,6 +12,7 @@ module.exports = {
         moveToLocation: require('./MoveToLocation'),
              questList: require('./QuestList'),
                restart: require('./Restart'),
+          shortcutInit: require('./ShortcutInit'),
                showMap: require('./ShowMap'),
            sitAndStand: require('./SitAndStand'),
             skillsList: require('./SkillsList'),

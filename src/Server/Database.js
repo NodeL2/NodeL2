@@ -126,6 +126,30 @@ const Database = {
         );
     },
 
+    setShortcut(characterId, shortcut) {
+        return Database.execute(
+            builder.insert('shortcuts', {
+                    worldId: shortcut.worldId,
+                characterId: characterId,
+                       kind: shortcut.kind,
+                       slot: shortcut.slot,
+                    unknown: shortcut.unknown,
+            })
+        );
+    },
+
+    fetchShortcuts(characterId) {
+        return Database.execute(
+            builder.select('shortcuts', ['*'], 'characterId = ?', characterId)
+        );
+    },
+
+    deleteShortcuts(characterId) {
+        return Database.execute(
+            builder.delete('shortcuts', 'characterId = ?', characterId)
+        );
+    },
+
     updateCharacterLocation(id, coords) {
         return Database.execute(
             builder.update('characters', {

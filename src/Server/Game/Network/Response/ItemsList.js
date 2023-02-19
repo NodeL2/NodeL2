@@ -1,10 +1,10 @@
 const SendPacket = invoke('Server/Packet/Send');
 
-function itemsList(items) {
+function itemsList(items, popup = false) {
     const packet = new SendPacket(0x1b);
 
     packet
-        .writeH(0x01)
+        .writeH(popup)
         .writeH(items.length);
 
     for (const item of items) {
