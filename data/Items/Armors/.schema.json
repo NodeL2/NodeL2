@@ -16,6 +16,12 @@
                     "name": {
                         "type": "string"
                     },
+                    "class1": {
+                        "type": "integer"
+                    },
+                    "class2": {
+                        "type": "integer"
+                    },
                     "mass": {
                         "type": "integer"
                     },
@@ -26,6 +32,8 @@
                 "required": [
                     "kind",
                     "name",
+                    "class1",
+                    "class2",
                     "mass",
                     "price"
                 ]

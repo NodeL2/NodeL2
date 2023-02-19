@@ -1,5 +1,5 @@
 [{
     "itemId": 1665,
-    "template": { "kind": "Other", "name": "World Map", "mass": 0, "price": 500 },
+    "template": { "kind": "Other", "name": "World Map", "class1": 0, "class2": 1, "mass": 0, "price": 500 },
     "etc": { "stackable": false }
 }]

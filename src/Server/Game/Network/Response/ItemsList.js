@@ -9,16 +9,16 @@ function itemsList(items) {
 
     for (const item of items) {
         packet
-            .writeH(0x00)    // Kind 1
-            .writeD(item.id) // Conflict with other Ids?
+            .writeH(item.class1)
+            .writeD(item.id)
             .writeD(item.itemId)
-            .writeD(0x01)    // Amount
-            .writeH(0x00)    // Kind 2
-            .writeH(0xff)    // ?
+            .writeD(0x01)  // Amount
+            .writeH(item.class2)
+            .writeH(0xff)  // ?
             .writeH(item.equipped)
             .writeD(2 ** item.slot)
-            .writeH(0x00)    // Enchant level
-            .writeH(0x00);   // ?
+            .writeH(0x00)  // Enchant level
+            .writeH(0x00); // ?
     }
 
     return packet.fetchBuffer();
