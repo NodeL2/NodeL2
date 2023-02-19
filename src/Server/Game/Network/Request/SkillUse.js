@@ -18,6 +18,10 @@ function skillUse(session, buffer) {
 
 function consume(session, data) {
     DataCache.fetchSkillDetailsFromId(data.id).then((details) => {
+        if (details.passive) {
+            return;
+        }
+
         data = {
             ...data, ...details
         }

@@ -215,8 +215,7 @@ class Actor extends Creature {
             );
             break;
 
-        case 0x28: // Recommend (0xb9 when self is selected...)
-            utils.infoWarn('GameServer:: recommend without preselection...');
+        case 0x28: // Recommend without selection (0xb9 when self is selected...)
             break;
 
         default:

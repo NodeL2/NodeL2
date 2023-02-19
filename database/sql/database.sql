@@ -62,3 +62,11 @@ CREATE TABLE `items`(
     `slot`        int( 5)     NOT NULL,
     PRIMARY KEY (`id`)
 );
+
+CREATE TABLE `shortcuts`(
+    `id`          int( 8)     NOT NULL AUTO_INCREMENT,
+    `worldId`     int( 5)     NOT NULL,
+    `characterId` int( 8)     NOT NULL,
+    `slot`        int( 5)     NOT NULL,
+    PRIMARY KEY (`id`)
+);
