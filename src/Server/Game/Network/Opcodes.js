@@ -32,6 +32,7 @@ const Opcodes = {
         table[0x45] = ClientRequest.actionUse;
         table[0x46] = ClientRequest.restart;
         table[0x48] = ClientRequest.validatePosition;
+        table[0x59] = ClientRequest.trashItem;
         table[0x63] = ClientRequest.questList;
         table[0x9d] = () => {}; // Skill Cool Time, not needed?
 

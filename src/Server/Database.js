@@ -144,6 +144,12 @@ const Database = {
         );
     },
 
+    deleteShortcut(characterId, slot) {
+        return Database.execute(
+            builder.delete('shortcuts', 'slot = ? AND characterId = ?', slot, characterId)
+        )
+    },
+
     deleteShortcuts(characterId) {
         return Database.execute(
             builder.delete('shortcuts', 'characterId = ?', characterId)

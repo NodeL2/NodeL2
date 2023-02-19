@@ -41,13 +41,15 @@ class Backpack {
             else
             if (item.kind === "Weapon") {
                 if (item.slot ===  7 || item.slot === 8) {
-                    this.unequipGear(session, 14); // B-HAND
+                    this.unequipGear(session, 14); // Both hands
                 }
                 else
                 if (item.slot === 14) {
-                    this.unequipGear(session,  7); // R-HAND
-                    this.unequipGear(session,  8); // L-HAND
+                    this.unequipGear(session,  7); // R
+                    this.unequipGear(session,  8); // L
                 }
+
+                this.unequipGear(session, item.slot);
                 session.actor.paperdoll.equip(item.slot, item.id, item.itemId);
                 item.equipped = true;
             }

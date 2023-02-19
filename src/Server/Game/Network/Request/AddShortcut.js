@@ -20,10 +20,15 @@ function addShortcut(session, buffer) {
 }
 
 function consume(session, data) {
-    Database.setShortcut(session.actor.fetchId(), data).then(() => {
-        session.dataSend(
-            ServerResponse.addShortcut(data)
-        );
+    const worldId = session.actor.fetchId();
+
+    Database.deleteShortcut(worldId, data.slot).then(() => {
+
+        Database.setShortcut(worldId, data).then(() => {
+            session.dataSend(
+                ServerResponse.addShortcut(data)
+            );
+        });
     });
 }
 
