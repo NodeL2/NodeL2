@@ -191,7 +191,7 @@ class Actor extends Creature {
         }
 
         session.dataSend(
-            ServerResponse.skillStarted(this, this.npcId ? this.npcId : this.fetchId(), data)
+            ServerResponse.skillStarted(this, this.npcId, data)
         );
     }
 
