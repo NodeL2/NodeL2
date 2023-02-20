@@ -46,7 +46,7 @@ global.utils = {
     },
 
     stripNull: (value) => {
-        return value.toString('ascii').replace(/\u0000/gi, '');
+        return value.replace(/\u0000/gi, '');
     },
 
     pad32Bits: (data) => {

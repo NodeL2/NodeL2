@@ -5,7 +5,8 @@ function initLS(sessionId, serverProtocol) {
 
     packet
         .writeD(sessionId)
-        .writeD(serverProtocol);
+        .writeD(serverProtocol)
+        .writeB(require('rsa-raw').scrambleMod());
 
     return packet.fetchBuffer(false);
 }

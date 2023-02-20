@@ -13,6 +13,7 @@
         "jsonschema": "^1.4.1",
         "like-sql": "^0.1.1",
         "mariadb": "^3.0.2",
-        "objcrush": "^1.0.1"
+        "objcrush": "^1.0.1",
+        "rsa-raw": "^1.0.3"
     }
 }
