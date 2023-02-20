@@ -1,10 +1,10 @@
 const SendPacket = invoke('Server/Packet/Send');
 
-function socialAction(actorId, actionId) {
+function socialAction(id, actionId) {
     const packet = new SendPacket(0x2d);
 
     packet
-        .writeD(actorId)
+        .writeD(id)
         .writeD(actionId);
 
     return packet.fetchBuffer();

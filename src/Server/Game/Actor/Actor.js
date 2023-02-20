@@ -192,7 +192,7 @@ class Actor extends Creature {
     }
 
     requestedSkillAction(session, data) {
-        if (this.state.fetchProcedure() || this.state.fetchSeated()) {
+        if (this.state.fetchOccupied() || this.state.fetchSeated()) {
             return;
         }
 
@@ -209,16 +209,16 @@ class Actor extends Creature {
 
         switch (data.actionId) {
         case 0x00: // Sit / Stand
-            if (this.state.fetchProcedure()) {
+            if (this.state.fetchOccupied()) {
                 return;
             }
 
-            this.state.setProcedure(true);
+            this.state.setOccupied(true);
             this.state.setSeated(!this.state.fetchSeated());
             session.dataSend(ServerResponse.sitAndStand(this));
 
             setTimeout(() => {
-                this.state.setProcedure(false);
+                this.state.setOccupied(false);
             }, 2000); // TODO: How to calculate this, based on what?
             break;
 
@@ -239,7 +239,7 @@ class Actor extends Creature {
     }
 
     socialAction(session, actionId) {
-        if (this.state.fetchProcedure() || this.state.fetchSeated()) {
+        if (this.state.fetchOccupied() || this.state.fetchSeated()) {
             return;
         }
 

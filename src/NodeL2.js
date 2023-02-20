@@ -18,7 +18,7 @@ console.info('\n\
     + ================================== \n\
 ', utils.buildNumber(), utils.currentDate(), utils.nodeVersion());
 
-// Startup procedure, first `Database`, then `AuthServer`, finally `GameServer`
+// Startup procedure, init `World` & `Data`, then `AuthServer`, finally `GameServer`
 Database.init(() => {
     DataCache.init();
         World.init();
