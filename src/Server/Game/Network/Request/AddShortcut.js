@@ -9,29 +9,29 @@ function addShortcut(session, buffer) {
     packet
         .readD()  // Kind
         .readD()  // Slot
-        .readD()  // World Id
+        .readD()  // Id
         .readD(); // ?
 
     consume(session, {
            kind: packet.data[0],
            slot: packet.data[1],
-        worldId: packet.data[2],
+             id: packet.data[2],
         unknown: packet.data[3],
     });
 }
 
 function consume(session, data) {
-    const worldId = session.actor.fetchId();
+    const characterId = session.actor.fetchId();
 
     if (data.kind === 2) {
-        if ((DataCache.skills.find(ob => ob.id === data.worldId))?.passive) {
+        if ((DataCache.skills.find(ob => ob.selfId === data.id))?.passive) {
             return;
         }
     }
 
-    Database.deleteShortcut(worldId, data.slot).then(() => {
+    Database.deleteShortcut(characterId, data.slot).then(() => {
 
-        Database.setShortcut(worldId, data).then(() => {
+        Database.setShortcut(characterId, data).then(() => {
             session.dataSend(
                 ServerResponse.addShortcut(data)
             );

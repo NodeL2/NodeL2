@@ -6,7 +6,7 @@ function addShortcut(data) {
     packet
         .writeD(data.kind)
         .writeD(data.slot)
-        .writeD(data.worldId)
+        .writeD(data.id)
         .writeD(data.unknown);
 
     return packet.fetchBuffer();

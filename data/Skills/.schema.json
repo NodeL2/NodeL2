@@ -4,7 +4,7 @@
     "items": {
         "type": "object",
         "properties": {
-            "id": {
+            "selfId": {
                 "type": "integer"
             },
             "name": {
@@ -21,7 +21,7 @@
             }
         },
         "required": [
-            "id",
+            "selfId",
             "name",
             "passive",
             "hitTime",

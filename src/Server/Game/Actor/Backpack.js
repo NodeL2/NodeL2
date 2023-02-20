@@ -5,20 +5,20 @@ const Database       = invoke('Server/Database');
 class Backpack {
     constructor(rawData) {
         rawData.push(
-            { id: 1000, itemId: 1665, name: "World Map" },
-            { id: 1001, itemId:   18, name: "Leather Shield" }
+            { id: 1000, selfId: 1665, name: "World Map" },
+            { id: 1001, selfId:   18, name: "Leather Shield" }
         ); // TODO: Temp data, please delete
 
         this.items = [];
         for (let item of rawData) {
-            const details = DataCache.items.find(ob => ob.itemId === item.itemId);
+            const details = DataCache.items.find(ob => ob.selfId === item.selfId);
             if (details) {
                 this.items.push({
                     ...item, ...utils.crushOb(details)
                 });
             }
             else {
-                utils.infoWarn('GameServer:: can\'t find item details for %d', item.itemId);
+                utils.infoWarn('GameServer:: can\'t find item details for %d', item.selfId);
             }
         }
     }
@@ -28,7 +28,7 @@ class Backpack {
 
         this.dbTimer = setTimeout(() => {
             (this.items.filter(ob => ob.equipped !== undefined) ?? []).forEach((item) => {
-                Database.updateItemEquipState(characterId, item.id, item.equipped);
+                Database.updateItemEquipState(characterId, item);
             });
         }, 5000);
     }
@@ -46,7 +46,7 @@ class Backpack {
         intentionItem(id, (item) => {
             if (item.kind === "Armor") {
                 this.unequipGear(session, item.slot);
-                session.actor.paperdoll.equip(item.slot, item.id, item.itemId);
+                session.actor.paperdoll.equip(item.slot, item.id, item.selfId);
                 item.equipped = true;
             }
             else
@@ -61,13 +61,13 @@ class Backpack {
                 }
 
                 this.unequipGear(session, item.slot);
-                session.actor.paperdoll.equip(item.slot, item.id, item.itemId);
+                session.actor.paperdoll.equip(item.slot, item.id, item.selfId);
                 item.equipped = true;
             }
             else {
-                if (item.itemId === 1665) { // TODO: This needs to be out of here...
+                if (item.selfId === 1665) { // TODO: This needs to be out of here...
                     session.dataSend(
-                        ServerResponse.showMap(item.itemId)
+                        ServerResponse.showMap(item.selfId)
                     );
                     return;
                 }

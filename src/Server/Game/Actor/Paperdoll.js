@@ -9,12 +9,12 @@ class Paperdoll {
         return this.raw[slot].id;
     }
 
-    fetchItemId(slot) {
-        return this.raw[slot].itemId;
+    fetchSelfId(slot) {
+        return this.raw[slot].selfId;
     }
 
-    equip(slot, id, itemId) {
-        this.raw[slot] = { id: id, itemId: itemId };
+    equip(slot, id, selfId) {
+        this.raw[slot] = { id: id, selfId: selfId };
     }
 
     unequip(slot) {

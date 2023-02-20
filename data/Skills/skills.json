@@ -1,17 +1,17 @@
 [{
-    "id": 118, "name": "Magician's Movement", "passive": true, "hitTime": 0, "reuseTime": 0
+    "selfId": 118, "name": "Magician's Movement", "passive": true, "hitTime": 0, "reuseTime": 0
 },{
-    "id": 134, "name": "Toughness", "passive": true, "hitTime": 0, "reuseTime": 0
+    "selfId": 134, "name": "Toughness", "passive": true, "hitTime": 0, "reuseTime": 0
 },{
-    "id": 163, "name": "Spellcraft", "passive": true, "hitTime": 0, "reuseTime": 0
+    "selfId": 163, "name": "Spellcraft", "passive": true, "hitTime": 0, "reuseTime": 0
 },{
-    "id": 194, "name": "Lucky", "passive": true, "hitTime": 0, "reuseTime": 0
+    "selfId": 194, "name": "Lucky", "passive": true, "hitTime": 0, "reuseTime": 0
 },{
-    "id": 214, "name": "Mana Recovery", "passive": true, "hitTime": 0, "reuseTime": 0
+    "selfId": 214, "name": "Mana Recovery", "passive": true, "hitTime": 0, "reuseTime": 0
 },{
-    "id": 1001, "name": "Soul Cry", "passive": false, "hitTime": 0, "reuseTime": 0
+    "selfId": 1001, "name": "Soul Cry", "passive": false, "hitTime": 0, "reuseTime": 0
 },{
-    "id": 1177, "name": "Wind Strike", "passive": false, "hitTime": 4000, "reuseTime": 6000
+    "selfId": 1177, "name": "Wind Strike", "passive": false, "hitTime": 4000, "reuseTime": 6000
 },{
-    "id": 1216, "name": "Self Heal", "passive": false, "hitTime": 5000, "reuseTime": 10000
+    "selfId": 1216, "name": "Self Heal", "passive": false, "hitTime": 5000, "reuseTime": 10000
 }]

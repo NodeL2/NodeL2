@@ -11,7 +11,7 @@ function itemsList(items, popup = false) {
         packet
             .writeH(item.class1)
             .writeD(item.id)
-            .writeD(item.itemId)
+            .writeD(item.selfId)
             .writeD(0x01)  // Amount
             .writeH(item.class2)
             .writeH(0xff)  // ?

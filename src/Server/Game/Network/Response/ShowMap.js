@@ -1,10 +1,10 @@
 const SendPacket = invoke('Server/Packet/Send');
 
-function showMap(itemId) {
+function showMap(selfId) {
     const packet = new SendPacket(0x9d);
 
     packet
-        .writeD(itemId); // World = 1665, Elmore = 1863
+        .writeD(selfId); // World = 1665, Elmore = 1863
 
     return packet.fetchBuffer();
 }

@@ -5,7 +5,7 @@ function useItem(session, buffer) {
     const packet = new ReceivePacket(buffer);
 
     packet
-        .readD(); // Item (World Id)
+        .readD(); // Id
 
     consume(session, {
         id: packet.data[0]

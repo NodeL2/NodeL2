@@ -64,7 +64,7 @@ function awardBaseSkills(id, classId) {
 
     if (level1) {
         for (const skill of level1) {
-            skill.passive = DataCache.skills.find(ob => ob.id === skill.id)?.passive ?? false;
+            skill.passive = DataCache.skills.find(ob => ob.selfId === skill.selfId)?.passive ?? false;
             Database.setSkill(skill, id);
         }
         return;
@@ -78,7 +78,7 @@ function awardBaseGear(id, classId) {
 
     if (items) {
         for (const item of items) {
-            item.slot = DataCache.items.find(ob => ob.itemId === item.itemId)?.etc?.slot ?? 0;
+            item.slot = DataCache.items.find(ob => ob.selfId === item.selfId)?.etc?.slot ?? 0;
             Database.setItem(item, id);
         }
         return;

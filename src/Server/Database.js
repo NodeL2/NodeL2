@@ -81,7 +81,7 @@ const Database = {
     setSkill(skill, characterId) {
         return Database.execute(
             builder.insert('skills', {
-                    skillId: skill.id,
+                     selfId: skill.selfId,
                 characterId: characterId,
                        name: skill.name,
                     passive: skill.passive,
@@ -105,11 +105,11 @@ const Database = {
     setItem(item, characterId) {
         return Database.execute(
             builder.insert('items', {
-                     itemId: item.itemId,
-                characterId: characterId,
+                     selfId: item.selfId,
                        name: item.name,
                    equipped: item.equipped,
-                       slot: item.slot
+                       slot: item.slot,
+                characterId: characterId
             })
         );
     },
@@ -120,11 +120,11 @@ const Database = {
         );
     },
 
-    updateItemEquipState(characterId, itemWorldId, itemEquipped) {
+    updateItemEquipState(characterId, item) {
         return Database.execute(
             builder.update('items', {
-                equipped: itemEquipped
-            }, 'id = ? AND characterId = ?', itemWorldId, characterId)
+                equipped: item.equipped
+            }, 'id = ? AND characterId = ?', item.id, characterId)
         );
     },
 
@@ -137,11 +137,11 @@ const Database = {
     setShortcut(characterId, shortcut) {
         return Database.execute(
             builder.insert('shortcuts', {
-                    worldId: shortcut.worldId,
-                characterId: characterId,
+                         id: shortcut.id,
                        kind: shortcut.kind,
                        slot: shortcut.slot,
                     unknown: shortcut.unknown,
+                characterId: characterId
             })
         );
     },
