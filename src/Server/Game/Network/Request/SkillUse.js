@@ -22,11 +22,9 @@ function consume(session, data) {
             return;
         }
 
-        data = {
+        session.actor.requestedSkillAction(session, {
             ...data, ...details
-        }
-
-        session.actor.requestedSkillAction(session, data);
+        });
     });
 }
 
