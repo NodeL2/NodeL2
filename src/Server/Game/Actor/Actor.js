@@ -160,7 +160,7 @@ class Actor extends Creature {
     }
 
     select(session, data) { // TODO: data.actionId !== 0
-        if (this.fetchId() === data.destId) { // Click on self
+        if (this.fetchId() === data.id) { // Click on self
             this.unselect(session);
             session.dataSend(ServerResponse.destSelected(data.id));
             return;
@@ -168,7 +168,7 @@ class Actor extends Creature {
 
         World.fetchNpcWithId(data.id).then((npc) => { // Npc selected
             if (npc.fetchId() === this.npcId) { // Second click on same Npc
-                session.dataSend(ServerResponse.destDeselected(session.actor));
+                this.unselect(session);
             }
             else { // First click on a NPC
                 this.npcId = npc.fetchId();
@@ -181,9 +181,8 @@ class Actor extends Creature {
     }
 
     unselect(session) {
-        session.dataSend(
-            ServerResponse.destDeselected(this)
-        );
+        this.npcId = undefined;
+        session.dataSend(ServerResponse.destDeselected(this));
     }
 
     requestedSkillAction(session, data) {
@@ -192,7 +191,7 @@ class Actor extends Creature {
         }
 
         session.dataSend(
-            ServerResponse.skillStarted(this, data)
+            ServerResponse.skillStarted(this, this.npcId ? this.npcId : this.fetchId(), data)
         );
     }
 
