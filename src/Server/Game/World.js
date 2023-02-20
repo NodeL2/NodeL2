@@ -8,7 +8,7 @@ const World = {
 
         for (let i in DataCache.npcs) {
             this.npcs.push(
-                new Npc(i + 1000000, utils.crushOb(DataCache.npcs[i]))
+                new Npc(Number(i) + 1000000, utils.crushOb(DataCache.npcs[i]))
             );
         }
     },
@@ -16,6 +16,13 @@ const World = {
     insertNpcs(session) {
         this.npcs.forEach((npc) => {
             session.dataSend(ServerResponse.npcInfo(npc));
+        });
+    },
+
+    fetchNpcWithId(id) {
+        return new Promise((success, fail) => {
+            let npc = this.npcs.find(ob => ob.fetchId() === id);
+            return npc ? success(npc) : fail();
         });
     }
 };

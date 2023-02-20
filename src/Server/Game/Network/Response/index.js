@@ -20,6 +20,7 @@ module.exports = {
           skillStarted: require('./SkillStarted'),
           socialAction: require('./SocialAction'),
                  speak: require('./Speak'),
+          statusUpdate: require('./StatusUpdate'),
               stopMove: require('./StopMove'),
                sunrise: require('./Sunrise'),
     teleportToLocation: require('./TeleportToLocation'),

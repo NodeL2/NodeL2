@@ -1,4 +1,5 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
+const World          = invoke('Server/Game/World');
 const Creature       = invoke('Server/Game/Creature/Creature');
 const Backpack       = invoke('Server/Game/Actor/Backpack');
 const Paperdoll      = invoke('Server/Game/Actor/Paperdoll');
@@ -10,6 +11,8 @@ class Actor extends Creature {
         super(data);
 
         // Specific
+        this.npcId = undefined;
+
         this.backpack  = new Backpack (data.items);
         this.paperdoll = new Paperdoll(data.paperdoll);
 
@@ -156,20 +159,25 @@ class Actor extends Creature {
         Database.updateCharacterLocation(this.fetchId(), coords);
     }
 
-    select(session, data) {
-        if (data.actionId !== 0) {
-            utils.infoWarn('GameServer:: shift + select unimplemented');
+    select(session, data) { // TODO: data.actionId !== 0
+        if (this.fetchId() === data.destId) { // Click on self
+            this.unselect(session);
+            session.dataSend(ServerResponse.destSelected(data.id));
             return;
         }
 
-        if (this.fetchId() === data.destId) { // Click on self
-            this.unselect(session);
-            session.dataSend(ServerResponse.destSelected(data.destId));
-            return;
-        }
-        else {
-            utils.infoFail('GameServer:: further selection unimplemented');
-        }
+        World.fetchNpcWithId(data.id).then((npc) => { // Npc selected
+            if (npc.fetchId() === this.npcId) { // Second click on same Npc
+                session.dataSend(ServerResponse.destDeselected(session.actor));
+            }
+            else { // First click on a NPC
+                this.npcId = npc.fetchId();
+                session.dataSend(ServerResponse.destSelected(this.npcId));
+                session.dataSend(ServerResponse.statusUpdate(npc));
+            }
+        }).catch(() => { // Pickup item
+            utils.infoWarn('GameServer:: further selection unimplemented');
+        });
     }
 
     unselect(session) {
