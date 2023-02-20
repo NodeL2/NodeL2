@@ -1,5 +1,6 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
 const DataCache      = invoke('Server/Game/DataCache');
+const Database       = invoke('Server/Database');
 
 class Backpack {
     constructor(rawData) {
@@ -20,6 +21,16 @@ class Backpack {
                 utils.infoWarn('GameServer:: can\'t find item details for %d', item.itemId);
             }
         }
+    }
+
+    updateDatabaseTimer(characterId) {
+        clearTimeout(this.dbTimer);
+
+        this.dbTimer = setTimeout(() => {
+            (this.items.filter(ob => ob.equipped !== undefined) ?? []).forEach((item) => {
+                Database.updateItemEquipState(characterId, item.id, item.equipped);
+            });
+        }, 5000);
     }
 
     fetchItems() {
@@ -71,6 +82,9 @@ class Backpack {
             const item = this.items.find(ob => ob.id === session.actor.paperdoll.fetchId(slot));
             item ? success(item) : fail;
         };
+
+        // Start a database timer to update equipped state
+        this.updateDatabaseTimer(session.actor.fetchId());
 
         removeItem(slot, (item) => {
             // Unequip from actor

@@ -120,6 +120,14 @@ const Database = {
         );
     },
 
+    updateItemEquipState(characterId, itemWorldId, itemEquipped) {
+        return Database.execute(
+            builder.update('items', {
+                equipped: itemEquipped
+            }, 'id = ? AND characterId = ?', itemWorldId, characterId)
+        );
+    },
+
     deleteItems(characterId) {
         return Database.execute(
             builder.delete('items', 'characterId = ?', characterId)
