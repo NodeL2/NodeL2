@@ -10,7 +10,7 @@ function shortcutInit(shortcuts) {
         packet
             .writeD(shortcut.kind)
             .writeD(shortcut.slot)
-            .writeD(shortcut.worldId);
+            .writeD(shortcut.id);
 
         if (shortcut.kind === 2) {
             packet.

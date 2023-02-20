@@ -37,7 +37,7 @@ function userInfo(actor) {
 
         for (let i = 0; i < 16; i++) {
             packet
-                .writeD(actor.paperdoll.fetchItemId(i));
+                .writeD(actor.paperdoll.fetchSelfId(i));
         }
 
     packet

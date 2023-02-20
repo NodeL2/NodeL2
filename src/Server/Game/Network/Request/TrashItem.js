@@ -4,12 +4,12 @@ function trashItem(session, buffer) {
     const packet = new ReceivePacket(buffer);
 
     packet
-        .readD()  // World Id
+        .readD()  // Id
         .readD(); // Count
 
     consume(session, {
-        worldId: packet.data[0],
-          count: packet.data[1],
+           id: packet.data[0],
+        count: packet.data[1],
     });
 }
 

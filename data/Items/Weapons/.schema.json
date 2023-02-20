@@ -4,7 +4,7 @@
     "items": {
         "type": "object",
         "properties": {
-            "itemId": {
+            "selfId": {
                 "type": "integer"
             },
             "template": {
@@ -86,7 +86,7 @@
             }
         },
         "required": [
-            "itemId",
+            "selfId",
             "template",
             "stats",
             "etc"

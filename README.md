@@ -11,7 +11,7 @@
 
 ✅ Entering the Lineage2 world, the character is able to move through the map; open the statistics screen, the right numbers are assigned to the character such as level, name, title, basic abilities, basic stats, pvp, pk etc. Moving to the skills screen, these are clickable to see the skill animation effect, as well as categorized after which ones are active, and which ones are passive. On the actions screen, the character can stand-up or rest, run or walk, and express their emotions with a social action.
 
-✅ You can also see the attained items, which ones are equipped, and which ones are not. It is also possible to write text on the chat window and post it on the local, shout, or trade channel.
+✅ You can also see the attained items, which ones are equipped, and which ones are not. You can equip or unequip armor/weapons, and this state is saved servser-side. You can add shortcuts to the shortcut bar for items/skills/actions. It is also possible to write text on the chat window and post it on the local, shout, or trade channel.
 
 ## Prerequisites
 * Install [NodeJS LTS](https://nodejs.org/en/download), and [MariaDB 16](https://mariadb.org/download/?t=mariadb&p=mariadb&r=10.6.12)

@@ -6,7 +6,7 @@ function skillStarted(actor, skill) {
     packet
         .writeD(actor.fetchId())
         .writeD(actor.fetchId())
-        .writeD(skill.id)
+        .writeD(skill.selfId)
         .writeD(0x01)
         .writeD(skill.hitTime)
         .writeD(skill.reuseTime)

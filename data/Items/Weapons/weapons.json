@@ -1,30 +1,30 @@
 [{
-    "itemId": 6,
+    "selfId": 6,
     "template": { "kind": "Weapon", "name": "Apprentice's Wand", "class1": 0, "class2": 0, "mass": 1350, "price": 138 },
     "stats": { "pAtk": 5, "mAtk": 7, "atkSpd": 379, "crit": 60, "accur": 8.0 },
     "etc": { "slot": 7, "soulshot": 0, "spiritshot": 0 }
 },{
-    "itemId": 10,
+    "selfId": 10,
     "template": { "kind": "Weapon", "name": "Dagger", "class1": 0, "class2": 0, "mass": 1160, "price": 138 },
     "stats": { "pAtk": 5, "mAtk": 5, "atkSpd": 433, "crit": 120, "accur": -3.75 },
     "etc": { "slot": 7, "soulshot": 0, "spiritshot": 0 }
 },{
-    "itemId": 18,
+    "selfId": 18,
     "template": { "kind": "Weapon", "name": "Leather Shield", "class1": 1, "class2": 1, "mass": 1430, "price": 39 },
     "stats": { "pAtk": 0, "mAtk": 0, "atkSpd": 0, "crit": 0, "accur": 0.0 },
     "etc": { "slot": 8, "soulshot": 0, "spiritshot": 0 }
 },{
-    "itemId": 2368,
+    "selfId": 2368,
     "template": { "kind": "Weapon", "name": "Training Gloves", "class1": 0, "class2": 0, "mass": 1580, "price": 138 },
     "stats": { "pAtk": 7, "mAtk": 5, "atkSpd": 325, "crit": 60, "accur": 8.0 },
     "etc": { "slot": 14, "soulshot": 0, "spiritshot": 0 }
 },{
-    "itemId": 2369,
+    "selfId": 2369,
     "template": { "kind": "Weapon", "name": "Squire's Sword", "class1": 0, "class2": 0, "mass": 1600, "price": 138 },
     "stats": { "pAtk": 6, "mAtk": 5, "atkSpd": 379, "crit": 80, "accur": 0.0 },
     "etc": { "slot": 7, "soulshot": 0, "spiritshot": 0 }
 },{
-    "itemId": 2370,
+    "selfId": 2370,
     "template": { "kind": "Weapon", "name": "Guild Member's Club", "class1": 0, "class2": 0, "mass": 1910, "price": 138 },
     "stats": { "pAtk": 6, "mAtk": 5, "atkSpd": 379, "crit": 60, "accur": 8.0 },
     "etc": { "slot": 7, "soulshot": 0, "spiritshot": 0 }

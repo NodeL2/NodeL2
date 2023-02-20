@@ -10,14 +10,14 @@ function skillUse(session, buffer) {
         .readC(); // Shift
 
     consume(session, {
-           id: packet.data[0],
-         ctrl: packet.data[1],
-        shift: packet.data[2],
+        selfId: packet.data[0],
+          ctrl: packet.data[1],
+         shift: packet.data[2],
     });
 }
 
 function consume(session, data) {
-    DataCache.fetchSkillDetailsFromId(data.id).then((details) => {
+    DataCache.fetchSkillDetailsFromId(data.selfId).then((details) => {
         if (details.passive) {
             return;
         }

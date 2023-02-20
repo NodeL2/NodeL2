@@ -18,9 +18,9 @@ const DataCache = {
         ];
     },
 
-    fetchSkillDetailsFromId(id) {
+    fetchSkillDetailsFromId(selfId) {
         return new Promise((success, fail) => {
-            let skill = DataCache.skills.find(ob => ob.id === id);
+            let skill = DataCache.skills.find(ob => ob.selfId === selfId);
             return (skill) ? success(skill) : fail();
         });
     }

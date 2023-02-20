@@ -44,7 +44,7 @@ function charSelectInfo(characters) {
 
         for (let i = 0; i < 16; i++) {
             packet
-                .writeD(character.paperdoll[i].itemId);
+                .writeD(character.paperdoll[i].selfId);
         }
 
         packet
