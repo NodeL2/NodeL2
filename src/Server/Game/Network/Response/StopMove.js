@@ -1,10 +1,10 @@
 const SendPacket = invoke('Server/Packet/Send');
 
-function stopMove(actorId, data) {
+function stopMove(id, data) {
     const packet = new SendPacket(0x47);
 
     packet
-        .writeD(actorId)
+        .writeD(id)
         .writeD(data.locX)
         .writeD(data.locY)
         .writeD(data.locZ)

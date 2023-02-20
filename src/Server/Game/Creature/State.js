@@ -1,8 +1,8 @@
 class CreatureState {
     constructor() {
-        this.isSeated    = false;
-        this.isWalkin    = false;
-        this.inProcedure = false;
+        this.isSeated   = false;
+        this.isWalkin   = false;
+        this.isOccupied = false;
     }
 
     // Set
@@ -15,8 +15,8 @@ class CreatureState {
         this.isWalkin = walkin;
     }
 
-    setProcedure(procedure) {
-        this.inProcedure = procedure;
+    setOccupied(occupied) {
+        this.isOccupied = occupied;
     }
 
     // Get
@@ -29,8 +29,8 @@ class CreatureState {
         return this.isWalkin;
     }
 
-    fetchProcedure() {
-        return this.inProcedure;
+    fetchOccupied() {
+        return this.isOccupied;
     }
 }
 

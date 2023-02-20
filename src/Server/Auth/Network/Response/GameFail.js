@@ -4,7 +4,7 @@ function gameFail(errorCode) {
     const packet = new SendPacket(0x06);
 
     packet
-        .writeC(errorCode); // Failure reason
+        .writeC(errorCode);
 
     return packet.fetchBuffer();
 }

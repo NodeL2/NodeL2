@@ -4,7 +4,7 @@ function loginFail(errorCode) {
     const packet = new SendPacket(0x01);
 
     packet
-        .writeC(errorCode); // Failure reason
+        .writeC(errorCode);
 
     return packet.fetchBuffer();
 }

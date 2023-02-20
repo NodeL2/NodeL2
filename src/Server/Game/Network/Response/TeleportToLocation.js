@@ -1,10 +1,10 @@
 const SendPacket = invoke('Server/Packet/Send');
 
-function teleportToLocation(actorId, data) {
+function teleportToLocation(id, data) {
     const packet = new SendPacket(0x28);
 
     packet
-        .writeD(actorId)
+        .writeD(id)
         .writeD(data.locX)
         .writeD(data.locY)
         .writeD(data.locZ)

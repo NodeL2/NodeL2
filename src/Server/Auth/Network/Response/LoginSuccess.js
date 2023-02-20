@@ -4,8 +4,8 @@ function loginSuccess(session) {
     const packet = new SendPacket(0x03);
 
     packet
-        .writeD(session.key1) // Session Key (first)
-        .writeD(session.key2) // Session Key (last)
+        .writeD(session.key1)
+        .writeD(session.key2)
         .writeD(0x00)
         .writeD(0x00)
         .writeD(0x000003ea)

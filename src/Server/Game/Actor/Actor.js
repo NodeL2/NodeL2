@@ -159,7 +159,7 @@ class Actor extends Creature {
         Database.updateCharacterLocation(this.fetchId(), coords);
     }
 
-    select(session, data) { // TODO: data.actionId !== 0
+    select(session, data) { // TODO: shift `data.actionId !== 0`
         if (this.fetchId() === data.id) { // Click on self
             this.unselect(session);
             session.dataSend(ServerResponse.destSelected(data.id));
@@ -168,9 +168,15 @@ class Actor extends Creature {
 
         World.fetchNpcWithId(data.id).then((npc) => { // Npc selected
             if (npc.fetchId() === this.npcId) { // Second click on same Npc
+                if (npc.fetchAttackable()) {
+                    utils.infoSuccess('GameServer:: attack that fabulous beast');
+                }
+                else {
+                    utils.infoSuccess('GameServer:: talk to');
+                }
                 this.unselect(session);
             }
-            else { // First click on a NPC
+            else { // First click on Npc
                 this.npcId = npc.fetchId();
                 session.dataSend(ServerResponse.destSelected(this.npcId));
                 session.dataSend(ServerResponse.statusUpdate(npc));
@@ -186,7 +192,7 @@ class Actor extends Creature {
     }
 
     requestedSkillAction(session, data) {
-        if (this.state.fetchProcedure() || this.state.fetchSeated()) {
+        if (this.state.fetchOccupied() || this.state.fetchSeated()) {
             return;
         }
 
@@ -203,16 +209,16 @@ class Actor extends Creature {
 
         switch (data.actionId) {
         case 0x00: // Sit / Stand
-            if (this.state.fetchProcedure()) {
+            if (this.state.fetchOccupied()) {
                 return;
             }
 
-            this.state.setProcedure(true);
+            this.state.setOccupied(true);
             this.state.setSeated(!this.state.fetchSeated());
             session.dataSend(ServerResponse.sitAndStand(this));
 
             setTimeout(() => {
-                this.state.setProcedure(false);
+                this.state.setOccupied(false);
             }, 2000); // TODO: How to calculate this, based on what?
             break;
 
@@ -233,7 +239,7 @@ class Actor extends Creature {
     }
 
     socialAction(session, actionId) {
-        if (this.state.fetchProcedure() || this.state.fetchSeated()) {
+        if (this.state.fetchOccupied() || this.state.fetchSeated()) {
             return;
         }
 
