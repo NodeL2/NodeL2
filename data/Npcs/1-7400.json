@@ -1,25 +1,25 @@
 [{
     "selfId": 1,
-    "template": { "kind": "Monster", "name": "Gremlin", "title": "", "hostile": false },
+    "template": { "kind": "Monster", "name": "Gremlin", "title": "", "attackable": true, "hostile": false },
     "stats": { "pAtk": 4, "pDef": 41, "mAtk": 3, "mDef": 32, "atkSpd": 253, "castSpd": 333 },
     "vitals": { "level": 1, "maxHp": 65, "maxMp": 30 },
-    "speed": { "walk": 20, "run": 50 },
+    "speed": { "walk": 20, "run": 50, "swim": 50 },
     "collision": { "radius": 10.0, "size": 15.0 },
-    "spawns": [{ "locX": 44656, "locY": 40896, "locZ": -3552, "head": -1 }, { "locX": 47488, "locY": 41148, "locZ": -3552, "head": -1 }, { "locX": 46476, "locY": 41884, "locZ": -3552, "head": -1 }, { "locX": 45904, "locY": 41904, "locZ": -3552, "head": -1 }]
+    "spawns": [{ "locX": 44656, "locY": 40896, "locZ": -3552, "head": -1 }]
 },{
     "selfId": 7370,
-    "template": { "kind": "Npc", "name": "Nerupa", "title": "", "hostile": false },
+    "template": { "kind": "Npc", "name": "Nerupa", "title": "", "attackable": false, "hostile": false },
     "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
     "vitals": { "level": 70, "maxHp": 3000, "maxMp": 0 },
-    "speed": { "walk": 80, "run": 120 },
+    "speed": { "walk": 80, "run": 120, "swim": 50 },
     "collision": { "radius": 15.0, "size": 26.0 },
     "spawns": [{ "locX": 46048, "locY": 41200, "locZ": -3504, "head": 17000 }]
 },{
     "selfId": 7400,
-    "template": { "kind": "Guard", "name": "Newbie Helper", "title": "", "hostile": false },
+    "template": { "kind": "Guard", "name": "Newbie Helper", "title": "", "attackable": false, "hostile": false },
     "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
     "vitals": { "level": 70, "maxHp": 3000, "maxMp": 0 },
-    "speed": { "walk": 80, "run": 120 },
+    "speed": { "walk": 80, "run": 120, "swim": 50 },
     "collision": { "radius": 8.0, "size": 23.5 },
     "spawns": [{ "locX": 46112, "locY": 41200, "locZ": -3504, "head": 17000 }]
 }]

@@ -9,6 +9,7 @@ class Actor extends Creature {
         // Parent inheritance
         super(data);
 
+        // Specific
         this.backpack  = new Backpack (data.items);
         this.paperdoll = new Paperdoll(data.paperdoll);
 

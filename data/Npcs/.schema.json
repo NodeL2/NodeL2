@@ -19,6 +19,9 @@
                     "title": {
                         "type": "string"
                     },
+                    "attackable": {
+                        "type": "boolean"
+                    },
                     "hostile": {
                         "type": "boolean"
                     }
@@ -27,6 +30,7 @@
                     "kind",
                     "name",
                     "title",
+                    "attackable",
                     "hostile"
                 ]
             },
@@ -88,11 +92,15 @@
                     },
                     "run": {
                         "type": "integer"
+                    },
+                    "swim": {
+                        "type": "integer"
                     }
                 },
                 "required": [
                     "walk",
-                    "run"
+                    "run",
+                    "swim"
                 ]
             },
             "collision": {

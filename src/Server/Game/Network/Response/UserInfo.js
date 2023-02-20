@@ -61,7 +61,7 @@ function userInfo(actor) {
         .writeD(0x00)  // Floating Walk Speed
         .writeD(0x00)  // Flying Run Speed
         .writeD(0x00)  // Flying Walk Speed
-        .writeF(1.0)   // Movement Multiplier
+        .writeF(5.0)   // Movement Multiplier
         .writeF(actor.fetchAtkSpd() / 277.77777777777777)
         .writeF(actor.fetchRadius())
         .writeF(actor.fetchSize())

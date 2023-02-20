@@ -1,4 +1,5 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
+const World          = invoke('Server/Game/World');
 const Database       = invoke('Server/Database');
 
 function enterWorld(session, buffer) {
@@ -11,6 +12,9 @@ function enterWorld(session, buffer) {
             ServerResponse.shortcutInit(shortcuts)
         );
     });
+
+    // World
+    World.insertNpcs(session);
 }
 
 module.exports = enterWorld;
