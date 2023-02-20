@@ -159,7 +159,7 @@ class Actor extends Creature {
         Database.updateCharacterLocation(this.fetchId(), coords);
     }
 
-    select(session, data) { // TODO: data.actionId !== 0
+    select(session, data) { // TODO: shift `data.actionId !== 0`
         if (this.fetchId() === data.id) { // Click on self
             this.unselect(session);
             session.dataSend(ServerResponse.destSelected(data.id));
@@ -168,9 +168,15 @@ class Actor extends Creature {
 
         World.fetchNpcWithId(data.id).then((npc) => { // Npc selected
             if (npc.fetchId() === this.npcId) { // Second click on same Npc
+                if (npc.fetchAttackable()) {
+                    utils.infoSuccess('GameServer:: attack that fabulous beast');
+                }
+                else {
+                    utils.infoSuccess('GameServer:: talk to');
+                }
                 this.unselect(session);
             }
-            else { // First click on a NPC
+            else { // First click on Npc
                 this.npcId = npc.fetchId();
                 session.dataSend(ServerResponse.destSelected(this.npcId));
                 session.dataSend(ServerResponse.statusUpdate(npc));
