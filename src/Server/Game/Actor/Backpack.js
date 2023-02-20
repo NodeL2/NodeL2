@@ -79,7 +79,7 @@ class Backpack {
 
             // Move item to the end (not official?)
             this.items = this.items.filter(ob => ob.id !== item?.id);
-            this.items.push(item);
+            this.items.unshift(item);
         });
     }
 }

@@ -1,4 +1,5 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
+const DataCache      = invoke('Server/Game/DataCache');
 const ReceivePacket  = invoke('Server/Packet/Receive');
 const Database       = invoke('Server/Database');
 
@@ -21,6 +22,12 @@ function addShortcut(session, buffer) {
 
 function consume(session, data) {
     const worldId = session.actor.fetchId();
+
+    if (data.kind === 2) {
+        if ((DataCache.skills.find(ob => ob.id === data.worldId))?.passive) {
+            return;
+        }
+    }
 
     Database.deleteShortcut(worldId, data.slot).then(() => {
 
