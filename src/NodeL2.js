@@ -3,6 +3,7 @@ require('./Globals');
 // User imports
 const AuthSession = invoke('Server/Auth/Session');
 const GameSession = invoke('Server/Game/Session');
+const World       = invoke('Server/Game/World');
 const DataCache   = invoke('Server/Game/DataCache');
 const Database    = invoke('Server/Database');
 const Server      = invoke('Server/Server');
@@ -20,6 +21,7 @@ console.info('\n\
 // Startup procedure, first `Database`, then `AuthServer`, finally `GameServer`
 Database.init(() => {
     DataCache.init();
+        World.init();
 
     new Server('AuthServer', options.connection.AuthServer, (socket) => {
         return new AuthSession(socket);

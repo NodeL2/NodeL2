@@ -97,6 +97,10 @@ class Creature {
         return this.model.run;
     }
 
+    fetchSwim() {
+        return this.model.swim;
+    }
+
     fetchRadius() {
         return this.model.radius;
     }
