@@ -40,7 +40,6 @@ CREATE TABLE `characters`(
     `head`        int( 5)     NOT NULL DEFAULT 0,
     PRIMARY KEY (`id`)
 );
-
 ALTER TABLE `characters` AUTO_INCREMENT=2000000;
 
 CREATE TABLE `items`(
@@ -52,9 +51,10 @@ CREATE TABLE `items`(
     `characterId` int( 8)     NOT NULL,
     PRIMARY KEY (`id`)
 );
+ALTER TABLE `items` AUTO_INCREMENT=4000000;
 
 CREATE TABLE `skills`(
-    `sefId`       int( 5)     NOT NULL,
+    `selfId`      int( 5)     NOT NULL,
     `name`        varchar(48) NOT NULL,
     `passive`     boolean     NOT NULL,
     `level`       int( 5)     NOT NULL,

@@ -5,8 +5,8 @@ const Database       = invoke('Server/Database');
 class Backpack {
     constructor(rawData) {
         rawData.push(
-            { id: 1000, selfId: 1665, name: "World Map" },
-            { id: 1001, selfId:   18, name: "Leather Shield" }
+            { id: 4900000, selfId: 1665, name: "World Map" },
+            { id: 4900001, selfId:   18, name: "Leather Shield" }
         ); // TODO: Temp data, please delete
 
         this.items = [];
