@@ -26,7 +26,7 @@ function consume(session, data) {
             });
 
             session.dataSend(
-                ServerResponse.charSelected(session.actor.model)
+                ServerResponse.charSelected(session.actor)
             );
         });
     });

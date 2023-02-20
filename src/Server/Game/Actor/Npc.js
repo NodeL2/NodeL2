@@ -6,7 +6,7 @@ class Npc extends Creature {
         super(data);
 
         // Specific
-        this.model.id = id;
+        this.setId(id);
     }
 
     // Get

@@ -1,35 +1,35 @@
 const SendPacket = invoke('Server/Packet/Send');
 
-function charSelected(model) {
+function charSelected(actor) {
     const packet = new SendPacket(0x15);
 
     packet
-        .writeS(model.name)
-        .writeD(model.id)
-        .writeS(model.title)
+        .writeS(actor.fetchName())
+        .writeD(actor.fetchId())
+        .writeS(actor.fetchTitle())
         .writeD(0x55555555)
         .writeD(0x00)  // Clan ID
         .writeD(0x00)  // ?
-        .writeD(model.sex)
-        .writeD(model.race)
-        .writeD(model.classId)
-        .writeD(model.isActive)
-        .writeD(model.locX)
-        .writeD(model.locY)
-        .writeD(model.locZ)
-        .writeF(model.hp)
-        .writeF(model.mp)
-        .writeD(model.sp)
-        .writeD(model.exp)
-        .writeD(model.level)
-        .writeD(model.karma)
-        .writeD(model.pk)
-        .writeD(model.int)
-        .writeD(model.str)
-        .writeD(model.con)
-        .writeD(model.men)
-        .writeD(model.dex)
-        .writeD(model.wit);
+        .writeD(actor.fetchSex())
+        .writeD(actor.fetchRace())
+        .writeD(actor.fetchClassId())
+        .writeD(actor.fetchIsActive())
+        .writeD(actor.fetchLocX())
+        .writeD(actor.fetchLocY())
+        .writeD(actor.fetchLocZ())
+        .writeF(actor.fetchHp())
+        .writeF(actor.fetchMp())
+        .writeD(actor.fetchSp())
+        .writeD(actor.fetchExp())
+        .writeD(actor.fetchLevel())
+        .writeD(actor.fetchKarma())
+        .writeD(actor.fetchPk())
+        .writeD(actor.fetchInt())
+        .writeD(actor.fetchStr())
+        .writeD(actor.fetchCon())
+        .writeD(actor.fetchMen())
+        .writeD(actor.fetchDex())
+        .writeD(actor.fetchWit());
 
     for (let i = 0; i < 32; i++) {
         packet

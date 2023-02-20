@@ -8,6 +8,10 @@ class Creature {
 
     // Set
 
+    setId(id) {
+        this.model.id = id;
+    }
+
     setLocX(locX) {
         this.model.locX = locX;
     }

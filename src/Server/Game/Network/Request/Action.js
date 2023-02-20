@@ -4,14 +4,14 @@ function action(session, buffer) {
     const packet = new ReceivePacket(buffer);
 
     packet
-        .readD()  // Destination Id
+        .readD()  // Id
         .readD()  // Source X
         .readD()  // Source Y
         .readD()  // Source Z
         .readC(); // Action Id (Shift or not)
 
     consume(session, {
-          destId: packet.data[0],
+              id: packet.data[0],
             locX: packet.data[1],
             locY: packet.data[2],
             locZ: packet.data[3],
