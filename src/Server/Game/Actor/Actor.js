@@ -18,8 +18,6 @@ class Actor extends Creature {
 
         delete this.model.items;
         delete this.model.paperdoll;
-
-        this.timer = undefined;
     }
 
     // Get
@@ -159,31 +157,6 @@ class Actor extends Creature {
     updatePosition(coords) {
         this.setLocXYZH(coords);
         Database.updateCharacterLocation(this.fetchId(), coords);
-    }
-
-    anticipateArrival(src, dest, offset, callback) {
-        const ticksPerSecond = 10;
-
-        const dX = dest.fetchLocX() - src.fetchLocX();
-        const dY = dest.fetchLocY() - src.fetchLocY();
-        const distance = Math.sqrt((dX * dX) + (dY * dY)) + offset;
-        
-        if (distance <= offset) {
-            clearTimeout(this.timer);
-            callback();
-            return;
-        }
-
-        //const sin = dY / distance;
-        //const cos = dX / distance;
-
-        const ticksToMove = 1 + ((ticksPerSecond * distance) / src.fetchRun());
-
-        clearTimeout(this.timer);
-        this.timer = setTimeout(() => {
-            this.updatePosition({ locX: dest.fetchLocX(), locY: dest.fetchLocY(), locZ: dest.fetchLocZ(), head: src.fetchHead() });
-            callback();
-        }, 100 * ticksToMove);
     }
 
     select(session, data) { // TODO: shift `data.actionId !== 0`
