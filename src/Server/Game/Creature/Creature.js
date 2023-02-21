@@ -1,4 +1,5 @@
-const CreatureState = invoke('Server/Game/Creature/State');
+const ServerResponse = invoke('Server/Game/Network/Response');
+const CreatureState  = invoke('Server/Game/Creature/State');
 
 class Creature {
     constructor(data) {
@@ -134,12 +135,19 @@ class Creature {
 
     // Abstract
 
-    scheduleArrival(src, dest, offset, callback) {
-        const ticksPerSecond = 10;
+    calcDistance(creatureSrc, creatureDest) {
+        const dX = creatureDest.fetchLocX() - creatureSrc.fetchLocX();
+        const dY = creatureDest.fetchLocY() - creatureSrc.fetchLocY();
 
-        const dX = dest.fetchLocX() - src.fetchLocX();
-        const dY = dest.fetchLocY() - src.fetchLocY();
-        const distance = Math.sqrt((dX * dX) + (dY * dY)) + offset;
+        //const sin = dY / distance;
+        //const cos = dX / distance;
+
+        return Math.sqrt((dX * dX) + (dY * dY));
+    }
+
+    scheduleArrival(session, creatureSrc, creatureDest, offset, callback) {
+        const ticksPerSecond = 10;
+        const distance = this.calcDistance(creatureSrc, creatureDest) + offset;
         
         if (distance <= offset) {
             this.abortScheduleTimer();
@@ -147,18 +155,19 @@ class Creature {
             return;
         }
 
-        //const sin = dY / distance;
-        //const cos = dX / distance;
+        session.dataSend(
+            ServerResponse.moveToPawn(creatureSrc, creatureDest, offset)
+        );
 
-        const ticksToMove = 1 + ((ticksPerSecond * distance) / src.fetchRun());
+        const ticksToMove = 1 + ((ticksPerSecond * distance) / creatureSrc.fetchRun());
         this.abortScheduleTimer();
 
         this.timer = setTimeout(() => {
             this.updatePosition({
-                locX: dest.fetchLocX(),
-                locY: dest.fetchLocY(),
-                locZ: dest.fetchLocZ(),
-                head: src .fetchHead(),
+                locX: creatureDest.fetchLocX(),
+                locY: creatureDest.fetchLocY(),
+                locZ: creatureDest.fetchLocZ(),
+                head: creatureSrc .fetchHead(),
             });
 
             callback();

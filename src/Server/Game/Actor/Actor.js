@@ -149,7 +149,6 @@ class Actor extends Creature {
     // Abstract
 
     moveTo(session, coords) {
-        // TODO: Well... this needs rework, to remember the scheduled action in some respect
         this.abortScheduleTimer();
 
         session.dataSend(
@@ -176,13 +175,12 @@ class Actor extends Creature {
                 session.dataSend(ServerResponse.statusUpdate(npc));
             }
             else { // Second click on same Npc
+                if (this.state.fetchOccupied() || this.state.fetchSeated()) {
+                    return;
+                }
+
                 const distanceFromNpc = 20;
-
-                session.dataSend(
-                    ServerResponse.moveToPawn(this, npc, distanceFromNpc)
-                );
-
-                this.scheduleArrival(this, npc, distanceFromNpc, () => {
+                this.scheduleArrival(session, this, npc, distanceFromNpc, () => {
                     if (npc.fetchAttackable()) {
                         utils.infoSuccess('GameServer:: attack that fabulous beast');
                     }
@@ -202,6 +200,10 @@ class Actor extends Creature {
     }
 
     requestedSkillAction(session, data) {
+        if (this.npcId === undefined) {
+            return;
+        }
+
         if (this.state.fetchOccupied() || this.state.fetchSeated()) {
             return;
         }
