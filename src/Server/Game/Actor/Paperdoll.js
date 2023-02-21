@@ -1,24 +1,24 @@
 class Paperdoll {
-    constructor(paperdoll) {
-        this.raw = paperdoll;
+    constructor(data) {
+        this.parts = data;
     }
 
     // Get
 
     fetchId(slot) {
-        return this.raw[slot].id;
+        return this.parts[slot].id;
     }
 
     fetchSelfId(slot) {
-        return this.raw[slot].selfId;
+        return this.parts[slot].selfId;
     }
 
     equip(slot, id, selfId) {
-        this.raw[slot] = { id: id, selfId: selfId };
+        this.parts[slot] = { id: id, selfId: selfId };
     }
 
     unequip(slot) {
-        this.raw[slot] = {};
+        this.parts[slot] = {};
     }
 }
 

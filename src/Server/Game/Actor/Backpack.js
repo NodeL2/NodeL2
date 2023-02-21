@@ -3,24 +3,19 @@ const DataCache      = invoke('Server/Game/DataCache');
 const Database       = invoke('Server/Database');
 
 class Backpack {
-    constructor(rawData) {
-        rawData.push(
+    constructor(data) {
+        data.push(
             { id: 4900000, selfId: 1665, name: "World Map" },
             { id: 4900001, selfId:   18, name: "Leather Shield" }
         ); // TODO: Temp data, please delete
 
         this.items = [];
-        for (let item of rawData) {
+        data.forEach((item) => {
             const details = DataCache.items.find(ob => ob.selfId === item.selfId);
-            if (details) {
-                this.items.push({
-                    ...item, ...utils.crushOb(details)
-                });
-            }
-            else {
-                utils.infoWarn('GameServer:: can\'t find item details for %d', item.selfId);
-            }
-        }
+            this.items.push({
+                ...item, ...utils.crushOb(details ?? {})
+            });
+        });
     }
 
     updateDatabaseTimer(characterId) {

@@ -1,33 +1,35 @@
-const CreatureState = invoke('Server/Game/Creature/State');
+const ServerResponse = invoke('Server/Game/Network/Response');
+const CreatureState  = invoke('Server/Game/Creature/State');
 
 class Creature {
     constructor(data) {
         this.model = data;
         this.state = new CreatureState();
 
+        // Schedule timer
         this.timer = undefined; // TODO: Move this into actual GameServer timer
     }
 
     // Set
 
-    setId(id) {
-        this.model.id = id;
+    setId(data) {
+        this.model.id = data;
     }
 
-    setLocX(locX) {
-        this.model.locX = locX;
+    setLocX(data) {
+        this.model.locX = data;
     }
 
-    setLocY(locY) {
-        this.model.locY = locY;
+    setLocY(data) {
+        this.model.locY = data;
     }
 
-    setLocZ(locZ) {
-        this.model.locZ = locZ;
+    setLocZ(data) {
+        this.model.locZ = data;
     }
 
-    setHead(head) {
-        this.model.head = head;
+    setHead(data) {
+        this.model.head = data;
     }
 
     setLocXYZH(coords) {
@@ -133,36 +135,60 @@ class Creature {
 
     // Abstract
 
-    anticipateArrival(src, dest, offset, callback) {
-        const ticksPerSecond = 10;
-
-        const dX = dest.fetchLocX() - src.fetchLocX();
-        const dY = dest.fetchLocY() - src.fetchLocY();
-        const distance = Math.sqrt((dX * dX) + (dY * dY)) + offset;
-        
-        if (distance <= offset) {
-            clearTimeout(this.timer);
-            callback();
-            return;
-        }
+    calcDistance(creatureSrc, creatureDest) {
+        const dX = creatureDest.fetchLocX() - creatureSrc.fetchLocX();
+        const dY = creatureDest.fetchLocY() - creatureSrc.fetchLocY();
 
         //const sin = dY / distance;
         //const cos = dX / distance;
 
-        const ticksToMove = 1 + ((ticksPerSecond * distance) / src.fetchRun());
-        clearTimeout(this.timer);
+        return Math.sqrt((dX * dX) + (dY * dY));
+    }
 
+    scheduleArrival(session, creatureSrc, creatureDest, offset, callback) {
+        const ticksPerSecond = 10;
+        const distance = this.calcDistance(creatureSrc, creatureDest) + offset;
+
+        // Execute each time, or else actor is stuck
+        session.dataSend(
+            ServerResponse.moveToPawn(creatureSrc, creatureDest, offset)
+        );
+
+        // No need to move!
+        if (distance <= offset) {
+            this.abortScheduleTimer();
+            callback();
+            return;
+        }
+
+        // Calculate duration and reset
+        const ticksToMove = 1 + ((ticksPerSecond * distance) / creatureSrc.fetchRun());
+        this.abortScheduleTimer();
+
+        // Actor is occupied
+        this.state.setOnTheMove(true);
+
+        // This is what happens on arrival
         this.timer = setTimeout(() => {
             this.updatePosition({
-                locX: dest.fetchLocX(),
-                locY: dest.fetchLocY(),
-                locZ: dest.fetchLocZ(),
-                head: src .fetchHead(),
+                locX: creatureDest.fetchLocX(),
+                locY: creatureDest.fetchLocY(),
+                locZ: creatureDest.fetchLocZ(),
+                head: creatureSrc .fetchHead(),
             });
 
+            // Actor is not occupied, what do we do next?
+            this.state.setOnTheMove(false);
             callback();
 
         }, (1000 / ticksPerSecond) * ticksToMove);
+    }
+
+    abortScheduleTimer() {
+        this.state.setOnTheMove(false);
+
+        clearTimeout(this.timer);
+        this.timer = undefined;
     }
 }
 

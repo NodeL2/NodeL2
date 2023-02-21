@@ -1,22 +1,27 @@
 class CreatureState {
     constructor() {
-        this.isSeated   = false;
-        this.isWalkin   = false;
-        this.isOccupied = false;
+        this.isSeated    = false;
+        this.isWalkin    = false;
+        this.isOnTheMove = false;
+        this.isOccupied  = false;
     }
 
     // Set
 
-    setSeated(seated) {
-        this.isSeated = seated;
+    setSeated(data) {
+        this.isSeated = data;
     }
 
-    setWalkin(walkin) {
-        this.isWalkin = walkin;
+    setWalkin(data) {
+        this.isWalkin = data;
     }
 
-    setOccupied(occupied) {
-        this.isOccupied = occupied;
+    setOnTheMove(data) {
+        this.isOnTheMove = data;
+    }
+
+    setOccupied(data) {
+        this.isOccupied = data;
     }
 
     // Get
@@ -27,6 +32,10 @@ class CreatureState {
 
     fetchWalkin() {
         return this.isWalkin;
+    }
+
+    fetchOnTheMove() {
+        return this.isOnTheMove;
     }
 
     fetchOccupied() {

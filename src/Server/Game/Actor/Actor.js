@@ -12,7 +12,10 @@ class Actor extends Creature {
 
         // Specific
         this.npcId = undefined;
+        this.createAdditionals(data);
+    }
 
+    createAdditionals(data) {
         this.backpack  = new Backpack (data.items);
         this.paperdoll = new Paperdoll(data.paperdoll);
 
@@ -149,6 +152,8 @@ class Actor extends Creature {
     // Abstract
 
     moveTo(session, coords) {
+        this.abortScheduleTimer();
+
         session.dataSend(
             ServerResponse.moveToLocation(this.fetchId(), coords)
         );
@@ -159,7 +164,7 @@ class Actor extends Creature {
         Database.updateCharacterLocation(this.fetchId(), coords);
     }
 
-    select(session, data) { // TODO: shift `data.actionId !== 0`
+    select(session, data) {
         if (this.fetchId() === data.id) { // Click on self
             this.unselect(session);
             session.dataSend(ServerResponse.destSelected(data.id));
@@ -173,13 +178,12 @@ class Actor extends Creature {
                 session.dataSend(ServerResponse.statusUpdate(npc));
             }
             else { // Second click on same Npc
+                if (this.state.fetchOccupied() || this.state.fetchSeated()) {
+                    return; // TODO: When seated u can't switch between npc selection
+                }
+
                 const distanceFromNpc = 20;
-
-                session.dataSend(
-                    ServerResponse.moveToPawn(this, npc, distanceFromNpc)
-                );
-
-                this.anticipateArrival(this, npc, distanceFromNpc, () => {
+                this.scheduleArrival(session, this, npc, distanceFromNpc, () => {
                     if (npc.fetchAttackable()) {
                         utils.infoSuccess('GameServer:: attack that fabulous beast');
                     }
@@ -199,9 +203,16 @@ class Actor extends Creature {
     }
 
     requestedSkillAction(session, data) {
+        if (this.npcId === undefined) {
+            return;
+        }
+
         if (this.state.fetchOccupied() || this.state.fetchSeated()) {
             return;
         }
+
+        // TODO: Well... this needs rework, to remember the scheduled action in some respect
+        this.abortScheduleTimer();
 
         session.dataSend(
             ServerResponse.skillStarted(this, this.npcId, data)
@@ -209,8 +220,7 @@ class Actor extends Creature {
     }
 
     basicAction(session, data) {
-        if (data.shift || data.ctrl) {
-            utils.infoWarn('GameServer:: shift and ctrl unimplemented');
+        if (this.state.fetchOnTheMove()) {
             return;
         }
 
@@ -246,13 +256,36 @@ class Actor extends Creature {
     }
 
     socialAction(session, actionId) {
-        if (this.state.fetchOccupied() || this.state.fetchSeated()) {
+        if (this.state.fetchOnTheMove() || this.state.fetchOccupied() || this.state.fetchSeated()) {
             return;
         }
+
+        // TODO: Well... this needs rework, to remember the scheduled action in some respect
+        this.abortScheduleTimer();
 
         session.dataSend(
             ServerResponse.socialAction(this.fetchId(), actionId)
         );
+    }
+
+    unstuck(session) {
+        if (this.state.fetchOccupied() || this.state.fetchSeated()) {
+            return;
+        }
+
+        // TODO: Well... this needs rework, to remember the scheduled action in some respect
+        this.abortScheduleTimer();
+
+        const coords = {
+            locX: 80304, locY: 56241, locZ: -1500, head: this.fetchHead()
+        };
+
+        session.dataSend(ServerResponse.teleportToLocation(this.fetchId(), coords));
+
+        // TODO: Hide this from the world, soon. Utter stupid.
+        setTimeout(() => {
+            this.updatePosition(coords);
+        });
     }
 }
 
