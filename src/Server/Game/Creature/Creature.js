@@ -5,6 +5,7 @@ class Creature {
         this.model = data;
         this.state = new CreatureState();
 
+        // Schedule timer
         this.timer = undefined; // TODO: Move this into actual GameServer timer
     }
 
@@ -133,7 +134,7 @@ class Creature {
 
     // Abstract
 
-    anticipateArrival(src, dest, offset, callback) {
+    scheduleArrival(src, dest, offset, callback) {
         const ticksPerSecond = 10;
 
         const dX = dest.fetchLocX() - src.fetchLocX();
@@ -141,7 +142,7 @@ class Creature {
         const distance = Math.sqrt((dX * dX) + (dY * dY)) + offset;
         
         if (distance <= offset) {
-            clearTimeout(this.timer);
+            this.abortScheduleTimer();
             callback();
             return;
         }
@@ -150,7 +151,7 @@ class Creature {
         //const cos = dX / distance;
 
         const ticksToMove = 1 + ((ticksPerSecond * distance) / src.fetchRun());
-        clearTimeout(this.timer);
+        this.abortScheduleTimer();
 
         this.timer = setTimeout(() => {
             this.updatePosition({
@@ -163,6 +164,11 @@ class Creature {
             callback();
 
         }, (1000 / ticksPerSecond) * ticksToMove);
+    }
+
+    abortScheduleTimer() {
+        clearTimeout(this.timer);
+        this.timer = undefined;
     }
 }
 

@@ -149,6 +149,9 @@ class Actor extends Creature {
     // Abstract
 
     moveTo(session, coords) {
+        // TODO: Well... this needs rework, to remember the scheduled action in some respect
+        this.abortScheduleTimer();
+
         session.dataSend(
             ServerResponse.moveToLocation(this.fetchId(), coords)
         );
@@ -159,7 +162,7 @@ class Actor extends Creature {
         Database.updateCharacterLocation(this.fetchId(), coords);
     }
 
-    select(session, data) { // TODO: shift `data.actionId !== 0`
+    select(session, data) {
         if (this.fetchId() === data.id) { // Click on self
             this.unselect(session);
             session.dataSend(ServerResponse.destSelected(data.id));
@@ -179,7 +182,7 @@ class Actor extends Creature {
                     ServerResponse.moveToPawn(this, npc, distanceFromNpc)
                 );
 
-                this.anticipateArrival(this, npc, distanceFromNpc, () => {
+                this.scheduleArrival(this, npc, distanceFromNpc, () => {
                     if (npc.fetchAttackable()) {
                         utils.infoSuccess('GameServer:: attack that fabulous beast');
                     }
@@ -203,16 +206,17 @@ class Actor extends Creature {
             return;
         }
 
+        // TODO: Well... this needs rework, to remember the scheduled action in some respect
+        this.abortScheduleTimer();
+
         session.dataSend(
             ServerResponse.skillStarted(this, this.npcId, data)
         );
     }
 
     basicAction(session, data) {
-        if (data.shift || data.ctrl) {
-            utils.infoWarn('GameServer:: shift and ctrl unimplemented');
-            return;
-        }
+        // TODO: Well... this needs rework, to remember the scheduled action in some respect
+        this.abortScheduleTimer();
 
         switch (data.actionId) {
         case 0x00: // Sit / Stand
@@ -249,6 +253,9 @@ class Actor extends Creature {
         if (this.state.fetchOccupied() || this.state.fetchSeated()) {
             return;
         }
+
+        // TODO: Well... this needs rework, to remember the scheduled action in some respect
+        this.abortScheduleTimer();
 
         session.dataSend(
             ServerResponse.socialAction(this.fetchId(), actionId)
