@@ -152,6 +152,12 @@ class Actor extends Creature {
     // Abstract
 
     moveTo(session, coords) {
+        if (this.state.fetchOccupied() || this.state.fetchSeated()) {
+            session.dataSend(ServerResponse.actionFailed());
+            return;
+        }
+
+        // TODO: Well... this needs rework, to remember the scheduled action in some respect
         this.abortScheduleTimer();
 
         session.dataSend(
@@ -179,9 +185,11 @@ class Actor extends Creature {
             }
             else { // Second click on same Npc
                 if (this.state.fetchOccupied() || this.state.fetchSeated()) {
-                    return; // TODO: When seated u can't switch between npc selection
+                    session.dataSend(ServerResponse.actionFailed());
+                    return;
                 }
 
+                // TODO: Continuous attack press, never completes
                 const distanceFromNpc = 20;
                 this.scheduleArrival(session, this, npc, distanceFromNpc, () => {
                     if (npc.fetchAttackable()) {

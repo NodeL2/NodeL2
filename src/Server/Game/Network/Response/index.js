@@ -1,4 +1,5 @@
 module.exports = {
+          actionFailed: require('./ActionFailed'),
            addShortcut: require('./AddShortcut'),
      charCreateSuccess: require('./CharCreateSuccess'),
           charSelected: require('./CharSelected'),
