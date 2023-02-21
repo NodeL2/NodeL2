@@ -15,14 +15,8 @@ function speak(session, buffer) {
 }
 
 function consume(session, data) {
-    if (data.kind === 0 && data.text === '.unstuck') {
-        session.dataSend(
-            ServerResponse.teleportToLocation(session.actor.fetchId(), {
-                locX: 80304,
-                locY: 56241,
-                locZ: -1500,
-            })
-        );
+    if (data.kind === 0 && data.text === '.unstuck') { // TODO: Remove, temp solution
+        session.actor.unstuck(session);
         return;
     }
 

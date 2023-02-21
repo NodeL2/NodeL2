@@ -12,7 +12,10 @@ class Actor extends Creature {
 
         // Specific
         this.npcId = undefined;
+        this.createAdditionals(data);
+    }
 
+    createAdditionals(data) {
         this.backpack  = new Backpack (data.items);
         this.paperdoll = new Paperdoll(data.paperdoll);
 
@@ -176,7 +179,7 @@ class Actor extends Creature {
             }
             else { // Second click on same Npc
                 if (this.state.fetchOccupied() || this.state.fetchSeated()) {
-                    return;
+                    return; // TODO: When seated u can't switch between npc selection
                 }
 
                 const distanceFromNpc = 20;
@@ -217,8 +220,9 @@ class Actor extends Creature {
     }
 
     basicAction(session, data) {
-        // TODO: Well... this needs rework, to remember the scheduled action in some respect
-        this.abortScheduleTimer();
+        if (this.state.fetchOnTheMove()) {
+            return;
+        }
 
         switch (data.actionId) {
         case 0x00: // Sit / Stand
@@ -252,7 +256,7 @@ class Actor extends Creature {
     }
 
     socialAction(session, actionId) {
-        if (this.state.fetchOccupied() || this.state.fetchSeated()) {
+        if (this.state.fetchOnTheMove() || this.state.fetchOccupied() || this.state.fetchSeated()) {
             return;
         }
 
@@ -262,6 +266,26 @@ class Actor extends Creature {
         session.dataSend(
             ServerResponse.socialAction(this.fetchId(), actionId)
         );
+    }
+
+    unstuck(session) {
+        if (this.state.fetchOccupied() || this.state.fetchSeated()) {
+            return;
+        }
+
+        // TODO: Well... this needs rework, to remember the scheduled action in some respect
+        this.abortScheduleTimer();
+
+        const coords = {
+            locX: 80304, locY: 56241, locZ: -1500, head: this.fetchHead()
+        };
+
+        session.dataSend(ServerResponse.teleportToLocation(this.fetchId(), coords));
+
+        // TODO: Hide this from the world, soon. Utter stupid.
+        setTimeout(() => {
+            this.updatePosition(coords);
+        });
     }
 }
 

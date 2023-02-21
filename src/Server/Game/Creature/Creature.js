@@ -12,24 +12,24 @@ class Creature {
 
     // Set
 
-    setId(id) {
-        this.model.id = id;
+    setId(data) {
+        this.model.id = data;
     }
 
-    setLocX(locX) {
-        this.model.locX = locX;
+    setLocX(data) {
+        this.model.locX = data;
     }
 
-    setLocY(locY) {
-        this.model.locY = locY;
+    setLocY(data) {
+        this.model.locY = data;
     }
 
-    setLocZ(locZ) {
-        this.model.locZ = locZ;
+    setLocZ(data) {
+        this.model.locZ = data;
     }
 
-    setHead(head) {
-        this.model.head = head;
+    setHead(data) {
+        this.model.head = data;
     }
 
     setLocXYZH(coords) {
@@ -148,20 +148,27 @@ class Creature {
     scheduleArrival(session, creatureSrc, creatureDest, offset, callback) {
         const ticksPerSecond = 10;
         const distance = this.calcDistance(creatureSrc, creatureDest) + offset;
-        
+
+        // Execute each time, or else actor is stuck
+        session.dataSend(
+            ServerResponse.moveToPawn(creatureSrc, creatureDest, offset)
+        );
+
+        // No need to move!
         if (distance <= offset) {
             this.abortScheduleTimer();
             callback();
             return;
         }
 
-        session.dataSend(
-            ServerResponse.moveToPawn(creatureSrc, creatureDest, offset)
-        );
-
+        // Calculate duration and reset
         const ticksToMove = 1 + ((ticksPerSecond * distance) / creatureSrc.fetchRun());
         this.abortScheduleTimer();
 
+        // Actor is occupied
+        this.state.setOnTheMove(true);
+
+        // This is what happens on arrival
         this.timer = setTimeout(() => {
             this.updatePosition({
                 locX: creatureDest.fetchLocX(),
@@ -170,12 +177,16 @@ class Creature {
                 head: creatureSrc .fetchHead(),
             });
 
+            // Actor is not occupied, what do we do next?
+            this.state.setOnTheMove(false);
             callback();
 
         }, (1000 / ticksPerSecond) * ticksToMove);
     }
 
     abortScheduleTimer() {
+        this.state.setOnTheMove(false);
+
         clearTimeout(this.timer);
         this.timer = undefined;
     }

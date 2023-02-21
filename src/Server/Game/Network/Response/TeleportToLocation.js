@@ -9,7 +9,7 @@ function teleportToLocation(id, data) {
         .writeD(data.locY)
         .writeD(data.locZ)
         .writeD(0x00)
-        .writeD(0x00);
+        .writeD(data.head);
 
     return packet.fetchBuffer();
 }

@@ -37,6 +37,7 @@ const Opcodes = {
 
         table[0x57] = () => {}; // Board
         table[0x9d] = () => {}; // Skill Cool Time, not needed?
+        table[0xb9] = () => {}; // Recommend button
 
         return table;
     })()
