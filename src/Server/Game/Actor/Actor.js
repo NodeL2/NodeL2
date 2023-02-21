@@ -18,6 +18,8 @@ class Actor extends Creature {
 
         delete this.model.items;
         delete this.model.paperdoll;
+
+        this.timer = undefined;
     }
 
     // Get
@@ -159,6 +161,31 @@ class Actor extends Creature {
         Database.updateCharacterLocation(this.fetchId(), coords);
     }
 
+    anticipateArrival(src, dest, offset, callback) {
+        const ticksPerSecond = 10;
+
+        const dX = dest.fetchLocX() - src.fetchLocX();
+        const dY = dest.fetchLocY() - src.fetchLocY();
+        const distance = Math.sqrt((dX * dX) + (dY * dY)) + offset;
+        
+        if (distance <= offset) {
+            clearTimeout(this.timer);
+            callback();
+            return;
+        }
+
+        //const sin = dY / distance;
+        //const cos = dX / distance;
+
+        const ticksToMove = 1 + ((ticksPerSecond * distance) / src.fetchRun());
+
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() => {
+            this.updatePosition({ locX: dest.fetchLocX(), locY: dest.fetchLocY(), locZ: dest.fetchLocZ(), head: src.fetchHead() });
+            callback();
+        }, 100 * ticksToMove);
+    }
+
     select(session, data) { // TODO: shift `data.actionId !== 0`
         if (this.fetchId() === data.id) { // Click on self
             this.unselect(session);
@@ -167,26 +194,29 @@ class Actor extends Creature {
         }
 
         World.fetchNpcWithId(data.id).then((npc) => { // Npc selected
-            if (npc.fetchId() === this.npcId) { // Second click on same Npc
-                //if (npc.fetchAttackable()) {
-                //    utils.infoSuccess('GameServer:: attack that fabulous beast');
-                //}
-                //else {
-                //    utils.infoSuccess('GameServer:: talk to');
-                //}
-                //this.unselect(session);
-
-                session.dataSend(
-                    ServerResponse.moveToPawn(this, npc, 20)
-                )
-            }
-            else { // First click on Npc
+            if (npc.fetchId() !== this.npcId) { // First click on Npc
                 this.npcId = npc.fetchId();
                 session.dataSend(ServerResponse.destSelected(this.npcId));
                 session.dataSend(ServerResponse.statusUpdate(npc));
             }
-        }).catch(() => { // Pickup item
-            utils.infoWarn('GameServer:: further selection unimplemented');
+            else { // Second click on same Npc
+                const distanceFromNpc = 20;
+
+                session.dataSend(
+                    ServerResponse.moveToPawn(this, npc, distanceFromNpc)
+                );
+
+                this.anticipateArrival(this, npc, distanceFromNpc, () => {
+                    if (npc.fetchAttackable()) {
+                        utils.infoSuccess('GameServer:: attack that fabulous beast');
+                    }
+                    else {
+                        utils.infoSuccess('GameServer:: talk to');
+                    }
+                });
+            }
+        }).catch((e) => { // Pickup item
+            utils.infoWarn('GameServer:: further selection unimplemented ' + e);
         });
     }
 
