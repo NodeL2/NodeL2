@@ -4,6 +4,8 @@ class Creature {
     constructor(data) {
         this.model = data;
         this.state = new CreatureState();
+
+        this.timer = undefined; // TODO: Move this into actual GameServer timer
     }
 
     // Set
@@ -127,6 +129,40 @@ class Creature {
 
     fetchHead() {
         return this.model.head;
+    }
+
+    // Abstract
+
+    anticipateArrival(src, dest, offset, callback) {
+        const ticksPerSecond = 10;
+
+        const dX = dest.fetchLocX() - src.fetchLocX();
+        const dY = dest.fetchLocY() - src.fetchLocY();
+        const distance = Math.sqrt((dX * dX) + (dY * dY)) + offset;
+        
+        if (distance <= offset) {
+            clearTimeout(this.timer);
+            callback();
+            return;
+        }
+
+        //const sin = dY / distance;
+        //const cos = dX / distance;
+
+        const ticksToMove = 1 + ((ticksPerSecond * distance) / src.fetchRun());
+        clearTimeout(this.timer);
+
+        this.timer = setTimeout(() => {
+            this.updatePosition({
+                locX: dest.fetchLocX(),
+                locY: dest.fetchLocY(),
+                locZ: dest.fetchLocZ(),
+                head: src .fetchHead(),
+            });
+
+            callback();
+
+        }, (1000 / ticksPerSecond) * ticksToMove);
     }
 }
 
