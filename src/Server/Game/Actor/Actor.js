@@ -168,13 +168,17 @@ class Actor extends Creature {
 
         World.fetchNpcWithId(data.id).then((npc) => { // Npc selected
             if (npc.fetchId() === this.npcId) { // Second click on same Npc
-                if (npc.fetchAttackable()) {
-                    utils.infoSuccess('GameServer:: attack that fabulous beast');
-                }
-                else {
-                    utils.infoSuccess('GameServer:: talk to');
-                }
-                this.unselect(session);
+                //if (npc.fetchAttackable()) {
+                //    utils.infoSuccess('GameServer:: attack that fabulous beast');
+                //}
+                //else {
+                //    utils.infoSuccess('GameServer:: talk to');
+                //}
+                //this.unselect(session);
+
+                session.dataSend(
+                    ServerResponse.moveToPawn(this, npc, 20)
+                )
             }
             else { // First click on Npc
                 this.npcId = npc.fetchId();
