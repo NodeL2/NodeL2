@@ -10,6 +10,7 @@ module.exports = {
            destCancel: require('./DestCancel'),
     enterCharCreation: require('./EnterCharCreation'),
            enterWorld: require('./EnterWorld'),
+             htmlLink: require('./HtmlLink'),
             itemsList: require('./ItemsList'),
                logout: require('./Logout'),
        moveToLocation: require('./MoveToLocation'),
