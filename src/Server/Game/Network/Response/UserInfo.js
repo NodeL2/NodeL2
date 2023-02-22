@@ -93,7 +93,23 @@ function userInfo(actor) {
         .writeD(0x00)  // ?
         .writeD(0x00)  // ?
         .writeH(actor.fetchRecRemain())
-        .writeH(actor.fetchEvalScore());
+        .writeH(actor.fetchEvalScore())
+        .writeD(0x00)  // Mount Id
+        .writeH(0x00)  // Backpack limit
+        .writeD(0x00)  // Class Id?
+        .writeD(0x00)  // special effects? circles around player...
+        .writeD(0x00)  // Max Cp
+        .writeD(0x00)  // Cp
+        .writeC(0x00)  // Mounted
+        .writeC(0x00)  // Team circle color?
+        .writeD(0x00)  // ?
+        .writeC(0x00)  // Noble
+        .writeC(0x00)  // Hero
+        .writeC(0x00)  // Fishin
+        .writeD(0x00)  // Fishin X
+        .writeD(0x00)  // Fishin Y
+        .writeD(0x00)  // Fishin Z
+        .writeD(0xffffff);
 
     return packet.fetchBuffer();
 }
