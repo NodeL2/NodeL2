@@ -1,0 +1,17 @@
+[{
+    "selfId": 1,
+    "template": { "name": "Gremlin", "count": 1, "respawn": 15 },
+    "spawns": [{ "locX": 44656, "locY": 40896, "locZ": -3552, "head": -1 }, { "locX": 47488, "locY": 41148, "locZ": -3552, "head": -1 }, { "locX": 46476, "locY": 41884, "locZ": -3552, "head": -1 }, { "locX": 45904, "locY": 41904, "locZ": -3552, "head": -1 }]
+},{
+    "selfId": 126,
+    "template": { "name": "Pixy", "count": 1, "respawn": 60 },
+    "spawns": [{ "locX": 44384, "locY": 41492, "locZ": -3788, "head": -1 }, { "locX": 45748, "locY": 42384, "locZ": -3788, "head": -1 }, { "locX": 45588, "locY": 44892, "locZ": -3788, "head": -1 }, { "locX": 43724, "locY": 45284, "locZ": -3788, "head": -1 }, { "locX": 40576, "locY": 43232, "locZ": -3788, "head": -1 }, { "locX": 39864, "locY": 41168, "locZ": -3788, "head": -1 }]
+},{
+    "selfId": 7370,
+    "template": { "name": "Nerupa", "count": 1, "respawn": 60 },
+    "spawns": [{ "locX": 46048, "locY": 41200, "locZ": -3504, "head": 17000 }]
+},{
+    "selfId": 7400,
+    "template": { "name": "Newbie Helper", "count": 1, "respawn": 60 },
+    "spawns": [{ "locX": 46112, "locY": 41200, "locZ": -3504, "head": 17000 }]
+}]

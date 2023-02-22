@@ -8,11 +8,16 @@ const World = {
             spawns: [], nextId: 1000000
         };
 
-        for (let i in DataCache.npcs) {
-            this.npc.spawns.push(
-                new Npc(this.npc.nextId += Number(i), utils.crushOb(DataCache.npcs[i]))
-            );
-        }
+        DataCache.npcs.forEach((npc) => {
+            const spawns = DataCache.npcSpawns.filter(ob => ob.selfId === npc.selfId)[0]?.spawns ?? [];
+            spawns.forEach((coords) => {
+                this.npc.spawns.push(
+                    new Npc(this.npc.nextId++, utils.crushOb({ ...npc, ...coords }) )
+                );
+            });
+        });
+
+        console.info(this.npc.spawns);
     },
 
     insertNpcs(session) {

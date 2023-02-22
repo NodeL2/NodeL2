@@ -117,32 +117,6 @@
                     "radius",
                     "size"
                 ]
-            },
-            "spawns": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "locX": {
-                            "type": "integer"
-                        },
-                        "locY": {
-                            "type": "integer"
-                        },
-                        "locZ": {
-                            "type": "integer"
-                        },
-                        "head": {
-                            "type": "integer"
-                        }
-                    },
-                    "required": [
-                        "locX",
-                        "locY",
-                        "locZ",
-                        "head"
-                    ]
-                }
             }
         },
         "required": [
@@ -151,8 +125,7 @@
             "stats",
             "vitals",
             "speed",
-            "collision",
-            "spawns"
+            "collision"
         ]
     }
 }
