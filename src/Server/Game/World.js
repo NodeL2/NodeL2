@@ -16,8 +16,6 @@ const World = {
                 );
             });
         });
-
-        console.info(this.npc.spawns);
     },
 
     insertNpcs(session) {
