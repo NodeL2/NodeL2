@@ -194,7 +194,9 @@ class Actor extends Creature {
                         utils.infoSuccess('GameServer:: attack that fabulous beast');
                     }
                     else {
-                        utils.infoSuccess('GameServer:: talk to');
+                        session.dataSend(
+                            ServerResponse.npcHtml(npc.fetchId(), utils.parseRawFile('data/Html/Default/7370.html'))
+                        );
                     }
                 });
             }

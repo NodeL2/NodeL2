@@ -21,6 +21,7 @@ const Opcodes = {
         table[0x11] = ClientRequest.unequipItem;
         table[0x14] = ClientRequest.useItem;
         table[0x1b] = ClientRequest.socialAction;
+        table[0x21] = ClientRequest.htmlLink;
         table[0x2f] = ClientRequest.skillUse;
         table[0x30] = ClientRequest.appeared;
         table[0x33] = ClientRequest.addShortcut;
