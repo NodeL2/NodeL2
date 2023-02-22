@@ -189,9 +189,7 @@ class Actor extends Creature {
                     return;
                 }
 
-                // TODO: Continuous attack press, never completes
-                const distanceFromNpc = 20;
-                this.scheduleArrival(session, this, npc, distanceFromNpc, () => {
+                this.scheduleArrival(session, this, npc, 20, () => {
                     if (npc.fetchAttackable()) {
                         utils.infoSuccess('GameServer:: attack that fabulous beast');
                     }

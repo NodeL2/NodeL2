@@ -13,11 +13,12 @@ function protocolVersion(session, buffer) {
 }
 
 function consume(session, data) {
-    if (data.protocolVersion < 0 || data.protocolVersion >= 0xffff) { // TODO: Find root cause of this problem while on `ServerList`
-        return;
+    const optn = options.connection.Client;
+
+    if (data.protocolVersion !== optn.protocol) { // TODO: Add error feedback on-screen
+        utils.infoWarn('GameServer:: Protocol mismatch, expected %d, provided %d', optn.protocol, data.protocolVersion);
     }
 
-    // TODO: Match protocol version prior to this
     session.dataSend(
         ServerResponse.cipherInit()
     );

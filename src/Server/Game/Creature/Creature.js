@@ -161,6 +161,10 @@ class Creature {
             return;
         }
 
+        if (this.state.fetchOnTheMove()) {
+            return;
+        }
+
         // Calculate duration and reset
         const ticksToMove = 1 + ((ticksPerSecond * distance) / creatureSrc.fetchRun());
         this.abortScheduleTimer();
