@@ -107,6 +107,7 @@ const Database = {
             builder.insert('items', {
                      selfId: item.selfId,
                        name: item.name,
+                     amount: item.amount,
                    equipped: item.equipped,
                        slot: item.slot,
                 characterId: characterId

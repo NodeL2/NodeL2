@@ -46,8 +46,9 @@ CREATE TABLE `items`(
     `id`          int( 8)     NOT NULL AUTO_INCREMENT,
     `selfId`      int( 5)     NOT NULL,
     `name`        varchar(48) NOT NULL,
-    `equipped`    boolean     NOT NULL,
-    `slot`        int( 5)     NOT NULL,
+    `amount`      int(20)     NOT NULL DEFAULT 1,
+    `equipped`    boolean     NOT NULL DEFAULT 0,
+    `slot`        int( 5)     NOT NULL DEFAULT 0,
     `characterId` int( 8)     NOT NULL,
     PRIMARY KEY (`id`)
 );
