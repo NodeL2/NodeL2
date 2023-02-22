@@ -24,6 +24,9 @@
                     },
                     "hostile": {
                         "type": "boolean"
+                    },
+                    "respawn": {
+                        "type": "integer"
                     }
                 },
                 "required": [
@@ -31,7 +34,8 @@
                     "name",
                     "title",
                     "attackable",
-                    "hostile"
+                    "hostile",
+                    "respawn"
                 ]
             },
             "stats": {
