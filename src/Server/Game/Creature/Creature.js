@@ -16,6 +16,14 @@ class Creature {
         this.model.id = data;
     }
 
+    setHp(data) {
+        this.model.hp = data;
+    }
+
+    setMp(data) {
+        this.model.mp = data;
+    }
+
     setLocX(data) {
         this.model.locX = data;
     }

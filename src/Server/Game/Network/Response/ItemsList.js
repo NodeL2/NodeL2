@@ -12,11 +12,11 @@ function itemsList(items, popup = false) {
             .writeH(item.class1)
             .writeD(item.id)
             .writeD(item.selfId)
-            .writeD(0x01)  // Amount
+            .writeD(item.amount)
             .writeH(item.class2)
             .writeH(0xff)  // ?
             .writeH(item.equipped)
-            .writeD(2 ** item.slot)
+            .writeD(item.equipped ? 2 ** item.slot : 0)
             .writeH(0x00)  // Enchant level
             .writeH(0x00); // ?
     }

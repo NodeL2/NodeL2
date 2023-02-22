@@ -6,8 +6,9 @@ class Backpack {
     constructor(data) {
         data.push(
             { id: 4900000, selfId: 1665, name: "World Map" },
-            { id: 4900001, selfId:   18, name: "Leather Shield" }
-        ); // TODO: Temp data, please delete
+            { id: 4900001, selfId:   18, name: "Leather Shield" },
+            { id: 4900002, selfId:   57, name: "Adena", amount: 1337 }
+        ); // TODO: Test data, please delete
 
         this.items = [];
         data.forEach((item) => {
