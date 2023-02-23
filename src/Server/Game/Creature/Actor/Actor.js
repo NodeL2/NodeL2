@@ -172,7 +172,7 @@ class Actor extends Creature {
         Database.updateCharacterLocation(this.fetchId(), coords);
     }
 
-    select(session, data) {
+    select(session, data, ctrl = false) {
         if (this.fetchId() === data.id) { // Click on self
             this.unselect(session);
             session.dataSend(ServerResponse.destSelected(data.id));
@@ -192,7 +192,7 @@ class Actor extends Creature {
                 }
 
                 this.scheduleArrival(session, this, npc, 20, () => {
-                    if (npc.fetchAttackable()) {
+                    if (npc.fetchAttackable() || ctrl) {
                         this.automation.attackOnce(session, this.npcId);
                     }
                     else {
