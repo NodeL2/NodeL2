@@ -35,7 +35,7 @@
 ✅ Statistics for level, base abilities, etc.
 
 ## WIP/Experimental
-✴️ Attained weapom, armor, items\
+✴️ Attained weapon, armor, items\
 ✴️ Npc & Monster spawns\
 ✴️ Attack (Force attack too)\
 ✴️ Skill use
