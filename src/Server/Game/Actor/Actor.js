@@ -191,7 +191,8 @@ class Actor extends Creature {
 
                 this.scheduleArrival(session, this, npc, 20, () => {
                     if (npc.fetchAttackable()) {
-                        utils.infoSuccess('GameServer:: attack that fabulous beast');
+                        session.dataSend(ServerResponse.attack(this, this.npcId));
+                        session.dataSend(ServerResponse.consoleText(35, 1337));
                     }
                     else {
                         session.dataSend(
