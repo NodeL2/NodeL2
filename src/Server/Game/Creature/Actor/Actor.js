@@ -1,6 +1,7 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
 const World          = invoke('Server/Game/World');
 const Creature       = invoke('Server/Game/Creature/Creature');
+const Automation     = invoke('Server/Game/Creature/Actor/Automation');
 const Backpack       = invoke('Server/Game/Creature/Actor/Backpack');
 const Paperdoll      = invoke('Server/Game/Creature/Actor/Paperdoll');
 const Database       = invoke('Server/Database');
@@ -16,8 +17,9 @@ class Actor extends Creature {
     }
 
     createAdditionals(data) {
-        this.backpack  = new Backpack (data.items);
-        this.paperdoll = new Paperdoll(data.paperdoll);
+        this.automation = new Automation();
+        this.backpack   = new Backpack  (data.items);
+        this.paperdoll  = new Paperdoll (data.paperdoll);
 
         delete this.model.items;
         delete this.model.paperdoll;
@@ -191,8 +193,7 @@ class Actor extends Creature {
 
                 this.scheduleArrival(session, this, npc, 20, () => {
                     if (npc.fetchAttackable()) {
-                        session.dataSend(ServerResponse.attack(this, this.npcId));
-                        session.dataSend(ServerResponse.consoleText(35, 1337));
+                        this.automation.attackOnce(session, this.npcId);
                     }
                     else {
                         session.dataSend(
