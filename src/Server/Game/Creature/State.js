@@ -50,6 +50,10 @@ class CreatureState {
     fetchCombats() {
         return this.inCombat;
     }
+
+    fetchBlocked() {
+        return this.fetchCombats() || this.fetchOccupied() || this.fetchSeated();
+    }
 }
 
 module.exports = CreatureState;
