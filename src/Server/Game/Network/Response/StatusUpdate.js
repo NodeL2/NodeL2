@@ -5,11 +5,15 @@ function statusUpdate(npc) {
 
     packet
         .writeD(npc.fetchId())
-        .writeD(0x02)
+        .writeD(0x04)
         .writeD(0x09)
         .writeD(npc.fetchHp())
         .writeD(0x0a)
-        .writeD(npc.fetchMaxHp());
+        .writeD(npc.fetchMaxHp())
+        .writeD(0x0b)
+        .writeD(npc.fetchMp())
+        .writeD(0x0c)
+        .writeD(npc.fetchMaxMp());
 
     return packet.fetchBuffer();
 }

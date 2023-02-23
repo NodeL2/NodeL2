@@ -3,6 +3,7 @@ module.exports = {
             actionUse: require('./ActionUse'),
           addShortcut: require('./AddShortcut'),
              appeared: require('./Appeared'),
+               attack: require('./Attack'),
             authLogin: require('./AuthLogin'),
            charDelete: require('./CharDelete'),
          charSelected: require('./CharSelected'),

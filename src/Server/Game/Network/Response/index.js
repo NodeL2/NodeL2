@@ -10,6 +10,7 @@ module.exports = {
            consoleText: require('./ConsoleText'),
         destDeselected: require('./DestDeselected'),
           destSelected: require('./DestSelected'),
+                   die: require('./Die'),
              itemsList: require('./ItemsList'),
          logoutSuccess: require('./LogoutSuccess'),
         moveToLocation: require('./MoveToLocation'),

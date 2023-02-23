@@ -29,6 +29,10 @@ const World = {
             let npc = this.npc.spawns.find(ob => ob.fetchId() === id);
             return npc ? success(npc) : fail();
         });
+    },
+
+    removeNpcWithId(session, id) {
+        session.dataSend(ServerResponse.die(id));
     }
 };
 

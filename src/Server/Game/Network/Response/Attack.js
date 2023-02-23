@@ -6,12 +6,12 @@ function attack(actor, npcId) {
     packet
         .writeD(actor.fetchId())
         .writeD(npcId)
-        .writeD(1) // Damage
-        .writeC(0) // Hit
+        .writeD(0x01) // ?
+        .writeC(0x00) // ?
         .writeD(actor.fetchLocX())
         .writeD(actor.fetchLocX())
         .writeD(actor.fetchLocX())
-        .writeH(0);
+        .writeH(0x00);
 
     return packet.fetchBuffer();
 }
