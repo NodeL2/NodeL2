@@ -1,11 +1,13 @@
 module.exports = {
           actionFailed: require('./ActionFailed'),
            addShortcut: require('./AddShortcut'),
+                attack: require('./Attack'),
      charCreateSuccess: require('./CharCreateSuccess'),
           charSelected: require('./CharSelected'),
         charSelectInfo: require('./CharSelectInfo'),
          charTemplates: require('./CharTemplates'),
             cipherInit: require('./CipherInit'),
+           consoleText: require('./ConsoleText'),
         destDeselected: require('./DestDeselected'),
           destSelected: require('./DestSelected'),
              itemsList: require('./ItemsList'),

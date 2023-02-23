@@ -1,8 +1,8 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
 const World          = invoke('Server/Game/World');
 const Creature       = invoke('Server/Game/Creature/Creature');
-const Backpack       = invoke('Server/Game/Actor/Backpack');
-const Paperdoll      = invoke('Server/Game/Actor/Paperdoll');
+const Backpack       = invoke('Server/Game/Creature/Actor/Backpack');
+const Paperdoll      = invoke('Server/Game/Creature/Actor/Paperdoll');
 const Database       = invoke('Server/Database');
 
 class Actor extends Creature {
@@ -191,7 +191,8 @@ class Actor extends Creature {
 
                 this.scheduleArrival(session, this, npc, 20, () => {
                     if (npc.fetchAttackable()) {
-                        utils.infoSuccess('GameServer:: attack that fabulous beast');
+                        session.dataSend(ServerResponse.attack(this, this.npcId));
+                        session.dataSend(ServerResponse.consoleText(35, 1337));
                     }
                     else {
                         session.dataSend(

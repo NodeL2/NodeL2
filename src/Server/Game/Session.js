@@ -1,5 +1,5 @@
 const Opcodes = invoke('Server/Game/Network/Opcodes');
-const Actor   = invoke('Server/Game/Actor/Actor');
+const Actor   = invoke('Server/Game/Creature/Actor/Actor');
 
 class Session {
     constructor(socket) {
