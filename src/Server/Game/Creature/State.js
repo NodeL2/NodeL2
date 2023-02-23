@@ -4,6 +4,7 @@ class CreatureState {
         this.isWalkin    = false;
         this.isOnTheMove = false;
         this.isOccupied  = false;
+        this.inCombat    = false;
     }
 
     // Set
@@ -24,6 +25,10 @@ class CreatureState {
         this.isOccupied = data;
     }
 
+    setCombats(data) {
+        this.inCombat = data;
+    }
+
     // Get
 
     fetchSeated() {
@@ -40,6 +45,14 @@ class CreatureState {
 
     fetchOccupied() {
         return this.isOccupied;
+    }
+
+    fetchCombats() {
+        return this.inCombat;
+    }
+
+    fetchBlocked() {
+        return this.fetchCombats() || this.fetchOccupied() || this.fetchSeated();
     }
 }
 
