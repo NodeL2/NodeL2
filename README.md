@@ -4,14 +4,7 @@
 
 **LINEAGE II** Chronicle 2 server emulator for **NodeJS**. The structure is comprised of **ES6 JavaScript** (as much as possible), **SQL** via **MariaDB**, **JSON** for vast data, and **JSON Schema** for data structure validation.
 
-## What to expect
-✅ You are able to login into the server with credentials. The server recognizes a new account, and creates it; also recognizes an existing account and posts the right error message in case the password is mismatched.
-
-✅ You are now in the server selection screen, that's where clicking on the default server redirects to the character selection hall. You can proceed and create a new character; the new character is being given the race class skills, and the newbie starter gear, such as weapon and armor according to race and class. Back to the character selection hall, the new character is selectable for entering the game. You can also delete a selected character.
-
-✅ Entering the Lineage2 world, the character is able to move through the map; open the statistics screen, the right numbers are assigned to the character such as level, name, title, basic abilities, basic stats, pvp, pk etc. Moving to the skills screen, these are clickable to see the skill animation effect, as well as categorized after which ones are active, and which ones are passive. On the actions screen, the character can stand-up or rest, run or walk, and express their emotions with a social action.
-
-✅ You can also see the attained items, which ones are equipped, and which ones are not. You can equip or unequip armor/weapons, and this state is saved servser-side. You can add shortcuts to the shortcut bar for items/skills/actions. It is also possible to write text on the chat window and post it on the local, shout, or trade channel.
+⚠️ Careful, this is not to be used as a private server **at all**.
 
 ## Prerequisites
 * Install [NodeJS LTS](https://nodejs.org/en/download), and [MariaDB 16](https://mariadb.org/download/?t=mariadb&p=mariadb&r=10.6.12)
@@ -28,6 +21,25 @@
 * Launch server with `npm run --silent NodeL2`
 * Fire-up **LINEAGE II C2 Splendor** and authenticate
 * In order to unstuck a character, use this in the chat prompt: `.unstuck`
+
+## What to expect
+✅ Authentication, with error parse\
+✅ Server selection\
+✅ Character selection hall\
+✅ Character creation for 5 races\
+✅ Character deletion (instant)\
+✅ Enter world\
+✅ Statistics for level, base abilities, etc.
+
+## WIP/Experimental
+✴️ Attained weapom, armor, items\
+✴️ Npc & Monster spawns\
+✴️ Attack (Force attack too)\
+✴️ Skill use
+
+## Unimplemented
+⛔️ Around 80% of mechanics\
+⛔️ 99% of datapack
 
 ## License
 Open-source under [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0).
