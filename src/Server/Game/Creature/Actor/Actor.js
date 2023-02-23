@@ -154,7 +154,7 @@ class Actor extends Creature {
     // Abstract
 
     moveTo(session, coords) {
-        if (this.state.fetchOccupied() || this.state.fetchSeated()) {
+        if (this.state.fetchCombats() || this.state.fetchOccupied() || this.state.fetchSeated()) {
             session.dataSend(ServerResponse.actionFailed());
             return;
         }
@@ -186,7 +186,7 @@ class Actor extends Creature {
                 session.dataSend(ServerResponse.statusUpdate(npc));
             }
             else { // Second click on same Npc
-                if (this.state.fetchOccupied() || this.state.fetchSeated()) {
+                if (this.state.fetchCombats() || this.state.fetchOccupied() || this.state.fetchSeated()) {
                     session.dataSend(ServerResponse.actionFailed());
                     return;
                 }
@@ -217,7 +217,7 @@ class Actor extends Creature {
             return;
         }
 
-        if (this.state.fetchOccupied() || this.state.fetchSeated()) {
+        if (this.state.fetchCombats() || this.state.fetchOccupied() || this.state.fetchSeated()) {
             return;
         }
 
@@ -266,7 +266,7 @@ class Actor extends Creature {
     }
 
     socialAction(session, actionId) {
-        if (this.state.fetchOnTheMove() || this.state.fetchOccupied() || this.state.fetchSeated()) {
+        if (this.state.fetchOnTheMove() || this.state.fetchCombats() || this.state.fetchOccupied() || this.state.fetchSeated()) {
             return;
         }
 
@@ -279,7 +279,7 @@ class Actor extends Creature {
     }
 
     unstuck(session) {
-        if (this.state.fetchOccupied() || this.state.fetchSeated()) {
+        if (this.state.fetchCombats() || this.state.fetchOccupied() || this.state.fetchSeated()) {
             return;
         }
 
