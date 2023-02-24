@@ -1,0 +1,55 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "selfId": {
+                "type": "integer"
+            },
+            "template": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "effect": {
+                        "type": "string"
+                    },
+                    "mp": {
+                        "type": "integer"
+                    },
+                    "distance": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "name",
+                    "effect",
+                    "mp",
+                    "distance"
+                ]
+            },
+            "time": {
+                "type": "object",
+                "properties": {
+                    "hitTime": {
+                        "type": "integer"
+                    },
+                    "reuseTime": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "hitTime",
+                    "reuseTime"
+                ]
+            }
+        },
+        "required": [
+            "selfId",
+            "template",
+            "time"
+        ]
+    }
+}

@@ -1,0 +1,16 @@
+[{
+    "selfId": 118,
+    "template": { "name": "Magician's Movement" }
+},{
+    "selfId": 134,
+    "template": { "name": "Toughness" }
+},{
+    "selfId": 163,
+    "template": { "name": "Spellcraft" }
+},{
+    "selfId": 194,
+    "template": { "name": "Lucky" }
+},{
+    "selfId": 214,
+    "template": { "name": "Mana Recovery" }
+}]

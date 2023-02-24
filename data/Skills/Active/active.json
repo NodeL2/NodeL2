@@ -1,0 +1,9 @@
+[{
+    "selfId": 1177,
+    "template": { "name": "Wind Strike", "effect": "Hit", "mp": 9, "distance": 600 },
+    "time": { "hitTime": 4000, "reuseTime": 6000 }
+},{
+    "selfId": 1216,
+    "template": { "name": "Self Heal", "effect": "Heal", "mp": 9, "distance": 1500 },
+    "time": { "hitTime": 5000, "reuseTime": 10000 }
+}]
