@@ -158,12 +158,8 @@ class Actor extends Creature {
             return;
         }
 
-        // TODO: Well... this needs rework, to remember the scheduled action in some respect
         this.abortScheduleTimer();
-
-        session.dataSend(
-            ServerResponse.moveToLocation(this.fetchId(), coords)
-        );
+        session.dataSend(ServerResponse.moveToLocation(this.fetchId(), coords));
     }
 
     updatePosition(coords) {
@@ -219,25 +215,7 @@ class Actor extends Creature {
             return;
         }
 
-        World.fetchNpcWithId(this.npcId).then((npc) => {
-            if (npc.fetchHp() === 0) {
-                return;
-            }
-
-            this.abortScheduleTimer();
-            this.state.setCasts(true);
-
-            session.dataSend(
-                ServerResponse.skillStarted(this, this.npcId, data)
-            );
-
-            setTimeout(() => {
-                this.state.setCasts(false);
-            }, data.hitTime);
-
-        }).catch((e) => { // ?
-            utils.infoWarn('GameServer:: sometinwon ' + e);
-        });
+        this.automation.cast(session, this.npcId, data);
     }
 
     basicAction(session, data) {
@@ -267,7 +245,7 @@ class Actor extends Creature {
             );
             break;
 
-        case 0x28: // Recommend without selection (0xb9 when self is selected...)
+        case 0x28: // Recommend without selection
             break;
 
         default:
@@ -285,12 +263,8 @@ class Actor extends Creature {
             return;
         }
 
-        // TODO: Well... this needs rework, to remember the scheduled action in some respect
         this.abortScheduleTimer();
-
-        session.dataSend(
-            ServerResponse.socialAction(this.fetchId(), actionId)
-        );
+        session.dataSend(ServerResponse.socialAction(this.fetchId(), actionId));
     }
 
     unstuck(session) {
@@ -298,13 +272,11 @@ class Actor extends Creature {
             return;
         }
 
-        // TODO: Well... this needs rework, to remember the scheduled action in some respect
-        this.abortScheduleTimer();
-
         const coords = {
             locX: 80304, locY: 56241, locZ: -1500, head: this.fetchHead()
         };
 
+        this.abortScheduleTimer();
         session.dataSend(ServerResponse.teleportToLocation(this.fetchId(), coords));
 
         // TODO: Hide this from the world, soon. Utter stupid.
