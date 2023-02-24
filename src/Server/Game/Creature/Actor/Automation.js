@@ -7,16 +7,15 @@ class Automation {
         npc.setHp(Math.max(0, npc.fetchHp() - hit)); // HP bar would disappear if less than zero
 
         session.dataSend(ServerResponse.statusUpdate(npc));
-        session.dataSend(ServerResponse.consoleText(35, hit));
+        session.dataSend(ServerResponse.consoleText(35, [{ value: hit }]));
 
-        // Death
-        if (npc.fetchHp() === 0) {
-            World.removeNpcWithId(session, npc.fetchId());
+        if (npc.isDead()) {
+            World.removeNpc(session, npc);
         }
     }
 
     meleeHit(session, npc) {
-        if (npc.fetchHp() === 0) {
+        if (npc.isDead()) {
             return;
         }
 
@@ -34,7 +33,12 @@ class Automation {
     }
 
     remoteHit(session, npc, data) {
-        if (npc.fetchHp() === 0) {
+        if (npc.isDead()) {
+            return;
+        }
+
+        if (session.actor.fetchMp() < data.mp) {
+            session.dataSend(ServerResponse.consoleText(24));
             return;
         }
 
@@ -43,12 +47,26 @@ class Automation {
         session.actor.state.setCasts(true);
 
         setTimeout(() => {
+            session.actor.setMp(session.actor.fetchMp() - data.mp);
+            session.dataSend(ServerResponse.statusUpdate(session.actor));
             this.hit(session, npc, 30);
             session.actor.state.setCasts(false);
+
         }, data.hitTime);
 
         setTimeout(() => {
         }, data.resuseTime);
+    }
+
+    replenishMp(session) {
+        clearInterval(this.timerMp);
+        this.timerMp = setInterval(() => {
+            const value = session.actor.fetchMp() + 3;
+            const max   = session.actor.fetchMaxMp();
+
+            session.actor.setMp(Math.min(value, max));
+            session.dataSend(ServerResponse.statusUpdate(session.actor));
+        }, 3500);
     }
 }
 

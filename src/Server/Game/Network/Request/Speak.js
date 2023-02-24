@@ -15,9 +15,16 @@ function speak(session, buffer) {
 }
 
 function consume(session, data) {
-    if (data.kind === 0 && data.text === '.unstuck') { // TODO: Remove, temp solution
-        session.actor.unstuck(session);
-        return;
+    if (data.kind === 0) { // TODO: Remove, temp solution
+        if (data.text === '.unstuck') {
+            session.actor.unstuck(session);
+            return;
+        }
+        else
+        if (data.text === '.admin') {
+            session.actor.admin(session);
+            return;
+        }
     }
 
     session.dataSend(

@@ -1,8 +1,10 @@
 const Opcodes = invoke('Server/Game/Network/Opcodes');
+const World   = invoke('Server/Game/World');
 const Actor   = invoke('Server/Game/Creature/Actor/Actor');
 
 class Session {
     constructor(socket) {
+        World.insertUser(this);
         this.socket = socket;
     }
 

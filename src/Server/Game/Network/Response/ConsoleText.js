@@ -1,13 +1,17 @@
 const SendPacket = invoke('Server/Packet/Send');
 
-function consoleText(id, hit) {
+function consoleText(textId, params = []) {
     const packet = new SendPacket(0x64);
 
     packet
-        .writeD(id)
-        .writeD(1)  // Number of texts
-        .writeD(1)  // ?
-        .writeD(hit);
+        .writeD(textId)
+        .writeD(params.length)
+
+    for (const param of params) {
+        packet
+            .writeD(0x01)
+            .writeD(param.value);
+    }
 
     return packet.fetchBuffer();
 }
