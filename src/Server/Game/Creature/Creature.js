@@ -155,14 +155,14 @@ class Creature {
 
     scheduleArrival(session, creatureSrc, creatureDest, offset, callback) {
         const ticksPerSecond = 10;
-        const distance = this.calcDistance(creatureSrc, creatureDest) + offset;
+        const distance = this.calcDistance(creatureSrc, creatureDest) - offset;
 
         // Execute each time, or else actor is stuck
         session.dataSend(
             ServerResponse.moveToPawn(creatureSrc, creatureDest, offset)
         );
 
-        // No need to move!
+        // Melee radius, no need to move
         if (distance <= creatureDest.fetchRadius() + 30) {
             this.abortScheduleTimer();
             callback();
@@ -180,16 +180,8 @@ class Creature {
         // Actor is occupied
         this.state.setOnTheMove(true);
 
-        // This is what happens on arrival
+        // Arrived
         this.timer = setTimeout(() => {
-            this.updatePosition({
-                locX: creatureDest.fetchLocX(),
-                locY: creatureDest.fetchLocY(),
-                locZ: creatureDest.fetchLocZ(),
-                head: creatureSrc .fetchHead(),
-            });
-
-            // Actor is not occupied, what do we do next?
             this.state.setOnTheMove(false);
             callback();
 

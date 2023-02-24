@@ -82,10 +82,10 @@ const Database = {
         return Database.execute(
             builder.insert('skills', {
                      selfId: skill.selfId,
-                characterId: characterId,
                        name: skill.name,
                     passive: skill.passive,
-                      level: skill.level
+                      level: skill.level,
+                characterId: characterId,
             })
         );
     },

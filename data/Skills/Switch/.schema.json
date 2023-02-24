@@ -1,0 +1,31 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "selfId": {
+                "type": "integer"
+            },
+            "template": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "passive": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "name",
+                    "passive"
+                ]
+            }
+        },
+        "required": [
+            "selfId",
+            "template"
+        ]
+    }
+}

@@ -18,13 +18,13 @@ function skillUse(session, buffer) {
 
 function consume(session, data) {
     DataCache.fetchSkillDetailsFromId(data.selfId).then((details) => {
-        if (details.passive) {
+        if (details.template.passive) {
             return;
         }
 
-        session.actor.requestedSkillAction(session, {
+        session.actor.requestedSkillAction(session, utils.crushOb({
             ...data, ...details
-        });
+        }));
     });
 }
 

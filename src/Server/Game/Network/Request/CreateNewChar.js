@@ -63,11 +63,9 @@ function awardBaseSkills(id, classId) {
     const level1 = skills?.filter(ob => ob.pLevel === 1);
 
     (level1 ?? []).forEach((skill) => {
-        skill.passive = DataCache.skills.find(ob => ob.selfId === skill.selfId)?.passive ?? false;
+        skill.passive = DataCache.skills.find(ob => ob.selfId === skill.selfId)?.template?.passive ?? false;
         Database.setSkill(skill, id);
     });
-
-    //utils.infoWarn('GameServer:: first run, level 1 skills not found for ClassId ' + classId);
 }
 
 function awardBaseGear(id, classId) {
@@ -77,8 +75,6 @@ function awardBaseGear(id, classId) {
         item.slot = DataCache.items.find(ob => ob.selfId === item.selfId)?.etc?.slot ?? 0;
         Database.setItem(item, id);
     });
-
-    //utils.infoWarn('GameServer:: first run, items not found for ClassId ' + classId);
 }
 
 module.exports = createNewChar;

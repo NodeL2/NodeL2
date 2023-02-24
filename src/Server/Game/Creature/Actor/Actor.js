@@ -186,14 +186,25 @@ class Actor extends Creature {
                 }
 
                 this.scheduleArrival(session, this, npc, 20, () => {
-                    if (npc.fetchAttackable() || ctrl) {
-                        this.automation.attackOnce(session, this.npcId);
-                    }
-                    else {
-                        session.dataSend(
-                            ServerResponse.npcHtml(npc.fetchId(), utils.parseRawFile('data/Html/Default/7370.html'))
-                        );
-                    }
+                    this.updatePosition({
+                        locX: npc .fetchLocX(),
+                        locY: npc .fetchLocY(),
+                        locZ: npc .fetchLocZ(),
+                        head: this.fetchHead(),
+                    });
+
+                    World.fetchNpcWithId(this.npcId).then((npc) => {
+                        if (npc.fetchAttackable() || ctrl) {
+                            this.automation.meleeHit(session, npc);
+                        }
+                        else {
+                            session.dataSend(
+                                ServerResponse.npcHtml(npc.fetchId(), utils.parseRawFile('data/Html/Default/7370.html'))
+                            );
+                        }
+                    }).catch((e) => { // ?
+                        utils.infoWarn('GameServer:: problem on attack/talk -> ' + e);
+                    });
                 });
             }
         }).catch((e) => { // Pickup item
@@ -215,7 +226,13 @@ class Actor extends Creature {
             return;
         }
 
-        this.automation.cast(session, this.npcId, data);
+        World.fetchNpcWithId(this.npcId).then((npc) => {
+            this.scheduleArrival(session, this, npc, data.distance, () => {
+                this.automation.remoteHit(session, npc, data);
+            });
+        }).catch((e) => { // ?
+            utils.infoWarn('GameServer:: problem cast -> ' + e);
+        });
     }
 
     basicAction(session, data) {

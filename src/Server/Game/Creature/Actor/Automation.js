@@ -15,50 +15,40 @@ class Automation {
         }
     }
 
-    attackOnce(session, npcId) {
-        World.fetchNpcWithId(npcId).then((npc) => {
-            if (npc.fetchHp() === 0) {
-                return;
-            }
+    meleeHit(session, npc) {
+        if (npc.fetchHp() === 0) {
+            return;
+        }
 
-            const speed = 500000 / session.actor.fetchAtkSpd();
-            session.dataSend(ServerResponse.attack(session.actor, npcId));
-            session.actor.state.setCombats(true);
+        const speed = 500000 / session.actor.fetchAtkSpd();
+        session.dataSend(ServerResponse.attack(session.actor, npc.fetchId()));
+        session.actor.state.setCombats(true);
 
-            setTimeout(() => {
-                this.hit(session, npc, 15);
-            }, speed * 0.644); // Until hit point
+        setTimeout(() => {
+            this.hit(session, npc, 15);
+        }, speed * 0.644); // Until hit point
 
-            setTimeout(() => {
-                session.actor.state.setCombats(false);
-            }, speed); // Until end of combat
-
-        }).catch((e) => { // ?
-            utils.infoWarn('GameServer:: problem attack ' + e);
-        });
+        setTimeout(() => {
+            session.actor.state.setCombats(false);
+        }, speed); // Until end of combat
     }
 
-    cast(session, npcId, data) {
-        World.fetchNpcWithId(npcId).then((npc) => {
-            if (npc.fetchHp() === 0) {
-                return;
-            }
+    remoteHit(session, npc, data) {
+        if (npc.fetchHp() === 0) {
+            return;
+        }
 
-            session.actor.abortScheduleTimer();
-            session.dataSend(ServerResponse.skillStarted(session.actor, npcId, data));
-            session.actor.state.setCasts(true);
+        session.actor.abortScheduleTimer();
+        session.dataSend(ServerResponse.skillStarted(session.actor, npc.fetchId(), data));
+        session.actor.state.setCasts(true);
 
-            setTimeout(() => {
-                this.hit(session, npc, 30);
-                session.actor.state.setCasts(false);
-            }, data.hitTime);
+        setTimeout(() => {
+            this.hit(session, npc, 30);
+            session.actor.state.setCasts(false);
+        }, data.hitTime);
 
-            setTimeout(() => {
-            }, data.resuseTime);
-
-        }).catch((e) => { // ?
-            utils.infoWarn('GameServer:: problem cast ' + e);
-        });
+        setTimeout(() => {
+        }, data.resuseTime);
     }
 }
 
