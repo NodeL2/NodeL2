@@ -228,7 +228,9 @@ class Actor extends Creature {
 
         World.fetchNpcWithId(this.npcId).then((npc) => {
             this.scheduleArrival(session, this, npc, data.distance, () => {
-                this.automation.remoteHit(session, npc, data);
+                if (npc.fetchAttackable() || data.ctrl) { // TODO: Else, find which `response` fails the attack
+                    this.automation.remoteHit(session, npc, data);
+                }
             });
         }).catch((e) => { // ?
             utils.infoWarn('GameServer:: problem cast -> ' + e);

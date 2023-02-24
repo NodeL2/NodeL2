@@ -7,8 +7,8 @@ class Npc extends Creature {
 
         // Specific
         this.setId(id);
-        this.setHp(utils.randomNumber(this.fetchMaxHp()));
-        this.setMp(utils.randomNumber(this.fetchMaxMp()));
+        this.setHp(20 + utils.randomNumber(this.fetchMaxHp() - 20));
+        this.setMp(20 + utils.randomNumber(this.fetchMaxMp() - 20));
     }
 
     // Get

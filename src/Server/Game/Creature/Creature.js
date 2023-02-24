@@ -143,6 +143,10 @@ class Creature {
 
     // Abstract
 
+    isDead() {
+        return this.model.hp <= 0;
+    }
+
     calcDistance(creatureSrc, creatureDest) {
         const dX = creatureDest.fetchLocX() - creatureSrc.fetchLocX();
         const dY = creatureDest.fetchLocY() - creatureSrc.fetchLocY();
