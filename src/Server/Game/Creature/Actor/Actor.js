@@ -154,8 +154,7 @@ class Actor extends Creature {
     // Abstract
 
     moveTo(session, coords) {
-        if (this.state.fetchBlocked()) {
-            session.dataSend(ServerResponse.actionFailed());
+        if (this.isBusy(session)) {
             return;
         }
 
@@ -186,8 +185,7 @@ class Actor extends Creature {
                 session.dataSend(ServerResponse.statusUpdate(npc));
             }
             else { // Second click on same Npc
-                if (this.state.fetchBlocked()) {
-                    session.dataSend(ServerResponse.actionFailed());
+                if (this.isBusy(session)) {
                     return;
                 }
 
@@ -217,16 +215,29 @@ class Actor extends Creature {
             return;
         }
 
-        if (this.state.fetchBlocked()) {
+        if (this.isBusy(session)) {
             return;
         }
 
-        // TODO: Well... this needs rework, to remember the scheduled action in some respect
-        this.abortScheduleTimer();
+        World.fetchNpcWithId(this.npcId).then((npc) => {
+            if (npc.fetchHp() === 0) {
+                return;
+            }
 
-        session.dataSend(
-            ServerResponse.skillStarted(this, this.npcId, data)
-        );
+            this.abortScheduleTimer();
+            this.state.setCasts(true);
+
+            session.dataSend(
+                ServerResponse.skillStarted(this, this.npcId, data)
+            );
+
+            setTimeout(() => {
+                this.state.setCasts(false);
+            }, data.hitTime);
+
+        }).catch((e) => { // ?
+            utils.infoWarn('GameServer:: sometinwon ' + e);
+        });
     }
 
     basicAction(session, data) {
@@ -236,7 +247,7 @@ class Actor extends Creature {
 
         switch (data.actionId) {
         case 0x00: // Sit / Stand
-            if (this.state.fetchOccupied()) {
+            if (this.state.fetchCasts() || this.state.fetchCombats() || this.state.fetchOccupied()) {
                 return;
             }
 
@@ -266,7 +277,11 @@ class Actor extends Creature {
     }
 
     socialAction(session, actionId) {
-        if (this.state.fetchOnTheMove() || this.state.fetchBlocked()) {
+        if (this.isBusy(session)) {
+            return;
+        }
+
+        if (this.state.fetchOnTheMove()) {
             return;
         }
 
@@ -279,7 +294,7 @@ class Actor extends Creature {
     }
 
     unstuck(session) {
-        if (this.state.fetchBlocked()) {
+        if (this.isBusy(session)) {
             return;
         }
 

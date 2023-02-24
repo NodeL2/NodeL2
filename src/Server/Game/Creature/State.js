@@ -5,6 +5,7 @@ class CreatureState {
         this.isOnTheMove = false;
         this.isOccupied  = false;
         this.inCombat    = false;
+        this.isCastin    = false;
     }
 
     // Set
@@ -29,6 +30,10 @@ class CreatureState {
         this.inCombat = data;
     }
 
+    setCasts(data) {
+        this.isCastin = data;
+    }
+
     // Get
 
     fetchSeated() {
@@ -51,8 +56,12 @@ class CreatureState {
         return this.inCombat;
     }
 
-    fetchBlocked() {
-        return this.fetchCombats() || this.fetchOccupied() || this.fetchSeated();
+    fetchCasts() {
+        return this.isCastin;
+    }
+
+    isBusy() {
+        return this.fetchCasts() || this.fetchCombats() || this.fetchOccupied() || this.fetchSeated();
     }
 }
 

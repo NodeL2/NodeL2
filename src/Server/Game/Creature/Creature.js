@@ -202,6 +202,14 @@ class Creature {
         clearTimeout(this.timer);
         this.timer = undefined;
     }
+
+    isBusy(session) {
+        if (this.state.isBusy()) {
+            session.dataSend(ServerResponse.actionFailed());
+            return true;
+        }
+        return false;
+    }
 }
 
 module.exports = Creature;
