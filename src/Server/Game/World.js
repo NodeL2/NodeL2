@@ -4,6 +4,10 @@ const DataCache      = invoke('Server/Game/DataCache');
 
 const World = {
     init() {
+        this.user = {
+            sessions: []
+        };
+
         this.npc = {
             spawns: [], nextId: 1000000
         };
@@ -16,6 +20,10 @@ const World = {
                 );
             });
         });
+    },
+
+    insertUser(session) {
+        this.user.sessions.push(session);
     },
 
     insertNpcs(session) {

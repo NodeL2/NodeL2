@@ -14,7 +14,7 @@ class Npc extends Creature {
             const value = this.fetchHp() + 3;
             const max   = this.fetchMaxHp();
 
-            this.setHp(Math.min(value, max)); // TODO: First broadcast?
+            this.setHp(Math.min(value, max));
         }, 3500);
     }
 

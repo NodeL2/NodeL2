@@ -162,7 +162,7 @@ class Actor extends Creature {
         session.dataSend(ServerResponse.moveToLocation(this.fetchId(), coords));
     }
 
-    updatePosition(coords) {
+    updatePosition(coords) { // TODO: Write less in DB about movement
         this.setLocXYZH(coords);
         Database.updateCharacterLocation(this.fetchId(), coords);
     }
