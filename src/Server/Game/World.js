@@ -31,14 +31,17 @@ const World = {
         });
     },
 
-    removeNpcWithId(session, id) {
-        session.dataSend(ServerResponse.die(id));
+    removeNpc(session, npc) {
+        npc.destructor();
+
+        const npcId = npc.fetchId();
+        session.dataSend(ServerResponse.die(npcId));
 
         // Delete npc from world
         setTimeout(() => {
-            this.npc.spawns = this.npc.spawns.filter(ob => ob.id !== id);
+            this.npc.spawns = this.npc.spawns.filter(ob => ob.fetchId() !== npcId);
             session.dataSend(
-                ServerResponse.deleteOb(id)
+                ServerResponse.deleteOb(npcId)
             );
         }, 5000);
     }

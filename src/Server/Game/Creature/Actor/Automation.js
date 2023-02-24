@@ -10,7 +10,7 @@ class Automation {
         session.dataSend(ServerResponse.consoleText(35, [{ value: hit }]));
 
         if (npc.isDead()) {
-            World.removeNpcWithId(session, npc.fetchId());
+            World.removeNpc(session, npc);
         }
     }
 

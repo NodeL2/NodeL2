@@ -10,12 +10,16 @@ class Npc extends Creature {
         this.setHp(utils.randomNumber(this.fetchMaxHp()));
         this.setMp(utils.randomNumber(this.fetchMaxMp()));
 
-        setInterval(() => {
+        this.replenishHp = setInterval(() => {
             const value = this.fetchHp() + 3;
             const max   = this.fetchMaxHp();
 
             this.setHp(Math.min(value, max)); // TODO: First broadcast?
         }, 3500);
+    }
+
+    destructor() {
+        clearInterval(this.replenishHp);
     }
 
     // Get

@@ -303,6 +303,12 @@ class Actor extends Creature {
             this.updatePosition(coords);
         });
     }
+
+    admin(session) {
+        session.dataSend(
+            ServerResponse.npcHtml(this.fetchId(), utils.parseRawFile('data/Html/Default/admin.html'))
+        );
+    }
 }
 
 module.exports = Actor;
