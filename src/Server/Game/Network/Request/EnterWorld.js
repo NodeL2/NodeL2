@@ -14,6 +14,8 @@ function enterWorld(session, buffer) {
         );
     });
 
+    session.actor.automation.replenishMp(session);
+
     // World
     World.insertNpcs(session);
 }

@@ -57,6 +57,17 @@ class Automation {
         setTimeout(() => {
         }, data.resuseTime);
     }
+
+    replenishMp(session) {
+        clearInterval(this.timerMp);
+        this.timerMp = setInterval(() => {
+            const value = session.actor.fetchMp() + 3;
+            const max   = session.actor.fetchMaxMp();
+
+            session.actor.setMp(Math.min(value, max));
+            session.dataSend(ServerResponse.statusUpdate(session.actor));
+        }, 3500);
+    }
 }
 
 module.exports = Automation;
