@@ -4,6 +4,10 @@ const World          = invoke('Server/Game/World');
 class Automation {
     attackOnce(session, npcId) {
         World.fetchNpcWithId(npcId).then((npc) => {
+            if (npc.fetchHp() === 0) {
+                return;
+            }
+
             const speed = 500000 / session.actor.fetchAtkSpd();
             session.dataSend(ServerResponse.attack(session.actor, npcId));
             session.actor.state.setCombats(true);

@@ -163,7 +163,7 @@ class Creature {
         );
 
         // No need to move!
-        if (distance <= creatureDest.fetchRadius() + 50) {
+        if (distance <= creatureDest.fetchRadius() + 30) {
             this.abortScheduleTimer();
             callback();
             return;
