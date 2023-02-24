@@ -24,7 +24,7 @@ function consume(session, data) {
     const characterId = session.actor.fetchId();
 
     if (data.kind === 2) {
-        if ((DataCache.skills.find(ob => ob.selfId === data.id))?.passive) {
+        if ((DataCache.skills.find(ob => ob.selfId === data.id))?.template?.passive) {
             return;
         }
     }

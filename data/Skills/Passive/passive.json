@@ -1,16 +1,16 @@
 [{
     "selfId": 118,
-    "template": { "name": "Magician's Movement" }
+    "template": { "name": "Magician's Movement", "passive": true }
 },{
     "selfId": 134,
-    "template": { "name": "Toughness" }
+    "template": { "name": "Toughness", "passive": true }
 },{
     "selfId": 163,
-    "template": { "name": "Spellcraft" }
+    "template": { "name": "Spellcraft", "passive": true }
 },{
     "selfId": 194,
-    "template": { "name": "Lucky" }
+    "template": { "name": "Lucky", "passive": true }
 },{
     "selfId": 214,
-    "template": { "name": "Mana Recovery" }
+    "template": { "name": "Mana Recovery", "passive": true }
 }]

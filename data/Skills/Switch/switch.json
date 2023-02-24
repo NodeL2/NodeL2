@@ -1,4 +1,4 @@
 [{
     "selfId": 1001,
-    "template": { "name": "Soul Cry" }
+    "template": { "name": "Soul Cry", "passive": false }
 }]

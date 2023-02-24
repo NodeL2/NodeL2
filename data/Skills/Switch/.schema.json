@@ -12,10 +12,14 @@
                 "properties": {
                     "name": {
                         "type": "string"
+                    },
+                    "passive": {
+                        "type": "boolean"
                     }
                 },
                 "required": [
-                    "name"
+                    "name",
+                    "passive"
                 ]
             }
         },

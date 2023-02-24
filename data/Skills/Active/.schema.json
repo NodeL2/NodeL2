@@ -13,6 +13,9 @@
                     "name": {
                         "type": "string"
                     },
+                    "passive": {
+                        "type": "boolean"
+                    },
                     "effect": {
                         "type": "string"
                     },
@@ -25,6 +28,7 @@
                 },
                 "required": [
                     "name",
+                    "passive",
                     "effect",
                     "mp",
                     "distance"
