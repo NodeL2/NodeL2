@@ -163,7 +163,7 @@ class Creature {
         );
 
         // No need to move!
-        if (distance <= creatureDest.fetchRadius() + 50) {
+        if (distance <= creatureDest.fetchRadius() + 30) {
             this.abortScheduleTimer();
             callback();
             return;
@@ -201,6 +201,14 @@ class Creature {
 
         clearTimeout(this.timer);
         this.timer = undefined;
+    }
+
+    isBusy(session) {
+        if (this.state.isBusy()) {
+            session.dataSend(ServerResponse.actionFailed());
+            return true;
+        }
+        return false;
     }
 }
 

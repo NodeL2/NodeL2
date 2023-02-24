@@ -154,17 +154,12 @@ class Actor extends Creature {
     // Abstract
 
     moveTo(session, coords) {
-        if (this.state.fetchBlocked()) {
-            session.dataSend(ServerResponse.actionFailed());
+        if (this.isBusy(session)) {
             return;
         }
 
-        // TODO: Well... this needs rework, to remember the scheduled action in some respect
         this.abortScheduleTimer();
-
-        session.dataSend(
-            ServerResponse.moveToLocation(this.fetchId(), coords)
-        );
+        session.dataSend(ServerResponse.moveToLocation(this.fetchId(), coords));
     }
 
     updatePosition(coords) {
@@ -186,8 +181,7 @@ class Actor extends Creature {
                 session.dataSend(ServerResponse.statusUpdate(npc));
             }
             else { // Second click on same Npc
-                if (this.state.fetchBlocked()) {
-                    session.dataSend(ServerResponse.actionFailed());
+                if (this.isBusy(session)) {
                     return;
                 }
 
@@ -217,16 +211,11 @@ class Actor extends Creature {
             return;
         }
 
-        if (this.state.fetchBlocked()) {
+        if (this.isBusy(session)) {
             return;
         }
 
-        // TODO: Well... this needs rework, to remember the scheduled action in some respect
-        this.abortScheduleTimer();
-
-        session.dataSend(
-            ServerResponse.skillStarted(this, this.npcId, data)
-        );
+        this.automation.cast(session, this.npcId, data);
     }
 
     basicAction(session, data) {
@@ -236,7 +225,7 @@ class Actor extends Creature {
 
         switch (data.actionId) {
         case 0x00: // Sit / Stand
-            if (this.state.fetchOccupied()) {
+            if (this.state.fetchCasts() || this.state.fetchCombats() || this.state.fetchOccupied()) {
                 return;
             }
 
@@ -256,7 +245,7 @@ class Actor extends Creature {
             );
             break;
 
-        case 0x28: // Recommend without selection (0xb9 when self is selected...)
+        case 0x28: // Recommend without selection
             break;
 
         default:
@@ -266,30 +255,28 @@ class Actor extends Creature {
     }
 
     socialAction(session, actionId) {
-        if (this.state.fetchOnTheMove() || this.state.fetchBlocked()) {
+        if (this.isBusy(session)) {
             return;
         }
 
-        // TODO: Well... this needs rework, to remember the scheduled action in some respect
-        this.abortScheduleTimer();
+        if (this.state.fetchOnTheMove()) {
+            return;
+        }
 
-        session.dataSend(
-            ServerResponse.socialAction(this.fetchId(), actionId)
-        );
+        this.abortScheduleTimer();
+        session.dataSend(ServerResponse.socialAction(this.fetchId(), actionId));
     }
 
     unstuck(session) {
-        if (this.state.fetchBlocked()) {
+        if (this.isBusy(session)) {
             return;
         }
-
-        // TODO: Well... this needs rework, to remember the scheduled action in some respect
-        this.abortScheduleTimer();
 
         const coords = {
             locX: 80304, locY: 56241, locZ: -1500, head: this.fetchHead()
         };
 
+        this.abortScheduleTimer();
         session.dataSend(ServerResponse.teleportToLocation(this.fetchId(), coords));
 
         // TODO: Hide this from the world, soon. Utter stupid.

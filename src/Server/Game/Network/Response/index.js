@@ -8,6 +8,7 @@ module.exports = {
          charTemplates: require('./CharTemplates'),
             cipherInit: require('./CipherInit'),
            consoleText: require('./ConsoleText'),
+              deleteOb: require('./DeleteOb'),
         destDeselected: require('./DestDeselected'),
           destSelected: require('./DestSelected'),
                    die: require('./Die'),

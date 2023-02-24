@@ -33,6 +33,14 @@ const World = {
 
     removeNpcWithId(session, id) {
         session.dataSend(ServerResponse.die(id));
+
+        // Delete npc from world
+        setTimeout(() => {
+            this.npc.spawns = this.npc.spawns.filter(ob => ob.id !== id);
+            session.dataSend(
+                ServerResponse.deleteOb(id)
+            );
+        }, 5000);
     }
 };
 
