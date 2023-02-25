@@ -202,13 +202,15 @@ class Actor extends Creature {
                                 ServerResponse.npcHtml(npc.fetchId(), utils.parseRawFile('data/Html/Default/7370.html'))
                             );
                         }
-                    }).catch((e) => { // ?
-                        utils.infoWarn('GameServer:: problem on attack/talk -> ' + e);
+                    }).catch((e) => {
+                        utils.infoWarn('GameServer:: npc not found (1) -> ' + e);
+                        this.unselect(session);
                     });
                 });
             }
         }).catch((e) => { // Pickup item
-            utils.infoWarn('GameServer:: further selection unimplemented ' + e);
+            utils.infoWarn('GameServer:: npc not found (2) -> ' + e);
+            this.unselect(session);
         });
     }
 
@@ -232,8 +234,9 @@ class Actor extends Creature {
                     this.automation.remoteHit(session, npc, data);
                 }
             });
-        }).catch((e) => { // ?
-            utils.infoWarn('GameServer:: problem cast -> ' + e);
+        }).catch((e) => {
+            utils.infoWarn('GameServer:: npc not found (3) -> ' + e);
+            this.unselect(session);
         });
     }
 
