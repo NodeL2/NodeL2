@@ -31,16 +31,3 @@ Database.init(() => {
         return new GameSession(socket);
     });
 });
-
-// A cool alternative to stupid hardcoded tables
-function fetchSTRMod(str) {
-    let base = 0.30;
-    let multiplier = 0.036219821012;
-    for (let i = 1; i < str; i++, base += (base * multiplier));
-    return Number(base.toFixed(2));
-}
-
-console.info(fetchSTRMod(50));
-
-//pAtk = weapon_pAtk * STR
-//hit = 77 * (pAtk + power) / (pDef)
