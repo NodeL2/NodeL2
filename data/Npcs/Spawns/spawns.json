@@ -11,6 +11,106 @@
     "template": { "name": "Young Red Keltir", "count": 5 },
     "spawns": [{ "locX": 39324, "locY": 40300, "locZ": -3704, "head": -1 }, { "locX": 42320, "locY": 40740, "locZ": -3704, "head": -1 }, { "locX": 43240, "locY": 41508, "locZ": -3704, "head": -1 }, { "locX": 41292, "locY": 43608, "locZ": -3704, "head": -1 }]
 },{
+    "selfId": 7146,
+    "template": { "name": "Mirabel", "count": 1 },
+    "spawns": [{ "locX": 46926, "locY": 51511, "locZ": -2902, "head": 43000 }]
+},{
+    "selfId": 7147,
+    "template": { "name": "Unoren", "count": 1 },
+    "spawns": [{ "locX": 44667, "locY": 46896, "locZ": -2906, "head": 31000 }]
+},{
+    "selfId": 7148,
+    "template": { "name": "Ariel", "count": 1 },
+    "spawns": [{ "locX": 44683, "locY": 46952, "locZ": -2906, "head": 28672 }]
+},{
+    "selfId": 7149,
+    "template": { "name": "Creamees", "count": 1 },
+    "spawns": [{ "locX": 42700, "locY": 50057, "locZ": -2985, "head": 14500 }]
+},{
+    "selfId": 7150,
+    "template": { "name": "Herbiel", "count": 1 },
+    "spawns": [{ "locX": 42766, "locY": 50037, "locZ": -2985, "head": 11500 }]
+},{
+    "selfId": 7151,
+    "template": { "name": "Chad", "count": 1 },
+    "spawns": [{ "locX": 47868, "locY": 50167, "locZ": -2985, "head": 50000 }]
+},{
+    "selfId": 7152,
+    "template": { "name": "Julia", "count": 1 },
+    "spawns": [{ "locX": 47912, "locY": 50170, "locZ": -2985, "head": 50000 }]
+},{
+    "selfId": 7153,
+    "template": { "name": "Markius", "count": 1 },
+    "spawns": [{ "locX": 47780, "locY": 49568, "locZ": -2985, "head": 4096 }]
+},{
+    "selfId": 7154,
+    "template": { "name": "Asterios", "count": 1 },
+    "spawns": [{ "locX": 44692, "locY": 52261, "locZ": -2798, "head": 0 }]
+},{
+    "selfId": 7155,
+    "template": { "name": "Ellenia", "count": 1 },
+    "spawns": [{ "locX": 45727, "locY": 52105, "locZ": -2798, "head": 16384 }]
+},{
+    "selfId": 7156,
+    "template": { "name": "Cobendell", "count": 1 },
+    "spawns": [{ "locX": 44823, "locY": 52414, "locZ": -2798, "head": 49152 }]
+},{
+    "selfId": 7157,
+    "template": { "name": "Greenis", "count": 1 },
+    "spawns": [{ "locX": 45000, "locY": 52101, "locZ": -2798, "head": 16384 }]
+},{
+    "selfId": 7158,
+    "template": { "name": "Esrandell", "count": 1 },
+    "spawns": [{ "locX": 45919, "locY": 52414, "locZ": -2798, "head": 49152 }]
+},{
+    "selfId": 7217,
+    "template": { "name": "Berros", "count": 1 },
+    "spawns": [{ "locX": 45487, "locY": 46511, "locZ": -2921, "head": 57344 }]
+},{
+    "selfId": 7218,
+    "template": { "name": "Kendell", "count": 1 },
+    "spawns": [{ "locX": 47595, "locY": 51569, "locZ": -2921, "head": 16384 }]
+},{
+    "selfId": 7219,
+    "template": { "name": "Veltress", "count": 1 },
+    "spawns": [{ "locX": 47401, "locY": 51764, "locZ": -2921, "head": 0 }]
+},{
+    "selfId": 7220,
+    "template": { "name": "Starden", "count": 1 },
+    "spawns": [{ "locX": 42971, "locY": 51372, "locZ": -2921, "head": 32768 }]
+},{
+    "selfId": 7221,
+    "template": { "name": "Rayen", "count": 1 },
+    "spawns": [{ "locX": 42812, "locY": 51138, "locZ": -2921, "head": 16384 }]
+},{
+    "selfId": 7222,
+    "template": { "name": "Alshupes", "count": 1 },
+    "spawns": [{ "locX": 45859, "locY": 50827, "locZ": -2983, "head": 45056 }]
+},{
+    "selfId": 7223,
+    "template": { "name": "Arujien", "count": 1 },
+    "spawns": [{ "locX": 42978, "locY": 49115, "locZ": -2919, "head": 0 }]
+},{
+    "selfId": 7284,
+    "template": { "name": "Alberius", "count": 1 },
+    "spawns": [{ "locX": 45727, "locY": 51721, "locZ": -2728, "head": 49152 }]
+},{
+    "selfId": 7285,
+    "template": { "name": "Gartrandell", "count": 1 },
+    "spawns": [{ "locX": 44995, "locY": 51706, "locZ": -2728, "head": 49352 }]
+},{
+    "selfId": 7361,
+    "template": { "name": "Rizraell", "count": 1 },
+    "spawns": [{ "locX": 45610, "locY": 49008, "locZ": -2984, "head": 53248 }]
+},{
+    "selfId": 7362,
+    "template": { "name": "Andellia", "count": 1 },
+    "spawns": [{ "locX": 46475, "locY": 50495, "locZ": -2983, "head": 61440 }]
+},{
+    "selfId": 7363,
+    "template": { "name": "Aios", "count": 1 },
+    "spawns": [{ "locX": 44476, "locY": 47153, "locZ": -2909, "head": 46000 }]
+},{
     "selfId": 7370,
     "template": { "name": "Nerupa", "count": 1 },
     "spawns": [{ "locX": 46048, "locY": 41200, "locZ": -3504, "head": 17000 }]
@@ -18,4 +118,12 @@
     "selfId": 7400,
     "template": { "name": "Newbie Helper", "count": 1 },
     "spawns": [{ "locX": 46112, "locY": 41200, "locZ": -3504, "head": 17000 }]
+},{
+    "selfId": 7414,
+    "template": { "name": "Rosella", "count": 1 },
+    "spawns": [{ "locX": 43673, "locY": 49683, "locZ": -2971, "head": 0 }]
+},{
+    "selfId": 7991,
+    "template": { "name": "Lottery Ticket Seller", "count": 1 },
+    "spawns": [{ "locX": 46960, "locY": 51506, "locZ": -2902, "head": 43000 }]
 }]
