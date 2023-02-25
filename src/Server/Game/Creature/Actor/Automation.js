@@ -69,7 +69,7 @@ class Automation {
     hitMAtk(actor, npc) {
         const wpnMAtk = actor.fetchEquippedWeapon()?.mAtk ?? actor.fetchMAtk();
         const mAtk = Formulas.calcMAtk(actor.fetchLevel(), actor.fetchInt(), wpnMAtk);
-        return Formulas.calcMeleeHit(mAtk, 21, npc.fetchPDef());
+        return Formulas.calcRemoteHit(mAtk, 12, npc.fetchMDef());
     }
 
     replenishMp(session) {
