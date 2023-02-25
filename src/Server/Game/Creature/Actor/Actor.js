@@ -151,6 +151,10 @@ class Actor extends Creature {
         return this.model.isActive;
     }
 
+    fetchEquippedWeapon() {
+        return this.backpack.fetchItems().find(ob => ob.kind === 'Weapon' && ob.equipped);
+    }
+
     // Abstract
 
     moveTo(session, coords) {

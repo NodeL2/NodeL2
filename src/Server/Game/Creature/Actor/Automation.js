@@ -1,13 +1,24 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
 const World          = invoke('Server/Game/World');
+const Formulas       = invoke('Server/Game/Formulas');
 
 class Automation {
-    hit(session, npc, power) {
-        const hit = power + Math.floor(utils.randomNumber(10));
-        npc.setHp(Math.max(0, npc.fetchHp() - hit)); // HP bar would disappear if less than zero
+    hitPAtk(actor, npc) {
+        const wpnPAtk = actor.fetchEquippedWeapon()?.pAtk ?? actor.fetchPAtk();
+        const pAtk = Formulas.calcPAtk(actor.fetchLevel(), actor.fetchStr(), wpnPAtk);
+        return Formulas.calcMeleeHit(pAtk, npc.fetchPDef());
+    }
+
+    hitMAtk(actor, npc) {
+        return 15; // TODO
+    }
+
+    hitPoint(session, npc, melee) {
+        const power = melee ? this.hitPAtk(session.actor, npc) : this.hitMAtk(session.actor, npc);
+        npc.setHp(Math.max(0, npc.fetchHp() - power)); // HP bar would disappear if less than zero
 
         session.dataSend(ServerResponse.statusUpdate(npc));
-        session.dataSend(ServerResponse.consoleText(35, [{ value: hit }]));
+        session.dataSend(ServerResponse.consoleText(35, [{ value: power }]));
 
         if (npc.isDead()) {
             World.removeNpc(session, npc);
@@ -24,7 +35,7 @@ class Automation {
         session.actor.state.setCombats(true);
 
         setTimeout(() => {
-            this.hit(session, npc, 15);
+            this.hitPoint(session, npc, true);
         }, speed * 0.644); // Until hit point
 
         setTimeout(() => {
@@ -49,7 +60,7 @@ class Automation {
         setTimeout(() => {
             session.actor.setMp(session.actor.fetchMp() - data.mp);
             session.dataSend(ServerResponse.statusUpdate(session.actor));
-            this.hit(session, npc, 30);
+            this.hitPoint(session, npc, false);
             session.actor.state.setCasts(false);
 
         }, data.hitTime);
