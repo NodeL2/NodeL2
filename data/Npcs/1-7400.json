@@ -1,9 +1,9 @@
 [{
     "selfId": 1,
     "template": { "kind": "Monster", "name": "Gremlin", "title": "", "attackable": true, "hostile": false, "respawn": 15 },
-    "stats": { "pAtk": 4, "pDef": 41, "mAtk": 3, "mDef": 32, "atkSpd": 253, "castSpd": 333 },
-    "vitals": { "level": 1, "maxHp": 65, "maxMp": 30 },
-    "speed": { "walk": 20, "run": 50, "swim": 50 },
+    "stats": { "pAtk": 9, "pDef": 39, "mAtk": 3, "mDef": 32, "atkSpd": 278, "castSpd": 333 },
+    "vitals": { "level": 1, "maxHp": 62, "maxMp": 44 },
+    "speed": { "walk": 22, "run": 55, "swim": 50 },
     "collision": { "radius": 10.0, "size": 15.0 }
 },{
     "selfId": 126,
@@ -12,6 +12,13 @@
     "vitals": { "level": 80, "maxHp": 3381, "maxMp": 1660 },
     "speed": { "walk": 129, "run": 194, "swim": 50 },
     "collision": { "radius": 5.0, "size": 25.0 }
+},{
+    "selfId": 530,
+    "template": { "kind": "Monster", "name": "Young Red Keltir", "title": "", "attackable": true, "hostile": false, "respawn": 15 },
+    "stats": { "pAtk": 9, "pDef": 39, "mAtk": 3, "mDef": 32, "atkSpd": 278, "castSpd": 333 },
+    "vitals": { "level": 1, "maxHp": 62, "maxMp": 44 },
+    "speed": { "walk": 25, "run": 121, "swim": 50 },
+    "collision": { "radius": 9.5, "size": 10.0 }
 },{
     "selfId": 7370,
     "template": { "kind": "Npc", "name": "Nerupa", "title": "", "attackable": false, "hostile": false, "respawn": 60 },
