@@ -3,28 +3,6 @@ const World          = invoke('Server/Game/World');
 const Formulas       = invoke('Server/Game/Formulas');
 
 class Automation {
-    hitPAtk(actor, npc) {
-        const wpnPAtk = actor.fetchEquippedWeapon()?.pAtk ?? actor.fetchPAtk();
-        const pAtk = Formulas.calcPAtk(actor.fetchLevel(), actor.fetchStr(), wpnPAtk);
-        return Formulas.calcMeleeHit(pAtk, npc.fetchPDef());
-    }
-
-    hitMAtk(actor, npc) {
-        return 15; // TODO
-    }
-
-    hitPoint(session, npc, melee) {
-        const power = melee ? this.hitPAtk(session.actor, npc) : this.hitMAtk(session.actor, npc);
-        npc.setHp(Math.max(0, npc.fetchHp() - power)); // HP bar would disappear if less than zero
-
-        session.dataSend(ServerResponse.statusUpdate(npc));
-        session.dataSend(ServerResponse.consoleText(35, [{ value: power }]));
-
-        if (npc.isDead()) {
-            World.removeNpc(session, npc);
-        }
-    }
-
     meleeHit(session, npc) {
         if (npc.isDead()) {
             return;
@@ -66,7 +44,32 @@ class Automation {
         }, data.hitTime);
 
         setTimeout(() => {
+            // TODO: Prohibit same skill use before reuse time
         }, data.resuseTime);
+    }
+
+    hitPoint(session, npc, melee) {
+        const power = melee ? this.hitPAtk(session.actor, npc) : this.hitMAtk(session.actor, npc);
+        npc.setHp(Math.max(0, npc.fetchHp() - power)); // HP bar would disappear if less than zero
+
+        session.dataSend(ServerResponse.statusUpdate(npc));
+        session.dataSend(ServerResponse.consoleText(35, [{ value: power }]));
+
+        if (npc.isDead()) {
+            World.removeNpc(session, npc);
+        }
+    }
+
+    hitPAtk(actor, npc) {
+        const wpnPAtk = actor.fetchEquippedWeapon()?.pAtk ?? actor.fetchPAtk();
+        const pAtk = Formulas.calcPAtk(actor.fetchLevel(), actor.fetchStr(), wpnPAtk);
+        return Formulas.calcMeleeHit(pAtk, npc.fetchPDef());
+    }
+
+    hitMAtk(actor, npc) {
+        const wpnMAtk = actor.fetchEquippedWeapon()?.mAtk ?? actor.fetchMAtk();
+        const mAtk = Formulas.calcMAtk(actor.fetchLevel(), actor.fetchInt(), wpnMAtk);
+        return Formulas.calcMeleeHit(mAtk, 21, npc.fetchPDef());
     }
 
     replenishMp(session) {
