@@ -51,7 +51,7 @@ const World = {
             session.dataSend(
                 ServerResponse.deleteOb(npcId)
             );
-        }, 5000);
+        }, 7000);
     }
 };
 

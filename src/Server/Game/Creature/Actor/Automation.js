@@ -1,19 +1,8 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
 const World          = invoke('Server/Game/World');
+const Formulas       = invoke('Server/Game/Formulas');
 
 class Automation {
-    hit(session, npc, power) {
-        const hit = power + Math.floor(utils.randomNumber(10));
-        npc.setHp(Math.max(0, npc.fetchHp() - hit)); // HP bar would disappear if less than zero
-
-        session.dataSend(ServerResponse.statusUpdate(npc));
-        session.dataSend(ServerResponse.consoleText(35, [{ value: hit }]));
-
-        if (npc.isDead()) {
-            World.removeNpc(session, npc);
-        }
-    }
-
     meleeHit(session, npc) {
         if (npc.isDead()) {
             return;
@@ -24,7 +13,7 @@ class Automation {
         session.actor.state.setCombats(true);
 
         setTimeout(() => {
-            this.hit(session, npc, 15);
+            this.hitPoint(session, npc, true);
         }, speed * 0.644); // Until hit point
 
         setTimeout(() => {
@@ -48,14 +37,39 @@ class Automation {
 
         setTimeout(() => {
             session.actor.setMp(session.actor.fetchMp() - data.mp);
-            session.dataSend(ServerResponse.statusUpdate(session.actor));
-            this.hit(session, npc, 30);
+            session.actor.statusUpdateVitals(session, session.actor);
+            this.hitPoint(session, npc, false);
             session.actor.state.setCasts(false);
 
         }, data.hitTime);
 
         setTimeout(() => {
+            // TODO: Prohibit same skill use before reuse time
         }, data.resuseTime);
+    }
+
+    hitPoint(session, npc, melee) {
+        const power = melee ? this.hitPAtk(session.actor, npc) : this.hitMAtk(session.actor, npc);
+        npc.setHp(Math.max(0, npc.fetchHp() - power)); // HP bar would disappear if less than zero
+
+        session.actor.statusUpdateVitals(session, npc);
+        session.dataSend(ServerResponse.consoleText(35, [{ value: power }]));
+
+        if (npc.isDead()) {
+            World.removeNpc(session, npc);
+        }
+    }
+
+    hitPAtk(actor, npc) {
+        const wpnPAtk = actor.fetchEquippedWeapon()?.pAtk ?? actor.fetchPAtk();
+        const pAtk = Formulas.calcPAtk(actor.fetchLevel(), actor.fetchStr(), wpnPAtk);
+        return Formulas.calcMeleeHit(pAtk, npc.fetchPDef());
+    }
+
+    hitMAtk(actor, npc) {
+        const wpnMAtk = actor.fetchEquippedWeapon()?.mAtk ?? actor.fetchMAtk();
+        const mAtk = Formulas.calcMAtk(actor.fetchLevel(), actor.fetchInt(), wpnMAtk);
+        return Formulas.calcRemoteHit(mAtk, 12, npc.fetchMDef());
     }
 
     replenishMp(session) {
@@ -65,7 +79,7 @@ class Automation {
             const max   = session.actor.fetchMaxMp();
 
             session.actor.setMp(Math.min(value, max));
-            session.dataSend(ServerResponse.statusUpdate(session.actor));
+            session.actor.statusUpdateVitals(session, session.actor);
         }, 3500);
     }
 }

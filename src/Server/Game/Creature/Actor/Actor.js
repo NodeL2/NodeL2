@@ -151,6 +151,10 @@ class Actor extends Creature {
         return this.model.isActive;
     }
 
+    fetchEquippedWeapon() {
+        return this.backpack.fetchItems().find(ob => ob.kind === 'Weapon' && ob.equipped);
+    }
+
     // Abstract
 
     moveTo(session, coords) {
@@ -178,7 +182,7 @@ class Actor extends Creature {
             if (npc.fetchId() !== this.npcId) { // First click on Npc
                 this.npcId = npc.fetchId();
                 session.dataSend(ServerResponse.destSelected(this.npcId));
-                session.dataSend(ServerResponse.statusUpdate(npc));
+                this.statusUpdateVitals(session, npc);
             }
             else { // Second click on same Npc
                 if (this.isBusy(session)) {
@@ -202,13 +206,15 @@ class Actor extends Creature {
                                 ServerResponse.npcHtml(npc.fetchId(), utils.parseRawFile('data/Html/Default/7370.html'))
                             );
                         }
-                    }).catch((e) => { // ?
-                        utils.infoWarn('GameServer:: problem on attack/talk -> ' + e);
+                    }).catch((e) => {
+                        utils.infoWarn('GameServer:: npc not found (1) -> ' + e);
+                        this.unselect(session);
                     });
                 });
             }
         }).catch((e) => { // Pickup item
-            utils.infoWarn('GameServer:: further selection unimplemented ' + e);
+            utils.infoWarn('GameServer:: npc not found (2) -> ' + e);
+            this.unselect(session);
         });
     }
 
@@ -232,8 +238,9 @@ class Actor extends Creature {
                     this.automation.remoteHit(session, npc, data);
                 }
             });
-        }).catch((e) => { // ?
-            utils.infoWarn('GameServer:: problem cast -> ' + e);
+        }).catch((e) => {
+            utils.infoWarn('GameServer:: npc not found (3) -> ' + e);
+            this.unselect(session);
         });
     }
 

@@ -206,6 +206,17 @@ class Creature {
         }
         return false;
     }
+
+    statusUpdateVitals(session, creature) {
+        session.dataSend(
+            ServerResponse.statusUpdate(creature.fetchId(), [
+                { id: 0x9, value: creature.fetchHp   () },
+                { id: 0xa, value: creature.fetchMaxHp() },
+                { id: 0xb, value: creature.fetchMp   () },
+                { id: 0xc, value: creature.fetchMaxMp() },
+            ])
+        );
+    }
 }
 
 module.exports = Creature;
