@@ -67,6 +67,10 @@ global.utils = {
 
     crushOb: (ob) => {
         return require('objcrush')(ob);
+    },
+
+    totalMemUsed: () => {
+        console.info('NodeL2:: Total Mem Used -> %f MB', Math.round(process.memoryUsage().heapTotal / 1024 / 1024 * 100) / 100);
     }
 };
 

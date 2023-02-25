@@ -2,7 +2,6 @@ const validateSchema = require('jsonschema').validate;
 
 const DataCache = {
     init: () => {
-        utils.infoSuccess('Cache:: started');
         const path = '../data/';
 
         DataCache.classTemplates = validateModel(path + 'Templates/templates');
@@ -22,6 +21,8 @@ const DataCache = {
             ...validateModel(path + 'Skills/Passive/passive'),
             ...validateModel(path + 'Skills/Switch/switch')
         ];
+
+        utils.infoSuccess('Datapack:: cached');
     },
 
     fetchSkillDetailsFromId(selfId) {

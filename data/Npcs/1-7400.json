@@ -20,6 +20,181 @@
     "speed": { "walk": 25, "run": 121, "swim": 50 },
     "collision": { "radius": 9.5, "size": 10.0 }
 },{
+    "selfId": 7146,
+    "template": { "kind": "Npc", "name": "Mirabel", "title": "Gatekeeper", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 80, "run": 120, "swim": 50 },
+    "collision": { "radius": 15.0, "size": 26.0 }
+},{
+    "selfId": 7147,
+    "template": { "kind": "Npc", "name": "Unoren", "title": "Trader", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 80, "run": 120, "swim": 50 },
+    "collision": { "radius": 15.0, "size": 26.0 }
+},{
+    "selfId": 7148,
+    "template": { "kind": "Npc", "name": "Ariel", "title": "Trader", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 80, "run": 120, "swim": 50 },
+    "collision": { "radius": 15.0, "size": 26.0 }
+},{
+    "selfId": 7149,
+    "template": { "kind": "Npc", "name": "Creamees", "title": "Trader", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 80, "run": 120, "swim": 50 },
+    "collision": { "radius": 15.0, "size": 26.0 }
+},{
+    "selfId": 7150,
+    "template": { "kind": "Npc", "name": "Herbiel", "title": "Trader", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 80, "run": 120, "swim": 50 },
+    "collision": { "radius": 15.0, "size": 26.0 }
+},{
+    "selfId": 7151,
+    "template": { "kind": "Npc", "name": "Chad", "title": "Warehouse Freightman", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 80, "run": 120, "swim": 50 },
+    "collision": { "radius": 15.0, "size": 26.0 }
+},{
+    "selfId": 7152,
+    "template": { "kind": "Npc", "name": "Julia", "title": "Warehouse Keeper", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 80, "run": 120, "swim": 50 },
+    "collision": { "radius": 15.0, "size": 26.0 }
+},{
+    "selfId": 7153,
+    "template": { "kind": "Npc", "name": "Markius", "title": "Warehouse Keeper", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 80, "run": 120, "swim": 50 },
+    "collision": { "radius": 15.0, "size": 26.0 }
+},{
+    "selfId": 7154,
+    "template": { "kind": "Npc", "name": "Asterios", "title": "Hierarch", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 80, "run": 120, "swim": 50 },
+    "collision": { "radius": 15.0, "size": 26.0 }
+},{
+    "selfId": 7154,
+    "template": { "kind": "Npc", "name": "Ellenia", "title": "Master", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 80, "run": 120, "swim": 50 },
+    "collision": { "radius": 15.0, "size": 26.0 }
+},{
+    "selfId": 7156,
+    "template": { "kind": "Npc", "name": "Cobendell", "title": "Master", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 80, "run": 120, "swim": 50 },
+    "collision": { "radius": 15.0, "size": 26.0 }
+},{
+    "selfId": 7157,
+    "template": { "kind": "Npc", "name": "Greenis", "title": "Magister", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 80, "run": 120, "swim": 50 },
+    "collision": { "radius": 15.0, "size": 26.0 }
+},{
+    "selfId": 7158,
+    "template": { "kind": "Npc", "name": "Esrandell", "title": "Magister", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 80, "run": 120, "swim": 50 },
+    "collision": { "radius": 15.0, "size": 26.0 }
+},{
+    "selfId": 7217,
+    "template": { "kind": "Npc", "name": "Berros", "title": "Sentinel", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 80, "run": 120, "swim": 50 },
+    "collision": { "radius": 15.0, "size": 26.0 }
+},{
+    "selfId": 7218,
+    "template": { "kind": "Npc", "name": "Kendell", "title": "Sentinel", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 80, "run": 120, "swim": 50 },
+    "collision": { "radius": 15.0, "size": 26.0 }
+},{
+    "selfId": 7219,
+    "template": { "kind": "Npc", "name": "Veltress", "title": "Sentinel", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 80, "run": 120, "swim": 50 },
+    "collision": { "radius": 15.0, "size": 26.0 }
+},{
+    "selfId": 7220,
+    "template": { "kind": "Npc", "name": "Starden", "title": "Sentinel", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 80, "run": 120, "swim": 50 },
+    "collision": { "radius": 15.0, "size": 26.0 }
+},{
+    "selfId": 7221,
+    "template": { "kind": "Npc", "name": "Rayen", "title": "Sentinel", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 80, "run": 120, "swim": 50 },
+    "collision": { "radius": 15.0, "size": 26.0 }
+},{
+    "selfId": 7222,
+    "template": { "kind": "Npc", "name": "Alshupes", "title": "", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 80, "run": 120, "swim": 50 },
+    "collision": { "radius": 15.0, "size": 26.0 }
+},{
+    "selfId": 7223,
+    "template": { "kind": "Npc", "name": "Arujien", "title": "", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 80, "run": 120, "swim": 50 },
+    "collision": { "radius": 15.0, "size": 26.0 }
+},{
+    "selfId": 7284,
+    "template": { "kind": "Npc", "name": "Alberius", "title": "Sentinel Knight", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 80, "run": 120, "swim": 50 },
+    "collision": { "radius": 15.0, "size": 26.0 }
+},{
+    "selfId": 7285,
+    "template": { "kind": "Npc", "name": "Gartrandell", "title": "Sentinel", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 80, "run": 120, "swim": 50 },
+    "collision": { "radius": 15.0, "size": 26.0 }
+},{
+    "selfId": 7361,
+    "template": { "kind": "Npc", "name": "Rizraell", "title": "", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 1314, "pDef": 470, "mAtk": 780, "mDef": 382, "atkSpd": 278, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 70, "run": 132, "swim": 50 },
+    "collision": { "radius": 15.0, "size": 26.0 }
+},{
+    "selfId": 7362,
+    "template": { "kind": "Npc", "name": "Andellia", "title": "", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 1314, "pDef": 470, "mAtk": 780, "mDef": 382, "atkSpd": 278, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 70, "run": 132, "swim": 50 },
+    "collision": { "radius": 15.0, "size": 26.0 }
+},{
+    "selfId": 7363,
+    "template": { "kind": "Npc", "name": "Aios", "title": "Blacksmith", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 1314, "pDef": 470, "mAtk": 780, "mDef": 382, "atkSpd": 278, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 70, "run": 132, "swim": 50 },
+    "collision": { "radius": 15.0, "size": 26.0 }
+},{
     "selfId": 7370,
     "template": { "kind": "Npc", "name": "Nerupa", "title": "", "attackable": false, "hostile": false, "respawn": 60 },
     "stats": { "pAtk": 1314, "pDef": 470, "mAtk": 780, "mDef": 382, "atkSpd": 278, "castSpd": 333 },
@@ -29,6 +204,20 @@
 },{
     "selfId": 7400,
     "template": { "kind": "Guard", "name": "Newbie Helper", "title": "", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 1314, "pDef": 470, "mAtk": 780, "mDef": 382, "atkSpd": 278, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 55, "run": 132, "swim": 50 },
+    "collision": { "radius": 8.0, "size": 23.5 }
+},{
+    "selfId": 7414,
+    "template": { "kind": "Npc", "name": "Rosella", "title": "", "attackable": false, "hostile": false, "respawn": 60 },
+    "stats": { "pAtk": 1314, "pDef": 470, "mAtk": 780, "mDef": 382, "atkSpd": 278, "castSpd": 333 },
+    "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
+    "speed": { "walk": 55, "run": 132, "swim": 50 },
+    "collision": { "radius": 8.0, "size": 23.5 }
+},{
+    "selfId": 7991,
+    "template": { "kind": "Npc", "name": "Lottery Ticket Seller", "title": "", "attackable": false, "hostile": false, "respawn": 60 },
     "stats": { "pAtk": 1314, "pDef": 470, "mAtk": 780, "mDef": 382, "atkSpd": 278, "castSpd": 333 },
     "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
     "speed": { "walk": 55, "run": 132, "swim": 50 },
