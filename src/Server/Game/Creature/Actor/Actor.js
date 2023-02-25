@@ -182,7 +182,7 @@ class Actor extends Creature {
             if (npc.fetchId() !== this.npcId) { // First click on Npc
                 this.npcId = npc.fetchId();
                 session.dataSend(ServerResponse.destSelected(this.npcId));
-                session.dataSend(ServerResponse.statusUpdate(npc));
+                this.statusUpdateVitals(session, npc);
             }
             else { // Second click on same Npc
                 if (this.isBusy(session)) {

@@ -37,7 +37,7 @@ class Automation {
 
         setTimeout(() => {
             session.actor.setMp(session.actor.fetchMp() - data.mp);
-            session.dataSend(ServerResponse.statusUpdate(session.actor));
+            session.actor.statusUpdateVitals(session, session.actor);
             this.hitPoint(session, npc, false);
             session.actor.state.setCasts(false);
 
@@ -52,7 +52,7 @@ class Automation {
         const power = melee ? this.hitPAtk(session.actor, npc) : this.hitMAtk(session.actor, npc);
         npc.setHp(Math.max(0, npc.fetchHp() - power)); // HP bar would disappear if less than zero
 
-        session.dataSend(ServerResponse.statusUpdate(npc));
+        session.actor.statusUpdateVitals(session, npc);
         session.dataSend(ServerResponse.consoleText(35, [{ value: power }]));
 
         if (npc.isDead()) {
@@ -79,7 +79,7 @@ class Automation {
             const max   = session.actor.fetchMaxMp();
 
             session.actor.setMp(Math.min(value, max));
-            session.dataSend(ServerResponse.statusUpdate(session.actor));
+            session.actor.statusUpdateVitals(session, session.actor);
         }, 3500);
     }
 }
