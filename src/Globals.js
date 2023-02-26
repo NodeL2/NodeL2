@@ -71,6 +71,12 @@ global.utils = {
 
     totalMemUsed: () => {
         console.info('NodeL2:: Total Mem Used -> %f MB', Math.round(process.memoryUsage().heapTotal / 1024 / 1024 * 100) / 100);
+    },
+
+    withinRadius(srcX, srcY, destX, destY, radius) {
+        const dX = destX - srcX;
+        const dY = destY - srcY;
+        return ((dX ** 2) + (dY ** 2)) < (radius ** 2);
     }
 };
 

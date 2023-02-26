@@ -26,7 +26,7 @@ const World = {
         this.user.sessions.push(session);
     },
 
-    insertNpcs(session) {
+    insertNpcs(session) { // TODO: Unused now
         this.npc.spawns.forEach((npc) => {
             session.dataSend(ServerResponse.npcInfo(npc));
         });
