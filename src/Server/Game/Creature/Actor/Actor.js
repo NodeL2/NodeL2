@@ -166,8 +166,13 @@ class Actor extends Creature {
         session.dataSend(ServerResponse.moveToLocation(this.fetchId(), coords));
     }
 
-    updatePosition(coords) { // TODO: Write less in DB about movement
+    updatePosition(session, coords) {
         this.setLocXYZH(coords);
+        (World.npc.spawns.filter(ob => utils.isWithinRadius(ob.fetchLocX(), ob.fetchLocY(), coords.locX, coords.locY, 2500)) ?? []).forEach((npc) => {
+            session.dataSend(ServerResponse.npcInfo(npc));
+        });
+
+         // TODO: Write less in DB about movement
         Database.updateCharacterLocation(this.fetchId(), coords);
     }
 
@@ -190,7 +195,7 @@ class Actor extends Creature {
                 }
 
                 this.scheduleArrival(session, this, npc, 20, () => {
-                    this.updatePosition({
+                    this.updatePosition(session, {
                         locX: npc .fetchLocX(),
                         locY: npc .fetchLocY(),
                         locZ: npc .fetchLocZ(),
@@ -307,7 +312,7 @@ class Actor extends Creature {
 
         // TODO: Hide this from the world, soon. Utter stupid.
         setTimeout(() => {
-            this.updatePosition(coords);
+            this.updatePosition(session, coords);
         });
     }
 

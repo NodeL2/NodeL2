@@ -16,8 +16,13 @@ function enterWorld(session, buffer) {
 
     session.actor.automation.replenishMp(session);
 
-    // World
-    World.insertNpcs(session);
+    // Show npcs based on radius
+    session.actor.updatePosition(session, {
+        locX: session.actor.fetchLocX(),
+        locY: session.actor.fetchLocY(),
+        locZ: session.actor.fetchLocZ(),
+        head: session.actor.fetchHead(),
+    });
 }
 
 module.exports = enterWorld;
