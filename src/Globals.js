@@ -73,13 +73,10 @@ global.utils = {
         console.info('NodeL2:: Total Mem Used -> %f MB', Math.round(process.memoryUsage().heapTotal / 1024 / 1024 * 100) / 100);
     },
 
-    isWithinRadius(locX, locY, centerX, centerY, radius) {
-        let dX = locX - centerX;
-        let dY = locY - centerY;
-        let distance = (dX * dX) + (dY * dY);
-        let radius2  = radius * radius;
-
-        return distance < radius2;
+    withinRadius(srcX, srcY, destX, destY, radius) {
+        const dX = destX - srcX;
+        const dY = destY - srcY;
+        return ((dX ** 2) + (dY ** 2)) < (radius ** 2);
     }
 };
 

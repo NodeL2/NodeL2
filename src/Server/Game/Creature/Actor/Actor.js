@@ -168,7 +168,7 @@ class Actor extends Creature {
 
     updatePosition(session, coords) {
         this.setLocXYZH(coords);
-        (World.npc.spawns.filter(ob => utils.isWithinRadius(ob.fetchLocX(), ob.fetchLocY(), coords.locX, coords.locY, 2500)) ?? []).forEach((npc) => {
+        (World.npc.spawns.filter(ob => utils.withinRadius(coords.locX, coords.locY, ob.fetchLocX(), ob.fetchLocY(), 2500)) ?? []).forEach((npc) => {
             session.dataSend(ServerResponse.npcInfo(npc));
         });
 
