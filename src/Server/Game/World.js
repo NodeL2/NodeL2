@@ -52,6 +52,17 @@ const World = {
                 ServerResponse.deleteOb(npcId)
             );
         }, 7000);
+    },
+
+    npcTalk(session, npc) {
+        const path = 'data/Html/Default/';
+        const filename = path + npc.fetchSelfId() + '.html';
+
+        session.dataSend(
+            ServerResponse.npcHtml(npc.fetchId(), utils.parseRawFile(
+                utils.fileExists(filename) ? filename : path + 'noquest.html'
+            ))
+        );
     }
 };
 

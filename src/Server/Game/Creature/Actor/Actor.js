@@ -207,9 +207,7 @@ class Actor extends Creature {
                             this.automation.meleeHit(session, npc);
                         }
                         else {
-                            session.dataSend(
-                                ServerResponse.npcHtml(npc.fetchId(), utils.parseRawFile('data/Html/Default/7370.html'))
-                            );
+                            World.npcTalk(session, npc);
                         }
                     }).catch((e) => {
                         utils.infoWarn('GameServer:: npc not found (1) -> ' + e);
