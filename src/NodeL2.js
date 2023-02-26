@@ -1,12 +1,12 @@
-require('./Globals');
+require('./Global');
 
 // User imports
-const AuthSession = invoke('Server/Auth/Session');
-const GameSession = invoke('Server/Game/Session');
-const World       = invoke('Server/Game/World');
-const DataCache   = invoke('Server/Game/DataCache');
-const Database    = invoke('Server/Database');
-const Server      = invoke('Server/Server');
+const AuthSession = invoke('AuthenticationServer/Session');
+const GameSession = invoke('GameServer/Session');
+const World       = invoke('GameServer/World');
+const DataCache   = invoke('GameServer/DataCache');
+const Database    = invoke('Database');
+const Server      = invoke('Server');
 
 console.info('\n\
     + ================================== \n\
