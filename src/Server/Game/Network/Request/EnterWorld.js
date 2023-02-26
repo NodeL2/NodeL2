@@ -1,5 +1,4 @@
 const ServerResponse = invoke('Server/Game/Network/Response');
-const World          = invoke('Server/Game/World');
 const Database       = invoke('Server/Database');
 
 function enterWorld(session, buffer) {
