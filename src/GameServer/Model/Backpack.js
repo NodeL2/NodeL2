@@ -6,11 +6,11 @@ class BackpackModel {
 
     // Set
 
-    equip(slot, id, selfId) {
+    equipPaperdoll(slot, id, selfId) {
         this.paperdoll[slot] = { id: id, selfId: selfId };
     }
 
-    unequip(slot) {
+    unequipPaperdoll(slot) {
         this.paperdoll[slot] = {};
     }
 
@@ -20,11 +20,11 @@ class BackpackModel {
         return this.items;
     }
 
-    fetchId(slot) {
+    fetchPaperdollId(slot) {
         return this.paperdoll[slot].id;
     }
 
-    fetchSelfId(slot) {
+    fetchPaperdollSelfId(slot) {
         return this.paperdoll[slot].selfId;
     }
 }

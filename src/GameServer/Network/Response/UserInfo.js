@@ -32,12 +32,12 @@ function userInfo(actor) {
 
         for (let i = 0; i < 15; i++) {
             packet
-                .writeD(actor.backpack.fetchId(i));
+                .writeD(actor.backpack.fetchPaperdollId(i));
         }
 
         for (let i = 0; i < 15; i++) {
             packet
-                .writeD(actor.backpack.fetchSelfId(i));
+                .writeD(actor.backpack.fetchPaperdollSelfId(i));
         }
 
     packet

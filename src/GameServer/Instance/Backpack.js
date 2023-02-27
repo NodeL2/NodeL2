@@ -7,7 +7,7 @@ class Backpack extends BackpackModel {
     constructor(data) {
         // Parent inheritance
         super(data.paperdoll);
-        this.processDetails(DataCache.items);
+        this.processDetails(data.items);
     }
 
     processDetails(items) {
@@ -44,7 +44,7 @@ class Backpack extends BackpackModel {
         intentionItem(id, (item) => {
             if (item.kind === "Armor") {
                 this.unequipGear(session, item.slot);
-                this.paperdoll.equip(item.slot, item.id, item.selfId);
+                this.equipPaperdoll(item.slot, item.id, item.selfId);
                 item.equipped = true;
             }
             else
@@ -59,7 +59,7 @@ class Backpack extends BackpackModel {
                 }
 
                 this.unequipGear(session, item.slot);
-                this.paperdoll.equip(item.slot, item.id, item.selfId);
+                this.equipPaperdoll(item.slot, item.id, item.selfId);
                 item.equipped = true;
             }
             else {
@@ -77,7 +77,7 @@ class Backpack extends BackpackModel {
 
     unequipGear(session, slot) {
         const removeItem = (slot, success, fail = () => {}) => {
-            const item = this.items.find(ob => ob.id === this.paperdoll.fetchId(slot));
+            const item = this.items.find(ob => ob.id === this.fetchPaperdollId(slot));
             item ? success(item) : fail;
         };
 
@@ -86,7 +86,7 @@ class Backpack extends BackpackModel {
 
         removeItem(slot, (item) => {
             // Unequip from actor
-            this.paperdoll.unequip(slot);
+            this.unequipPaperdoll(slot);
             item.equipped = false;
 
             // Move item to the end (not official?)
