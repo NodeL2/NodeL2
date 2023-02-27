@@ -2,6 +2,16 @@ const CreatureModel = invoke('GameServer/Model/Creature');
 
 class ActorModel extends CreatureModel {
 
+    // Set
+
+    setExp(data) {
+        this.model.exp = data;
+    }
+
+    setSp(data) {
+        this.model.sp = data;
+    }
+
     // Get
 
     fetchUsername() {

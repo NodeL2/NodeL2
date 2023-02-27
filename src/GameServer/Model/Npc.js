@@ -23,6 +23,16 @@ class NpcModel extends CreatureModel {
     fetchRespawn() {
         return this.model.respawn;
     }
+
+    // TODO: Exp & Sp do not exist, please add
+
+    fetchRewardExp() {
+        return 30;
+    }
+
+    fetchRewardSp() {
+        return 5;
+    }
 }
 
 module.exports = NpcModel;

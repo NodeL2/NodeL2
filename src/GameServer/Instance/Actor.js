@@ -203,6 +203,16 @@ class Actor extends ActorModel {
         );
     }
 
+    statusUpdateLevelExpSp(session, creature) {
+        session.dataSend(
+            ServerResponse.statusUpdate(creature.fetchId(), [
+                { id: 0x1, value: creature.fetchLevel() },
+                { id: 0x2, value: creature.fetchExp  () },
+                { id: 0xd, value: creature.fetchSp   () },
+            ])
+        );
+    }
+
     scheduleArrival(session, creatureSrc, creatureDest, offset, callback) {
         const ticksPerSecond = 10;
         const distance = Formulas.calcDistance(
@@ -301,6 +311,7 @@ class Actor extends ActorModel {
         session.dataSend(ServerResponse.consoleText(35, [{ value: power }]));
 
         if (npc.isDead()) {
+            this.rewardExpAndSp(session, npc.fetchRewardExp(), npc.fetchRewardSp());
             World.removeNpc(session, npc);
         }
     }
@@ -326,6 +337,30 @@ class Actor extends ActorModel {
             this.setMp(Math.min(value, max));
             this.statusUpdateVitals(session, this);
         }, 3500);
+    }
+
+    rewardExpAndSp(session, exp, sp) {
+        const expTable = [0, 68, 364, 1169, 2885, 6039, 11288, 19424, 31379, 48230];
+    
+        let level    = 0;
+        let totalExp = this.fetchExp() + exp;
+        let totalSp  = this.fetchSp () +  sp;
+        
+        for (let i = 0; i < 10; i++) {
+            if (totalExp >= expTable[i] && totalExp < expTable[i + 1]) {
+                level = i + 1;
+            }
+        }
+
+        if (level > this.fetchLevel()) {
+            session.dataSend(ServerResponse.skillStarted(this, this.fetchId(), { selfId: 5103, hitTime: 15000, reuseTime: 0 }));
+            utils.infoWarn('GameServer:: this motha has leveled up');
+        }
+
+        this.setLevel(level);
+        this.setExp  (totalExp);
+        this.setSp   (totalSp);
+        this.statusUpdateLevelExpSp(session, this);
     }
 }
 
