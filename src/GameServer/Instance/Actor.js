@@ -1,7 +1,7 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 const ActorModel     = invoke('GameServer/Model/Actor');
+const Backpack       = invoke('GameServer/Instance/Backpack');
 const World          = invoke('GameServer/World');
-const Backpack       = invoke('GameServer/Backpack');
 const Formulas       = invoke('GameServer/Formulas');
 const Database       = invoke('Database');
 
@@ -13,6 +13,13 @@ class Actor extends ActorModel {
         // Local
         this.backpack = new Backpack(data);
         this.destId   = undefined;
+
+        // Schedule timer
+        this.timer = undefined; // TODO: Move this into actual GameServer timer
+
+        // Local
+        delete this.model.items;
+        delete this.model.paperdoll;
     }
 
     moveTo(session, coords) {
@@ -62,7 +69,7 @@ class Actor extends ActorModel {
 
                     World.fetchNpcWithId(this.destId).then((npc) => {
                         if (npc.fetchAttackable() || ctrl) {
-                            this.automation.meleeHit(session, npc);
+                            this.meleeHit(session, npc);
                         }
                         else {
                             World.npcTalk(session, npc);
@@ -96,7 +103,7 @@ class Actor extends ActorModel {
         World.fetchNpcWithId(this.destId).then((npc) => {
             this.scheduleArrival(session, this, npc, data.distance, () => {
                 if (npc.fetchAttackable() || data.ctrl) { // TODO: Else, find which `response` fails the attack
-                    this.automation.remoteHit(session, npc, data);
+                    this.remoteHit(session, npc, data);
                 }
             });
         }).catch((e) => {
@@ -180,6 +187,150 @@ class Actor extends ActorModel {
 
     fetchEquippedWeapon() {
         return this.backpack.fetchItems().find(ob => ob.kind === 'Weapon' && ob.equipped);
+    }
+
+    isBusy(session) {
+        if (this.state.isBusy()) {
+            session.dataSend(ServerResponse.actionFailed());
+            return true;
+        }
+        return false;
+    }
+
+    statusUpdateVitals(session, creature) {
+        session.dataSend(
+            ServerResponse.statusUpdate(creature.fetchId(), [
+                { id: 0x9, value: creature.fetchHp   () },
+                { id: 0xa, value: creature.fetchMaxHp() },
+                { id: 0xb, value: creature.fetchMp   () },
+                { id: 0xc, value: creature.fetchMaxMp() },
+            ])
+        );
+    }
+
+    scheduleArrival(session, creatureSrc, creatureDest, offset, callback) {
+        const ticksPerSecond = 10;
+        const distance = Formulas.calcDistance(
+            creatureSrc .fetchLocX(), creatureSrc .fetchLocY(),
+            creatureDest.fetchLocX(), creatureDest.fetchLocY(),
+        ) - offset;
+
+        // Execute each time, or else actor is stuck
+        session.dataSend(
+            ServerResponse.moveToPawn(creatureSrc, creatureDest, offset)
+        );
+
+        // Melee radius, no need to move
+        if (distance <= creatureDest.fetchRadius() + 30) {
+            this.abortScheduleTimer();
+            callback();
+            return;
+        }
+
+        if (this.state.fetchOnTheMove()) {
+            return;
+        }
+
+        // Calculate duration and reset
+        const ticksToMove = 1 + ((ticksPerSecond * distance) / creatureSrc.fetchRun());
+        this.abortScheduleTimer();
+
+        // Actor is occupied
+        this.state.setOnTheMove(true);
+
+        // Arrived
+        this.timer = setTimeout(() => {
+            this.state.setOnTheMove(false);
+            callback();
+
+        }, (1000 / ticksPerSecond) * ticksToMove);
+    }
+
+    abortScheduleTimer() {
+        this.state.setOnTheMove(false);
+
+        clearTimeout(this.timer);
+        this.timer = undefined;
+    }
+
+    meleeHit(session, npc) {
+        if (npc.isDead()) {
+            return;
+        }
+
+        const speed = 500000 / this.fetchAtkSpd();
+        session.dataSend(ServerResponse.attack(this, npc.fetchId()));
+        this.state.setCombats(true);
+
+        setTimeout(() => {
+            this.hitPoint(session, npc, true);
+        }, speed * 0.644); // Until hit point
+
+        setTimeout(() => {
+            this.state.setCombats(false);
+        }, speed); // Until end of combat
+    }
+
+    remoteHit(session, npc, data) {
+        if (npc.isDead()) {
+            return;
+        }
+
+        if (this.fetchMp() < data.mp) {
+            session.dataSend(ServerResponse.consoleText(24));
+            return;
+        }
+
+        this.abortScheduleTimer();
+        session.dataSend(ServerResponse.skillStarted(this, npc.fetchId(), data));
+        this.state.setCasts(true);
+
+        setTimeout(() => {
+            this.setMp(this.fetchMp() - data.mp);
+            this.statusUpdateVitals(session, this);
+            this.hitPoint(session, npc, false);
+            this.state.setCasts(false);
+
+        }, data.hitTime);
+
+        setTimeout(() => {
+            // TODO: Prohibit same skill use before reuse time
+        }, data.resuseTime);
+    }
+
+    hitPoint(session, npc, melee) {
+        const power = melee ? this.hitPAtk(this, npc) : this.hitMAtk(this, npc);
+        npc.setHp(Math.max(0, npc.fetchHp() - power)); // HP bar would disappear if less than zero
+
+        this.statusUpdateVitals(session, npc);
+        session.dataSend(ServerResponse.consoleText(35, [{ value: power }]));
+
+        if (npc.isDead()) {
+            World.removeNpc(session, npc);
+        }
+    }
+
+    hitPAtk(actor, npc) {
+        const wpnPAtk = actor.fetchEquippedWeapon()?.pAtk ?? actor.fetchPAtk();
+        const pAtk = Formulas.calcPAtk(actor.fetchLevel(), actor.fetchStr(), wpnPAtk);
+        return Formulas.calcMeleeHit(pAtk, npc.fetchPDef());
+    }
+
+    hitMAtk(actor, npc) {
+        const wpnMAtk = actor.fetchEquippedWeapon()?.mAtk ?? actor.fetchMAtk();
+        const mAtk = Formulas.calcMAtk(actor.fetchLevel(), actor.fetchInt(), wpnMAtk);
+        return Formulas.calcRemoteHit(mAtk, 12, npc.fetchMDef());
+    }
+
+    replenishMp(session) {
+        clearInterval(this.timerMp);
+        this.timerMp = setInterval(() => {
+            const value = this.fetchMp() + 3;
+            const max   = this.fetchMaxMp();
+
+            this.setMp(Math.min(value, max));
+            this.statusUpdateVitals(session, this);
+        }, 3500);
     }
 }
 

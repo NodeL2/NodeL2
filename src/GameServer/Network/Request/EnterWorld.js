@@ -13,7 +13,7 @@ function enterWorld(session, buffer) {
         );
     });
 
-    session.actor.automation.replenishMp(session);
+    session.actor.replenishMp(session);
 
     // Show npcs based on radius
     session.actor.updatePosition(session, {

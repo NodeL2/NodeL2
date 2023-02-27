@@ -8,10 +8,6 @@ class Backpack extends BackpackModel {
         // Parent inheritance
         super(data.paperdoll);
         this.processDetails(DataCache.items);
-
-        // Local
-        delete this.model.items;
-        delete this.model.paperdoll;
     }
 
     processDetails(items) {
