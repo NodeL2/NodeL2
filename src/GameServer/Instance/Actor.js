@@ -9,12 +9,9 @@ class Actor extends ActorModel {
         // Parent inheritance
         super(data);
 
-        // Specific
-        this.backpack = new Backpack(data);
-        delete this.model.items;
-        delete this.model.paperdoll;
-
-        this.npcId = undefined;
+        // Local
+        this.backpack   = new Backpack(data);
+        this.selectedId = undefined;
     }
 
     moveTo(session, coords) {

@@ -5,7 +5,7 @@ class Npc extends NpcModel {
         // Parent inheritance
         super(data);
 
-        // Specific
+        // Local
         this.setId(id);
         this.setHp(utils.randomNumber(this.fetchMaxHp()));
         this.setMp(utils.randomNumber(this.fetchMaxMp()));

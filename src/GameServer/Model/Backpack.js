@@ -1,7 +1,7 @@
 class BackpackModel {
     constructor(data) {
-        this.items     = data.items;
-        this.paperdoll = data.paperdoll;
+        this.items = [];
+        this.paperdoll = data;
     }
 
     // Set

@@ -11,7 +11,7 @@ class Actor extends Creature {
         // Parent inheritance
         super(data);
 
-        // Specific
+        // Local
         this.npcId = undefined;
         this.createAdditionals(data);
     }
