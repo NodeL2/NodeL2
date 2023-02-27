@@ -1,5 +1,5 @@
 const ServerResponse = invoke('GameServer/Network/Response');
-const Npc            = invoke('GameServer/Creature/Npc/Npc');
+const Npc            = invoke('GameServer/Instance/Npc');
 const DataCache      = invoke('GameServer/DataCache');
 
 const World = {
