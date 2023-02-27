@@ -10,8 +10,8 @@ class Actor extends ActorModel {
         super(data);
 
         // Local
-        this.backpack   = new Backpack(data);
-        this.selectedId = undefined;
+        this.backpack = new Backpack(data);
+        this.destId   = undefined;
     }
 
     moveTo(session, coords) {
@@ -41,9 +41,9 @@ class Actor extends ActorModel {
         }
 
         World.fetchNpcWithId(data.id).then((npc) => { // Npc selected
-            if (npc.fetchId() !== this.npcId) { // First click on Npc
-                this.npcId = npc.fetchId();
-                session.dataSend(ServerResponse.destSelected(this.npcId));
+            if (npc.fetchId() !== this.destId) { // First click on a Creature
+                this.destId = npc.fetchId();
+                session.dataSend(ServerResponse.destSelected(this.destId));
                 this.statusUpdateVitals(session, npc);
             }
             else { // Second click on same Npc
@@ -59,7 +59,7 @@ class Actor extends ActorModel {
                         head: this.fetchHead(),
                     });
 
-                    World.fetchNpcWithId(this.npcId).then((npc) => {
+                    World.fetchNpcWithId(this.destId).then((npc) => {
                         if (npc.fetchAttackable() || ctrl) {
                             this.automation.meleeHit(session, npc);
                         }
@@ -79,12 +79,12 @@ class Actor extends ActorModel {
     }
 
     unselect(session) {
-        this.npcId = undefined;
+        this.destId = undefined;
         session.dataSend(ServerResponse.destDeselected(this));
     }
 
     requestedSkillAction(session, data) {
-        if (this.npcId === undefined) {
+        if (this.destId === undefined) {
             return;
         }
 
@@ -92,7 +92,7 @@ class Actor extends ActorModel {
             return;
         }
 
-        World.fetchNpcWithId(this.npcId).then((npc) => {
+        World.fetchNpcWithId(this.destId).then((npc) => {
             this.scheduleArrival(session, this, npc, data.distance, () => {
                 if (npc.fetchAttackable() || data.ctrl) { // TODO: Else, find which `response` fails the attack
                     this.automation.remoteHit(session, npc, data);

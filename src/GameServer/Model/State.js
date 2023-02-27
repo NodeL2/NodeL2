@@ -60,7 +60,7 @@ class StateModel {
         return this.isCastin;
     }
 
-    isBlocked() {
+    isBusy() {
         return this.fetchCasts() || this.fetchCombats() || this.fetchOccupied() || this.fetchSeated();
     }
 }
