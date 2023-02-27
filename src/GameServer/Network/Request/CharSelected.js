@@ -19,8 +19,6 @@ function consume(session, data) {
 
         Shared.fetchClassInformation(character.classId).then((classInfo) => {
             // Create a new actor instance with info
-            delete classInfo.bornAt;
-
             session.setActor({
                 ...character, ...utils.crushOb(classInfo)
             });

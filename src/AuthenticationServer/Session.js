@@ -5,16 +5,16 @@ class Session {
     constructor(socket) {
         const optn = options.connection.AuthServer;
 
-        this.socket   = socket;
-        this.id       = utils.randomNumber(0x80000000);
-        this.key1     = utils.randomNumber(0x80000000);
-        this.key2     = utils.randomNumber(0x80000000);
-        this.protocol = optn.protocol;
-        this.blowfish = optn.blowfishKey + '\u0000';
+        this.socket    = socket;
+        this.sessionId = utils.randomNumber(0x80000000);
+        this.key1      = utils.randomNumber(0x80000000);
+        this.key2      = utils.randomNumber(0x80000000);
+        this.protocol  = optn.protocol;
+        this.blowfish  = optn.blowfishKey + '\u0000';
 
         // First handshake from `Server` to `Client`
         this.dataSend(
-            ServerResponse.initLS(this.id, this.protocol), false
+            ServerResponse.initLS(this.sessionId, this.protocol), false
         );
     }
 

@@ -35,8 +35,8 @@ function createNewChar(session, buffer) {
 
 function consume(session, data) {
     Shared.fetchClassInformation(data.classId).then((classInfo) => {
-        const points = classInfo.bornAt;
-        const coords = points[utils.randomNumber(points.length)];
+        const spawns = fetchSpawnPoints(data.classId);
+        const coords = spawns[utils.randomNumber(spawns.length)];
 
         data = {
             ...data, ...classInfo.vitals, ...coords
@@ -58,6 +58,10 @@ function consume(session, data) {
     });
 }
 
+function fetchSpawnPoints(classId) {
+    return DataCache.newbieSpawns.find(ob => ob.classId === classId);
+}
+
 function awardBaseSkills(id, classId) {
     const skills = DataCache.skillTree.find(ob => ob.classId === classId)?.skills;
     const level1 = skills?.filter(ob => ob.pLevel === 1);
@@ -69,7 +73,7 @@ function awardBaseSkills(id, classId) {
 }
 
 function awardBaseGear(id, classId) {
-    const items = DataCache.itemsNewbie.find(ob => ob.classId === classId)?.items;
+    const items = DataCache.newbieItems.find(ob => ob.classId === classId)?.items;
 
     (items ?? []).forEach((item) => {
         item.slot = DataCache.items.find(ob => ob.selfId === item.selfId)?.etc?.slot ?? 0;

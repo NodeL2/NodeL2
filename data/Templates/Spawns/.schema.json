@@ -1,0 +1,54 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "classId": {
+                "type": "integer"
+            },
+            "template": {
+                "type": "object",
+                "properties": {
+                    "class": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "class"
+                ]
+            },
+            "spawns": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "locX": {
+                            "type": "integer"
+                        },
+                        "locY": {
+                            "type": "integer"
+                        },
+                        "locZ": {
+                            "type": "integer"
+                        },
+                        "head": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "locX",
+                        "locY",
+                        "locZ",
+                        "head"
+                    ]
+                }
+            }
+        },
+        "required": [
+            "classId",
+            "template",
+            "spawns"
+        ]
+    }
+}

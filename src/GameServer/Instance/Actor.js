@@ -67,21 +67,16 @@ class Actor extends ActorModel {
                         head: this.fetchHead(),
                     });
 
-                    World.fetchNpcWithId(this.destId).then((npc) => {
-                        if (npc.fetchAttackable() || ctrl) {
-                            this.meleeHit(session, npc);
-                        }
-                        else {
-                            World.npcTalk(session, npc);
-                        }
-                    }).catch((e) => {
-                        utils.infoWarn('GameServer:: npc not found (1) -> ' + e);
-                        this.unselect(session);
-                    });
+                    if (npc.fetchAttackable() || ctrl) {
+                        this.meleeHit(session, npc);
+                    }
+                    else {
+                        World.npcTalk(session, npc);
+                    }
                 });
             }
         }).catch((e) => { // Pickup item
-            utils.infoWarn('GameServer:: npc not found (2) -> ' + e);
+            utils.infoWarn('GameServer:: npc not found (1) -> ' + e);
             this.unselect(session);
         });
     }
@@ -107,7 +102,7 @@ class Actor extends ActorModel {
                 }
             });
         }).catch((e) => {
-            utils.infoWarn('GameServer:: npc not found (3) -> ' + e);
+            utils.infoWarn('GameServer:: npc not found (2) -> ' + e);
             this.unselect(session);
         });
     }

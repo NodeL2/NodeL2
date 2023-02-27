@@ -1,0 +1,37 @@
+[{
+    "classId": 0,
+    "template": { "class": "Human Fighter" },
+    "spawns": [{ "locX": 44656, "locY": 40896, "locZ": -3440, "head": -1 }]
+},{
+    "classId": 10,
+    "template": { "class": "Human Mystic" },
+    "spawns": [{ "locX": 44656, "locY": 40896, "locZ": -3440, "head": -1 }]
+},{
+    "classId": 18,
+    "template": { "class": "Elven Fighter" },
+    "spawns": [{ "locX": 44656, "locY": 40896, "locZ": -3440, "head": -1 }]
+},{
+    "classId": 25,
+    "template": { "class": "Elven Mystic" },
+    "spawns": [{ "locX": 44656, "locY": 40896, "locZ": -3440, "head": -1 }]
+},{
+    "classId": 31,
+    "template": { "class": "Dark Elvel Fighter" },
+    "spawns": [{ "locX": 44656, "locY": 40896, "locZ": -3440, "head": -1 }]
+},{
+    "classId": 38,
+    "template": { "class": "Dark Elvel Mystic" },
+    "spawns": [{ "locX": 44656, "locY": 40896, "locZ": -3440, "head": -1 }]
+},{
+    "classId": 44,
+    "template": { "class": "Orc Fighter" },
+    "spawns": [{ "locX": 44656, "locY": 40896, "locZ": -3440, "head": -1 }]
+},{
+    "classId": 49,
+    "template": { "class": "Orc Mystic" },
+    "spawns": [{ "locX": 44656, "locY": 40896, "locZ": -3440, "head": -1 }]
+},{
+    "classId": 53,
+    "template": { "class": "Dwarven Fighter" },
+    "spawns": [{ "locX": 44656, "locY": 40896, "locZ": -3440, "head": -1 }]
+}]

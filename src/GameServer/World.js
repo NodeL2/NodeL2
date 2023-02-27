@@ -26,12 +26,6 @@ const World = {
         this.user.sessions.push(session);
     },
 
-    insertNpcs(session) { // TODO: Unused now
-        this.npc.spawns.forEach((npc) => {
-            session.dataSend(ServerResponse.npcInfo(npc));
-        });
-    },
-
     fetchNpcWithId(id) {
         return new Promise((success, fail) => {
             let npc = this.npc.spawns.find(ob => ob.fetchId() === id);

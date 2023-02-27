@@ -4,8 +4,12 @@ const World   = invoke('GameServer/World');
 
 class Session {
     constructor(socket) {
+        const optn = options.connection.GameServer;
+
+        this.socket   = socket;
+        this.serverId = optn.id;
+
         World.insertUser(this);
-        this.socket = socket;
     }
 
     setAccountId(username) {
