@@ -59,7 +59,7 @@ function consume(session, data) {
 }
 
 function fetchSpawnPoints(classId) {
-    return DataCache.newbieSpawns.find(ob => ob.classId === classId);
+    return DataCache.newbieSpawns.find(ob => ob.classId === classId)?.spawns;
 }
 
 function awardBaseSkills(id, classId) {
