@@ -41,8 +41,8 @@
 ✴️ Skill use
 
 ## Unimplemented
-⛔️ Around 80% of mechanics\
-⛔️ 99% of datapack
+⛔️ Around 75% of mechanics\
+⛔️ 95% of datapack
 
 ## License
 Open-source under [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0).
