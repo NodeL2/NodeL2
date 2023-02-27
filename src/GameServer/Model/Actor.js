@@ -12,6 +12,11 @@ class ActorModel extends CreatureModel {
         this.model.sp = data;
     }
 
+    setExpSp(exp, sp) {
+        this.model.exp = exp;
+        this.model.sp  =  sp;
+    }
+
     // Get
 
     fetchUsername() {

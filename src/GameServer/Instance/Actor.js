@@ -1,6 +1,7 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 const ActorModel     = invoke('GameServer/Model/Actor');
 const Backpack       = invoke('GameServer/Instance/Backpack');
+const DataCache      = invoke('GameServer/DataCache');
 const World          = invoke('GameServer/World');
 const Formulas       = invoke('GameServer/Formulas');
 const Database       = invoke('Database');
@@ -339,15 +340,13 @@ class Actor extends ActorModel {
         }, 3500);
     }
 
-    rewardExpAndSp(session, exp, sp) { // TODO: Rewrite
-        const expTable = [0, 68, 364, 1169, 2885, 6039, 11288, 19424, 31379, 48230];
-    
-        let level    = 0;
+    rewardExpAndSp(session, exp, sp) {
+        let level    = this.fetchLevel();
         let totalExp = this.fetchExp() + exp;
         let totalSp  = this.fetchSp () +  sp;
-        
-        for (let i = 0; i < expTable.length; i++) {
-            if (totalExp >= expTable[i] && totalExp < expTable[i + 1]) {
+
+        for (let i = 0; i < 75; i++) {
+            if (totalExp >= DataCache.experience[i] && totalExp < DataCache.experience[i + 1]) {
                 level = i + 1;
             }
         }
@@ -357,8 +356,7 @@ class Actor extends ActorModel {
         }
 
         this.setLevel(level);
-        this.setExp(totalExp);
-        this.setSp(totalSp);
+        this.setExpSp(totalExp, totalSp);
         this.statusUpdateLevelExpSp(session, this);
     }
 }
