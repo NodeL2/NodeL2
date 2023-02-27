@@ -136,6 +136,10 @@ class CreatureModel {
     fetchHead() {
         return this.model.head;
     }
+
+    isDead() { // TODO: Remember that this is not true in case of Bleed or similar skill effect
+        return this.model.hp <= 0;
+    }
 }
 
 module.exports = CreatureModel;

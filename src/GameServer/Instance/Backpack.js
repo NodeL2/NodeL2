@@ -42,7 +42,7 @@ class Backpack extends BackpackModel {
         intentionItem(id, (item) => {
             if (item.kind === "Armor") {
                 this.unequipGear(session, item.slot);
-                session.actor.paperdoll.equip(item.slot, item.id, item.selfId);
+                this.paperdoll.equip(item.slot, item.id, item.selfId);
                 item.equipped = true;
             }
             else
@@ -57,7 +57,7 @@ class Backpack extends BackpackModel {
                 }
 
                 this.unequipGear(session, item.slot);
-                session.actor.paperdoll.equip(item.slot, item.id, item.selfId);
+                this.paperdoll.equip(item.slot, item.id, item.selfId);
                 item.equipped = true;
             }
             else {
@@ -75,7 +75,7 @@ class Backpack extends BackpackModel {
 
     unequipGear(session, slot) {
         const removeItem = (slot, success, fail = () => {}) => {
-            const item = this.items.find(ob => ob.id === session.actor.paperdoll.fetchId(slot));
+            const item = this.items.find(ob => ob.id === this.paperdoll.fetchId(slot));
             item ? success(item) : fail;
         };
 
@@ -84,7 +84,7 @@ class Backpack extends BackpackModel {
 
         removeItem(slot, (item) => {
             // Unequip from actor
-            session.actor.paperdoll.unequip(slot);
+            this.paperdoll.unequip(slot);
             item.equipped = false;
 
             // Move item to the end (not official?)

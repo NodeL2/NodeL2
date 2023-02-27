@@ -1,4 +1,16 @@
 const Formulas = {
+    calcDistance(srcX, srcY, destX, destY) {
+        const dX = destX - srcX;
+        const dY = destY - srcY;
+        return Math.sqrt((dX * dX) + (dY * dY));
+    },
+
+    calcWithinRadius(srcX, srcY, destX, destY, radius) {
+        const dX = destX - srcX;
+        const dY = destY - srcY;
+        return ((dX ** 2) + (dY ** 2)) < (radius ** 2);
+    },
+
     calcLevelMod(level) {
         return Number(((level + 89) / 100).toFixed(2));
     },

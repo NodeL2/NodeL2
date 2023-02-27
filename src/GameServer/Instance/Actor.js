@@ -3,6 +3,7 @@ const ActorModel     = invoke('GameServer/Model/Actor');
 const World          = invoke('GameServer/World');
 const Backpack       = invoke('GameServer/Backpack');
 const Database       = invoke('Database');
+const Formulas       = invoke('Formulas');
 
 class Actor extends ActorModel {
     constructor(data) {
@@ -25,7 +26,7 @@ class Actor extends ActorModel {
 
     updatePosition(session, coords) {
         this.setLocXYZH(coords);
-        (World.npc.spawns.filter(ob => utils.withinRadius(coords.locX, coords.locY, ob.fetchLocX(), ob.fetchLocY(), 2500)) ?? []).forEach((npc) => {
+        (World.npc.spawns.filter(ob => Formulas.calcWithinRadius(coords.locX, coords.locY, ob.fetchLocX(), ob.fetchLocY(), 2500)) ?? []).forEach((npc) => {
             session.dataSend(ServerResponse.npcInfo(npc));
         });
 
@@ -40,13 +41,13 @@ class Actor extends ActorModel {
             return;
         }
 
-        World.fetchNpcWithId(data.id).then((npc) => { // Npc selected
+        World.fetchNpcWithId(data.id).then((npc) => { // Creature selected
             if (npc.fetchId() !== this.destId) { // First click on a Creature
                 this.destId = npc.fetchId();
                 session.dataSend(ServerResponse.destSelected(this.destId));
                 this.statusUpdateVitals(session, npc);
             }
-            else { // Second click on same Npc
+            else { // Second click on same Creature
                 if (this.isBusy(session)) {
                     return;
                 }
