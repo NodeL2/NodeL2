@@ -15,6 +15,12 @@ class Backpack extends BackpackModel {
     }
 
     processDetails(items) {
+        items.push(
+            { id: 4900000, selfId: 1665, name: "World Map" },
+            { id: 4900001, selfId:   18, name: "Leather Shield" },
+            { id: 4900002, selfId:   57, name: "Adena", amount: 1337 }
+        ); // TODO: Test data, please delete
+
         items.forEach((item) => {
             const details = DataCache.items.find(ob => ob.selfId === item.selfId);
             this.items.push({

@@ -2,8 +2,8 @@ const ServerResponse = invoke('GameServer/Network/Response');
 const ActorModel     = invoke('GameServer/Model/Actor');
 const World          = invoke('GameServer/World');
 const Backpack       = invoke('GameServer/Backpack');
+const Formulas       = invoke('GameServer/Formulas');
 const Database       = invoke('Database');
-const Formulas       = invoke('Formulas');
 
 class Actor extends ActorModel {
     constructor(data) {
