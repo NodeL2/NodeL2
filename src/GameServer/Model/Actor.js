@@ -13,8 +13,8 @@ class ActorModel extends CreatureModel {
     }
 
     setExpSp(exp, sp) {
-        this.model.exp = exp;
-        this.model.sp  =  sp;
+        this.setExp(exp);
+        this.setSp ( sp);
     }
 
     // Get
