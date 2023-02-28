@@ -142,6 +142,12 @@ class ActorModel extends CreatureModel {
     fetchIsActive() {
         return this.model.isActive;
     }
+
+    // Abstract
+
+    isMystic() {
+        return [10, 25, 38, 49].includes(this.fetchClassId()) ? 1 : 0;
+    }
 }
 
 module.exports = ActorModel;

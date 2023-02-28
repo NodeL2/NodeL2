@@ -15,7 +15,7 @@ class Npc extends NpcModel {
             const max   = this.fetchMaxHp();
 
             this.setHp(Math.min(value, max));
-        }, 3500);
+        }, 3500); // TODO: Not real formula
     }
 
     destructor() {

@@ -3,7 +3,7 @@ const Shared         = invoke('GameServer/Network/Shared');
 
 function restart(session, buffer) {
 
-    session.actor.destructor();
+    session.actor?.destructor();
 
     session.dataSend(
         ServerResponse.restart()

@@ -33,8 +33,8 @@ class Actor extends ActorModel {
         this.setMaxHp(Formulas.calcHp(this.fetchLevel(), this.fetchClassId(), this.fetchCon()));
     }
 
-    setCollectiveTotalMp() {
-        this.setMaxMp(59); // TODO: Heh...
+    setCollectiveTotalMp() { // TODO: Fix hardcoded class transfer parameter
+        this.setMaxMp(Formulas.calcMp(this.fetchLevel(), this.isMystic(), 0, this.fetchMen()));
     }
 
     moveTo(session, coords) {
@@ -368,6 +368,7 @@ class Actor extends ActorModel {
         if (level > this.fetchLevel()) {
             this.setLevel(level);
             this.setCollectiveTotalHp();
+            this.setCollectiveTotalMp();
             this.fillupVitals();
             this.statusUpdateVitals(session, this);
             Database.updateCharacterVitals(this.fetchId(), this.fetchHp(), this.fetchMaxHp(), this.fetchMp(), this.fetchMaxMp());

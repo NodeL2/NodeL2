@@ -21,6 +21,23 @@ const Formulas = {
         return table;
     })(),
 
+    calcBaseMp: (() => {
+        const table = utils.tupleAlloc(10, (level) => {
+            utils.infoFail('GameServer:: unknown mp table for level %d', level);
+        });
+
+        function mp(level, a, b, c, d) {
+            return ((Math.pow(level, 2) *  a) + (level * b) +  c) / d;
+        }
+
+        table[0] = [ // 1st class transfer
+            (level) => { return mp(level, 3, 537, 2460, 100); }, // F
+            (level) => { return mp(level, 1, 179,  820,  25); }, // M
+        ];
+
+        return table;
+    })(),
+
     calcBaseMod: (() => {
         function func(start, end, base, multiplier) {
             for (let i = start; i < end; i++, base += (base * multiplier));
@@ -28,14 +45,20 @@ const Formulas = {
         }
 
         return {
-            STR: (data) => { return func(1, data, 0.30, 0.036219821012); },
-            CON: (data) => { return func(1, data, 0.46, 0.029863478935); },
-            INT: (data) => { return func(6, data, 0.61, 0.019828637467); },
+            STR: (data) => { return func( 1, data, 0.30, 0.036219821012); },
+            DEX: (data) => { return func(21, data, 1.01, 0.009553766764); },
+            CON: (data) => { return func( 1, data, 0.46, 0.029863478935); },
+            INT: (data) => { return func( 6, data, 0.61, 0.019828637467); },
+            MEN: (data) => { return func(25, data, 1.28, 0.010330633552); },
         };
     })(),
 
     calcHp(level, classId, con) {
         return this.calcBaseHp[classId](level) * this.calcBaseMod.CON(con);
+    },
+
+    calcMp(level, kind, classTransfer, men) {
+        return this.calcBaseMp[classTransfer][kind](level) * this.calcBaseMod.MEN(men);
     },
 
     calcDistance(srcX, srcY, destX, destY) {
