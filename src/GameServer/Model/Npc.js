@@ -27,7 +27,7 @@ class NpcModel extends CreatureModel {
     // TODO: Exp & Sp do not exist, please add
 
     fetchRewardExp() {
-        return 30;
+        return 100000;
     }
 
     fetchRewardSp() {

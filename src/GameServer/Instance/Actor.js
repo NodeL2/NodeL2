@@ -381,7 +381,7 @@ class Actor extends ActorModel {
                     session.dataSend(ServerResponse.socialAction(this.fetchId(), 15));
         
                     // Update database with new hp, mp
-                    Database.updateCharacterVitals(this.fetchId(), this.fetchHp(), this.fetchMaxHp(), this.fetchMp(), this.fetchMaxMp());
+                    Database.updateCharacterVitals(this.fetchId(), this.fetchHp(), this.fetchMp());
                     break;
                 }
             }
