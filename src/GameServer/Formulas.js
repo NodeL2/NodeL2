@@ -1,4 +1,26 @@
 const Formulas = {
+    hpTable: (() => {
+        const table = utils.tupleAlloc(100, (level) => {
+            utils.infoFail('GameServer:: unknown hp table');
+        });
+
+        function hp(level, a, b, c, d) {
+            return ((Math.pow(level, 2) *  a) + (level * b) +  c) / d;
+        }
+
+        table[ 0] = (level) => { return hp(level, 13, 2327, 13660, 200); };
+        table[ 8] = (level) => { return hp(level, 17, 3043, 17140, 200); };
+        table[18] = (level) => { return hp(level,  7, 1253,  7640, 100); };
+        table[25] = (level) => { return hp(level, 17, 3043, 17740, 200); };
+        table[31] = (level) => { return hp(level,  3,  537,  3220,  40); };
+        table[38] = (level) => { return hp(level, 17, 3043, 18140, 200); };
+        table[44] = (level) => { return hp(level,  7, 1253,  6740, 100); };
+        table[49] = (level) => { return hp(level, 17, 3043, 15940, 200); };
+        table[53] = (level) => { return hp(level,  7, 1253,  6740, 100); };
+
+        return table;
+    })(),
+
     calcDistance(srcX, srcY, destX, destY) {
         const dX = destX - srcX;
         const dY = destY - srcY;
