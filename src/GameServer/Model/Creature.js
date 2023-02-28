@@ -149,6 +149,21 @@ class CreatureModel {
         return this.model.head;
     }
 
+    // Abstract
+
+    fillupHp() {
+        this.model.hp = this.model.maxHp;
+    }
+
+    fillupMp() {
+        this.model.mp = this.model.maxMp;
+    }
+
+    fillupVitals() {
+        this.fillupHp();
+        this.fillupMp();
+    }
+
     isDead() { // TODO: Remember that this is not true in case of Bleed or similar skill effect
         return this.model.hp <= 0;
     }

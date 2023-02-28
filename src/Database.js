@@ -174,6 +174,27 @@ const Database = {
                 head: coords.head,
             }, 'id = ? LIMIT 1', id)
         );
+    },
+
+    updateCharacterExperience(id, level, exp, sp) {
+        return Database.execute(
+            builder.update('characters', {
+                level: level,
+                  exp: exp,
+                   sp: sp
+            }, 'id = ? LIMIT 1', id)
+        );
+    },
+
+    updateCharacterVitals(id, hp, maxHp, mp, maxMp) {
+        return Database.execute(
+            builder.update('characters', {
+                   hp: hp,
+                maxHp: maxHp,
+                   mp: mp,
+                maxMp: maxMp
+            }, 'id = ? LIMIT 1', id)
+        );
     }
 };
 

@@ -9,7 +9,7 @@ const Formulas = {
         }
 
         table[ 0] = (level) => { return hp(level, 13, 2327, 13660, 200); };
-        table[ 8] = (level) => { return hp(level, 17, 3043, 17140, 200); };
+        table[10] = (level) => { return hp(level, 17, 3043, 17140, 200); };
         table[18] = (level) => { return hp(level,  7, 1253,  7640, 100); };
         table[25] = (level) => { return hp(level, 17, 3043, 17740, 200); };
         table[31] = (level) => { return hp(level,  3,  537,  3220,  40); };
@@ -33,6 +33,10 @@ const Formulas = {
             INT: (data) => { return func(6, data, 0.61, 0.019828637467); },
         };
     })(),
+
+    calcHp(level, classId, con) {
+        return this.calcBaseHp[classId](level) * this.calcBaseMod.CON(con);
+    },
 
     calcDistance(srcX, srcY, destX, destY) {
         const dX = destX - srcX;

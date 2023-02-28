@@ -16,11 +16,16 @@ class Actor extends ActorModel {
         this.destId   = undefined;
 
         // Schedule timer
-        this.timer = undefined; // TODO: Move this into actual GameServer timer
+        this.timer    = undefined; // TODO: Move this into actual GameServer timer
+        this.timerMp  = undefined;
 
         // Local
         delete this.model.items;
         delete this.model.paperdoll;
+    }
+
+    destructor() {
+        clearInterval(this.timerMp);
     }
 
     moveTo(session, coords) {
@@ -337,29 +342,32 @@ class Actor extends ActorModel {
 
             this.setMp(Math.min(value, max));
             this.statusUpdateVitals(session, this);
-        }, 3500);
+        }, 3500); // TODO: Not real formula
     }
 
     rewardExpAndSp(session, exp, sp) {
-        let level    = this.fetchLevel();
+        let level    = 0;
         let totalExp = this.fetchExp() + exp;
         let totalSp  = this.fetchSp () +  sp;
 
         for (let i = 0; i < 75; i++) {
             if (totalExp >= DataCache.experience[i] && totalExp < DataCache.experience[i + 1]) {
-                level = i + 1;
+                level = i + 1; // Leveled up
             }
         }
 
         if (level > this.fetchLevel()) {
             this.setLevel(level);
-            this.setMaxHp(Formulas.calcBaseHp[this.fetchClassId()](level)); // TODO: Calculate based on CON too
+            this.setMaxHp(Formulas.calcHp(level, this.fetchClassId(), this.fetchCon()));
+            this.fillupVitals();
             this.statusUpdateVitals(session, this);
+            Database.updateCharacterVitals(this.fetchId(), this.fetchHp(), this.fetchMaxHp(), this.fetchMp(), this.fetchMaxMp());
             session.dataSend(ServerResponse.socialAction(this.fetchId(), 15));
         }
 
         this.setExpSp(totalExp, totalSp);
         this.statusUpdateLevelExpSp(session, this);
+        Database.updateCharacterExperience(this.fetchId(), this.fetchLevel(), totalExp, totalSp);
     }
 }
 
