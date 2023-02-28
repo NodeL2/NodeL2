@@ -352,10 +352,12 @@ class Actor extends ActorModel {
         }
 
         if (level > this.fetchLevel()) {
+            this.setLevel(level);
+            this.setMaxHp(Formulas.calcBaseHp[this.fetchClassId()](level)); // TODO: Calculate based on CON too
+            this.statusUpdateVitals(session, this);
             session.dataSend(ServerResponse.socialAction(this.fetchId(), 15));
         }
 
-        this.setLevel(level);
         this.setExpSp(totalExp, totalSp);
         this.statusUpdateLevelExpSp(session, this);
     }

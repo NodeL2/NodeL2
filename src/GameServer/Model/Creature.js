@@ -20,8 +20,16 @@ class CreatureModel {
         this.model.hp = data;
     }
 
+    setMaxHp(data) {
+        this.model.maxHp = data;
+    }
+
     setMp(data) {
         this.model.mp = data;
+    }
+
+    setMaxMp(data) {
+        this.model.maxMp = data;
     }
 
     setLocX(data) {

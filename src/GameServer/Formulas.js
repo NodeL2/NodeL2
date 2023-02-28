@@ -1,7 +1,7 @@
 const Formulas = {
-    hpTable: (() => {
+    calcBaseHp: (() => {
         const table = utils.tupleAlloc(100, (level) => {
-            utils.infoFail('GameServer:: unknown hp table');
+            utils.infoFail('GameServer:: unknown hp table for level %d', level);
         });
 
         function hp(level, a, b, c, d) {
@@ -21,6 +21,19 @@ const Formulas = {
         return table;
     })(),
 
+    calcBaseMod: (() => {
+        function func(start, end, base, multiplier) {
+            for (let i = start; i < end; i++, base += (base * multiplier));
+            return Number(base.toFixed(2));
+        }
+
+        return {
+            STR: (data) => { return func(1, data, 0.30, 0.036219821012); },
+            CON: (data) => { return func(1, data, 0.46, 0.029863478935); },
+            INT: (data) => { return func(6, data, 0.61, 0.019828637467); },
+        };
+    })(),
+
     calcDistance(srcX, srcY, destX, destY) {
         const dX = destX - srcX;
         const dY = destY - srcY;
@@ -37,29 +50,15 @@ const Formulas = {
         return Number(((level + 89) / 100).toFixed(2));
     },
 
-    calcSTRMod(str) {
-        let base = 0.30;
-        let multiplier = 0.036219821012;
-        for (let i = 1; i < str; i++, base += (base * multiplier));
-        return Number(base.toFixed(2));
-    },
-
-    calcINTMod(int) {
-        let base = 0.61;
-        let multiplier = 0.019828637467;
-        for (let i = 6; i < int; i++, base += (base * multiplier));
-        return Number(base.toFixed(2));
-    },
-
     calcPAtk(level, str, wpnPAtk) {
         let levelMod = this.calcLevelMod(level);
-        let strMod   = this.calcSTRMod(str);
+        let strMod   = this.calcBaseMod.STR(str);
         return Number((levelMod * strMod * wpnPAtk).toFixed(2));
     },
 
     calcMAtk(level, int, wpnMAtk) {
         let levelMod = Math.pow(this.calcLevelMod(level), 2);
-        let intMod   = Math.pow(this.calcINTMod(int), 2);
+        let intMod   = Math.pow(this.calcBaseMod.INT(int), 2);
         return Number((levelMod * intMod * wpnMAtk).toFixed(2));
     },
 
