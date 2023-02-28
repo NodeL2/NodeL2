@@ -30,11 +30,18 @@ class Actor extends ActorModel {
     }
 
     setCollectiveTotalHp() {
-        this.setMaxHp(Formulas.calcHp(this.fetchLevel(), this.fetchClassId(), this.fetchCon()));
+        const base = Formulas.calcHp(this.fetchLevel(), this.fetchClassId(), this.fetchCon());
+        this.setMaxHp(base);
+        this.setHp(Math.min(this.fetchHp(), this.fetchMaxHp()));
     }
 
     setCollectiveTotalMp() { // TODO: Fix hardcoded class transfer parameter
-        this.setMaxMp(Formulas.calcMp(this.fetchLevel(), this.isMystic(), 0, this.fetchMen()));
+        const base  = Formulas.calcMp(this.fetchLevel(), this.isMystic(), 0, this.fetchMen());
+        const chest = this.fetchEquippedArmor(10)?.maxMp ?? 0;
+        const pants = this.fetchEquippedArmor(11)?.maxMp ?? 0;
+        this.setMaxMp(base + chest + pants);
+        this.setMp(Math.min(this.fetchMp(), this.fetchMaxMp()));
+        
     }
 
     moveTo(session, coords) {
@@ -193,6 +200,10 @@ class Actor extends ActorModel {
         session.dataSend(
             ServerResponse.npcHtml(this.fetchId(), utils.parseRawFile('data/Html/Default/admin.html'))
         );
+    }
+
+    fetchEquippedArmor(slot) {
+        return this.backpack.fetchItems().find(ob => ob.kind ===  'Armor' && ob.equipped && ob.slot === slot);
     }
 
     fetchEquippedWeapon() {

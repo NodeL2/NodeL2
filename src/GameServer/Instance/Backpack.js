@@ -46,6 +46,9 @@ class Backpack extends BackpackModel {
                 this.unequipGear(session, item.slot);
                 this.equipPaperdoll(item.slot, item.id, item.selfId);
                 item.equipped = true;
+
+                // Recalculate bonus
+                session.actor.setCollectiveTotalMp();
             }
             else
             if (item.kind === "Weapon") {
@@ -92,6 +95,9 @@ class Backpack extends BackpackModel {
             // Move item to the end (not official?)
             this.items = this.items.filter(ob => ob.id !== item?.id);
             this.items.unshift(item);
+
+            // Recalculate bonus
+            session.actor.setCollectiveTotalMp();
         });
     }
 }
