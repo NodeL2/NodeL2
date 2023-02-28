@@ -41,7 +41,6 @@ class Actor extends ActorModel {
         const pants = this.fetchEquippedArmor(11)?.maxMp ?? 0;
         this.setMaxMp(base + chest + pants);
         this.setMp(Math.min(this.fetchMp(), this.fetchMaxMp()));
-        
     }
 
     moveTo(session, coords) {
@@ -218,6 +217,16 @@ class Actor extends ActorModel {
         return false;
     }
 
+    statusUpdateLevelExpSp(session, creature) {
+        session.dataSend(
+            ServerResponse.statusUpdate(creature.fetchId(), [
+                { id: 0x1, value: creature.fetchLevel() },
+                { id: 0x2, value: creature.fetchExp  () },
+                { id: 0xd, value: creature.fetchSp   () },
+            ])
+        );
+    }
+
     statusUpdateVitals(session, creature) {
         session.dataSend(
             ServerResponse.statusUpdate(creature.fetchId(), [
@@ -225,16 +234,6 @@ class Actor extends ActorModel {
                 { id: 0xa, value: creature.fetchMaxHp() },
                 { id: 0xb, value: creature.fetchMp   () },
                 { id: 0xc, value: creature.fetchMaxMp() },
-            ])
-        );
-    }
-
-    statusUpdateLevelExpSp(session, creature) {
-        session.dataSend(
-            ServerResponse.statusUpdate(creature.fetchId(), [
-                { id: 0x1, value: creature.fetchLevel() },
-                { id: 0x2, value: creature.fetchExp  () },
-                { id: 0xd, value: creature.fetchSp   () },
             ])
         );
     }
@@ -366,28 +365,32 @@ class Actor extends ActorModel {
     }
 
     rewardExpAndSp(session, exp, sp) {
-        let level    = 0;
         let totalExp = this.fetchExp() + exp;
         let totalSp  = this.fetchSp () +  sp;
 
         for (let i = 0; i < 75; i++) {
             if (totalExp >= DataCache.experience[i] && totalExp < DataCache.experience[i + 1]) {
-                level = i + 1; // Leveled up
+                if (i + 1 > this.fetchLevel()) { // Leveled up
+                    this.setLevel(i + 1);
+                    this.setCollectiveTotalHp();
+                    this.setCollectiveTotalMp();
+                    this.fillupVitals();
+                    this.statusUpdateVitals(session, this);
+        
+                    // Level up effect
+                    session.dataSend(ServerResponse.socialAction(this.fetchId(), 15));
+        
+                    // Update database with new hp, mp
+                    Database.updateCharacterVitals(this.fetchId(), this.fetchHp(), this.fetchMaxHp(), this.fetchMp(), this.fetchMaxMp());
+                    break;
+                }
             }
-        }
-
-        if (level > this.fetchLevel()) {
-            this.setLevel(level);
-            this.setCollectiveTotalHp();
-            this.setCollectiveTotalMp();
-            this.fillupVitals();
-            this.statusUpdateVitals(session, this);
-            Database.updateCharacterVitals(this.fetchId(), this.fetchHp(), this.fetchMaxHp(), this.fetchMp(), this.fetchMaxMp());
-            session.dataSend(ServerResponse.socialAction(this.fetchId(), 15));
         }
 
         this.setExpSp(totalExp, totalSp);
         this.statusUpdateLevelExpSp(session, this);
+
+        // Update database with new exp, sp
         Database.updateCharacterExperience(this.fetchId(), this.fetchLevel(), totalExp, totalSp);
     }
 }
