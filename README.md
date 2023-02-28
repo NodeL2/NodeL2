@@ -32,13 +32,17 @@
 ✅ Character creation for 5 races\
 ✅ Character deletion (instant)\
 ✅ Enter world\
-✅ Statistics for level, base abilities, etc.
+✅ Statistics for level, base abilities, etc.\
+✅ Npc spawns\
+✅ Basic attack\
+✅ Level, experience, sp
 
 ## WIP/Experimental
 ✴️ Attained weapon, armor, items\
-✴️ Npc & Monster spawns\
-✴️ Attack (Force attack too)\
-✴️ Skill use
+✴️ Monster spawns\
+✴️ Skill use\
+✴️ Calculation formulas\
+✴️ Npc interaction, quests
 
 ## Unimplemented
 ⛔️ Around 75% of mechanics\
