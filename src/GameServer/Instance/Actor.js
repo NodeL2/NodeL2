@@ -14,10 +14,11 @@ class Actor extends ActorModel {
         // Local
         this.backpack = new Backpack(data);
         this.destId   = undefined;
-
-        // Schedule timer
         this.timer    = undefined; // TODO: Move this into actual GameServer timer
         this.timerMp  = undefined;
+
+        this.setCollectiveTotalHp();
+        this.setCollectiveTotalMp();
 
         // Local
         delete this.model.items;
@@ -26,6 +27,14 @@ class Actor extends ActorModel {
 
     destructor() {
         clearInterval(this.timerMp);
+    }
+
+    setCollectiveTotalHp() {
+        this.setMaxHp(Formulas.calcHp(this.fetchLevel(), this.fetchClassId(), this.fetchCon()));
+    }
+
+    setCollectiveTotalMp() {
+        this.setMaxMp(59); // TODO: Heh...
     }
 
     moveTo(session, coords) {
@@ -358,7 +367,7 @@ class Actor extends ActorModel {
 
         if (level > this.fetchLevel()) {
             this.setLevel(level);
-            this.setMaxHp(Formulas.calcHp(level, this.fetchClassId(), this.fetchCon()));
+            this.setCollectiveTotalHp();
             this.fillupVitals();
             this.statusUpdateVitals(session, this);
             Database.updateCharacterVitals(this.fetchId(), this.fetchHp(), this.fetchMaxHp(), this.fetchMp(), this.fetchMaxMp());
