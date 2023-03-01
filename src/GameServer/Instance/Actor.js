@@ -22,9 +22,10 @@ class Actor extends ActorModel {
     }
 
     enterWorld(session) {
-        // Calculate total bonus for HP & MP
+        // Calculate accumulated
         this.setCollectiveTotalHp();
         this.setCollectiveTotalMp();
+        this.setCollectiveTotalLoad();
 
         // Start vitals replenish
         this.automation.replenishMp(session, this);
@@ -307,6 +308,10 @@ class Actor extends ActorModel {
 
         // Update database with new exp, sp
         Database.updateCharacterExperience(this.fetchId(), this.fetchLevel(), totalExp, totalSp);
+    }
+
+    setCollectiveTotalLoad() {
+        this.setLoad(this.backpack.fetchTotalLoad());
     }
 
     setCollectiveTotalHp() {

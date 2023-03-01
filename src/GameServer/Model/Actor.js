@@ -17,6 +17,14 @@ class ActorModel extends CreatureModel {
         this.setSp ( sp);
     }
 
+    setLoad(data) {
+        this.model.load = data;
+    }
+
+    setMaxLoad(data) {
+        this.model.maxLoad = data;
+    }
+
     // Get
 
     fetchUsername() {

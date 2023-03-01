@@ -26,7 +26,7 @@ function userInfo(actor) {
         .writeD(actor.fetchMaxMp())
         .writeD(actor.fetchMp())
         .writeD(actor.fetchSp())
-        .writeD(0x00)  // Current Load
+        .writeD(actor.fetchLoad())
         .writeD(actor.fetchMaxLoad())
         .writeD(0x28); // ?
 

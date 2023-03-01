@@ -25,16 +25,6 @@ class Backpack extends BackpackModel {
         });
     }
 
-    updateDatabaseTimer(characterId) {
-        clearTimeout(this.dbTimer);
-
-        this.dbTimer = setTimeout(() => {
-            (this.items.filter(ob => ob.equipped !== undefined) ?? []).forEach((item) => {
-                Database.updateItemEquipState(characterId, item);
-            });
-        }, 5000);
-    }
-
     useItem(session, id) {
         const intentionItem = (id, success, fail = () => {}) => {
             const item = this.items.find(ob => ob.id === id);
@@ -99,6 +89,26 @@ class Backpack extends BackpackModel {
             // Recalculate bonus
             session.actor.setCollectiveTotalMp();
         });
+    }
+
+    fetchTotalLoad() {
+        let totalLoad = 0;
+
+        this.items.forEach((item) => {
+            totalLoad += item.mass ?? 0;
+        });
+
+        return totalLoad;
+    }
+
+    updateDatabaseTimer(characterId) {
+        clearTimeout(this.dbTimer);
+
+        this.dbTimer = setTimeout(() => {
+            (this.items.filter(ob => ob.equipped !== undefined) ?? []).forEach((item) => {
+                Database.updateItemEquipState(characterId, item);
+            });
+        }, 5000);
     }
 }
 
