@@ -61,18 +61,6 @@ const Formulas = {
         return this.calcBaseMp[classTransfer][kind](level) * this.calcBaseMod.MEN(men);
     },
 
-    calcDistance(srcX, srcY, destX, destY) {
-        const dX = destX - srcX;
-        const dY = destY - srcY;
-        return Math.sqrt((dX * dX) + (dY * dY));
-    },
-
-    calcWithinRadius(srcX, srcY, destX, destY, radius) {
-        const dX = destX - srcX;
-        const dY = destY - srcY;
-        return ((dX ** 2) + (dY ** 2)) < (radius ** 2);
-    },
-
     calcLevelMod(level) {
         return Number(((level + 89) / 100).toFixed(2));
     },
@@ -95,7 +83,19 @@ const Formulas = {
 
     calcRemoteHit(mAtk, power, mDef) {
         return Number(((91 * Math.sqrt(mAtk) * power) / mDef).toFixed(2));
-    }
+    },
+
+    calcDistance(srcX, srcY, destX, destY) {
+        const dX = destX - srcX;
+        const dY = destY - srcY;
+        return Math.sqrt((dX * dX) + (dY * dY));
+    },
+
+    calcWithinRadius(srcX, srcY, destX, destY, radius) {
+        const dX = destX - srcX;
+        const dY = destY - srcY;
+        return ((dX ** 2) + (dY ** 2)) < (radius ** 2);
+    },
 };
 
 module.exports = Formulas;

@@ -1,5 +1,6 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 const ActorModel     = invoke('GameServer/Model/Actor');
+const Automation     = invoke('GameServer/Instance/Automation');
 const Backpack       = invoke('GameServer/Instance/Backpack');
 const DataCache      = invoke('GameServer/DataCache');
 const World          = invoke('GameServer/World');
@@ -12,21 +13,56 @@ class Actor extends ActorModel {
         super(data);
 
         // Local
-        this.backpack = new Backpack(data);
-        this.destId   = undefined;
-        this.timer    = undefined; // TODO: Move this into actual GameServer timer
-        this.timerMp  = undefined;
+        this.automation = new Automation();
+        this.backpack   = new Backpack(data);
+        this.destId     = undefined;
 
-        this.setCollectiveTotalHp();
-        this.setCollectiveTotalMp();
-
-        // Local
         delete this.model.items;
         delete this.model.paperdoll;
     }
 
+    enterWorld(session) {
+        // Calculate total bonus for HP & MP
+        this.setCollectiveTotalHp();
+        this.setCollectiveTotalMp();
+
+        // Start vitals replenish
+        this.automation.replenishMp(session, this);
+
+        // Show npcs based on radius
+        this.updatePosition(session, {
+            locX: this.fetchLocX(),
+            locY: this.fetchLocY(),
+            locZ: this.fetchLocZ(),
+            head: this.fetchHead(),
+        });
+    }
+
     destructor() {
-        clearInterval(this.timerMp);
+        this.automation.destructor();
+    }
+
+    moveTo(session, coords) {
+        if (this.isBusy(session)) {
+            return;
+        }
+
+        // Abort scheduled movement, user redirected the actor
+        this.automation.abortScheduleTimer(this);
+        session.dataSend(ServerResponse.moveToLocation(this.fetchId(), coords));
+    }
+
+    updatePosition(session, coords) {
+        this.setLocXYZH(coords);
+
+        // Render npcs found inside user's radius
+        const inRadiusNpcs = World.npc.spawns.filter(ob => Formulas.calcWithinRadius(coords.locX, coords.locY, ob.fetchLocX(), ob.fetchLocY(), 2500)) ?? [];
+        inRadiusNpcs.forEach((npc) => {
+            session.dataSend(ServerResponse.npcInfo(npc));
+        });
+
+         // TODO: Write less in DB about movement
+        Database.updateCharacterLocation(this.fetchId(), coords);
     }
 
     setCollectiveTotalHp() {
@@ -37,29 +73,10 @@ class Actor extends ActorModel {
 
     setCollectiveTotalMp() { // TODO: Fix hardcoded class transfer parameter
         const base  = Formulas.calcMp(this.fetchLevel(), this.isMystic(), 0, this.fetchMen());
-        const chest = this.fetchEquippedArmor(10)?.maxMp ?? 0;
-        const pants = this.fetchEquippedArmor(11)?.maxMp ?? 0;
+        const chest = this.backpack.fetchEquippedArmor(10)?.maxMp ?? 0;
+        const pants = this.backpack.fetchEquippedArmor(11)?.maxMp ?? 0;
         this.setMaxMp(base + chest + pants);
         this.setMp(Math.min(this.fetchMp(), this.fetchMaxMp()));
-    }
-
-    moveTo(session, coords) {
-        if (this.isBusy(session)) {
-            return;
-        }
-
-        this.abortScheduleTimer();
-        session.dataSend(ServerResponse.moveToLocation(this.fetchId(), coords));
-    }
-
-    updatePosition(session, coords) {
-        this.setLocXYZH(coords);
-        (World.npc.spawns.filter(ob => Formulas.calcWithinRadius(coords.locX, coords.locY, ob.fetchLocX(), ob.fetchLocY(), 2500)) ?? []).forEach((npc) => {
-            session.dataSend(ServerResponse.npcInfo(npc));
-        });
-
-         // TODO: Write less in DB about movement
-        Database.updateCharacterLocation(this.fetchId(), coords);
     }
 
     select(session, data, ctrl = false) {
@@ -80,7 +97,7 @@ class Actor extends ActorModel {
                     return;
                 }
 
-                this.scheduleArrival(session, this, npc, 20, () => {
+                this.automation.scheduleArrival(session, this, npc, 20, () => {
                     this.updatePosition(session, {
                         locX: npc .fetchLocX(),
                         locY: npc .fetchLocY(),
@@ -117,7 +134,7 @@ class Actor extends ActorModel {
         }
 
         World.fetchNpcWithId(this.destId).then((npc) => {
-            this.scheduleArrival(session, this, npc, data.distance, () => {
+            this.automation.scheduleArrival(session, this, npc, data.distance, () => {
                 if (npc.fetchAttackable() || data.ctrl) { // TODO: Else, find which `response` fails the attack
                     this.remoteHit(session, npc, data);
                 }
@@ -173,40 +190,8 @@ class Actor extends ActorModel {
             return;
         }
 
-        this.abortScheduleTimer();
+        this.automation.abortScheduleTimer(this);
         session.dataSend(ServerResponse.socialAction(this.fetchId(), actionId));
-    }
-
-    unstuck(session) {
-        if (this.isBusy(session)) {
-            return;
-        }
-
-        const coords = {
-            locX: 80304, locY: 56241, locZ: -1500, head: this.fetchHead()
-        };
-
-        this.abortScheduleTimer();
-        session.dataSend(ServerResponse.teleportToLocation(this.fetchId(), coords));
-
-        // TODO: Hide this from the world, soon. Utter stupid.
-        setTimeout(() => {
-            this.updatePosition(session, coords);
-        });
-    }
-
-    admin(session) {
-        session.dataSend(
-            ServerResponse.npcHtml(this.fetchId(), utils.parseRawFile('data/Html/Default/admin.html'))
-        );
-    }
-
-    fetchEquippedArmor(slot) {
-        return this.backpack.fetchItems().find(ob => ob.kind ===  'Armor' && ob.equipped && ob.slot === slot);
-    }
-
-    fetchEquippedWeapon() {
-        return this.backpack.fetchItems().find(ob => ob.kind === 'Weapon' && ob.equipped);
     }
 
     isBusy(session) {
@@ -238,51 +223,6 @@ class Actor extends ActorModel {
         );
     }
 
-    scheduleArrival(session, creatureSrc, creatureDest, offset, callback) {
-        const ticksPerSecond = 10;
-        const distance = Formulas.calcDistance(
-            creatureSrc .fetchLocX(), creatureSrc .fetchLocY(),
-            creatureDest.fetchLocX(), creatureDest.fetchLocY(),
-        ) - offset;
-
-        // Execute each time, or else actor is stuck
-        session.dataSend(
-            ServerResponse.moveToPawn(creatureSrc, creatureDest, offset)
-        );
-
-        // Melee radius, no need to move
-        if (distance <= creatureDest.fetchRadius() + 30) {
-            this.abortScheduleTimer();
-            callback();
-            return;
-        }
-
-        if (this.state.fetchOnTheMove()) {
-            return;
-        }
-
-        // Calculate duration and reset
-        const ticksToMove = 1 + ((ticksPerSecond * distance) / creatureSrc.fetchRun());
-        this.abortScheduleTimer();
-
-        // Actor is occupied
-        this.state.setOnTheMove(true);
-
-        // Arrived
-        this.timer = setTimeout(() => {
-            this.state.setOnTheMove(false);
-            callback();
-
-        }, (1000 / ticksPerSecond) * ticksToMove);
-    }
-
-    abortScheduleTimer() {
-        this.state.setOnTheMove(false);
-
-        clearTimeout(this.timer);
-        this.timer = undefined;
-    }
-
     meleeHit(session, npc) {
         if (npc.isDead()) {
             return;
@@ -311,7 +251,7 @@ class Actor extends ActorModel {
             return;
         }
 
-        this.abortScheduleTimer();
+        this.automation.abortScheduleTimer(this);
         session.dataSend(ServerResponse.skillStarted(this, npc.fetchId(), data));
         this.state.setCasts(true);
 
@@ -342,26 +282,15 @@ class Actor extends ActorModel {
     }
 
     hitPAtk(actor, npc) {
-        const wpnPAtk = actor.fetchEquippedWeapon()?.pAtk ?? actor.fetchPAtk();
+        const wpnPAtk = actor.backpack.fetchEquippedWeapon()?.pAtk ?? actor.fetchPAtk();
         const pAtk = Formulas.calcPAtk(actor.fetchLevel(), actor.fetchStr(), wpnPAtk);
         return Formulas.calcMeleeHit(pAtk, npc.fetchPDef());
     }
 
     hitMAtk(actor, npc) {
-        const wpnMAtk = actor.fetchEquippedWeapon()?.mAtk ?? actor.fetchMAtk();
+        const wpnMAtk = actor.backpack.fetchEquippedWeapon()?.mAtk ?? actor.fetchMAtk();
         const mAtk = Formulas.calcMAtk(actor.fetchLevel(), actor.fetchInt(), wpnMAtk);
         return Formulas.calcRemoteHit(mAtk, 12, npc.fetchMDef());
-    }
-
-    replenishMp(session) {
-        clearInterval(this.timerMp);
-        this.timerMp = setInterval(() => {
-            const value = this.fetchMp() + 3;
-            const max   = this.fetchMaxMp();
-
-            this.setMp(Math.min(value, max));
-            this.statusUpdateVitals(session, this);
-        }, 3500); // TODO: Not real formula
     }
 
     rewardExpAndSp(session, exp, sp) {
@@ -392,6 +321,30 @@ class Actor extends ActorModel {
 
         // Update database with new exp, sp
         Database.updateCharacterExperience(this.fetchId(), this.fetchLevel(), totalExp, totalSp);
+    }
+
+    admin(session) {
+        session.dataSend(
+            ServerResponse.npcHtml(this.fetchId(), utils.parseRawFile('data/Html/Default/admin.html'))
+        );
+    }
+
+    unstuck(session) {
+        if (this.isBusy(session)) {
+            return;
+        }
+
+        const coords = {
+            locX: 80304, locY: 56241, locZ: -1500, head: this.fetchHead()
+        };
+
+        this.automation.abortScheduleTimer(this);
+        session.dataSend(ServerResponse.teleportToLocation(this.fetchId(), coords));
+
+        // TODO: Hide this from the world, soon. Utter stupid.
+        setTimeout(() => {
+            this.updatePosition(session, coords);
+        });
     }
 }
 

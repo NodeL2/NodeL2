@@ -27,6 +27,16 @@ class BackpackModel {
     fetchPaperdollSelfId(slot) {
         return this.paperdoll[slot].selfId;
     }
+
+    // Abstract
+
+    fetchEquippedArmor(slot) {
+        return this.fetchItems().find(ob => ob.kind ===  'Armor' && ob.equipped && ob.slot === slot);
+    }
+
+    fetchEquippedWeapon() {
+        return this.fetchItems().find(ob => ob.kind === 'Weapon' && ob.equipped);
+    }
 }
 
 module.exports = BackpackModel;
