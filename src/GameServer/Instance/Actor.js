@@ -65,20 +65,6 @@ class Actor extends ActorModel {
         Database.updateCharacterLocation(this.fetchId(), coords);
     }
 
-    setCollectiveTotalHp() {
-        const base = Formulas.calcHp(this.fetchLevel(), this.fetchClassId(), this.fetchCon());
-        this.setMaxHp(base);
-        this.setHp(Math.min(this.fetchHp(), this.fetchMaxHp()));
-    }
-
-    setCollectiveTotalMp() { // TODO: Fix hardcoded class transfer parameter
-        const base  = Formulas.calcMp(this.fetchLevel(), this.isMystic(), 0, this.fetchMen());
-        const chest = this.backpack.fetchEquippedArmor(10)?.maxMp ?? 0;
-        const pants = this.backpack.fetchEquippedArmor(11)?.maxMp ?? 0;
-        this.setMaxMp(base + chest + pants);
-        this.setMp(Math.min(this.fetchMp(), this.fetchMaxMp()));
-    }
-
     select(session, data, ctrl = false) {
         if (this.fetchId() === data.id) { // Click on self
             this.unselect(session);
@@ -321,6 +307,20 @@ class Actor extends ActorModel {
 
         // Update database with new exp, sp
         Database.updateCharacterExperience(this.fetchId(), this.fetchLevel(), totalExp, totalSp);
+    }
+
+    setCollectiveTotalHp() {
+        const base = Formulas.calcHp(this.fetchLevel(), this.fetchClassId(), this.fetchCon());
+        this.setMaxHp(base);
+        this.setHp(Math.min(this.fetchHp(), this.fetchMaxHp()));
+    }
+
+    setCollectiveTotalMp() { // TODO: Fix hardcoded class transfer parameter
+        const base  = Formulas.calcMp(this.fetchLevel(), this.isMystic(), 0, this.fetchMen());
+        const chest = this.backpack.fetchEquippedArmor(10)?.maxMp ?? 0;
+        const pants = this.backpack.fetchEquippedArmor(11)?.maxMp ?? 0;
+        this.setMaxMp(base + chest + pants);
+        this.setMp(Math.min(this.fetchMp(), this.fetchMaxMp()));
     }
 
     admin(session) {
