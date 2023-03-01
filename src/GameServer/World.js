@@ -34,12 +34,10 @@ const World = {
     },
 
     removeNpc(session, npc) {
-        // Eliminate timers
-        npc.destructor();
-
         // Npc death
         const npcId = npc.fetchId();
         session.dataSend(ServerResponse.die(npcId));
+        npc.destructor();
 
         // Npc drops
         const rewards = DataCache.npcRewards.find(ob => ob.selfId === npc.fetchSelfId())?.rewards ?? [];
