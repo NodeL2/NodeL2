@@ -30,7 +30,7 @@
                             "type": "string"
                         },
                         "chance": {
-                            "type": "integer"
+                            "type": "number"
                         }
                     },
                     "required": [

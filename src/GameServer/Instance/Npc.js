@@ -11,11 +11,11 @@ class Npc extends NpcModel {
         this.setMp(utils.randomNumber(this.fetchMaxMp()));
 
         this.replenishHp = setInterval(() => {
-            const value = this.fetchHp() + 3;
+            const value = this.fetchHp() + 3; // TODO: Not real formula
             const max   = this.fetchMaxHp();
 
             this.setHp(Math.min(value, max));
-        }, 3500); // TODO: Not real formula
+        }, 3000);
     }
 
     destructor() {

@@ -61,6 +61,10 @@ const Formulas = {
         return this.calcBaseMp[classTransfer][kind](level) * this.calcBaseMod.MEN(men);
     },
 
+    calcMaxLoad(con) {
+        return this.calcBaseMod.CON(con) * 69000;
+    },
+
     calcLevelMod(level) {
         return Number(((level + 89) / 100).toFixed(2));
     },

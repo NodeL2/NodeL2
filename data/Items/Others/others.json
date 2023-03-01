@@ -6,4 +6,8 @@
     "selfId": 1665,
     "template": { "kind": "Other", "name": "World Map", "class1": 4, "class2": 5, "mass": 0, "price": 500 },
     "etc": { "stackable": false }
+},{
+    "selfId": 1868,
+    "template": { "kind": "Other", "name": "Thread", "class1": 4, "class2": 5, "mass": 2, "price": 100 },
+    "etc": { "stackable": true }
 }]

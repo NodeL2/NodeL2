@@ -18,12 +18,12 @@ class Automation {
     replenishMp(session, actor) {
         clearInterval(this.timer.replenishMp);
         this.timer.replenishMp = setInterval(() => {
-            const value = actor.fetchMp() + 3;
+            const value = actor.fetchMp() + 3; // TODO: Not real formula
             const max   = actor.fetchMaxMp();
 
             actor.setMp(Math.min(value, max));
             actor.statusUpdateVitals(session, actor);
-        }, 3500); // TODO: Not real formula
+        }, 3000);
     }
 
     scheduleArrival(session, creatureSrc, creatureDest, offset, callback) {

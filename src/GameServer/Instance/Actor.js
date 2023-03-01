@@ -311,6 +311,8 @@ class Actor extends ActorModel {
     }
 
     setCollectiveTotalLoad() {
+        const base = Formulas.calcMaxLoad(this.fetchCon());
+        this.setMaxLoad(base);
         this.setLoad(this.backpack.fetchTotalLoad());
     }
 
