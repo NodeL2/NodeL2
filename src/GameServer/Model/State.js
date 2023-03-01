@@ -71,8 +71,12 @@ class StateModel {
 
     // Abstract
 
-    isBusy() {
+    isBlocked() {
         return this.fetchCasts() || this.fetchCombats() || this.fetchAnimated() || this.fetchSeated();
+    }
+
+    inMotion() {
+        return this.fetchScheduled() || this.fetchPickinUp();
     }
 }
 

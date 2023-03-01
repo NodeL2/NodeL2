@@ -44,13 +44,12 @@ class Actor extends ActorModel {
     }
 
     moveTo(session, coords) {
-        if (this.isBusy(session)) {
+        if (this.isBlocked(session)) {
             return;
         }
 
         // Abort scheduled movement, user redirected the actor
-        this.automation.abortScheduledAttack(this);
-        this.automation.abortScheduledPickup(this);
+        this.automation.abortAll(this);
         session.dataSend(ServerResponse.moveToLocation(this.fetchId(), coords));
     }
 
@@ -81,7 +80,7 @@ class Actor extends ActorModel {
                 this.statusUpdateVitals(session, npc);
             }
             else { // Second click on same Creature
-                if (this.isBusy(session)) {
+                if (this.isBlocked(session)) {
                     return;
                 }
 
@@ -102,7 +101,7 @@ class Actor extends ActorModel {
                 });
             }
         }).catch(() => { // Pickup item
-            if (this.isBusy(session)) {
+            if (this.isBlocked(session)) {
                 return;
             }
 
@@ -130,7 +129,7 @@ class Actor extends ActorModel {
             return;
         }
 
-        if (this.isBusy(session)) {
+        if (this.isBlocked(session)) {
             return;
         }
 
@@ -147,7 +146,7 @@ class Actor extends ActorModel {
     }
 
     basicAction(session, data) {
-        if (this.state.fetchScheduled() || this.state.fetchPickinUp()) {
+        if (this.state.inMotion()) {
             return;
         }
 
@@ -183,20 +182,20 @@ class Actor extends ActorModel {
     }
 
     socialAction(session, actionId) {
-        if (this.isBusy(session)) {
+        if (this.isBlocked(session)) {
             return;
         }
 
-        if (this.state.fetchScheduled() || this.state.fetchPickinUp()) {
+        if (this.state.inMotion()) {
             return;
         }
 
-        this.automation.abortScheduleTimer(this);
+        this.automation.abortAll(this);
         session.dataSend(ServerResponse.socialAction(this.fetchId(), actionId));
     }
 
-    isBusy(session) {
-        if (this.state.isBusy()) {
+    isBlocked(session) {
+        if (this.state.isBlocked()) {
             session.dataSend(ServerResponse.actionFailed());
             return true;
         }
@@ -252,7 +251,7 @@ class Actor extends ActorModel {
             return;
         }
 
-        this.automation.abortScheduledAttack(this);
+        this.automation.abortAll(this); // TODO: Needed?
         session.dataSend(ServerResponse.skillStarted(this, npc.fetchId(), data));
         this.state.setCasts(true);
 
@@ -351,7 +350,7 @@ class Actor extends ActorModel {
     }
 
     unstuck(session) {
-        if (this.isBusy(session)) {
+        if (this.isBlocked(session)) {
             return;
         }
 
@@ -359,8 +358,7 @@ class Actor extends ActorModel {
             locX: 80304, locY: 56241, locZ: -1500, head: this.fetchHead()
         };
 
-        this.automation.abortScheduledAttack(this);
-        this.automation.abortScheduledPickup(this);
+        this.automation.abortAll(this);
         session.dataSend(ServerResponse.teleportToLocation(this.fetchId(), coords));
 
         // TODO: Hide this from the world, soon. Utter stupid.

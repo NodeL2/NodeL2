@@ -16,6 +16,11 @@ class Automation {
         clearTimeout (this.timer.pickup);
     }
 
+    abortAll(creature) {
+        this.abortScheduledAttack(creature);
+        this.abortScheduledPickup(creature);
+    }
+
     replenishMp(session, actor) {
         clearInterval(this.timer.replenishMp);
         this.timer.replenishMp = setInterval(() => {
@@ -28,6 +33,7 @@ class Automation {
     }
 
     scheduleAttack(session, creatureSrc, creatureDest, offset, callback) {
+        this.abortScheduledAttack(creatureSrc);
         this.abortScheduledPickup(creatureSrc);
 
         const distance = Formulas.calcDistance(
@@ -66,11 +72,6 @@ class Automation {
         }, (1000 / this.ticksPerSecond) * ticksToMove);
     }
 
-    abortScheduledAttack(creature) {
-        creature.state.setScheduled(false);
-        clearTimeout(this.timer.attack);
-    }
-
     schedulePickup(session, creatureSrc, creatureDest, callback) {
         this.abortScheduledAttack(creatureSrc);
 
@@ -78,10 +79,6 @@ class Automation {
             creatureSrc .fetchLocX(), creatureSrc .fetchLocY(),
             creatureDest.fetchLocX(), creatureDest.fetchLocY(),
         );
-
-        if (creatureSrc.state.fetchPickinUp()) {
-            return;
-        }
 
         // Execute each time, or else creature is stuck
         session.dataSend(ServerResponse.moveToLocation(creatureSrc.fetchId(), {
@@ -110,6 +107,11 @@ class Automation {
             callback();
 
         }, (1000 / this.ticksPerSecond) * ticksToMove);
+    }
+
+    abortScheduledAttack(creature) {
+        creature.state.setScheduled(false);
+        clearTimeout(this.timer.attack);
     }
 
     abortScheduledPickup(creature) {
