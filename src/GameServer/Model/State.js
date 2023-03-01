@@ -1,34 +1,22 @@
 class StateModel {
     constructor() {
-        this.isSeated    = false;
-        this.isWalkin    = false;
-        this.isOnTheMove = false;
-        this.isPickinUp  = false;
-        this.isOccupied  = false;
-        this.inCombat    = false;
-        this.isCastin    = false;
+        this.isAnimated  = false; // Blocked: tries to sit down / stand-up (unblocks after animation)
+        this.isSeated    = false; // Blocked: seated down                  (unblocks after stand-up action)
+        this.inCombat    = false; // Blocked: combats                      (unblocks after attack)
+        this.isCastin    = false; // Blocked: casts skill                  (unblocks after skill cast, or esc)
+        this.isScheduled = false; // Non-blocked: towards attack
+        this.isPickinUp  = false; // Non-blocked: towards pick-up
+        this.isWalkin    = false; // No effect
     }
 
     // Set
 
+    setAnimated(data) {
+        this.isAnimated = data;
+    }
+
     setSeated(data) {
         this.isSeated = data;
-    }
-
-    setWalkin(data) {
-        this.isWalkin = data;
-    }
-
-    setOnTheMove(data) {
-        this.isOnTheMove = data;
-    }
-
-    setPickinUp(data) {
-        this.isPickinUp = data;
-    }
-
-    setOccupied(data) {
-        this.isOccupied = data;
     }
 
     setCombats(data) {
@@ -39,26 +27,26 @@ class StateModel {
         this.isCastin = data;
     }
 
+    setScheduled(data) {
+        this.isScheduled = data;
+    }
+
+    setPickinUp(data) {
+        this.isPickinUp = data;
+    }
+
+    setWalkin(data) {
+        this.isWalkin = data;
+    }
+
     // Get
+
+    fetchAnimated() {
+        return this.isAnimated;
+    }
 
     fetchSeated() {
         return this.isSeated;
-    }
-
-    fetchWalkin() {
-        return this.isWalkin;
-    }
-
-    fetchOnTheMove() {
-        return this.isOnTheMove;
-    }
-
-    fetchPickinUp() {
-        return this.isPickinUp;
-    }
-
-    fetchOccupied() {
-        return this.isOccupied;
     }
 
     fetchCombats() {
@@ -69,8 +57,22 @@ class StateModel {
         return this.isCastin;
     }
 
+    fetchScheduled() {
+        return this.isScheduled;
+    }
+
+    fetchPickinUp() {
+        return this.isPickinUp;
+    }
+
+    fetchWalkin() {
+        return this.isWalkin;
+    }
+
+    // Abstract
+
     isBusy() {
-        return this.fetchCasts() || this.fetchCombats() || this.fetchOccupied() || this.fetchSeated();
+        return this.fetchCasts() || this.fetchCombats() || this.fetchAnimated() || this.fetchSeated();
     }
 }
 

@@ -50,6 +50,7 @@ class Actor extends ActorModel {
 
         // Abort scheduled movement, user redirected the actor
         this.automation.abortScheduledAttack(this);
+        this.automation.abortScheduledPickup(this);
         session.dataSend(ServerResponse.moveToLocation(this.fetchId(), coords));
     }
 
@@ -146,22 +147,22 @@ class Actor extends ActorModel {
     }
 
     basicAction(session, data) {
-        if (this.state.fetchOnTheMove()) {
+        if (this.state.fetchScheduled() || this.state.fetchPickinUp()) {
             return;
         }
 
         switch (data.actionId) {
         case 0x00: // Sit / Stand
-            if (this.state.fetchCasts() || this.state.fetchCombats() || this.state.fetchOccupied()) {
+            if (this.state.fetchCasts() || this.state.fetchCombats() || this.state.fetchAnimated()) {
                 return;
             }
 
-            this.state.setOccupied(true);
+            this.state.setAnimated(true);
             this.state.setSeated(!this.state.fetchSeated());
             session.dataSend(ServerResponse.sitAndStand(this));
 
             setTimeout(() => {
-                this.state.setOccupied(false);
+                this.state.setAnimated(false);
             }, 2000); // TODO: How to calculate this, based on what?
             break;
 
@@ -186,7 +187,7 @@ class Actor extends ActorModel {
             return;
         }
 
-        if (this.state.fetchOnTheMove()) {
+        if (this.state.fetchScheduled() || this.state.fetchPickinUp()) {
             return;
         }
 
@@ -359,6 +360,7 @@ class Actor extends ActorModel {
         };
 
         this.automation.abortScheduledAttack(this);
+        this.automation.abortScheduledPickup(this);
         session.dataSend(ServerResponse.teleportToLocation(this.fetchId(), coords));
 
         // TODO: Hide this from the world, soon. Utter stupid.

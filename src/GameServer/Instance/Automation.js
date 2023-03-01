@@ -47,7 +47,7 @@ class Automation {
             return;
         }
 
-        if (creatureSrc.state.fetchOnTheMove()) {
+        if (creatureSrc.state.fetchScheduled()) {
             return;
         }
 
@@ -56,18 +56,18 @@ class Automation {
         this.abortScheduledAttack(creatureSrc);
 
         // Creature is occupied
-        creatureSrc.state.setOnTheMove(true);
+        creatureSrc.state.setScheduled(true);
 
         // Arrived
         this.timer.attack = setTimeout(() => {
-            creatureSrc.state.setOnTheMove(false);
+            creatureSrc.state.setScheduled(false);
             callback();
 
         }, (1000 / this.ticksPerSecond) * ticksToMove);
     }
 
     abortScheduledAttack(creature) {
-        creature.state.setOnTheMove(false);
+        creature.state.setScheduled(false);
         clearTimeout(this.timer.attack);
     }
 
