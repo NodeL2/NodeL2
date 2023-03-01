@@ -6,7 +6,7 @@ function deleteOb(id) {
     packet
         .writeD(id);
 
-    return packet.buffer;
+    return packet.fetchBuffer();
 }
 
 module.exports = deleteOb;

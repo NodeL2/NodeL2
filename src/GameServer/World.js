@@ -1,6 +1,8 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 const Npc            = invoke('GameServer/Instance/Npc');
+const Item           = invoke('GameServer/Instance/Item');
 const DataCache      = invoke('GameServer/DataCache');
+const Formulas       = invoke('GameServer/Formulas');
 
 const World = {
     init() {
@@ -10,6 +12,10 @@ const World = {
 
         this.npc = {
             spawns: [], nextId: 1000000
+        };
+
+        this.items = {
+            spawns: [], nextId: 5000000
         };
 
         DataCache.npcs.forEach((npc) => {
@@ -42,8 +48,11 @@ const World = {
         // Npc drops
         const rewards = DataCache.npcRewards.find(ob => ob.selfId === npc.fetchSelfId())?.rewards ?? [];
         rewards.forEach((reward) => {
-            if (Math.random() <= reward.chance / 100) {
-                utils.infoWarn('Reward ' + reward.name);
+            if (Math.random() <= reward.chance / 100) { // TODO: Can't understand locZ in this case
+                const coords = Formulas.createRandomCoordinates(npc.fetchLocX(), npc.fetchLocY(), 100);
+                const item = new Item(this.items.nextId++, { selfId: reward.selfId, ...coords });
+                this.items.spawns.push(item);
+                session.dataSend(ServerResponse.spawnItem(item));
             }
         });
 
@@ -53,7 +62,7 @@ const World = {
             session.dataSend(
                 ServerResponse.deleteOb(npcId)
             );
-        }, 7000);
+        }, 7000); // TODO: Depends if npc is spoiled
     },
 
     npcTalk(session, npc) {

@@ -26,6 +26,7 @@ module.exports = {
             skillsList: require('./SkillsList'),
           skillStarted: require('./SkillStarted'),
           socialAction: require('./SocialAction'),
+             spawnItem: require('./SpawnItem'),
                  speak: require('./Speak'),
           statusUpdate: require('./StatusUpdate'),
               stopMove: require('./StopMove'),

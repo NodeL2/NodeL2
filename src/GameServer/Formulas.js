@@ -91,6 +91,16 @@ const Formulas = {
         return Math.sqrt((dX * dX) + (dY * dY));
     },
 
+    createRandomCoordinates(centerX, centerY, radius) {
+        const r = radius * Math.sqrt(Math.random());
+        const theta = Math.random() * 2 * Math.PI;
+
+        return {
+            locX: centerX + r * Math.cos(theta),
+            locY: centerY + r * Math.sin(theta),
+        };
+    },
+
     calcWithinRadius(srcX, srcY, destX, destY, radius) {
         const dX = destX - srcX;
         const dY = destY - srcY;
