@@ -59,6 +59,8 @@ const Database = {
                      name: data.name,
                      race: data.race,
                   classId: data.classId,
+                    maxHp: data.maxHp,
+                    maxMp: data.maxMp,
                       sex: data.sex,
                      face: data.face,
                      hair: data.hair,
@@ -184,11 +186,13 @@ const Database = {
         );
     },
 
-    updateCharacterVitals(id, hp, mp) {
+    updateCharacterVitals(id, hp, maxHp, mp, maxMp) {
         return Database.execute(
             builder.update('characters', {
-                hp: hp,
-                mp: mp,
+                   hp: hp,
+                maxHp: maxHp,
+                   mp: mp,
+                maxMp: maxMp,
             }, 'id = ? LIMIT 1', id)
         );
     }
