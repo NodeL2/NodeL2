@@ -1,0 +1,50 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "selfId": {
+                "type": "integer"
+            },
+            "template": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "name"
+                ]
+            },
+            "rewards": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "selfId": {
+                            "type": "integer"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "chance": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "selfId",
+                        "name",
+                        "chance"
+                    ]
+                }
+            }
+        },
+        "required": [
+            "selfId",
+            "template",
+            "rewards"
+        ]
+    }
+}

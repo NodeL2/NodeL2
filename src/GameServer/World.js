@@ -34,10 +34,20 @@ const World = {
     },
 
     removeNpc(session, npc) {
+        // Eliminate timers
         npc.destructor();
 
+        // Npc death
         const npcId = npc.fetchId();
         session.dataSend(ServerResponse.die(npcId));
+
+        // Npc drops
+        const rewards = DataCache.npcRewards.find(ob => ob.selfId === npc.fetchSelfId())?.rewards ?? [];
+        rewards.forEach((reward) => {
+            if (Math.random() <= reward.chance / 100) {
+                utils.infoWarn('Reward ' + reward.name);
+            }
+        });
 
         // Delete npc from world
         setTimeout(() => {

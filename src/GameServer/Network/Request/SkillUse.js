@@ -1,4 +1,4 @@
-const DataCache     = invoke('GameServer/DataCache');
+const Shared        = invoke('GameServer/Network/Shared');
 const ReceivePacket = invoke('Packet/Receive');
 
 function skillUse(session, buffer) {
@@ -17,7 +17,7 @@ function skillUse(session, buffer) {
 }
 
 function consume(session, data) {
-    DataCache.fetchSkillDetailsFromId(data.selfId).then((details) => {
+    Shared.fetchSkillDetailsFromId(data.selfId).then((details) => {
         if (details.template.passive) {
             return;
         }

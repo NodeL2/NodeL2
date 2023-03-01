@@ -1,0 +1,9 @@
+[{
+    "selfId": 1,
+    "template": { "name": "Gremlin" },
+    "rewards": [{ "selfId": 57, "name": "Adena", "chance": 70 }]
+},{
+    "selfId": 530,
+    "template": { "name": "Young Red Keltir" },
+    "rewards": [{ "selfId": 57, "name": "Adena", "chance": 70 }]
+}]

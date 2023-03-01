@@ -12,6 +12,7 @@ const DataCache = {
         DataCache.skillTree      = validateModel(path + 'Skills/Tree/tree');
         DataCache.npcs           = validateModel(path + 'Npcs/1-7400');
         DataCache.npcSpawns      = validateModel(path + 'Npcs/Spawns/spawns');
+        DataCache.npcRewards     = validateModel(path + 'Npcs/Rewards/rewards');
 
         DataCache.items = [
             ...validateModel(path + 'Items/Armors/armors'),
@@ -26,13 +27,6 @@ const DataCache = {
         ];
 
         utils.infoSuccess('Datapack:: cached');
-    },
-
-    fetchSkillDetailsFromId(selfId) {
-        return new Promise((success, fail) => {
-            let skill = DataCache.skills.find(ob => ob.selfId === selfId);
-            return (skill) ? success(skill) : fail();
-        });
     }
 };
 
