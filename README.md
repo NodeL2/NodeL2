@@ -35,7 +35,7 @@
 ✅ Statistics for level, base abilities, etc.\
 ✅ Npc spawns\
 ✅ Basic attack\
-✅ Level, experience, sp
+✅ Level-up, experience, sp, load
 
 ## WIP/Experimental
 ✴️ Attained weapon, armor, items\
