@@ -3,6 +3,7 @@ class StateModel {
         this.isSeated    = false;
         this.isWalkin    = false;
         this.isOnTheMove = false;
+        this.isPickinUp  = false;
         this.isOccupied  = false;
         this.inCombat    = false;
         this.isCastin    = false;
@@ -20,6 +21,10 @@ class StateModel {
 
     setOnTheMove(data) {
         this.isOnTheMove = data;
+    }
+
+    setPickinUp(data) {
+        this.isPickinUp = data;
     }
 
     setOccupied(data) {
@@ -46,6 +51,10 @@ class StateModel {
 
     fetchOnTheMove() {
         return this.isOnTheMove;
+    }
+
+    fetchPickinUp() {
+        return this.isPickinUp;
     }
 
     fetchOccupied() {

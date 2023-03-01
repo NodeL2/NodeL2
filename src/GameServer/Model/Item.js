@@ -28,7 +28,7 @@ class ItemModel {
     }
 
     fetchLocZ() {
-        return this.model.locZ;
+        return this.model.locZ ?? 0;
     }
 }
 

@@ -32,7 +32,7 @@ const World = {
         this.user.sessions.push(session);
     },
 
-    fetchNpcWithId(id) {
+    fetchNpc(id) {
         return new Promise((success, fail) => {
             let npc = this.npc.spawns.find(ob => ob.fetchId() === id);
             return npc ? success(npc) : fail();
@@ -74,6 +74,13 @@ const World = {
                 utils.fileExists(filename) ? filename : path + 'noquest.html'
             ))
         );
+    },
+
+    fetchItem(id) {
+        return new Promise((success, fail) => {
+            let item = this.items.spawns.find(ob => ob.fetchId() === id);
+            return item ? success(item) : fail();
+        });
     }
 };
 

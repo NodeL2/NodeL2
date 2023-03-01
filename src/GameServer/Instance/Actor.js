@@ -49,7 +49,7 @@ class Actor extends ActorModel {
         }
 
         // Abort scheduled movement, user redirected the actor
-        this.automation.abortScheduleTimer(this);
+        this.automation.abortScheduledAttack(this);
         session.dataSend(ServerResponse.moveToLocation(this.fetchId(), coords));
     }
 
@@ -73,7 +73,7 @@ class Actor extends ActorModel {
             return;
         }
 
-        World.fetchNpcWithId(data.id).then((npc) => { // Creature selected
+        World.fetchNpc(data.id).then((npc) => { // Creature selected
             if (npc.fetchId() !== this.destId) { // First click on a Creature
                 this.destId = npc.fetchId();
                 session.dataSend(ServerResponse.destSelected(this.destId));
@@ -84,7 +84,7 @@ class Actor extends ActorModel {
                     return;
                 }
 
-                this.automation.scheduleArrival(session, this, npc, 20, () => {
+                this.automation.scheduleAttack(session, this, npc, 20, () => {
                     this.updatePosition(session, {
                         locX: npc .fetchLocX(),
                         locY: npc .fetchLocY(),
@@ -100,9 +100,22 @@ class Actor extends ActorModel {
                     }
                 });
             }
-        }).catch((e) => { // Pickup item
-            utils.infoWarn('GameServer:: npc not found (1) -> ' + e);
-            this.unselect(session);
+        }).catch(() => { // Pickup item
+            if (this.isBusy(session)) {
+                return;
+            }
+
+            if (this.state.fetchPickinUp()) {
+                return;
+            }
+
+            World.fetchItem(data.id).then((item) => {
+                this.automation.schedulePickup(session, this, item, () => {
+                    session.dataSend(ServerResponse.pickupItem(this.fetchId(), item));
+                });
+            }).catch((e) => {
+                utils.infoWarn('GameServer:: ? -> ' + e);
+            });
         });
     }
 
@@ -120,8 +133,8 @@ class Actor extends ActorModel {
             return;
         }
 
-        World.fetchNpcWithId(this.destId).then((npc) => {
-            this.automation.scheduleArrival(session, this, npc, data.distance, () => {
+        World.fetchNpc(this.destId).then((npc) => {
+            this.automation.scheduleAttack(session, this, npc, data.distance, () => {
                 if (npc.fetchAttackable() || data.ctrl) { // TODO: Else, find which `response` fails the attack
                     this.remoteHit(session, npc, data);
                 }
@@ -238,7 +251,7 @@ class Actor extends ActorModel {
             return;
         }
 
-        this.automation.abortScheduleTimer(this);
+        this.automation.abortScheduledAttack(this);
         session.dataSend(ServerResponse.skillStarted(this, npc.fetchId(), data));
         this.state.setCasts(true);
 
@@ -345,7 +358,7 @@ class Actor extends ActorModel {
             locX: 80304, locY: 56241, locZ: -1500, head: this.fetchHead()
         };
 
-        this.automation.abortScheduleTimer(this);
+        this.automation.abortScheduledAttack(this);
         session.dataSend(ServerResponse.teleportToLocation(this.fetchId(), coords));
 
         // TODO: Hide this from the world, soon. Utter stupid.

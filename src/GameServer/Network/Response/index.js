@@ -18,6 +18,7 @@ module.exports = {
             moveToPawn: require('./MoveToPawn'),
                npcHtml: require('./NpcHtml'),
                npcInfo: require('./NpcInfo'),
+            pickupItem: require('./PickupItem'),
              questList: require('./QuestList'),
                restart: require('./Restart'),
           shortcutInit: require('./ShortcutInit'),

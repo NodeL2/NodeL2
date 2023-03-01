@@ -6,13 +6,14 @@ class Automation {
         this.ticksPerSecond = 10;
 
         this.timer = { // TODO: Move this into actual GameServer timer
-            replenishMp: undefined, arrival: undefined
+            replenishMp: undefined, attack: undefined, pickup: undefined
         }
     }
 
     destructor() {
         clearInterval(this.timer.replenishMp);
-        clearTimeout (this.timer.arrival);
+        clearTimeout (this.timer.attack);
+        clearTimeout (this.timer.pickup);
     }
 
     replenishMp(session, actor) {
@@ -26,7 +27,9 @@ class Automation {
         }, 3000);
     }
 
-    scheduleArrival(session, creatureSrc, creatureDest, offset, callback) {
+    scheduleAttack(session, creatureSrc, creatureDest, offset, callback) {
+        this.abortScheduledPickup(creatureSrc);
+
         const distance = Formulas.calcDistance(
             creatureSrc .fetchLocX(), creatureSrc .fetchLocY(),
             creatureDest.fetchLocX(), creatureDest.fetchLocY(),
@@ -39,7 +42,7 @@ class Automation {
 
         // Melee radius, no need to move
         if (distance <= creatureDest.fetchRadius() + 30) {
-            this.abortScheduleTimer(creatureSrc);
+            this.abortScheduledAttack(creatureSrc);
             callback();
             return;
         }
@@ -50,22 +53,68 @@ class Automation {
 
         // Calculate duration and reset
         const ticksToMove = 1 + ((this.ticksPerSecond * distance) / creatureSrc.fetchRun());
-        this.abortScheduleTimer(creatureSrc);
+        this.abortScheduledAttack(creatureSrc);
 
         // Creature is occupied
         creatureSrc.state.setOnTheMove(true);
 
         // Arrived
-        this.timer.arrival = setTimeout(() => {
+        this.timer.attack = setTimeout(() => {
             creatureSrc.state.setOnTheMove(false);
             callback();
 
         }, (1000 / this.ticksPerSecond) * ticksToMove);
     }
 
-    abortScheduleTimer(creature) {
+    abortScheduledAttack(creature) {
         creature.state.setOnTheMove(false);
-        clearTimeout(this.timer.arrival);
+        clearTimeout(this.timer.attack);
+    }
+
+    schedulePickup(session, creatureSrc, creatureDest, callback) {
+        this.abortScheduledAttack(creatureSrc);
+
+        let distance = Formulas.calcDistance(
+            creatureSrc .fetchLocX(), creatureSrc .fetchLocY(),
+            creatureDest.fetchLocX(), creatureDest.fetchLocY(),
+        );
+
+        if (creatureSrc.state.fetchPickinUp()) {
+            return;
+        }
+
+        // Execute each time, or else creature is stuck
+        session.dataSend(ServerResponse.moveToLocation(creatureSrc.fetchId(), {
+            from: {
+                locX: creatureSrc.fetchLocX(),
+                locY: creatureSrc.fetchLocY(),
+                locZ: creatureSrc.fetchLocZ(),
+            },
+            to: {
+                locX: creatureDest.fetchLocX(),
+                locY: creatureDest.fetchLocY(),
+                locZ: creatureDest.fetchLocZ(),
+            }
+        }));
+
+        // Calculate duration and reset
+        const ticksToMove = 1 + ((this.ticksPerSecond * distance) / creatureSrc.fetchRun());
+        this.abortScheduledPickup(creatureSrc);
+
+        // Creature is occupied
+        creatureSrc.state.setPickinUp(true);
+
+        // Arrived
+        this.timer.pickup = setTimeout(() => {
+            creatureSrc.state.setPickinUp(false);
+            callback();
+
+        }, (1000 / this.ticksPerSecond) * ticksToMove);
+    }
+
+    abortScheduledPickup(creature) {
+        creature.state.setPickinUp(false);
+        clearTimeout(this.timer.pickup);
     }
 }
 
