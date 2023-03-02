@@ -21,6 +21,7 @@ class Actor extends ActorModel {
         delete this.model.paperdoll;
 
         this.storedAttackData = undefined;
+        //this.storedPickup = undefined;
     }
 
     enterWorld(session) {
@@ -77,6 +78,18 @@ class Actor extends ActorModel {
             }
             this.storedAttackData = undefined;
         }
+
+        // Reschedule smooth pick-up
+        if (this.storedPickup) {
+            World.fetchItem(this.storedPickup.id).then((item) => {
+                this.automation.schedulePickup(session, this, item, () => {
+                    session.dataSend(ServerResponse.pickupItem(this.fetchId(), item));
+                });
+            }).catch((e) => {
+                utils.infoWarn('GameServer:: ? -> ' + e);
+            });
+            this.storedPickup = undefined;
+        }
     }
 
     select(session, data) {
@@ -122,16 +135,19 @@ class Actor extends ActorModel {
                 return;
             }
 
+            this.storedPickup = data;
             this.automation.abortScheduledAtkMelee (this);
             this.automation.abortScheduledAtkRemote(this);
 
-            World.fetchItem(data.id).then((item) => {
-                this.automation.schedulePickup(session, this, item, () => {
-                    session.dataSend(ServerResponse.pickupItem(this.fetchId(), item));
-                });
-            }).catch((e) => {
-                utils.infoWarn('GameServer:: ? -> ' + e);
-            });
+            // This will fire a ValidatePosition
+            session.dataSend(
+                ServerResponse.stopMove(this.fetchId(), {
+                    locX: this.fetchLocX(),
+                    locY: this.fetchLocY(),
+                    locZ: this.fetchLocZ(),
+                    head: this.fetchHead(),
+                })
+            );
         });
     }
 
