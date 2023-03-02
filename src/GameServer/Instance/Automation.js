@@ -34,7 +34,7 @@ class Automation {
     scheduleAtkMelee(session, src, dst, radius, callback) {
         // Execute each time, or else creature is stuck
         session.dataSend(
-            ServerResponse.moveToPawn(src, dst, 0)
+            ServerResponse.moveToPawn(src, dst, radius - 50)
         );
 
         if (src.state.fetchAtkMelee()) {
@@ -58,7 +58,7 @@ class Automation {
     scheduleAtkRemote(session, src, dst, radius, callback) {
         // Execute each time, or else creature is stuck
         session.dataSend(
-            ServerResponse.moveToPawn(src, dst, 0)
+            ServerResponse.moveToPawn(src, dst, radius)
         );
 
         if (src.state.fetchAtkRemote()) {

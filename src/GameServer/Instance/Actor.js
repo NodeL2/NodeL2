@@ -104,7 +104,7 @@ class Actor extends ActorModel {
                 this.automation.abortScheduledPickup   (this);
 
                 // Towards attack
-                this.automation.scheduleAtkMelee(session, this, npc, 20, () => {
+                this.automation.scheduleAtkMelee(session, this, npc, 0, () => {
                     if (npc.fetchAttackable() || data.ctrl) {
                         this.meleeHit(session, npc);
                     }
