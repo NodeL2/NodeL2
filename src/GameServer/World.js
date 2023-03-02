@@ -6,17 +6,9 @@ const Formulas       = invoke('GameServer/Formulas');
 
 const World = {
     init() {
-        this.user = {
-            sessions: []
-        };
-
-        this.npc = {
-            spawns: [], nextId: 1000000
-        };
-
-        this.items = {
-            spawns: [], nextId: 5000000
-        };
+        this.user  = { sessions : [] };
+        this.npc   = { spawns   : [], nextId: 1000000 };
+        this.items = { spawns   : [], nextId: 5000000 };
 
         DataCache.npcs.forEach((npc) => {
             const spawns = DataCache.npcSpawns.filter(ob => ob.selfId === npc.selfId)[0]?.spawns ?? [];
