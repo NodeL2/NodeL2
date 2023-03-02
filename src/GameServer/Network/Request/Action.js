@@ -16,6 +16,7 @@ function action(session, buffer) {
             locY: packet.data[2],
             locZ: packet.data[3],
         actionId: packet.data[4],
+            ctrl: false
     });
 }
 

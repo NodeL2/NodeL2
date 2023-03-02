@@ -19,6 +19,8 @@ class Actor extends ActorModel {
 
         delete this.model.items;
         delete this.model.paperdoll;
+
+        this.storedAttackData = undefined;
     }
 
     enterWorld(session) {
@@ -54,7 +56,9 @@ class Actor extends ActorModel {
     }
 
     updatePosition(session, coords) {
+        // TODO: Write less in DB about movement
         this.setLocXYZH(coords);
+        Database.updateCharacterLocation(this.fetchId(), coords);
 
         // Render npcs found inside user's radius
         const inRadiusNpcs = World.npc.spawns.filter(ob => Formulas.calcWithinRadius(coords.locX, coords.locY, ob.fetchLocX(), ob.fetchLocY(), 2500)) ?? [];
@@ -62,13 +66,22 @@ class Actor extends ActorModel {
             session.dataSend(ServerResponse.npcInfo(npc));
         });
 
-         // TODO: Write less in DB about movement
-        Database.updateCharacterLocation(this.fetchId(), coords);
+        // Reschedule attacks based on updated position
+        if (this.destId && this.storedAttackData) {
+            if (this.state.fetchAtkMelee()) {
+                this.select(session, this.storedAttackData);
+            }
+            else
+            if (this.state.fetchAtkRemote()) {
+                this.requestedSkillAction(session, this.storedAttackData);
+            }
+            this.storedAttackData = undefined;
+        }
     }
 
-    select(session, data, ctrl = false) {
+    select(session, data) {
         if (this.fetchId() === data.id) { // Click on self
-            this.unselect(session);
+            this.destId = this.fetchId();
             session.dataSend(ServerResponse.destSelected(data.id));
             return;
         }
@@ -77,6 +90,7 @@ class Actor extends ActorModel {
             if (npc.fetchId() !== this.destId) { // First click on a Creature
                 this.destId = npc.fetchId();
                 session.dataSend(ServerResponse.destSelected(this.destId));
+                this.automation.abortAll(this);
                 this.statusUpdateVitals(session, npc);
             }
             else { // Second click on same Creature
@@ -84,15 +98,14 @@ class Actor extends ActorModel {
                     return;
                 }
 
-                this.automation.scheduleAttack(session, this, npc, 20, () => {
-                    this.updatePosition(session, {
-                        locX: npc .fetchLocX(),
-                        locY: npc .fetchLocY(),
-                        locZ: npc .fetchLocZ(),
-                        head: this.fetchHead(),
-                    });
+                // Slot attack data for ValidatePosition verification
+                this.storedAttackData = data;
+                this.automation.abortScheduledAtkRemote(this);
+                this.automation.abortScheduledPickup   (this);
 
-                    if (npc.fetchAttackable() || ctrl) {
+                // Towards attack
+                this.automation.scheduleAtkMelee(session, this, npc, 20, () => {
+                    if (npc.fetchAttackable() || data.ctrl) {
                         this.meleeHit(session, npc);
                     }
                     else {
@@ -108,6 +121,9 @@ class Actor extends ActorModel {
             if (this.state.fetchPickinUp()) {
                 return;
             }
+
+            this.automation.abortScheduledAtkMelee (this);
+            this.automation.abortScheduledAtkRemote(this);
 
             World.fetchItem(data.id).then((item) => {
                 this.automation.schedulePickup(session, this, item, () => {
@@ -134,14 +150,19 @@ class Actor extends ActorModel {
         }
 
         World.fetchNpc(this.destId).then((npc) => {
-            this.automation.scheduleAttack(session, this, npc, data.distance, () => {
+            // Slot attack data for ValidatePosition verification
+            this.storedAttackData = data;
+            this.automation.abortScheduledAtkMelee(this);
+            this.automation.abortScheduledPickup  (this);
+
+            // Towards attack
+            this.automation.scheduleAtkRemote(session, this, npc, data.distance, () => {
                 if (npc.fetchAttackable() || data.ctrl) { // TODO: Else, find which `response` fails the attack
                     this.remoteHit(session, npc, data);
                 }
             });
         }).catch((e) => {
             utils.infoWarn('GameServer:: npc not found (2) -> ' + e);
-            this.unselect(session);
         });
     }
 
@@ -251,7 +272,6 @@ class Actor extends ActorModel {
             return;
         }
 
-        this.automation.abortAll(this); // TODO: Needed?
         session.dataSend(ServerResponse.skillStarted(this, npc.fetchId(), data));
         this.state.setCasts(true);
 
@@ -305,7 +325,7 @@ class Actor extends ActorModel {
                     this.setCollectiveTotalMp();
                     this.fillupVitals();
                     this.statusUpdateVitals(session, this);
-        
+
                     // Level up effect
                     session.dataSend(ServerResponse.socialAction(this.fetchId(), 15));
 

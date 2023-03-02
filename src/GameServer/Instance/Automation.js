@@ -6,24 +6,23 @@ class Automation {
         this.ticksPerSecond = 10;
 
         this.timer = { // TODO: Move this into actual GameServer timer
-            replenishMp: undefined, attack: undefined, pickup: undefined
+            replenish : undefined,
+            melee     : undefined,
+            remote    : undefined,
+            pickup    : undefined,
         }
     }
 
     destructor() {
-        clearInterval(this.timer.replenishMp);
-        clearTimeout (this.timer.attack);
+        clearInterval(this.timer.replenish);
+        clearTimeout (this.timer.melee);
+        clearTimeout (this.timer.remote);
         clearTimeout (this.timer.pickup);
     }
 
-    abortAll(creature) {
-        this.abortScheduledAttack(creature);
-        this.abortScheduledPickup(creature);
-    }
-
     replenishMp(session, actor) {
-        clearInterval(this.timer.replenishMp);
-        this.timer.replenishMp = setInterval(() => {
+        clearInterval(this.timer.replenish);
+        this.timer.replenish = setInterval(() => {
             const value = actor.fetchMp() + 3; // TODO: Not real formula
             const max   = actor.fetchMaxMp();
 
@@ -32,91 +31,102 @@ class Automation {
         }, 3000);
     }
 
-    scheduleAttack(session, creatureSrc, creatureDest, offset, callback) {
-        this.abortScheduledAttack(creatureSrc);
-        this.abortScheduledPickup(creatureSrc);
-
-        const distance = Formulas.calcDistance(
-            creatureSrc .fetchLocX(), creatureSrc .fetchLocY(),
-            creatureDest.fetchLocX(), creatureDest.fetchLocY(),
-        ) - offset;
-
+    scheduleAtkMelee(session, src, dst, radius, callback) {
         // Execute each time, or else creature is stuck
         session.dataSend(
-            ServerResponse.moveToPawn(creatureSrc, creatureDest, offset)
+            ServerResponse.moveToPawn(src, dst, 0)
         );
 
-        // Melee radius, no need to move
-        if (distance <= creatureDest.fetchRadius() + 30) {
-            this.abortScheduledAttack(creatureSrc);
-            callback();
+        if (src.state.fetchAtkMelee()) {
             return;
         }
 
-        if (creatureSrc.state.fetchScheduled()) {
-            return;
-        }
-
-        // Calculate duration and reset
-        const ticksToMove = 1 + ((this.ticksPerSecond * distance) / creatureSrc.fetchRun());
-        this.abortScheduledAttack(creatureSrc);
-
-        // Creature is occupied
-        creatureSrc.state.setScheduled(true);
+        // Calculate duration
+        src.state.setAtkMelee(true);
+        const distance = Formulas.calcDistance(src.fetchLocX(), src.fetchLocY(), dst.fetchLocX(), dst.fetchLocY()) - radius;
+        const ticksToMove = 1 + ((this.ticksPerSecond * distance) / src.fetchRun());
 
         // Arrived
-        this.timer.attack = setTimeout(() => {
-            creatureSrc.state.setScheduled(false);
+        clearTimeout(this.timer.melee);
+        this.timer.melee = setTimeout(() => {
+            src.state.setAtkMelee(false);
             callback();
 
         }, (1000 / this.ticksPerSecond) * ticksToMove);
     }
 
-    schedulePickup(session, creatureSrc, creatureDest, callback) {
-        this.abortScheduledAttack(creatureSrc);
-
-        let distance = Formulas.calcDistance(
-            creatureSrc .fetchLocX(), creatureSrc .fetchLocY(),
-            creatureDest.fetchLocX(), creatureDest.fetchLocY(),
+    scheduleAtkRemote(session, src, dst, radius, callback) {
+        // Execute each time, or else creature is stuck
+        session.dataSend(
+            ServerResponse.moveToPawn(src, dst, 0)
         );
 
+        if (src.state.fetchAtkRemote()) {
+            return;
+        }
+
+        // Calculate duration
+        src.state.setAtkRemote(true);
+        const distance = Formulas.calcDistance(src.fetchLocX(), src.fetchLocY(), dst.fetchLocX(), dst.fetchLocY()) - radius;
+        const ticksToMove = 1 + ((this.ticksPerSecond * distance) / src.fetchRun());
+
+        // Arrived
+        clearTimeout(this.timer.remote);
+        this.timer.remote = setTimeout(() => {
+            src.state.setAtkRemote(false);
+            callback();
+
+        }, (1000 / this.ticksPerSecond) * ticksToMove);
+    }
+
+    schedulePickup(session, src, dst, callback) {
         // Execute each time, or else creature is stuck
-        session.dataSend(ServerResponse.moveToLocation(creatureSrc.fetchId(), {
+        session.dataSend(ServerResponse.moveToLocation(src.fetchId(), {
             from: {
-                locX: creatureSrc.fetchLocX(),
-                locY: creatureSrc.fetchLocY(),
-                locZ: creatureSrc.fetchLocZ(),
+                locX: src.fetchLocX(),
+                locY: src.fetchLocY(),
+                locZ: src.fetchLocZ(),
             },
             to: {
-                locX: creatureDest.fetchLocX(),
-                locY: creatureDest.fetchLocY(),
-                locZ: creatureDest.fetchLocZ(),
+                locX: dst.fetchLocX(),
+                locY: dst.fetchLocY(),
+                locZ: dst.fetchLocZ(),
             }
         }));
 
-        // Calculate duration and reset
-        const ticksToMove = 1 + ((this.ticksPerSecond * distance) / creatureSrc.fetchRun());
-        this.abortScheduledPickup(creatureSrc);
-
-        // Creature is occupied
-        creatureSrc.state.setPickinUp(true);
+        // Calculate duration
+        src.state.setPickinUp(true);
+        const distance = Formulas.calcDistance(src.fetchLocX(), src.fetchLocY(), dst.fetchLocX(), dst.fetchLocY());
+        const ticksToMove = 1 + ((this.ticksPerSecond * distance) / src.fetchRun());
 
         // Arrived
+        clearTimeout(this.timer.pickup);
         this.timer.pickup = setTimeout(() => {
-            creatureSrc.state.setPickinUp(false);
+            src.state.setPickinUp(false);
             callback();
 
         }, (1000 / this.ticksPerSecond) * ticksToMove);
     }
 
-    abortScheduledAttack(creature) {
-        creature.state.setScheduled(false);
-        clearTimeout(this.timer.attack);
+    abortScheduledAtkMelee(creature) {
+        creature.state.setAtkMelee(false);
+        clearTimeout(this.timer.melee);
+    }
+
+    abortScheduledAtkRemote(creature) {
+        creature.state.setAtkRemote(false);
+        clearTimeout(this.timer.remote);
     }
 
     abortScheduledPickup(creature) {
         creature.state.setPickinUp(false);
         clearTimeout(this.timer.pickup);
+    }
+
+    abortAll(creature) {
+        this.abortScheduledAtkMelee (creature);
+        this.abortScheduledAtkRemote(creature);
+        this.abortScheduledPickup   (creature);
     }
 }
 

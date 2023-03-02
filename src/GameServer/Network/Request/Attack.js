@@ -16,11 +16,12 @@ function attack(session, buffer) {
             locY: packet.data[2],
             locZ: packet.data[3],
         actionId: packet.data[4],
+            ctrl: true
     });
 }
 
 function consume(session, data) {
-    session.actor.select(session, data, true);
+    session.actor.select(session, data);
 }
 
 module.exports = attack;

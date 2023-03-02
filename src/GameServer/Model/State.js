@@ -4,7 +4,8 @@ class StateModel {
         this.isSeated    = false; // Blocked: seated down                  (unblocks after stand-up action)
         this.inCombat    = false; // Blocked: combats                      (unblocks after attack)
         this.isCastin    = false; // Blocked: casts skill                  (unblocks after skill cast, or esc)
-        this.isScheduled = false; // Non-blocked: towards attack
+        this.toAtkMelee  = false; // Non-blocked: towards attack
+        this.toAtkRemote = false; // Non-blocked: towards attack
         this.isPickinUp  = false; // Non-blocked: towards pick-up
         this.isWalkin    = false; // No effect
     }
@@ -27,8 +28,12 @@ class StateModel {
         this.isCastin = data;
     }
 
-    setScheduled(data) {
-        this.isScheduled = data;
+    setAtkMelee(data) {
+        this.toAtkMelee = data;
+    }
+
+    setAtkRemote(data) {
+        this.toAtkRemote = data;
     }
 
     setPickinUp(data) {
@@ -57,8 +62,12 @@ class StateModel {
         return this.isCastin;
     }
 
-    fetchScheduled() {
-        return this.isScheduled;
+    fetchAtkMelee() {
+        return this.toAtkMelee;
+    }
+
+    fetchAtkRemote() {
+        return this.toAtkRemote;
     }
 
     fetchPickinUp() {
@@ -72,11 +81,11 @@ class StateModel {
     // Abstract
 
     isBlocked() {
-        return this.fetchCasts() || this.fetchCombats() || this.fetchAnimated() || this.fetchSeated();
+        return this.fetchCombats() || this.fetchCasts() || this.fetchAnimated() || this.fetchSeated();
     }
 
     inMotion() {
-        return this.fetchScheduled() || this.fetchPickinUp();
+        return this.fetchAtkMelee() || this.fetchAtkRemote() || this.fetchPickinUp();
     }
 }
 
