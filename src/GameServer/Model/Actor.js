@@ -47,30 +47,6 @@ class ActorModel extends CreatureModel {
         return this.model.sp;
     }
 
-    fetchStr() {
-        return this.model.str;
-    }
-
-    fetchDex() {
-        return this.model.dex;
-    }
-
-    fetchCon() {
-        return this.model.con;
-    }
-
-    fetchInt() {
-        return this.model.int;
-    }
-
-    fetchWit() {
-        return this.model.wit;
-    }
-
-    fetchMen() {
-        return this.model.men;
-    }
-
     fetchEvasion() {
         return this.model.evasion;
     }

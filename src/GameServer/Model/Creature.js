@@ -89,6 +89,30 @@ class CreatureModel {
         return this.model.maxMp;
     }
 
+    fetchStr() {
+        return this.model.str;
+    }
+
+    fetchDex() {
+        return this.model.dex;
+    }
+
+    fetchCon() {
+        return this.model.con;
+    }
+
+    fetchInt() {
+        return this.model.int;
+    }
+
+    fetchWit() {
+        return this.model.wit;
+    }
+
+    fetchMen() {
+        return this.model.men;
+    }
+
     fetchPAtk() {
         return this.model.pAtk;
     }
@@ -119,10 +143,6 @@ class CreatureModel {
 
     fetchRun() {
         return this.model.run;
-    }
-
-    fetchSwim() {
-        return this.model.swim;
     }
 
     fetchRadius() {
