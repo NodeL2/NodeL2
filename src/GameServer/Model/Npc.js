@@ -12,16 +12,8 @@ class NpcModel extends CreatureModel {
         return this.model.kind;
     }
 
-    fetchAttackable() {
-        return this.model.attackable;
-    }
-
     fetchHostile() {
         return this.model.hostile;
-    }
-
-    fetchRespawn() {
-        return this.model.respawn;
     }
 
     // TODO: Exp & Sp do not exist, please add
@@ -32,6 +24,12 @@ class NpcModel extends CreatureModel {
 
     fetchRewardSp() {
         return 5;
+    }
+
+    // Abstract
+
+    fetchAttackable() {
+        return this.model.kind === 'Monster';
     }
 }
 

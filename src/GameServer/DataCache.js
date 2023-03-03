@@ -10,7 +10,7 @@ const DataCache = {
         DataCache.experience     = validateModel(path + 'Templates/Experience/experience');
 
         DataCache.skillTree      = validateModel(path + 'Skills/Tree/tree');
-        DataCache.npcs           = validateModel(path + 'Npcs/1-7400');
+        DataCache.npcs           = validateModel(path + 'Npcs/npcs');
         DataCache.npcSpawns      = validateModel(path + 'Npcs/Spawns/spawns');
         DataCache.npcRewards     = validateModel(path + 'Npcs/Rewards/rewards');
 

@@ -3,10 +3,6 @@
     "template": { "name": "Gremlin", "count": 15 },
     "spawns": [{ "locX": 44656, "locY": 40896, "locZ": -3552, "head": -1 }, { "locX": 47488, "locY": 41148, "locZ": -3552, "head": -1 }, { "locX": 46476, "locY": 41884, "locZ": -3552, "head": -1 }, { "locX": 45904, "locY": 41904, "locZ": -3552, "head": -1 }]
 },{
-    "selfId": 126,
-    "template": { "name": "Pixy", "count": 1 },
-    "spawns": [{ "locX": 44384, "locY": 41492, "locZ": -3788, "head": -1 }, { "locX": 45748, "locY": 42384, "locZ": -3788, "head": -1 }, { "locX": 45588, "locY": 44892, "locZ": -3788, "head": -1 }, { "locX": 43724, "locY": 45284, "locZ": -3788, "head": -1 }, { "locX": 40576, "locY": 43232, "locZ": -3788, "head": -1 }, { "locX": 39864, "locY": 41168, "locZ": -3788, "head": -1 }]
-},{
     "selfId": 530,
     "template": { "name": "Young Red Keltir", "count": 5 },
     "spawns": [{ "locX": 39324, "locY": 40300, "locZ": -3704, "head": -1 }, { "locX": 42320, "locY": 40740, "locZ": -3704, "head": -1 }, { "locX": 43240, "locY": 41508, "locZ": -3704, "head": -1 }, { "locX": 41292, "locY": 43608, "locZ": -3704, "head": -1 }]

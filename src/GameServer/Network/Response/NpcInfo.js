@@ -16,8 +16,8 @@ function npcInfo(npc) {
         .writeD(npc.fetchAtkSpd())
         .writeD(npc.fetchRun())
         .writeD(npc.fetchWalk())
-        .writeD(npc.fetchSwim())
-        .writeD(npc.fetchSwim())
+        .writeD(0x00)  // Swim
+        .writeD(0x00)  // Swim
         .writeD(100)   // ?
         .writeD(100)   // ?
         .writeD(100)   // ?

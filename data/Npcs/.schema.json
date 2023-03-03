@@ -19,23 +19,50 @@
                     "title": {
                         "type": "string"
                     },
-                    "attackable": {
-                        "type": "boolean"
-                    },
                     "hostile": {
                         "type": "boolean"
                     },
-                    "respawn": {
-                        "type": "integer"
+                    "undead": {
+                        "type": "boolean"
                     }
                 },
                 "required": [
                     "kind",
                     "name",
                     "title",
-                    "attackable",
                     "hostile",
-                    "respawn"
+                    "undead"
+                ]
+            },
+            "base": {
+                "type": "object",
+                "properties": {
+                    "str": {
+                        "type": "integer"
+                    },
+                    "dex": {
+                        "type": "integer"
+                    },
+                    "con": {
+                        "type": "integer"
+                    },
+                    "int": {
+                        "type": "integer"
+                    },
+                    "wit": {
+                        "type": "integer"
+                    },
+                    "men": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "str",
+                    "dex",
+                    "con",
+                    "int",
+                    "wit",
+                    "men"
                 ]
             },
             "stats": {
@@ -80,12 +107,20 @@
                     },
                     "maxMp": {
                         "type": "integer"
+                    },
+                    "revHp": {
+                        "type": "number"
+                    },
+                    "revMp": {
+                        "type": "number"
                     }
                 },
                 "required": [
                     "level",
                     "maxHp",
-                    "maxMp"
+                    "maxMp",
+                    "revHp",
+                    "revMp"
                 ]
             },
             "speed": {
@@ -96,15 +131,11 @@
                     },
                     "run": {
                         "type": "integer"
-                    },
-                    "swim": {
-                        "type": "integer"
                     }
                 },
                 "required": [
                     "walk",
-                    "run",
-                    "swim"
+                    "run"
                 ]
             },
             "collision": {
@@ -126,6 +157,7 @@
         "required": [
             "selfId",
             "template",
+            "base",
             "stats",
             "vitals",
             "speed",
