@@ -83,7 +83,7 @@
     "speed": { "walk": 80, "run": 120, "swim": 50 },
     "collision": { "radius": 15.0, "size": 26.0 }
 },{
-    "selfId": 7154,
+    "selfId": 7155,
     "template": { "kind": "Npc", "name": "Ellenia", "title": "Master", "attackable": false, "hostile": false, "respawn": 60 },
     "stats": { "pAtk": 0, "pDef": 0, "mAtk": 0, "mDef": 0, "atkSpd": 253, "castSpd": 333 },
     "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493 },
