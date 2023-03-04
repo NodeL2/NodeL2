@@ -21,7 +21,6 @@ class Actor extends ActorModel {
         delete this.model.paperdoll;
 
         this.storedAttackData = undefined;
-        //this.storedPickup = undefined;
     }
 
     enterWorld(session) {
@@ -379,28 +378,30 @@ class Actor extends ActorModel {
         this.setMp(Math.min(this.fetchMp(), this.fetchMaxMp()));
     }
 
-    admin(session) {
-        session.dataSend(
-            ServerResponse.npcHtml(this.fetchId(), utils.parseRawFile('data/Html/Default/admin.html'))
-        );
-    }
-
-    unstuck(session) {
+    teleportTo(session, coords) {
         if (this.isBlocked(session)) {
             return;
         }
 
-        const coords = {
-            locX: 80304, locY: 56241, locZ: -1500, head: this.fetchHead()
-        };
-
         this.automation.abortAll(this);
         session.dataSend(ServerResponse.teleportToLocation(this.fetchId(), coords));
-
-        // TODO: Hide this from the world, soon. Utter stupid.
+        
+        // Turns out to be a viable solution
         setTimeout(() => {
             this.updatePosition(session, coords);
+        }, 1000);
+    }
+
+    unstuck(session) {
+        this.teleportTo(session, {
+            locX: 80304, locY: 56241, locZ: -1500, head: this.fetchHead()
         });
+    }
+
+    admin(session) {
+        session.dataSend(
+            ServerResponse.npcHtml(this.fetchId(), utils.parseRawFile('data/Html/Default/admin.html'))
+        );
     }
 }
 
