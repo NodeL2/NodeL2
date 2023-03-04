@@ -15,11 +15,15 @@
                     },
                     "count": {
                         "type": "integer"
+                    },
+                    "respawn": {
+                        "type": "integer"
                     }
                 },
                 "required": [
                     "name",
-                    "count"
+                    "count",
+                    "respawn"
                 ]
             },
             "spawns": {

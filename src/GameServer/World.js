@@ -13,13 +13,9 @@ const World = {
         DataCache.npcs.forEach((npc) => {
             const spawns = DataCache.npcSpawns.filter(ob => ob.selfId === npc.selfId)[0]?.spawns ?? [];
             spawns.forEach((coords) => {
-                if (npc.template.kind === 'Monster') for (let i = 0; i < 20; i++) {
-                    coords = Formulas.createRandomCoordinates(coords.locX, coords.locY, 1500);
-                    coords.locZ = -1; //coords.locZ;
-                    this.npc.spawns.push(
-                        new Npc(this.npc.nextId++, utils.crushOb({ ...npc, ...coords }))
-                    );
-                }
+                this.npc.spawns.push(
+                    new Npc(this.npc.nextId++, utils.crushOb({ ...npc, ...coords }))
+                );
             });
         });
     },
