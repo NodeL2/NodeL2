@@ -12,6 +12,10 @@ class CreatureModel {
         this.model.id = data;
     }
 
+    setTitle(data) {
+        this.model.title = data;
+    }
+
     setLevel(data) {
         this.model.level = data;
     }

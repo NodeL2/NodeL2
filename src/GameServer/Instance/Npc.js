@@ -10,6 +10,11 @@ class Npc extends NpcModel {
         this.setHp(utils.randomNumber(this.fetchMaxHp()));
         this.setMp(utils.randomNumber(this.fetchMaxMp()));
 
+        // Show level
+        if (this.fetchTitle() === '') {
+            this.setTitle('Lv ' + this.fetchLevel() + (this.fetchHostile() ? ' @' : ''));
+        }
+
         this.replenishHp = setInterval(() => {
             const value = this.fetchHp() + 3; // TODO: Not real formula
             const max   = this.fetchMaxHp();
