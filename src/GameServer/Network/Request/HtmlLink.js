@@ -13,6 +13,10 @@ function htmlLink(session, buffer) {
 
 function consume(session, data) {
     console.info(data);
+
+    //session.dataSend(
+    //    ServerResponse.npcHtml(7146, utils.parseRawFile('data/Html/Default/' + data.link))
+    //);
 }
 
 module.exports = htmlLink;
