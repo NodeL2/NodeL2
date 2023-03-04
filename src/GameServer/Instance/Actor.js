@@ -85,7 +85,7 @@ class Actor extends ActorModel {
                     session.dataSend(ServerResponse.pickupItem(this.fetchId(), item));
                 });
             }).catch((e) => {
-                utils.infoWarn('GameServer:: ? -> ' + e);
+                utils.infoWarn('GameServer :: ? -> ' + e);
             });
             this.storedPickup = undefined;
         }
@@ -177,7 +177,7 @@ class Actor extends ActorModel {
                 }
             });
         }).catch((e) => {
-            utils.infoWarn('GameServer:: npc not found (2) -> ' + e);
+            utils.infoWarn('GameServer :: npc not found (2) -> ' + e);
         });
     }
 
@@ -212,7 +212,7 @@ class Actor extends ActorModel {
             break;
 
         default:
-            utils.infoWarn('GameServer:: unknown basic action 0x%s', utils.toHex(data.actionId));
+            utils.infoWarn('GameServer :: unknown basic action 0x%s', utils.toHex(data.actionId));
             break;
         }
     }

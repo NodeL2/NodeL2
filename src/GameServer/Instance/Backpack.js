@@ -63,7 +63,7 @@ class Backpack extends BackpackModel {
                     return;
                 }
 
-                utils.infoWarn('GameServer:: unhandled item action');
+                utils.infoWarn('GameServer :: unhandled item action');
             }
         });
     }

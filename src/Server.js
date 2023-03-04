@@ -4,13 +4,13 @@ class Server {
 
         // Create a new listening `Server`
         require('net').createServer(this.onSocket.bind(parameters)).listen(optn.port, optn.hostname, () => {
-            utils.infoSuccess('%s:: successful init for %s:%d', name, optn.hostname, optn.port);
+            utils.infoSuccess('%s :: successful init for %s:%d', name, optn.hostname, optn.port);
         });
     }
 
     onSocket(socket) {
         utils.infoSuccess(
-            '%s:: new connection received from %s:%d', this.name, socket.remoteAddress, socket.remotePort
+            '%s :: new connection received from %s:%d', this.name, socket.remoteAddress, socket.remotePort
         );
 
         // Generates a new `Session` for the respective `Server`. Either `AuthSession` or `GameSession`

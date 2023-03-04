@@ -23,7 +23,7 @@ const Formulas = {
 
     calcBaseMp: (() => {
         const table = utils.tupleAlloc(3, (level) => {
-            utils.infoFail('GameServer:: unknown mp table for level %d', level);
+            utils.infoFail('GameServer :: unknown mp table for level %d', level);
         });
 
         function mp(level, a, b, c, d) {

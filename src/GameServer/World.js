@@ -18,6 +18,8 @@ const World = {
                 );
             });
         });
+
+        utils.infoSuccess('Spawns     :: %d Npcs & Monsters', this.npc.spawns.length);
     },
 
     insertUser(session) {
@@ -91,7 +93,7 @@ const World = {
                 break;
 
             default:
-                utils.infoFail('GameServer:: unknown npc response "%s"', parts[0]);
+                utils.infoFail('GameServer :: unknown npc response "%s"', parts[0]);
                 break;
         }
     },
