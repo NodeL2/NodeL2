@@ -1,3 +1,4 @@
+const World         = invoke('GameServer/World');
 const ReceivePacket = invoke('Packet/Receive');
 
 function htmlLink(session, buffer) {
@@ -12,11 +13,7 @@ function htmlLink(session, buffer) {
 }
 
 function consume(session, data) {
-    console.info(data);
-
-    //session.dataSend(
-    //    ServerResponse.npcHtml(7146, utils.parseRawFile('data/Html/Default/' + data.link))
-    //);
+    World.npcTalkResponse(session, data);
 }
 
 module.exports = htmlLink;

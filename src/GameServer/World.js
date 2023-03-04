@@ -68,6 +68,34 @@ const World = {
         );
     },
 
+    npcTalkResponse(session, data) {
+        let parts = data.link.split(' ') ?? [];
+
+        switch (parts[0]) {
+            case 'html':
+                {
+                    const path = 'data/Html/Default/';
+                    const filename = path + parts[1] + '.html';
+
+                    session.dataSend(
+                        ServerResponse.npcHtml(7146, utils.parseRawFile(filename))
+                    );
+                }
+                break;
+
+            case 'teleport':
+                {
+                    const spawns = DataCache.teleports.find((ob) => ob.id === Number(parts[1]))?.spawns;
+                    if (spawns) { session.actor.teleportTo(session, spawns[0]); }
+                }
+                break;
+
+            default:
+                utils.infoFail('GameServer:: unknown npc response "%s"', parts[0]);
+                break;
+        }
+    },
+
     fetchItem(id) {
         return new Promise((success, fail) => {
             let item = this.items.spawns.find(ob => ob.fetchId() === id);

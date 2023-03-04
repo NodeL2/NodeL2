@@ -171,7 +171,7 @@ const Database = {
                 locX: coords.locX,
                 locY: coords.locY,
                 locZ: coords.locZ,
-                head: coords.head,
+                head: coords.head ?? -1,
             }, 'id = ? LIMIT 1', id)
         );
     },
