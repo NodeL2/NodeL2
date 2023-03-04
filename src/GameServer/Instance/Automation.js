@@ -10,7 +10,7 @@ class Automation {
             melee     : undefined,
             remote    : undefined,
             pickup    : undefined,
-        }
+        };
     }
 
     destructor() {
