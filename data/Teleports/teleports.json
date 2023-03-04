@@ -1,0 +1,81 @@
+[{
+    "id": 460,
+    "template": { "description": "Talking Island / Obelisk of Victory", "price": 200 },
+    "spawns": [{ "locX": -99843, "locY": 237583, "locZ": -3568 }]
+},{
+    "id": 461,
+    "template": { "description": "Talking Island / Western Territory of Talking Island (Northern Area)", "price": 3000 },
+    "spawns": [{ "locX": -102850, "locY": 215932, "locZ": -3424 }]
+},{
+    "id": 462,
+    "template": { "description": "Talking Island / Elven Ruins", "price": 2500 },
+    "spawns": [{ "locX": 49315, "locY": 248452, "locZ": -5960 }]
+},{
+    "id": 463,
+    "template": { "description": "Talking Island / Singing Waterfall", "price": 2300 },
+    "spawns": [{ "locX": -113686, "locY": 235723, "locZ": -3640 }]
+},{
+    "id": 468,
+    "template": { "description": "Elven Village / Elven Forest", "price": 710 },
+    "spawns": [{ "locX": 21362, "locY": 51122, "locZ": -3688 }]
+},{
+    "id": 469,
+    "template": { "description": "Elven Village / Neutral Zone", "price": 740 },
+    "spawns": [{ "locX": -10674, "locY": 75550, "locZ": -3597 }]
+},{
+    "id": 470,
+    "template": { "description": "Elven Village / Elven Fortress", "price": 820 },
+    "spawns": [{ "locX": 29294, "locY": 74968, "locZ": -3776 }]
+},{
+    "id": 14,
+    "template": { "description": "Dark Elven Village / Southern part of Dark Elven Forest", "price": 1100 },
+    "spawns": [{ "locX": -61095, "locY": 75104, "locZ": -3356 }]
+},{
+    "id": 464,
+    "template": { "description": "Dark Elven Village / Dark Elven Forest", "price": 890 },
+    "spawns": [{ "locX": -22224, "locY": 14168, "locZ": -3232 }]
+},{
+    "id": 465,
+    "template": { "description": "Dark Elven Village / Spider Nest", "price": 3600 },
+    "spawns": [{ "locX": -56532, "locY": 78321, "locZ": -2960 }]
+},{
+    "id": 466,
+    "template": { "description": "Dark Elven Village / Swampland", "price": 1100 },
+    "spawns": [{ "locX": -30777, "locY": 49750, "locZ": -3552 }]
+},{
+    "id": 467,
+    "template": { "description": "Dark Elven Village / Neutral Zone", "price": 1700 },
+    "spawns": [{ "locX": -23520, "locY": 68688, "locZ": -3640 }]
+},{
+    "id": 93,
+    "template": { "description": "Orc Village / Immortal Plateau, Northern Region", "price": 960 },
+    "spawns": [{ "locX": -8804, "locY": -114748, "locZ": -3088 }]
+},{
+    "id": 94,
+    "template": { "description": "Orc Village / Immortal Plateau, Southern Region", "price": 2000 },
+    "spawns": [{ "locX": -17870, "locY": -90980, "locZ": -2528 }]
+},{
+    "id": 95,
+    "template": { "description": "Orc Village / Immortal Plateau, Southeast Region", "price": 750 },
+    "spawns": [{ "locX": 8209, "locY": -93524, "locZ": -2312 }]
+},{
+    "id": 96,
+    "template": { "description": "Orc Village / Frozen Waterfall", "price": 1600 },
+    "spawns": [{ "locX": 7603, "locY": -138871, "locZ": -920 }]
+},{
+    "id": 471,
+    "template": { "description": "Orc Village / Entrance to the Cave of Trials", "price": 1500 },
+    "spawns": [{ "locX": 9340, "locY": -112509, "locZ": -2536 }]
+},{
+    "id": 17,
+    "template": { "description": "Dwarven Village / The Northeast Coast", "price": 2400 },
+    "spawns": [{ "locX": 169008, "locY": -208272, "locZ": -3504 }]
+},{
+    "id": 418,
+    "template": { "description": "Dwarven Village / Abandoned Coal Mines", "price": 690 },
+    "spawns": [{ "locX": 139714, "locY": -177456, "locZ": -1536 }]
+},{
+    "id": 419,
+    "template": { "description": "Dwarven Village / Mithril Mines", "price": 2200 },
+    "spawns": [{ "locX": 171946, "locY": -173352, "locZ": 3448 }]
+}]

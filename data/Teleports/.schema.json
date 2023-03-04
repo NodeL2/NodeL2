@@ -4,18 +4,22 @@
     "items": {
         "type": "object",
         "properties": {
-            "classId": {
+            "id": {
                 "type": "integer"
             },
             "template": {
                 "type": "object",
                 "properties": {
-                    "class": {
+                    "description": {
                         "type": "string"
+                    },
+                    "price": {
+                        "type": "integer"
                     }
                 },
                 "required": [
-                    "class"
+                    "description",
+                    "price"
                 ]
             },
             "spawns": {
@@ -42,7 +46,7 @@
             }
         },
         "required": [
-            "classId",
+            "id",
             "template",
             "spawns"
         ]
