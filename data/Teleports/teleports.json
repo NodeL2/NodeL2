@@ -27,6 +27,14 @@
     "template": { "description": "Elven Village / Elven Fortress", "price": 820 },
     "spawns": [{ "locX": 29294, "locY": 74968, "locZ": -3776 }]
 },{
+    "id": 1014,
+    "template": { "description": "Elven Village / Dwarven Village", "price": 23000 },
+    "spawns": [{ "locX": 115113, "locY": -178212, "locZ": -901 }]
+},{
+    "id": 1016,
+    "template": { "description": "Elven Village / Orc Village", "price": 18000 },
+    "spawns": [{ "locX": -44836, "locY": -112524, "locZ": -235 }]
+},{
     "id": 14,
     "template": { "description": "Dark Elven Village / Southern part of Dark Elven Forest", "price": 1100 },
     "spawns": [{ "locX": -61095, "locY": 75104, "locZ": -3356 }]
@@ -78,4 +86,8 @@
     "id": 419,
     "template": { "description": "Dwarven Village / Mithril Mines", "price": 2200 },
     "spawns": [{ "locX": 171946, "locY": -173352, "locZ": 3448 }]
+},{
+    "id": 1018,
+    "template": { "description": "Dwarven Village / Elven Village", "price": 23000 },
+    "spawns": [{ "locX": 46934, "locY": 51467, "locZ": -2977 }]
 }]
