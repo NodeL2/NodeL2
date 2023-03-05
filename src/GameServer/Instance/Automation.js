@@ -1,4 +1,5 @@
 const ServerResponse = invoke('GameServer/Network/Response');
+const DataCache      = invoke('GameServer/DataCache');
 const Formulas       = invoke('GameServer/Formulas');
 
 class Automation {
@@ -30,8 +31,11 @@ class Automation {
             const maxHp = actor.fetchMaxHp();
             const maxMp = actor.fetchMaxMp();
 
-            const minHp = Math.min(actor.fetchHp() + (maxHp / 100), maxHp);
-            const minMp = Math.min(actor.fetchMp() + (maxMp / 100), maxMp);
+            const revHp = DataCache.revitalize.hp[actor.fetchLevel()];
+            const revMp = DataCache.revitalize.mp[actor.fetchLevel()];
+
+            const minHp = Math.min(actor.fetchHp() + revHp, maxHp);
+            const minMp = Math.min(actor.fetchMp() + revMp, maxMp);
 
             actor.setHp(minHp);
             actor.setMp(minMp);
