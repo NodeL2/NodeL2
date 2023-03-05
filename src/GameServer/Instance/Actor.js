@@ -30,7 +30,7 @@ class Actor extends ActorModel {
         this.setCollectiveTotalLoad();
 
         // Start vitals replenish
-        this.automation.replenishMp(session, this);
+        this.automation.replenishVitals(session, this);
 
         // Show npcs based on radius
         this.updatePosition(session, {
@@ -296,6 +296,9 @@ class Actor extends ActorModel {
             this.hitPoint(session, npc, false);
             this.state.setCasts(false);
 
+            // Start replenish
+            this.automation.replenishVitals(session, this);
+
         }, data.hitTime);
 
         setTimeout(() => {
@@ -335,17 +338,7 @@ class Actor extends ActorModel {
         for (let i = 0; i < 75; i++) {
             if (totalExp >= DataCache.experience[i] && totalExp < DataCache.experience[i + 1]) {
                 if (i + 1 > this.fetchLevel()) { // Leveled up
-                    this.setLevel(i + 1);
-                    this.setCollectiveTotalHp();
-                    this.setCollectiveTotalMp();
-                    this.fillupVitals();
-                    this.statusUpdateVitals(session, this);
-
-                    // Level up effect
-                    session.dataSend(ServerResponse.socialAction(this.fetchId(), 15));
-
-                    // Update database with new hp, mp
-                    Database.updateCharacterVitals(this.fetchId(), this.fetchHp(), this.fetchMaxHp(), this.fetchMp(), this.fetchMaxMp());
+                    this.levelUp(session, i + 1);
                     break;
                 }
             }
@@ -356,6 +349,24 @@ class Actor extends ActorModel {
 
         // Update database with new exp, sp
         Database.updateCharacterExperience(this.fetchId(), this.fetchLevel(), totalExp, totalSp);
+    }
+
+    levelUp(session, level) {
+        // Stop automation to prevent false data
+        this.automation.stopReplenish();
+
+        // Update stats
+        this.setLevel(level);
+        this.setCollectiveTotalHp();
+        this.setCollectiveTotalMp();
+        this.fillupVitals();
+        this.statusUpdateVitals(session, this);
+
+        // Level up effect
+        session.dataSend(ServerResponse.socialAction(this.fetchId(), 15));
+
+        // Update database with new hp, mp
+        Database.updateCharacterVitals(this.fetchId(), this.fetchHp(), this.fetchMaxHp(), this.fetchMp(), this.fetchMaxMp());
     }
 
     setCollectiveTotalLoad() {

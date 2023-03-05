@@ -176,11 +176,11 @@ class CreatureModel {
     // Abstract
 
     fillupHp() {
-        this.model.hp = this.model.maxHp;
+        this.setHp(this.fetchMaxHp());
     }
 
     fillupMp() {
-        this.model.mp = this.model.maxMp;
+        this.setMp(this.fetchMaxMp());
     }
 
     fillupVitals() {

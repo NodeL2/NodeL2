@@ -20,15 +20,38 @@ class Automation {
         clearTimeout (this.timer.pickup);
     }
 
-    replenishMp(session, actor) {
-        clearInterval(this.timer.replenish);
-        this.timer.replenish = setInterval(() => {
-            const value = actor.fetchMp() + 3; // TODO: Not real formula
-            const max   = actor.fetchMaxMp();
+    replenishVitals(session, actor) {
+        if (this.timer.replenish) {
+            console.info('REVIT: Still enabled...');
+            return;
+        }
 
-            actor.setMp(Math.min(value, max));
+        const maxHp = actor.fetchMaxHp();
+        const maxMp = actor.fetchMaxMp();
+
+        this.stopReplenish();
+        console.info('REVIT: Started...');
+        this.timer.replenish = setInterval(() => {
+            const hp = actor.fetchHp() + (maxHp / 100); // TODO: Not real formula
+            const mp = actor.fetchMp() + (maxMp / 100); // TODO: Not real formula
+
+            const minHp = Math.min(hp, maxHp);
+            const minMp = Math.min(mp, maxMp);
+
+            actor.setHp(minHp);
+            actor.setMp(minMp);
             actor.statusUpdateVitals(session, actor);
+
+            if (minHp >= maxHp && minMp >= maxMp) {
+                console.info('REVIT: Full, stop...');
+                this.stopReplenish();
+            }
         }, 3000);
+    }
+
+    stopReplenish() {
+        clearInterval(this.timer.replenish);
+        this.timer.replenish = undefined;
     }
 
     scheduleAtkMelee(session, src, dst, radius, callback) {

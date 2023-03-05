@@ -7,14 +7,13 @@ class Npc extends NpcModel {
 
         // Local
         this.setId(id);
-        this.setHp(utils.randomNumber(this.fetchMaxHp()));
-        this.setMp(utils.randomNumber(this.fetchMaxMp()));
+        this.fillupVitals();
 
         this.timer = { // TODO: Move this into actual GameServer timer
             replenish : undefined
         };
 
-        this.replenishHp();
+        this.replenishVitals();
 
         // User preferences
         const optn = options.connection.GameServer;
@@ -34,13 +33,24 @@ class Npc extends NpcModel {
         }
     }
 
-    replenishHp() {
+    replenishVitals() {
+        const maxHp = this.fetchMaxHp();
+        const maxMp = this.fetchMaxMp();
+
         clearInterval(this.timer.replenish);
         this.timer.replenish = setInterval(() => {
-            const value = this.fetchHp() + 3; // TODO: Not real formula
-            const max   = this.fetchMaxHp();
+            const hp = this.fetchHp() + (maxHp / 100); // TODO: Not real formula
+            const mp = this.fetchMp() + (maxMp / 100); // TODO: Not real formula
 
-            this.setHp(Math.min(value, max));
+            const minHp = Math.min(hp, maxHp);
+            const minMp = Math.min(mp, maxMp);
+
+            this.setHp(minHp);
+            this.setMp(minMp);
+
+            if (minHp >= maxHp && minMp >= maxMp) {
+                clearInterval(this.timer.replenish);
+            }
         }, 3000);
     }
 }
