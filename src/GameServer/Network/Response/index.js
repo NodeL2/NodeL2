@@ -24,6 +24,7 @@ module.exports = {
           shortcutInit: require('./ShortcutInit'),
                showMap: require('./ShowMap'),
            sitAndStand: require('./SitAndStand'),
+      skillDurationBar: require('./SkillDurationBar'),
             skillsList: require('./SkillsList'),
           skillStarted: require('./SkillStarted'),
           socialAction: require('./SocialAction'),

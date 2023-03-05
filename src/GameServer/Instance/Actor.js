@@ -288,6 +288,7 @@ class Actor extends ActorModel {
         }
 
         session.dataSend(ServerResponse.skillStarted(this, npc.fetchId(), data));
+        session.dataSend(ServerResponse.skillDurationBar(data.hitTime));
         this.state.setCasts(true);
 
         setTimeout(() => {
