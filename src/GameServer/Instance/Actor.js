@@ -318,6 +318,8 @@ class Actor extends ActorModel {
             this.rewardExpAndSp(session, npc.fetchRewardExp(), npc.fetchRewardSp());
             World.removeNpc(session, npc);
         }
+
+        session.dataSend(ServerResponse.attack(npc, this.fetchId()));
     }
 
     hitPAtk(actor, npc) {
