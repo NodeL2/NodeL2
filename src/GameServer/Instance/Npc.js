@@ -34,24 +34,30 @@ class Npc extends NpcModel {
     }
 
     replenishVitals() {
-        const maxHp = this.fetchMaxHp();
-        const maxMp = this.fetchMaxMp();
+        if (this.timer.replenish) {
+            return;
+        }
 
-        clearInterval(this.timer.replenish);
+        this.stopReplenish();
         this.timer.replenish = setInterval(() => {
-            const hp = this.fetchHp() + (maxHp / 100); // TODO: Not real formula
-            const mp = this.fetchMp() + (maxMp / 100); // TODO: Not real formula
+            const maxHp = this.fetchMaxHp();
+            const maxMp = this.fetchMaxMp();
 
-            const minHp = Math.min(hp, maxHp);
-            const minMp = Math.min(mp, maxMp);
+            const minHp = Math.min(this.fetchHp() + (maxHp / 100), maxHp);
+            const minMp = Math.min(this.fetchMp() + (maxMp / 100), maxMp);
 
             this.setHp(minHp);
             this.setMp(minMp);
 
             if (minHp >= maxHp && minMp >= maxMp) {
-                clearInterval(this.timer.replenish);
+                this.stopReplenish();
             }
         }, 3000);
+    }
+
+    stopReplenish() {
+        clearInterval(this.timer.replenish);
+        this.timer.replenish = undefined;
     }
 }
 

@@ -22,28 +22,22 @@ class Automation {
 
     replenishVitals(session, actor) {
         if (this.timer.replenish) {
-            console.info('REVIT: Still enabled...');
             return;
         }
 
-        const maxHp = actor.fetchMaxHp();
-        const maxMp = actor.fetchMaxMp();
-
         this.stopReplenish();
-        console.info('REVIT: Started...');
         this.timer.replenish = setInterval(() => {
-            const hp = actor.fetchHp() + (maxHp / 100); // TODO: Not real formula
-            const mp = actor.fetchMp() + (maxMp / 100); // TODO: Not real formula
+            const maxHp = actor.fetchMaxHp();
+            const maxMp = actor.fetchMaxMp();
 
-            const minHp = Math.min(hp, maxHp);
-            const minMp = Math.min(mp, maxMp);
+            const minHp = Math.min(actor.fetchHp() + (maxHp / 100), maxHp);
+            const minMp = Math.min(actor.fetchMp() + (maxMp / 100), maxMp);
 
             actor.setHp(minHp);
             actor.setMp(minMp);
             actor.statusUpdateVitals(session, actor);
 
             if (minHp >= maxHp && minMp >= maxMp) {
-                console.info('REVIT: Full, stop...');
                 this.stopReplenish();
             }
         }, 3000);
