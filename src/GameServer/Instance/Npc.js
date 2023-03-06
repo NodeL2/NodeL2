@@ -43,8 +43,8 @@ class Npc extends NpcModel {
             const maxHp = this.fetchMaxHp();
             const maxMp = this.fetchMaxMp();
 
-            const minHp = Math.min(this.fetchHp() + (maxHp / 100), maxHp);
-            const minMp = Math.min(this.fetchMp() + (maxMp / 100), maxMp);
+            const minHp = Math.min(this.fetchHp() + this.fetchRevHp(), maxHp);
+            const minMp = Math.min(this.fetchMp() + this.fetchRevMp(), maxMp);
 
             this.setHp(minHp);
             this.setMp(minMp);

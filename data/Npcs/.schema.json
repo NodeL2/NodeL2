@@ -34,6 +34,33 @@
                     "undead"
                 ]
             },
+            "vitals": {
+                "type": "object",
+                "properties": {
+                    "level": {
+                        "type": "integer"
+                    },
+                    "maxHp": {
+                        "type": "integer"
+                    },
+                    "maxMp": {
+                        "type": "integer"
+                    },
+                    "revHp": {
+                        "type": "number"
+                    },
+                    "revMp": {
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "level",
+                    "maxHp",
+                    "maxMp",
+                    "revHp",
+                    "revMp"
+                ]
+            },
             "base": {
                 "type": "object",
                 "properties": {
@@ -85,6 +112,12 @@
                     },
                     "castSpd": {
                         "type": "integer"
+                    },
+                    "walkSpd": {
+                        "type": "integer"
+                    },
+                    "runSpd": {
+                        "type": "integer"
                     }
                 },
                 "required": [
@@ -93,49 +126,9 @@
                     "mAtk",
                     "mDef",
                     "atkSpd",
-                    "castSpd"
-                ]
-            },
-            "vitals": {
-                "type": "object",
-                "properties": {
-                    "level": {
-                        "type": "integer"
-                    },
-                    "maxHp": {
-                        "type": "integer"
-                    },
-                    "maxMp": {
-                        "type": "integer"
-                    },
-                    "revHp": {
-                        "type": "number"
-                    },
-                    "revMp": {
-                        "type": "number"
-                    }
-                },
-                "required": [
-                    "level",
-                    "maxHp",
-                    "maxMp",
-                    "revHp",
-                    "revMp"
-                ]
-            },
-            "speed": {
-                "type": "object",
-                "properties": {
-                    "walk": {
-                        "type": "integer"
-                    },
-                    "run": {
-                        "type": "integer"
-                    }
-                },
-                "required": [
-                    "walk",
-                    "run"
+                    "castSpd",
+                    "walkSpd",
+                    "runSpd"
                 ]
             },
             "collision": {
@@ -152,16 +145,31 @@
                     "radius",
                     "size"
                 ]
+            },
+            "rewards": {
+                "type": "object",
+                "properties": {
+                    "exp": {
+                        "type": "integer"
+                    },
+                    "sp": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "exp",
+                    "sp"
+                ]
             }
         },
         "required": [
             "selfId",
             "template",
+            "vitals",
             "base",
             "stats",
-            "vitals",
-            "speed",
-            "collision"
+            "collision",
+            "rewards"
         ]
     }
 }

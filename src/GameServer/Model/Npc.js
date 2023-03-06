@@ -16,14 +16,20 @@ class NpcModel extends CreatureModel {
         return this.model.hostile;
     }
 
-    // TODO: Exp & Sp do not exist, please add
+    fetchRevHp() {
+        return this.model.revHp;
+    }
+
+    fetchRevMp() {
+        return this.model.revMp;
+    }
 
     fetchRewardExp() {
-        return 100000;
+        return this.model.exp;
     }
 
     fetchRewardSp() {
-        return 5;
+        return this.model.sp;
     }
 
     // Abstract
