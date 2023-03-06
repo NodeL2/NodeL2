@@ -1,137 +1,141 @@
 [{
     "selfId": 57,
     "template": { "kind": "Other", "name": "Adena", "class1": 4, "class2": 4, "mass": 0, "price": 1 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
+},{
+    "selfId": 1061,
+    "template": { "kind": "Other", "name": "Healing Potion", "class1": 4, "class2": 5, "mass": 5, "price": 330 },
+    "etc": { "stackable": true, "consumable": true }
 },{
     "selfId": 1665,
     "template": { "kind": "Other", "name": "World Map", "class1": 4, "class2": 5, "mass": 0, "price": 500 },
-    "etc": { "stackable": false }
+    "etc": { "stackable": false, "consumable": false }
 },{
     "selfId": 1864,
     "template": { "kind": "Other", "name": "Stem", "class1": 4, "class2": 5, "mass": 2, "price": 100 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1865,
     "template": { "kind": "Other", "name": "Varnish", "class1": 4, "class2": 5, "mass": 2, "price": 200 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1866,
     "template": { "kind": "Other", "name": "Suede", "class1": 4, "class2": 5, "mass": 2, "price": 300 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1867,
     "template": { "kind": "Other", "name": "Animal Skin", "class1": 4, "class2": 5, "mass": 2, "price": 150 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1868,
     "template": { "kind": "Other", "name": "Thread", "class1": 4, "class2": 5, "mass": 2, "price": 100 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1869,
     "template": { "kind": "Other", "name": "Iron Ore", "class1": 4, "class2": 5, "mass": 2, "price": 200 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1870,
     "template": { "kind": "Other", "name": "Coal", "class1": 4, "class2": 5, "mass": 2, "price": 200 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1871,
     "template": { "kind": "Other", "name": "Charcoal", "class1": 4, "class2": 5, "mass": 2, "price": 200 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1872,
     "template": { "kind": "Other", "name": "Animal Bone", "class1": 4, "class2": 5, "mass": 2, "price": 150 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1873,
     "template": { "kind": "Other", "name": "Silver Nugget", "class1": 4, "class2": 5, "mass": 2, "price": 500 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1874,
     "template": { "kind": "Other", "name": "Oriharukon Ore", "class1": 4, "class2": 5, "mass": 2, "price": 3000 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1875,
     "template": { "kind": "Other", "name": "Stone of Purity", "class1": 4, "class2": 5, "mass": 2, "price": 3000 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1876,
     "template": { "kind": "Other", "name": "Mithril Ore", "class1": 4, "class2": 5, "mass": 2, "price": 1000 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1877,
     "template": { "kind": "Other", "name": "Adamantite Nugget", "class1": 4, "class2": 5, "mass": 2, "price": 5000 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1878,
     "template": { "kind": "Other", "name": "Durable Braid", "class1": 4, "class2": 5, "mass": 2, "price": 500 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1879,
     "template": { "kind": "Other", "name": "Cokes", "class1": 4, "class2": 5, "mass": 2, "price": 1200 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1880,
     "template": { "kind": "Other", "name": "Steel", "class1": 4, "class2": 5, "mass": 2, "price": 2000 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1881,
     "template": { "kind": "Other", "name": "Coarse Bone Powder", "class1": 4, "class2": 5, "mass": 2, "price": 1500 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1882,
     "template": { "kind": "Other", "name": "Leather", "class1": 4, "class2": 5, "mass": 2, "price": 900 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1883,
     "template": { "kind": "Other", "name": "Steel Mold", "class1": 4, "class2": 5, "mass": 2, "price": 4500 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1884,
     "template": { "kind": "Other", "name": "Cord", "class1": 4, "class2": 5, "mass": 2, "price": 325 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1885,
     "template": { "kind": "Other", "name": "High Grade Suede", "class1": 4, "class2": 5, "mass": 2, "price": 2400 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1886,
     "template": { "kind": "Other", "name": "Silver Mold", "class1": 4, "class2": 5, "mass": 2, "price": 13500 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1887,
     "template": { "kind": "Other", "name": "Varnish of Purity", "class1": 4, "class2": 5, "mass": 2, "price": 8100 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1888,
     "template": { "kind": "Other", "name": "Synthetic Cokes", "class1": 4, "class2": 5, "mass": 2, "price": 6600 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1889,
     "template": { "kind": "Other", "name": "Synthetic Braid", "class1": 4, "class2": 5, "mass": 2, "price": 3000 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1890,
     "template": { "kind": "Other", "name": "Mithril Alloy", "class1": 4, "class2": 5, "mass": 2, "price": 13100 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1891,
     "template": { "kind": "Other", "name": "Artisan's Frame", "class1": 4, "class2": 5, "mass": 2, "price": 95000 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1892,
     "template": { "kind": "Other", "name": "Blacksmith's Frame", "class1": 4, "class2": 5, "mass": 2, "price": 64000 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1893,
     "template": { "kind": "Other", "name": "Oriharukon", "class1": 4, "class2": 5, "mass": 2, "price": 24600 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1894,
     "template": { "kind": "Other", "name": "Crafted Leather", "class1": 4, "class2": 5, "mass": 2, "price": 5700 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 1895,
     "template": { "kind": "Other", "name": "Metallic Fiber", "class1": 4, "class2": 5, "mass": 2, "price": 700 },
-    "etc": { "stackable": true }
+    "etc": { "stackable": true, "consumable": false }
 }]

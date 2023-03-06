@@ -14,7 +14,8 @@ class Backpack extends BackpackModel {
         items.push(
             { id: 4900000, selfId: 1665, name: "World Map" },
             { id: 4900001, selfId:   18, name: "Leather Shield" },
-            { id: 4900002, selfId:   57, name: "Adena", amount: 1337 }
+            { id: 4900002, selfId:   57, name: "Adena", amount: 1337 },
+            { id: 4900003, selfId: 1061, name: "Potion", amount: 3 }
         ); // TODO: Test data, please delete
 
         items.forEach((item) => {
@@ -32,7 +33,7 @@ class Backpack extends BackpackModel {
         };
 
         intentionItem(id, (item) => {
-            if (item.kind === "Armor") {
+            if (item.kind === 'Armor') {
                 this.unequipGear(session, item.slot);
                 this.equipPaperdoll(item.slot, item.id, item.selfId);
                 item.equipped = true;
@@ -41,7 +42,7 @@ class Backpack extends BackpackModel {
                 session.actor.setCollectiveTotalMp();
             }
             else
-            if (item.kind === "Weapon") {
+            if (item.kind === 'Weapon') {
                 if (item.slot ===  7 || item.slot === 8) {
                     this.unequipGear(session, 14); // Both hands
                 }
@@ -59,6 +60,13 @@ class Backpack extends BackpackModel {
                 if (item.selfId === 1665) { // TODO: This needs to be out of here...
                     session.dataSend(
                         ServerResponse.showMap(item.selfId)
+                    );
+                    return;
+                }
+                else
+                if (item.selfId === 1061) {
+                    session.dataSend(
+                        ServerResponse.skillStarted(session.actor, session.actor.fetchId(), { selfId: 2032, hitTime: 0, reuseTime: 0 })
                     );
                     return;
                 }
