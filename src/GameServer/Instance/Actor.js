@@ -392,9 +392,8 @@ class Actor extends ActorModel {
 
     setCollectiveTotalMp() { // TODO: Fix hardcoded class transfer parameter
         const base  = Formulas.calcMp(this.fetchLevel(), this.isMystic(), 0, this.fetchMen());
-        const chest = this.backpack.fetchEquippedArmor(10)?.maxMp ?? 0;
-        const pants = this.backpack.fetchEquippedArmor(11)?.maxMp ?? 0;
-        this.setMaxMp(base + chest + pants);
+        const bonus = this.backpack.fetchTotalBonusMp();
+        this.setMaxMp(base + bonus);
         this.setMp(Math.min(this.fetchMp(), this.fetchMaxMp()));
     }
 

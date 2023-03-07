@@ -45,13 +45,13 @@ class Backpack extends BackpackModel {
             }
             else
             if (item.kind === 'Weapon') {
-                if (item.slot ===  7 || item.slot === 8) {
-                    this.unequipGear(session, 14); // Both hands
+                if (item.slot === this.equipment.weapon || item.slot === this.equipment.shield) {
+                    this.unequipGear(session, this.equipment.duals);
                 }
                 else
-                if (item.slot === 14) {
-                    this.unequipGear(session,  7); // R
-                    this.unequipGear(session,  8); // L
+                if (item.slot === this.equipment.duals) {
+                    this.unequipGear(session, this.equipment.weapon);
+                    this.unequipGear(session, this.equipment.shield);
                 }
 
                 this.unequipGear(session, item.slot);
