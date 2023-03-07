@@ -15,8 +15,8 @@
 * Download [LINEAGE II C2 Splendor Client](https://drive.google.com/drive/folders/1kdVS2ymqmK3vzufEt5hUnij6pWS8BcZb?usp=sharing) that features `485` API protocol
 
 ## Setup
-* Fix database credentials in `database/install` script, and `config/connection.ini`
-* Run `database/install.bat` for **Windows**, or `database/install.sh` for **Linux** and **macOS**
+* Fix database credentials in `docker-compose.yml` script, and `config/connection.ini`
+* Run `docker-compose up`
 * Run `npm install -i`
 
 ## Run
