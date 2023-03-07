@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  mariadb:
+      image: mariadb:10.5
+      restart: always
+      ports:
+        - 3306:3306
+      environment:
+          MARIADB_ROOT_PASSWORD: alosi!$53
+          MYSQL_DATABASE: nodel2
+      command: --init-file /data/application/database-init.sql       
+      volumes:
+        - ./database/sql/database.sql:/data/application/database-init.sql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mariadb
+      PMA_PORT: 3306
+    restart: always
+    ports:
+      - 8080:80
+volumes:
+  dbData:
