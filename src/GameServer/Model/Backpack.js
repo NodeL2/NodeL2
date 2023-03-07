@@ -60,6 +60,11 @@ class BackpackModel {
             (this.fetchEquippedArmor(this.equipment.feet )?.maxMp ?? 0)
         );
     }
+
+    fetchTotalLoad() {
+        let values = this.items.map((ob) => ob.mass) ?? [];
+        return values.reduce((accumulator, value) => accumulator + value);
+    }
 }
 
 module.exports = BackpackModel;

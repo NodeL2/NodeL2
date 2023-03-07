@@ -102,16 +102,6 @@ class Backpack extends BackpackModel {
         });
     }
 
-    fetchTotalLoad() {
-        let totalLoad = 0;
-
-        this.items.forEach((item) => {
-            totalLoad += item.mass ?? 0;
-        });
-
-        return totalLoad;
-    }
-
     updateDatabaseTimer(characterId) {
         clearTimeout(this.dbTimer);
 
