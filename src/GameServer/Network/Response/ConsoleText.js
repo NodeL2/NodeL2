@@ -1,6 +1,6 @@
 const SendPacket = invoke('Packet/Send');
 
-function consoleText(textId, params = []) {
+function consoleText(textId, params) {
     const packet = new SendPacket(0x64);
 
     packet
@@ -9,7 +9,7 @@ function consoleText(textId, params = []) {
 
     for (const param of params) {
         packet
-            .writeD(0x01)
+            .writeD(param.kind)
             .writeD(param.value);
     }
 

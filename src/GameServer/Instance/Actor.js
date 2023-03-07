@@ -4,6 +4,7 @@ const Automation     = invoke('GameServer/Instance/Automation');
 const Backpack       = invoke('GameServer/Instance/Backpack');
 const DataCache      = invoke('GameServer/DataCache');
 const World          = invoke('GameServer/World');
+const ConsoleText    = invoke('GameServer/ConsoleText');
 const Formulas       = invoke('GameServer/Formulas');
 const Database       = invoke('Database');
 
@@ -39,6 +40,9 @@ class Actor extends ActorModel {
             locZ: this.fetchLocZ(),
             head: this.fetchHead(),
         });
+
+        // Default
+        ConsoleText.transmit(session, ConsoleText.caption.welcome);
     }
 
     destructor() {
@@ -283,7 +287,7 @@ class Actor extends ActorModel {
         }
 
         if (this.fetchMp() < data.mp) {
-            session.dataSend(ServerResponse.consoleText(24));
+            ConsoleText.transmit(session, ConsoleText.caption.depletedMp);
             return;
         }
 
@@ -312,7 +316,7 @@ class Actor extends ActorModel {
         npc.setHp(Math.max(0, npc.fetchHp() - power)); // HP bar would disappear if less than zero
 
         this.statusUpdateVitals(session, npc);
-        session.dataSend(ServerResponse.consoleText(35, [{ value: power }]));
+        ConsoleText.transmit(session, ConsoleText.caption.actorHit, [{ kind: ConsoleText.kind.number, value: power }]);
 
         if (npc.isDead()) {
             this.rewardExpAndSp(session, npc.fetchRewardExp(), npc.fetchRewardSp());
@@ -349,7 +353,7 @@ class Actor extends ActorModel {
 
         this.setExpSp(totalExp, totalSp);
         this.statusUpdateLevelExpSp(session, this);
-        session.dataSend(ServerResponse.consoleText(95, [{ value: exp }, { value: sp }]));
+        ConsoleText.transmit(session, ConsoleText.caption.earnedExpAndSp, [{ kind: ConsoleText.kind.number, value: exp}, { kind: ConsoleText.kind.number, value: sp }]);
 
         // Update database with new exp, sp
         Database.updateCharacterExperience(this.fetchId(), this.fetchLevel(), totalExp, totalSp);
@@ -368,6 +372,7 @@ class Actor extends ActorModel {
 
         // Level up effect
         session.dataSend(ServerResponse.socialAction(this.fetchId(), 15));
+        ConsoleText.transmit(session, ConsoleText.lcaption.evelUp);
 
         // Update database with new hp, mp
         Database.updateCharacterVitals(this.fetchId(), this.fetchHp(), this.fetchMaxHp(), this.fetchMp(), this.fetchMaxMp());

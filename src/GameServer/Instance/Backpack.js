@@ -1,6 +1,7 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 const BackpackModel  = invoke('GameServer/Model/Backpack');
 const DataCache      = invoke('GameServer/DataCache');
+const ConsoleText    = invoke('GameServer/ConsoleText');
 const Database       = invoke('Database');
 
 class Backpack extends BackpackModel {
@@ -36,6 +37,7 @@ class Backpack extends BackpackModel {
             if (item.kind === 'Armor') {
                 this.unequipGear(session, item.slot);
                 this.equipPaperdoll(item.slot, item.id, item.selfId);
+                ConsoleText.transmit(session, ConsoleText.caption.equipped, [{ kind: ConsoleText.kind.item, value: item.selfId }]);
                 item.equipped = true;
 
                 // Recalculate bonus
@@ -54,6 +56,7 @@ class Backpack extends BackpackModel {
 
                 this.unequipGear(session, item.slot);
                 this.equipPaperdoll(item.slot, item.id, item.selfId);
+                ConsoleText.transmit(session, ConsoleText.caption.equipped, [{ kind: ConsoleText.kind.item, value: item.selfId }]);
                 item.equipped = true;
             }
             else {
