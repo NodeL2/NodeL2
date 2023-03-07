@@ -52,6 +52,12 @@ class Automation {
         this.timer.replenish = undefined;
     }
 
+    ticksToMove(srcX, srcY, dstX, dstY, radius, speed) {
+        const distance = Formulas.calcDistance(srcX, srcY, dstX, dstY) - radius;
+        const duration = 1 + ((this.ticksPerSecond * distance) / speed);
+        return (1000 / this.ticksPerSecond) * duration;
+    }
+
     scheduleAtkMelee(session, src, dst, radius, callback) {
         // Execute each time, or else creature is stuck
         session.dataSend(
@@ -64,8 +70,9 @@ class Automation {
 
         // Calculate duration
         src.state.setAtkMelee(true);
-        const distance = Formulas.calcDistance(src.fetchLocX(), src.fetchLocY(), dst.fetchLocX(), dst.fetchLocY()) - radius;
-        const ticksToMove = 1 + ((this.ticksPerSecond * distance) / src.fetchRun());
+        const ticks = this.ticksToMove(
+            src.fetchLocX(), src.fetchLocY(), dst.fetchLocX(), dst.fetchLocY(), radius, src.fetchRun()
+        );
 
         // Arrived
         clearTimeout(this.timer.melee);
@@ -73,7 +80,7 @@ class Automation {
             src.state.setAtkMelee(false);
             callback();
 
-        }, (1000 / this.ticksPerSecond) * ticksToMove);
+        }, ticks);
     }
 
     scheduleAtkRemote(session, src, dst, radius, callback) {
@@ -88,8 +95,9 @@ class Automation {
 
         // Calculate duration
         src.state.setAtkRemote(true);
-        const distance = Formulas.calcDistance(src.fetchLocX(), src.fetchLocY(), dst.fetchLocX(), dst.fetchLocY()) - radius;
-        const ticksToMove = 1 + ((this.ticksPerSecond * distance) / src.fetchRun());
+        const ticks = this.ticksToMove(
+            src.fetchLocX(), src.fetchLocY(), dst.fetchLocX(), dst.fetchLocY(), radius, src.fetchRun()
+        );
 
         // Arrived
         clearTimeout(this.timer.remote);
@@ -97,7 +105,7 @@ class Automation {
             src.state.setAtkRemote(false);
             callback();
 
-        }, (1000 / this.ticksPerSecond) * ticksToMove);
+        }, ticks);
     }
 
     schedulePickup(session, src, dst, callback) {
@@ -121,8 +129,9 @@ class Automation {
 
         // Calculate duration
         src.state.setPickinUp(true);
-        const distance = Formulas.calcDistance(src.fetchLocX(), src.fetchLocY(), dst.fetchLocX(), dst.fetchLocY());
-        const ticksToMove = 1 + ((this.ticksPerSecond * distance) / src.fetchRun());
+        const ticks = this.ticksToMove(
+            src.fetchLocX(), src.fetchLocY(), dst.fetchLocX(), dst.fetchLocY(), 0, src.fetchRun()
+        );
 
         // Arrived
         clearTimeout(this.timer.pickup);
@@ -130,7 +139,7 @@ class Automation {
             src.state.setPickinUp(false);
             callback();
 
-        }, (1000 / this.ticksPerSecond) * ticksToMove);
+        }, ticks);
     }
 
     abortScheduledAtkMelee(creature) {

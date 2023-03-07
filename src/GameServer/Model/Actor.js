@@ -63,10 +63,6 @@ class ActorModel extends CreatureModel {
         return this.model.speed;
     }
 
-    fetchLoad() { // TODO: Not in structure. Add it!
-        return this.model.load;
-    }
-
     fetchMaxLoad() {
         return this.model.maxLoad;
     }

@@ -26,7 +26,7 @@ function userInfo(actor) {
         .writeD(actor.fetchMaxMp())
         .writeD(actor.fetchMp())
         .writeD(actor.fetchSp())
-        .writeD(actor.fetchLoad())
+        .writeD(actor.backpack.fetchTotalLoad())
         .writeD(actor.fetchMaxLoad())
         .writeD(0x28); // ?
 
