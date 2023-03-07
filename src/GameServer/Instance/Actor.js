@@ -349,6 +349,7 @@ class Actor extends ActorModel {
 
         this.setExpSp(totalExp, totalSp);
         this.statusUpdateLevelExpSp(session, this);
+        session.dataSend(ServerResponse.consoleText(95, [{ value: exp }, { value: sp }]));
 
         // Update database with new exp, sp
         Database.updateCharacterExperience(this.fetchId(), this.fetchLevel(), totalExp, totalSp);
