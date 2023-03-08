@@ -47,6 +47,9 @@
                     "mDef": {
                         "type": "integer"
                     },
+                    "evasion": {
+                        "type": "number"
+                    },
                     "maxMp": {
                         "type": "integer"
                     }
@@ -54,6 +57,7 @@
                 "required": [
                     "pDef",
                     "mDef",
+                    "evasion",
                     "maxMp"
                 ]
             },

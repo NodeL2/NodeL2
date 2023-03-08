@@ -280,42 +280,42 @@
     "etc": { "slot": 8 }
 },{
     "selfId": 112,
-    "template": { "kind": "Armor", "name": "Apprentice's Earring", "class1": 1, "class2": 1, "mass": 150, "price": 49 },
+    "template": { "kind": "Armor", "name": "Apprentice's Earring", "class1": 0, "class2": 2, "mass": 150, "price": 49 },
     "stats": { "pDef": 0, "mDef": 11, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 113,
-    "template": { "kind": "Armor", "name": "Mystic's Earring", "class1": 1, "class2": 1, "mass": 150, "price": 811 },
+    "template": { "kind": "Armor", "name": "Mystic's Earring", "class1": 0, "class2": 2, "mass": 150, "price": 811 },
     "stats": { "pDef": 0, "mDef": 13, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 114,
-    "template": { "kind": "Armor", "name": "Earring of Strength", "class1": 1, "class2": 1, "mass": 150, "price": 3510 },
+    "template": { "kind": "Armor", "name": "Earring of Strength", "class1": 0, "class2": 2, "mass": 150, "price": 3510 },
     "stats": { "pDef": 0, "mDef": 16, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 115,
-    "template": { "kind": "Armor", "name": "Earring of Wisdom", "class1": 1, "class2": 1, "mass": 150, "price": 3510 },
+    "template": { "kind": "Armor", "name": "Earring of Wisdom", "class1": 0, "class2": 2, "mass": 150, "price": 3510 },
     "stats": { "pDef": 0, "mDef": 16, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 116,
-    "template": { "kind": "Armor", "name": "Magic Ring", "class1": 1, "class2": 1, "mass": 150, "price": 33 },
+    "template": { "kind": "Armor", "name": "Magic Ring", "class1": 0, "class2": 2, "mass": 150, "price": 33 },
     "stats": { "pDef": 0, "mDef": 7, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 117,
-    "template": { "kind": "Armor", "name": "Ring of Mana", "class1": 1, "class2": 1, "mass": 150, "price": 404000 },
+    "template": { "kind": "Armor", "name": "Ring of Mana", "class1": 0, "class2": 2, "mass": 150, "price": 404000 },
     "stats": { "pDef": 0, "mDef": 34, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 118,
-    "template": { "kind": "Armor", "name": "Necklace of Magic", "class1": 1, "class2": 1, "mass": 150, "price": 66 },
+    "template": { "kind": "Armor", "name": "Necklace of Magic", "class1": 0, "class2": 2, "mass": 150, "price": 66 },
     "stats": { "pDef": 0, "mDef": 15, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 119,
-    "template": { "kind": "Armor", "name": "Necklace of Binding", "class1": 1, "class2": 1, "mass": 150, "price": 565000 },
+    "template": { "kind": "Armor", "name": "Necklace of Binding", "class1": 0, "class2": 2, "mass": 150, "price": 565000 },
     "stats": { "pDef": 0, "mDef": 64, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
@@ -2015,462 +2015,462 @@
     "etc": { "slot": 0 }
 },{
     "selfId": 845,
-    "template": { "kind": "Armor", "name": "Cat's Eye Earring", "class1": 1, "class2": 1, "mass": 150, "price": 8890 },
+    "template": { "kind": "Armor", "name": "Cat's Eye Earring", "class1": 0, "class2": 2, "mass": 150, "price": 8890 },
     "stats": { "pDef": 0, "mDef": 19, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 846,
-    "template": { "kind": "Armor", "name": "Coral Earring", "class1": 1, "class2": 1, "mass": 150, "price": 16000 },
+    "template": { "kind": "Armor", "name": "Coral Earring", "class1": 0, "class2": 2, "mass": 150, "price": 16000 },
     "stats": { "pDef": 0, "mDef": 21, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 847,
-    "template": { "kind": "Armor", "name": "Red Crescent Earring", "class1": 1, "class2": 1, "mass": 150, "price": 26900 },
+    "template": { "kind": "Armor", "name": "Red Crescent Earring", "class1": 0, "class2": 2, "mass": 150, "price": 26900 },
     "stats": { "pDef": 0, "mDef": 24, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 848,
-    "template": { "kind": "Armor", "name": "Enchanted Earring", "class1": 1, "class2": 1, "mass": 150, "price": 42600 },
+    "template": { "kind": "Armor", "name": "Enchanted Earring", "class1": 0, "class2": 2, "mass": 150, "price": 42600 },
     "stats": { "pDef": 0, "mDef": 27, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 849,
-    "template": { "kind": "Armor", "name": "Tiger's Eye Earring", "class1": 1, "class2": 1, "mass": 150, "price": 64300 },
+    "template": { "kind": "Armor", "name": "Tiger's Eye Earring", "class1": 0, "class2": 2, "mass": 150, "price": 64300 },
     "stats": { "pDef": 0, "mDef": 30, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 850,
-    "template": { "kind": "Armor", "name": "Elven Earring", "class1": 1, "class2": 1, "mass": 150, "price": 93400 },
+    "template": { "kind": "Armor", "name": "Elven Earring", "class1": 0, "class2": 2, "mass": 150, "price": 93400 },
     "stats": { "pDef": 0, "mDef": 34, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 851,
-    "template": { "kind": "Armor", "name": "Omen Beast's Eye Earring", "class1": 1, "class2": 1, "mass": 150, "price": 121000 },
+    "template": { "kind": "Armor", "name": "Omen Beast's Eye Earring", "class1": 0, "class2": 2, "mass": 150, "price": 121000 },
     "stats": { "pDef": 0, "mDef": 36, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 852,
-    "template": { "kind": "Armor", "name": "Moonstone Earring", "class1": 1, "class2": 1, "mass": 150, "price": 155000 },
+    "template": { "kind": "Armor", "name": "Moonstone Earring", "class1": 0, "class2": 2, "mass": 150, "price": 155000 },
     "stats": { "pDef": 0, "mDef": 39, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 853,
-    "template": { "kind": "Armor", "name": "Earring of Protection", "class1": 1, "class2": 1, "mass": 150, "price": 196000 },
+    "template": { "kind": "Armor", "name": "Earring of Protection", "class1": 0, "class2": 2, "mass": 150, "price": 196000 },
     "stats": { "pDef": 0, "mDef": 42, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 854,
-    "template": { "kind": "Armor", "name": "Earring of Binding", "class1": 1, "class2": 1, "mass": 150, "price": 295000 },
+    "template": { "kind": "Armor", "name": "Earring of Binding", "class1": 0, "class2": 2, "mass": 150, "price": 295000 },
     "stats": { "pDef": 0, "mDef": 45, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 855,
-    "template": { "kind": "Armor", "name": "Nassen's Earring", "class1": 1, "class2": 1, "mass": 150, "price": 424000 },
+    "template": { "kind": "Armor", "name": "Nassen's Earring", "class1": 0, "class2": 2, "mass": 150, "price": 424000 },
     "stats": { "pDef": 0, "mDef": 48, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 856,
-    "template": { "kind": "Armor", "name": "Adamantite Earring", "class1": 1, "class2": 1, "mass": 150, "price": 606000 },
+    "template": { "kind": "Armor", "name": "Adamantite Earring", "class1": 0, "class2": 2, "mass": 150, "price": 606000 },
     "stats": { "pDef": 0, "mDef": 51, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 857,
-    "template": { "kind": "Armor", "name": "Blessed Earring", "class1": 1, "class2": 1, "mass": 150, "price": 424000 },
+    "template": { "kind": "Armor", "name": "Blessed Earring", "class1": 0, "class2": 2, "mass": 150, "price": 424000 },
     "stats": { "pDef": 0, "mDef": 48, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 858,
-    "template": { "kind": "Armor", "name": "Tateossian Earring", "class1": 1, "class2": 1, "mass": 150, "price": 4440000 },
+    "template": { "kind": "Armor", "name": "Tateossian Earring", "class1": 0, "class2": 2, "mass": 150, "price": 4440000 },
     "stats": { "pDef": 0, "mDef": 63, "evasion": 0, "maxMp": 31 },
     "etc": { "slot": -99 }
 },{
     "selfId": 859,
-    "template": { "kind": "Armor", "name": "Earring of Mana", "class1": 1, "class2": 1, "mass": 150, "price": 606000 },
+    "template": { "kind": "Armor", "name": "Earring of Mana", "class1": 0, "class2": 2, "mass": 150, "price": 606000 },
     "stats": { "pDef": 0, "mDef": 51, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 860,
-    "template": { "kind": "Armor", "name": "Sage's Earring", "class1": 1, "class2": 1, "mass": 150, "price": 924000 },
+    "template": { "kind": "Armor", "name": "Sage's Earring", "class1": 0, "class2": 2, "mass": 150, "price": 924000 },
     "stats": { "pDef": 0, "mDef": 54, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 861,
-    "template": { "kind": "Armor", "name": "Paradia Earring", "class1": 1, "class2": 1, "mass": 150, "price": 924000 },
+    "template": { "kind": "Armor", "name": "Paradia Earring", "class1": 0, "class2": 2, "mass": 150, "price": 924000 },
     "stats": { "pDef": 0, "mDef": 54, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 862,
-    "template": { "kind": "Armor", "name": "Majestic Earring", "class1": 1, "class2": 1, "mass": 150, "price": 2590000 },
+    "template": { "kind": "Armor", "name": "Majestic Earring", "class1": 0, "class2": 2, "mass": 150, "price": 2590000 },
     "stats": { "pDef": 0, "mDef": 60, "evasion": 0, "maxMp": 25 },
     "etc": { "slot": -99 }
 },{
     "selfId": 863,
-    "template": { "kind": "Armor", "name": "Earring of Solar Eclipse", "class1": 1, "class2": 1, "mass": 150, "price": 606000 },
+    "template": { "kind": "Armor", "name": "Earring of Solar Eclipse", "class1": 0, "class2": 2, "mass": 150, "price": 606000 },
     "stats": { "pDef": 0, "mDef": 51, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 864,
-    "template": { "kind": "Armor", "name": "Earring of Black Ore", "class1": 1, "class2": 1, "mass": 150, "price": 924000 },
+    "template": { "kind": "Armor", "name": "Earring of Black Ore", "class1": 0, "class2": 2, "mass": 150, "price": 924000 },
     "stats": { "pDef": 0, "mDef": 54, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 865,
-    "template": { "kind": "Armor", "name": "Earring of Summoning", "class1": 1, "class2": 1, "mass": 150, "price": 606000 },
+    "template": { "kind": "Armor", "name": "Earring of Summoning", "class1": 0, "class2": 2, "mass": 150, "price": 606000 },
     "stats": { "pDef": 0, "mDef": 51, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 866,
-    "template": { "kind": "Armor", "name": "Otherworldly Earring", "class1": 1, "class2": 1, "mass": 150, "price": 924000 },
+    "template": { "kind": "Armor", "name": "Otherworldly Earring", "class1": 0, "class2": 2, "mass": 150, "price": 924000 },
     "stats": { "pDef": 0, "mDef": 54, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 867,
-    "template": { "kind": "Armor", "name": "Elemental Earring", "class1": 1, "class2": 1, "mass": 150, "price": 924000 },
+    "template": { "kind": "Armor", "name": "Elemental Earring", "class1": 0, "class2": 2, "mass": 150, "price": 924000 },
     "stats": { "pDef": 0, "mDef": 54, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 868,
-    "template": { "kind": "Armor", "name": "Earring of Phantom", "class1": 1, "class2": 1, "mass": 150, "price": 1950000 },
+    "template": { "kind": "Armor", "name": "Earring of Phantom", "class1": 0, "class2": 2, "mass": 150, "price": 1950000 },
     "stats": { "pDef": 0, "mDef": 60, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 869,
-    "template": { "kind": "Armor", "name": "Earring of Grace", "class1": 1, "class2": 1, "mass": 150, "price": 606000 },
+    "template": { "kind": "Armor", "name": "Earring of Grace", "class1": 0, "class2": 2, "mass": 150, "price": 606000 },
     "stats": { "pDef": 0, "mDef": 51, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 870,
-    "template": { "kind": "Armor", "name": "Earring of Holy Spirit", "class1": 1, "class2": 1, "mass": 150, "price": 924000 },
+    "template": { "kind": "Armor", "name": "Earring of Holy Spirit", "class1": 0, "class2": 2, "mass": 150, "price": 924000 },
     "stats": { "pDef": 0, "mDef": 54, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 871,
-    "template": { "kind": "Armor", "name": "Phoenix Earring", "class1": 1, "class2": 1, "mass": 150, "price": 1950000 },
+    "template": { "kind": "Armor", "name": "Phoenix Earring", "class1": 0, "class2": 2, "mass": 150, "price": 1950000 },
     "stats": { "pDef": 0, "mDef": 57, "evasion": 0, "maxMp": 20 },
     "etc": { "slot": -99 }
 },{
     "selfId": 872,
-    "template": { "kind": "Armor", "name": "Cerberus Earring", "class1": 1, "class2": 1, "mass": 150, "price": 1950000 },
+    "template": { "kind": "Armor", "name": "Cerberus Earring", "class1": 0, "class2": 2, "mass": 150, "price": 1950000 },
     "stats": { "pDef": 0, "mDef": 60, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 873,
-    "template": { "kind": "Armor", "name": "Earring of Aid", "class1": 1, "class2": 1, "mass": 150, "price": 606000 },
+    "template": { "kind": "Armor", "name": "Earring of Aid", "class1": 0, "class2": 2, "mass": 150, "price": 606000 },
     "stats": { "pDef": 0, "mDef": 51, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 874,
-    "template": { "kind": "Armor", "name": "Earring of Blessing", "class1": 1, "class2": 1, "mass": 150, "price": 606000 },
+    "template": { "kind": "Armor", "name": "Earring of Blessing", "class1": 0, "class2": 2, "mass": 150, "price": 606000 },
     "stats": { "pDef": 0, "mDef": 51, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -99 }
 },{
     "selfId": 875,
-    "template": { "kind": "Armor", "name": "Ring of Knowledge", "class1": 1, "class2": 1, "mass": 150, "price": 540 },
+    "template": { "kind": "Armor", "name": "Ring of Knowledge", "class1": 0, "class2": 2, "mass": 150, "price": 540 },
     "stats": { "pDef": 0, "mDef": 9, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 876,
-    "template": { "kind": "Armor", "name": "Ring of Anguish", "class1": 1, "class2": 1, "mass": 150, "price": 2340 },
+    "template": { "kind": "Armor", "name": "Ring of Anguish", "class1": 0, "class2": 2, "mass": 150, "price": 2340 },
     "stats": { "pDef": 0, "mDef": 11, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 877,
-    "template": { "kind": "Armor", "name": "Ring of Wisdom", "class1": 1, "class2": 1, "mass": 150, "price": 5920 },
+    "template": { "kind": "Armor", "name": "Ring of Wisdom", "class1": 0, "class2": 2, "mass": 150, "price": 5920 },
     "stats": { "pDef": 0, "mDef": 12, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 878,
-    "template": { "kind": "Armor", "name": "Blue Coral Ring", "class1": 1, "class2": 1, "mass": 150, "price": 10700 },
+    "template": { "kind": "Armor", "name": "Blue Coral Ring", "class1": 0, "class2": 2, "mass": 150, "price": 10700 },
     "stats": { "pDef": 0, "mDef": 14, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 879,
-    "template": { "kind": "Armor", "name": "Enchanted Ring", "class1": 1, "class2": 1, "mass": 150, "price": 28400 },
+    "template": { "kind": "Armor", "name": "Enchanted Ring", "class1": 0, "class2": 2, "mass": 150, "price": 28400 },
     "stats": { "pDef": 0, "mDef": 18, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 880,
-    "template": { "kind": "Armor", "name": "Black Pearl Ring", "class1": 1, "class2": 1, "mass": 150, "price": 42800 },
+    "template": { "kind": "Armor", "name": "Black Pearl Ring", "class1": 0, "class2": 2, "mass": 150, "price": 42800 },
     "stats": { "pDef": 0, "mDef": 20, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 881,
-    "template": { "kind": "Armor", "name": "Elven Ring", "class1": 1, "class2": 1, "mass": 150, "price": 62300 },
+    "template": { "kind": "Armor", "name": "Elven Ring", "class1": 0, "class2": 2, "mass": 150, "price": 62300 },
     "stats": { "pDef": 0, "mDef": 22, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 882,
-    "template": { "kind": "Armor", "name": "Mithril Ring", "class1": 1, "class2": 1, "mass": 150, "price": 80800 },
+    "template": { "kind": "Armor", "name": "Mithril Ring", "class1": 0, "class2": 2, "mass": 150, "price": 80800 },
     "stats": { "pDef": 0, "mDef": 24, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 883,
-    "template": { "kind": "Armor", "name": "Aquastone Ring", "class1": 1, "class2": 1, "mass": 150, "price": 103000 },
+    "template": { "kind": "Armor", "name": "Aquastone Ring", "class1": 0, "class2": 2, "mass": 150, "price": 103000 },
     "stats": { "pDef": 0, "mDef": 26, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 884,
-    "template": { "kind": "Armor", "name": "Ring of Protection", "class1": 1, "class2": 1, "mass": 150, "price": 130000 },
+    "template": { "kind": "Armor", "name": "Ring of Protection", "class1": 0, "class2": 2, "mass": 150, "price": 130000 },
     "stats": { "pDef": 0, "mDef": 28, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 885,
-    "template": { "kind": "Armor", "name": "Ring of Ages", "class1": 1, "class2": 1, "mass": 150, "price": 196000 },
+    "template": { "kind": "Armor", "name": "Ring of Ages", "class1": 0, "class2": 2, "mass": 150, "price": 196000 },
     "stats": { "pDef": 0, "mDef": 30, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 886,
-    "template": { "kind": "Armor", "name": "Ring of Binding", "class1": 1, "class2": 1, "mass": 150, "price": 282000 },
+    "template": { "kind": "Armor", "name": "Ring of Binding", "class1": 0, "class2": 2, "mass": 150, "price": 282000 },
     "stats": { "pDef": 0, "mDef": 32, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 887,
-    "template": { "kind": "Armor", "name": "Adamantite Ring", "class1": 1, "class2": 1, "mass": 150, "price": 404000 },
+    "template": { "kind": "Armor", "name": "Adamantite Ring", "class1": 0, "class2": 2, "mass": 150, "price": 404000 },
     "stats": { "pDef": 0, "mDef": 34, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 888,
-    "template": { "kind": "Armor", "name": "Blessed Ring", "class1": 1, "class2": 1, "mass": 150, "price": 282000 },
+    "template": { "kind": "Armor", "name": "Blessed Ring", "class1": 0, "class2": 2, "mass": 150, "price": 282000 },
     "stats": { "pDef": 0, "mDef": 32, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 889,
-    "template": { "kind": "Armor", "name": "Tateossian Ring", "class1": 1, "class2": 1, "mass": 150, "price": 2960000 },
+    "template": { "kind": "Armor", "name": "Tateossian Ring", "class1": 0, "class2": 2, "mass": 150, "price": 2960000 },
     "stats": { "pDef": 0, "mDef": 42, "evasion": 0, "maxMp": 21 },
     "etc": { "slot": -98 }
 },{
     "selfId": 890,
-    "template": { "kind": "Armor", "name": "Ring of Devotion", "class1": 1, "class2": 1, "mass": 150, "price": 18000 },
+    "template": { "kind": "Armor", "name": "Ring of Devotion", "class1": 0, "class2": 2, "mass": 150, "price": 18000 },
     "stats": { "pDef": 0, "mDef": 16, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 891,
-    "template": { "kind": "Armor", "name": "Sage's Ring", "class1": 1, "class2": 1, "mass": 150, "price": 616000 },
+    "template": { "kind": "Armor", "name": "Sage's Ring", "class1": 0, "class2": 2, "mass": 150, "price": 616000 },
     "stats": { "pDef": 0, "mDef": 36, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 892,
-    "template": { "kind": "Armor", "name": "Paradia Ring", "class1": 1, "class2": 1, "mass": 150, "price": 616000 },
+    "template": { "kind": "Armor", "name": "Paradia Ring", "class1": 0, "class2": 2, "mass": 150, "price": 616000 },
     "stats": { "pDef": 0, "mDef": 36, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 893,
-    "template": { "kind": "Armor", "name": "Majestic Ring", "class1": 1, "class2": 1, "mass": 150, "price": 1730000 },
+    "template": { "kind": "Armor", "name": "Majestic Ring", "class1": 0, "class2": 2, "mass": 150, "price": 1730000 },
     "stats": { "pDef": 0, "mDef": 40, "evasion": 0, "maxMp": 17 },
     "etc": { "slot": -98 }
 },{
     "selfId": 894,
-    "template": { "kind": "Armor", "name": "Ring of Solar Eclipse", "class1": 1, "class2": 1, "mass": 150, "price": 404000 },
+    "template": { "kind": "Armor", "name": "Ring of Solar Eclipse", "class1": 0, "class2": 2, "mass": 150, "price": 404000 },
     "stats": { "pDef": 0, "mDef": 34, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 895,
-    "template": { "kind": "Armor", "name": "Ring of Black Ore", "class1": 1, "class2": 1, "mass": 150, "price": 616000 },
+    "template": { "kind": "Armor", "name": "Ring of Black Ore", "class1": 0, "class2": 2, "mass": 150, "price": 616000 },
     "stats": { "pDef": 0, "mDef": 36, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 896,
-    "template": { "kind": "Armor", "name": "Ring of Summoning", "class1": 1, "class2": 1, "mass": 150, "price": 404000 },
+    "template": { "kind": "Armor", "name": "Ring of Summoning", "class1": 0, "class2": 2, "mass": 150, "price": 404000 },
     "stats": { "pDef": 0, "mDef": 34, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 897,
-    "template": { "kind": "Armor", "name": "Otherworldly Ring", "class1": 1, "class2": 1, "mass": 150, "price": 616000 },
+    "template": { "kind": "Armor", "name": "Otherworldly Ring", "class1": 0, "class2": 2, "mass": 150, "price": 616000 },
     "stats": { "pDef": 0, "mDef": 36, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 898,
-    "template": { "kind": "Armor", "name": "Elemental Ring", "class1": 1, "class2": 1, "mass": 150, "price": 616000 },
+    "template": { "kind": "Armor", "name": "Elemental Ring", "class1": 0, "class2": 2, "mass": 150, "price": 616000 },
     "stats": { "pDef": 0, "mDef": 36, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 899,
-    "template": { "kind": "Armor", "name": "Ring of Phantom", "class1": 1, "class2": 1, "mass": 150, "price": 1300000 },
+    "template": { "kind": "Armor", "name": "Ring of Phantom", "class1": 0, "class2": 2, "mass": 150, "price": 1300000 },
     "stats": { "pDef": 0, "mDef": 40, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 900,
-    "template": { "kind": "Armor", "name": "Ring of Grace", "class1": 1, "class2": 1, "mass": 150, "price": 404000 },
+    "template": { "kind": "Armor", "name": "Ring of Grace", "class1": 0, "class2": 2, "mass": 150, "price": 404000 },
     "stats": { "pDef": 0, "mDef": 34, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 901,
-    "template": { "kind": "Armor", "name": "Ring of Holy Spirit", "class1": 1, "class2": 1, "mass": 150, "price": 616000 },
+    "template": { "kind": "Armor", "name": "Ring of Holy Spirit", "class1": 0, "class2": 2, "mass": 150, "price": 616000 },
     "stats": { "pDef": 0, "mDef": 36, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 902,
-    "template": { "kind": "Armor", "name": "Phoenix Ring", "class1": 1, "class2": 1, "mass": 150, "price": 1300000 },
+    "template": { "kind": "Armor", "name": "Phoenix Ring", "class1": 0, "class2": 2, "mass": 150, "price": 1300000 },
     "stats": { "pDef": 0, "mDef": 38, "evasion": 0, "maxMp": 13 },
     "etc": { "slot": -98 }
 },{
     "selfId": 903,
-    "template": { "kind": "Armor", "name": "Cerberus Ring", "class1": 1, "class2": 1, "mass": 150, "price": 1300000 },
+    "template": { "kind": "Armor", "name": "Cerberus Ring", "class1": 0, "class2": 2, "mass": 150, "price": 1300000 },
     "stats": { "pDef": 0, "mDef": 40, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 904,
-    "template": { "kind": "Armor", "name": "Ring of Aid", "class1": 1, "class2": 1, "mass": 150, "price": 404000 },
+    "template": { "kind": "Armor", "name": "Ring of Aid", "class1": 0, "class2": 2, "mass": 150, "price": 404000 },
     "stats": { "pDef": 0, "mDef": 34, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 905,
-    "template": { "kind": "Armor", "name": "Ring of Blessing", "class1": 1, "class2": 1, "mass": 150, "price": 404000 },
+    "template": { "kind": "Armor", "name": "Ring of Blessing", "class1": 0, "class2": 2, "mass": 150, "price": 404000 },
     "stats": { "pDef": 0, "mDef": 34, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 906,
-    "template": { "kind": "Armor", "name": "Necklace of Knowledge", "class1": 1, "class2": 1, "mass": 150, "price": 1080 },
+    "template": { "kind": "Armor", "name": "Necklace of Knowledge", "class1": 0, "class2": 2, "mass": 150, "price": 1080 },
     "stats": { "pDef": 0, "mDef": 18, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 907,
-    "template": { "kind": "Armor", "name": "Necklace of Anguish", "class1": 1, "class2": 1, "mass": 150, "price": 4680 },
+    "template": { "kind": "Armor", "name": "Necklace of Anguish", "class1": 0, "class2": 2, "mass": 150, "price": 4680 },
     "stats": { "pDef": 0, "mDef": 21, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 908,
-    "template": { "kind": "Armor", "name": "Necklace of Wisdom", "class1": 1, "class2": 1, "mass": 150, "price": 11900 },
+    "template": { "kind": "Armor", "name": "Necklace of Wisdom", "class1": 0, "class2": 2, "mass": 150, "price": 11900 },
     "stats": { "pDef": 0, "mDef": 25, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 909,
-    "template": { "kind": "Armor", "name": "Blue Diamond Necklace", "class1": 1, "class2": 1, "mass": 150, "price": 21300 },
+    "template": { "kind": "Armor", "name": "Blue Diamond Necklace", "class1": 0, "class2": 2, "mass": 150, "price": 21300 },
     "stats": { "pDef": 0, "mDef": 28, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 910,
-    "template": { "kind": "Armor", "name": "Necklace of Devotion", "class1": 1, "class2": 1, "mass": 150, "price": 35900 },
+    "template": { "kind": "Armor", "name": "Necklace of Devotion", "class1": 0, "class2": 2, "mass": 150, "price": 35900 },
     "stats": { "pDef": 0, "mDef": 32, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 911,
-    "template": { "kind": "Armor", "name": "Enchanted Necklace", "class1": 1, "class2": 1, "mass": 150, "price": 56800 },
+    "template": { "kind": "Armor", "name": "Enchanted Necklace", "class1": 0, "class2": 2, "mass": 150, "price": 56800 },
     "stats": { "pDef": 0, "mDef": 36, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 912,
-    "template": { "kind": "Armor", "name": "Near Forest Necklace", "class1": 1, "class2": 1, "mass": 150, "price": 85700 },
+    "template": { "kind": "Armor", "name": "Near Forest Necklace", "class1": 0, "class2": 2, "mass": 150, "price": 85700 },
     "stats": { "pDef": 0, "mDef": 40, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 913,
-    "template": { "kind": "Armor", "name": "Elven Necklace", "class1": 1, "class2": 1, "mass": 150, "price": 125000 },
+    "template": { "kind": "Armor", "name": "Elven Necklace", "class1": 0, "class2": 2, "mass": 150, "price": 125000 },
     "stats": { "pDef": 0, "mDef": 45, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 914,
-    "template": { "kind": "Armor", "name": "Necklace of Darkness", "class1": 1, "class2": 1, "mass": 150, "price": 162000 },
+    "template": { "kind": "Armor", "name": "Necklace of Darkness", "class1": 0, "class2": 2, "mass": 150, "price": 162000 },
     "stats": { "pDef": 0, "mDef": 48, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 915,
-    "template": { "kind": "Armor", "name": "Aquastone Necklace", "class1": 1, "class2": 1, "mass": 150, "price": 207000 },
+    "template": { "kind": "Armor", "name": "Aquastone Necklace", "class1": 0, "class2": 2, "mass": 150, "price": 207000 },
     "stats": { "pDef": 0, "mDef": 52, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 916,
-    "template": { "kind": "Armor", "name": "Necklace of Protection", "class1": 1, "class2": 1, "mass": 150, "price": 261000 },
+    "template": { "kind": "Armor", "name": "Necklace of Protection", "class1": 0, "class2": 2, "mass": 150, "price": 261000 },
     "stats": { "pDef": 0, "mDef": 56, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 917,
-    "template": { "kind": "Armor", "name": "Necklace of Mermaid", "class1": 1, "class2": 1, "mass": 150, "price": 393000 },
+    "template": { "kind": "Armor", "name": "Necklace of Mermaid", "class1": 0, "class2": 2, "mass": 150, "price": 393000 },
     "stats": { "pDef": 0, "mDef": 60, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 918,
-    "template": { "kind": "Armor", "name": "Adamantite Necklace", "class1": 1, "class2": 1, "mass": 150, "price": 808000 },
+    "template": { "kind": "Armor", "name": "Adamantite Necklace", "class1": 0, "class2": 2, "mass": 150, "price": 808000 },
     "stats": { "pDef": 0, "mDef": 68, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 919,
-    "template": { "kind": "Armor", "name": "Blessed Necklace", "class1": 1, "class2": 1, "mass": 150, "price": 565000 },
+    "template": { "kind": "Armor", "name": "Blessed Necklace", "class1": 0, "class2": 2, "mass": 150, "price": 565000 },
     "stats": { "pDef": 0, "mDef": 64, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 920,
-    "template": { "kind": "Armor", "name": "Tateossian Necklace", "class1": 1, "class2": 1, "mass": 150, "price": 5920000 },
+    "template": { "kind": "Armor", "name": "Tateossian Necklace", "class1": 0, "class2": 2, "mass": 150, "price": 5920000 },
     "stats": { "pDef": 0, "mDef": 85, "evasion": 0, "maxMp": 42 },
     "etc": { "slot": 3 }
 },{
     "selfId": 921,
-    "template": { "kind": "Armor", "name": "Necklace of Mana", "class1": 1, "class2": 1, "mass": 150, "price": 808000 },
+    "template": { "kind": "Armor", "name": "Necklace of Mana", "class1": 0, "class2": 2, "mass": 150, "price": 808000 },
     "stats": { "pDef": 0, "mDef": 68, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 922,
-    "template": { "kind": "Armor", "name": "Sage's Necklace", "class1": 1, "class2": 1, "mass": 150, "price": 1230000 },
+    "template": { "kind": "Armor", "name": "Sage's Necklace", "class1": 0, "class2": 2, "mass": 150, "price": 1230000 },
     "stats": { "pDef": 0, "mDef": 72, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 923,
-    "template": { "kind": "Armor", "name": "Paradia Necklace", "class1": 1, "class2": 1, "mass": 150, "price": 1230000 },
+    "template": { "kind": "Armor", "name": "Paradia Necklace", "class1": 0, "class2": 2, "mass": 150, "price": 1230000 },
     "stats": { "pDef": 0, "mDef": 72, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 924,
-    "template": { "kind": "Armor", "name": "Majestic Necklace", "class1": 1, "class2": 1, "mass": 150, "price": 3450000 },
+    "template": { "kind": "Armor", "name": "Majestic Necklace", "class1": 0, "class2": 2, "mass": 150, "price": 3450000 },
     "stats": { "pDef": 0, "mDef": 80, "evasion": 0, "maxMp": 33 },
     "etc": { "slot": 3 }
 },{
     "selfId": 925,
-    "template": { "kind": "Armor", "name": "Necklace of Solar Eclipse", "class1": 1, "class2": 1, "mass": 150, "price": 808000 },
+    "template": { "kind": "Armor", "name": "Necklace of Solar Eclipse", "class1": 0, "class2": 2, "mass": 150, "price": 808000 },
     "stats": { "pDef": 0, "mDef": 68, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 926,
-    "template": { "kind": "Armor", "name": "Necklace of Black Ore", "class1": 1, "class2": 1, "mass": 150, "price": 1230000 },
+    "template": { "kind": "Armor", "name": "Necklace of Black Ore", "class1": 0, "class2": 2, "mass": 150, "price": 1230000 },
     "stats": { "pDef": 0, "mDef": 72, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 927,
-    "template": { "kind": "Armor", "name": "Necklace of Summoning", "class1": 1, "class2": 1, "mass": 150, "price": 808000 },
+    "template": { "kind": "Armor", "name": "Necklace of Summoning", "class1": 0, "class2": 2, "mass": 150, "price": 808000 },
     "stats": { "pDef": 0, "mDef": 68, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 928,
-    "template": { "kind": "Armor", "name": "Otherworldly Necklace", "class1": 1, "class2": 1, "mass": 150, "price": 1230000 },
+    "template": { "kind": "Armor", "name": "Otherworldly Necklace", "class1": 0, "class2": 2, "mass": 150, "price": 1230000 },
     "stats": { "pDef": 0, "mDef": 72, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 929,
-    "template": { "kind": "Armor", "name": "Elemental Necklace", "class1": 1, "class2": 1, "mass": 150, "price": 1230000 },
+    "template": { "kind": "Armor", "name": "Elemental Necklace", "class1": 0, "class2": 2, "mass": 150, "price": 1230000 },
     "stats": { "pDef": 0, "mDef": 72, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 930,
-    "template": { "kind": "Armor", "name": "Necklace of Phantom", "class1": 1, "class2": 1, "mass": 150, "price": 2600000 },
+    "template": { "kind": "Armor", "name": "Necklace of Phantom", "class1": 0, "class2": 2, "mass": 150, "price": 2600000 },
     "stats": { "pDef": 0, "mDef": 80, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 931,
-    "template": { "kind": "Armor", "name": "Necklace of Grace", "class1": 1, "class2": 1, "mass": 150, "price": 808000 },
+    "template": { "kind": "Armor", "name": "Necklace of Grace", "class1": 0, "class2": 2, "mass": 150, "price": 808000 },
     "stats": { "pDef": 0, "mDef": 68, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 932,
-    "template": { "kind": "Armor", "name": "Necklace of Holy Spirit", "class1": 1, "class2": 1, "mass": 150, "price": 1230000 },
+    "template": { "kind": "Armor", "name": "Necklace of Holy Spirit", "class1": 0, "class2": 2, "mass": 150, "price": 1230000 },
     "stats": { "pDef": 0, "mDef": 72, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 933,
-    "template": { "kind": "Armor", "name": "Phoenix Necklace", "class1": 1, "class2": 1, "mass": 150, "price": 2600000 },
+    "template": { "kind": "Armor", "name": "Phoenix Necklace", "class1": 0, "class2": 2, "mass": 150, "price": 2600000 },
     "stats": { "pDef": 0, "mDef": 76, "evasion": 0, "maxMp": 26 },
     "etc": { "slot": 3 }
 },{
     "selfId": 934,
-    "template": { "kind": "Armor", "name": "Cerberus Necklace", "class1": 1, "class2": 1, "mass": 150, "price": 2600000 },
+    "template": { "kind": "Armor", "name": "Cerberus Necklace", "class1": 0, "class2": 2, "mass": 150, "price": 2600000 },
     "stats": { "pDef": 0, "mDef": 80, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 935,
-    "template": { "kind": "Armor", "name": "Necklace of Aid", "class1": 1, "class2": 1, "mass": 150, "price": 808000 },
+    "template": { "kind": "Armor", "name": "Necklace of Aid", "class1": 0, "class2": 2, "mass": 150, "price": 808000 },
     "stats": { "pDef": 0, "mDef": 68, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 936,
-    "template": { "kind": "Armor", "name": "Necklace of Blessing", "class1": 1, "class2": 1, "mass": 150, "price": 808000 },
+    "template": { "kind": "Armor", "name": "Necklace of Blessing", "class1": 0, "class2": 2, "mass": 150, "price": 808000 },
     "stats": { "pDef": 0, "mDef": 68, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
@@ -2765,22 +2765,22 @@
     "etc": { "slot": 8 }
 },{
     "selfId": 1506,
-    "template": { "kind": "Armor", "name": "Necklace of Courage", "class1": 1, "class2": 1, "mass": 150, "price": 66 },
+    "template": { "kind": "Armor", "name": "Necklace of Courage", "class1": 0, "class2": 2, "mass": 150, "price": 66 },
     "stats": { "pDef": 0, "mDef": 15, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 1507,
-    "template": { "kind": "Armor", "name": "Necklace of Valor", "class1": 1, "class2": 1, "mass": 150, "price": 4680 },
+    "template": { "kind": "Armor", "name": "Necklace of Valor", "class1": 0, "class2": 2, "mass": 150, "price": 4680 },
     "stats": { "pDef": 0, "mDef": 21, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": 3 }
 },{
     "selfId": 1508,
-    "template": { "kind": "Armor", "name": "Ring of Raccoon", "class1": 1, "class2": 1, "mass": 150, "price": 2340 },
+    "template": { "kind": "Armor", "name": "Ring of Raccoon", "class1": 0, "class2": 2, "mass": 150, "price": 2340 },
     "stats": { "pDef": 0, "mDef": 11, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
     "selfId": 1509,
-    "template": { "kind": "Armor", "name": "Ring of Firefly", "class1": 1, "class2": 1, "mass": 150, "price": 2340 },
+    "template": { "kind": "Armor", "name": "Ring of Firefly", "class1": 0, "class2": 2, "mass": 150, "price": 2340 },
     "stats": { "pDef": 0, "mDef": 11, "evasion": 0, "maxMp": 0 },
     "etc": { "slot": -98 }
 },{
