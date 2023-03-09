@@ -41,13 +41,13 @@ function userInfo(actor) {
         }
 
     packet
-        .writeD(actor.fetchPAtk())
-        .writeD(actor.fetchAtkSpd())
+        .writeD(actor.fetchCollectivePAtk())
+        .writeD(actor.fetchCollectiveAtkSpd())
         .writeD(actor.fetchPDef())
         .writeD(actor.fetchEvasion())
         .writeD(actor.fetchAccur())
         .writeD(actor.fetchCrit())
-        .writeD(actor.fetchMAtk())
+        .writeD(actor.fetchCollectiveMAtk())
         .writeD(actor.fetchCastSpd())
         .writeD(actor.fetchSpeed())
         .writeD(actor.fetchMDef())
@@ -62,7 +62,7 @@ function userInfo(actor) {
         .writeD(0x00)  // Flying Run Speed
         .writeD(0x00)  // Flying Walk Speed
         .writeF(1.0)   // Movement Multiplier
-        .writeF(actor.fetchAtkSpd() / 277.77777777777777)
+        .writeF(actor.fetchCollectiveAtkSpd() / 277.77777777777777)
         .writeF(actor.fetchRadius())
         .writeF(actor.fetchSize())
         .writeD(actor.fetchHair())

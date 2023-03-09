@@ -59,6 +59,18 @@ class CreatureModel {
         this.setHead(coords.head);
     }
 
+    setCollectivePAtk(data) {
+        this.model.collectivePAtk = data;
+    }
+
+    setCollectiveMAtk(data) {
+        this.model.collectiveMAtk = data;
+    }
+
+    setCollectiveAtkSpd(data) {
+        this.model.collectiveAtkSpd = data;
+    }
+
     // Get
 
     fetchId() {
@@ -121,6 +133,10 @@ class CreatureModel {
         return this.model.pAtk;
     }
 
+    fetchCollectivePAtk() {
+        return this.model.collectivePAtk ?? this.fetchPAtk();
+    }
+
     fetchPDef() {
         return this.model.pDef;
     }
@@ -129,12 +145,20 @@ class CreatureModel {
         return this.model.mAtk;
     }
 
+    fetchCollectiveMAtk() {
+        return this.model.collectiveMAtk ?? this.fetchMAtk();
+    }
+
     fetchMDef() {
         return this.model.mDef;
     }
 
     fetchAtkSpd() {
         return this.model.atkSpd;
+    }
+
+    fetchCollectiveAtkSpd() {
+        return this.model.collectiveAtkSpd ?? this.fetchAtkSpd();
     }
 
     fetchCastSpd() {

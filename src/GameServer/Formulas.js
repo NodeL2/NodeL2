@@ -81,6 +81,11 @@ const Formulas = {
         return Number((levelMod * intMod * wpnMAtk).toFixed(2));
     },
 
+    calcAtkSpd(dex, wpnAtkSpd) {
+        let dexMod = this.calcBaseMod.DEX(dex);
+        return Number((dexMod * wpnAtkSpd).toFixed(2));
+    },
+
     calcMeleeHit(pAtk, pDef) {
         return Number(((77 * pAtk) / pDef).toFixed(2));
     },

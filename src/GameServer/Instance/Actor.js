@@ -26,9 +26,7 @@ class Actor extends ActorModel {
 
     enterWorld(session) {
         // Calculate accumulated
-        this.setCollectiveTotalHp();
-        this.setCollectiveTotalMp();
-        this.setCollectiveTotalLoad();
+        this.setCollectiveAll();
 
         // Start vitals replenish
         this.automation.replenishVitals(session, this);
@@ -263,12 +261,22 @@ class Actor extends ActorModel {
         );
     }
 
+    statusUpdateStats(session, creature) {
+        session.dataSend(
+            ServerResponse.statusUpdate(creature.fetchId(), [
+                { id: 0x11, value: creature.fetchCollectivePAtk  () },
+                { id: 0x17, value: creature.fetchCollectiveMAtk  () },
+                { id: 0x12, value: creature.fetchCollectiveAtkSpd() },
+            ])
+        );
+    }
+
     meleeHit(session, npc) {
         if (npc.isDead()) {
             return;
         }
 
-        const speed = 500000 / this.fetchAtkSpd();
+        const speed = 500000 / this.fetchCollectiveAtkSpd();
         session.dataSend(ServerResponse.attack(this, npc.fetchId()));
         this.state.setCombats(true);
 
@@ -326,17 +334,13 @@ class Actor extends ActorModel {
         session.dataSend(ServerResponse.attack(npc, this.fetchId()));
     }
 
-    hitPAtk(actor, npc) {
-        const weapon   = actor.backpack.fetchEquippedWeapon();
-        const wPAtk    = weapon?.pAtk ?? actor.fetchPAtk();
-        const wPAtkRnd = utils.randomNumber(weapon?.pAtkRnd ?? 0);
-        const pAtk     = Formulas.calcPAtk(actor.fetchLevel(), actor.fetchStr(), wPAtk + wPAtkRnd);
+    hitPAtk(actor, npc) { // TODO: Calculate weapon random hit
+        const pAtk = actor.fetchCollectivePAtk();
         return Formulas.calcMeleeHit(pAtk, npc.fetchPDef());
     }
 
     hitMAtk(actor, npc) {
-        const wpnMAtk = actor.backpack.fetchEquippedWeapon()?.mAtk ?? actor.fetchMAtk();
-        const mAtk = Formulas.calcMAtk(actor.fetchLevel(), actor.fetchInt(), wpnMAtk);
+        const mAtk = actor.fetchCollectiveMAtk();
         return Formulas.calcRemoteHit(mAtk, 12, npc.fetchMDef());
     }
 
@@ -367,36 +371,16 @@ class Actor extends ActorModel {
 
         // Update stats
         this.setLevel(level);
-        this.setCollectiveTotalHp();
-        this.setCollectiveTotalMp();
+        this.setCollectiveAll();
         this.fillupVitals();
-        this.statusUpdateVitals(session, this);
 
         // Level up effect
+        session.dataSend(ServerResponse.userInfo());
         session.dataSend(ServerResponse.socialAction(this.fetchId(), 15));
-        ConsoleText.transmit(session, ConsoleText.lcaption.evelUp);
+        ConsoleText.transmit(session, ConsoleText.caption.levelUp);
 
         // Update database with new hp, mp
         Database.updateCharacterVitals(this.fetchId(), this.fetchHp(), this.fetchMaxHp(), this.fetchMp(), this.fetchMaxMp());
-    }
-
-    setCollectiveTotalLoad() {
-        const base = Formulas.calcMaxLoad(this.fetchCon());
-        this.setMaxLoad(base);
-        this.setLoad(this.backpack.fetchTotalLoad());
-    }
-
-    setCollectiveTotalHp() {
-        const base = Formulas.calcHp(this.fetchLevel(), this.fetchClassId(), this.fetchCon());
-        this.setMaxHp(base);
-        this.setHp(Math.min(this.fetchHp(), this.fetchMaxHp()));
-    }
-
-    setCollectiveTotalMp() { // TODO: Fix hardcoded class transfer parameter
-        const base  = Formulas.calcMp(this.fetchLevel(), this.isMystic(), 0, this.fetchMen());
-        const bonus = this.backpack.fetchTotalBonusMp();
-        this.setMaxMp(base + bonus);
-        this.setMp(Math.min(this.fetchMp(), this.fetchMaxMp()));
     }
 
     teleportTo(session, coords) {
@@ -406,7 +390,7 @@ class Actor extends ActorModel {
 
         this.automation.abortAll(this);
         session.dataSend(ServerResponse.teleportToLocation(this.fetchId(), coords));
-        
+
         // Turns out to be a viable solution
         setTimeout(() => {
             this.updatePosition(session, coords);
@@ -423,6 +407,49 @@ class Actor extends ActorModel {
         session.dataSend(
             ServerResponse.npcHtml(this.fetchId(), utils.parseRawFile('data/Html/Default/admin.html'))
         );
+    }
+
+    setCollectiveTotalHp() {
+        const base = Formulas.calcHp(this.fetchLevel(), this.fetchClassId(), this.fetchCon());
+        this.setMaxHp(base);
+        this.setHp(Math.min(this.fetchHp(), this.fetchMaxHp()));
+    }
+
+    setCollectiveTotalMp() { // TODO: Fix hardcoded class transfer parameter
+        const base  = Formulas.calcMp(this.fetchLevel(), this.isMystic(), 0, this.fetchMen());
+        const bonus = this.backpack.fetchTotalBonusMp();
+        this.setMaxMp(base + bonus);
+        this.setMp(Math.min(this.fetchMp(), this.fetchMaxMp()));
+    }
+
+    setCollectiveTotalLoad() {
+        const base = Formulas.calcMaxLoad(this.fetchCon());
+        this.setMaxLoad(base);
+        this.setLoad(this.backpack.fetchTotalLoad());
+    }
+
+    setCollectiveStats() {
+        const weapon  = this.backpack.fetchEquippedWeapon();
+        const level   = this.fetchLevel();
+
+        const wPAtk   = weapon?.pAtk ?? this.fetchPAtk();
+        const pAtk    = Formulas.calcPAtk(level, this.fetchStr(), wPAtk);
+        this.setCollectivePAtk(pAtk);
+
+        const wMAtk   = weapon?.mAtk ?? this.fetchMAtk();
+        const mAtk    = Formulas.calcMAtk(level, this.fetchInt(), wMAtk);
+        this.setCollectiveMAtk(mAtk);
+
+        const wAtkSpd = weapon?.atkSpd ?? this.fetchAtkSpd();
+        const atkSpd  = Formulas.calcAtkSpd(this.fetchDex(), wAtkSpd);
+        this.setCollectiveAtkSpd(atkSpd);
+    }
+
+    setCollectiveAll() {
+        this.setCollectiveTotalHp();
+        this.setCollectiveTotalMp();
+        this.setCollectiveTotalLoad();
+        this.setCollectiveStats();
     }
 }
 

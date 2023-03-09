@@ -40,8 +40,8 @@ class Backpack extends BackpackModel {
                 ConsoleText.transmit(session, ConsoleText.caption.equipped, [{ kind: ConsoleText.kind.item, value: item.selfId }]);
                 item.equipped = true;
 
-                // Recalculate bonus
-                session.actor.setCollectiveTotalMp();
+                // Recalculate
+                session.actor.setCollectiveAll();
             }
             else
             if (item.kind === 'Weapon') {
@@ -58,6 +58,9 @@ class Backpack extends BackpackModel {
                 this.equipPaperdoll(item.slot, item.id, item.selfId);
                 ConsoleText.transmit(session, ConsoleText.caption.equipped, [{ kind: ConsoleText.kind.item, value: item.selfId }]);
                 item.equipped = true;
+
+                // Recalculate
+                session.actor.setCollectiveAll();
             }
             else {
                 if (item.selfId === 1665) { // TODO: This needs to be out of here...
@@ -97,8 +100,8 @@ class Backpack extends BackpackModel {
             this.items = this.items.filter(ob => ob.id !== item?.id);
             this.items.unshift(item);
 
-            // Recalculate bonus
-            session.actor.setCollectiveTotalMp();
+            // Recalculate
+            session.actor.setCollectiveAll();
         });
     }
 
