@@ -15,7 +15,7 @@ function skillUse(session, buffer) {
     });
 }
 
-function consume(session, data) {
+function consume(session, data) { // TODO: Broken ctrl
     const skill = session.actor.skillset.fetchSkill(data.selfId);
     skill.fetchPassive() ? {} : session.actor.requestedSkillAction(session, skill);
 }

@@ -12,6 +12,10 @@ class Skillset {
         return this.skills;
     }
 
+    fetchSkill(id) {
+        return this.skills.find((ob) => ob.fetchSelfId() === id);
+    }
+
     populate() {
         const findSkill = (id, success) => {
             const item = DataCache.skills.find((ob) => ob.selfId === id);

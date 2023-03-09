@@ -176,7 +176,7 @@ class Actor extends ActorModel {
             this.automation.abortScheduledPickup  (this);
 
             // Towards attack
-            this.automation.scheduleAtkRemote(session, this, npc, data.distance, () => {
+            this.automation.scheduleAtkRemote(session, this, npc, data.fetchDistance(), () => {
                 if (npc.fetchAttackable() || data.ctrl) { // TODO: Else, find which `response` fails the attack
                     this.remoteHit(session, npc, data);
                 }
@@ -297,17 +297,17 @@ class Actor extends ActorModel {
             return;
         }
 
-        if (this.fetchMp() < data.mp) {
+        if (this.fetchMp() < data.fetchConsumedMp()) {
             ConsoleText.transmit(session, ConsoleText.caption.depletedMp);
             return;
         }
 
         session.dataSend(ServerResponse.skillStarted(this, npc.fetchId(), data));
-        session.dataSend(ServerResponse.skillDurationBar(data.hitTime));
+        session.dataSend(ServerResponse.skillDurationBar(data.fetchHitTime()));
         this.state.setCasts(true);
 
         setTimeout(() => {
-            this.setMp(this.fetchMp() - data.mp);
+            this.setMp(this.fetchMp() - data.fetchConsumedMp());
             this.statusUpdateVitals(session, this);
             this.hitPoint(session, npc, false);
             this.state.setCasts(false);
@@ -315,11 +315,11 @@ class Actor extends ActorModel {
             // Start replenish
             this.automation.replenishVitals(session, this);
 
-        }, data.hitTime);
+        }, data.fetchHitTime());
 
         setTimeout(() => {
             // TODO: Prohibit same skill use before reuse time
-        }, data.resuseTime);
+        }, data.fetchReuseTime());
     }
 
     hitPoint(session, npc, melee) {
@@ -378,7 +378,7 @@ class Actor extends ActorModel {
         this.fillupVitals();
 
         // Level up effect
-        session.dataSend(ServerResponse.userInfo());
+        session.dataSend(ServerResponse.userInfo(this));
         session.dataSend(ServerResponse.socialAction(this.fetchId(), 15));
         ConsoleText.transmit(session, ConsoleText.caption.levelUp);
 

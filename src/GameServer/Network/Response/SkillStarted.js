@@ -6,10 +6,10 @@ function skillStarted(actor, npcId, skill) {
     packet
         .writeD(actor.fetchId())
         .writeD(npcId)
-        .writeD(skill.selfId)
+        .writeD(skill.fetchSelfId())
         .writeD(0x01)
-        .writeD(skill.hitTime)
-        .writeD(skill.reuse)
+        .writeD(skill.fetchHitTime())
+        .writeD(skill.fetchReuseTime())
         .writeD(actor.fetchLocX())
         .writeD(actor.fetchLocY())
         .writeD(actor.fetchLocZ())

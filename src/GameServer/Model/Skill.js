@@ -1,8 +1,6 @@
 class SkillModel {
     constructor(data) {
         this.model = data;
-
-        console.info(this.model);
     }
 
     // Get
@@ -11,8 +9,16 @@ class SkillModel {
         return this.model.selfId;
     }
 
+    fetchLevel() {
+        return 1;
+    }
+
     fetchPassive() {
         return this.model.passive;
+    }
+
+    fetchDistance() {
+        return this.model.distance;
     }
 
     fetchConsumedHp() {
