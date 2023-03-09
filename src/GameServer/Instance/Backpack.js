@@ -72,7 +72,7 @@ class Backpack extends BackpackModel {
                 else
                 if (item.selfId === 1061) {
                     session.dataSend(
-                        ServerResponse.skillStarted(session.actor, session.actor.fetchId(), { selfId: 2032, hitTime: 0, reuseTime: 0 })
+                        ServerResponse.skillStarted(session.actor, session.actor.fetchId(), { selfId: 2032, hitTime: 0, reuse: 0 })
                     );
                     return;
                 }

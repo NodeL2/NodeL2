@@ -33,7 +33,7 @@
             "time": {
                 "type": "object",
                 "properties": {
-                    "hit": {
+                    "hitTime": {
                         "type": "integer"
                     },
                     "reuse": {
@@ -44,7 +44,7 @@
                     }
                 },
                 "required": [
-                    "hit",
+                    "hitTime",
                     "reuse",
                     "buff"
                 ]
