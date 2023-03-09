@@ -1,5 +1,4 @@
 const ServerResponse = invoke('GameServer/Network/Response');
-const DataCache      = invoke('GameServer/DataCache');
 const ReceivePacket  = invoke('Packet/Receive');
 const Database       = invoke('Database');
 
@@ -24,7 +23,7 @@ function consume(session, data) {
     const characterId = session.actor.fetchId();
 
     if (data.kind === 2) {
-        if ((DataCache.skills.find(ob => ob.selfId === data.id))?.template?.passive) {
+        if (session.actor.skillset.fetchSkill(data.id)?.fetchPassive()) {
             return;
         }
     }

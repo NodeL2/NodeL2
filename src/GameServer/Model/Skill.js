@@ -3,6 +3,12 @@ class SkillModel {
         this.model = data;
     }
 
+    // Set
+
+    setCtrl(data) {
+        this.model.ctrl = data;
+    }
+
     // Get
 
     fetchSelfId() {
@@ -39,6 +45,10 @@ class SkillModel {
 
     fetchPower() {
         return this.model.power;
+    }
+
+    fetchCtrl() {
+        return this.model.ctrl;
     }
 }
 

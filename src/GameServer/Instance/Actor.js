@@ -177,7 +177,7 @@ class Actor extends ActorModel {
 
             // Towards attack
             this.automation.scheduleAtkRemote(session, this, npc, data.fetchDistance(), () => {
-                if (npc.fetchAttackable() || data.ctrl) { // TODO: Else, find which `response` fails the attack
+                if (npc.fetchAttackable() || data.fetchCtrl()) { // TODO: Else, find which `response` fails the attack
                     this.remoteHit(session, npc, data);
                 }
             });
