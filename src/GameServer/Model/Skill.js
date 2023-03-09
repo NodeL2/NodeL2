@@ -40,7 +40,7 @@ class SkillModel {
     }
 
     fetchReuseTime() {
-        return this.model.reuseTime;
+        return this.model.reuse;
     }
 
     fetchPower() {
