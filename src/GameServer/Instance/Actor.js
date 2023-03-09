@@ -327,8 +327,10 @@ class Actor extends ActorModel {
     }
 
     hitPAtk(actor, npc) {
-        const wpnPAtk = actor.backpack.fetchEquippedWeapon()?.pAtk ?? actor.fetchPAtk();
-        const pAtk = Formulas.calcPAtk(actor.fetchLevel(), actor.fetchStr(), wpnPAtk);
+        const weapon   = actor.backpack.fetchEquippedWeapon();
+        const wPAtk    = weapon?.pAtk ?? actor.fetchPAtk();
+        const wPAtkRnd = utils.randomNumber(weapon?.pAtkRnd ?? 0);
+        const pAtk     = Formulas.calcPAtk(actor.fetchLevel(), actor.fetchStr(), wPAtk + wPAtkRnd);
         return Formulas.calcMeleeHit(pAtk, npc.fetchPDef());
     }
 
