@@ -42,13 +42,6 @@ const Shared = {
         session.dataSend(
             ServerResponse.charSelectInfo(characters)
         );
-    },
-
-    fetchSkillDetailsFromId(selfId) {
-        return new Promise((success, fail) => {
-            let skill = DataCache.skills.find(ob => ob.selfId === selfId);
-            return (skill) ? success(skill) : fail();
-        });
     }
 };
 

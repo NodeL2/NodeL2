@@ -8,9 +8,9 @@ function skillsList(skills) {
 
     for (const skill of skills) {
         packet
-            .writeD(skill.passive)
-            .writeD(skill.level)
-            .writeD(skill.selfId);
+            .writeD(skill.fetchPassive())
+            .writeD(skill.fetchLevel())
+            .writeD(skill.fetchSelfId());
     }
 
     return packet.fetchBuffer();

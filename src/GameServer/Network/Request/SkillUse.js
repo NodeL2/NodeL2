@@ -1,4 +1,3 @@
-const Shared        = invoke('GameServer/Network/Shared');
 const ReceivePacket = invoke('Packet/Receive');
 
 function skillUse(session, buffer) {
@@ -17,15 +16,8 @@ function skillUse(session, buffer) {
 }
 
 function consume(session, data) {
-    Shared.fetchSkillDetailsFromId(data.selfId).then((details) => {
-        if (details.template.passive) {
-            return;
-        }
-
-        session.actor.requestedSkillAction(session, utils.crushOb({
-            ...data, ...details
-        }));
-    });
+    const skill = session.actor.skillset.fetchSkill(data.selfId);
+    skill.fetchPassive() ? {} : session.actor.requestedSkillAction(session, skill);
 }
 
 module.exports = skillUse;

@@ -1,6 +1,7 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 const ActorModel     = invoke('GameServer/Model/Actor');
 const Automation     = invoke('GameServer/Instance/Automation');
+const Skillset       = invoke('GameServer/Instance/Skillset');
 const Backpack       = invoke('GameServer/Instance/Backpack');
 const DataCache      = invoke('GameServer/DataCache');
 const World          = invoke('GameServer/World');
@@ -15,6 +16,7 @@ class Actor extends ActorModel {
 
         // Local
         this.automation = new Automation();
+        this.skillset   = new Skillset(this);
         this.backpack   = new Backpack(data);
         this.destId     = undefined;
 
@@ -27,6 +29,7 @@ class Actor extends ActorModel {
     enterWorld(session) {
         // Calculate accumulated
         this.setCollectiveAll();
+        this.setSkillset();
 
         // Start vitals replenish
         this.automation.replenishVitals(session, this);
@@ -450,6 +453,10 @@ class Actor extends ActorModel {
         this.setCollectiveTotalMp();
         this.setCollectiveTotalLoad();
         this.setCollectiveStats();
+    }
+
+    setSkillset() {
+        this.skillset.populate();
     }
 }
 

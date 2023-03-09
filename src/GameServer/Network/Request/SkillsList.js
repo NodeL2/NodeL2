@@ -1,12 +1,9 @@
 const ServerResponse = invoke('GameServer/Network/Response');
-const Database       = invoke('Database');
 
 function skillsList(session, buffer) {
-    Database.fetchSkills(session.actor.fetchId()).then((skills) => {
-        session.dataSend(
-            ServerResponse.skillsList(skills)
-        );
-    });
+    session.dataSend(
+        ServerResponse.skillsList(session.actor.skillset.fetchSkills())
+    );
 }
 
 module.exports = skillsList;
