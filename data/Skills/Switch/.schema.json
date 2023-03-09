@@ -21,11 +21,42 @@
                     "name",
                     "passive"
                 ]
+            },
+            "levels": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "power": {
+                            "type": "integer"
+                        },
+                        "mp": {
+                            "type": "integer"
+                        },
+                        "hp": {
+                            "type": "integer"
+                        },
+                        "itemId": {
+                            "type": "integer"
+                        },
+                        "itemCount": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "power",
+                        "mp",
+                        "hp",
+                        "itemId",
+                        "itemCount"
+                    ]
+                }
             }
         },
         "required": [
             "selfId",
-            "template"
+            "template",
+            "levels"
         ]
     }
 }

@@ -16,11 +16,8 @@
                     "passive": {
                         "type": "boolean"
                     },
-                    "effect": {
-                        "type": "string"
-                    },
-                    "mp": {
-                        "type": "integer"
+                    "spell": {
+                        "type": "boolean"
                     },
                     "distance": {
                         "type": "integer"
@@ -29,31 +26,65 @@
                 "required": [
                     "name",
                     "passive",
-                    "effect",
-                    "mp",
+                    "spell",
                     "distance"
                 ]
             },
             "time": {
                 "type": "object",
                 "properties": {
-                    "hitTime": {
+                    "hit": {
                         "type": "integer"
                     },
-                    "reuseTime": {
+                    "reuse": {
+                        "type": "integer"
+                    },
+                    "buff": {
                         "type": "integer"
                     }
                 },
                 "required": [
-                    "hitTime",
-                    "reuseTime"
+                    "hit",
+                    "reuse",
+                    "buff"
                 ]
+            },
+            "levels": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "power": {
+                            "type": "integer"
+                        },
+                        "mp": {
+                            "type": "integer"
+                        },
+                        "hp": {
+                            "type": "integer"
+                        },
+                        "itemId": {
+                            "type": "integer"
+                        },
+                        "itemCount": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "power",
+                        "mp",
+                        "hp",
+                        "itemId",
+                        "itemCount"
+                    ]
+                }
             }
         },
         "required": [
             "selfId",
             "template",
-            "time"
+            "time",
+            "levels"
         ]
     }
 }
