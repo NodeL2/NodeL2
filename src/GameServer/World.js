@@ -44,9 +44,8 @@ const World = {
         rewards.forEach((reward) => {
             if (Math.random() <= reward.chance / 100) { // TODO: Can't understand locZ in this case
                 const coords = Formulas.createRandomCoordinates(npc.fetchLocX(), npc.fetchLocY(), 100);
-                const item = new Item(this.items.nextId++, { selfId: reward.selfId, ...coords });
-                this.items.spawns.push(item);
-                session.dataSend(ServerResponse.spawnItem(item));
+                coords.locZ  = npc.fetchLocZ() - 10;
+                this.spawnItem(session, reward.selfId, coords);
             }
         });
 
@@ -57,6 +56,12 @@ const World = {
                 ServerResponse.deleteOb(npcId)
             );
         }, 7000); // TODO: Depends if npc is spoiled
+    },
+
+    spawnItem(session, selfId, coords) {
+        const item = new Item(this.items.nextId++, { selfId: selfId, ...coords });
+        this.items.spawns.push(item);
+        session.dataSend(ServerResponse.spawnItem(item));
     },
 
     npcTalk(session, npc) {
