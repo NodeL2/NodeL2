@@ -116,12 +116,12 @@ class Backpack extends BackpackModel {
 
     updateDatabaseTimer(characterId) {
         clearTimeout(this.dbTimer);
-
-        //this.dbTimer = setTimeout(() => {
-        //    (this.items.filter(ob => ob.fetchEquipped() !== undefined) ?? []).forEach((item) => {
-        //        Database.updateItemEquipState(characterId, item);
-        //    });
-        //}, 5000);
+        this.dbTimer = setTimeout(() => {
+            const wearables = this.items.filter((ob) => ob.isWearable()) ?? [];
+            wearables.forEach((item) => {
+                Database.updateItemEquipState(characterId, item.fetchId(), item.fetchEquipped());
+            });
+        }, 5000);
     }
 }
 

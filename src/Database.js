@@ -121,11 +121,11 @@ const Database = {
         );
     },
 
-    updateItemEquipState(characterId, item) {
+    updateItemEquipState(characterId, id, equipped) {
         return Database.execute(
             builder.update('items', {
-                equipped: item.equipped
-            }, 'id = ? AND characterId = ?', item.id, characterId)
+                equipped: equipped
+            }, 'id = ? AND characterId = ?', id, characterId)
         );
     },
 
