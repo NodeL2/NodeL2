@@ -31,7 +31,7 @@ class Backpack extends BackpackModel {
     useItem(session, id) {
         const itemLookup = (id, success) => {
             const item = this.items.find(ob => ob.id === id);
-            item ? success(item) : utils.infoWarn('GameServer:: unknown item id %d', id);
+            item ? success(item) : utils.infoWarn('GameServer:: unknown Item Id %d', id);
         };
 
         itemLookup(id, (item) => {
