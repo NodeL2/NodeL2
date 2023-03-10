@@ -8640,7 +8640,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 7370,
-    "template": { "kind": "Monster", "name": "Nerupa", "title": "", "hostile": false, "undead": false },
+    "template": { "kind": "NPC", "name": "Nerupa", "title": "", "hostile": false, "undead": false },
     "vitals": { "level": 70, "maxHp": 3862, "maxMp": 1493, "revHp": 11.85, "revMp": 2.78 },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 1314, "pDef": 470, "mAtk": 780, "mDef": 382, "atkSpd": 278, "castSpd": 333, "walkSpd": 70, "runSpd": 132 },

@@ -40,7 +40,7 @@ function detectServerIPAddress(session) {
     }
 
     // WAN / Internet
-    utils.infoFail('AuthServer :: unhandled WAN address');
+    utils.infoFail('AuthServer :: unhandled WAN Address');
     return '';
 }
 

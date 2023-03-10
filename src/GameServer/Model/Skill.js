@@ -16,7 +16,7 @@ class SkillModel {
     }
 
     fetchLevel() {
-        return 1;
+        return this.model.level;
     }
 
     fetchPassive() {

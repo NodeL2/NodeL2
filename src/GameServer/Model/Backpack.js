@@ -15,6 +15,7 @@ class BackpackModel {
         pants  : 11,
         feet   : 12,
         duals  : 14,
+        armor  : 15,
     }
 
     // Set

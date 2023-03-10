@@ -17,17 +17,22 @@ class Skillset {
     }
 
     populate() {
-        const skillLookup = (id, success) => {
-            const item = DataCache.skills.find((ob) => ob.selfId === id);
-            item ? success(item) : utils.infoWarn('GameServer:: unknown skill id %d', id);
+        const skillLookup = (skill, success) => {
+            const item = DataCache.skills.find((ob) => ob.selfId === skill.selfId);
+            item ? success(item) : utils.infoWarn('GameServer:: unknown Skill Id %d', skill.selfId);
         };
 
-        Database.fetchSkills(this.actor.fetchId()).then((skills) => {
-            skills.forEach((skill) => {
-                skillLookup(skill.selfId, (details) => {
-                    let level = details.levels[skill.level - 1];
-                    delete details.levels;
-                    this.skills.push(new SkillModel({ ...utils.crushOb(details), ...level }));
+        const skillLevelLookup = (skill, level, success) => {
+            const item = skill.levels.find((ob) => ob.level === level);
+            item ? success(item) : utils.infoWarn('GameServer:: unknown Skill Id %d with Level %d', skill.selfId, level);
+        };
+
+        Database.fetchSkills(this.actor.fetchId()).then((ownedSkills) => {
+            ownedSkills.forEach((ownedSkill) => {
+                skillLookup(ownedSkill, (skill) => {
+                    skillLevelLookup(skill, ownedSkill.level, (level) => {
+                        delete skill.levels; this.skills.push(new SkillModel({ ...utils.crushOb(skill), ...level }));
+                    });
                 });
             });
         });

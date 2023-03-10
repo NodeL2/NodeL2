@@ -27,6 +27,9 @@
                 "items": {
                     "type": "object",
                     "properties": {
+                        "level": {
+                            "type": "integer"
+                        },
                         "power": {
                             "type": "integer"
                         },
@@ -44,6 +47,7 @@
                         }
                     },
                     "required": [
+                        "level",
                         "power",
                         "mp",
                         "hp",

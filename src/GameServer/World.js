@@ -93,7 +93,7 @@ const World = {
                 break;
 
             default:
-                utils.infoFail('GameServer :: unknown npc response "%s"', parts[0]);
+                utils.infoFail('GameServer :: unknown NPC response "%s"', parts[0]);
                 break;
         }
     },
