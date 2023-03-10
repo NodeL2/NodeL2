@@ -18,12 +18,12 @@ class Skillset {
 
     populate() {
         const skillLookup = (skill, success) => {
-            const item = DataCache.skills.find((ob) => ob.selfId === skill.selfId);
+            const item = { ...DataCache.skills.find((ob) => ob.selfId === skill.selfId) };
             item ? success(item) : utils.infoWarn('GameServer:: unknown Skill Id %d', skill.selfId);
         };
 
         const skillLevelLookup = (skill, level, success) => {
-            const item = skill.levels.find((ob) => ob.level === level);
+            const item = skill.levels?.find((ob) => ob.level === level);
             item ? success(item) : utils.infoWarn('GameServer:: unknown Skill Id %d with Level %d', skill.selfId, level);
         };
 
