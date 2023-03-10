@@ -1,6 +1,6 @@
 const ItemModel = invoke('GameServer/Model/Item');
 
-class Weapon extends ItemModel {
+class Item extends ItemModel {
     constructor(id, data) {
         // Parent inheritance
         super(data);
@@ -84,4 +84,4 @@ class Weapon extends ItemModel {
     }
 }
 
-module.exports = Weapon;
+module.exports = Item;

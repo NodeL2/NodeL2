@@ -42,7 +42,7 @@ const World = {
         // Npc drops
         const rewards = DataCache.npcRewards.find(ob => ob.selfId === npc.fetchSelfId())?.rewards ?? [];
         rewards.forEach((reward) => {
-            if (Math.random() <= reward.chance / 100) { // TODO: Can't understand locZ in this case
+            if (Math.random() <= reward.chance / 100) { // TODO: Remove locZ hack at some point
                 const coords = Formulas.createRandomCoordinates(npc.fetchLocX(), npc.fetchLocY(), 100);
                 coords.locZ  = npc.fetchLocZ() - 10;
                 this.spawnItem(session, reward.selfId, coords);
@@ -59,9 +59,16 @@ const World = {
     },
 
     spawnItem(session, selfId, coords) {
-        const item = new Item(this.items.nextId++, { selfId: selfId, ...coords });
-        this.items.spawns.push(item);
-        session.dataSend(ServerResponse.spawnItem(item));
+        const itemLookup = (id, success) => {
+            const item = { ...DataCache.items.find((ob) => ob.selfId === id) };
+            item ? success(item) : utils.infoWarn('GameServer:: unknown Item Id %d', id);
+        };
+
+        itemLookup(selfId, (itemDetails) => {
+            const item = new Item(this.items.nextId++, { ...utils.crushOb(itemDetails), ...coords });
+            this.items.spawns.push(item);
+            session.dataSend(ServerResponse.spawnItem(item));
+        });
     },
 
     npcTalk(session, npc) {

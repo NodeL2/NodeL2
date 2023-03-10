@@ -58,6 +58,12 @@ class ItemModel {
     fetchLocZ() {
         return this.model.locZ ?? 0;
     }
+
+    // Abstract
+
+    isWearable() {
+        return ['Armor', 'Weapon'].includes(this.fetchKind());
+    }
 }
 
 module.exports = ItemModel;
