@@ -21,9 +21,10 @@ class Backpack extends BackpackModel {
 
         items.push(
             { id: 4900000, selfId: 1665, name: "World Map" },
-            { id: 4900001, selfId:   18, name: "Leather Shield" },
-            { id: 4900002, selfId:   57, name: "Adena" , amount: 1337 },
-            { id: 4900003, selfId: 1061, name: "Potion", amount: 3 }
+            { id: 4900001, selfId: 1863, name: "Map: Elmore" },
+            { id: 4900002, selfId:   18, name: "Leather Shield" },
+            { id: 4900003, selfId:   57, name: "Adena" , amount: 1337 },
+            { id: 4900004, selfId: 1061, name: "Potion", amount: 3 }
         ); // TODO: Test data, please delete
 
         items.forEach((item) => {
@@ -71,7 +72,7 @@ class Backpack extends BackpackModel {
                 session.actor.setCollectiveAll();
             }
             else {
-                if (item.fetchSelfId() === 1665) { // TODO: This needs to be out of here...
+                if ([1665, 1863].includes(item.fetchSelfId())) { // TODO: This needs to be out of here...
                     session.dataSend(
                         ServerResponse.showMap(item.fetchSelfId())
                     );

@@ -104,6 +104,14 @@ const World = {
                 }
                 break;
 
+            case 'admin-teleport':
+                {
+                    session.actor.teleportTo(session, {
+                        locX: parts[1], locY: parts[2], locZ: parts[3], head: session.actor.fetchHead()
+                    });
+                }
+                break;
+
             default:
                 utils.infoFail('GameServer :: unknown NPC response "%s"', parts[0]);
                 break;
