@@ -435,15 +435,15 @@ class Actor extends ActorModel {
         const weapon  = this.backpack.fetchEquippedWeapon();
         const level   = this.fetchLevel();
 
-        const wPAtk   = weapon?.pAtk ?? this.fetchPAtk();
+        const wPAtk   = weapon?.fetchPAtk() ?? this.fetchPAtk();
         const pAtk    = Formulas.calcPAtk(level, this.fetchStr(), wPAtk);
         this.setCollectivePAtk(pAtk);
 
-        const wMAtk   = weapon?.mAtk ?? this.fetchMAtk();
+        const wMAtk   = weapon?.fetchMAtk() ?? this.fetchMAtk();
         const mAtk    = Formulas.calcMAtk(level, this.fetchInt(), wMAtk);
         this.setCollectiveMAtk(mAtk);
 
-        const wAtkSpd = weapon?.atkSpd ?? this.fetchAtkSpd();
+        const wAtkSpd = weapon?.fetchAtkSpd() ?? this.fetchAtkSpd();
         const atkSpd  = Formulas.calcAtkSpd(this.fetchDex(), wAtkSpd);
         this.setCollectiveAtkSpd(atkSpd);
     }

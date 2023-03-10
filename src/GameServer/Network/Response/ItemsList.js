@@ -9,14 +9,14 @@ function itemsList(items, popup = false) {
 
     for (const item of items) {
         packet
-            .writeH(item.class1)
-            .writeD(item.id)
-            .writeD(item.selfId)
-            .writeD(item.amount)
-            .writeH(item.class2)
+            .writeH(item.fetchClass1())
+            .writeD(item.fetchId())
+            .writeD(item.fetchSelfId())
+            .writeD(item.fetchAmount())
+            .writeH(item.fetchClass2())
             .writeH(0xff)  // ?
-            .writeH(item.equipped)
-            .writeD(item.equipped ? 2 ** item.slot : 0)
+            .writeH(item.fetchEquipped())
+            .writeD(item.fetchEquipped() ? 2 ** item.fetchSlot() : 0)
             .writeH(0x00)  // Enchant level
             .writeH(0x00); // ?
     }

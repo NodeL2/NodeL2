@@ -31,6 +31,10 @@ class ItemModel {
         return this.model.characterId ?? 0;
     }
 
+    fetchAmount() {
+        return this.model.amount ?? 1;
+    }
+
     fetchClass1() {
         return this.model.class1 ?? 0;
     }

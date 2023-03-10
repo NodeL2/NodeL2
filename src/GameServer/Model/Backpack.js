@@ -45,25 +45,25 @@ class BackpackModel {
     // Abstract
 
     fetchEquippedArmor(slot) {
-        return this.fetchItems().find(ob => ob.kind ===  'Armor' && ob.equipped && ob.slot === slot);
+        return this.fetchItems().find(ob => ob.fetchKind() ===  'Armor' && ob.fetchEquipped() && ob.fetchSlot() === slot);
     }
 
     fetchEquippedWeapon() {
-        return this.fetchItems().find(ob => ob.kind === 'Weapon' && ob.equipped);
+        return this.fetchItems().find(ob => ob.fetchKind() === 'Weapon' && ob.fetchEquipped());
     }
 
     fetchTotalBonusMp() {
         return (
-            (this.fetchEquippedArmor(this.equipment.head )?.maxMp ?? 0) +
-            (this.fetchEquippedArmor(this.equipment.chest)?.maxMp ?? 0) +
-            (this.fetchEquippedArmor(this.equipment.pants)?.maxMp ?? 0) +
-            (this.fetchEquippedArmor(this.equipment.hands)?.maxMp ?? 0) +
-            (this.fetchEquippedArmor(this.equipment.feet )?.maxMp ?? 0)
+            (this.fetchEquippedArmor(this.equipment.head )?.fetchBonusMp() ?? 0) +
+            (this.fetchEquippedArmor(this.equipment.chest)?.fetchBonusMp() ?? 0) +
+            (this.fetchEquippedArmor(this.equipment.pants)?.fetchBonusMp() ?? 0) +
+            (this.fetchEquippedArmor(this.equipment.hands)?.fetchBonusMp() ?? 0) +
+            (this.fetchEquippedArmor(this.equipment.feet )?.fetchBonusMp() ?? 0)
         );
     }
 
     fetchTotalLoad() {
-        let values = this.items.map((ob) => ob.mass) ?? [];
+        let values = this.items.map((ob) => ob.fetchMass()) ?? [];
         return values.reduce((accumulator, value) => accumulator + value);
     }
 }

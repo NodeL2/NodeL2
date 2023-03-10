@@ -9,6 +9,14 @@ class Item extends ItemModel {
         this.setId(id);
     }
 
+    // Set (Weapon & Armor)
+
+    setEquipped(data) {
+        this.model.equipped = data;
+    }
+
+    // Get
+
     fetchEquipped() {
         return this.model.equipped ?? false;
     }

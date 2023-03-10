@@ -1,6 +1,7 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 const BackpackModel  = invoke('GameServer/Model/Backpack');
 const SkillModel     = invoke('GameServer/Model/Skill');
+const Item           = invoke('GameServer/Instance/Item');
 const DataCache      = invoke('GameServer/DataCache');
 const ConsoleText    = invoke('GameServer/ConsoleText');
 const Database       = invoke('Database');
@@ -13,6 +14,11 @@ class Backpack extends BackpackModel {
     }
 
     processDetails(items) {
+        const itemLookup = (id, success) => {
+            const item = { ...DataCache.items.find((ob) => ob.selfId === id) };
+            item ? success(item) : utils.infoWarn('GameServer:: unknown Item Id %d', id);
+        };
+
         items.push(
             { id: 4900000, selfId: 1665, name: "World Map" },
             { id: 4900001, selfId:   18, name: "Leather Shield" },
@@ -21,57 +27,58 @@ class Backpack extends BackpackModel {
         ); // TODO: Test data, please delete
 
         items.forEach((item) => {
-            const details = DataCache.items.find(ob => ob.selfId === item.selfId);
-            this.items.push({
-                ...item, ...utils.crushOb(details ?? {})
+            itemLookup(item.selfId, (itemDetails) => {
+                this.items.push(new Item(item.id, {
+                    ...item, ...utils.crushOb(itemDetails)
+                }));
             });
         });
     }
 
     useItem(session, id) {
         const itemLookup = (id, success) => {
-            const item = this.items.find(ob => ob.id === id);
+            const item = this.items.find(ob => ob.fetchId() === id);
             item ? success(item) : utils.infoWarn('GameServer:: unknown Item Id %d', id);
         };
 
         itemLookup(id, (item) => {
-            if (item.kind === 'Armor') {
-                this.unequipGear(session, item.slot);
-                this.equipPaperdoll(item.slot, item.id, item.selfId);
-                ConsoleText.transmit(session, ConsoleText.caption.equipped, [{ kind: ConsoleText.kind.item, value: item.selfId }]);
-                item.equipped = true;
+            if (item.fetchKind() === 'Armor') {
+                this.unequipGear(session, item.fetchSlot());
+                this.equipPaperdoll(item.fetchSlot(), item.fetchId(), item.fetchSelfId());
+                ConsoleText.transmit(session, ConsoleText.caption.equipped, [{ kind: ConsoleText.kind.item, value: item.fetchSelfId() }]);
+                item.setEquipped(true);
 
                 // Recalculate
                 session.actor.setCollectiveAll();
             }
             else
-            if (item.kind === 'Weapon') {
-                if (item.slot === this.equipment.weapon || item.slot === this.equipment.shield) {
+            if (item.fetchKind() === 'Weapon') {
+                if (item.fetchSlot() === this.equipment.weapon || item.fetchSlot() === this.equipment.shield) {
                     this.unequipGear(session, this.equipment.duals);
                 }
                 else
-                if (item.slot === this.equipment.duals) {
+                if (item.fetchSlot() === this.equipment.duals) {
                     this.unequipGear(session, this.equipment.weapon);
                     this.unequipGear(session, this.equipment.shield);
                 }
 
-                this.unequipGear(session, item.slot);
-                this.equipPaperdoll(item.slot, item.id, item.selfId);
-                ConsoleText.transmit(session, ConsoleText.caption.equipped, [{ kind: ConsoleText.kind.item, value: item.selfId }]);
-                item.equipped = true;
+                this.unequipGear(session, item.fetchSlot());
+                this.equipPaperdoll(item.fetchSlot(), item.fetchId(), item.fetchSelfId());
+                ConsoleText.transmit(session, ConsoleText.caption.equipped, [{ kind: ConsoleText.kind.item, value: item.fetchSelfId() }]);
+                item.setEquipped(true);
 
                 // Recalculate
                 session.actor.setCollectiveAll();
             }
             else {
-                if (item.selfId === 1665) { // TODO: This needs to be out of here...
+                if (item.fetchSelfId() === 1665) { // TODO: This needs to be out of here...
                     session.dataSend(
-                        ServerResponse.showMap(item.selfId)
+                        ServerResponse.showMap(item.fetchSelfId())
                     );
                     return;
                 }
                 else
-                if (item.selfId === 1061) {
+                if (item.fetchSelfId() === 1061) {
                     const details = utils.crushOb(DataCache.skills.find((ob) => ob.selfId === 2032) ?? {});
                     session.dataSend(
                         ServerResponse.skillStarted(session.actor, session.actor.fetchId(), new SkillModel(details))
@@ -86,7 +93,7 @@ class Backpack extends BackpackModel {
 
     unequipGear(session, slot) {
         const removeItem = (slot, success, fail = () => {}) => {
-            const item = this.items.find(ob => ob.id === this.fetchPaperdollId(slot));
+            const item = this.items.find(ob => ob.fetchId() === this.fetchPaperdollId(slot));
             item ? success(item) : fail;
         };
 
@@ -96,10 +103,10 @@ class Backpack extends BackpackModel {
         removeItem(slot, (item) => {
             // Unequip from actor
             this.unequipPaperdoll(slot);
-            item.equipped = false;
+            item.setEquipped(false);
 
             // Move item to the end (not official?)
-            this.items = this.items.filter(ob => ob.id !== item?.id);
+            this.items = this.items.filter(ob => ob.fetchId() !== item?.fetchId());
             this.items.unshift(item);
 
             // Recalculate
@@ -110,11 +117,11 @@ class Backpack extends BackpackModel {
     updateDatabaseTimer(characterId) {
         clearTimeout(this.dbTimer);
 
-        this.dbTimer = setTimeout(() => {
-            (this.items.filter(ob => ob.equipped !== undefined) ?? []).forEach((item) => {
-                Database.updateItemEquipState(characterId, item);
-            });
-        }, 5000);
+        //this.dbTimer = setTimeout(() => {
+        //    (this.items.filter(ob => ob.fetchEquipped() !== undefined) ?? []).forEach((item) => {
+        //        Database.updateItemEquipState(characterId, item);
+        //    });
+        //}, 5000);
     }
 }
 
