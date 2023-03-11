@@ -34,6 +34,11 @@ class BackpackModel {
         return this.items;
     }
 
+    fetchItem(id, success) {
+        const item = this.fetchItems().find((ob) => ob.fetchId() === id);
+        item ? success(item) : utils.infoWarn('GameServer:: unknown Item Id %d', id);
+    }
+
     fetchPaperdollId(slot) {
         return this.paperdoll[slot].id;
     }

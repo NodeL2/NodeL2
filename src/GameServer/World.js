@@ -3,6 +3,7 @@ const Npc            = invoke('GameServer/Instance/Npc');
 const Item           = invoke('GameServer/Instance/Item');
 const DataCache      = invoke('GameServer/DataCache');
 const Formulas       = invoke('GameServer/Formulas');
+const Database       = invoke('Database');
 
 const World = {
     init() {
@@ -111,8 +112,37 @@ const World = {
             case 'admin-teleport':
                 {
                     session.actor.teleportTo(session, {
-                        locX: parts[1], locY: parts[2], locZ: parts[3], head: session.actor.fetchHead()
+                        locX: Number(parts[1]), locY: Number(parts[2]), locZ: Number(parts[3]), head: session.actor.fetchHead()
                     });
+                }
+                break;
+
+            case 'admin-shop':
+                {
+                    const actor    = session.actor;
+                    const backpack = actor.backpack;
+
+                    backpack.createAndAwardItem(this.items.nextId, Number(parts[1]));
+
+                    // Check if new Item creation was successful
+                    if (backpack.fetchItem(this.items.nextId, (item) => {
+
+                        // Write new spawned Item into Database
+                        Database.setItem(actor.fetchId(), {
+                              selfId: item.fetchSelfId(),
+                                name: item.fetchName(),
+                              amount: item.fetchAmount(),
+                            equipped: item.fetchEquipped(),
+                                slot: item.fetchSlot()
+                        }).then(() => {
+                            session.dataSend(
+                                ServerResponse.itemsList(backpack.fetchItems(), true)
+                            );
+                        });
+
+                        // Advance Item Id counter
+                        this.items.nextId++;
+                    }));
                 }
                 break;
 

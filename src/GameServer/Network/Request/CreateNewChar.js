@@ -78,7 +78,7 @@ function awardBaseGear(id, classId) {
 
     (items ?? []).forEach((item) => {
         item.slot = DataCache.items.find(ob => ob.selfId === item.selfId)?.etc?.slot ?? 0;
-        Database.setItem(item, id);
+        Database.setItem(id, item);
     });
 }
 

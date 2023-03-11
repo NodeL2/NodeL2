@@ -102,7 +102,7 @@ const Database = {
         );
     },
 
-    setItem(item, characterId) {
+    setItem(characterId, item) {
         return Database.execute(
             builder.insert('items', {
                      selfId: item.selfId,

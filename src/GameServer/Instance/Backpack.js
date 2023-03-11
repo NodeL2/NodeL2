@@ -14,11 +14,6 @@ class Backpack extends BackpackModel {
     }
 
     processDetails(items) {
-        const itemLookup = (id, success) => {
-            const item = { ...DataCache.items.find((ob) => ob.selfId === id) };
-            item ? success(item) : utils.infoWarn('GameServer:: unknown Item Id %d', id);
-        };
-
         items.push(
             { id: 4900000, selfId: 1665, name: "World Map" },
             { id: 4900001, selfId: 1863, name: "Map: Elmore" },
@@ -28,10 +23,23 @@ class Backpack extends BackpackModel {
         ); // TODO: Test data, please delete
 
         items.forEach((item) => {
-            itemLookup(item.selfId, (itemDetails) => {
-                this.items.push(new Item(item.id, {
-                    ...item, ...utils.crushOb(itemDetails)
-                }));
+            this.createAndAwardItem(item.id, item.selfId, item);
+        });
+    }
+
+    fetchItemDetails(selfId, success) {
+        const item = { ...DataCache.items.find((ob) => ob.selfId === selfId) };
+        item ? success(item) : utils.infoWarn('GameServer:: unknown Item Id %d', selfId);
+    }
+
+    awardItem(id, item) {
+        this.items.push(new Item(id, item));
+    }
+
+    createAndAwardItem(id, selfId, item = {}) {
+        this.fetchItemDetails(selfId, (itemDetails) => {
+            this.awardItem(id, {
+                ...item, ...utils.crushOb(itemDetails)
             });
         });
     }
