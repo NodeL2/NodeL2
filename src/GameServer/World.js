@@ -91,9 +91,13 @@ const World = {
                     const path = 'data/Html/Default/';
                     const filename = path + parts[1] + '.html';
 
-                    session.dataSend(
-                        ServerResponse.npcHtml(7146, utils.parseRawFile(filename))
-                    );
+                    if (utils.fileExists(filename)) {
+                        session.dataSend(
+                            ServerResponse.npcHtml(7146, utils.parseRawFile(filename))
+                        );
+                        return;
+                    }
+                    utils.infoWarn('GameServer :: html file "%s" does not exist', filename);
                 }
                 break;
 
@@ -113,7 +117,7 @@ const World = {
                 break;
 
             default:
-                utils.infoFail('GameServer :: unknown NPC response "%s"', parts[0]);
+                utils.infoWarn('GameServer :: unknown NPC response "%s"', parts[0]);
                 break;
         }
     },
