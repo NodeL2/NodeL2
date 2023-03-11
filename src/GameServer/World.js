@@ -60,12 +60,7 @@ const World = {
     },
 
     spawnItem(session, selfId, coords) {
-        const itemLookup = (id, success) => {
-            const item = { ...DataCache.items.find((ob) => ob.selfId === id) };
-            item ? success(item) : utils.infoWarn('GameServer:: unknown Item Id %d', id);
-        };
-
-        itemLookup(selfId, (itemDetails) => {
+        DataCache.fetchItemFromSelfId(selfId, (itemDetails) => {
             const item = new Item(this.items.nextId++, { ...utils.crushOb(itemDetails), ...coords });
             this.items.spawns.push(item);
             session.dataSend(ServerResponse.spawnItem(item));
