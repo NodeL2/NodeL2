@@ -10,11 +10,8 @@ class Backpack extends BackpackModel {
     constructor(data) {
         // Parent inheritance
         super(data.paperdoll);
-        this.processDetails(data.items);
-    }
 
-    processDetails(items) {
-        items.push(
+        data.items.push(
             { id: 4900000, selfId: 1665, name: "World Map" },
             { id: 4900001, selfId: 1863, name: "Map: Elmore" },
             { id: 4900002, selfId:   18, name: "Leather Shield" },
@@ -22,7 +19,7 @@ class Backpack extends BackpackModel {
             { id: 4900004, selfId: 1061, name: "Potion", amount: 3 }
         ); // TODO: Test data, please delete
 
-        items.forEach((item) => {
+        data.items.forEach((item) => {
             this.insertItem(item.id, item.selfId, item);
         });
     }
@@ -36,13 +33,8 @@ class Backpack extends BackpackModel {
     }
 
     useItem(session, id) {
-        const itemLookup = (id, success) => {
-            const item = this.items.find(ob => ob.fetchId() === id);
-            item ? success(item) : utils.infoWarn('GameServer:: unknown Item Id %d', id);
-        };
-
-        itemLookup(id, (item) => {
-            if (['Armor', 'Weapon'].includes(item.fetchKind())) {
+        this.fetchItem(id, (item) => {
+            if (item.isWearable()) {
                 const id     = item.fetchId();
                 const selfId = item.fetchSelfId();
                 const slot   = item.fetchSlot();
@@ -87,15 +79,10 @@ class Backpack extends BackpackModel {
     }
 
     unequipGear(session, slot) {
-        const removeItem = (slot, success, fail = () => {}) => {
-            const item = this.items.find(ob => ob.fetchId() === this.fetchPaperdollId(slot));
-            item ? success(item) : fail;
-        };
-
         // Start a database timer to update equipped state
         this.updateDatabaseTimer(session.actor.fetchId());
 
-        removeItem(slot, (item) => {
+        this.fetchItem(this.fetchPaperdollId(slot), (item) => {
             // Unequip from actor
             this.unequipPaperdoll(slot);
             item.setEquipped(false);

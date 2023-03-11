@@ -36,7 +36,7 @@ class BackpackModel {
 
     fetchItem(id, success) {
         const item = this.fetchItems().find((ob) => ob.fetchId() === id);
-        item ? success(item) : utils.infoWarn('GameServer:: unknown Item Id %d', id);
+        item ? success(item) : null;
     }
 
     fetchPaperdollId(slot) {
@@ -58,18 +58,20 @@ class BackpackModel {
     }
 
     fetchTotalBonusMp() {
+        const equip = this.equipment;
+
         return (
-            (this.fetchEquippedArmor(this.equipment.head )?.fetchBonusMp() ?? 0) +
-            (this.fetchEquippedArmor(this.equipment.chest)?.fetchBonusMp() ?? 0) +
-            (this.fetchEquippedArmor(this.equipment.pants)?.fetchBonusMp() ?? 0) +
-            (this.fetchEquippedArmor(this.equipment.hands)?.fetchBonusMp() ?? 0) +
-            (this.fetchEquippedArmor(this.equipment.feet )?.fetchBonusMp() ?? 0)
+            (this.fetchEquippedArmor(equip.head )?.fetchBonusMp() ?? 0) +
+            (this.fetchEquippedArmor(equip.chest)?.fetchBonusMp() ?? 0) +
+            (this.fetchEquippedArmor(equip.pants)?.fetchBonusMp() ?? 0) +
+            (this.fetchEquippedArmor(equip.hands)?.fetchBonusMp() ?? 0) +
+            (this.fetchEquippedArmor(equip.feet )?.fetchBonusMp() ?? 0)
         );
     }
 
     fetchTotalLoad() {
-        let values = this.items.map((ob) => ob.fetchMass()) ?? [];
-        return values.reduce((accumulator, value) => accumulator + value);
+        let values = this.fetchItems().map((ob) => ob.fetchMass()) ?? [];
+        return values.reduce((acc, value) => acc + value);
     }
 }
 
