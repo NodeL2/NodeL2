@@ -106,10 +106,10 @@ const Database = {
         return Database.execute(
             builder.insert('items', {
                      selfId: item.selfId,
-                       name: item.name,
-                     amount: item.amount,
-                   equipped: item.equipped,
-                       slot: item.slot,
+                       name: item.name ?? '',
+                     amount: item.amount ?? 1,
+                   equipped: item.equipped ?? false,
+                       slot: item.slot ?? 0,
                 characterId: characterId
             })
         );

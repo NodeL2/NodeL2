@@ -29,6 +29,11 @@ const DataCache = {
         ];
 
         utils.infoSuccess('Datapack   :: cached');
+    },
+
+    fetchItemFromSelfId(selfId, success) {
+        const item = { ...DataCache.items.find((ob) => ob.selfId === selfId) };
+        item ? success(item) : utils.infoWarn('Datapack   :: unknown Item Id %d', selfId);
     }
 };
 

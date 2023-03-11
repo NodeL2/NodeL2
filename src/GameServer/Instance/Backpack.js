@@ -23,24 +23,15 @@ class Backpack extends BackpackModel {
         ); // TODO: Test data, please delete
 
         items.forEach((item) => {
-            this.createAndAwardItem(item.id, item.selfId, item);
+            this.insertItem(item.id, item.selfId, item);
         });
     }
 
-    fetchItemDetails(selfId, success) {
-        const item = { ...DataCache.items.find((ob) => ob.selfId === selfId) };
-        item ? success(item) : utils.infoWarn('GameServer:: unknown Item Id %d', selfId);
-    }
-
-    awardItem(id, item) {
-        this.items.push(new Item(id, item));
-    }
-
-    createAndAwardItem(id, selfId, item = {}) {
-        this.fetchItemDetails(selfId, (itemDetails) => {
-            this.awardItem(id, {
+    insertItem(id, selfId, item = {}) {
+        DataCache.fetchItemFromSelfId(selfId, (itemDetails) => {
+            this.items.push(new Item(id, {
                 ...item, ...utils.crushOb(itemDetails)
-            });
+            }));
         });
     }
 
@@ -51,30 +42,25 @@ class Backpack extends BackpackModel {
         };
 
         itemLookup(id, (item) => {
-            if (item.fetchKind() === 'Armor') {
-                this.unequipGear(session, item.fetchSlot());
-                this.equipPaperdoll(item.fetchSlot(), item.fetchId(), item.fetchSelfId());
-                ConsoleText.transmit(session, ConsoleText.caption.equipped, [{ kind: ConsoleText.kind.item, value: item.fetchSelfId() }]);
-                item.setEquipped(true);
+            if (['Armor', 'Weapon'].includes(item.fetchKind())) {
+                const id     = item.fetchId();
+                const selfId = item.fetchSelfId();
+                const slot   = item.fetchSlot();
+                const equip  = this.equipment;
 
-                // Recalculate
-                session.actor.setCollectiveAll();
-            }
-            else
-            if (item.fetchKind() === 'Weapon') {
-                if (item.fetchSlot() === this.equipment.weapon || item.fetchSlot() === this.equipment.shield) {
-                    this.unequipGear(session, this.equipment.duals);
+                if (slot === equip.weapon || slot === equip.shield) {
+                    this.unequipGear(session, equip.duals);
                 }
                 else
-                if (item.fetchSlot() === this.equipment.duals) {
-                    this.unequipGear(session, this.equipment.weapon);
-                    this.unequipGear(session, this.equipment.shield);
+                if (slot === equip.duals) {
+                    this.unequipGear(session, equip.weapon);
+                    this.unequipGear(session, equip.shield);
                 }
 
-                this.unequipGear(session, item.fetchSlot());
-                this.equipPaperdoll(item.fetchSlot(), item.fetchId(), item.fetchSelfId());
-                ConsoleText.transmit(session, ConsoleText.caption.equipped, [{ kind: ConsoleText.kind.item, value: item.fetchSelfId() }]);
+                this.unequipGear(session, slot);
+                this.equipPaperdoll(slot, id, selfId);
                 item.setEquipped(true);
+                ConsoleText.transmit(session, ConsoleText.caption.equipped, [{ kind: ConsoleText.kind.item, value: selfId }]);
 
                 // Recalculate
                 session.actor.setCollectiveAll();

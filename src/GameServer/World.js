@@ -104,45 +104,42 @@ const World = {
 
             case 'teleport':
                 {
-                    const spawns = DataCache.teleports.find((ob) => ob.id === Number(parts[1]))?.spawns;
-                    if (spawns) { session.actor.teleportTo(session, spawns[0]); }
+                    const coords = DataCache.teleports.find((ob) => ob.id === Number(parts[1]))?.spawns;
+                    coords ? session.actor.teleportTo(session, coords[0]) : null;
                 }
                 break;
 
             case 'admin-teleport':
                 {
-                    session.actor.teleportTo(session, {
-                        locX: Number(parts[1]), locY: Number(parts[2]), locZ: Number(parts[3]), head: session.actor.fetchHead()
-                    });
+                    const coords = {
+                        locX: Number(parts[1]),
+                        locY: Number(parts[2]),
+                        locZ: Number(parts[3]),
+                        head: session.actor.fetchHead()
+                    };
+
+                    session.actor.teleportTo(session, coords);
                 }
                 break;
 
             case 'admin-shop':
                 {
-                    const actor    = session.actor;
-                    const backpack = actor.backpack;
+                    const actor      = session.actor;
+                    const backpack   = actor.backpack;
+                    const itemSelfId = Number(parts[1]);
 
-                    backpack.createAndAwardItem(this.items.nextId, Number(parts[1]));
-
-                    // Check if new Item creation was successful
-                    if (backpack.fetchItem(this.items.nextId, (item) => {
-
-                        // Write new spawned Item into Database
+                    DataCache.fetchItemFromSelfId(itemSelfId, (item) => {
                         Database.setItem(actor.fetchId(), {
-                              selfId: item.fetchSelfId(),
-                                name: item.fetchName(),
-                              amount: item.fetchAmount(),
-                            equipped: item.fetchEquipped(),
-                                slot: item.fetchSlot()
-                        }).then(() => {
-                            session.dataSend(
-                                ServerResponse.itemsList(backpack.fetchItems(), true)
-                            );
+                              selfId: item.selfId,
+                                name: item.template.name,
+                              amount: 1,
+                            equipped: false,
+                                slot: item.etc.slot
+                        }).then((packet) => {
+                            backpack.insertItem(Number(packet.insertId), itemSelfId);
+                            session.dataSend(ServerResponse.itemsList(backpack.fetchItems(), true));
                         });
-
-                        // Advance Item Id counter
-                        this.items.nextId++;
-                    }));
+                    });
                 }
                 break;
 
