@@ -10,12 +10,12 @@ function purchase(session, buffer) {
 
     let list = [];
 
-    for (let i = 0; i < packet.data[1] * 2; i += 2) {
+    for (let i = 0; i < packet.data[1]; i++) {
         packet
             .readD()
             .readD();
 
-        list.push({ selfId: packet.data[2 + i], amount: packet.data[3 + i] });
+        list.push({ selfId: packet.data[2 + (i * 2)], amount: packet.data[3 + (i * 2)] });
     }
 
     consume(session, {

@@ -121,7 +121,7 @@ const World = {
                 {
                     let list = [];
 
-                    [21, 28].forEach((selfId) => {
+                    [35, 44, 51, 60, 63, 103, 118, 350].forEach((selfId) => {
                         DataCache.fetchItemFromSelfId(selfId, (item) => {
                             item.template.price = 0; // Admin prices :)
                             list.push(new Item(this.items.nextId++, utils.crushOb(item)));

@@ -16,7 +16,7 @@ const Shared = {
                 return new Promise((done) => {
                     Database.fetchItems(character.id).then((items) => {
                         character.items = items;
-                        character.paperdoll = utils.tupleAlloc(15, {});
+                        character.paperdoll = utils.tupleAlloc(15 + 1, {});
 
                         for (const item of items.filter(ob => ob.equipped === 1)) {
                             character.paperdoll[item.slot] = { id: item.id, selfId: item.selfId };
