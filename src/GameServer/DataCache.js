@@ -4,16 +4,17 @@ const DataCache = {
     init: () => {
         const path = '../data/';
 
-        DataCache.classTemplates = validateModel(path + 'Templates/templates');
-        DataCache.newbieSpawns   = validateModel(path + 'Templates/Spawns/spawns');
-        DataCache.newbieItems    = validateModel(path + 'Templates/Items/items');
-        DataCache.experience     = validateModel(path + 'Templates/Experience/experience');
-        DataCache.revitalize     = validateModel(path + 'Templates/Revitalize/revitalize');
-        DataCache.skillTree      = validateModel(path + 'Skills/Tree/tree');
-        DataCache.npcs           = validateModel(path + 'Npcs/npcs');
-        DataCache.npcSpawns      = validateModel(path + 'Npcs/Spawns/spawns');
-        DataCache.npcRewards     = validateModel(path + 'Npcs/Rewards/rewards');
-        DataCache.teleports      = validateModel(path + 'Teleports/teleports');
+        DataCache.classTemplates  = validateModel(path + 'Templates/templates');
+        DataCache.newbieItems     = validateModel(path + 'Templates/Items/items');
+        DataCache.newbieShortcuts = validateModel(path + 'Templates/Shortcuts/shortcuts');
+        DataCache.newbieSpawns    = validateModel(path + 'Templates/Spawns/spawns');
+        DataCache.experience      = validateModel(path + 'Templates/Experience/experience');
+        DataCache.revitalize      = validateModel(path + 'Templates/Revitalize/revitalize');
+        DataCache.skillTree       = validateModel(path + 'Skills/Tree/tree');
+        DataCache.npcs            = validateModel(path + 'Npcs/npcs');
+        DataCache.npcSpawns       = validateModel(path + 'Npcs/Spawns/spawns');
+        DataCache.npcRewards      = validateModel(path + 'Npcs/Rewards/rewards');
+        DataCache.teleports       = validateModel(path + 'Teleports/teleports');
 
         DataCache.items = [
             ...validateModel(path + 'Items/Armors/armors'),

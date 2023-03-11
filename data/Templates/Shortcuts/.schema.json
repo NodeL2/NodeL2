@@ -1,0 +1,42 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "classId": {
+                "type": "integer"
+            },
+            "shortcuts": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "slot": {
+                            "type": "integer"
+                        },
+                        "kind": {
+                            "type": "integer"
+                        },
+                        "unknown": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "slot",
+                        "kind",
+                        "unknown"
+                    ]
+                }
+            }
+        },
+        "required": [
+            "classId",
+            "shortcuts"
+        ]
+    }
+}

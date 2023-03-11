@@ -48,8 +48,9 @@ function consume(session, data) {
             );
 
             const charId = Number(packet.insertId);
-            awardBaseSkills(charId, data.classId);
-            awardBaseGear  (charId, data.classId);
+            awardBaseSkills   (charId, data.classId);
+            awardBaseGear     (charId, data.classId);
+            awardBaseShortcuts(charId, data.classId);
 
             Shared.fetchCharacters(session.accountId).then((characters) => {
                 Shared.enterCharacterHall(session, characters);
@@ -78,6 +79,13 @@ function awardBaseGear(id, classId) {
     (items ?? []).forEach((item) => {
         item.slot = DataCache.items.find(ob => ob.selfId === item.selfId)?.etc?.slot ?? 0;
         Database.setItem(item, id);
+    });
+}
+
+function awardBaseShortcuts(id, classId) {
+    const shortcuts = DataCache.newbieShortcuts.find((ob) => ob.classId === classId)?.shortcuts ?? [];
+    shortcuts.forEach((shortcut) => {
+        Database.setShortcut(id, shortcut);
     });
 }
 
