@@ -408,7 +408,7 @@ class Actor extends ActorModel {
 
     admin(session) {
         session.dataSend(
-            ServerResponse.npcHtml(this.fetchId(), utils.parseRawFile('data/Html/Default/admin.html'))
+            ServerResponse.npcHtml(this.fetchId(), utils.parseRawFile('data/Html/Admin/main.html'))
         );
     }
 

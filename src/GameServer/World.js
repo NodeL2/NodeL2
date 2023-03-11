@@ -68,7 +68,7 @@ const World = {
     },
 
     npcTalk(session, npc) {
-        const path = 'data/Html/Default/';
+        const path = 'data/Html/';
         const filename = path + npc.fetchSelfId() + '.html';
 
         session.dataSend(
@@ -84,7 +84,7 @@ const World = {
         switch (parts[0]) {
             case 'html':
                 {
-                    const path = 'data/Html/Default/';
+                    const path = 'data/Html/';
                     const filename = path + parts[1] + '.html';
 
                     if (utils.fileExists(filename)) {
