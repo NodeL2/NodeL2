@@ -147,7 +147,17 @@ const World = {
         });
     },
 
-    purchaseItem(session, selfId) {
+    purchaseItems(session, items) {
+        let timer = 0; // TODO: Bullcrap
+
+        items.forEach((item) => {
+            setTimeout(() => {
+                this.purchaseItem(session, item.selfId, item.amount);
+            }, timer += 200);
+        });
+    },
+
+    purchaseItem(session, selfId, amount) {
         const actor = session.actor;
         const backpack = actor.backpack;
 
@@ -155,7 +165,7 @@ const World = {
             Database.setItem(actor.fetchId(), {
                   selfId: item.selfId,
                     name: item.template.name,
-                  amount: 1,
+                  amount: amount,
                 equipped: false,
                     slot: item.etc.slot
             }).then((packet) => {

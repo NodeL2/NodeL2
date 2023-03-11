@@ -22,6 +22,7 @@ const Opcodes = {
         table[0x11] = ClientRequest.unequipItem;
         table[0x14] = ClientRequest.useItem;
         table[0x1b] = ClientRequest.socialAction;
+        table[0x1f] = ClientRequest.purchase;
         table[0x21] = ClientRequest.htmlLink;
         table[0x2f] = ClientRequest.skillUse;
         table[0x30] = ClientRequest.appeared;
@@ -37,7 +38,6 @@ const Opcodes = {
         table[0x59] = ClientRequest.trashItem;
         table[0x63] = ClientRequest.questList;
 
-        table[0x1f] = () => {}; // Purchase
         table[0x57] = () => {}; // Board
         table[0x9d] = () => {}; // Skill Cool Time, not needed?
         table[0xb9] = () => {}; // Recommend button

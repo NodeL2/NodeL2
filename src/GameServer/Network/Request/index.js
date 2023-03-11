@@ -16,6 +16,7 @@ module.exports = {
                logout: require('./Logout'),
        moveToLocation: require('./MoveToLocation'),
       protocolVersion: require('./ProtocolVersion'),
+             purchase: require('./Purchase'),
             questList: require('./QuestList'),
        removeShortcut: require('./RemoveShortcut'),
               restart: require('./Restart'),
