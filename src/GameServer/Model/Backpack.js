@@ -21,10 +21,24 @@ class BackpackModel {
     // Set
 
     equipPaperdoll(slot, id, selfId) {
+        const equip = this.equipment;
+
+        if (slot === equip.armor) { // FB Armor, stupid implementation
+            this.paperdoll[equip.chest] = { id: id, selfId: selfId };
+            this.paperdoll[equip.pants] = { id: id, selfId: selfId };
+        }
+
         this.paperdoll[slot] = { id: id, selfId: selfId };
     }
 
     unequipPaperdoll(slot) {
+        const equip = this.equipment;
+
+        if (slot === equip.armor) { // FB Armor, stupid implementation
+            this.paperdoll[equip.chest] = {};
+            this.paperdoll[equip.pants] = {};
+        }
+
         this.paperdoll[slot] = {};
     }
 

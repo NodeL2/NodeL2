@@ -56,9 +56,6 @@ class Backpack extends BackpackModel {
                 if (slot === equip.armor) {
                     this.unequipGear(session, equip.chest);
                     this.unequipGear(session, equip.pants);
-
-                    this.equipPaperdoll(equip.chest, id, selfId);
-                    this.equipPaperdoll(equip.pants, id, selfId);
                 }
 
                 this.unequipGear(session, slot);
