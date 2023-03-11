@@ -37,9 +37,11 @@ const Opcodes = {
         table[0x59] = ClientRequest.trashItem;
         table[0x63] = ClientRequest.questList;
 
+        table[0x1f] = () => {}; // Purchase
         table[0x57] = () => {}; // Board
         table[0x9d] = () => {}; // Skill Cool Time, not needed?
         table[0xb9] = () => {}; // Recommend button
+        table[0xc1] = () => {}; // Macro
 
         return table;
     })()

@@ -19,6 +19,7 @@ module.exports = {
                npcHtml: require('./NpcHtml'),
                npcInfo: require('./NpcInfo'),
             pickupItem: require('./PickupItem'),
+          purchaseList: require('./PurchaseList'),
              questList: require('./QuestList'),
                restart: require('./Restart'),
           shortcutInit: require('./ShortcutInit'),

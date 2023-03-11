@@ -119,22 +119,18 @@ const World = {
 
             case 'admin-shop':
                 {
-                    const actor      = session.actor;
-                    const backpack   = actor.backpack;
-                    const itemSelfId = Number(parts[1]);
+                    let list = [];
 
-                    DataCache.fetchItemFromSelfId(itemSelfId, (item) => {
-                        Database.setItem(actor.fetchId(), {
-                              selfId: item.selfId,
-                                name: item.template.name,
-                              amount: 1,
-                            equipped: false,
-                                slot: item.etc.slot
-                        }).then((packet) => {
-                            backpack.insertItem(Number(packet.insertId), itemSelfId);
-                            session.dataSend(ServerResponse.itemsList(backpack.fetchItems(), true));
+                    [21, 28].forEach((selfId) => {
+                        DataCache.fetchItemFromSelfId(selfId, (item) => {
+                            item.template.price = 0; // Admin prices :)
+                            list.push(new Item(this.items.nextId++, utils.crushOb(item)));
                         });
                     });
+
+                    session.dataSend(
+                        ServerResponse.purchaseList(list)
+                    );
                 }
                 break;
 
@@ -148,6 +144,24 @@ const World = {
         return new Promise((success, fail) => {
             let item = this.items.spawns.find(ob => ob.fetchId() === id);
             return item ? success(item) : fail();
+        });
+    },
+
+    purchaseItem(session, selfId) {
+        const actor = session.actor;
+        const backpack = actor.backpack;
+
+        DataCache.fetchItemFromSelfId(selfId, (item) => {
+            Database.setItem(actor.fetchId(), {
+                  selfId: item.selfId,
+                    name: item.template.name,
+                  amount: 1,
+                equipped: false,
+                    slot: item.etc.slot
+            }).then((packet) => {
+                backpack.insertItem(Number(packet.insertId), selfId);
+                session.dataSend(ServerResponse.itemsList(backpack.fetchItems(), true));
+            });
         });
     }
 };

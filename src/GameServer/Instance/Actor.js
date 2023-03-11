@@ -66,7 +66,7 @@ class Actor extends ActorModel {
         Database.updateCharacterLocation(this.fetchId(), coords);
 
         // Render npcs found inside user's radius
-        const inRadiusNpcs = World.npc.spawns.filter(ob => Formulas.calcWithinRadius(coords.locX, coords.locY, ob.fetchLocX(), ob.fetchLocY(), 2500)) ?? [];
+        const inRadiusNpcs = World.npc.spawns.filter(ob => Formulas.calcWithinRadius(coords.locX, coords.locY, ob.fetchLocX(), ob.fetchLocY(), 3500)) ?? [];
         inRadiusNpcs.forEach((npc) => {
             session.dataSend(ServerResponse.npcInfo(npc));
         });
