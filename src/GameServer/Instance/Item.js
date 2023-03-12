@@ -15,7 +15,7 @@ class Item extends ItemModel {
         this.model.equipped = data;
     }
 
-    // Get
+    // Get (Weapon & Armor)
 
     fetchEquipped() {
         return this.model.equipped ?? false;
@@ -23,6 +23,14 @@ class Item extends ItemModel {
 
     fetchSlot() {
         return this.model.slot ?? 0;
+    }
+
+    fetchRank() {
+        return this.model.rank ?? 'none';
+    }
+
+    fetchCristals() {
+        return this.model.cristals ?? 0;
     }
 
     // Get (Weapon)

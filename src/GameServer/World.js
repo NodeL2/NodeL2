@@ -121,7 +121,7 @@ const World = {
                 {
                     let list = [];
 
-                    [35, 44, 51, 57, 60, 63, 103, 118, 350, 1061, 1665, 1863].forEach((selfId) => {
+                    DataCache.adminShop[parts[1]].forEach((selfId) => {
                         DataCache.fetchItemFromSelfId(selfId, (item) => {
                             item.template.price = 0; // Admin prices :)
                             list.push(new Item(this.items.nextId++, utils.crushOb(item)));
@@ -153,7 +153,7 @@ const World = {
         items.forEach((item) => {
             setTimeout(() => {
                 this.purchaseItem(session, item.selfId, item.amount);
-            }, timer += 200);
+            }, timer += 100);
         });
     },
 
@@ -167,6 +167,7 @@ const World = {
 
             Database.updateItemAmount(actor.fetchId(), itemId, total).then(() => {
                 backpack.updateAmount(itemId, total);
+                session.dataSend(ServerResponse.userInfo(session.actor));
                 session.dataSend(ServerResponse.itemsList(backpack.fetchItems(), true));
             });
         }).catch(() => { // New item
@@ -179,6 +180,7 @@ const World = {
                         slot: item.etc.slot
                 }).then((packet) => {
                     backpack.insertItem(Number(packet.insertId), selfId, { amount: amount });
+                    session.dataSend(ServerResponse.userInfo(session.actor));
                     session.dataSend(ServerResponse.itemsList(backpack.fetchItems(), true));
                 });
             });

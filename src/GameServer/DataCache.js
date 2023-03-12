@@ -15,6 +15,7 @@ const DataCache = {
         DataCache.npcSpawns       = validateModel(path + 'Npcs/Spawns/spawns');
         DataCache.npcRewards      = validateModel(path + 'Npcs/Rewards/rewards');
         DataCache.teleports       = validateModel(path + 'Teleports/teleports');
+        DataCache.adminShop       = validateModel(path + 'Admin/Shop/shop');
 
         DataCache.items = [
             ...validateModel(path + 'Items/Armors/armors'),
