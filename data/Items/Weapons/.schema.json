@@ -83,13 +83,21 @@
                     },
                     "spiritshot": {
                         "type": "integer"
+                    },
+                    "rank": {
+                        "type": "string"
+                    },
+                    "cristals": {
+                        "type": "integer"
                     }
                 },
                 "required": [
                     "slot",
                     "mp",
                     "soulshot",
-                    "spiritshot"
+                    "spiritshot",
+                    "rank",
+                    "cristals"
                 ]
             }
         },
