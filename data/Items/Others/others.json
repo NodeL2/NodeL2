@@ -5,7 +5,7 @@
 },{
     "selfId": 57,
     "template": { "kind": "Other", "name": "Adena", "class1": 4, "class2": 4, "mass": 0, "price": 1 },
-    "etc": { "stackable": false, "consumable": false }
+    "etc": { "stackable": true, "consumable": false }
 },{
     "selfId": 65,
     "template": { "kind": "Other", "name": "Red Potion", "class1": 4, "class2": 5, "mass": 80, "price": 40 },

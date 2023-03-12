@@ -87,6 +87,13 @@ class BackpackModel {
         let values = this.fetchItems().map((ob) => ob.fetchMass()) ?? [];
         return values.reduce((acc, value) => acc + value);
     }
+
+    stackableExists(selfId) {
+        return new Promise((success, fail) => {
+            let item = this.fetchItems().find((ob) => ob.fetchSelfId() === selfId && ob.fetchStackable());
+            return item ? success(item) : fail();
+        });
+    }
 }
 
 module.exports = BackpackModel;

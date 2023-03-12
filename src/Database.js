@@ -121,6 +121,14 @@ const Database = {
         );
     },
 
+    updateItemAmount(characterId, id, amount) {
+        return Database.execute(
+            builder.update('items', {
+                amount: amount
+            }, 'id = ? AND characterId = ?', id, characterId)
+        );
+    },
+
     updateItemEquipState(characterId, id, equipped) {
         return Database.execute(
             builder.update('items', {

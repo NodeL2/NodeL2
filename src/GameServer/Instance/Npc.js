@@ -29,7 +29,7 @@ class Npc extends NpcModel {
 
     showLevelTitle() {
         if (this.fetchTitle() === '') {
-            this.setTitle('Lv ' + this.fetchLevel() + (this.fetchHostile() ? ' @' : ''));
+            this.setTitle('Lv ' + this.fetchLevel() + (this.fetchHostile() ? ' *' : ''));
         }
     }
 

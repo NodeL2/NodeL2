@@ -121,7 +121,7 @@ const World = {
                 {
                     let list = [];
 
-                    [35, 44, 51, 60, 63, 103, 118, 350].forEach((selfId) => {
+                    [35, 44, 51, 57, 60, 63, 103, 118, 350, 1061, 1665, 1863].forEach((selfId) => {
                         DataCache.fetchItemFromSelfId(selfId, (item) => {
                             item.template.price = 0; // Admin prices :)
                             list.push(new Item(this.items.nextId++, utils.crushOb(item)));
@@ -161,16 +161,26 @@ const World = {
         const actor = session.actor;
         const backpack = actor.backpack;
 
-        DataCache.fetchItemFromSelfId(selfId, (item) => {
-            Database.setItem(actor.fetchId(), {
-                  selfId: item.selfId,
-                    name: item.template.name,
-                  amount: amount,
-                equipped: false,
-                    slot: item.etc.slot
-            }).then((packet) => {
-                backpack.insertItem(Number(packet.insertId), selfId);
+        backpack.stackableExists(selfId).then((item) => { // Stackable item exists
+            const itemId = item.fetchId();
+            const total  = item.fetchAmount() + amount;
+
+            Database.updateItemAmount(actor.fetchId(), itemId, total).then(() => {
+                backpack.updateAmount(itemId, total);
                 session.dataSend(ServerResponse.itemsList(backpack.fetchItems(), true));
+            });
+        }).catch(() => { // New item
+            DataCache.fetchItemFromSelfId(selfId, (item) => {
+                Database.setItem(actor.fetchId(), {
+                      selfId: item.selfId,
+                        name: item.template.name,
+                      amount: amount,
+                    equipped: false,
+                        slot: item.etc.slot
+                }).then((packet) => {
+                    backpack.insertItem(Number(packet.insertId), selfId, { amount: amount });
+                    session.dataSend(ServerResponse.itemsList(backpack.fetchItems(), true));
+                });
             });
         });
     }

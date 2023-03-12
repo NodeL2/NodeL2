@@ -9,6 +9,10 @@ class ItemModel {
         this.model.id = data;
     }
 
+    setAmount(data) {
+        this.model.amount = data;
+    }
+
     // Get
 
     fetchId() {
