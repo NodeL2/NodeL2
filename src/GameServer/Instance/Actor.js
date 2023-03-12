@@ -16,7 +16,7 @@ class Actor extends ActorModel {
 
         // Local
         this.automation = new Automation();
-        this.skillset   = new Skillset(this);
+        this.skillset   = new Skillset();
         this.backpack   = new Backpack(data);
         this.destId     = undefined;
 
@@ -443,6 +443,10 @@ class Actor extends ActorModel {
         const mAtk    = Formulas.calcMAtk(level, this.fetchInt(), wMAtk);
         this.setCollectiveMAtk(mAtk);
 
+        const aPDef   = this.backpack.fetchTotalPDef() ?? this.fetchPDef();
+        const pDef    = Formulas.calcPDef(level, aPDef);
+        this.setCollectivePDef(pDef);
+
         const wAtkSpd = weapon?.fetchAtkSpd() ?? this.fetchAtkSpd();
         const atkSpd  = Formulas.calcAtkSpd(this.fetchDex(), wAtkSpd);
         this.setCollectiveAtkSpd(atkSpd);
@@ -456,7 +460,7 @@ class Actor extends ActorModel {
     }
 
     setSkillset() {
-        this.skillset.populate();
+        this.skillset.populate(this);
     }
 }
 

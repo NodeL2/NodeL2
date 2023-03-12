@@ -71,10 +71,10 @@ class Item extends ItemModel {
         return this.model.spiritshot ?? 0;
     }
 
-   // Get (Armor)
+    // Get (Armor)
 
-   fetchPDef() {
-    return this.model.pDef ?? 0;
+    fetchPDef() {
+        return this.model.pDef ?? 0;
     }
 
     fetchMDef() {

@@ -43,7 +43,7 @@ function userInfo(actor) {
     packet
         .writeD(actor.fetchCollectivePAtk())
         .writeD(actor.fetchCollectiveAtkSpd())
-        .writeD(actor.fetchPDef())
+        .writeD(actor.fetchCollectivePDef())
         .writeD(actor.fetchEvasion())
         .writeD(actor.fetchAccur())
         .writeD(actor.fetchCrit())

@@ -71,6 +71,30 @@ class BackpackModel {
         return this.fetchItems().find(ob => ob.fetchKind() === 'Weapon' && ob.fetchEquipped());
     }
 
+    fetchTotalPDef() {
+        const equip = this.equipment;
+
+        return (
+            (this.fetchEquippedArmor(equip.head )?.fetchPDef() ?? 0) +
+            (this.fetchEquippedArmor(equip.chest)?.fetchPDef() ?? 0) +
+            (this.fetchEquippedArmor(equip.pants)?.fetchPDef() ?? 0) +
+            (this.fetchEquippedArmor(equip.hands)?.fetchPDef() ?? 0) +
+            (this.fetchEquippedArmor(equip.feet )?.fetchPDef() ?? 0)
+        );
+    }
+
+    fetchTotalMDef() {
+        const equip = this.equipment;
+
+        return (
+            (this.fetchEquippedArmor(equip.head )?.fetchMDef() ?? 0) +
+            (this.fetchEquippedArmor(equip.chest)?.fetchMDef() ?? 0) +
+            (this.fetchEquippedArmor(equip.pants)?.fetchMDef() ?? 0) +
+            (this.fetchEquippedArmor(equip.hands)?.fetchMDef() ?? 0) +
+            (this.fetchEquippedArmor(equip.feet )?.fetchMDef() ?? 0)
+        );
+    }
+
     fetchTotalBonusMp() {
         const equip = this.equipment;
 

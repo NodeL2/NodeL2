@@ -81,6 +81,11 @@ const Formulas = {
         return Number((levelMod * intMod * wpnMAtk).toFixed(2));
     },
 
+    calcPDef(level, armPDef) {
+        let levelMod = this.calcLevelMod(level);
+        return Number((levelMod * (armPDef + 4)).toFixed(2));
+    },
+
     calcAtkSpd(dex, wpnAtkSpd) {
         let dexMod = this.calcBaseMod.DEX(dex);
         return Number((dexMod * wpnAtkSpd).toFixed(2));
