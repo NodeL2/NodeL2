@@ -34,28 +34,37 @@ function createNewChar(session, buffer) {
 }
 
 function consume(session, data) {
-    Shared.fetchClassInformation(data.classId).then((classInfo) => {
-        const spawns = fetchSpawnPoints(data.classId);
-        const coords = spawns[utils.randomNumber(spawns.length)];
-
-        data = {
-            ...data, ...classInfo.vitals, ...coords
-        };
-
-        Database.createCharacter(session.accountId, data).then((packet) => {
+    Database.fetchCharacterName(data.name).then((rows) => {
+        if (rows[0]) {
             session.dataSend(
-                ServerResponse.charCreateSuccess()
+                ServerResponse.charCreateFail(0x02)
             );
-
-            const charId = Number(packet.insertId);
-            awardBaseSkills   (charId, data.classId);
-            awardBaseGear     (charId, data.classId);
-            awardBaseShortcuts(charId, data.classId);
-
-            Shared.fetchCharacters(session.accountId).then((characters) => {
-                Shared.enterCharacterHall(session, characters);
+        }
+        else {
+            Shared.fetchClassInformation(data.classId).then((classInfo) => {
+                const spawns = fetchSpawnPoints(data.classId);
+                const coords = spawns[utils.randomNumber(spawns.length)];
+        
+                data = {
+                    ...data, ...classInfo.vitals, ...coords
+                };
+        
+                Database.createCharacter(session.accountId, data).then((packet) => {
+                    session.dataSend(
+                        ServerResponse.charCreateSuccess()
+                    );
+        
+                    const charId = Number(packet.insertId);
+                    awardBaseSkills   (charId, data.classId);
+                    awardBaseGear     (charId, data.classId);
+                    awardBaseShortcuts(charId, data.classId);
+        
+                    Shared.fetchCharacters(session.accountId).then((characters) => {
+                        Shared.enterCharacterHall(session, characters);
+                    });
+                });
             });
-        });
+        }
     });
 }
 

@@ -51,6 +51,13 @@ const Database = {
         );
     },
 
+    // Checks if acharacter `Name` exists
+    fetchCharacterName: (name) => {
+        return Database.execute(
+            builder.selectOne('characters', ['*'], 'name = ?', name)
+        );
+    },
+
     // Stores a new `Character` in database with provided details
     createCharacter(username, data) {
         return Database.execute(
