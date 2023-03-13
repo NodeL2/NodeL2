@@ -18,7 +18,7 @@ class Backpack extends BackpackModel {
 
     insertItem(id, selfId, item = {}) { // TODO: Price still 0 with admin shop
         DataCache.fetchItemFromSelfId(selfId, (itemDetails) => {
-            this.items.push(new Item(id, {
+            if (item.slot) delete itemDetails.etc.slot; this.items.push(new Item(id, {
                 ...item, ...utils.crushOb(itemDetails)
             }));
         });
@@ -55,42 +55,44 @@ class Backpack extends BackpackModel {
     }
 
     equipGear(session, item) {
-        let slot = item.fetchSlot();
+        const slot  = item.fetchSlot();
         const equip = this.equipment;
 
         if (slot === equip.weapon || slot === equip.shield) {
             this.unequipGear(session, equip.dual);
         }
-        else
+        else // Unequip both hands
         if (slot === equip.dual) {
             this.unequipGear(session, equip.weapon);
             this.unequipGear(session, equip.shield);
         }
-        else
+        else // Unequip one-piece armor
         if (slot === equip.chest || slot === equip.pants) {
             this.unequipGear(session, equip.armor);
         }
-        else
+        else // Unequip top and bottom armor
         if (slot === equip.armor) {
             this.unequipGear(session, equip.chest);
             this.unequipGear(session, equip.pants);
         }
-        else
-        if (slot === equip.earr) {
+        else // Check if ear place is taken
+        if (slot === equip.earr || slot === equip.earl) {
             if (this.paperdoll[equip.earr]?.id) {
-                slot = equip.earl;
+                item.setSlot(equip.earl);
             }
         }
-        else
-        if (slot === equip.fr) {
+        else // Check if fin place is taken
+        if (slot === equip.fr || slot === equip.fl) {
             if (this.paperdoll[equip.fr]?.id) {
-                slot = equip.fl;
+                item.setSlot(equip.fl);
             }
         }
 
-        this.unequipGear(session, slot);
-        this.equipPaperdoll(slot, item.fetchId(), item.fetchSelfId());
+        const newSlot = item.fetchSlot();
+        this.unequipGear(session, newSlot);
+        this.equipPaperdoll(newSlot, item.fetchId(), item.fetchSelfId());
         item.setEquipped(true);
+
         ConsoleText.transmit(session, ConsoleText.caption.equipped, [
             { kind: ConsoleText.kind.item, value: item.fetchSelfId() }
         ]);
@@ -122,7 +124,7 @@ class Backpack extends BackpackModel {
         this.dbTimer = setTimeout(() => {
             const wearables = this.items.filter((ob) => ob.isWearable()) ?? [];
             wearables.forEach((item) => {
-                Database.updateItemEquipState(characterId, item.fetchId(), item.fetchEquipped());
+                Database.updateItemEquipState(characterId, item.fetchId(), item.fetchEquipped(), item.fetchSlot());
             });
         }, 3000);
     }

@@ -136,10 +136,11 @@ const Database = {
         );
     },
 
-    updateItemEquipState(characterId, id, equipped) {
+    updateItemEquipState(characterId, id, equipped, slot) {
         return Database.execute(
             builder.update('items', {
-                equipped: equipped
+                equipped: equipped,
+                    slot: slot
             }, 'id = ? AND characterId = ?', id, characterId)
         );
     },

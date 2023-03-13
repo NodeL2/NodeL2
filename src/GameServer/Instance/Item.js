@@ -15,6 +15,10 @@ class Item extends ItemModel {
         this.model.equipped = data;
     }
 
+    setSlot(data) {
+        this.model.slot = data;
+    }
+
     // Get (Weapon & Armor)
 
     fetchEquipped() {
