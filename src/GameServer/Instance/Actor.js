@@ -384,6 +384,12 @@ class Actor extends ActorModel {
         this.setCollectivePDef(base);
     }
 
+    setCollectiveTotalAccur() {
+        const accur = this.backpack.fetchTotalWeaponAccur() ?? this.fetchAccur();
+        const base  = Formulas.calcAccur(this.fetchLevel(), this.fetchDex(), accur);
+        this.setCollectiveAccur(base);
+    }
+
     setCollectiveTotalEvasion() {
         const evasion = this.backpack.fetchTotalArmorEvasion() ?? this.fetchEvasion();
         const base    = Formulas.calcEvasion(this.fetchLevel(), this.fetchDex(), evasion);
@@ -403,6 +409,7 @@ class Actor extends ActorModel {
         this.setCollectiveTotalPAtk();
         this.setCollectiveTotalMAtk();
         this.setCollectiveTotalPDef();
+        this.setCollectiveTotalAccur();
         this.setCollectiveTotalEvasion();
         this.setCollectiveTotalAtkSpd();
     }

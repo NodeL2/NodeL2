@@ -45,7 +45,7 @@ function userInfo(actor) {
         .writeD(actor.fetchCollectiveAtkSpd())
         .writeD(actor.fetchCollectivePDef())
         .writeD(actor.fetchCollectiveEvasion())
-        .writeD(actor.fetchAccur())
+        .writeD(actor.fetchCollectiveAccur())
         .writeD(actor.fetchCrit())
         .writeD(actor.fetchCollectiveMAtk())
         .writeD(actor.fetchCastSpd())

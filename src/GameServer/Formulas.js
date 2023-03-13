@@ -86,6 +86,10 @@ const Formulas = {
         return Number((levelMod * (armPDef + 4)).toFixed(2));
     },
 
+    calcAccur(level, dex, wpnAccur) {
+        return Number(((Math.sqrt(dex) * 6) + level + wpnAccur).toFixed(2));
+    },
+
     calcEvasion(level, dex, armEvasion) {
         return Number(((Math.sqrt(dex) * 6) + level + armEvasion).toFixed(2));
     },

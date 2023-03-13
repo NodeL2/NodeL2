@@ -17,6 +17,14 @@ class ActorModel extends CreatureModel {
         this.setSp ( sp);
     }
 
+    setCollectiveAccur(data) {
+        this.model.collectiveAccur = data;
+    }
+
+    setCollectiveEvasion(data) {
+        this.model.collectiveEvasion = data;
+    }
+
     setLoad(data) {
         this.model.load = data;
     }
@@ -47,16 +55,20 @@ class ActorModel extends CreatureModel {
         return this.model.sp;
     }
 
+    fetchAccur() {
+        return this.model.accur;
+    }
+
+    fetchCollectiveAccur() {
+        return this.model.collectiveAccur ?? this.fetchAccur();
+    }
+
     fetchEvasion() {
         return this.model.evasion;
     }
 
     fetchCollectiveEvasion() {
         return this.model.collectiveEvasion ?? this.fetchEvasion();
-    }
-
-    fetchAccur() {
-        return this.model.accur;
     }
 
     fetchCrit() {
