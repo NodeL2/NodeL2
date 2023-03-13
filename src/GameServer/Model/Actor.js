@@ -141,7 +141,7 @@ class ActorModel extends CreatureModel {
 
     // Abstract
 
-    isMystic() {
+    isSpellcaster() {
         return [10, 25, 38, 49].includes(this.fetchClassId()) ? 1 : 0;
     }
 }

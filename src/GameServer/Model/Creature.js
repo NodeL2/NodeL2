@@ -71,6 +71,10 @@ class CreatureModel {
         this.model.collectivePDef = data;
     }
 
+    setCollectiveMDef(data) {
+        this.model.collectiveMDef = data;
+    }
+
     setCollectiveAtkSpd(data) {
         this.model.collectiveAtkSpd = data;
     }
@@ -141,14 +145,6 @@ class CreatureModel {
         return this.model.collectivePAtk ?? this.fetchPAtk();
     }
 
-    fetchPDef() {
-        return this.model.pDef;
-    }
-
-    fetchCollectivePDef() {
-        return this.model.collectivePDef ?? this.fetchPAtk();
-    }
-
     fetchMAtk() {
         return this.model.mAtk;
     }
@@ -157,8 +153,20 @@ class CreatureModel {
         return this.model.collectiveMAtk ?? this.fetchMAtk();
     }
 
+    fetchPDef() {
+        return this.model.pDef;
+    }
+
+    fetchCollectivePDef() {
+        return this.model.collectivePDef ?? this.fetchPAtk();
+    }
+
     fetchMDef() {
         return this.model.mDef;
+    }
+
+    fetchCollectiveMDef() {
+        return this.model.collectiveMDef ?? this.fetchMDef();
     }
 
     fetchAtkSpd() {

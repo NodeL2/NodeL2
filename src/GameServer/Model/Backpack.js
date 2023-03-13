@@ -7,6 +7,7 @@ class BackpackModel {
     // Enum
 
     equipment = {
+        neck   :  3,
         head   :  6,
         weapon :  7,
         shield :  8,
@@ -75,14 +76,24 @@ class BackpackModel {
         return this.fetchItems().find(ob => ob.fetchKind() === 'Weapon' && ob.fetchEquipped());
     }
 
-    fetchTotalArmorPDef() {
-        let values = this.paperdoll.map((ob) => this.fetchItemRaw(ob.id)?.fetchPDef() ?? 0) ?? [];
-        return values.reduce((acc, value) => acc + value);
+    fetchTotalArmorPDef(spellcaster) {
+        const equip = this.equipment;
+
+        return (
+            (this.fetchEquippedArmor(equip.head )?.fetchPDef() ?? (12)) +
+            (this.fetchEquippedArmor(equip.chest)?.fetchPDef() ?? (spellcaster ? 15 : 31)) +
+            (this.fetchEquippedArmor(equip.pants)?.fetchPDef() ?? (spellcaster ?  8 : 18)) +
+            (this.fetchEquippedArmor(equip.hands)?.fetchPDef() ?? ( 8)) +
+            (this.fetchEquippedArmor(equip.feet )?.fetchPDef() ?? ( 7))
+        );
     }
 
     fetchTotalArmorMDef() {
-        let values = this.paperdoll.map((ob) => this.fetchItemRaw(ob.id)?.fetchMDef() ?? 0) ?? [];
-        return values.reduce((acc, value) => acc + value);
+        const equip = this.equipment;
+
+        return (
+            (this.fetchEquippedArmor(equip.neck)?.fetchMDef() ?? 13)
+        );
     }
 
     fetchTotalArmorEvasion() {

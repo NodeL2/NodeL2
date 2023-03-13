@@ -86,6 +86,12 @@ const Formulas = {
         return Number((levelMod * (armPDef + 4)).toFixed(2));
     },
 
+    calcMDef(level, men, armMDef) {
+        let levelMod = this.calcLevelMod(level);
+        let menMod   = this.calcBaseMod.MEN(men);
+        return Number((levelMod * menMod * armMDef).toFixed(2));
+    },
+
     calcAccur(level, dex, wpnAccur) {
         return Number(((Math.sqrt(dex) * 6) + level + wpnAccur).toFixed(2));
     },

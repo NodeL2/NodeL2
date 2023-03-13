@@ -354,7 +354,7 @@ class Actor extends ActorModel {
     }
 
     setCollectiveTotalMp() { // TODO: Fix hardcoded class transfer parameter
-        const base  = Formulas.calcMp(this.fetchLevel(), this.isMystic(), 0, this.fetchMen());
+        const base  = Formulas.calcMp(this.fetchLevel(), this.isSpellcaster(), 0, this.fetchMen());
         const bonus = this.backpack.fetchTotalArmorBonusMp();
         this.setMaxMp(base + bonus);
         this.setMp(Math.min(this.fetchMp(), this.fetchMaxMp()));
@@ -379,9 +379,15 @@ class Actor extends ActorModel {
     }
 
     setCollectiveTotalPDef() {
-        const pDef = this.backpack.fetchTotalArmorPDef() ?? this.fetchPDef();
+        const pDef = this.backpack.fetchTotalArmorPDef(this.isSpellcaster()) ?? this.fetchPDef();
         const base = Formulas.calcPDef(this.fetchLevel(), pDef);
         this.setCollectivePDef(base);
+    }
+
+    setCollectiveTotalMDef() {
+        const mDef = this.backpack.fetchTotalArmorMDef() ?? this.fetchMDef();
+        const base = Formulas.calcMDef(this.fetchLevel(), this.fetchMen(), mDef);
+        this.setCollectiveMDef(base);
     }
 
     setCollectiveTotalAccur() {
@@ -409,6 +415,7 @@ class Actor extends ActorModel {
         this.setCollectiveTotalPAtk();
         this.setCollectiveTotalMAtk();
         this.setCollectiveTotalPDef();
+        this.setCollectiveTotalMDef();
         this.setCollectiveTotalAccur();
         this.setCollectiveTotalEvasion();
         this.setCollectiveTotalAtkSpd();

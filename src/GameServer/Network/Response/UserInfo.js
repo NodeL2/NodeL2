@@ -50,7 +50,7 @@ function userInfo(actor) {
         .writeD(actor.fetchCollectiveMAtk())
         .writeD(actor.fetchCastSpd())
         .writeD(actor.fetchSpeed())
-        .writeD(actor.fetchMDef())
+        .writeD(actor.fetchCollectiveMDef())
         .writeD(0x00)  // Purple = 0x01
         .writeD(actor.fetchKarma())
         .writeD(actor.fetchRun())
