@@ -18,7 +18,7 @@
     "skills": [{ "selfId": 118, "name": "Magician's Movement", "level": 1, "pLevel": 1 }, { "selfId": 163, "name": "Spellcraft", "level": 1, "pLevel": 1 }, { "selfId": 194, "name": "Lucky", "level": 1, "pLevel": 1 }, { "selfId": 214, "name": "Mana Recovery", "level": 1, "pLevel": 1 }, { "selfId": 1177, "name": "Wind Strike", "level": 1, "pLevel": 1 }, { "selfId": 1216, "name": "Self Heal", "level": 1, "pLevel": 1 }]
 },{
     "classId": 44,
-    "skills": [{ "selfId": 134, "name": "Toughness", "level": 1, "pLevel": 1 }, { "selfId": 194, "name": "Lucky", "level": 1, "pLevel": 1 }, { "selfId": 1001, "name": "Soul Cry", "level": 1, "pLevel": 1 }]
+    "skills": [{ "selfId": 134, "name": "Toughness", "level": 1, "pLevel": 1 }, { "selfId": 194, "name": "Lucky", "level": 1, "pLevel": 1 }]
 },{
     "classId": 49,
     "skills": [{ "selfId": 118, "name": "Magician's Movement", "level": 1, "pLevel": 1 }, { "selfId": 134, "name": "Toughness", "level": 1, "pLevel": 1 }, { "selfId": 163, "name": "Spellcraft", "level": 1, "pLevel": 1 }, { "selfId": 194, "name": "Lucky", "level": 1, "pLevel": 1 }, { "selfId": 214, "name": "Mana Recovery", "level": 1, "pLevel": 1 }, { "selfId": 1001, "name": "Soul Cry", "level": 1, "pLevel": 1 }]
