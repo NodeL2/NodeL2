@@ -2,7 +2,7 @@
     "classId": 0,
     "template": { "class": "Human Fighter", "race": 0, "crafter": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 11, "men": 25 },
-    "stats": { "pAtk": 4, "mAtk": 6, "pDef": 80, "mDef": 41, "accur": 33, "evasion": 33, "crit": 44, "speed": 126, "atkSpd": 300, "castSpd": 333 },
+    "stats": { "pAtk": 4, "mAtk": 6, "pDef": 80, "mDef": 41, "crit": 44, "speed": 126, "atkSpd": 300, "castSpd": 333 },
     "vitals": { "maxHp": 80, "maxMp": 30, "maxLoad": 81900 },
     "speed": { "walk": 80, "run": 115, "swim": 50 },
     "collision": { "radius": 9, "size": 23 }
@@ -10,7 +10,7 @@
     "classId": 10,
     "template": { "class": "Human Mystic", "race": 0, "crafter": false },
     "base": { "str": 22, "dex": 21, "con": 27, "int": 41, "wit": 20, "men": 39 },
-    "stats": { "pAtk": 3, "mAtk": 6, "pDef": 54, "mDef": 41, "accur": 28, "evasion": 28, "crit": 40, "speed": 126, "atkSpd": 300, "castSpd": 333 },
+    "stats": { "pAtk": 3, "mAtk": 6, "pDef": 54, "mDef": 41, "crit": 40, "speed": 126, "atkSpd": 300, "castSpd": 333 },
     "vitals": { "maxHp": 101, "maxMp": 40, "maxLoad": 62500 },
     "speed": { "walk": 78, "run": 120, "swim": 50 },
     "collision": { "radius": 7.5, "size": 22.8 }
@@ -18,7 +18,7 @@
     "classId": 18,
     "template": { "class": "Elven Fighter", "race": 1, "crafter": false },
     "base": { "str": 36, "dex": 35, "con": 36, "int": 23, "wit": 14, "men": 26 },
-    "stats": { "pAtk": 4, "mAtk": 6, "pDef": 80, "mDef": 41, "accur": 36, "evasion": 36, "crit": 46, "speed": 126, "atkSpd": 300, "castSpd": 333 },
+    "stats": { "pAtk": 4, "mAtk": 6, "pDef": 80, "mDef": 41, "crit": 46, "speed": 126, "atkSpd": 300, "castSpd": 333 },
     "vitals": { "maxHp": 89, "maxMp": 30, "maxLoad": 73840 },
     "speed": { "walk": 90, "run": 125, "swim": 50 },
     "collision": { "radius": 7.5, "size": 24 }
@@ -26,7 +26,7 @@
     "classId": 25,
     "template": { "class": "Elven Mystic", "race": 1, "crafter": false },
     "base": { "str": 21, "dex": 24, "con": 25, "int": 37, "wit": 23, "men": 40 },
-    "stats": { "pAtk": 3, "mAtk": 6, "pDef": 54, "mDef": 41, "accur": 30, "evasion": 30, "crit": 41, "speed": 126, "atkSpd": 300, "castSpd": 333 },
+    "stats": { "pAtk": 3, "mAtk": 6, "pDef": 54, "mDef": 41, "crit": 41, "speed": 126, "atkSpd": 300, "castSpd": 333 },
     "vitals": { "maxHp": 104, "maxMp": 40, "maxLoad": 62400 },
     "speed": { "walk": 85, "run": 122, "swim": 50 },
     "collision": { "radius": 7.5, "size": 24 }
@@ -34,7 +34,7 @@
     "classId": 31,
     "template": { "class": "Dark Elven Fighter", "race": 2, "crafter": false },
     "base": { "str": 41, "dex": 34, "con": 32, "int": 25, "wit": 12, "men": 26 },
-    "stats": { "pAtk": 4, "mAtk": 6, "pDef": 80, "mDef": 41, "accur": 35, "evasion": 35, "crit": 45, "speed": 126, "atkSpd": 300, "castSpd": 333 },
+    "stats": { "pAtk": 4, "mAtk": 6, "pDef": 80, "mDef": 41, "crit": 45, "speed": 126, "atkSpd": 300, "castSpd": 333 },
     "vitals": { "maxHp": 94, "maxMp": 30, "maxLoad": 69000 },
     "speed": { "walk": 85, "run": 122, "swim": 50 },
     "collision": { "radius": 7.5, "size": 24 }
@@ -42,7 +42,7 @@
     "classId": 38,
     "template": { "class": "Dark Elven Mystic", "race": 2, "crafter": false },
     "base": { "str": 23, "dex": 23, "con": 24, "int": 44, "wit": 19, "men": 37 },
-    "stats": { "pAtk": 3, "mAtk": 6, "pDef": 54, "mDef": 41, "accur": 29, "evasion": 29, "crit": 41, "speed": 126, "atkSpd": 300, "castSpd": 333 },
+    "stats": { "pAtk": 3, "mAtk": 6, "pDef": 54, "mDef": 41, "crit": 41, "speed": 126, "atkSpd": 300, "castSpd": 333 },
     "vitals": { "maxHp": 106, "maxMp": 40, "maxLoad": 61000 },
     "speed": { "walk": 85, "run": 122, "swim": 50 },
     "collision": { "radius": 7.5, "size": 24 }
@@ -50,7 +50,7 @@
     "classId": 44,
     "template": { "class": "Orc Fighter", "race": 3, "crafter": false },
     "base": { "str": 40, "dex": 26, "con": 47, "int": 18, "wit": 12, "men": 27 },
-    "stats": { "pAtk": 4, "mAtk": 6, "pDef": 80, "mDef": 41, "accur": 31, "evasion": 31, "crit": 42, "speed": 126, "atkSpd": 300, "castSpd": 333 },
+    "stats": { "pAtk": 4, "mAtk": 6, "pDef": 80, "mDef": 41, "crit": 42, "speed": 126, "atkSpd": 300, "castSpd": 333 },
     "vitals": { "maxHp": 80, "maxMp": 30, "maxLoad": 87000 },
     "speed": { "walk": 70, "run": 117, "swim": 50 },
     "collision": { "radius": 11, "size": 28 }
@@ -58,7 +58,7 @@
     "classId": 49,
     "template": { "class": "Orc Mystic", "race": 3, "crafter": false },
     "base": { "str": 27, "dex": 24, "con": 31, "int": 31, "wit": 15, "men": 42 },
-    "stats": { "pAtk": 3, "mAtk": 6, "pDef": 54, "mDef": 41, "accur": 30, "evasion": 30, "crit": 41, "speed": 126, "atkSpd": 300, "castSpd": 333 },
+    "stats": { "pAtk": 3, "mAtk": 6, "pDef": 54, "mDef": 41, "crit": 41, "speed": 126, "atkSpd": 300, "castSpd": 333 },
     "vitals": { "maxHp": 95, "maxMp": 40, "maxLoad": 68000 },
     "speed": { "walk": 70, "run": 121, "swim": 50 },
     "collision": { "radius": 7, "size": 27.5 }
@@ -66,7 +66,7 @@
     "classId": 53,
     "template": { "class": "Dwarven Fighter", "race": 4, "crafter": true },
     "base": { "str": 39, "dex": 29, "con": 45, "int": 20, "wit": 10, "men": 27 },
-    "stats": { "pAtk": 4, "mAtk": 6, "pDef": 80, "mDef": 41, "accur": 33, "evasion": 33, "crit": 43, "speed": 126, "atkSpd": 300, "castSpd": 333 },
+    "stats": { "pAtk": 4, "mAtk": 6, "pDef": 80, "mDef": 41, "crit": 43, "speed": 126, "atkSpd": 300, "castSpd": 333 },
     "vitals": { "maxHp": 80, "maxMp": 30, "maxLoad": 83000 },
     "speed": { "walk": 80, "run": 115, "swim": 50 },
     "collision": { "radius": 9, "size": 18 }

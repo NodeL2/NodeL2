@@ -56,7 +56,7 @@ class ActorModel extends CreatureModel {
     }
 
     fetchAccur() {
-        return this.model.accur;
+        return 0;
     }
 
     fetchCollectiveAccur() {
@@ -64,7 +64,7 @@ class ActorModel extends CreatureModel {
     }
 
     fetchEvasion() {
-        return this.model.evasion;
+        return 0;
     }
 
     fetchCollectiveEvasion() {

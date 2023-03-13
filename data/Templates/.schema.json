@@ -72,12 +72,6 @@
                     "mDef": {
                         "type": "integer"
                     },
-                    "accur": {
-                        "type": "integer"
-                    },
-                    "evasion": {
-                        "type": "integer"
-                    },
                     "crit": {
                         "type": "integer"
                     },
@@ -96,8 +90,6 @@
                     "mAtk",
                     "pDef",
                     "mDef",
-                    "accur",
-                    "evasion",
                     "crit",
                     "speed",
                     "atkSpd",
