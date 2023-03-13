@@ -53,6 +53,10 @@ class BackpackModel {
         item ? success(item) : null;
     }
 
+    fetchItemRaw(id) {
+        return this.fetchItems().find((ob) => ob.fetchId() === id);
+    }
+
     fetchPaperdollId(slot) {
         return this.paperdoll[slot].id;
     }
@@ -71,40 +75,44 @@ class BackpackModel {
         return this.fetchItems().find(ob => ob.fetchKind() === 'Weapon' && ob.fetchEquipped());
     }
 
-    fetchTotalPDef() {
-        const equip = this.equipment;
-
-        return (
-            (this.fetchEquippedArmor(equip.head )?.fetchPDef() ?? 0) +
-            (this.fetchEquippedArmor(equip.chest)?.fetchPDef() ?? 0) +
-            (this.fetchEquippedArmor(equip.pants)?.fetchPDef() ?? 0) +
-            (this.fetchEquippedArmor(equip.hands)?.fetchPDef() ?? 0) +
-            (this.fetchEquippedArmor(equip.feet )?.fetchPDef() ?? 0)
-        );
+    fetchTotalArmorPDef() {
+        let values = this.paperdoll.map((ob) => this.fetchItemRaw(ob.id)?.fetchPDef() ?? 0) ?? [];
+        return values.reduce((acc, value) => acc + value);
     }
 
-    fetchTotalMDef() {
-        const equip = this.equipment;
-
-        return (
-            (this.fetchEquippedArmor(equip.head )?.fetchMDef() ?? 0) +
-            (this.fetchEquippedArmor(equip.chest)?.fetchMDef() ?? 0) +
-            (this.fetchEquippedArmor(equip.pants)?.fetchMDef() ?? 0) +
-            (this.fetchEquippedArmor(equip.hands)?.fetchMDef() ?? 0) +
-            (this.fetchEquippedArmor(equip.feet )?.fetchMDef() ?? 0)
-        );
+    fetchTotalArmorMDef() {
+        let values = this.paperdoll.map((ob) => this.fetchItemRaw(ob.id)?.fetchMDef() ?? 0) ?? [];
+        return values.reduce((acc, value) => acc + value);
     }
 
-    fetchTotalBonusMp() {
-        const equip = this.equipment;
+    fetchTotalArmorEvasion() {
+        let values = this.paperdoll.map((ob) => this.fetchItemRaw(ob.id)?.fetchEvasion() ?? 0) ?? [];
+        return values.reduce((acc, value) => acc + value);
+    }
 
-        return (
-            (this.fetchEquippedArmor(equip.head )?.fetchBonusMp() ?? 0) +
-            (this.fetchEquippedArmor(equip.chest)?.fetchBonusMp() ?? 0) +
-            (this.fetchEquippedArmor(equip.pants)?.fetchBonusMp() ?? 0) +
-            (this.fetchEquippedArmor(equip.hands)?.fetchBonusMp() ?? 0) +
-            (this.fetchEquippedArmor(equip.feet )?.fetchBonusMp() ?? 0)
-        );
+    fetchTotalArmorBonusMp() {
+        let values = this.paperdoll.map((ob) => this.fetchItemRaw(ob.id)?.fetchBonusMp() ?? 0) ?? [];
+        return values.reduce((acc, value) => acc + value);
+    }
+
+    fetchTotalWeaponPAtk() {
+        return this.fetchEquippedWeapon()?.fetchPAtk();
+    }
+
+    fetchTotalWeaponMAtk() {
+        return this.fetchEquippedWeapon()?.fetchMAtk();
+    }
+
+    fetchTotalWeaponAtkSpd() {
+        return this.fetchEquippedWeapon()?.fetchAtkSpd();
+    }
+
+    fetchTotalWeaponCrit() {
+        return this.fetchEquippedWeapon()?.fetchCrit();
+    }
+
+    fetchTotalWeaponAccur() {
+        return this.fetchEquippedWeapon()?.fetchAccur();
     }
 
     fetchTotalLoad() {

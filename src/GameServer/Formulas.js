@@ -86,6 +86,10 @@ const Formulas = {
         return Number((levelMod * (armPDef + 4)).toFixed(2));
     },
 
+    calcEvasion(level, dex, armEvasion) {
+        return Number(((Math.sqrt(dex) * 6) + level + armEvasion).toFixed(2));
+    },
+
     calcAtkSpd(dex, wpnAtkSpd) {
         let dexMod = this.calcBaseMod.DEX(dex);
         return Number((dexMod * wpnAtkSpd).toFixed(2));

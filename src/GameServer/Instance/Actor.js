@@ -1,6 +1,7 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 const ActorModel     = invoke('GameServer/Model/Actor');
 const Automation     = invoke('GameServer/Instance/Automation');
+const Attack         = invoke('GameServer/Instance/Attack');
 const Skillset       = invoke('GameServer/Instance/Skillset');
 const Backpack       = invoke('GameServer/Instance/Backpack');
 const DataCache      = invoke('GameServer/DataCache');
@@ -16,6 +17,7 @@ class Actor extends ActorModel {
 
         // Local
         this.automation = new Automation();
+        this.attack     = new Attack();
         this.skillset   = new Skillset();
         this.backpack   = new Backpack(data);
         this.destId     = undefined;
@@ -123,7 +125,7 @@ class Actor extends ActorModel {
                 // Towards attack
                 this.automation.scheduleAtkMelee(session, this, npc, 0, () => {
                     if (npc.fetchAttackable() || data.ctrl) {
-                        this.meleeHit(session, npc);
+                        this.attack.meleeHit(session, npc);
                     }
                     else {
                         World.npcTalk(session, npc);
@@ -178,7 +180,7 @@ class Actor extends ActorModel {
             // Towards attack
             this.automation.scheduleAtkRemote(session, this, npc, data.fetchDistance(), () => {
                 if (npc.fetchAttackable() || data.fetchCtrl()) { // TODO: Else, find which `response` fails the attack
-                    this.remoteHit(session, npc, data);
+                    this.attack.remoteHit(session, npc, data);
                 }
             });
         }).catch((e) => {
@@ -274,79 +276,6 @@ class Actor extends ActorModel {
         );
     }
 
-    meleeHit(session, npc) {
-        if (npc.isDead()) {
-            return;
-        }
-
-        const speed = 500000 / this.fetchCollectiveAtkSpd();
-        session.dataSend(ServerResponse.attack(this, npc.fetchId()));
-        this.state.setCombats(true);
-
-        setTimeout(() => {
-            this.hitPoint(session, npc, true);
-        }, speed * 0.644); // Until hit point
-
-        setTimeout(() => {
-            this.state.setCombats(false);
-        }, speed); // Until end of combat
-    }
-
-    remoteHit(session, npc, data) {
-        if (npc.isDead()) {
-            return;
-        }
-
-        if (this.fetchMp() < data.fetchConsumedMp()) {
-            ConsoleText.transmit(session, ConsoleText.caption.depletedMp);
-            return;
-        }
-
-        session.dataSend(ServerResponse.skillStarted(this, npc.fetchId(), data));
-        session.dataSend(ServerResponse.skillDurationBar(data.fetchHitTime()));
-        this.state.setCasts(true);
-
-        setTimeout(() => {
-            this.setMp(this.fetchMp() - data.fetchConsumedMp());
-            this.statusUpdateVitals(session, this);
-            this.hitPoint(session, npc, false);
-            this.state.setCasts(false);
-
-            // Start replenish
-            this.automation.replenishVitals(session, this);
-
-        }, data.fetchHitTime());
-
-        setTimeout(() => {
-            // TODO: Prohibit same skill use before reuse time
-        }, data.fetchReuseTime());
-    }
-
-    hitPoint(session, npc, melee) {
-        const power = melee ? this.hitPAtk(this, npc) : this.hitMAtk(this, npc);
-        npc.setHp(Math.max(0, npc.fetchHp() - power)); // HP bar would disappear if less than zero
-
-        this.statusUpdateVitals(session, npc);
-        ConsoleText.transmit(session, ConsoleText.caption.actorHit, [{ kind: ConsoleText.kind.number, value: power }]);
-
-        if (npc.isDead()) {
-            this.rewardExpAndSp(session, npc.fetchRewardExp(), npc.fetchRewardSp());
-            World.removeNpc(session, npc);
-        }
-
-        session.dataSend(ServerResponse.attack(npc, this.fetchId()));
-    }
-
-    hitPAtk(actor, npc) { // TODO: Calculate weapon random hit
-        const pAtk = actor.fetchCollectivePAtk();
-        return Formulas.calcMeleeHit(pAtk, npc.fetchPDef());
-    }
-
-    hitMAtk(actor, npc) {
-        const mAtk = actor.fetchCollectiveMAtk();
-        return Formulas.calcRemoteHit(mAtk, 12, npc.fetchMDef());
-    }
-
     rewardExpAndSp(session, exp, sp) {
         let totalExp = this.fetchExp() + exp;
         let totalSp  = this.fetchSp () +  sp;
@@ -412,6 +341,12 @@ class Actor extends ActorModel {
         );
     }
 
+    setSkillset() {
+        this.skillset.populate(this);
+    }
+
+    // Calculate stats
+
     setCollectiveTotalHp() {
         const base = Formulas.calcHp(this.fetchLevel(), this.fetchClassId(), this.fetchCon());
         this.setMaxHp(base);
@@ -420,7 +355,7 @@ class Actor extends ActorModel {
 
     setCollectiveTotalMp() { // TODO: Fix hardcoded class transfer parameter
         const base  = Formulas.calcMp(this.fetchLevel(), this.isMystic(), 0, this.fetchMen());
-        const bonus = this.backpack.fetchTotalBonusMp();
+        const bonus = this.backpack.fetchTotalArmorBonusMp();
         this.setMaxMp(base + bonus);
         this.setMp(Math.min(this.fetchMp(), this.fetchMaxMp()));
     }
@@ -431,36 +366,45 @@ class Actor extends ActorModel {
         this.setLoad(this.backpack.fetchTotalLoad());
     }
 
-    setCollectiveStats() {
-        const weapon  = this.backpack.fetchEquippedWeapon();
-        const level   = this.fetchLevel();
+    setCollectiveTotalPAtk() {
+        const pAtk = this.backpack.fetchTotalWeaponPAtk() ?? this.fetchPAtk();
+        const base = Formulas.calcPAtk(this.fetchLevel(), this.fetchStr(), pAtk);
+        this.setCollectivePAtk(base);
+    }
 
-        const wPAtk   = weapon?.fetchPAtk() ?? this.fetchPAtk();
-        const pAtk    = Formulas.calcPAtk(level, this.fetchStr(), wPAtk);
-        this.setCollectivePAtk(pAtk);
+    setCollectiveTotalMAtk() {
+        const mAtk = this.backpack.fetchTotalWeaponMAtk() ?? this.fetchMAtk();
+        const base = Formulas.calcMAtk(this.fetchLevel(), this.fetchInt(), mAtk);
+        this.setCollectiveMAtk(base);
+    }
 
-        const wMAtk   = weapon?.fetchMAtk() ?? this.fetchMAtk();
-        const mAtk    = Formulas.calcMAtk(level, this.fetchInt(), wMAtk);
-        this.setCollectiveMAtk(mAtk);
+    setCollectiveTotalPDef() {
+        const pDef = this.backpack.fetchTotalArmorPDef() ?? this.fetchPDef();
+        const base = Formulas.calcPDef(this.fetchLevel(), pDef);
+        this.setCollectivePDef(base);
+    }
 
-        const aPDef   = this.backpack.fetchTotalPDef() ?? this.fetchPDef();
-        const pDef    = Formulas.calcPDef(level, aPDef);
-        this.setCollectivePDef(pDef);
+    setCollectiveTotalEvasion() {
+        const evasion = this.backpack.fetchTotalArmorEvasion() ?? this.fetchEvasion();
+        const base    = Formulas.calcEvasion(this.fetchLevel(), this.fetchDex(), evasion);
+        this.setCollectiveEvasion(base);
+    }
 
-        const wAtkSpd = weapon?.fetchAtkSpd() ?? this.fetchAtkSpd();
-        const atkSpd  = Formulas.calcAtkSpd(this.fetchDex(), wAtkSpd);
-        this.setCollectiveAtkSpd(atkSpd);
+    setCollectiveTotalAtkSpd() {
+        const atkSpd = this.backpack.fetchTotalWeaponAtkSpd() ?? this.fetchAtkSpd();
+        const base   = Formulas.calcAtkSpd(this.fetchDex(), atkSpd);
+        this.setCollectiveAtkSpd(base);
     }
 
     setCollectiveAll() {
         this.setCollectiveTotalHp();
         this.setCollectiveTotalMp();
         this.setCollectiveTotalLoad();
-        this.setCollectiveStats();
-    }
-
-    setSkillset() {
-        this.skillset.populate(this);
+        this.setCollectiveTotalPAtk();
+        this.setCollectiveTotalMAtk();
+        this.setCollectiveTotalPDef();
+        this.setCollectiveTotalEvasion();
+        this.setCollectiveTotalAtkSpd();
     }
 }
 

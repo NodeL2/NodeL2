@@ -71,6 +71,10 @@ class CreatureModel {
         this.model.collectivePDef = data;
     }
 
+    setCollectiveEvasion(data) {
+        this.model.collectiveEvasion = data;
+    }
+
     setCollectiveAtkSpd(data) {
         this.model.collectiveAtkSpd = data;
     }

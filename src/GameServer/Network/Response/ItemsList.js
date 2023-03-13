@@ -14,7 +14,7 @@ function itemsList(items, popup = false) {
             .writeD(item.fetchSelfId())
             .writeD(item.fetchAmount())
             .writeH(item.fetchClass2())
-            .writeH(0xff)  // ?
+            .writeH(0x00)  // ?
             .writeH(item.fetchEquipped())
             .writeD(item.fetchEquipped() ? 2 ** item.fetchSlot() : 0)
             .writeH(0x00)  // Enchant level

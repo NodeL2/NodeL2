@@ -44,7 +44,7 @@ class ItemModel {
     }
 
     fetchClass2() {
-        return this.model.class1 ?? 0;
+        return this.model.class2 ?? 0;
     }
 
     fetchMass() {
