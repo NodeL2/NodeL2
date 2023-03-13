@@ -33,12 +33,12 @@ const DataCache = {
     },
 
     fetchItemFromSelfId(selfId, callback) {
-        const item = { ...DataCache.items.find((ob) => ob.selfId === selfId) };
+        const item = structuredClone(DataCache.items.find((ob) => ob.selfId === selfId));
         item ? callback(item) : utils.infoWarn('Datapack   :: unknown Item Id %d', selfId);
     },
 
     fetchSkillFromSelfId(selfId, callback) {
-        const item = { ...DataCache.skills.find((ob) => ob.selfId === selfId) };
+        const item = structuredClone(DataCache.skills.find((ob) => ob.selfId === selfId));
         item ? callback(item) : utils.infoWarn('Datapack   :: unknown Skill Id %d', selfId);
     }
 };
