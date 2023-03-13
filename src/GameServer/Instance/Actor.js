@@ -31,7 +31,7 @@ class Actor extends ActorModel {
     enterWorld(session) {
         // Calculate accumulated
         this.setCollectiveAll();
-        this.setSkillset();
+        this.skillset.populate(this);
 
         // Start vitals replenish
         this.automation.replenishVitals(session, this);
@@ -329,20 +329,10 @@ class Actor extends ActorModel {
         }, 1000);
     }
 
-    unstuck(session) {
-        this.teleportTo(session, {
-            locX: 80304, locY: 56241, locZ: -1500, head: this.fetchHead()
-        });
-    }
-
     admin(session) {
         session.dataSend(
             ServerResponse.npcHtml(this.fetchId(), utils.parseRawFile('data/Html/Admin/main.html'))
         );
-    }
-
-    setSkillset() {
-        this.skillset.populate(this);
     }
 
     // Calculate stats

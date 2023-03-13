@@ -110,6 +110,10 @@ class Backpack extends BackpackModel {
             this.unequipPaperdoll(slot);
             item.setEquipped(false);
 
+            ConsoleText.transmit(session, ConsoleText.caption.unequipped, [
+                { kind: ConsoleText.kind.item, value: item.fetchSelfId() }
+            ]);
+
             // Move item to the end (not official?)
             this.items = this.items.filter(ob => ob.fetchId() !== item?.fetchId());
             this.items.unshift(item);
