@@ -41,7 +41,7 @@ const Formulas = {
     calcBaseMod: (() => {
         function func(start, end, base, multiplier) {
             for (let i = start; i < end; i++, base += (base * multiplier));
-            return Number(base.toFixed(2));
+            return base;
         }
 
         return {
@@ -66,51 +66,51 @@ const Formulas = {
     },
 
     calcLevelMod(level) {
-        return Number(((level + 89) / 100).toFixed(2));
+        return (level + 89) / 100;
     },
 
     calcPAtk(level, str, wpnPAtk) {
         let levelMod = this.calcLevelMod(level);
         let strMod   = this.calcBaseMod.STR(str);
-        return Number((levelMod * strMod * wpnPAtk).toFixed(2));
+        return levelMod * strMod * wpnPAtk;
     },
 
     calcMAtk(level, int, wpnMAtk) {
         let levelMod = Math.pow(this.calcLevelMod(level), 2);
         let intMod   = Math.pow(this.calcBaseMod.INT(int), 2);
-        return Number((levelMod * intMod * wpnMAtk).toFixed(2));
+        return levelMod * intMod * wpnMAtk;
     },
 
     calcPDef(level, armPDef) {
         let levelMod = this.calcLevelMod(level);
-        return Number((levelMod * (armPDef + 4)).toFixed(2));
+        return levelMod * (armPDef + 4);
     },
 
     calcMDef(level, men, armMDef) {
         let levelMod = this.calcLevelMod(level);
         let menMod   = this.calcBaseMod.MEN(men);
-        return Number((levelMod * menMod * armMDef).toFixed(2));
+        return levelMod * menMod * armMDef;
     },
 
     calcAccur(level, dex, wpnAccur) {
-        return Number(((Math.sqrt(dex) * 6) + level + wpnAccur).toFixed(2));
+        return (Math.sqrt(dex) * 6) + level + wpnAccur;
     },
 
     calcEvasion(level, dex, armEvasion) {
-        return Number(((Math.sqrt(dex) * 6) + level + armEvasion).toFixed(2));
+        return (Math.sqrt(dex) * 6) + level + armEvasion;
     },
 
     calcAtkSpd(dex, wpnAtkSpd) {
         let dexMod = this.calcBaseMod.DEX(dex);
-        return Number((dexMod * wpnAtkSpd).toFixed(2));
+        return dexMod * wpnAtkSpd;
     },
 
     calcMeleeHit(pAtk, pDef) {
-        return Number(((77 * pAtk) / pDef).toFixed(2));
+        return (77 * pAtk) / pDef;
     },
 
     calcRemoteHit(mAtk, power, mDef) {
-        return Number(((91 * Math.sqrt(mAtk) * power) / mDef).toFixed(2));
+        return (91 * Math.sqrt(mAtk) * power) / mDef;
     },
 
     calcDistance(srcX, srcY, destX, destY) {
