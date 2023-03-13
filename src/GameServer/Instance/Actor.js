@@ -108,7 +108,7 @@ class Actor extends ActorModel {
         World.fetchNpc(data.id).then((npc) => { // Creature selected
             if (npc.fetchId() !== this.destId) { // First click on a Creature
                 this.destId = npc.fetchId();
-                session.dataSend(ServerResponse.destSelected(this.destId));
+                session.dataSend(ServerResponse.destSelected(this.destId, this.fetchLevel() - npc.fetchLevel()));
                 this.automation.abortAll(this);
                 this.statusUpdateVitals(session, npc);
             }

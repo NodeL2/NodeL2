@@ -28,8 +28,8 @@ class Npc extends NpcModel {
     }
 
     showLevelTitle() {
-        if (this.fetchTitle() === '') {
-            this.setTitle('Lv ' + this.fetchLevel() + (this.fetchHostile() ? ' *' : ''));
+        if (this.fetchKind() === 'Monster' && this.fetchTitle() === '') {
+            this.setTitle('Lv ' + this.fetchLevel() + (this.fetchHostile() ? ' @' : ''));
         }
     }
 
