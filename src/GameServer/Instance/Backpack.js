@@ -55,14 +55,14 @@ class Backpack extends BackpackModel {
     }
 
     equipGear(session, item) {
-        const slot   = item.fetchSlot();
-        const equip  = this.equipment;
+        let slot = item.fetchSlot();
+        const equip = this.equipment;
 
         if (slot === equip.weapon || slot === equip.shield) {
-            this.unequipGear(session, equip.duals);
+            this.unequipGear(session, equip.dual);
         }
         else
-        if (slot === equip.duals) {
+        if (slot === equip.dual) {
             this.unequipGear(session, equip.weapon);
             this.unequipGear(session, equip.shield);
         }
@@ -74,6 +74,18 @@ class Backpack extends BackpackModel {
         if (slot === equip.armor) {
             this.unequipGear(session, equip.chest);
             this.unequipGear(session, equip.pants);
+        }
+        else
+        if (slot === equip.earr) {
+            if (this.paperdoll[equip.earr]?.id) {
+                slot = equip.earl;
+            }
+        }
+        else
+        if (slot === equip.fr) {
+            if (this.paperdoll[equip.fr]?.id) {
+                slot = equip.fl;
+            }
         }
 
         this.unequipGear(session, slot);

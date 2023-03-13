@@ -5,18 +5,21 @@ class BackpackModel {
     }
 
     // Enum
-
     equipment = {
-        neck   :  3,
-        head   :  6,
-        weapon :  7,
-        shield :  8,
-        hands  :  9,
-        chest  : 10,
-        pants  : 11,
-        feet   : 12,
-        duals  : 14,
-        armor  : 15,
+          earr:  1,
+          earl:  2,
+          neck:  3,
+            fr:  4,
+            fl:  5,
+          head:  6,
+        weapon:  7,
+        shield:  8,
+         hands:  9,
+         chest: 10,
+         pants: 11,
+          feet: 12,
+          dual: 14,
+         armor: 15,
     }
 
     // Set
@@ -92,7 +95,11 @@ class BackpackModel {
         const equip = this.equipment;
 
         return (
-            (this.fetchEquippedArmor(equip.neck)?.fetchMDef() ?? 13)
+            (this.fetchEquippedArmor(equip.neck)?.fetchMDef() ?? 13) +
+            (this.fetchEquippedArmor(equip.earr)?.fetchMDef() ??  9) +
+            (this.fetchEquippedArmor(equip.earl)?.fetchMDef() ??  9) +
+            (this.fetchEquippedArmor(equip.fr  )?.fetchMDef() ??  5) +
+            (this.fetchEquippedArmor(equip.fl  )?.fetchMDef() ??  5)
         );
     }
 
