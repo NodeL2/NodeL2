@@ -43,6 +43,10 @@ const Opcodes = {
         table[0xb9] = () => {}; // Recommend button
         table[0xc1] = () => {}; // Macro
 
+        table[0x4b] = () => {}; // ?
+        table[0xcd] = () => {}; // Map?
+        table[0xd0] = () => {}; // ?
+
         return table;
     })()
 };

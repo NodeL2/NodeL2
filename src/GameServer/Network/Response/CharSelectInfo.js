@@ -37,12 +37,12 @@ function charSelectInfo(characters) {
             .writeD(0x00)  // ?
             .writeD(0x00); // ?
 
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < 16; i++) {
             packet
                 .writeD(character.paperdoll[i].id);
         }
 
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < 16; i++) {
             packet
                 .writeD(character.paperdoll[i].selfId);
         }
@@ -53,7 +53,10 @@ function charSelectInfo(characters) {
             .writeD(character.face)
             .writeF(character.maxHp)
             .writeF(character.maxMp)
-            .writeD(0x00); // Time before deletion
+            .writeD(0x00)  // Time before deletion
+            .writeD(0x00)  // Class Id?
+            .writeD(0x00)  // Active character slot?
+            .writeC(0x00); // Enchanted effect
     }
 
     return packet.fetchBuffer();

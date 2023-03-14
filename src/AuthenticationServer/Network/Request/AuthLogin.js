@@ -6,12 +6,17 @@ function authLogin(session, buffer) {
     const packet = new ReceivePacket(buffer);
 
     packet
-        .readB(14)  // Username
-        .readB(16); // Password
+        .readB(128) // Enciphered Block
+        .readD();   // Session ID
+
+    const deciphered = require('rsa-raw').decipher(
+        packet.data[0]
+    );
 
     consume(session, {
-        username: utils.stripNull(packet.data[0]),
-        password: utils.stripNull(packet.data[1]),
+        username  : utils.stripNull(deciphered.slice(0x62, 0x62 + 14)),
+        password  : utils.stripNull(deciphered.slice(0x70, 0x70 + 16)),
+        sessionId : packet.data[1]
     });
 }
 

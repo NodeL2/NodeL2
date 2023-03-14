@@ -45,7 +45,7 @@ class ReceivePacket {
         const index = this.buffer.indexOf(Buffer.alloc(2), this.offset) + 1;
         if (index > 0) {
             this.data.push(utils.stripNull(
-                this.buffer.slice(this.offset, index)
+                this.buffer.toString('ascii', this.offset, index)
             ));
             this.offset += index + 1;
         }
