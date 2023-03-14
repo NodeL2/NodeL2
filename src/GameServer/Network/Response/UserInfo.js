@@ -48,7 +48,7 @@ function userInfo(actor) {
         .writeD(actor.fetchCollectiveAccur())
         .writeD(actor.fetchCrit())
         .writeD(actor.fetchCollectiveMAtk())
-        .writeD(actor.fetchCastSpd())
+        .writeD(actor.fetchCollectiveCastSpd())
         .writeD(actor.fetchSpeed())
         .writeD(actor.fetchCollectiveMDef())
         .writeD(0x00)  // Purple = 0x01

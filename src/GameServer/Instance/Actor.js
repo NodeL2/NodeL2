@@ -398,6 +398,11 @@ class Actor extends ActorModel {
         this.setCollectiveAtkSpd(base);
     }
 
+    setCollectiveTotalCastSpd() {
+        const base = Formulas.calcCastSpd(this.fetchWit());
+        this.setCollectiveCastSpd(base);
+    }
+
     setCollectiveAll() {
         this.setCollectiveTotalHp();
         this.setCollectiveTotalMp();
@@ -409,6 +414,7 @@ class Actor extends ActorModel {
         this.setCollectiveTotalAccur();
         this.setCollectiveTotalEvasion();
         this.setCollectiveTotalAtkSpd();
+        this.setCollectiveTotalCastSpd();
     }
 }
 

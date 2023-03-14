@@ -79,6 +79,10 @@ class CreatureModel {
         this.model.collectiveAtkSpd = data;
     }
 
+    setCollectiveCastSpd(data) {
+        this.model.collectiveCastSpd = data;
+    }
+
     // Get
 
     fetchId() {
@@ -179,6 +183,10 @@ class CreatureModel {
 
     fetchCastSpd() {
         return this.model.castSpd;
+    }
+
+    fetchCollectiveCastSpd() {
+        return this.model.collectiveCastSpd ?? this.fetchCastSpd();
     }
 
     fetchWalk() {

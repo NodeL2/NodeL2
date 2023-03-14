@@ -49,6 +49,7 @@ const Formulas = {
             DEX: (data) => { return func(21, data, 1.01, 0.009553766764); },
             CON: (data) => { return func( 1, data, 0.46, 0.029863478935); },
             INT: (data) => { return func( 6, data, 0.61, 0.019828637467); },
+            WIT: (data) => { return func( 0, data, 0.40, 0.049719998399); },
             MEN: (data) => { return func(25, data, 1.28, 0.010330633552); },
         };
     })(),
@@ -103,6 +104,11 @@ const Formulas = {
     calcAtkSpd(dex, wpnAtkSpd) {
         let dexMod = this.calcBaseMod.DEX(dex);
         return dexMod * wpnAtkSpd;
+    },
+
+    calcCastSpd(wit) {
+        let witMod = this.calcBaseMod.WIT(wit);
+        return 333 * witMod;
     },
 
     calcMeleeHit(pAtk, pDef) {
