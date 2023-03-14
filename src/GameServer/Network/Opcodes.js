@@ -37,6 +37,7 @@ const Opcodes = {
         table[0x48] = ClientRequest.validatePosition;
         table[0x59] = ClientRequest.trashItem;
         table[0x63] = ClientRequest.questList;
+        table[0xcd] = ClientRequest.showMap;
 
         table[0x57] = () => {}; // Board
         table[0x9d] = () => {}; // Skill Cool Time, not needed?
@@ -44,7 +45,6 @@ const Opcodes = {
         table[0xc1] = () => {}; // Macro
 
         table[0x4b] = () => {}; // ?
-        table[0xcd] = () => {}; // Map?
         table[0xd0] = () => {}; // ?
 
         return table;
