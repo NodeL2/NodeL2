@@ -205,7 +205,7 @@ class Actor extends ActorModel {
 
             setTimeout(() => {
                 this.state.setAnimated(false);
-            }, 2000); // TODO: How to calculate this, based on what?
+            }, 2500);
             break;
 
         case 0x01: // Walk / Run
