@@ -49,7 +49,7 @@ function userInfo(actor) {
         .writeD(actor.fetchCrit())
         .writeD(actor.fetchCollectiveMAtk())
         .writeD(actor.fetchCollectiveCastSpd())
-        .writeD(actor.fetchSpeed())
+        .writeD(actor.fetchCollectiveAtkSpd())
         .writeD(actor.fetchCollectiveMDef())
         .writeD(0x00)  // Purple = 0x01
         .writeD(actor.fetchKarma())
@@ -62,7 +62,7 @@ function userInfo(actor) {
         .writeD(0x00)  // Flying Run Speed
         .writeD(0x00)  // Flying Walk Speed
         .writeF(1.0)   // Movement Multiplier
-        .writeF(actor.fetchCollectiveAtkSpd() / 277.77777777777777)
+        .writeF((1.1 * actor.fetchCollectiveAtkSpd()) / actor.fetchAtkSpd())
         .writeF(actor.fetchRadius())
         .writeF(actor.fetchSize())
         .writeD(actor.fetchHair())

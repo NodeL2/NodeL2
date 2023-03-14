@@ -75,10 +75,6 @@ class ActorModel extends CreatureModel {
         return this.model.crit;
     }
 
-    fetchSpeed() {
-        return this.model.speed;
-    }
-
     fetchMaxLoad() {
         return this.model.maxLoad;
     }
