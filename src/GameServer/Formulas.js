@@ -106,9 +106,21 @@ const Formulas = {
         return dexMod * wpnAtkSpd;
     },
 
+    calcAtkSpdMultiplier(atkSpd, calculatedAtkSpd) {
+        return (1.1 * calculatedAtkSpd) / atkSpd;
+    },
+
     calcCastSpd(wit) {
         let witMod = this.calcBaseMod.WIT(wit);
         return 333 * witMod;
+    },
+
+    calcMeleeAtkTime(atkSpd) {
+        return 500000 / atkSpd;
+    },
+
+    calcRemoteAtkTime(time, castSpd) {
+        return  (time / castSpd) * 333;
     },
 
     calcMeleeHit(pAtk, pDef) {

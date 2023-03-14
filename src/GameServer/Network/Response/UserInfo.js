@@ -62,7 +62,7 @@ function userInfo(actor) {
         .writeD(0x00)  // Flying Run Speed
         .writeD(0x00)  // Flying Walk Speed
         .writeF(1.0)   // Movement Multiplier
-        .writeF((1.1 * actor.fetchCollectiveAtkSpd()) / actor.fetchAtkSpd())
+        .writeF(actor.fetchAtkSpdMultiplier())
         .writeF(actor.fetchRadius())
         .writeF(actor.fetchSize())
         .writeD(actor.fetchHair())

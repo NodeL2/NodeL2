@@ -5,6 +5,10 @@ class SkillModel {
 
     // Set
 
+    setCalculatedHitTime(data) {
+        this.model.calculatedHitTime = data;
+    }
+
     setCtrl(data) {
         this.model.ctrl = data;
     }
@@ -37,6 +41,10 @@ class SkillModel {
 
     fetchHitTime() {
         return this.model.hitTime;
+    }
+
+    fetchCalculatedHitTime() {
+        return this.model.calculatedHitTime ?? this.fetchHitTime();
     }
 
     fetchReuseTime() {

@@ -1,4 +1,5 @@
 const StateModel = invoke('GameServer/Model/State');
+const Formulas   = invoke('GameServer/Formulas');
 
 class CreatureModel {
     constructor(data) {
@@ -222,6 +223,10 @@ class CreatureModel {
     }
 
     // Abstract
+
+    fetchAtkSpdMultiplier() {
+        return Formulas.calcAtkSpdMultiplier(this.fetchAtkSpd(), this.fetchCollectiveAtkSpd());
+    }
 
     fillupHp() {
         this.setHp(this.fetchMaxHp());

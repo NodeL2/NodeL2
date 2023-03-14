@@ -11,7 +11,7 @@ class Attack {
             return;
         }
 
-        const speed = 500000 / actor.fetchCollectiveAtkSpd();
+        const speed = Formulas.calcMeleeAtkTime(actor.fetchCollectiveAtkSpd());
         session.dataSend(ServerResponse.attack(actor, npc.fetchId()));
         actor.state.setCombats(true);
 
@@ -24,24 +24,25 @@ class Attack {
         }, speed); // Until end of combat
     }
 
-    remoteHit(session, npc, data) {
+    remoteHit(session, npc, skill) {
         const actor = session.actor;
 
         if (npc.isDead()) {
             return;
         }
 
-        if (actor.fetchMp() < data.fetchConsumedMp()) {
+        if (actor.fetchMp() < skill.fetchConsumedMp()) {
             ConsoleText.transmit(session, ConsoleText.caption.depletedMp);
             return;
         }
 
-        session.dataSend(ServerResponse.skillStarted(actor, npc.fetchId(), data));
-        session.dataSend(ServerResponse.skillDurationBar(data.fetchHitTime()));
+        skill.setCalculatedHitTime(Formulas.calcRemoteAtkTime(skill.fetchHitTime(), actor.fetchCollectiveCastSpd()));
+        session.dataSend(ServerResponse.skillStarted(actor, npc.fetchId(), skill));
+        session.dataSend(ServerResponse.skillDurationBar(skill.fetchCalculatedHitTime()));
         actor.state.setCasts(true);
 
         setTimeout(() => {
-            actor.setMp(actor.fetchMp() - data.fetchConsumedMp());
+            actor.setMp(actor.fetchMp() - skill.fetchConsumedMp());
             actor.statusUpdateVitals(session, actor);
             this.hitPoint(session, npc, false);
             actor.state.setCasts(false);
@@ -49,11 +50,11 @@ class Attack {
             // Start replenish
             actor.automation.replenishVitals(session, actor);
 
-        }, data.fetchHitTime());
+        }, skill.fetchCalculatedHitTime());
 
         setTimeout(() => {
             // TODO: Prohibit same skill use before reuse time
-        }, data.fetchReuseTime());
+        }, skill.fetchReuseTime());
     }
 
     hitPoint(session, npc, melee) {

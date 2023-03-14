@@ -8,7 +8,7 @@ function skillStarted(actor, npcId, skill) {
         .writeD(npcId)
         .writeD(skill.fetchSelfId())
         .writeD(0x01)
-        .writeD(skill.fetchHitTime())
+        .writeD(skill.fetchCalculatedHitTime())
         .writeD(skill.fetchReuseTime())
         .writeD(actor.fetchLocX())
         .writeD(actor.fetchLocY())
