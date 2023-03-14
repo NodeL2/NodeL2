@@ -7,7 +7,7 @@
 ⚠️ Careful, this is not to be used as a private server **at all**.
 
 ## YouTube Showcase
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/R7-62GR-w-E/0.jpg)](https://www.youtube.com/watch?v=R7-62GR-w-E)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/9-lBvxaXDnM/0.jpg)](https://www.youtube.com/watch?v=9-lBvxaXDnM)
 
 ## Prerequisites
 * Install [NodeJS LTS](https://nodejs.org/en/download), and [MariaDB 16](https://mariadb.org/download/?t=mariadb&p=mariadb&r=10.6.12)
