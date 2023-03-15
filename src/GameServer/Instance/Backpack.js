@@ -48,6 +48,14 @@ class Backpack extends BackpackModel {
                     );
                     return;
                 }
+                else
+                if (item.fetchSelfId() === 736) {
+                    const details = utils.crushOb(DataCache.skills.find((ob) => ob.selfId === 2013) ?? {});
+                    session.dataSend(
+                        ServerResponse.skillStarted(session.actor, session.actor.fetchId(), new SkillModel(details))
+                    );
+                    return;
+                }
 
                 utils.infoWarn('GameServer :: unhandled item action');
             }

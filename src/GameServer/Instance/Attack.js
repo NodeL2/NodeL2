@@ -10,28 +10,27 @@ class Attack {
 
     // Queue mechanism
 
-    queueMovement(data) {
-        this.queued.move = data;
+    queueEvent(name, data) {
+        this.queue.name = name;
+        this.queue.data = data;
     }
 
-    dequeueMovement(session) {
-        session.actor.state.setCombats(false);
-        session.actor.moveTo(session, this.queued.move);
-        this.resetQueuedEvents();
-    }
+    dequeueEvent(session) {
+        let actor = session.actor;
+        actor.state.setCombats(false);
 
-    queueSpell(data) {
-        this.queued.spell = data;
-    }
-
-    dequeueSpell(session) {
-        session.actor.state.setCombats(false);
-        session.actor.skillAction(session, this.queued.spell);
+        switch (this.queue.name) {
+            case 'move'   : actor.moveTo     (session, this.queue.data); break;
+            case 'attack' : actor.select     (session, this.queue.data); break;
+            case 'spell'  : actor.skillAction(session, this.queue.data); break;
+            case 'pickup' : actor.select     (session, this.queue.data); break;
+            case 'sit'    : actor.basicAction(session, this.queue.data); break;
+        }
         this.resetQueuedEvents();
     }
 
     resetQueuedEvents() {
-        this.queued = { move: undefined, spell: undefined };
+        this.queue = { name: undefined, data: undefined };
     }
 
     meleeHit(session, npc) {
@@ -51,16 +50,10 @@ class Attack {
         }, speed * 0.644); // Until hit point
 
         setTimeout(() => {
-            if (this.queued.spell) {
-                this.dequeueSpell(session);
+            if (this.queue.name) {
+                this.dequeueEvent(session);
                 return;
             }
-
-            if (this.queued.move) {
-                this.dequeueMovement(session);
-                return;
-            }
-
             this.meleeHit(session, npc);
 
         }, speed); // Until end of combat move
