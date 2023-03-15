@@ -5,17 +5,33 @@ const Formulas       = invoke('GameServer/Formulas');
 
 class Attack {
     constructor() {
-        this.move = undefined;
+        this.resetQueuedEvents();
     }
 
-    queueMovement(coords) {
-        this.move = coords;
+    // Queue mechanism
+
+    queueMovement(data) {
+        this.queued.move = data;
     }
 
     dequeueMovement(session) {
         session.actor.state.setCombats(false);
-        session.actor.moveTo(session, this.move);
-        this.move = undefined;
+        session.actor.moveTo(session, this.queued.move);
+        this.resetQueuedEvents();
+    }
+
+    queueSpell(data) {
+        this.queued.spell = data;
+    }
+
+    dequeueSpell(session) {
+        session.actor.state.setCombats(false);
+        session.actor.requestedSkillAction(session, this.queued.spell);
+        this.resetQueuedEvents();
+    }
+
+    resetQueuedEvents() {
+        this.queued = { move: undefined, spell: undefined };
     }
 
     meleeHit(session, npc) {
@@ -35,10 +51,16 @@ class Attack {
         }, speed * 0.644); // Until hit point
 
         setTimeout(() => {
-            if (this.move) {
+            if (this.queued.spell) {
+                this.dequeueSpell(session);
+                return;
+            }
+
+            if (this.queued.move) {
                 this.dequeueMovement(session);
                 return;
             }
+
             this.meleeHit(session, npc);
 
         }, speed); // Until end of combat move

@@ -171,6 +171,9 @@ class Actor extends ActorModel {
         }
 
         if (this.isBlocked(session)) {
+            if (this.state.fetchCombats()) {
+                this.attack.queueSpell(data);
+            }
             return;
         }
 
