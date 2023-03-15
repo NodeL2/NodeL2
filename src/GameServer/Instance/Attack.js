@@ -26,7 +26,7 @@ class Attack {
 
     dequeueSpell(session) {
         session.actor.state.setCombats(false);
-        session.actor.requestedSkillAction(session, this.queued.spell);
+        session.actor.skillAction(session, this.queued.spell);
         this.resetQueuedEvents();
     }
 
