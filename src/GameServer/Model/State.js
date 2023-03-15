@@ -3,7 +3,7 @@ class StateModel {
         this.isAnimated  = false; // Blocked: tries to sit down / stand-up (unblocks after animation)
         this.isSeated    = false; // Blocked: seated down                  (unblocks after stand-up action)
         this.inCombat    = false; // Blocked: combats                      (unblocks after attack)
-        this.isCastin    = false; // Blocked: casts skill                  (unblocks after skill cast, or esc)
+        this.isCastin    = false; // Blocked: casts skill                  (unblocks after skill cast, or abort)
         this.toAtkMelee  = false; // Non-blocked: towards attack
         this.toAtkRemote = false; // Non-blocked: towards attack
         this.isPickinUp  = false; // Non-blocked: towards pick-up
