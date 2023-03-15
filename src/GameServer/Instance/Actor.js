@@ -55,7 +55,7 @@ class Actor extends ActorModel {
     moveTo(session, coords) {
         if (this.isBlocked(session)) {
             if (this.state.fetchCombats()) {
-                this.attack.queueMovement(coords);
+                this.attack.queueEvent('move', coords);
             }
             return;
         }
@@ -117,6 +117,9 @@ class Actor extends ActorModel {
             }
             else { // Second click on same Creature
                 if (this.isBlocked(session)) {
+                    if (this.state.fetchCombats()) {
+                        this.attack.queueEvent('attack', data);
+                    }
                     return;
                 }
 
@@ -137,6 +140,9 @@ class Actor extends ActorModel {
             }
         }).catch(() => { // Pickup item
             if (this.isBlocked(session)) {
+                if (this.state.fetchCombats()) {
+                    this.attack.queueEvent('pickup', data);
+                }
                 return;
             }
 
@@ -172,7 +178,7 @@ class Actor extends ActorModel {
 
         if (this.isBlocked(session)) {
             if (this.state.fetchCombats()) {
-                this.attack.queueSpell(data);
+                this.attack.queueEvent('spell', data);
             }
             return;
         }
@@ -202,6 +208,9 @@ class Actor extends ActorModel {
         switch (data.actionId) {
         case 0x00: // Sit / Stand
             if (this.state.fetchCasts() || this.state.fetchCombats() || this.state.fetchAnimated()) {
+                if (this.state.fetchCombats()) {
+                    this.attack.queueEvent('sit', data);
+                }
                 return;
             }
 
