@@ -4,10 +4,41 @@ const ConsoleText    = invoke('GameServer/ConsoleText');
 const Formulas       = invoke('GameServer/Formulas');
 
 class Attack {
+    constructor() {
+        this.resetQueuedEvents();
+    }
+
+    // Queue mechanism
+
+    queueMovement(data) {
+        this.queued.move = data;
+    }
+
+    dequeueMovement(session) {
+        session.actor.state.setCombats(false);
+        session.actor.moveTo(session, this.queued.move);
+        this.resetQueuedEvents();
+    }
+
+    queueSpell(data) {
+        this.queued.spell = data;
+    }
+
+    dequeueSpell(session) {
+        session.actor.state.setCombats(false);
+        session.actor.skillAction(session, this.queued.spell);
+        this.resetQueuedEvents();
+    }
+
+    resetQueuedEvents() {
+        this.queued = { move: undefined, spell: undefined };
+    }
+
     meleeHit(session, npc) {
         const actor = session.actor;
 
         if (npc.isDead()) {
+            actor.state.setCombats(false);
             return;
         }
 
@@ -20,8 +51,19 @@ class Attack {
         }, speed * 0.644); // Until hit point
 
         setTimeout(() => {
-            actor.state.setCombats(false);
-        }, speed); // Until end of combat
+            if (this.queued.spell) {
+                this.dequeueSpell(session);
+                return;
+            }
+
+            if (this.queued.move) {
+                this.dequeueMovement(session);
+                return;
+            }
+
+            this.meleeHit(session, npc);
+
+        }, speed); // Until end of combat move
     }
 
     remoteHit(session, npc, skill) {

@@ -54,6 +54,9 @@ class Actor extends ActorModel {
 
     moveTo(session, coords) {
         if (this.isBlocked(session)) {
+            if (this.state.fetchCombats()) {
+                this.attack.queueMovement(coords);
+            }
             return;
         }
 
@@ -80,7 +83,7 @@ class Actor extends ActorModel {
             }
             else
             if (this.state.fetchAtkRemote()) {
-                this.requestedSkillAction(session, this.storedAttackData);
+                this.skillAction(session, this.storedAttackData);
             }
             this.storedAttackData = undefined;
         }
@@ -162,12 +165,15 @@ class Actor extends ActorModel {
         session.dataSend(ServerResponse.destDeselected(this));
     }
 
-    requestedSkillAction(session, data) {
+    skillAction(session, data) {
         if (this.destId === undefined) {
             return;
         }
 
         if (this.isBlocked(session)) {
+            if (this.state.fetchCombats()) {
+                this.attack.queueSpell(data);
+            }
             return;
         }
 
@@ -280,6 +286,9 @@ class Actor extends ActorModel {
         let totalExp = this.fetchExp() + exp;
         let totalSp  = this.fetchSp () +  sp;
 
+        this.setExpSp(totalExp, totalSp);
+        ConsoleText.transmit(session, ConsoleText.caption.earnedExpAndSp, [{ kind: ConsoleText.kind.number, value: exp}, { kind: ConsoleText.kind.number, value: sp }]);
+
         for (let i = 0; i < 75; i++) {
             if (totalExp >= DataCache.experience[i] && totalExp < DataCache.experience[i + 1]) {
                 if (i + 1 > this.fetchLevel()) { // Leveled up
@@ -289,12 +298,9 @@ class Actor extends ActorModel {
             }
         }
 
-        this.setExpSp(totalExp, totalSp);
-        this.statusUpdateLevelExpSp(session, this);
-        ConsoleText.transmit(session, ConsoleText.caption.earnedExpAndSp, [{ kind: ConsoleText.kind.number, value: exp}, { kind: ConsoleText.kind.number, value: sp }]);
-
         // Update database with new exp, sp
         Database.updateCharacterExperience(this.fetchId(), this.fetchLevel(), totalExp, totalSp);
+        session.dataSend(ServerResponse.userInfo(this));
     }
 
     levelUp(session, level) {
@@ -307,7 +313,6 @@ class Actor extends ActorModel {
         this.fillupVitals();
 
         // Level up effect
-        session.dataSend(ServerResponse.userInfo(this));
         session.dataSend(ServerResponse.socialAction(this.fetchId(), 15));
         ConsoleText.transmit(session, ConsoleText.caption.levelUp);
 

@@ -22,7 +22,7 @@ function consume(session, data) {
     if (skill.fetchPassive()) {
         return;
     }
-    session.actor.requestedSkillAction(session, skill);
+    session.actor.skillAction(session, skill);
 }
 
 module.exports = skillUse;
