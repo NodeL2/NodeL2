@@ -54,6 +54,9 @@ class Actor extends ActorModel {
 
     moveTo(session, coords) {
         if (this.isBlocked(session)) {
+            if (this.state.fetchCombats()) {
+                this.attack.queueMovement(coords);
+            }
             return;
         }
 

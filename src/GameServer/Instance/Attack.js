@@ -4,10 +4,25 @@ const ConsoleText    = invoke('GameServer/ConsoleText');
 const Formulas       = invoke('GameServer/Formulas');
 
 class Attack {
+    constructor() {
+        this.move = undefined;
+    }
+
+    queueMovement(coords) {
+        this.move = coords;
+    }
+
+    dequeueMovement(session) {
+        session.actor.state.setCombats(false);
+        session.actor.moveTo(session, this.move);
+        this.move = undefined;
+    }
+
     meleeHit(session, npc) {
         const actor = session.actor;
 
         if (npc.isDead()) {
+            actor.state.setCombats(false);
             return;
         }
 
@@ -20,8 +35,13 @@ class Attack {
         }, speed * 0.644); // Until hit point
 
         setTimeout(() => {
-            actor.state.setCombats(false);
-        }, speed); // Until end of combat
+            if (this.move) {
+                this.dequeueMovement(session);
+                return;
+            }
+            this.meleeHit(session, npc);
+
+        }, speed); // Until end of combat move
     }
 
     remoteHit(session, npc, skill) {
