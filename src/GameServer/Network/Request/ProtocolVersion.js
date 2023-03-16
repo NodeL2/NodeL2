@@ -13,7 +13,7 @@ function protocolVersion(session, buffer) {
 }
 
 function consume(session, data) {
-    const optn = options.connection.General;
+    const optn = options.default.General;
 
     if (data.protocolVersion !== optn.protocol) { // TODO: Add error feedback on-screen
         utils.infoWarn('GameServer :: Protocol mismatch, expected %d, provided %d', optn.protocol, data.protocolVersion);

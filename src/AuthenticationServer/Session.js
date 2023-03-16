@@ -3,7 +3,7 @@ const Opcodes        = invoke('AuthenticationServer/Network/Opcodes');
 
 class Session {
     constructor(socket) {
-        const optn = options.connection.AuthServer;
+        const optn = options.default.AuthServer;
 
         this.socket    = socket;
         this.sessionId = utils.randomNumber(0x80000000);

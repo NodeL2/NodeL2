@@ -4,7 +4,7 @@ const World   = invoke('GameServer/World');
 
 class Session {
     constructor(socket) {
-        const optn = options.connection.GameServer;
+        const optn = options.default.GameServer;
 
         this.socket   = socket;
         this.serverId = optn.id;

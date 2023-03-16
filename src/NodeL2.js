@@ -23,11 +23,11 @@ Database.init(() => {
     DataCache.init();
         World.init();
 
-    new Server('AuthServer', options.connection.AuthServer, (socket) => {
+    new Server('AuthServer', options.default.AuthServer, (socket) => {
         return new AuthSession(socket);
     });
 
-    new Server('GameServer', options.connection.GameServer, (socket) => {
+    new Server('GameServer', options.default.GameServer, (socket) => {
         return new GameSession(socket);
     });
 });

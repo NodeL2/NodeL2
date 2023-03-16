@@ -18,7 +18,7 @@ function gameLogin(session, buffer) {
 
 function consume(session, data) {
     if (utils.sessionMatch(session, data)) {
-        const optn = options.connection.GameServer;
+        const optn = options.default.GameServer;
 
         if (optn.id === data.serverId) {
             session.dataSend(
