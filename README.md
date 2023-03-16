@@ -16,7 +16,7 @@
 * You can also download **LINEAGE II C4 Scions Client** that features `660` API protocol, and use branch `feature/c4`.
 
 ## Setup
-* Fix database credentials in `database/install` script, and `config/connection.ini`
+* Fix database credentials in `database/install` script, and `config/default.ini`
 * Run `database/install.bat` for **Windows**, or `database/install.sh` for **Linux** and **macOS**
 * Run `npm install -i`
 
