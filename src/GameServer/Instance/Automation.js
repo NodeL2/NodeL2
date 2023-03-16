@@ -96,7 +96,7 @@ class Automation {
         // Calculate duration
         src.state.setAtkRemote(true);
         const ticks = this.ticksToMove(
-            src.fetchLocX(), src.fetchLocY(), dst.fetchLocX(), dst.fetchLocY(), radius, src.fetchRun()
+            src.fetchLocX(), src.fetchLocY(), dst.fetchLocX(), dst.fetchLocY(), radius, src.fetchCollectiveRunSpd()
         );
 
         // Arrived
