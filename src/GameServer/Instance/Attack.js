@@ -107,9 +107,10 @@ class Attack {
         session.dataSend(ServerResponse.attack(npc, session.actor.fetchId()));
     }
 
-    hitPAtk(actor, npc) { // TODO: Calculate weapon random hit
+    hitPAtk(actor, npc) {
         const pAtk = actor.fetchCollectivePAtk();
-        return Formulas.calcMeleeHit(pAtk, npc.fetchPDef());
+        const pAtkRnd = actor.backpack.fetchTotalWeaponPAtkRnd();
+        return Formulas.calcMeleeHit(pAtk, pAtkRnd, npc.fetchPDef());
     }
 
     hitMAtk(actor, npc) {

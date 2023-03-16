@@ -133,8 +133,9 @@ const Formulas = {
         return  (time / castSpd) * 333;
     },
 
-    calcMeleeHit(pAtk, pDef) {
-        return (77 * pAtk) / pDef;
+    calcMeleeHit(pAtk, pAtkRnd, pDef) {
+        const pAtkRndMul = 1 + (utils.oneFromSpan(-pAtkRnd, pAtkRnd) / 100);
+        return (77 * pAtk * pAtkRndMul) / pDef;
     },
 
     calcRemoteHit(mAtk, power, mDef) {
