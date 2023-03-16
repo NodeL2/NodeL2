@@ -125,8 +125,8 @@ class BackpackModel {
         return this.fetchEquippedWeapon()?.fetchAtkSpd();
     }
 
-    fetchTotalWeaponCrit() {
-        return this.fetchEquippedWeapon()?.fetchCrit();
+    fetchTotalWeaponCritical() {
+        return this.fetchEquippedWeapon()?.fetchCritical();
     }
 
     fetchTotalWeaponAccur() {

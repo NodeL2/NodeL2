@@ -408,6 +408,12 @@ class Actor extends ActorModel {
         this.setCollectiveEvasion(base);
     }
 
+    setCollectiveTotalCritical() {
+        const critical = this.backpack.fetchTotalWeaponCritical() ?? this.fetchCritical();
+        const base    = Formulas.calcCritical(this.fetchDex(), critical);
+        this.setCollectiveCritical(base);
+    }
+
     setCollectiveTotalAtkSpd() {
         const atkSpd = this.backpack.fetchTotalWeaponAtkSpd() ?? this.fetchAtkSpd();
         const base   = Formulas.calcAtkSpd(this.fetchDex(), atkSpd);
@@ -417,6 +423,16 @@ class Actor extends ActorModel {
     setCollectiveTotalCastSpd() {
         const base = Formulas.calcCastSpd(this.fetchWit());
         this.setCollectiveCastSpd(base);
+    }
+
+    setCollectiveTotalWalkSpd() {
+        const base = Formulas.calcSpeed(this.fetchDex());
+        this.setCollectiveWalkSpd(base);
+    }
+
+    setCollectiveTotalRunSpd() {
+        const base = Formulas.calcSpeed(this.fetchDex());
+        this.setCollectiveRunSpd(base);
     }
 
     setCollectiveAll() {
@@ -429,8 +445,11 @@ class Actor extends ActorModel {
         this.setCollectiveTotalMDef();
         this.setCollectiveTotalAccur();
         this.setCollectiveTotalEvasion();
+        this.setCollectiveTotalCritical();
         this.setCollectiveTotalAtkSpd();
         this.setCollectiveTotalCastSpd();
+        this.setCollectiveTotalWalkSpd();
+        this.setCollectiveTotalRunSpd();
     }
 }
 

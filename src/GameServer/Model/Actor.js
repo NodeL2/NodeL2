@@ -25,6 +25,10 @@ class ActorModel extends CreatureModel {
         this.model.collectiveEvasion = data;
     }
 
+    setCollectiveCritical(data) {
+        this.model.collectiveCritical = data;
+    }
+
     setLoad(data) {
         this.model.load = data;
     }
@@ -71,8 +75,12 @@ class ActorModel extends CreatureModel {
         return this.model.collectiveEvasion ?? this.fetchEvasion();
     }
 
-    fetchCrit() {
+    fetchCritical() {
         return this.model.crit;
+    }
+
+    fetchCollectiveCritical() {
+        return this.model.collectiveCritical ?? this.fetchCritical();
     }
 
     fetchMaxLoad() {

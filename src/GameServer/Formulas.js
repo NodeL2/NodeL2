@@ -101,6 +101,11 @@ const Formulas = {
         return (Math.sqrt(dex) * 6) + level + armEvasion;
     },
 
+    calcCritical(dex, wpnCrit) {
+        let dexMod = this.calcBaseMod.DEX(dex);
+        return dexMod * wpnCrit;
+    },
+
     calcAtkSpd(dex, wpnAtkSpd) {
         let dexMod = this.calcBaseMod.DEX(dex);
         return dexMod * wpnAtkSpd;
@@ -113,6 +118,11 @@ const Formulas = {
     calcCastSpd(wit) {
         let witMod = this.calcBaseMod.WIT(wit);
         return 333 * witMod;
+    },
+
+    calcSpeed(dex, speed) {
+        let dexMod = this.calcBaseMod.DEX(dex);
+        return dexMod * speed;
     },
 
     calcMeleeAtkTime(atkSpd) {
