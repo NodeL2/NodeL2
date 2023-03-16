@@ -10,9 +10,9 @@
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/9-lBvxaXDnM/0.jpg)](https://www.youtube.com/watch?v=9-lBvxaXDnM)
 
 ## Prerequisites
-* Install [NodeJS LTS](https://nodejs.org/en/download), and [MariaDB 16](https://mariadb.org/download/?t=mariadb&p=mariadb&r=10.6.12)
-* For convenience, also install [MS Visual Studio Code](https://code.visualstudio.com/download), and [TablePlus](https://tableplus.com/download)
-* Download [LINEAGE II C2 Splendor Client](https://drive.google.com/drive/folders/1kdVS2ymqmK3vzufEt5hUnij6pWS8BcZb?usp=sharing) that features `485` API protocol
+* Install **[NodeJS LTS](https://nodejs.org/en/download)**, and **[MariaDB 16](https://mariadb.org/download/?t=mariadb&p=mariadb&r=10.6.12)**
+* For convenience, also install **[MS Visual Studio Code](https://code.visualstudio.com/download)**, and **[TablePlus](https://tableplus.com/download)**
+* Download **[LINEAGE II C2 Splendor Client](https://drive.google.com/drive/folders/1kdVS2ymqmK3vzufEt5hUnij6pWS8BcZb?usp=sharing)** that features `485` API protocol
 * You can also download **LINEAGE II C4 Scions Client** that features `660` API protocol, and use branch `feature/c4`.
 
 ## Setup
@@ -23,7 +23,7 @@
 ## Run
 ⚠️ It is advised to reset the database with the `database/install` script after **each pull** from the repo. A lot of quintessential implementation is worked on.
 * Launch server with `npm run --silent NodeL2`
-* Fire-up **LINEAGE II C2 Splendor** and authenticate
+* Fire-up **LINEAGE II Client** and authenticate
 * In order to access the Admin panel, use this in the chat prompt: `.admin`
 
 ## What to expect
