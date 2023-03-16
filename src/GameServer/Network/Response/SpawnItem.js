@@ -10,7 +10,7 @@ function spawnItem(item) {
         .writeD(item.fetchLocY())
         .writeD(item.fetchLocZ())
         .writeD(0x00)  // ?
-        .writeD(0x01); // Amount
+        .writeD(item.fetchAmount());
 
     return packet.fetchBuffer();
 }

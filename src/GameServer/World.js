@@ -37,18 +37,11 @@ const World = {
     removeNpc(session, npc) {
         // Npc death
         const npcId = npc.fetchId();
-        session.dataSend(ServerResponse.die(npcId));
         npc.destructor();
+        session.dataSend(ServerResponse.die(npcId));
 
         // Npc drops
-        const rewards = DataCache.npcRewards.find(ob => ob.selfId === npc.fetchSelfId())?.rewards ?? [];
-        rewards.forEach((reward) => {
-            if (Math.random() <= reward.chance / 100) { // TODO: Remove locZ hack at some point
-                const coords = Formulas.createRandomCoordinates(npc.fetchLocX(), npc.fetchLocY(), 50);
-                coords.locZ  = npc.fetchLocZ() - 10;
-                this.spawnItem(session, reward.selfId, coords);
-            }
-        });
+        this.npcRewards(session, npc);
 
         // Delete npc from world
         setTimeout(() => {
@@ -59,9 +52,21 @@ const World = {
         }, 7000); // TODO: Depends if npc is spoiled
     },
 
-    spawnItem(session, selfId, coords) {
+    npcRewards(session, npc) {
+        const rewards = DataCache.npcRewards.find(ob => ob.selfId === npc.fetchSelfId())?.rewards ?? [];
+        rewards.forEach((reward) => {
+            if (Math.random() <= reward.chance / 100) { // TODO: Remove locZ hack at some point
+                const coords = Formulas.createRandomCoordinates(npc.fetchLocX(), npc.fetchLocY(), 50);
+                coords.locZ  = npc.fetchLocZ() - 10;
+                this.spawnItem(session, reward.selfId, 1, coords);
+            }
+        });
+    },
+
+    spawnItem(session, selfId, amount, coords) {
         DataCache.fetchItemFromSelfId(selfId, (itemDetails) => {
             const item = new Item(this.items.nextId++, { ...utils.crushOb(itemDetails), ...coords });
+            item.setAmount(amount);
             this.items.spawns.push(item);
             session.dataSend(ServerResponse.spawnItem(item));
         });
