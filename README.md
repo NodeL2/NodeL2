@@ -46,7 +46,7 @@
 ✴️ Npc interaction, quests
 
 ## Unimplemented
-⛔️ Around 70% of mechanics\
+⛔️ Around 65% of mechanics\
 ⛔️ 80% of datapack
 
 ## License
