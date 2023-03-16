@@ -22,13 +22,13 @@ function npcInfo(npc) {
         .writeD(100)   // ?
         .writeD(100)   // ?
         .writeD(100)   // ?
-        .writeF(1.0)   // Move multiplier
-        .writeF(1.0)   // Attack speed multiplier
+        .writeF(1.1)   // Move multiplier
+        .writeF(npc.fetchAtkSpdMultiplier())
         .writeF(npc.fetchRadius())
         .writeF(npc.fetchSize())
-        .writeD(0x00)  // R hand
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // L hand
+        .writeD(npc.fetchWeapon())
+        .writeD(npc.fetchArmor())
+        .writeD(npc.fetchShield())
         .writeC(0x01)  // Name above character
         .writeC(0x00)  // Run       = 0x01
         .writeC(0x00)  // Attack    = 0x01

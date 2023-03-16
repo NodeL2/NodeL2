@@ -16,12 +16,28 @@ class NpcModel extends CreatureModel {
         return this.model.hostile;
     }
 
+    fetchAtkRadius() {
+        return this.model.atkRadius;
+    }
+
     fetchRevHp() {
         return this.model.revHp;
     }
 
     fetchRevMp() {
         return this.model.revMp;
+    }
+
+    fetchWeapon() {
+        return this.model.weapon;
+    }
+
+    fetchShield() {
+        return this.model.shield;
+    }
+
+    fetchArmor() {
+        return this.model.armor;
     }
 
     fetchRewardExp() {
@@ -35,7 +51,7 @@ class NpcModel extends CreatureModel {
     // Abstract
 
     fetchAttackable() {
-        return this.model.kind === 'Monster';
+        return this.model.kind.includes('Monster.');
     }
 }
 
