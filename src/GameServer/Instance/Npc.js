@@ -16,7 +16,7 @@ class Npc extends NpcModel {
         this.replenishVitals();
 
         // User preferences
-        const optn = options.connection.GameServer;
+        const optn = options.default.GameServer;
 
         if (optn.showMonsterLevel) {
             this.showLevelTitle();

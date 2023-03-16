@@ -4,7 +4,7 @@ let conn;
 
 const Database = {
     init: (callback) => {
-        const optn = options.connection.Database;
+        const optn = options.default.Database;
 
         require('mariadb').createConnection({
             host     : optn.hostname,

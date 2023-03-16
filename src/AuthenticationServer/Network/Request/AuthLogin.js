@@ -24,7 +24,7 @@ function consume(session, data) {
             data.password === password ? passwordMatch(session, data.username) : failure(session, 0x02);
         }
         else { // User account does not exist, create if needed
-            const optn = options.connection.AuthServer;
+            const optn = options.default.AuthServer;
 
             if (optn.autoCreate) {
                 Database.createAccount(data.username, data.password).then(() => {

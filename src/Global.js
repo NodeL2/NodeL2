@@ -79,7 +79,7 @@ global.utils = {
 };
 
 global.options = {
-    connection: require('js-ini').parse(
-        utils.parseRawFile('./config/connection.ini')
+    default: require('js-ini').parse(
+        utils.parseRawFile('./config/default.ini')
     )
 };

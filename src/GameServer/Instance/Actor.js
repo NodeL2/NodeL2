@@ -292,8 +292,10 @@ class Actor extends ActorModel {
     }
 
     rewardExpAndSp(session, exp, sp) {
-        let totalExp = this.fetchExp() + exp;
-        let totalSp  = this.fetchSp () +  sp;
+        const optn = options.default.General;
+
+        let totalExp = this.fetchExp() + (exp *= optn.expRate);
+        let totalSp  = this.fetchSp () + ( sp *= optn.expRate);
 
         this.setExpSp(totalExp, totalSp);
         ConsoleText.transmit(session, ConsoleText.caption.earnedExpAndSp, [{ kind: ConsoleText.kind.number, value: exp}, { kind: ConsoleText.kind.number, value: sp }]);
