@@ -70,15 +70,15 @@ class ItemModel {
     // Abstract
 
     isWearable() {
-        return ['Armor.', 'Weapon.'].includes(this.fetchKind());
+        return ['Armor', 'Weapon'].includes(this.fetchKind().split('.')[0]);
     }
 
     isArmor() {
-        return this.fetchKind().includes('Armor.');
+        return this.fetchKind().includes('Armor');
     }
 
     isWeapon() {
-        return this.fetchKind().includes('Weapon.');
+        return this.fetchKind().includes('Weapon');
     }
 }
 
