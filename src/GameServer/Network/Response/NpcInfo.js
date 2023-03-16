@@ -12,10 +12,10 @@ function npcInfo(npc) {
         .writeD(npc.fetchLocZ())
         .writeD(npc.fetchHead())
         .writeD(0x00)  // ?
-        .writeD(npc.fetchCastSpd())
-        .writeD(npc.fetchAtkSpd())
-        .writeD(npc.fetchRun())
-        .writeD(npc.fetchWalk())
+        .writeD(npc.fetchCollectiveCastSpd())
+        .writeD(npc.fetchCollectiveAtkSpd())
+        .writeD(npc.fetchCollectiveRunSpd())
+        .writeD(npc.fetchCollectiveWalkSpd())
         .writeD(0x00)  // Swim
         .writeD(0x00)  // Swim
         .writeD(100)   // ?

@@ -71,7 +71,7 @@ class Automation {
         // Calculate duration
         src.state.setAtkMelee(true);
         const ticks = this.ticksToMove(
-            src.fetchLocX(), src.fetchLocY(), dst.fetchLocX(), dst.fetchLocY(), radius, src.fetchRun()
+            src.fetchLocX(), src.fetchLocY(), dst.fetchLocX(), dst.fetchLocY(), radius, src.fetchCollectiveRunSpd()
         );
 
         // Arrived
@@ -130,7 +130,7 @@ class Automation {
         // Calculate duration
         src.state.setPickinUp(true);
         const ticks = this.ticksToMove(
-            src.fetchLocX(), src.fetchLocY(), dst.fetchLocX(), dst.fetchLocY(), 0, src.fetchRun()
+            src.fetchLocX(), src.fetchLocY(), dst.fetchLocX(), dst.fetchLocY(), 0, src.fetchCollectiveRunSpd()
         );
 
         // Arrived

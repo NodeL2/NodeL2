@@ -72,11 +72,11 @@ class BackpackModel {
     // Abstract
 
     fetchEquippedArmor(slot) {
-        return this.fetchItems().find(ob => ob.fetchKind() ===  'Armor' && ob.fetchEquipped() && ob.fetchSlot() === slot);
+        return this.fetchItems().find(ob => ob.isArmor () && ob.fetchEquipped() && ob.fetchSlot() === slot);
     }
 
     fetchEquippedWeapon() {
-        return this.fetchItems().find(ob => ob.fetchKind() === 'Weapon' && ob.fetchEquipped());
+        return this.fetchItems().find(ob => ob.isWeapon() && ob.fetchEquipped());
     }
 
     fetchTotalArmorPDef(spellcaster) {
@@ -125,8 +125,8 @@ class BackpackModel {
         return this.fetchEquippedWeapon()?.fetchAtkSpd();
     }
 
-    fetchTotalWeaponCrit() {
-        return this.fetchEquippedWeapon()?.fetchCrit();
+    fetchTotalWeaponCritical() {
+        return this.fetchEquippedWeapon()?.fetchCritical();
     }
 
     fetchTotalWeaponAccur() {

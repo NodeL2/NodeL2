@@ -46,15 +46,15 @@ function userInfo(actor) {
         .writeD(actor.fetchCollectivePDef())
         .writeD(actor.fetchCollectiveEvasion())
         .writeD(actor.fetchCollectiveAccur())
-        .writeD(actor.fetchCrit())
+        .writeD(actor.fetchCollectiveCritical())
         .writeD(actor.fetchCollectiveMAtk())
         .writeD(actor.fetchCollectiveCastSpd())
         .writeD(actor.fetchCollectiveAtkSpd())
         .writeD(actor.fetchCollectiveMDef())
         .writeD(0x00)  // Purple = 0x01
         .writeD(actor.fetchKarma())
-        .writeD(actor.fetchRun())
-        .writeD(actor.fetchWalk())
+        .writeD(actor.fetchCollectiveRunSpd())
+        .writeD(actor.fetchCollectiveWalkSpd())
         .writeD(actor.fetchSwim())
         .writeD(actor.fetchSwim())
         .writeD(0x00)  // Floating Run Speed

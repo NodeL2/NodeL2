@@ -84,6 +84,14 @@ class CreatureModel {
         this.model.collectiveCastSpd = data;
     }
 
+    setCollectiveWalkSpd(data) {
+        this.model.collectiveWalkSpd = data;
+    }
+
+    setCollectiveRunSpd(data) {
+        this.model.collectiveRunSpd = data;
+    }
+
     // Get
 
     fetchId() {
@@ -190,12 +198,20 @@ class CreatureModel {
         return this.model.collectiveCastSpd ?? this.fetchCastSpd();
     }
 
-    fetchWalk() {
+    fetchWalkSpd() {
         return this.model.walk;
     }
 
-    fetchRun() {
+    fetchCollectiveWalkSpd() {
+        return this.model.collectiveWalkSpeed ?? this.fetchWalkSpd();
+    }
+
+    fetchRunSpd() {
         return this.model.run;
+    }
+
+    fetchCollectiveRunSpd() {
+        return this.model.collectiveRunSpeed ?? this.fetchRunSpd();
     }
 
     fetchRadius() {

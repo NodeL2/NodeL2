@@ -55,7 +55,7 @@ class Item extends ItemModel {
         return this.model.atkSpd ?? 0;
     }
 
-    fetchCrit() {
+    fetchCritical() {
         return this.model.crit ?? 0;
     }
 
