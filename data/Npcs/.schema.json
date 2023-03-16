@@ -19,46 +19,23 @@
                     "title": {
                         "type": "string"
                     },
-                    "hostile": {
-                        "type": "boolean"
+                    "level": {
+                        "type": "integer"
                     },
                     "undead": {
                         "type": "boolean"
+                    },
+                    "hostile": {
+                        "type": "integer"
                     }
                 },
                 "required": [
                     "kind",
                     "name",
                     "title",
-                    "hostile",
-                    "undead"
-                ]
-            },
-            "vitals": {
-                "type": "object",
-                "properties": {
-                    "level": {
-                        "type": "integer"
-                    },
-                    "maxHp": {
-                        "type": "integer"
-                    },
-                    "maxMp": {
-                        "type": "integer"
-                    },
-                    "revHp": {
-                        "type": "number"
-                    },
-                    "revMp": {
-                        "type": "number"
-                    }
-                },
-                "required": [
                     "level",
-                    "maxHp",
-                    "maxMp",
-                    "revHp",
-                    "revMp"
+                    "undead",
+                    "hostile"
                 ]
             },
             "base": {
@@ -113,10 +90,7 @@
                     "castSpd": {
                         "type": "integer"
                     },
-                    "walkSpd": {
-                        "type": "integer"
-                    },
-                    "runSpd": {
+                    "atkRadius": {
                         "type": "integer"
                     }
                 },
@@ -127,8 +101,45 @@
                     "mDef",
                     "atkSpd",
                     "castSpd",
-                    "walkSpd",
-                    "runSpd"
+                    "atkRadius"
+                ]
+            },
+            "speed": {
+                "type": "object",
+                "properties": {
+                    "walk": {
+                        "type": "integer"
+                    },
+                    "run": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "walk",
+                    "run"
+                ]
+            },
+            "vitals": {
+                "type": "object",
+                "properties": {
+                    "maxHp": {
+                        "type": "integer"
+                    },
+                    "maxMp": {
+                        "type": "integer"
+                    },
+                    "revHp": {
+                        "type": "number"
+                    },
+                    "revMp": {
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "maxHp",
+                    "maxMp",
+                    "revHp",
+                    "revMp"
                 ]
             },
             "collision": {
@@ -144,6 +155,25 @@
                 "required": [
                     "radius",
                     "size"
+                ]
+            },
+            "equipment": {
+                "type": "object",
+                "properties": {
+                    "weapon": {
+                        "type": "integer"
+                    },
+                    "shield": {
+                        "type": "integer"
+                    },
+                    "armor": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "weapon",
+                    "shield",
+                    "armor"
                 ]
             },
             "rewards": {
@@ -165,10 +195,12 @@
         "required": [
             "selfId",
             "template",
-            "vitals",
             "base",
             "stats",
+            "speed",
+            "vitals",
             "collision",
+            "equipment",
             "rewards"
         ]
     }

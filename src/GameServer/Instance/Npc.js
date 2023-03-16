@@ -28,7 +28,7 @@ class Npc extends NpcModel {
     }
 
     showLevelTitle() {
-        if (this.fetchKind() === 'Monster' && this.fetchTitle() === '') {
+        if (this.fetchAttackable() && this.fetchTitle() === '') {
             this.setTitle('Lv ' + this.fetchLevel() + (this.fetchHostile() ? ' @' : ''));
         }
     }

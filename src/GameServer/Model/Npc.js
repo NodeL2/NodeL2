@@ -35,7 +35,7 @@ class NpcModel extends CreatureModel {
     // Abstract
 
     fetchAttackable() {
-        return this.model.kind === 'Monster';
+        return this.model.kind.includes('Monster.');
     }
 }
 
