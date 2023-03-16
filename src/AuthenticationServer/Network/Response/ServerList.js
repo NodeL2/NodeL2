@@ -14,10 +14,10 @@ function serverList(optn, hostname) {
         .writeC(hostname[2])
         .writeC(hostname[3])
         .writeD(optn.port)
-        .writeC(optn.ageLimit)
+        .writeC(0x00)  // Age limit
         .writeC(optn.pvp)
         .writeH(0x00)  // Connected players
-        .writeH(optn.maxPlayers)
+        .writeH(optn.maxOnline)
         .writeC(0x01)  // Status ? Up = 1, Down = 0
         .writeD(0x00)  // ?
         .writeC(0x00); // Server Brackets
