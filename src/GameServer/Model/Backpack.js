@@ -117,6 +117,10 @@ class BackpackModel {
         return this.fetchEquippedWeapon()?.fetchPAtk();
     }
 
+    fetchTotalWeaponPAtkRnd() {
+        return this.fetchEquippedWeapon()?.fetchPAtkRnd();
+    }
+
     fetchTotalWeaponMAtk() {
         return this.fetchEquippedWeapon()?.fetchMAtk();
     }
