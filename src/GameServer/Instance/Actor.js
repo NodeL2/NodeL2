@@ -24,8 +24,6 @@ class Actor extends ActorModel {
 
         delete this.model.items;
         delete this.model.paperdoll;
-
-        this.storedAttackData = undefined;
     }
 
     enterWorld(session) {
@@ -77,15 +75,14 @@ class Actor extends ActorModel {
         });
 
         // Reschedule attacks based on updated position
-        if (this.destId && this.storedAttackData) {
-            if (this.state.fetchAtkMelee()) {
-                this.select(session, this.storedAttackData);
-            }
-            else
-            if (this.state.fetchAtkRemote()) {
-                this.skillAction(session, this.storedAttackData);
-            }
-            this.storedAttackData = undefined;
+        if (this.destId && this.storedAttack) {
+            this.attackFinish(session, structuredClone(this.storedAttack));
+            this.storedAttack = undefined;
+        }
+
+        if (this.destId && this.storedSpell) {
+            this.skillFinish(session, structuredClone(this.storedSpell));
+            this.storedSpell = undefined;
         }
 
         // Reschedule smooth pick-up
@@ -116,54 +113,22 @@ class Actor extends ActorModel {
                 this.statusUpdateVitals(session, npc);
             }
             else { // Second click on same Creature
-                if (this.isBlocked(session)) {
-                    if (this.state.fetchCombats()) {
-                        this.attack.queueEvent('attack', data);
-                    }
-                    return;
-                }
-
-                // Slot attack data for ValidatePosition verification
-                this.storedAttackData = data;
-                this.automation.abortScheduledAtkRemote(this);
-                this.automation.abortScheduledPickup   (this);
-
-                // Towards attack
-                this.automation.scheduleAtkMelee(session, this, npc, 0, () => {
-                    if (npc.fetchAttackable() || data.ctrl) {
-                        this.attack.meleeHit(session, npc);
-                    }
-                    else {
-                        World.npcTalk(session, npc);
-                    }
-                });
+                this.attackAction(session, data);
             }
         }).catch(() => { // Pickup item
-            if (this.isBlocked(session)) {
-                if (this.state.fetchCombats()) {
-                    this.attack.queueEvent('pickup', data);
-                }
-                return;
-            }
-
-            if (this.state.fetchPickinUp()) {
-                return;
-            }
-
-            this.storedPickup = data;
-            this.automation.abortScheduledAtkMelee (this);
-            this.automation.abortScheduledAtkRemote(this);
-
-            // This will fire a ValidatePosition
-            session.dataSend(
-                ServerResponse.stopMove(this.fetchId(), {
-                    locX: this.fetchLocX(),
-                    locY: this.fetchLocY(),
-                    locZ: this.fetchLocZ(),
-                    head: this.fetchHead(),
-                })
-            );
+            this.pickupAction(session, data);
         });
+    }
+
+    requestPreciseLocation(session) {
+        session.dataSend(
+            ServerResponse.stopMove(this.fetchId(), {
+                locX: this.fetchLocX(),
+                locY: this.fetchLocY(),
+                locZ: this.fetchLocZ(),
+                head: this.fetchHead(),
+            })
+        );
     }
 
     unselect(session) {
@@ -171,8 +136,39 @@ class Actor extends ActorModel {
         session.dataSend(ServerResponse.destDeselected(this));
     }
 
+    attackAction(session, data) {
+        if (this.isBlocked(session)) {
+            if (this.state.fetchCombats()) {
+                this.attack.queueEvent('attack', data);
+            }
+            return;
+        }
+
+        if (this.state.fetchAtkMelee()) {
+            return;
+        }
+
+        this.storedAttack = data;
+        this.automation.abortScheduledAtkRemote(this);
+        this.automation.abortScheduledPickup   (this);
+        this.requestPreciseLocation(session);
+    }
+
+    attackFinish(session, data) {
+        World.fetchNpc(data.id).then((npc) => {
+            this.automation.scheduleAtkMelee(session, this, npc, 0, () => {
+                if (npc.fetchAttackable() || data.ctrl) {
+                    this.attack.meleeHit(session, npc);
+                }
+                else {
+                    World.npcTalk(session, npc);
+                }
+            });
+        });
+    }
+
     skillAction(session, data) {
-        if (this.destId === undefined) {
+        if ((data.id = this.destId) === undefined) {
             return;
         }
 
@@ -183,21 +179,42 @@ class Actor extends ActorModel {
             return;
         }
 
-        World.fetchNpc(this.destId).then((npc) => {
-            // Slot attack data for ValidatePosition verification
-            this.storedAttackData = data;
-            this.automation.abortScheduledAtkMelee(this);
-            this.automation.abortScheduledPickup  (this);
+        // Slot attack data for ValidatePosition verification
+        this.storedSpell = data;
+        this.automation.abortScheduledAtkMelee(this);
+        this.automation.abortScheduledPickup  (this);
+        this.requestPreciseLocation(session);
+    }
 
-            // Towards attack
-            this.automation.scheduleAtkRemote(session, this, npc, data.fetchDistance(), () => {
-                if (npc.fetchAttackable() || data.fetchCtrl()) { // TODO: Else, find which `response` fails the attack
-                    this.attack.remoteHit(session, npc, data);
+    skillFinish(session, data) {
+        World.fetchNpc(data.id).then((npc) => {
+            const skill = this.skillset.fetchSkill(data.selfId);
+            skill.setCtrl(data.ctrl);
+
+            this.automation.scheduleAtkRemote(session, this, npc, skill.fetchDistance(), () => {
+                if (npc.fetchAttackable() || skill.fetchCtrl()) { // TODO: Else, find which `response` fails the attack
+                    this.attack.remoteHit(session, npc, skill);
                 }
             });
-        }).catch((e) => {
-            utils.infoWarn('GameServer :: npc not found (2) -> ' + e);
         });
+    }
+
+    pickupAction(session, data) {
+        if (this.isBlocked(session)) {
+            if (this.state.fetchCombats()) {
+                this.attack.queueEvent('pickup', data);
+            }
+            return;
+        }
+
+        if (this.state.fetchPickinUp()) {
+            return;
+        }
+
+        this.storedPickup = data;
+        this.automation.abortScheduledAtkMelee (this);
+        this.automation.abortScheduledAtkRemote(this);
+        this.requestPreciseLocation(session);
     }
 
     basicAction(session, data) {
