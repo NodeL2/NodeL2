@@ -16,13 +16,11 @@ function skillUse(session, buffer) {
 }
 
 function consume(session, data) {
-    const skill = session.actor.skillset.fetchSkill(data.selfId);
-    skill.setCtrl(data.ctrl);
-
-    if (skill.fetchPassive()) {
+    if (session.actor.skillset.fetchSkill(data.selfId)?.fetchPassive() ?? false) {
         return;
     }
-    session.actor.skillAction(session, skill);
+
+    session.actor.skillAction(session, data);
 }
 
 module.exports = skillUse;

@@ -9,10 +9,6 @@ class SkillModel {
         this.model.calculatedHitTime = data;
     }
 
-    setCtrl(data) {
-        this.model.ctrl = data;
-    }
-
     // Get
 
     fetchSelfId() {
@@ -53,10 +49,6 @@ class SkillModel {
 
     fetchPower() {
         return this.model.power;
-    }
-
-    fetchCtrl() {
-        return this.model.ctrl;
     }
 }
 

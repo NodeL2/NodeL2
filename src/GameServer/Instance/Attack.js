@@ -85,6 +85,11 @@ class Attack {
             // Start replenish
             actor.automation.replenishVitals(session, actor);
 
+            if (this.queue.name) {
+                this.dequeueEvent(session);
+                return;
+            }
+
         }, skill.fetchCalculatedHitTime());
 
         setTimeout(() => {
