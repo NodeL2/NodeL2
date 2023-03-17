@@ -27,23 +27,23 @@
 * In order to access the Admin panel, use this in the chat prompt: `.admin`
 
 ## What to expect
-✅ Authentication, and Server selection
-✅ Character creation for 5 Races, also Deletion\
-✅ Statistics for Level, Base Abilities, etc.\
-✅ Npc & Monster spawns\
-✅ Attack, Cast, Basic Actions\
-✅ Gain Experience, SP, Level-up
+✅ Authentication, and Server selection\
+✅ Character Creation for 5 Races, also Deletion\
+✅ NPC & Monster Spawns\
+✅ Attack, Cast, other Basic Actions\
+✅ Gain Experience, SP, Level-up\
 ✅ Admin panel (Shop & Teleport)
 
 ## WIP/Experimental
-✴️ Attained weapon, armor, items\
-✴️ Skill use\
-✴️ Calculation formulas\
-✴️ Npc interaction, quests
+✴️ Skill Animation & Launch\
+✴️ NPC interaction, Quests\
+✴️ Pick-up items\
+✴️ Calculation Formulas
 
 ## Unimplemented
-⛔️ Around 65% of mechanics\
-⛔️ 80% of datapack
+⛔️ Skills Purpose & Mechanics (a real bummer)\
+⛔️ Broadcast Packets to others\
+⛔️ 60% of datapack
 
 ## License
 Open-source under [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0).
