@@ -109,7 +109,6 @@ class Actor extends ActorModel {
             if (npc.fetchId() !== this.destId) { // First click on a Creature
                 this.destId = npc.fetchId();
                 session.dataSend(ServerResponse.destSelected(this.destId, this.fetchLevel() - npc.fetchLevel()));
-                this.automation.abortAll(this);
                 this.statusUpdateVitals(session, npc);
             }
             else { // Second click on same Creature
@@ -179,7 +178,6 @@ class Actor extends ActorModel {
             return;
         }
 
-        // Slot attack data for ValidatePosition verification
         this.storedSpell = data;
         this.automation.abortScheduledAtkMelee(this);
         this.automation.abortScheduledPickup  (this);
@@ -189,10 +187,8 @@ class Actor extends ActorModel {
     skillFinish(session, data) {
         World.fetchNpc(data.id).then((npc) => {
             const skill = this.skillset.fetchSkill(data.selfId);
-            skill.setCtrl(data.ctrl);
-
             this.automation.scheduleAtkRemote(session, this, npc, skill.fetchDistance(), () => {
-                if (npc.fetchAttackable() || skill.fetchCtrl()) { // TODO: Else, find which `response` fails the attack
+                if (npc.fetchAttackable() || data.ctrl) { // TODO: Else, find which `response` fails the attack
                     this.attack.remoteHit(session, npc, skill);
                 }
             });
