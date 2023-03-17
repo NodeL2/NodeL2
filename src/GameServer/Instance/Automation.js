@@ -86,7 +86,7 @@ class Automation {
     scheduleAtkRemote(session, src, dst, radius, callback) {
         // Execute each time, or else creature is stuck
         session.dataSend(
-            ServerResponse.moveToPawn(src, dst, radius - 50)
+            ServerResponse.moveToPawn(src, dst, radius)
         );
 
         if (src.state.fetchAtkRemote()) {

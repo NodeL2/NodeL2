@@ -101,7 +101,7 @@ class Actor extends ActorModel {
     select(session, data) {
         if (this.fetchId() === data.id) { // Click on self
             this.destId = this.fetchId();
-            session.dataSend(ServerResponse.destSelected(data.id));
+            session.dataSend(ServerResponse.destSelected(this.destId));
             return;
         }
 
@@ -175,6 +175,10 @@ class Actor extends ActorModel {
             if (this.state.fetchCombats() || this.state.fetchCasts()) {
                 this.attack.queueEvent('spell', data);
             }
+            return;
+        }
+
+        if (this.state.fetchAtkRemote()) {
             return;
         }
 
