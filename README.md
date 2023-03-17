@@ -27,20 +27,16 @@
 * In order to access the Admin panel, use this in the chat prompt: `.admin`
 
 ## What to expect
-✅ Authentication, with error parse\
-✅ Server selection\
-✅ Character selection hall\
-✅ Character creation for 5 races\
-✅ Character deletion (instant)\
-✅ Enter world\
-✅ Statistics for level, base abilities, etc.\
-✅ Npc spawns\
-✅ Basic attack\
-✅ Level-up, experience, sp, load
+✅ Authentication, and Server selection
+✅ Character creation for 5 Races, also Deletion\
+✅ Statistics for Level, Base Abilities, etc.\
+✅ Npc & Monster spawns\
+✅ Attack, Cast, Basic Actions\
+✅ Gain Experience, SP, Level-up
+✅ Admin panel (Shop & Teleport)
 
 ## WIP/Experimental
 ✴️ Attained weapon, armor, items\
-✴️ Monster spawns\
 ✴️ Skill use\
 ✴️ Calculation formulas\
 ✴️ Npc interaction, quests
