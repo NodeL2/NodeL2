@@ -52,7 +52,7 @@ class Actor extends ActorModel {
 
     moveTo(session, coords) {
         if (this.isBlocked(session)) {
-            if (this.state.fetchCombats()) {
+            if (this.state.fetchCombats() || this.state.fetchCasts()) {
                 this.attack.queueEvent('move', coords);
             }
             return;
