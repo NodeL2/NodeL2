@@ -137,7 +137,7 @@ class Actor extends ActorModel {
 
     attackAction(session, data) {
         if (this.isBlocked(session)) {
-            if (this.state.fetchCombats()) {
+            if (this.state.fetchCombats() || this.state.fetchCasts()) {
                 this.attack.queueEvent('attack', data);
             }
             return;
@@ -172,7 +172,7 @@ class Actor extends ActorModel {
         }
 
         if (this.isBlocked(session)) {
-            if (this.state.fetchCombats()) {
+            if (this.state.fetchCombats() || this.state.fetchCasts()) {
                 this.attack.queueEvent('spell', data);
             }
             return;
@@ -197,7 +197,7 @@ class Actor extends ActorModel {
 
     pickupAction(session, data) {
         if (this.isBlocked(session)) {
-            if (this.state.fetchCombats()) {
+            if (this.state.fetchCombats() || this.state.fetchCasts()) {
                 this.attack.queueEvent('pickup', data);
             }
             return;
@@ -221,7 +221,7 @@ class Actor extends ActorModel {
         switch (data.actionId) {
         case 0x00: // Sit / Stand
             if (this.state.fetchCasts() || this.state.fetchCombats() || this.state.fetchAnimated()) {
-                if (this.state.fetchCombats()) {
+                if (this.state.fetchCombats() || this.state.fetchCasts()) {
                     this.attack.queueEvent('sit', data);
                 }
                 return;
