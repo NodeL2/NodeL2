@@ -1,15 +1,15 @@
 const SendPacket = invoke('Packet/Send');
 
-function moveToPawn(actor, npc, distance) {
+function moveToPawn(src, dst, distance) {
     const packet = new SendPacket(0x60);
 
     packet
-        .writeD(actor.fetchId())
-        .writeD(npc.fetchId())
+        .writeD(src.fetchId())
+        .writeD(dst.fetchId())
         .writeD(distance)
-        .writeD(actor.fetchLocX())
-        .writeD(actor.fetchLocY())
-        .writeD(actor.fetchLocZ());
+        .writeD(src.fetchLocX())
+        .writeD(src.fetchLocY())
+        .writeD(src.fetchLocZ());
 
     return packet.fetchBuffer();
 }

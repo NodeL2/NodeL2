@@ -1,4 +1,6 @@
-const NpcModel = invoke('GameServer/Model/Npc');
+const ServerResponse = invoke('GameServer/Network/Response');
+const NpcModel       = invoke('GameServer/Model/Npc');
+const Automation     = invoke('GameServer/Instance/Automation');
 
 class Npc extends NpcModel {
     constructor(id, data) {
@@ -6,6 +8,8 @@ class Npc extends NpcModel {
         super(data);
 
         // Local
+        this.automation = new Automation();
+
         this.setId(id);
         this.fillupVitals();
 
@@ -58,6 +62,22 @@ class Npc extends NpcModel {
     stopReplenish() {
         clearInterval(this.timer.replenish);
         this.timer.replenish = undefined;
+    }
+
+    enterCombatState(session, actor) {
+        this.automation.scheduleAction(session, this, actor, this.fetchAtkRadius(), () => {
+            this.setLocX(actor.fetchLocX());
+            this.setLocY(actor.fetchLocY());
+            session.dataSend(ServerResponse.attack(this, actor.fetchId()));
+        });
+    }
+
+    fetchStateRun() {
+        return 1;
+    }
+
+    fetchStateAttack() {
+        return 1;
     }
 }
 
