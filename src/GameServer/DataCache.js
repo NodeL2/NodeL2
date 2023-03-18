@@ -40,6 +40,11 @@ const DataCache = {
     fetchSkillFromSelfId(selfId, callback) {
         const item = structuredClone(DataCache.skills.find((ob) => ob.selfId === selfId));
         item ? callback(item) : utils.infoWarn('Datapack   :: unknown Skill Id %d', selfId);
+    },
+
+    fetchSkillTreeFromClassId(classId, callback) {
+        const item = structuredClone(DataCache.skillTree.find((ob) => ob.classId === classId));
+        item ? callback(item) : utils.infoWarn('Datapack   :: unknown SkillTree ClassId %d', classId);
     }
 };
 

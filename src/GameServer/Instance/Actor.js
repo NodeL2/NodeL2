@@ -91,8 +91,8 @@ class Actor extends ActorModel {
                 this.automation.schedulePickup(session, this, item, () => {
                     session.dataSend(ServerResponse.pickupItem(this.fetchId(), item));
                 });
-            }).catch((e) => {
-                utils.infoWarn('GameServer :: ? -> ' + e);
+            }).catch((err) => {
+                utils.infoWarn('GameServer :: Pickup Finish -> ' + err);
             });
             this.storedPickup = undefined;
         }
@@ -163,6 +163,8 @@ class Actor extends ActorModel {
                     World.npcTalk(session, npc);
                 }
             });
+        }).catch((err) => {
+            utils.infoWarn('GameServer :: Attack Finish -> ' + err);
         });
     }
 
@@ -196,6 +198,8 @@ class Actor extends ActorModel {
                     this.attack.remoteHit(session, npc, skill);
                 }
             });
+        }).catch((err) => {
+            utils.infoWarn('GameServer :: Skill Finish -> ' + err);
         });
     }
 
