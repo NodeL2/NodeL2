@@ -20,10 +20,22 @@ class Actor extends ActorModel {
         this.attack     = new Attack();
         this.skillset   = new Skillset();
         this.backpack   = new Backpack(data);
-        this.destId     = undefined;
+        this.clearDestId();
 
         delete this.model.items;
         delete this.model.paperdoll;
+    }
+
+    setDestId(data) {
+        this.destId = data;
+    }
+
+    fetchDestId() {
+        return this.destId;
+    }
+
+    clearDestId() {
+        this.destId = undefined;
     }
 
     enterWorld(session) {
@@ -77,21 +89,21 @@ class Actor extends ActorModel {
         // Reschedule attacks based on updated position
         if (this.storedAttack) {
             this.attackExec(session, structuredClone(this.storedAttack));
-            this.clean();
+            this.cleanStoredActions();
         }
 
         if (this.storedSpell) {
             this.skillExec(session, structuredClone(this.storedSpell));
-            this.clean();
+            this.cleanStoredActions();
         }
 
         if (this.storedPickup) {
             this.pickupExec(session, structuredClone(this.storedPickup));
-            this.clean();
+            this.cleanStoredActions();
         }
     }
 
-    clean() {
+    cleanStoredActions() {
         this.storedAttack = undefined;
         this.storedSpell  = undefined;
         this.storedPickup = undefined;
@@ -99,15 +111,15 @@ class Actor extends ActorModel {
 
     select(session, data) {
         if (this.fetchId() === data.id) { // Click on self
-            this.destId = this.fetchId();
-            session.dataSend(ServerResponse.destSelected(this.destId));
+            this.setDestId(this.fetchId());
+            session.dataSend(ServerResponse.destSelected(this.fetchDestId()));
             return;
         }
 
         World.fetchNpc(data.id).then((npc) => { // Creature selected
-            if (npc.fetchId() !== this.destId) { // First click on a Creature
-                this.destId = npc.fetchId();
-                session.dataSend(ServerResponse.destSelected(this.destId, this.fetchLevel() - npc.fetchLevel()));
+            if (npc.fetchId() !== this.fetchDestId()) { // First click on a Creature
+                this.setDestId(npc.fetchId());
+                session.dataSend(ServerResponse.destSelected(this.fetchDestId(), this.fetchLevel() - npc.fetchLevel()));
                 this.statusUpdateVitals(session, npc);
             }
             else { // Second click on same Creature
@@ -134,12 +146,12 @@ class Actor extends ActorModel {
     }
 
     unselect(session) {
-        this.destId = undefined;
+        this.clearDestId();
         session.dataSend(ServerResponse.destDeselected(this));
     }
 
     attackRequest(session, data) {
-        if (this.state.inMotion() && this.destId !== this.automation.fetchDestId()) {
+        if (this.state.inMotion() && this.fetchDestId() !== this.automation.fetchDestId()) {
             this.storedAttack = data;
             this.requestStopAutomation(session);
             return;
@@ -176,11 +188,11 @@ class Actor extends ActorModel {
     }
 
     skillRequest(session, data) {
-        if ((data.id = this.destId) === undefined) {
+        if ((data.id = this.fetchDestId()) === undefined) {
             return;
         }
 
-        if (this.state.inMotion() && this.destId !== this.automation.fetchDestId()) {
+        if (this.state.inMotion() && this.fetchDestId() !== this.automation.fetchDestId()) {
             this.storedSpell = data;
             this.requestStopAutomation(session);
             return;
@@ -247,7 +259,7 @@ class Actor extends ActorModel {
 
         switch (data.actionId) {
         case 0x00: // Sit / Stand
-            if (this.state.fetchCasts() || this.state.fetchCombats() || this.state.fetchAnimated()) {
+            if (this.state.fetchCombats() ||this.state.fetchCasts() || this.state.fetchAnimated()) {
                 if (this.state.fetchCombats() || this.state.fetchCasts()) {
                     this.attack.queueEvent('sit', data);
                 }
