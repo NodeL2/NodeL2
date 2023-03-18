@@ -4,6 +4,7 @@ const Formulas       = invoke('GameServer/Formulas');
 
 class Automation {
     constructor() {
+        this.clearDestId();
         this.ticksPerSecond = 10;
 
         this.timer = { // TODO: Move this into actual GameServer timer
@@ -19,6 +20,18 @@ class Automation {
         clearTimeout (this.timer.melee);
         clearTimeout (this.timer.remote);
         clearTimeout (this.timer.pickup);
+    }
+
+    setDestId(data) {
+        this.destId = data;
+    }
+
+    fetchDestId() {
+        return this.destId;
+    }
+
+    clearDestId() {
+        this.destId = undefined;
     }
 
     replenishVitals(session, actor) {
@@ -60,6 +73,7 @@ class Automation {
 
     scheduleAtkMelee(session, src, dst, radius, callback) {
         // Execute each time, or else creature is stuck
+        this.setDestId(dst.fetchId());
         session.dataSend(
             ServerResponse.moveToPawn(src, dst, radius)
         );
@@ -78,6 +92,7 @@ class Automation {
         clearTimeout(this.timer.melee);
         this.timer.melee = setTimeout(() => {
             src.state.setAtkMelee(false);
+            this.clearDestId();
             callback();
 
         }, ticks);
@@ -85,6 +100,7 @@ class Automation {
 
     scheduleAtkRemote(session, src, dst, radius, callback) {
         // Execute each time, or else creature is stuck
+        this.setDestId(dst.fetchId());
         session.dataSend(
             ServerResponse.moveToPawn(src, dst, radius)
         );
@@ -103,6 +119,7 @@ class Automation {
         clearTimeout(this.timer.remote);
         this.timer.remote = setTimeout(() => {
             src.state.setAtkRemote(false);
+            this.clearDestId();
             callback();
 
         }, ticks);

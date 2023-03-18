@@ -20,11 +20,11 @@ class Attack {
         actor.state.setCombats(false);
 
         switch (this.queue.name) {
-            case 'move'   : actor.moveTo     (session, this.queue.data); break;
-            case 'attack' : actor.select     (session, this.queue.data); break;
-            case 'spell'  : actor.skillAction(session, this.queue.data); break;
-            case 'pickup' : actor.select     (session, this.queue.data); break;
-            case 'sit'    : actor.basicAction(session, this.queue.data); break;
+            case 'move'   : actor.moveTo       (session, this.queue.data); break;
+            case 'attack' : actor.attackRequest(session, this.queue.data); break;
+            case 'spell'  : actor.skillRequest (session, this.queue.data); break;
+            case 'pickup' : actor.pickupRequest(session, this.queue.data); break;
+            case 'sit'    : actor.basicAction  (session, this.queue.data); break;
         }
         this.resetQueuedEvents();
     }

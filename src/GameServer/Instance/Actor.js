@@ -75,29 +75,26 @@ class Actor extends ActorModel {
         });
 
         // Reschedule attacks based on updated position
-        if (this.destId && this.storedAttack) {
-            this.attackFinish(session, structuredClone(this.storedAttack));
-            this.storedAttack = undefined;
-            this.storedSpell  = undefined;
+        if (this.storedAttack) {
+            this.attackExec(session, structuredClone(this.storedAttack));
+            this.clean();
         }
 
-        if (this.destId && this.storedSpell) {
-            this.skillFinish(session, structuredClone(this.storedSpell));
-            this.storedSpell  = undefined;
-            this.storedAttack = undefined;
+        if (this.storedSpell) {
+            this.skillExec(session, structuredClone(this.storedSpell));
+            this.clean();
         }
 
-        // Reschedule smooth pick-up
         if (this.storedPickup) {
-            World.fetchItem(this.storedPickup.id).then((item) => {
-                this.automation.schedulePickup(session, this, item, () => {
-                    session.dataSend(ServerResponse.pickupItem(this.fetchId(), item));
-                });
-            }).catch((err) => {
-                utils.infoWarn('GameServer :: Pickup Finish -> ' + err);
-            });
-            this.storedPickup = undefined;
+            this.pickupExec(session, structuredClone(this.storedPickup));
+            this.clean();
         }
+    }
+
+    clean() {
+        this.storedAttack = undefined;
+        this.storedSpell  = undefined;
+        this.storedPickup = undefined;
     }
 
     select(session, data) {
@@ -111,18 +108,21 @@ class Actor extends ActorModel {
             if (npc.fetchId() !== this.destId) { // First click on a Creature
                 this.destId = npc.fetchId();
                 session.dataSend(ServerResponse.destSelected(this.destId, this.fetchLevel() - npc.fetchLevel()));
-                this.automation.abortAll(this);
                 this.statusUpdateVitals(session, npc);
             }
             else { // Second click on same Creature
-                this.attackAction(session, data);
+                this.attackRequest(session, data);
             }
         }).catch(() => { // Pickup item
-            this.pickupAction(session, data);
+            this.pickupRequest(session, data);
         });
     }
 
-    requestPreciseLocation(session) {
+    requestStopAutomation(session) {
+        this.automation.abortScheduledAtkMelee (this);
+        this.automation.abortScheduledAtkRemote(this);
+        this.automation.abortScheduledPickup   (this);
+
         session.dataSend(
             ServerResponse.stopMove(this.fetchId(), {
                 locX: this.fetchLocX(),
@@ -138,7 +138,13 @@ class Actor extends ActorModel {
         session.dataSend(ServerResponse.destDeselected(this));
     }
 
-    attackAction(session, data) {
+    attackRequest(session, data) {
+        if (this.state.inMotion() && this.destId !== this.automation.fetchDestId()) {
+            this.storedAttack = data;
+            this.requestStopAutomation(session);
+            return;
+        }
+
         if (this.isBlocked(session)) {
             if (this.state.fetchCombats() || this.state.fetchCasts()) {
                 this.attack.queueEvent('attack', data);
@@ -151,12 +157,10 @@ class Actor extends ActorModel {
         }
 
         this.storedAttack = data;
-        this.automation.abortScheduledAtkRemote(this);
-        this.automation.abortScheduledPickup   (this);
-        this.requestPreciseLocation(session);
+        this.requestStopAutomation(session);
     }
 
-    attackFinish(session, data) {
+    attackExec(session, data) {
         World.fetchNpc(data.id).then((npc) => {
             this.automation.scheduleAtkMelee(session, this, npc, 0, () => {
                 if (npc.fetchAttackable() || data.ctrl) {
@@ -167,12 +171,18 @@ class Actor extends ActorModel {
                 }
             });
         }).catch((err) => {
-            utils.infoWarn('GameServer :: Attack Finish -> ' + err);
+            utils.infoWarn('GameServer :: Attack -> ' + err);
         });
     }
 
-    skillAction(session, data) {
+    skillRequest(session, data) {
         if ((data.id = this.destId) === undefined) {
+            return;
+        }
+
+        if (this.state.inMotion() && this.destId !== this.automation.fetchDestId()) {
+            this.storedSpell = data;
+            this.requestStopAutomation(session);
             return;
         }
 
@@ -188,12 +198,10 @@ class Actor extends ActorModel {
         }
 
         this.storedSpell = data;
-        this.automation.abortScheduledAtkMelee(this);
-        this.automation.abortScheduledPickup  (this);
-        this.requestPreciseLocation(session);
+        this.requestStopAutomation(session);
     }
 
-    skillFinish(session, data) {
+    skillExec(session, data) {
         World.fetchNpc(data.id).then((npc) => {
             const skill = this.skillset.fetchSkill(data.selfId);
             this.automation.scheduleAtkRemote(session, this, npc, skill.fetchDistance(), () => {
@@ -202,11 +210,11 @@ class Actor extends ActorModel {
                 }
             });
         }).catch((err) => {
-            utils.infoWarn('GameServer :: Skill Finish -> ' + err);
+            utils.infoWarn('GameServer :: Skill -> ' + err);
         });
     }
 
-    pickupAction(session, data) {
+    pickupRequest(session, data) {
         if (this.isBlocked(session)) {
             if (this.state.fetchCombats() || this.state.fetchCasts()) {
                 this.attack.queueEvent('pickup', data);
@@ -219,9 +227,17 @@ class Actor extends ActorModel {
         }
 
         this.storedPickup = data;
-        this.automation.abortScheduledAtkMelee (this);
-        this.automation.abortScheduledAtkRemote(this);
-        this.requestPreciseLocation(session);
+        this.requestStopAutomation(session);
+    }
+
+    pickupExec(session, data) {
+        World.fetchItem(data.id).then((item) => {
+            this.automation.schedulePickup(session, this, item, () => {
+                session.dataSend(ServerResponse.pickupItem(this.fetchId(), item));
+            });
+        }).catch((err) => {
+            utils.infoWarn('GameServer :: Pickup -> ' + err);
+        });
     }
 
     basicAction(session, data) {
