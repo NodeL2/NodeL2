@@ -240,13 +240,9 @@ class Actor extends ActorModel {
     }
 
     basicAction(session, data) {
-        if (this.state.inMotion()) {
-            return;
-        }
-
         switch (data.actionId) {
         case 0x00: // Sit / Stand
-            if (this.state.fetchCombats() || this.state.fetchCasts() || this.state.fetchAnimated()) {
+            if (this.state.fetchCombats() || this.state.fetchCasts() || this.state.fetchAnimated() || this.state.inMotion()) {
                 this.queueRequest('sit', data);
                 return;
             }
@@ -277,11 +273,7 @@ class Actor extends ActorModel {
     }
 
     socialAction(session, actionId) {
-        if (this.isBlocked(session)) {
-            return;
-        }
-
-        if (this.state.inMotion()) {
+        if (this.isBlocked(session) || this.state.inMotion()) {
             return;
         }
 
