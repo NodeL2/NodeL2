@@ -78,10 +78,6 @@ class Automation {
             ServerResponse.moveToPawn(src, dst, radius)
         );
 
-        if (src.state.fetchAtkMelee()) {
-            return;
-        }
-
         // Calculate duration
         src.state.setAtkMelee(true);
         const ticks = this.ticksToMove(
@@ -104,10 +100,6 @@ class Automation {
         session.dataSend(
             ServerResponse.moveToPawn(src, dst, radius)
         );
-
-        if (src.state.fetchAtkRemote()) {
-            return;
-        }
 
         // Calculate duration
         src.state.setAtkRemote(true);
@@ -139,10 +131,6 @@ class Automation {
                 locZ: dst.fetchLocZ(),
             }
         }));
-
-        if (src.state.fetchPickinUp()) {
-            return;
-        }
 
         // Calculate duration
         src.state.setPickinUp(true);
