@@ -78,11 +78,13 @@ class Actor extends ActorModel {
         if (this.destId && this.storedAttack) {
             this.attackFinish(session, structuredClone(this.storedAttack));
             this.storedAttack = undefined;
+            this.storedSpell  = undefined;
         }
 
         if (this.destId && this.storedSpell) {
             this.skillFinish(session, structuredClone(this.storedSpell));
-            this.storedSpell = undefined;
+            this.storedSpell  = undefined;
+            this.storedAttack = undefined;
         }
 
         // Reschedule smooth pick-up
@@ -109,6 +111,7 @@ class Actor extends ActorModel {
             if (npc.fetchId() !== this.destId) { // First click on a Creature
                 this.destId = npc.fetchId();
                 session.dataSend(ServerResponse.destSelected(this.destId, this.fetchLevel() - npc.fetchLevel()));
+                this.automation.abortAll(this);
                 this.statusUpdateVitals(session, npc);
             }
             else { // Second click on same Creature
