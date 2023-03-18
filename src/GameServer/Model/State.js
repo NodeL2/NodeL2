@@ -1,13 +1,12 @@
 class StateModel {
     constructor() {
-        this.isAnimated  = false; // Blocked: tries to sit down / stand-up (unblocks after animation)
-        this.isSeated    = false; // Blocked: seated down                  (unblocks after stand-up action)
-        this.inCombat    = false; // Blocked: combats                      (unblocks after attack)
-        this.isCastin    = false; // Blocked: casts skill                  (unblocks after skill cast, or abort)
-        this.toAtkMelee  = false; // Non-blocked: towards attack
-        this.toAtkRemote = false; // Non-blocked: towards attack
-        this.isPickinUp  = false; // Non-blocked: towards pick-up
-        this.isWalkin    = false; // No effect
+        this.isAnimated = false; // Blocked: tries to sit down / stand-up (unblocks after animation)
+        this.isSeated   = false; // Blocked: seated down                  (unblocks after stand-up action)
+        this.inCombat   = false; // Blocked: combats                      (unblocks after attack)
+        this.isCastin   = false; // Blocked: casts skill                  (unblocks after skill cast, or abort)
+        this.isTowards  = false; // Non-blocked: towards action
+        this.isPickinUp = false; // Non-blocked: towards pick-up
+        this.isWalkin   = false; // No effect
     }
 
     // Set
@@ -28,12 +27,8 @@ class StateModel {
         this.isCastin = data;
     }
 
-    setAtkMelee(data) {
-        this.toAtkMelee = data;
-    }
-
-    setAtkRemote(data) {
-        this.toAtkRemote = data;
+    setTowards(data) {
+        this.isTowards = data;
     }
 
     setPickinUp(data) {
@@ -62,12 +57,8 @@ class StateModel {
         return this.isCastin;
     }
 
-    fetchAtkMelee() {
-        return this.toAtkMelee;
-    }
-
-    fetchAtkRemote() {
-        return this.toAtkRemote;
+    fetchTowards() {
+        return this.isTowards;
     }
 
     fetchPickinUp() {
@@ -85,7 +76,7 @@ class StateModel {
     }
 
     inMotion() {
-        return this.fetchAtkMelee() || this.fetchAtkRemote() || this.fetchPickinUp();
+        return this.fetchTowards() || this.fetchPickinUp();
     }
 }
 
