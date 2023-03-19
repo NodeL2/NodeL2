@@ -75,6 +75,7 @@ class Npc extends NpcModel {
         this.setStateRun(true);
         this.setStateAttack(true);
         session.dataSend(ServerResponse.walkAndRun(this.fetchId(), this.fetchStateRun()));
+        session.dataSend(ServerResponse.autoAttackStart(this.fetchId()));
 
         this.combatMode = setInterval(() => {
             if (actor.state.fetchDead()) {
