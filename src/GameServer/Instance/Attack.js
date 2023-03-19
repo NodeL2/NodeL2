@@ -57,7 +57,7 @@ class Attack {
             }
 
             const pAtk  = actor.fetchCollectivePAtk();
-            const pRand = actor.backpack.fetchTotalWeaponPAtkRnd();
+            const pRand = actor.backpack.fetchTotalWeaponPAtkRnd() ?? 0;
             this.hit(session, actor, npc, Formulas.calcMeleeHit(pAtk, pRand, npc.fetchCollectivePDef()));
 
         }, speed * 0.644); // Until hit point
