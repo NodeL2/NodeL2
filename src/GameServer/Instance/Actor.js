@@ -296,11 +296,7 @@ class Actor extends ActorModel {
     }
 
     socialAction(session, actionId) {
-        if (this.isDead(session)) {
-            return;
-        }
-
-        if (this.isBlocked(session) || this.state.inMotion()) {
+        if (this.isDead(session) || this.isBlocked(session) || this.state.inMotion()) {
             return;
         }
 
@@ -369,6 +365,10 @@ class Actor extends ActorModel {
     }
 
     die(session) {
+        if (this.isDead(session)) {
+            return;
+        }
+
         this.destructor(session);
         this.state.setDead(true);
         session.dataSend(ServerResponse.die(this.fetchId()));
@@ -384,11 +384,7 @@ class Actor extends ActorModel {
     }
 
     teleportTo(session, coords) {
-        if (this.isDead(session)) {
-            return;
-        }
-
-        if (this.isBlocked(session)) {
+        if (this.isDead(session) || this.isBlocked(session)) {
             return;
         }
 
