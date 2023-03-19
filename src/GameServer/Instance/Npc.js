@@ -87,7 +87,7 @@ class Npc extends NpcModel {
 
             const delta = Formulas.calcDistance(this.fetchLocX(), this.fetchLocY(), actor.fetchLocX(), actor.fetchLocY());
 
-            if (delta <= this.fetchAtkRadius()) {
+            if (delta <= this.fetchRadius() + this.fetchAtkRadius()) {
                 const speed = Formulas.calcMeleeAtkTime(this.fetchCollectiveAtkSpd());
                 session.dataSend(ServerResponse.attack(this, actor.fetchId()));
                 this.state.setCombats(true);

@@ -51,6 +51,11 @@ class Attack {
         actor.state.setCombats(true);
 
         setTimeout(() => {
+            if (actor.state.fetchDead() || npc.state.fetchDead()) {
+                actor.state.setCombats(false);
+                return;
+            }
+
             const pAtk  = actor.fetchCollectivePAtk();
             const pRand = actor.backpack.fetchTotalWeaponPAtkRnd();
             this.hit(session, actor, npc, Formulas.calcMeleeHit(pAtk, pRand, npc.fetchCollectivePDef()));
@@ -58,6 +63,11 @@ class Attack {
         }, speed * 0.644); // Until hit point
 
         setTimeout(() => {
+            if (actor.state.fetchDead() || npc.state.fetchDead()) {
+                actor.state.setCombats(false);
+                return;
+            }
+
             if (this.queue.name) {
                 this.dequeueEvent(session);
                 return;
@@ -70,7 +80,8 @@ class Attack {
     remoteHit(session, npc, skill) {
         const actor = session.actor;
 
-        if (npc.state.fetchDead()) {
+        if (actor.state.fetchDead() || npc.state.fetchDead()) {
+            actor.state.setCasts(false);
             return;
         }
 
@@ -85,6 +96,11 @@ class Attack {
         actor.state.setCasts(true);
 
         setTimeout(() => {
+            if (actor.state.fetchDead() || npc.state.fetchDead()) {
+                actor.state.setCasts(false);
+                return;
+            }
+
             actor.setMp(actor.fetchMp() - skill.fetchConsumedMp());
             actor.statusUpdateVitals(session, actor);
 
