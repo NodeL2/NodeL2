@@ -20,6 +20,7 @@ module.exports = {
             questList: require('./QuestList'),
        removeShortcut: require('./RemoveShortcut'),
               restart: require('./Restart'),
+         restartPoint: require('./RestartPoint'),
            skillsList: require('./SkillsList'),
              skillUse: require('./SkillUse'),
          socialAction: require('./SocialAction'),

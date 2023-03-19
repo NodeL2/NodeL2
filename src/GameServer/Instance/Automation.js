@@ -17,10 +17,10 @@ class Automation extends SelectedModel {
         this.ticksPerSecond = 10;
     }
 
-    destructor() {
-        clearInterval(this.timer.replenish);
-        clearTimeout (this.timer.action);
-        clearTimeout (this.timer.pickup);
+    destructor(creature) {
+        this.clearDestId();
+        this.stopReplenish();
+        this.abortAll(creature);
     }
 
     replenishVitals(session, actor) {

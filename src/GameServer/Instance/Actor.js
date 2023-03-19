@@ -45,8 +45,11 @@ class Actor extends ActorModel {
         ConsoleText.transmit(session, ConsoleText.caption.welcome);
     }
 
-    destructor() {
-        this.automation.destructor();
+    destructor(session) {
+        this.unselect(session);
+        this.clearStoredActions();
+        this.attack.destructor();
+        this.automation.destructor(this);
     }
 
     queueRequest(event, data) {
@@ -56,6 +59,10 @@ class Actor extends ActorModel {
     }
 
     moveTo(session, coords) {
+        if (this.state.fetchDead()) {
+            return;
+        }
+
         if (this.isBlocked(session)) {
             this.queueRequest('move', coords);
             return;
@@ -80,21 +87,21 @@ class Actor extends ActorModel {
         // Reschedule actions based on updated position
         if (this.storedAttack) {
             this.attackExec(session, structuredClone(this.storedAttack));
-            this.cleanStoredActions();
+            this.clearStoredActions();
         }
 
         if (this.storedSpell) {
             this.skillExec(session, structuredClone(this.storedSpell));
-            this.cleanStoredActions();
+            this.clearStoredActions();
         }
 
         if (this.storedPickup) {
             this.pickupExec(session, structuredClone(this.storedPickup));
-            this.cleanStoredActions();
+            this.clearStoredActions();
         }
     }
 
-    cleanStoredActions() {
+    clearStoredActions() {
         this.storedAttack = undefined;
         this.storedSpell  = undefined;
         this.storedPickup = undefined;
@@ -127,6 +134,10 @@ class Actor extends ActorModel {
     }
 
     attackRequest(session, data) {
+        if (this.state.fetchDead()) {
+            return;
+        }
+
         if (this.state.inMotion()) {
             if ((this.state.fetchTowards() === 'remote') || (this.fetchDestId() !== this.automation.fetchDestId())) {
                 this.storedAttack = data;
@@ -164,6 +175,10 @@ class Actor extends ActorModel {
     }
 
     skillRequest(session, data) {
+        if (this.state.fetchDead()) {
+            return;
+        }
+
         if ((data.id = this.fetchDestId()) === undefined) {
             return;
         }
@@ -203,6 +218,10 @@ class Actor extends ActorModel {
     }
 
     pickupRequest(session, data) {
+        if (this.state.fetchDead()) {
+            return;
+        }
+
         if (this.isBlocked(session)) {
             this.queueRequest('pickup', data);
             return;
@@ -240,6 +259,10 @@ class Actor extends ActorModel {
     }
 
     basicAction(session, data) {
+        if (this.state.fetchDead()) {
+            return;
+        }
+
         switch (data.actionId) {
         case 0x00: // Sit / Stand
             if (this.state.fetchCombats() || this.state.fetchCasts() || this.state.fetchAnimated() || this.state.inMotion()) {
@@ -259,7 +282,7 @@ class Actor extends ActorModel {
         case 0x01: // Walk / Run
             this.state.setWalkin(!this.state.fetchWalkin());
             session.dataSend(
-                ServerResponse.walkAndRun(this)
+                ServerResponse.walkAndRun(this.fetchId(), this.state.fetchWalkin() ? 0 : 1)
             );
             break;
 
@@ -273,6 +296,10 @@ class Actor extends ActorModel {
     }
 
     socialAction(session, actionId) {
+        if (this.state.fetchDead()) {
+            return;
+        }
+
         if (this.isBlocked(session) || this.state.inMotion()) {
             return;
         }
@@ -290,6 +317,10 @@ class Actor extends ActorModel {
     }
 
     rewardExpAndSp(session, exp, sp) {
+        if (this.state.fetchDead()) {
+            return;
+        }
+
         const optn = options.default.General;
 
         let totalExp = this.fetchExp() + (exp *= optn.expRate);
@@ -329,7 +360,23 @@ class Actor extends ActorModel {
         Database.updateCharacterVitals(this.fetchId(), this.fetchHp(), this.fetchMaxHp(), this.fetchMp(), this.fetchMaxMp());
     }
 
+    die(session) {
+        this.destructor(session);
+        this.state.setDead(true);
+        session.dataSend(ServerResponse.die(this.fetchId()));
+    }
+
+    revive(session) {
+        session.dataSend(ServerResponse.revive(this.fetchId()));
+        this.state.setDead(false);
+        this.automation.replenishVitals(session, this);
+    }
+
     teleportTo(session, coords) {
+        if (this.state.fetchDead()) {
+            return;
+        }
+
         if (this.isBlocked(session)) {
             return;
         }

@@ -24,6 +24,7 @@ module.exports = {
           purchaseList: require('./PurchaseList'),
              questList: require('./QuestList'),
                restart: require('./Restart'),
+                revive: require('./Revive'),
           shortcutInit: require('./ShortcutInit'),
                showMap: require('./ShowMap'),
            sitAndStand: require('./SitAndStand'),

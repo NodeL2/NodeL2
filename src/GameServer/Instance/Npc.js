@@ -1,6 +1,8 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 const NpcModel       = invoke('GameServer/Model/Npc');
 const Automation     = invoke('GameServer/Instance/Automation');
+const ConsoleText    = invoke('GameServer/ConsoleText');
+const Formulas       = invoke('GameServer/Formulas');
 
 class Npc extends NpcModel {
     constructor(id, data) {
@@ -17,10 +19,8 @@ class Npc extends NpcModel {
             replenish : undefined
         };
 
-        this.replenishVitals();
-
         // User preferences
-        const optn = options.default.GameServer;
+        const optn = options.default.General;
 
         if (optn.showMonsterLevel) {
             this.showLevelTitle();
@@ -28,7 +28,10 @@ class Npc extends NpcModel {
     }
 
     destructor() {
-        clearInterval(this.timer.replenish);
+        this.clearDestId();
+        this.stopReplenish();
+        this.abortCombatState();
+        this.automation.destructor(this);
     }
 
     showLevelTitle() {
@@ -65,19 +68,65 @@ class Npc extends NpcModel {
     }
 
     enterCombatState(session, actor) {
-        this.automation.scheduleAction(session, this, actor, this.fetchAtkRadius(), () => {
-            this.setLocX(actor.fetchLocX());
-            this.setLocY(actor.fetchLocY());
-            session.dataSend(ServerResponse.attack(this, actor.fetchId()));
-        });
+        if (this.combatMode) {
+            return;
+        }
+
+        this.setStateRun(true);
+        this.setStateAttack(true);
+        session.dataSend(ServerResponse.walkAndRun(this.fetchId(), this.fetchStateRun()));
+
+        this.combatMode = setInterval(() => {
+            if (this.state.isBlocked()) {
+                return;
+            }
+
+            const delta = Formulas.calcDistance(this.fetchLocX(), this.fetchLocY(), actor.fetchLocX(), actor.fetchLocY());
+
+            if (delta <= this.fetchAtkRadius()) {
+                const speed = Formulas.calcMeleeAtkTime(actor.fetchCollectiveAtkSpd());
+                session.dataSend(ServerResponse.attack(this, actor.fetchId()));
+                this.state.setCombats(true);
+
+                setTimeout(() => {
+                    const pAtk = this.fetchCollectivePAtk();
+                    this.hit(session, actor, Formulas.calcMeleeHit(pAtk, 0, actor.fetchCollectivePDef()));
+
+                }, speed * 0.644);
+
+                setTimeout(() => {
+                    this.state.setCombats(false);
+                }, speed);
+            }
+        }, 500);
     }
 
-    fetchStateRun() {
-        return 1;
+    abortCombatState() {
+        clearInterval(this.combatMode);
+        this.combatMode = undefined;
     }
 
-    fetchStateAttack() {
-        return 1;
+    hit(session, actor, hit) {
+        actor.setHp(Math.max(0, actor.fetchHp() - hit)); // HP bar would disappear if less than zero
+        actor.automation.replenishVitals(session, actor);
+
+        actor.statusUpdateVitals(session, actor);
+        ConsoleText.transmit(session, ConsoleText.caption.monsterHit, [{ kind: ConsoleText.kind.npc, value: this.fetchSelfId() + 1000000 }, { kind: ConsoleText.kind.number, value: hit }]);
+
+        if (actor.fetchHp() <= 0) {
+            this.clearDestId();
+            this.abortCombatState();
+            this.automation.destructor(this);
+
+            actor.die(session);
+            return;
+        }
+    }
+
+    die(session) {
+        this.destructor(session);
+        this.state.setDead(true);
+        session.dataSend(ServerResponse.die(this.fetchId()));
     }
 }
 

@@ -7,6 +7,7 @@ class StateModel {
         this.isTowards  = false; // Non-blocked: towards action
         this.isPickinUp = false; // Non-blocked: towards pick-up
         this.isWalkin   = false; // No effect
+        this.isDead     = false;
     }
 
     // Set
@@ -39,6 +40,10 @@ class StateModel {
         this.isWalkin = data;
     }
 
+    setDead(data) {
+        this.isDead = data;
+    }
+
     // Get
 
     fetchAnimated() {
@@ -67,6 +72,10 @@ class StateModel {
 
     fetchWalkin() {
         return this.isWalkin;
+    }
+
+    fetchDead() {
+        return this.isDead;
     }
 
     // Abstract

@@ -6,11 +6,11 @@ function die(id) {
     packet
         .writeD(id)    // Id
         .writeD(0x01)  // Teleport
-        .writeD(0x01)  // ?
-        .writeD(0x01)  // ?
-        .writeD(0x01)  // ?
         .writeD(0x00)  // ?
-        .writeD(0x01); // ?
+        .writeD(0x00)  // Castle
+        .writeD(0x00)  // HQ
+        .writeD(0x00)  // Sweepable
+        .writeD(0x00); // Fixed
 
     return packet.fetchBuffer();
 }

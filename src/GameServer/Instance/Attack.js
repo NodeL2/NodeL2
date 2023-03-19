@@ -8,6 +8,10 @@ class Attack {
         this.resetQueuedEvents();
     }
 
+    destructor() {
+        this.resetQueuedEvents();
+    }
+
     // Queue mechanism
 
     queueEvent(name, data) {
@@ -37,7 +41,7 @@ class Attack {
     meleeHit(session, npc) {
         const actor = session.actor;
 
-        if (npc.isDead()) {
+        if (actor.state.fetchDead() || npc.state.fetchDead()) {
             actor.state.setCombats(false);
             return;
         }
@@ -49,7 +53,7 @@ class Attack {
         setTimeout(() => {
             const pAtk  = actor.fetchCollectivePAtk();
             const pRand = actor.backpack.fetchTotalWeaponPAtkRnd();
-            this.hit(session, actor, npc, Formulas.calcMeleeHit(pAtk, pRand, npc.fetchPDef()));
+            this.hit(session, actor, npc, Formulas.calcMeleeHit(pAtk, pRand, npc.fetchCollectivePDef()));
 
         }, speed * 0.644); // Until hit point
 
@@ -66,7 +70,7 @@ class Attack {
     remoteHit(session, npc, skill) {
         const actor = session.actor;
 
-        if (npc.isDead()) {
+        if (npc.state.fetchDead()) {
             return;
         }
 
@@ -85,7 +89,7 @@ class Attack {
             actor.statusUpdateVitals(session, actor);
 
             const mAtk = actor.fetchCollectiveMAtk();
-            this.hit(session, actor, npc, Formulas.calcRemoteHit(mAtk, skill.fetchPower(), npc.fetchMDef()));
+            this.hit(session, actor, npc, Formulas.calcRemoteHit(mAtk, skill.fetchPower(), npc.fetchCollectiveMDef()));
             actor.state.setCasts(false);
 
             // Start replenish
@@ -105,11 +109,12 @@ class Attack {
 
     hit(session, actor, npc, hit) {
         npc.setHp(Math.max(0, npc.fetchHp() - hit)); // HP bar would disappear if less than zero
+        npc.replenishVitals();
 
         actor.statusUpdateVitals(session, npc);
         ConsoleText.transmit(session, ConsoleText.caption.actorHit, [{ kind: ConsoleText.kind.number, value: hit }]);
 
-        if (npc.isDead()) {
+        if (npc.fetchHp() <= 0) {
             actor.rewardExpAndSp(session, npc.fetchRewardExp(), npc.fetchRewardSp());
             World.removeNpc(session, npc);
             return;

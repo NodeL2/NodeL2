@@ -32,8 +32,8 @@ function npcInfo(npc) {
         .writeC(0x01)  // Name above character
         .writeC(npc.fetchStateRun())
         .writeC(npc.fetchStateAttack())
-        .writeC(0x00)  // Dead      = 0x01
-        .writeC(0x00)  // Invisible = 0x01
+        .writeC(npc.fetchStateDead())
+        .writeC(npc.fetchStateInvisible())
         .writeS(npc.fetchName())
         .writeS(npc.fetchTitle())
         .writeD(0x00)  // ?
