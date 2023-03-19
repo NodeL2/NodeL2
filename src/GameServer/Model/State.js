@@ -80,12 +80,12 @@ class StateModel {
 
     // Abstract
 
-    isBlocked() {
-        return this.fetchCombats() || this.fetchCasts() || this.fetchAnimated() || this.fetchSeated();
-    }
-
     inMotion() {
         return this.fetchTowards() || this.fetchPickinUp();
+    }
+
+    isBlocked() {
+        return this.fetchCombats() || this.fetchCasts() || this.fetchAnimated() || this.fetchSeated();
     }
 }
 

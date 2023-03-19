@@ -77,6 +77,10 @@ class Npc extends NpcModel {
         session.dataSend(ServerResponse.walkAndRun(this.fetchId(), this.fetchStateRun()));
 
         this.combatMode = setInterval(() => {
+            if (actor.state.fetchDead()) {
+                return;
+            }
+
             if (this.state.isBlocked()) {
                 return;
             }
@@ -84,7 +88,7 @@ class Npc extends NpcModel {
             const delta = Formulas.calcDistance(this.fetchLocX(), this.fetchLocY(), actor.fetchLocX(), actor.fetchLocY());
 
             if (delta <= this.fetchAtkRadius()) {
-                const speed = Formulas.calcMeleeAtkTime(actor.fetchCollectiveAtkSpd());
+                const speed = Formulas.calcMeleeAtkTime(this.fetchCollectiveAtkSpd());
                 session.dataSend(ServerResponse.attack(this, actor.fetchId()));
                 this.state.setCombats(true);
 

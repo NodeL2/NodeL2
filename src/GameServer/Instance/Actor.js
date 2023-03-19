@@ -59,7 +59,7 @@ class Actor extends ActorModel {
     }
 
     moveTo(session, coords) {
-        if (this.state.fetchDead()) {
+        if (this.isDead(session)) {
             return;
         }
 
@@ -134,7 +134,7 @@ class Actor extends ActorModel {
     }
 
     attackRequest(session, data) {
-        if (this.state.fetchDead()) {
+        if (this.isDead(session)) {
             return;
         }
 
@@ -175,7 +175,7 @@ class Actor extends ActorModel {
     }
 
     skillRequest(session, data) {
-        if (this.state.fetchDead()) {
+        if (this.isDead(session)) {
             return;
         }
 
@@ -218,7 +218,7 @@ class Actor extends ActorModel {
     }
 
     pickupRequest(session, data) {
-        if (this.state.fetchDead()) {
+        if (this.isDead(session)) {
             return;
         }
 
@@ -259,7 +259,7 @@ class Actor extends ActorModel {
     }
 
     basicAction(session, data) {
-        if (this.state.fetchDead()) {
+        if (this.isDead(session)) {
             return;
         }
 
@@ -296,7 +296,7 @@ class Actor extends ActorModel {
     }
 
     socialAction(session, actionId) {
-        if (this.state.fetchDead()) {
+        if (this.isDead(session)) {
             return;
         }
 
@@ -316,8 +316,16 @@ class Actor extends ActorModel {
         return false;
     }
 
-    rewardExpAndSp(session, exp, sp) {
+    isDead(session) {
         if (this.state.fetchDead()) {
+            session.dataSend(ServerResponse.actionFailed());
+            return true;
+        }
+        return false;
+    }
+
+    rewardExpAndSp(session, exp, sp) {
+        if (this.isDead(session)) {
             return;
         }
 
@@ -368,12 +376,15 @@ class Actor extends ActorModel {
 
     revive(session) {
         session.dataSend(ServerResponse.revive(this.fetchId()));
-        this.state.setDead(false);
         this.automation.replenishVitals(session, this);
+
+        setTimeout(() => {
+            this.state.setDead(false);
+        }, 2500);
     }
 
     teleportTo(session, coords) {
-        if (this.state.fetchDead()) {
+        if (this.isDead(session)) {
             return;
         }
 
