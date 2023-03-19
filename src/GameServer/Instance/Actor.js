@@ -138,17 +138,17 @@ class Actor extends ActorModel {
             return;
         }
 
+        if (this.isBlocked(session)) {
+            this.queueRequest('attack', data);
+            return;
+        }
+
         if (this.state.inMotion()) {
-            if ((this.state.fetchTowards() === 'remote') || (this.fetchDestId() !== this.automation.fetchDestId())) {
+            if (this.state.fetchTowards() === 'remote' || this.fetchDestId() !== this.automation.fetchDestId()) {
                 this.storedAttack = data;
                 this.requestStopAutomation(session);
                 return;
             }
-        }
-
-        if (this.isBlocked(session)) {
-            this.queueRequest('attack', data);
-            return;
         }
 
         if (this.state.fetchTowards() === 'melee') {
@@ -183,17 +183,17 @@ class Actor extends ActorModel {
             return;
         }
 
+        if (this.isBlocked(session)) {
+            this.queueRequest('spell', data);
+            return;
+        }
+
         if (this.state.inMotion()) {
-            if ((this.state.fetchTowards() === 'melee') || (this.fetchDestId() !== this.automation.fetchDestId())) {
+            if (this.state.fetchTowards() === 'melee' || this.fetchDestId() !== this.automation.fetchDestId()) {
                 this.storedSpell = data;
                 this.requestStopAutomation(session);
                 return;
             }
-        }
-
-        if (this.isBlocked(session)) {
-            this.queueRequest('spell', data);
-            return;
         }
 
         if (this.state.fetchTowards() === 'remote') {
