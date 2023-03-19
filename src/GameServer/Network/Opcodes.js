@@ -37,6 +37,7 @@ const Opcodes = {
         table[0x48] = ClientRequest.validatePosition;
         table[0x59] = ClientRequest.trashItem;
         table[0x63] = ClientRequest.questList;
+        table[0x6d] = ClientRequest.restartPoint;
         table[0xcd] = ClientRequest.showMap;
 
         table[0x57] = () => {}; // Board

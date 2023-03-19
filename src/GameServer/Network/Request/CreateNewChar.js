@@ -73,12 +73,17 @@ function fetchSpawnPoints(classId) {
 }
 
 function awardBaseSkills(id, classId) {
-    const skills = DataCache.skillTree.find(ob => ob.classId === classId)?.skills;
-    const level1 = skills?.filter(ob => ob.pLevel === 1);
+    DataCache.fetchSkillTreeFromClassId(classId, (skillTree) => {
+        const skills = skillTree.skills;
+        const level1 = skills?.filter((ob) => ob.levels.find((ob) => ob.pLevel === 1)) ?? [];
 
-    (level1 ?? []).forEach((skill) => {
-        skill.passive = DataCache.skills.find(ob => ob.selfId === skill.selfId)?.template?.passive ?? false;
-        Database.setSkill(skill, id);
+        level1.forEach((skill) => {
+            skill.levels = skill.levels.filter((ob) => ob.pLevel === 1);
+            DataCache.fetchSkillFromSelfId(skill.selfId, (skillDetails) => {
+                skill = { ...utils.crushOb(skill), passive: skillDetails.template?.passive ?? false };
+                Database.setSkill(skill, id);
+            });
+        });
     });
 }
 

@@ -8,6 +8,10 @@ class Attack {
         this.resetQueuedEvents();
     }
 
+    destructor() {
+        this.resetQueuedEvents();
+    }
+
     // Queue mechanism
 
     queueEvent(name, data) {
@@ -17,14 +21,15 @@ class Attack {
 
     dequeueEvent(session) {
         let actor = session.actor;
+        let queue = this.queue;
         actor.state.setCombats(false);
 
-        switch (this.queue.name) {
-            case 'move'   : actor.moveTo     (session, this.queue.data); break;
-            case 'attack' : actor.select     (session, this.queue.data); break;
-            case 'spell'  : actor.skillAction(session, this.queue.data); break;
-            case 'pickup' : actor.select     (session, this.queue.data); break;
-            case 'sit'    : actor.basicAction(session, this.queue.data); break;
+        switch (queue.name) {
+            case 'move'   : actor.moveTo       (session, queue.data); break;
+            case 'attack' : actor.attackRequest(session, queue.data); break;
+            case 'spell'  : actor.skillRequest (session, queue.data); break;
+            case 'pickup' : actor.pickupRequest(session, queue.data); break;
+            case 'sit'    : actor.basicAction  (session, queue.data); break;
         }
         this.resetQueuedEvents();
     }
@@ -36,7 +41,7 @@ class Attack {
     meleeHit(session, npc) {
         const actor = session.actor;
 
-        if (npc.isDead()) {
+        if (actor.state.fetchDead() || npc.state.fetchDead()) {
             actor.state.setCombats(false);
             return;
         }
@@ -46,10 +51,23 @@ class Attack {
         actor.state.setCombats(true);
 
         setTimeout(() => {
-            this.hitPoint(session, npc, true);
+            if (actor.state.fetchDead() || npc.state.fetchDead()) {
+                actor.state.setCombats(false);
+                return;
+            }
+
+            const pAtk  = actor.fetchCollectivePAtk();
+            const pRand = actor.backpack.fetchTotalWeaponPAtkRnd();
+            this.hit(session, actor, npc, Formulas.calcMeleeHit(pAtk, pRand, npc.fetchCollectivePDef()));
+
         }, speed * 0.644); // Until hit point
 
         setTimeout(() => {
+            if (actor.state.fetchDead() || npc.state.fetchDead()) {
+                actor.state.setCombats(false);
+                return;
+            }
+
             if (this.queue.name) {
                 this.dequeueEvent(session);
                 return;
@@ -62,7 +80,8 @@ class Attack {
     remoteHit(session, npc, skill) {
         const actor = session.actor;
 
-        if (npc.isDead()) {
+        if (actor.state.fetchDead() || npc.state.fetchDead()) {
+            actor.state.setCasts(false);
             return;
         }
 
@@ -77,9 +96,16 @@ class Attack {
         actor.state.setCasts(true);
 
         setTimeout(() => {
+            if (actor.state.fetchDead() || npc.state.fetchDead()) {
+                actor.state.setCasts(false);
+                return;
+            }
+
             actor.setMp(actor.fetchMp() - skill.fetchConsumedMp());
             actor.statusUpdateVitals(session, actor);
-            this.hitPoint(session, npc, false);
+
+            const mAtk = actor.fetchCollectiveMAtk();
+            this.hit(session, actor, npc, Formulas.calcRemoteHit(mAtk, skill.fetchPower(), npc.fetchCollectiveMDef()));
             actor.state.setCasts(false);
 
             // Start replenish
@@ -97,30 +123,20 @@ class Attack {
         }, skill.fetchReuseTime());
     }
 
-    hitPoint(session, npc, melee) {
-        const power = melee ? this.hitPAtk(session.actor, npc) : this.hitMAtk(session.actor, npc);
-        npc.setHp(Math.max(0, npc.fetchHp() - power)); // HP bar would disappear if less than zero
+    hit(session, actor, npc, hit) {
+        npc.setHp(Math.max(0, npc.fetchHp() - hit)); // HP bar would disappear if less than zero
+        npc.replenishVitals();
 
-        session.actor.statusUpdateVitals(session, npc);
-        ConsoleText.transmit(session, ConsoleText.caption.actorHit, [{ kind: ConsoleText.kind.number, value: power }]);
+        actor.statusUpdateVitals(session, npc);
+        ConsoleText.transmit(session, ConsoleText.caption.actorHit, [{ kind: ConsoleText.kind.number, value: hit }]);
 
-        if (npc.isDead()) {
-            session.actor.rewardExpAndSp(session, npc.fetchRewardExp(), npc.fetchRewardSp());
+        if (npc.fetchHp() <= 0) {
+            actor.rewardExpAndSp(session, npc.fetchRewardExp(), npc.fetchRewardSp());
             World.removeNpc(session, npc);
+            return;
         }
 
-        session.dataSend(ServerResponse.attack(npc, session.actor.fetchId()));
-    }
-
-    hitPAtk(actor, npc) {
-        const pAtk = actor.fetchCollectivePAtk();
-        const pAtkRnd = actor.backpack.fetchTotalWeaponPAtkRnd();
-        return Formulas.calcMeleeHit(pAtk, pAtkRnd, npc.fetchPDef());
-    }
-
-    hitMAtk(actor, npc) {
-        const mAtk = actor.fetchCollectiveMAtk();
-        return Formulas.calcRemoteHit(mAtk, 12, npc.fetchMDef());
+        npc.enterCombatState(session, actor);
     }
 }
 

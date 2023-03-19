@@ -20,7 +20,6 @@ class Actor extends ActorModel {
         this.attack     = new Attack();
         this.skillset   = new Skillset();
         this.backpack   = new Backpack(data);
-        this.destId     = undefined;
 
         delete this.model.items;
         delete this.model.paperdoll;
@@ -46,15 +45,26 @@ class Actor extends ActorModel {
         ConsoleText.transmit(session, ConsoleText.caption.welcome);
     }
 
-    destructor() {
-        this.automation.destructor();
+    destructor(session) {
+        this.unselect(session);
+        this.clearStoredActions();
+        this.attack.destructor();
+        this.automation.destructor(this);
+    }
+
+    queueRequest(event, data) {
+        if (this.state.fetchCombats() || this.state.fetchCasts()) {
+            this.attack.queueEvent(event, data);
+        }
     }
 
     moveTo(session, coords) {
+        if (this.isDead(session)) {
+            return;
+        }
+
         if (this.isBlocked(session)) {
-            if (this.state.fetchCombats() || this.state.fetchCasts()) {
-                this.attack.queueEvent('move', coords);
-            }
+            this.queueRequest('move', coords);
             return;
         }
 
@@ -74,52 +84,170 @@ class Actor extends ActorModel {
             session.dataSend(ServerResponse.npcInfo(npc));
         });
 
-        // Reschedule attacks based on updated position
-        if (this.destId && this.storedAttack) {
-            this.attackFinish(session, structuredClone(this.storedAttack));
-            this.storedAttack = undefined;
+        // Reschedule actions based on updated position
+        if (this.storedAttack) {
+            this.attackExec(session, structuredClone(this.storedAttack));
+            this.clearStoredActions();
         }
 
-        if (this.destId && this.storedSpell) {
-            this.skillFinish(session, structuredClone(this.storedSpell));
-            this.storedSpell = undefined;
+        if (this.storedSpell) {
+            this.skillExec(session, structuredClone(this.storedSpell));
+            this.clearStoredActions();
         }
 
-        // Reschedule smooth pick-up
         if (this.storedPickup) {
-            World.fetchItem(this.storedPickup.id).then((item) => {
-                this.automation.schedulePickup(session, this, item, () => {
-                    session.dataSend(ServerResponse.pickupItem(this.fetchId(), item));
-                });
-            }).catch((e) => {
-                utils.infoWarn('GameServer :: ? -> ' + e);
-            });
-            this.storedPickup = undefined;
+            this.pickupExec(session, structuredClone(this.storedPickup));
+            this.clearStoredActions();
         }
+    }
+
+    clearStoredActions() {
+        this.storedAttack = undefined;
+        this.storedSpell  = undefined;
+        this.storedPickup = undefined;
     }
 
     select(session, data) {
         if (this.fetchId() === data.id) { // Click on self
-            this.destId = this.fetchId();
-            session.dataSend(ServerResponse.destSelected(this.destId));
+            this.setDestId(this.fetchId());
+            session.dataSend(ServerResponse.destSelected(this.fetchDestId()));
             return;
         }
 
-        World.fetchNpc(data.id).then((npc) => { // Creature selected
-            if (npc.fetchId() !== this.destId) { // First click on a Creature
-                this.destId = npc.fetchId();
-                session.dataSend(ServerResponse.destSelected(this.destId, this.fetchLevel() - npc.fetchLevel()));
+        World.fetchNpc(data.id).then((npc) => {
+            if (npc.fetchId() !== this.fetchDestId()) { // First click on a Creature
+                this.setDestId(npc.fetchId());
+                session.dataSend(ServerResponse.destSelected(this.fetchDestId(), this.fetchLevel() - npc.fetchLevel()));
                 this.statusUpdateVitals(session, npc);
             }
             else { // Second click on same Creature
-                this.attackAction(session, data);
+                this.attackRequest(session, data);
             }
-        }).catch(() => { // Pickup item
-            this.pickupAction(session, data);
+        }).catch(() => {
+            this.pickupRequest(session, data);
         });
     }
 
-    requestPreciseLocation(session) {
+    unselect(session) {
+        this.clearDestId();
+        session.dataSend(ServerResponse.destDeselected(this));
+    }
+
+    attackRequest(session, data) {
+        if (this.isDead(session)) {
+            return;
+        }
+
+        if (this.state.inMotion()) {
+            if ((this.state.fetchTowards() === 'remote') || (this.fetchDestId() !== this.automation.fetchDestId())) {
+                this.storedAttack = data;
+                this.requestStopAutomation(session);
+                return;
+            }
+        }
+
+        if (this.isBlocked(session)) {
+            this.queueRequest('attack', data);
+            return;
+        }
+
+        if (this.state.fetchTowards()) {
+            return;
+        }
+
+        this.storedAttack = data;
+        this.requestStopAutomation(session);
+    }
+
+    attackExec(session, data) {
+        World.fetchNpc(data.id).then((npc) => {
+            this.automation.scheduleAction(session, this, npc, 0, () => {
+                if (npc.fetchAttackable() || data.ctrl) {
+                    this.attack.meleeHit(session, npc);
+                }
+                else {
+                    World.npcTalk(session, npc);
+                }
+            });
+        }).catch((err) => {
+            utils.infoWarn('GameServer :: Attack -> ' + err);
+        });
+    }
+
+    skillRequest(session, data) {
+        if (this.isDead(session)) {
+            return;
+        }
+
+        if ((data.id = this.fetchDestId()) === undefined) {
+            return;
+        }
+
+        if (this.state.inMotion()) {
+            if ((this.state.fetchTowards() === 'melee') || (this.fetchDestId() !== this.automation.fetchDestId())) {
+                this.storedSpell = data;
+                this.requestStopAutomation(session);
+                return;
+            }
+        }
+
+        if (this.isBlocked(session)) {
+            this.queueRequest('spell', data);
+            return;
+        }
+
+        if (this.state.fetchTowards()) {
+            return;
+        }
+
+        this.storedSpell = data;
+        this.requestStopAutomation(session);
+    }
+
+    skillExec(session, data) {
+        World.fetchNpc(data.id).then((npc) => {
+            const skill = this.skillset.fetchSkill(data.selfId);
+            this.automation.scheduleAction(session, this, npc, skill.fetchDistance(), () => {
+                if (npc.fetchAttackable() || data.ctrl) { // TODO: Else, find which `response` fails the attack
+                    this.attack.remoteHit(session, npc, skill);
+                }
+            });
+        }).catch((err) => {
+            utils.infoWarn('GameServer :: Skill -> ' + err);
+        });
+    }
+
+    pickupRequest(session, data) {
+        if (this.isDead(session)) {
+            return;
+        }
+
+        if (this.isBlocked(session)) {
+            this.queueRequest('pickup', data);
+            return;
+        }
+
+        if (this.state.fetchPickinUp()) {
+            return;
+        }
+
+        this.storedPickup = data;
+        this.requestStopAutomation(session);
+    }
+
+    pickupExec(session, data) {
+        World.fetchItem(data.id).then((item) => {
+            this.automation.schedulePickup(session, this, item, () => {
+                session.dataSend(ServerResponse.pickupItem(this.fetchId(), item));
+            });
+        }).catch((err) => {
+            utils.infoWarn('GameServer :: Pickup -> ' + err);
+        });
+    }
+
+    requestStopAutomation(session) {
+        this.automation.abortAll(this);
+
         session.dataSend(
             ServerResponse.stopMove(this.fetchId(), {
                 locX: this.fetchLocX(),
@@ -130,104 +258,15 @@ class Actor extends ActorModel {
         );
     }
 
-    unselect(session) {
-        this.destId = undefined;
-        session.dataSend(ServerResponse.destDeselected(this));
-    }
-
-    attackAction(session, data) {
-        if (this.isBlocked(session)) {
-            if (this.state.fetchCombats() || this.state.fetchCasts()) {
-                this.attack.queueEvent('attack', data);
-            }
-            return;
-        }
-
-        if (this.state.fetchAtkMelee()) {
-            return;
-        }
-
-        this.storedAttack = data;
-        this.automation.abortScheduledAtkRemote(this);
-        this.automation.abortScheduledPickup   (this);
-        this.requestPreciseLocation(session);
-    }
-
-    attackFinish(session, data) {
-        World.fetchNpc(data.id).then((npc) => {
-            this.automation.scheduleAtkMelee(session, this, npc, 0, () => {
-                if (npc.fetchAttackable() || data.ctrl) {
-                    this.attack.meleeHit(session, npc);
-                }
-                else {
-                    World.npcTalk(session, npc);
-                }
-            });
-        });
-    }
-
-    skillAction(session, data) {
-        if ((data.id = this.destId) === undefined) {
-            return;
-        }
-
-        if (this.isBlocked(session)) {
-            if (this.state.fetchCombats() || this.state.fetchCasts()) {
-                this.attack.queueEvent('spell', data);
-            }
-            return;
-        }
-
-        if (this.state.fetchAtkRemote()) {
-            return;
-        }
-
-        this.storedSpell = data;
-        this.automation.abortScheduledAtkMelee(this);
-        this.automation.abortScheduledPickup  (this);
-        this.requestPreciseLocation(session);
-    }
-
-    skillFinish(session, data) {
-        World.fetchNpc(data.id).then((npc) => {
-            const skill = this.skillset.fetchSkill(data.selfId);
-            this.automation.scheduleAtkRemote(session, this, npc, skill.fetchDistance(), () => {
-                if (npc.fetchAttackable() || data.ctrl) { // TODO: Else, find which `response` fails the attack
-                    this.attack.remoteHit(session, npc, skill);
-                }
-            });
-        });
-    }
-
-    pickupAction(session, data) {
-        if (this.isBlocked(session)) {
-            if (this.state.fetchCombats() || this.state.fetchCasts()) {
-                this.attack.queueEvent('pickup', data);
-            }
-            return;
-        }
-
-        if (this.state.fetchPickinUp()) {
-            return;
-        }
-
-        this.storedPickup = data;
-        this.automation.abortScheduledAtkMelee (this);
-        this.automation.abortScheduledAtkRemote(this);
-        this.requestPreciseLocation(session);
-    }
-
     basicAction(session, data) {
-        if (this.state.inMotion()) {
+        if (this.isDead(session)) {
             return;
         }
 
         switch (data.actionId) {
         case 0x00: // Sit / Stand
-            if (this.state.fetchCasts() || this.state.fetchCombats() || this.state.fetchAnimated()) {
-                if (this.state.fetchCombats() || this.state.fetchCasts()) {
-                    this.attack.queueEvent('sit', data);
-                }
+            if (this.state.fetchCombats() || this.state.fetchCasts() || this.state.fetchAnimated() || this.state.inMotion()) {
+                this.queueRequest('sit', data);
                 return;
             }
 
@@ -243,7 +282,7 @@ class Actor extends ActorModel {
         case 0x01: // Walk / Run
             this.state.setWalkin(!this.state.fetchWalkin());
             session.dataSend(
-                ServerResponse.walkAndRun(this)
+                ServerResponse.walkAndRun(this.fetchId(), this.state.fetchWalkin() ? 0 : 1)
             );
             break;
 
@@ -257,11 +296,11 @@ class Actor extends ActorModel {
     }
 
     socialAction(session, actionId) {
-        if (this.isBlocked(session)) {
+        if (this.isDead(session)) {
             return;
         }
 
-        if (this.state.inMotion()) {
+        if (this.isBlocked(session) || this.state.inMotion()) {
             return;
         }
 
@@ -277,38 +316,19 @@ class Actor extends ActorModel {
         return false;
     }
 
-    statusUpdateLevelExpSp(session, creature) {
-        session.dataSend(
-            ServerResponse.statusUpdate(creature.fetchId(), [
-                { id: 0x1, value: creature.fetchLevel() },
-                { id: 0x2, value: creature.fetchExp  () },
-                { id: 0xd, value: creature.fetchSp   () },
-            ])
-        );
-    }
-
-    statusUpdateVitals(session, creature) {
-        session.dataSend(
-            ServerResponse.statusUpdate(creature.fetchId(), [
-                { id: 0x9, value: creature.fetchHp   () },
-                { id: 0xa, value: creature.fetchMaxHp() },
-                { id: 0xb, value: creature.fetchMp   () },
-                { id: 0xc, value: creature.fetchMaxMp() },
-            ])
-        );
-    }
-
-    statusUpdateStats(session, creature) {
-        session.dataSend(
-            ServerResponse.statusUpdate(creature.fetchId(), [
-                { id: 0x11, value: creature.fetchCollectivePAtk  () },
-                { id: 0x17, value: creature.fetchCollectiveMAtk  () },
-                { id: 0x12, value: creature.fetchCollectiveAtkSpd() },
-            ])
-        );
+    isDead(session) {
+        if (this.state.fetchDead()) {
+            session.dataSend(ServerResponse.actionFailed());
+            return true;
+        }
+        return false;
     }
 
     rewardExpAndSp(session, exp, sp) {
+        if (this.isDead(session)) {
+            return;
+        }
+
         const optn = options.default.General;
 
         let totalExp = this.fetchExp() + (exp *= optn.expRate);
@@ -348,7 +368,26 @@ class Actor extends ActorModel {
         Database.updateCharacterVitals(this.fetchId(), this.fetchHp(), this.fetchMaxHp(), this.fetchMp(), this.fetchMaxMp());
     }
 
+    die(session) {
+        this.destructor(session);
+        this.state.setDead(true);
+        session.dataSend(ServerResponse.die(this.fetchId()));
+    }
+
+    revive(session) {
+        session.dataSend(ServerResponse.revive(this.fetchId()));
+        this.automation.replenishVitals(session, this);
+
+        setTimeout(() => {
+            this.state.setDead(false);
+        }, 2500);
+    }
+
     teleportTo(session, coords) {
+        if (this.isDead(session)) {
+            return;
+        }
+
         if (this.isBlocked(session)) {
             return;
         }
@@ -467,6 +506,39 @@ class Actor extends ActorModel {
         this.setCollectiveTotalCastSpd();
         this.setCollectiveTotalWalkSpd();
         this.setCollectiveTotalRunSpd();
+    }
+
+    // Update stats
+
+    statusUpdateLevelExpSp(session, creature) {
+        session.dataSend(
+            ServerResponse.statusUpdate(creature.fetchId(), [
+                { id: 0x1, value: creature.fetchLevel() },
+                { id: 0x2, value: creature.fetchExp  () },
+                { id: 0xd, value: creature.fetchSp   () },
+            ])
+        );
+    }
+
+    statusUpdateVitals(session, creature) {
+        session.dataSend(
+            ServerResponse.statusUpdate(creature.fetchId(), [
+                { id: 0x9, value: creature.fetchHp   () },
+                { id: 0xa, value: creature.fetchMaxHp() },
+                { id: 0xb, value: creature.fetchMp   () },
+                { id: 0xc, value: creature.fetchMaxMp() },
+            ])
+        );
+    }
+
+    statusUpdateStats(session, creature) {
+        session.dataSend(
+            ServerResponse.statusUpdate(creature.fetchId(), [
+                { id: 0x11, value: creature.fetchCollectivePAtk  () },
+                { id: 0x17, value: creature.fetchCollectiveMAtk  () },
+                { id: 0x12, value: creature.fetchCollectiveAtkSpd() },
+            ])
+        );
     }
 }
 

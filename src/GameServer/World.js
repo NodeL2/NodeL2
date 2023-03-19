@@ -37,9 +37,8 @@ const World = {
     removeNpc(session, npc) {
         // Npc death
         const npcId = npc.fetchId();
-        npc.destructor();
-        session.dataSend(ServerResponse.die(npcId));
-
+        npc.die(session);
+        
         // Npc drops
         this.npcRewards(session, npc);
 

@@ -20,7 +20,7 @@ function consume(session, data) {
         return;
     }
 
-    session.actor.skillAction(session, data);
+    session.actor.skillRequest(session, data);
 }
 
 module.exports = skillUse;

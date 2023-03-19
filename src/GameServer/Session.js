@@ -34,7 +34,7 @@ class Session {
 
     error() {
         utils.infoWarn('GameServer :: exception');
-        this.actor?.destructor();
+        this.actor?.destructor(this);
     }
 }
 

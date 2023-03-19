@@ -2,6 +2,24 @@ const CreatureModel = invoke('GameServer/Model/Creature');
 
 class NpcModel extends CreatureModel {
 
+    // Set
+
+    setStateRun(data) {
+        this.model.stateRun = data;
+    }
+
+    setStateAttack(data) {
+        this.model.stateAttack = data;
+    }
+
+    setStateDead(data) {
+        this.model.stateDead = data;
+    }
+
+    setStateInvisible(data) {
+        this.model.stateInvisible = data;
+    }
+
     // Get
 
     fetchSelfId() {
@@ -46,6 +64,22 @@ class NpcModel extends CreatureModel {
 
     fetchRewardSp() {
         return this.model.sp;
+    }
+
+    fetchStateRun() {
+        return this.model.stateRun;
+    }
+
+    fetchStateAttack() {
+        return this.model.stateAttack;
+    }
+
+    fetchStateDead() {
+        return this.model.stateDead;
+    }
+
+    fetchStateInvisible() {
+        return this.model.stateInvisible;
     }
 
     // Abstract
