@@ -78,37 +78,49 @@ class Npc extends NpcModel {
         session.dataSend(ServerResponse.autoAttackStart(this.fetchId()));
 
         this.combatMode = setInterval(() => {
-            if (actor.state.fetchDead()) {
-                return;
-            }
-
             if (this.state.isBlocked()) {
                 return;
             }
 
             const delta = Formulas.calcDistance(this.fetchLocX(), this.fetchLocY(), actor.fetchLocX(), actor.fetchLocY());
+            const size  = this.fetchRadius() + this.fetchAtkRadius();
 
-            if (delta <= this.fetchRadius() + this.fetchAtkRadius()) {
-                const speed = Formulas.calcMeleeAtkTime(this.fetchCollectiveAtkSpd());
-                session.dataSend(ServerResponse.attack(this, actor.fetchId()));
-                this.state.setCombats(true);
-
-                setTimeout(() => {
-                    const pAtk = this.fetchCollectivePAtk();
-                    this.hit(session, actor, Formulas.calcMeleeHit(pAtk, 0, actor.fetchCollectivePDef()));
-
-                }, speed * 0.644);
-
-                setTimeout(() => {
-                    this.state.setCombats(false);
-                }, speed);
+            if (delta <= size) {
+                this.meleeHit(session, this, session.actor);
             }
-        }, 500);
+        }, 1000);
     }
 
     abortCombatState() {
         clearInterval(this.combatMode);
         this.combatMode = undefined;
+    }
+
+    meleeHit(session, src, dst) {
+        if (src.state.fetchDead() || dst.state.fetchDead()) {
+            src.state.setCombats(false);
+            return;
+        }
+
+        const speed = Formulas.calcMeleeAtkTime(src.fetchCollectiveAtkSpd());
+        session.dataSend(ServerResponse.attack(src, dst.fetchId()));
+        src.state.setCombats(true);
+
+        setTimeout(() => {
+            if (src.state.fetchDead() || dst.state.fetchDead()) {
+                src.state.setCombats(false);
+                return;
+            }
+
+            const pAtk = src.fetchCollectivePAtk();
+            this.hit(session, dst, Formulas.calcMeleeHit(pAtk, 0, dst.fetchCollectivePDef()));
+
+        }, speed * 0.644);
+
+        setTimeout(() => {
+            this.state.setCombats(false);
+
+        }, speed); // Until end of combat move
     }
 
     hit(session, actor, hit) {
