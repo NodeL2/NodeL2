@@ -99,7 +99,7 @@ class Automation extends SelectedModel {
         }));
 
         // Calculate duration
-        src.state.setPickinUp(true);
+        src.state.setTowards('pickup');
         const ticks = this.ticksToMove(
             src.fetchLocX(), src.fetchLocY(), dst.fetchLocX(), dst.fetchLocY(), 0, src.fetchCollectiveRunSpd()
         );
@@ -107,16 +107,14 @@ class Automation extends SelectedModel {
         // Arrived
         clearTimeout(this.timer.pickup);
         this.timer.pickup = setTimeout(() => {
-            src.state.setPickinUp(false);
+            src.state.setTowards(false);
             callback();
 
         }, ticks);
     }
 
     abortAll(creature) {
-        creature.state.setTowards (false);
-        creature.state.setPickinUp(false);
-
+        creature.state.setTowards(false);
         clearTimeout(this.timer.action);
         clearTimeout(this.timer.pickup);
     }

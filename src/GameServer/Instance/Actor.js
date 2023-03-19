@@ -151,7 +151,7 @@ class Actor extends ActorModel {
             return;
         }
 
-        if (this.state.fetchTowards()) {
+        if (this.state.fetchTowards() === 'melee') {
             return;
         }
 
@@ -196,7 +196,7 @@ class Actor extends ActorModel {
             return;
         }
 
-        if (this.state.fetchTowards()) {
+        if (this.state.fetchTowards() === 'remote') {
             return;
         }
 
@@ -227,7 +227,7 @@ class Actor extends ActorModel {
             return;
         }
 
-        if (this.state.fetchPickinUp()) {
+        if (this.state.fetchTowards() === 'pickup') {
             return;
         }
 
@@ -238,7 +238,16 @@ class Actor extends ActorModel {
     pickupExec(session, data) {
         World.fetchItem(data.id).then((item) => {
             this.automation.schedulePickup(session, this, item, () => {
+                this.state.setPickinUp(true);
                 session.dataSend(ServerResponse.pickupItem(this.fetchId(), item));
+
+                setTimeout(() => {
+                    World.pickupItemFromGround(session, this, item);
+                }, 250);
+
+                setTimeout(() => {
+                    this.state.setPickinUp(false);
+                }, 500);
             });
         }).catch((err) => {
             utils.infoWarn('GameServer :: Pickup -> ' + err);
@@ -296,11 +305,7 @@ class Actor extends ActorModel {
     }
 
     socialAction(session, actionId) {
-        if (this.isDead(session)) {
-            return;
-        }
-
-        if (this.isBlocked(session) || this.state.inMotion()) {
+        if (this.isDead(session) || this.isBlocked(session) || this.state.inMotion()) {
             return;
         }
 
@@ -369,6 +374,10 @@ class Actor extends ActorModel {
     }
 
     die(session) {
+        if (this.isDead(session)) {
+            return;
+        }
+
         this.destructor(session);
         this.state.setDead(true);
         session.dataSend(ServerResponse.die(this.fetchId()));
@@ -384,11 +393,7 @@ class Actor extends ActorModel {
     }
 
     teleportTo(session, coords) {
-        if (this.isDead(session)) {
-            return;
-        }
-
-        if (this.isBlocked(session)) {
+        if (this.isDead(session) || this.isBlocked(session)) {
             return;
         }
 
