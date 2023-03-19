@@ -9,7 +9,7 @@ function spawnItem(item) {
         .writeD(item.fetchLocX())
         .writeD(item.fetchLocY())
         .writeD(item.fetchLocZ())
-        .writeD(0x00)  // ?
+        .writeD(item.fetchStackable())
         .writeD(item.fetchAmount());
 
     return packet.fetchBuffer();

@@ -1,5 +1,6 @@
 class StateModel {
     constructor() {
+        this.isDead     = false; // Uber-blocked
         this.isAnimated = false; // Blocked: tries to sit down / stand-up (unblocks after animation)
         this.isSeated   = false; // Blocked: seated down                  (unblocks after stand-up action)
         this.inCombat   = false; // Blocked: combats                      (unblocks after attack)
@@ -7,10 +8,13 @@ class StateModel {
         this.isTowards  = false; // Non-blocked: towards action
         this.isPickinUp = false; // Non-blocked: towards pick-up
         this.isWalkin   = false; // No effect
-        this.isDead     = false;
     }
 
     // Set
+
+    setDead(data) {
+        this.isDead = data;
+    }
 
     setAnimated(data) {
         this.isAnimated = data;
@@ -40,11 +44,11 @@ class StateModel {
         this.isWalkin = data;
     }
 
-    setDead(data) {
-        this.isDead = data;
-    }
-
     // Get
+
+    fetchDead() {
+        return this.isDead;
+    }
 
     fetchAnimated() {
         return this.isAnimated;
@@ -74,18 +78,14 @@ class StateModel {
         return this.isWalkin;
     }
 
-    fetchDead() {
-        return this.isDead;
-    }
-
     // Abstract
 
     inMotion() {
-        return this.fetchTowards() || this.fetchPickinUp();
+        return this.fetchTowards();
     }
 
     isBlocked() {
-        return this.fetchCombats() || this.fetchCasts() || this.fetchAnimated() || this.fetchSeated();
+        return this.fetchCombats() || this.fetchCasts() || this.fetchAnimated() || this.fetchSeated() || this.fetchPickinUp();
     }
 }
 

@@ -57,7 +57,7 @@ const World = {
             if (Math.random() <= reward.chance / 100) { // TODO: Remove locZ hack at some point
                 const coords = Formulas.createRandomCoordinates(npc.fetchLocX(), npc.fetchLocY(), 50);
                 coords.locZ  = npc.fetchLocZ() - 10;
-                this.spawnItem(session, reward.selfId, 1, coords);
+                this.spawnItem(session, reward.selfId, utils.oneFromSpan(2, 7), coords); // TODO: Not a real stack
             }
         });
     },
@@ -149,6 +149,12 @@ const World = {
             let item = this.items.spawns.find(ob => ob.fetchId() === id);
             return item ? success(item) : fail();
         });
+    },
+
+    pickupItemFromGround(session, actor, item) {
+        this.items.spawns = this.items.spawns.filter((ob) => ob.fetchId() !== item.fetchId());
+        session.dataSend(ServerResponse.deleteOb(item.fetchId()));
+        this.purchaseItem(session, item.fetchSelfId(), item.fetchAmount());
     },
 
     purchaseItems(session, items) {
