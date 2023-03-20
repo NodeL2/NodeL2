@@ -32,12 +32,12 @@
 ✅ NPC & Monster Spawns\
 ✅ Attack, Cast, other Basic Actions\
 ✅ Gain Experience, SP, Level-up\
+✅ Pick-up items\
 ✅ Admin panel (Shop & Teleport)
 
 ## WIP/Experimental
-✴️ Skill Animation & Launch\
+✴️ Skill Animation & Launch, Skill trees\
 ✴️ NPC interaction, Quests\
-✴️ Pick-up items\
 ✴️ Calculation Formulas
 
 ## Unimplemented
