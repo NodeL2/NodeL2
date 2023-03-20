@@ -6,10 +6,15 @@ const Timer = {
     start(handler, func, ms) {
         if (Timer.exists(handler)) { Timer.clear(handler); }
         handler.timer = setTimeout(func, ms);
+        handler.end   = Timer.left(handler);
     },
 
     exists(handler) {
         return handler?.timer ? true : false;
+    },
+
+    completeness(handler) {
+        return Timer.elapsed(handler) / handler.end;
     },
 
     elapsed(handler) {
