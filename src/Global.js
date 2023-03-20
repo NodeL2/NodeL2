@@ -57,6 +57,10 @@ global.utils = {
         return value.toString('ascii').replace(/\u0000/gi, '');
     },
 
+    sqrt(value) {
+        return Math.sqrt(value) || 0;
+    },
+
     pad32Bits(data) {
         const size = data.length;
         const pad  = Buffer.alloc((Math.ceil(size / 4) * 4) - size);
