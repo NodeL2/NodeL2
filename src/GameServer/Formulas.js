@@ -145,7 +145,7 @@ const Formulas = {
     calcDistance(srcX, srcY, destX, destY) {
         const dX = destX - srcX;
         const dY = destY - srcY;
-        return Math.sqrt((dX * dX) + (dY * dY));
+        return Math.sqrt((dX ** 2) + (dY ** 2));
     },
 
     createRandomCoordinates(centerX, centerY, radius) {
