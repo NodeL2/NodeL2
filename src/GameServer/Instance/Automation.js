@@ -2,6 +2,7 @@ const ServerResponse = invoke('GameServer/Network/Response');
 const SelectedModel  = invoke('GameServer/Model/Selected');
 const DataCache      = invoke('GameServer/DataCache');
 const Formulas       = invoke('GameServer/Formulas');
+const Timer          = invoke('GameServer/Timer');
 
 class Automation extends SelectedModel {
     constructor() {
@@ -10,8 +11,8 @@ class Automation extends SelectedModel {
 
         this.timer = { // TODO: Move this into actual GameServer timer
             replenish : undefined,
-            action    : undefined,
-            pickup    : undefined,
+            action    : Timer.init(),
+            pickup    : Timer.init(),
         };
 
         this.ticksPerSecond = 10;
@@ -74,8 +75,7 @@ class Automation extends SelectedModel {
         );
 
         // Arrived
-        clearTimeout(this.timer.action);
-        this.timer.action = setTimeout(() => {
+        Timer.start(this.timer.action, () => {
             src.state.setTowards(false);
             this.clearDestId();
             callback();
@@ -105,8 +105,7 @@ class Automation extends SelectedModel {
         );
 
         // Arrived
-        clearTimeout(this.timer.pickup);
-        this.timer.pickup = setTimeout(() => {
+        Timer.start(this.timer.pickup, () => {
             src.state.setTowards(false);
             callback();
 
@@ -115,8 +114,8 @@ class Automation extends SelectedModel {
 
     abortAll(creature) {
         creature.state.setTowards(false);
-        clearTimeout(this.timer.action);
-        clearTimeout(this.timer.pickup);
+        Timer.clear(this.timer.action);
+        Timer.clear(this.timer.pickup);
     }
 }
 

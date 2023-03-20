@@ -94,11 +94,11 @@ const Formulas = {
     },
 
     calcAccur(level, dex, wpnAccur) {
-        return (Math.sqrt(dex) * 6) + level + wpnAccur;
+        return (utils.sqrt(dex) * 6) + level + wpnAccur;
     },
 
     calcEvasion(level, dex, armEvasion) {
-        return (Math.sqrt(dex) * 6) + level + armEvasion;
+        return (utils.sqrt(dex) * 6) + level + armEvasion;
     },
 
     calcCritical(dex, wpnCrit) {
@@ -139,17 +139,17 @@ const Formulas = {
     },
 
     calcRemoteHit(mAtk, power, mDef) {
-        return (91 * Math.sqrt(mAtk) * power) / mDef;
+        return (91 * utils.sqrt(mAtk) * power) / mDef;
     },
 
     calcDistance(srcX, srcY, destX, destY) {
         const dX = destX - srcX;
         const dY = destY - srcY;
-        return Math.sqrt((dX * dX) + (dY * dY));
+        return utils.sqrt((dX ** 2) + (dY ** 2));
     },
 
     createRandomCoordinates(centerX, centerY, radius) {
-        const r = radius * Math.sqrt(Math.random());
+        const r = radius * utils.sqrt(Math.random());
         const theta = Math.random() * 2 * Math.PI;
 
         return {
