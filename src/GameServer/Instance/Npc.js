@@ -77,27 +77,56 @@ class Npc extends NpcModel {
         session.dataSend(ServerResponse.walkAndRun(this.fetchId(), this.fetchStateRun()));
         session.dataSend(ServerResponse.autoAttackStart(this.fetchId()));
 
+        let current = 0, previous = 0;
+        const size  = this.fetchRadius() + this.fetchAtkRadius();
+
         this.combatMode = setInterval(() => {
-            if (this.state.isBlocked() || this.state.inMotion()) {
+            if (this.state.isBlocked()) {
                 return;
             }
 
-            const destX = actor.fetchLocX();
-            const destY = actor.fetchLocY();
+            const srcX = this.fetchLocX();
+            const srcY = this.fetchLocY();
+            const dstX = actor.fetchLocX();
+            const dstY = actor.fetchLocY();
+            current = Formulas.calcDistance(srcX, srcY, dstX, dstY);
 
-            const delta = Formulas.calcDistance(this.fetchLocX(), this.fetchLocY(), destX, destY);
-            const size  = this.fetchRadius() + this.fetchAtkRadius();
-
-            if (delta > size) {
-                this.automation.schedulePickup(session, this, actor, () => {
-                    this.setLocX(destX);
-                    this.setLocY(destY);
-                });
+            if (previous !== current) {
+                if (this.state.fetchTowards()) {
+                    const ratio = this.automation.fetchDistanceRatio();
+                    let midCoords = Formulas.calcMidPointCoordinates(srcX, srcY, dstX, dstY, ratio);
+                    this.setLocX(midCoords.locX);
+                    this.setLocY(midCoords.locY);
+                    this.automation.abortAll(this);
+                }
+                previous = current;
+                return;
             }
-            else {
+
+            if (this.state.fetchTowards()) {
+                return;
+            }
+
+            if (current <= size) {
                 this.meleeHit(session, this, actor);
+                return;
             }
-        }, 1000);
+
+            this.automation.scheduleAction(session, this, actor, actor.fetchRadius(), () => {
+                this.setLocX(dstX);
+                this.setLocY(dstY);
+
+                session.dataSend(
+                    ServerResponse.stopMove(this.fetchId(), {
+                        locX: this.fetchLocX(),
+                        locY: this.fetchLocY(),
+                        locZ: this.fetchLocZ(),
+                        head: this.fetchHead(),
+                    })
+                );
+            });
+
+        }, 100);
     }
 
     abortCombatState() {
