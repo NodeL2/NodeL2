@@ -78,15 +78,24 @@ class Npc extends NpcModel {
         session.dataSend(ServerResponse.autoAttackStart(this.fetchId()));
 
         this.combatMode = setInterval(() => {
-            if (this.state.isBlocked()) {
+            if (this.state.isBlocked() || this.state.inMotion()) {
                 return;
             }
 
-            const delta = Formulas.calcDistance(this.fetchLocX(), this.fetchLocY(), actor.fetchLocX(), actor.fetchLocY());
+            const destX = actor.fetchLocX();
+            const destY = actor.fetchLocY();
+
+            const delta = Formulas.calcDistance(this.fetchLocX(), this.fetchLocY(), destX, destY);
             const size  = this.fetchRadius() + this.fetchAtkRadius();
 
-            if (delta <= size) {
-                this.meleeHit(session, this, session.actor);
+            if (delta > size) {
+                this.automation.schedulePickup(session, this, actor, () => {
+                    this.setLocX(destX);
+                    this.setLocY(destY);
+                });
+            }
+            else {
+                this.meleeHit(session, this, actor);
             }
         }, 1000);
     }
