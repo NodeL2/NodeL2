@@ -83,6 +83,13 @@ class Automation extends SelectedModel {
         }, ticks);
     }
 
+    fetchDistanceRatio() {
+        if (Timer.exists(this.timer.action)) {
+            return Timer.completeness(this.timer.action);
+        }
+        return false;
+    }
+
     schedulePickup(session, src, dst, callback) {
         // Execute each time, or else creature is stuck
         session.dataSend(ServerResponse.moveToLocation(src.fetchId(), {

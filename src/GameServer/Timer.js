@@ -31,6 +31,7 @@ const Timer = {
         if (!(handler?.timer)) return;
         clearTimeout(handler.timer);
         delete handler.timer;
+        delete handler.end;
     }
 };
 

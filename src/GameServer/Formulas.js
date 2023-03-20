@@ -163,6 +163,13 @@ const Formulas = {
         const dY = destY - srcY;
         return ((dX ** 2) + (dY ** 2)) < (radius ** 2);
     },
+
+    calcMidPointCoordinates(srcX, srcY, destX, destY, t) {
+        return {
+            locX: ((1 - t) * srcX) + (t * destX),
+            locY: ((1 - t) * srcY) + (t * destY),
+        };
+    }
 };
 
 module.exports = Formulas;
