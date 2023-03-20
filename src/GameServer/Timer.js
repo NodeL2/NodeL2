@@ -1,5 +1,9 @@
 const Timer = {
-    init(handler, func, ms) {
+    init() {
+        return {};
+    },
+
+    start(handler, func, ms) {
         if (Timer.exists(handler)) { Timer.clear(handler); }
         handler.timer = setTimeout(func, ms);
     },
@@ -19,6 +23,7 @@ const Timer = {
     },
 
     clear(handler) {
+        if (!(handler?.timer)) return;
         clearTimeout(handler.timer);
         delete handler.timer;
     }
