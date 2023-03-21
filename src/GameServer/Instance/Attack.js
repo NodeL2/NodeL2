@@ -22,7 +22,7 @@ class Attack {
     dequeueEvent(session) {
         let actor = session.actor;
         let queue = this.queue;
-        actor.state.setCombats(false);
+        actor.state.setHits(false);
 
         switch (queue.name) {
             case 'move'   : actor.moveTo       (session, queue.data); break;
@@ -42,17 +42,17 @@ class Attack {
         const actor = session.actor;
 
         if (actor.state.fetchDead() || npc.state.fetchDead()) {
-            actor.state.setCombats(false);
+            actor.state.setHits(false);
             return;
         }
 
         const speed = Formulas.calcMeleeAtkTime(actor.fetchCollectiveAtkSpd());
         session.dataSend(ServerResponse.attack(actor, npc.fetchId()));
-        actor.state.setCombats(true);
+        actor.state.setHits(true);
 
         setTimeout(() => {
             if (actor.state.fetchDead() || npc.state.fetchDead()) {
-                actor.state.setCombats(false);
+                actor.state.setHits(false);
                 return;
             }
 
@@ -64,7 +64,7 @@ class Attack {
 
         setTimeout(() => {
             if (actor.state.fetchDead() || npc.state.fetchDead()) {
-                actor.state.setCombats(false);
+                actor.state.setHits(false);
                 return;
             }
 

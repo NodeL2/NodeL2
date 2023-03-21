@@ -53,7 +53,7 @@ class Actor extends ActorModel {
     }
 
     queueRequest(event, data) {
-        if (this.state.fetchCombats() || this.state.fetchCasts()) {
+        if (this.state.fetchHits() || this.state.fetchCasts()) {
             this.attack.queueEvent(event, data);
         }
     }
@@ -274,7 +274,7 @@ class Actor extends ActorModel {
 
         switch (data.actionId) {
         case 0x00: // Sit / Stand
-            if (this.state.fetchCombats() || this.state.fetchCasts() || this.state.fetchAnimated() || this.state.inMotion()) {
+            if (this.state.fetchHits() || this.state.fetchCasts() || this.state.fetchAnimated() || this.state.inMotion()) {
                 this.queueRequest('sit', data);
                 return;
             }
