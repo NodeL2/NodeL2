@@ -6,7 +6,7 @@ const Timer = {
     start(handler, func, ms) {
         if (Timer.exists(handler)) { Timer.clear(handler); }
         handler.timer = setTimeout(func, ms);
-        handler.end   = Timer.left(handler);
+        handler.end   = handler.timer._idleTimeout / 1000;
     },
 
     exists(handler) {

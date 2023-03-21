@@ -77,53 +77,49 @@ class Npc extends NpcModel {
         session.dataSend(ServerResponse.walkAndRun(this.fetchId(), this.fetchStateRun()));
         session.dataSend(ServerResponse.autoAttackStart(this.fetchId()));
 
-        let current = 0, previous = 0;
-        const size  = this.fetchRadius() + this.fetchAtkRadius();
+        const size = this.fetchRadius() + this.fetchAtkRadius();
+        let dstX = 0, dstY = 0;
 
         this.combatMode = setInterval(() => {
             if (this.state.isBlocked()) {
                 return;
             }
 
-            const srcX = this.fetchLocX();
-            const srcY = this.fetchLocY();
-            const dstX = actor.fetchLocX();
-            const dstY = actor.fetchLocY();
-            current = Formulas.calcDistance(srcX, srcY, dstX, dstY);
-
-            if (previous !== current) {
-                if (this.state.fetchTowards()) {
-                    const ratio = this.automation.fetchDistanceRatio();
-                    let midCoords = Formulas.calcMidPointCoordinates(srcX, srcY, dstX, dstY, ratio);
-                    this.setLocX(midCoords.locX);
-                    this.setLocY(midCoords.locY);
-                    this.automation.abortAll(this);
-                }
-                previous = current;
-                return;
-            }
+            let newDstX = actor.fetchLocX();
+            let newDstY = actor.fetchLocY();
 
             if (this.state.fetchTowards()) {
+                if (dstX !== newDstX || dstY !== newDstY) {
+                    const ratio = this.automation.fetchDistanceRatio();
+                    let midCoords = Formulas.calcMidPointCoordinates(this.fetchLocX(), this.fetchLocY(), dstX, dstY, ratio);
+                    this.setLocX(midCoords.locX);
+                    this.setLocY(midCoords.locY);
+
+                    this.automation.abortAll(this);
+                }
                 return;
             }
 
-            if (current <= size) {
-                this.meleeHit(session, this, actor);
-                return;
-            }
+            dstX = newDstX;
+            dstY = newDstY;
 
             this.automation.scheduleAction(session, this, actor, actor.fetchRadius(), () => {
                 this.setLocX(dstX);
                 this.setLocY(dstY);
 
-                session.dataSend(
-                    ServerResponse.stopMove(this.fetchId(), {
-                        locX: this.fetchLocX(),
-                        locY: this.fetchLocY(),
-                        locZ: this.fetchLocZ(),
-                        head: this.fetchHead(),
-                    })
-                );
+                const delta = Formulas.calcDistance(this.fetchLocX(), this.fetchLocY(), actor.fetchLocX(), actor.fetchLocY());
+                if (delta <= size) {
+                    session.dataSend(
+                        ServerResponse.stopMove(this.fetchId(), {
+                            locX: this.fetchLocX(),
+                            locY: this.fetchLocY(),
+                            locZ: this.fetchLocZ(),
+                            head: this.fetchHead(),
+                        })
+                    );
+
+                    this.meleeHit(session, this, actor);
+                }
             });
 
         }, 100);
