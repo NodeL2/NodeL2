@@ -183,8 +183,8 @@ class Npc extends NpcModel {
         ConsoleText.transmit(session, ConsoleText.caption.monsterHit, [{ kind: ConsoleText.kind.npc, value: this.fetchSelfId() + 1000000 }, { kind: ConsoleText.kind.number, value: hit }]);
 
         if (actor.fetchHp() <= 0) {
-            this.enterCooldownState();
             actor.die(session);
+            this.enterCooldownState();
             return;
         }
     }
