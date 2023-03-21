@@ -15,23 +15,23 @@ class Npc extends NpcModel {
         this.setId(id);
         this.fillupVitals();
 
-        this.timer = { // TODO: Move this into actual GameServer timer
-            replenish : undefined
-        };
-
         // User preferences
         const optn = options.default.General;
 
         if (optn.showMonsterLevel) {
             this.showLevelTitle();
         }
+
+        // TODO: Move this into actual GameServer timer
+        this.timer = {
+            replenish : undefined,
+            combat    : undefined,
+        };
     }
 
     destructor() {
-        this.clearDestId();
         this.stopReplenish();
-        this.abortCombatState();
-        this.automation.destructor(this);
+        this.enterCooldownState();
     }
 
     showLevelTitle() {
@@ -68,81 +68,84 @@ class Npc extends NpcModel {
     }
 
     enterCombatState(session, actor) {
-        if (this.combatMode) {
+        if (this.state.fetchCombats()) {
             return;
         }
+
+        this.state.setCombats(true);
 
         this.setStateRun(true);
         this.setStateAttack(true);
         session.dataSend(ServerResponse.walkAndRun(this.fetchId(), this.fetchStateRun()));
         session.dataSend(ServerResponse.autoAttackStart(this.fetchId()));
 
-        const size = this.fetchRadius() + this.fetchAtkRadius();
-        let dstX = 0, dstY = 0;
+        setTimeout(() => {
+            const perimeter = this.fetchRadius() + this.fetchAtkRadius();
+            let dstX = 0;
+            let dstY = 0;
 
-        this.combatMode = setInterval(() => {
-            if (this.state.isBlocked()) {
-                return;
-            }
-
-            let newDstX = actor.fetchLocX();
-            let newDstY = actor.fetchLocY();
-
-            if (this.state.fetchTowards()) {
-                if (dstX !== newDstX || dstY !== newDstY) {
-                    const ratio = this.automation.fetchDistanceRatio();
-                    let midCoords = Formulas.calcMidPointCoordinates(this.fetchLocX(), this.fetchLocY(), dstX, dstY, ratio);
-                    this.setLocX(midCoords.locX);
-                    this.setLocY(midCoords.locY);
-
-                    this.automation.abortAll(this);
+            this.timer.combat = setInterval(() => {
+                if (this.state.isBlocked()) {
+                    return;
                 }
-                return;
-            }
 
-            dstX = newDstX;
-            dstY = newDstY;
+                const newDstX = actor.fetchLocX();
+                const newDstY = actor.fetchLocY();
 
-            this.automation.scheduleAction(session, this, actor, actor.fetchRadius(), () => {
-                this.setLocX(dstX);
-                this.setLocY(dstY);
+                if (this.state.inMotion()) {
+                    if (dstX !== newDstX || dstY !== newDstY) {
+                        const ratio  = this.automation.fetchDistanceRatio();
+                        const coords = Formulas.calcMidPointCoordinates(this.fetchLocX(), this.fetchLocY(), dstX, dstY, ratio);
+                        this.setLocX(coords.locX);
+                        this.setLocY(coords.locY);
 
-                const delta = Formulas.calcDistance(this.fetchLocX(), this.fetchLocY(), actor.fetchLocX(), actor.fetchLocY());
-                if (delta <= size) {
-                    session.dataSend(
-                        ServerResponse.stopMove(this.fetchId(), {
-                            locX: this.fetchLocX(),
-                            locY: this.fetchLocY(),
-                            locZ: this.fetchLocZ(),
-                            head: this.fetchHead(),
-                        })
-                    );
-
-                    this.meleeHit(session, this, actor);
+                        this.automation.abortAll(this);
+                    }
+                    return;
                 }
-            });
 
-        }, 100);
+                dstX = newDstX;
+                dstY = newDstY;
+
+                this.automation.scheduleAction(session, this, actor, actor.fetchRadius(), () => {
+                    this.setLocX(dstX);
+                    this.setLocY(dstY);
+
+                    if (Formulas.calcDistance(dstX, dstY, actor.fetchLocX(), actor.fetchLocY()) <= perimeter) {
+                        session.dataSend(
+                            ServerResponse.stopMove(this.fetchId(), {
+                                locX: this.fetchLocX(),
+                                locY: this.fetchLocY(),
+                                locZ: this.fetchLocZ(),
+                                head: this.fetchHead(),
+                            })
+                        );
+
+                        this.meleeHit(session, this, actor);
+                    }
+                });
+
+            }, 100);
+
+        }, 1000);
     }
 
     abortCombatState() {
-        clearInterval(this.combatMode);
-        this.combatMode = undefined;
+        clearInterval(this.timer.combat);
+        this.timer.combat = undefined;
     }
 
     meleeHit(session, src, dst) {
-        if (src.state.fetchDead() || dst.state.fetchDead()) {
-            src.state.setCombats(false);
+        if (this.checkParticipants(src, dst)) {
             return;
         }
 
         const speed = Formulas.calcMeleeAtkTime(src.fetchCollectiveAtkSpd());
         session.dataSend(ServerResponse.attack(src, dst.fetchId()));
-        src.state.setCombats(true);
+        src.state.setHits(true);
 
         setTimeout(() => {
-            if (src.state.fetchDead() || dst.state.fetchDead()) {
-                src.state.setCombats(false);
+            if (this.checkParticipants(src, dst)) {
                 return;
             }
 
@@ -152,9 +155,24 @@ class Npc extends NpcModel {
         }, speed * 0.644);
 
         setTimeout(() => {
-            this.state.setCombats(false);
+            this.state.setHits(false);
 
         }, speed); // Until end of combat move
+    }
+
+    checkParticipants(src, dst) {
+        if (src.state.fetchDead() || dst.state.fetchDead()) {
+            this.enterCooldownState();
+            return true;
+        }
+        return false;
+    }
+
+    enterCooldownState() {
+        this.clearDestId();
+        this.abortCombatState();
+        this.state.destructor();
+        this.automation.destructor(this);
     }
 
     hit(session, actor, hit) {
@@ -165,10 +183,7 @@ class Npc extends NpcModel {
         ConsoleText.transmit(session, ConsoleText.caption.monsterHit, [{ kind: ConsoleText.kind.npc, value: this.fetchSelfId() + 1000000 }, { kind: ConsoleText.kind.number, value: hit }]);
 
         if (actor.fetchHp() <= 0) {
-            this.clearDestId();
-            this.abortCombatState();
-            this.automation.destructor(this);
-
+            this.enterCooldownState();
             actor.die(session);
             return;
         }

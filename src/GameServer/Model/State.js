@@ -1,12 +1,17 @@
 class StateModel {
     constructor() {
+        this.destructor();
+    }
+
+    destructor() {
         this.isDead     = false; // Uber-blocked
         this.isAnimated = false; // Blocked: tries to sit down / stand-up (unblocks after animation)
         this.isSeated   = false; // Blocked: seated down                  (unblocks after stand-up action)
-        this.inCombat   = false; // Blocked: combats                      (unblocks after attack)
-        this.isCastin   = false; // Blocked: casts skill                  (unblocks after skill cast, or abort)
+        this.inHit      = false; // Blocked: hit                          (unblocks after attack)
+        this.isCast     = false; // Blocked: casts skill                  (unblocks after skill cast, or abort)
         this.isTowards  = false; // Non-blocked: towards action
         this.isPickinUp = false; // Non-blocked: towards pick-up
+        this.inCombat   = false; // Non-blocked: combat
         this.isWalkin   = false; // No effect
     }
 
@@ -24,12 +29,12 @@ class StateModel {
         this.isSeated = data;
     }
 
-    setCombats(data) {
-        this.inCombat = data;
+    setHits(data) {
+        this.inHit = data;
     }
 
     setCasts(data) {
-        this.isCastin = data;
+        this.inCast = data;
     }
 
     setTowards(data) {
@@ -38,6 +43,10 @@ class StateModel {
 
     setPickinUp(data) {
         this.isPickinUp = data;
+    }
+
+    setCombats(data) {
+        this.inCombat = data;
     }
 
     setWalkin(data) {
@@ -58,12 +67,12 @@ class StateModel {
         return this.isSeated;
     }
 
-    fetchCombats() {
-        return this.inCombat;
+    fetchHits() {
+        return this.inHit;
     }
 
     fetchCasts() {
-        return this.isCastin;
+        return this.inCast;
     }
 
     fetchTowards() {
@@ -72,6 +81,10 @@ class StateModel {
 
     fetchPickinUp() {
         return this.isPickinUp;
+    }
+
+    fetchCombats() {
+        return this.inCombat;
     }
 
     fetchWalkin() {
@@ -85,7 +98,7 @@ class StateModel {
     }
 
     isBlocked() {
-        return this.fetchCombats() || this.fetchCasts() || this.fetchAnimated() || this.fetchSeated() || this.fetchPickinUp();
+        return this.fetchHits() || this.fetchCasts() || this.fetchAnimated() || this.fetchSeated() || this.fetchPickinUp();
     }
 }
 
