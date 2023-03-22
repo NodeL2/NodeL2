@@ -17,7 +17,7 @@ class Session {
     }
 
     setActor(properties) {
-        this.actor = new Actor(properties);
+        this.actor = new Actor(this, properties);
     }
 
     dataReceive(data) {
@@ -34,7 +34,7 @@ class Session {
 
     error() {
         utils.infoWarn('GameServer :: exception');
-        this.actor?.destructor(this);
+        this.actor?.destructor();
     }
 }
 

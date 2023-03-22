@@ -12,7 +12,7 @@ function socialAction(session, buffer) {
 }
 
 function consume(session, data) {
-    session.actor.socialAction(session, data.actionId);
+    session.actor.socialAction(data.actionId);
 }
 
 module.exports = socialAction;

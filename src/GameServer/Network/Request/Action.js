@@ -21,7 +21,7 @@ function action(session, buffer) {
 }
 
 function consume(session, data) {
-    session.actor.select(session, data);
+    session.actor.select(data);
 }
 
 module.exports = action;

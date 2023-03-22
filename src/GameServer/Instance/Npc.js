@@ -179,11 +179,11 @@ class Npc extends NpcModel {
         actor.setHp(Math.max(0, actor.fetchHp() - hit)); // HP bar would disappear if less than zero
         actor.automation.replenishVitals(session, actor);
 
-        actor.statusUpdateVitals(session, actor);
+        actor.statusUpdateVitals(actor);
         ConsoleText.transmit(session, ConsoleText.caption.monsterHit, [{ kind: ConsoleText.kind.npc, value: this.fetchSelfId() + 1000000 }, { kind: ConsoleText.kind.number, value: hit }]);
 
         if (actor.fetchHp() <= 0) {
-            actor.die(session);
+            actor.die();
             this.enterCooldownState();
             return;
         }
