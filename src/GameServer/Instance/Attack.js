@@ -25,11 +25,11 @@ class Attack {
         actor.state.setHits(false);
 
         switch (queue.name) {
-            case 'move'   : actor.moveTo       (session, queue.data); break;
-            case 'attack' : actor.attackRequest(session, queue.data); break;
-            case 'spell'  : actor.skillRequest (session, queue.data); break;
-            case 'pickup' : actor.pickupRequest(session, queue.data); break;
-            case 'sit'    : actor.basicAction  (session, queue.data); break;
+            case 'move'   : actor.moveTo       (queue.data); break;
+            case 'attack' : actor.attackRequest(queue.data); break;
+            case 'spell'  : actor.skillRequest (queue.data); break;
+            case 'pickup' : actor.pickupRequest(queue.data); break;
+            case 'sit'    : actor.basicAction  (queue.data); break;
         }
         this.resetQueuedEvents();
     }
@@ -102,7 +102,7 @@ class Attack {
             }
 
             actor.setMp(actor.fetchMp() - skill.fetchConsumedMp());
-            actor.statusUpdateVitals(session, actor);
+            actor.statusUpdateVitals(actor);
 
             const mAtk = actor.fetchCollectiveMAtk();
             this.hit(session, actor, npc, Formulas.calcRemoteHit(mAtk, skill.fetchPower(), npc.fetchCollectiveMDef()));
@@ -127,11 +127,11 @@ class Attack {
         npc.setHp(Math.max(0, npc.fetchHp() - hit)); // HP bar would disappear if less than zero
         npc.replenishVitals();
 
-        actor.statusUpdateVitals(session, npc);
+        actor.statusUpdateVitals(npc);
         ConsoleText.transmit(session, ConsoleText.caption.actorHit, [{ kind: ConsoleText.kind.number, value: hit }]);
 
         if (npc.fetchHp() <= 0) {
-            actor.rewardExpAndSp(session, npc.fetchRewardExp(), npc.fetchRewardSp());
+            actor.rewardExpAndSp(npc.fetchRewardExp(), npc.fetchRewardSp());
             World.removeNpc(session, npc);
             return;
         }

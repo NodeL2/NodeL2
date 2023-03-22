@@ -13,7 +13,7 @@ function restartPoint(session, buffer) {
 }
 
 function consume(session, data) {
-    session.actor.revive(session);
+    session.actor.revive();
 }
 
 module.exports = restartPoint;

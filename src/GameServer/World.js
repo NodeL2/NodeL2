@@ -104,7 +104,7 @@ const World = {
             case 'teleport':
                 {
                     const coords = DataCache.teleports.find((ob) => ob.id === Number(parts[1]))?.spawns;
-                    coords ? session.actor.teleportTo(session, coords[0]) : null;
+                    coords ? session.actor.teleportTo(coords[0]) : null;
                 }
                 break;
 
@@ -117,7 +117,7 @@ const World = {
                         head: session.actor.fetchHead()
                     };
 
-                    session.actor.teleportTo(session, coords);
+                    session.actor.teleportTo(coords);
                 }
                 break;
 

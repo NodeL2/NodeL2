@@ -19,7 +19,7 @@ function validatePosition(session, buffer) {
 }
 
 function consume(session, data) {
-    session.actor.updatePosition(session, data);
+    session.actor.updatePosition(data);
 }
 
 module.exports = validatePosition;

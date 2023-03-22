@@ -26,7 +26,7 @@ function moveToLocation(session, buffer) {
 }
 
 function consume(session, data) {
-    session.actor.moveTo(session, data);
+    session.actor.moveTo(data);
 }
 
 module.exports = moveToLocation;

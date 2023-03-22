@@ -1,5 +1,5 @@
 function destCancel(session, buffer) {
-    session.actor.unselect(session);
+    session.actor.unselect();
 }
 
 module.exports = destCancel;

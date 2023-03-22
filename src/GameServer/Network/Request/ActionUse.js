@@ -16,7 +16,7 @@ function actionUse(session, buffer) {
 }
 
 function consume(session, data) {
-    session.actor.basicAction(session, data);
+    session.actor.basicAction(data);
 }
 
 module.exports = actionUse;

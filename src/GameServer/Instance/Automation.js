@@ -42,7 +42,7 @@ class Automation extends SelectedModel {
 
             actor.setHp(minHp);
             actor.setMp(minMp);
-            actor.statusUpdateVitals(session, actor);
+            actor.statusUpdateVitals(actor);
 
             if (minHp >= maxHp && minMp >= maxMp) {
                 this.stopReplenish();
