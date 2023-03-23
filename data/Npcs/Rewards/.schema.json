@@ -29,6 +29,12 @@
                         "name": {
                             "type": "string"
                         },
+                        "min": {
+                            "type": "integer"
+                        },
+                        "max": {
+                            "type": "integer"
+                        },
                         "chance": {
                             "type": "number"
                         }
@@ -36,6 +42,38 @@
                     "required": [
                         "selfId",
                         "name",
+                        "min",
+                        "max",
+                        "chance"
+                    ]
+                }
+            },
+            "spoils": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "selfId": {
+                            "type": "integer"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "min": {
+                            "type": "integer"
+                        },
+                        "max": {
+                            "type": "integer"
+                        },
+                        "chance": {
+                            "type": "number"
+                        }
+                    },
+                    "required": [
+                        "selfId",
+                        "name",
+                        "min",
+                        "max",
                         "chance"
                     ]
                 }
@@ -44,7 +82,8 @@
         "required": [
             "selfId",
             "template",
-            "rewards"
+            "rewards",
+            "spoils"
         ]
     }
 }

@@ -3692,7 +3692,7 @@
     "etc": { "stackable": false, "consumable": false }
 },{
     "selfId": 1795,
-    "template": { "kind": "Other.Recipe", "name": "Recipe:Leather Shoes", "class1": 4, "class2": 5, "mass": 30, "price": 53 },
+    "template": { "kind": "Other.Recipe", "name": "Recipe: Leather Shoes", "class1": 4, "class2": 5, "mass": 30, "price": 53 },
     "etc": { "stackable": false, "consumable": false }
 },{
     "selfId": 1796,
