@@ -1,5 +1,5 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "array",
     "items": {
         "type": "object",
@@ -19,13 +19,13 @@
                     "title": {
                         "type": "string"
                     },
-                    "attackable": {
+                    "level": {
+                        "type": "integer"
+                    },
+                    "undead": {
                         "type": "boolean"
                     },
                     "hostile": {
-                        "type": "boolean"
-                    },
-                    "respawn": {
                         "type": "integer"
                     }
                 },
@@ -33,9 +33,40 @@
                     "kind",
                     "name",
                     "title",
-                    "attackable",
-                    "hostile",
-                    "respawn"
+                    "level",
+                    "undead",
+                    "hostile"
+                ]
+            },
+            "base": {
+                "type": "object",
+                "properties": {
+                    "str": {
+                        "type": "integer"
+                    },
+                    "dex": {
+                        "type": "integer"
+                    },
+                    "con": {
+                        "type": "integer"
+                    },
+                    "int": {
+                        "type": "integer"
+                    },
+                    "wit": {
+                        "type": "integer"
+                    },
+                    "men": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "str",
+                    "dex",
+                    "con",
+                    "int",
+                    "wit",
+                    "men"
                 ]
             },
             "stats": {
@@ -58,6 +89,9 @@
                     },
                     "castSpd": {
                         "type": "integer"
+                    },
+                    "atkRadius": {
+                        "type": "integer"
                     }
                 },
                 "required": [
@@ -66,26 +100,8 @@
                     "mAtk",
                     "mDef",
                     "atkSpd",
-                    "castSpd"
-                ]
-            },
-            "vitals": {
-                "type": "object",
-                "properties": {
-                    "level": {
-                        "type": "integer"
-                    },
-                    "maxHp": {
-                        "type": "integer"
-                    },
-                    "maxMp": {
-                        "type": "integer"
-                    }
-                },
-                "required": [
-                    "level",
-                    "maxHp",
-                    "maxMp"
+                    "castSpd",
+                    "atkRadius"
                 ]
             },
             "speed": {
@@ -96,15 +112,34 @@
                     },
                     "run": {
                         "type": "integer"
-                    },
-                    "swim": {
-                        "type": "integer"
                     }
                 },
                 "required": [
                     "walk",
-                    "run",
-                    "swim"
+                    "run"
+                ]
+            },
+            "vitals": {
+                "type": "object",
+                "properties": {
+                    "maxHp": {
+                        "type": "integer"
+                    },
+                    "maxMp": {
+                        "type": "integer"
+                    },
+                    "revHp": {
+                        "type": "number"
+                    },
+                    "revMp": {
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "maxHp",
+                    "maxMp",
+                    "revHp",
+                    "revMp"
                 ]
             },
             "collision": {
@@ -121,15 +156,52 @@
                     "radius",
                     "size"
                 ]
+            },
+            "equipment": {
+                "type": "object",
+                "properties": {
+                    "weapon": {
+                        "type": "integer"
+                    },
+                    "shield": {
+                        "type": "integer"
+                    },
+                    "armor": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "weapon",
+                    "shield",
+                    "armor"
+                ]
+            },
+            "rewards": {
+                "type": "object",
+                "properties": {
+                    "exp": {
+                        "type": "integer"
+                    },
+                    "sp": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "exp",
+                    "sp"
+                ]
             }
         },
         "required": [
             "selfId",
             "template",
+            "base",
             "stats",
-            "vitals",
             "speed",
-            "collision"
+            "vitals",
+            "collision",
+            "equipment",
+            "rewards"
         ]
     }
 }

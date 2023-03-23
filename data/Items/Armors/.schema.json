@@ -1,5 +1,5 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "array",
     "items": {
         "type": "object",
@@ -44,12 +44,20 @@
                     "pDef": {
                         "type": "integer"
                     },
+                    "mDef": {
+                        "type": "integer"
+                    },
+                    "evasion": {
+                        "type": "integer"
+                    },
                     "maxMp": {
                         "type": "integer"
                     }
                 },
                 "required": [
                     "pDef",
+                    "mDef",
+                    "evasion",
                     "maxMp"
                 ]
             },
@@ -58,10 +66,18 @@
                 "properties": {
                     "slot": {
                         "type": "integer"
+                    },
+                    "rank": {
+                        "type": "string"
+                    },
+                    "cristals": {
+                        "type": "integer"
                     }
                 },
                 "required": [
-                    "slot"
+                    "slot",
+                    "rank",
+                    "cristals"
                 ]
             }
         },

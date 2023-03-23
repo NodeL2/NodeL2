@@ -1,0 +1,37 @@
+[{
+    "classId": 0,
+    "template": { "class": "Human Fighter" },
+    "spawns": [{ "locX": -72662, "locY": 258431, "locZ": -3104 }, { "locX": -72963, "locY": 258034, "locZ": -3104 }, { "locX": -71436, "locY": 256718, "locZ": -3104 }, { "locX": -71081, "locY": 257082, "locZ": -3104 }, { "locX": -72682, "locY": 257559, "locZ": -3104 }, { "locX": -71958, "locY": 256935, "locZ": -3104 }, { "locX": -72352, "locY": 257936, "locZ": -3104 }, { "locX": -71616, "locY": 257328, "locZ": -3104 }, { "locX": -72320, "locY": 258816, "locZ": -3104 }, { "locX": -72432, "locY": 258656, "locZ": -3104 }, { "locX": -72256, "locY": 258672, "locZ": -3104 }, { "locX": -71936, "locY": 259232, "locZ": -3104 }, { "locX": -71792, "locY": 259408, "locZ": -3104 }, { "locX": -71760, "locY": 259264, "locZ": -3104 }, { "locX": -72064, "locY": 257344, "locZ": -3104 }, { "locX": -72304, "locY": 257552, "locZ": -3104 }, { "locX": -70880, "locY": 257360, "locZ": -3104 }, { "locX": -70736, "locY": 257520, "locZ": -3104 }, { "locX": -70896, "locY": 257536, "locZ": -3104 }, { "locX": -70400, "locY": 257936, "locZ": -3104 }, { "locX": -70432, "locY": 258112, "locZ": -3104 }, { "locX": -70240, "locY": 258112, "locZ": -3104 }]
+},{
+    "classId": 10,
+    "template": { "class": "Human Mystic" },
+    "spawns": [{ "locX": -88832, "locY": 248256, "locZ": -3570 }, { "locX": -88944, "locY": 248208, "locZ": -3570 }, { "locX": -89040, "locY": 248128, "locZ": -3570 }, { "locX": -89200, "locY": 248000, "locZ": -3570 }, { "locX": -91008, "locY": 249248, "locZ": -3570 }, { "locX": -90848, "locY": 249360, "locZ": -3570 }, { "locX": -90912, "locY": 249312, "locZ": -3570 }, { "locX": -89696, "locY": 247664, "locZ": -3570 }, { "locX": -89755, "locY": 247606, "locZ": -3570 }, { "locX": -89840, "locY": 247536, "locZ": -3570 }, { "locX": -90378, "locY": 249698, "locZ": -3570 }, { "locX": -90256, "locY": 249792, "locZ": -3570 }, { "locX": -89968, "locY": 249936, "locZ": -3570 }, { "locX": -90096, "locY": 249856, "locZ": -3570 }]
+},{
+    "classId": 18,
+    "template": { "class": "Elven Fighter" },
+    "spawns": [{ "locX": 43648, "locY": 40352, "locZ": -3440 }, { "locX": 43424, "locY": 40224, "locZ": -3440 }, { "locX": 43584, "locY": 40208, "locZ": -3440 }, { "locX": 43360, "locY": 40368, "locZ": -3440 }, { "locX": 43392, "locY": 40560, "locZ": -3440 }, { "locX": 43584, "locY": 40560, "locZ": -3440 }, { "locX": 43504, "locY": 40384, "locZ": -3440 }, { "locX": 48720, "locY": 40000, "locZ": -3440 }, { "locX": 48912, "locY": 39984, "locZ": -3440 }, { "locX": 48832, "locY": 40144, "locZ": -3440 }, { "locX": 48656, "locY": 40144, "locZ": -3440 }, { "locX": 49011, "locY": 40128, "locZ": -3440 }, { "locX": 48752, "locY": 40304, "locZ": -3440 }, { "locX": 48928, "locY": 40288, "locZ": -3440 }]
+},{
+    "classId": 25,
+    "template": { "class": "Elven Mystic" },
+    "spawns": [{ "locX": 43648, "locY": 40352, "locZ": -3440 }, { "locX": 43424, "locY": 40224, "locZ": -3440 }, { "locX": 43584, "locY": 40208, "locZ": -3440 }, { "locX": 43360, "locY": 40368, "locZ": -3440 }, { "locX": 43392, "locY": 40560, "locZ": -3440 }, { "locX": 43584, "locY": 40560, "locZ": -3440 }, { "locX": 43504, "locY": 40384, "locZ": -3440 }, { "locX": 48720, "locY": 40000, "locZ": -3440 }, { "locX": 48912, "locY": 39984, "locZ": -3440 }, { "locX": 48832, "locY": 40144, "locZ": -3440 }, { "locX": 48656, "locY": 40144, "locZ": -3440 }, { "locX": 49011, "locY": 40128, "locZ": -3440 }, { "locX": 48752, "locY": 40304, "locZ": -3440 }, { "locX": 48928, "locY": 40288, "locZ": -3440 }]
+},{
+    "classId": 31,
+    "template": { "class": "Dark Elvel Fighter" },
+    "spawns": [{ "locX": 26716, "locY": 11680, "locZ": -4224 }, { "locX": 26794, "locY": 11561, "locZ": -4224 }, { "locX": 26672, "locY": 11440, "locZ": -4224 }, { "locX": 27008, "locY": 11568, "locZ": -4224 }, { "locX": 27104, "locY": 11408, "locZ": -4224 }, { "locX": 26672, "locY": 10656, "locZ": -4224 }, { "locX": 26768, "locY": 10512, "locZ": -4224 }, { "locX": 26624, "locY": 10368, "locZ": -4224 }, { "locX": 26912, "locY": 10400, "locZ": -4224 }, { "locX": 26960, "locY": 10496, "locZ": -4224 }]
+},{
+    "classId": 38,
+    "template": { "class": "Dark Elvel Mystic" },
+    "spawns": [{ "locX": 26716, "locY": 11680, "locZ": -4224 }, { "locX": 26794, "locY": 11561, "locZ": -4224 }, { "locX": 26672, "locY": 11440, "locZ": -4224 }, { "locX": 27008, "locY": 11568, "locZ": -4224 }, { "locX": 27104, "locY": 11408, "locZ": -4224 }, { "locX": 26672, "locY": 10656, "locZ": -4224 }, { "locX": 26768, "locY": 10512, "locZ": -4224 }, { "locX": 26624, "locY": 10368, "locZ": -4224 }, { "locX": 26912, "locY": 10400, "locZ": -4224 }, { "locX": 26960, "locY": 10496, "locZ": -4224 }]
+},{
+    "classId": 44,
+    "template": { "class": "Orc Fighter" },
+    "spawns": [{ "locX": -56936, "locY": -112448, "locZ": -679 }, { "locX": -57281, "locY": -112427, "locZ": -679 }, { "locX": -56928, "locY": -112880, "locZ": -679 }, { "locX": -57248, "locY": -112864, "locZ": -679 }, { "locX": -58192, "locY": -113408, "locZ": -679 }, { "locX": -58256, "locY": -113856, "locZ": -679 }, { "locX": -57824, "locY": -113408, "locZ": -679 }, { "locX": -57824, "locY": -113744, "locZ": -679 }, { "locX": -57280, "locY": -114688, "locZ": -679 }, { "locX": -56880, "locY": -114752, "locZ": -679 }, { "locX": -57248, "locY": -114320, "locZ": -679 }, { "locX": -56896, "locY": -114320, "locZ": -679 }, { "locX": -56192, "locY": -113792, "locZ": -679 }, { "locX": -56448, "locY": -113792, "locZ": -679 }, { "locX": -56096, "locY": -113424, "locZ": -679 }, { "locX": -56432, "locY": -113456, "locZ": -679 }]
+},{
+    "classId": 49,
+    "template": { "class": "Orc Mystic" },
+    "spawns": [{ "locX": -56936, "locY": -112448, "locZ": -679 }, { "locX": -57281, "locY": -112427, "locZ": -679 }, { "locX": -56928, "locY": -112880, "locZ": -679 }, { "locX": -57248, "locY": -112864, "locZ": -679 }, { "locX": -58192, "locY": -113408, "locZ": -679 }, { "locX": -58256, "locY": -113856, "locZ": -679 }, { "locX": -57824, "locY": -113408, "locZ": -679 }, { "locX": -57824, "locY": -113744, "locZ": -679 }, { "locX": -57280, "locY": -114688, "locZ": -679 }, { "locX": -56880, "locY": -114752, "locZ": -679 }, { "locX": -57248, "locY": -114320, "locZ": -679 }, { "locX": -56896, "locY": -114320, "locZ": -679 }, { "locX": -56192, "locY": -113792, "locZ": -679 }, { "locX": -56448, "locY": -113792, "locZ": -679 }, { "locX": -56096, "locY": -113424, "locZ": -679 }, { "locX": -56432, "locY": -113456, "locZ": -679 }]
+},{
+    "classId": 53,
+    "template": { "class": "Dwarven Fighter" },
+    "spawns": [{ "locX": 107520, "locY": -175808, "locZ": -400 }, { "locX": 107824, "locY": -175776, "locZ": -400 }, { "locX": 108336, "locY": -175536, "locZ": -400 }, { "locX": 108592, "locY": -175232, "locZ": -400 }, { "locX": 107024, "locY": -175440, "locZ": -400 }, { "locX": 106880, "locY": -175056, "locZ": -400 }, { "locX": 106848, "locY": -174704, "locZ": -400 }, { "locX": 108256, "locY": -175152, "locZ": -400 }, { "locX": 107632, "locY": -175376, "locZ": -400 }, { "locX": 107200, "locY": -174800, "locZ": -400 }]
+}]

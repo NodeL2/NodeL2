@@ -1,5 +1,5 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "array",
     "items": {
         "type": "object",
@@ -10,6 +10,9 @@
             "template": {
                 "type": "object",
                 "properties": {
+                    "class": {
+                        "type": "string"
+                    },
                     "race": {
                         "type": "integer"
                     },
@@ -18,6 +21,7 @@
                     }
                 },
                 "required": [
+                    "class",
                     "race",
                     "crafter"
                 ]
@@ -68,16 +72,7 @@
                     "mDef": {
                         "type": "integer"
                     },
-                    "accur": {
-                        "type": "integer"
-                    },
-                    "evasion": {
-                        "type": "integer"
-                    },
                     "crit": {
-                        "type": "integer"
-                    },
-                    "speed": {
                         "type": "integer"
                     },
                     "atkSpd": {
@@ -92,10 +87,7 @@
                     "mAtk",
                     "pDef",
                     "mDef",
-                    "accur",
-                    "evasion",
                     "crit",
-                    "speed",
                     "atkSpd",
                     "castSpd"
                 ]
@@ -152,32 +144,6 @@
                     "radius",
                     "size"
                 ]
-            },
-            "bornAt": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "locX": {
-                            "type": "integer"
-                        },
-                        "locY": {
-                            "type": "integer"
-                        },
-                        "locZ": {
-                            "type": "integer"
-                        },
-                        "head": {
-                            "type": "integer"
-                        }
-                    },
-                    "required": [
-                        "locX",
-                        "locY",
-                        "locZ",
-                        "head"
-                    ]
-                }
             }
         },
         "required": [
@@ -187,8 +153,7 @@
             "stats",
             "vitals",
             "speed",
-            "collision",
-            "bornAt"
+            "collision"
         ]
     }
 }

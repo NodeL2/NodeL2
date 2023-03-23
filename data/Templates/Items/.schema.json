@@ -1,0 +1,42 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "classId": {
+                "type": "integer"
+            },
+            "items": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "selfId": {
+                            "type": "integer"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "amount": {
+                            "type": "integer"
+                        },
+                        "equipped": {
+                            "type": "boolean"
+                        }
+                    },
+                    "required": [
+                        "selfId",
+                        "name",
+                        "amount",
+                        "equipped"
+                    ]
+                }
+            }
+        },
+        "required": [
+            "classId",
+            "items"
+        ]
+    }
+}

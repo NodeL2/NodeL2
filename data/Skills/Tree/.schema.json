@@ -1,5 +1,5 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "array",
     "items": {
         "type": "object",
@@ -18,18 +18,33 @@
                         "name": {
                             "type": "string"
                         },
-                        "level": {
-                            "type": "integer"
-                        },
-                        "pLevel": {
-                            "type": "integer"
+                        "levels": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "level": {
+                                        "type": "integer"
+                                    },
+                                    "pLevel": {
+                                        "type": "integer"
+                                    },
+                                    "sp": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "level",
+                                    "pLevel",
+                                    "sp"
+                                ]
+                            }
                         }
                     },
                     "required": [
                         "selfId",
                         "name",
-                        "level",
-                        "pLevel"
+                        "levels"
                     ]
                 }
             }

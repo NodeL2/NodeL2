@@ -1,5 +1,5 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "array",
     "items": {
         "type": "object",
@@ -44,6 +44,9 @@
                     "pAtk": {
                         "type": "integer"
                     },
+                    "pAtkRnd": {
+                        "type": "integer"
+                    },
                     "mAtk": {
                         "type": "integer"
                     },
@@ -59,6 +62,7 @@
                 },
                 "required": [
                     "pAtk",
+                    "pAtkRnd",
                     "mAtk",
                     "atkSpd",
                     "crit",
@@ -71,17 +75,29 @@
                     "slot": {
                         "type": "integer"
                     },
+                    "mp": {
+                        "type": "integer"
+                    },
                     "soulshot": {
                         "type": "integer"
                     },
                     "spiritshot": {
                         "type": "integer"
+                    },
+                    "rank": {
+                        "type": "string"
+                    },
+                    "cristals": {
+                        "type": "integer"
                     }
                 },
                 "required": [
                     "slot",
+                    "mp",
                     "soulshot",
-                    "spiritshot"
+                    "spiritshot",
+                    "rank",
+                    "cristals"
                 ]
             }
         },

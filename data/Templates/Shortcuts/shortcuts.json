@@ -1,0 +1,28 @@
+[{
+    "classId": 0,
+    "shortcuts": [{ "id": 2, "slot": 0, "kind": 3, "unknown": 1 }, { "id": 5, "slot": 3, "kind": 3, "unknown": 1 }, { "id": 0, "slot": 9, "kind": 3, "unknown": 1 } ]
+},{
+    "classId": 10,
+    "shortcuts": [{ "id": 2, "slot": 0, "kind": 3, "unknown": 1 }, { "id": 1177, "slot": 1, "kind": 2, "unknown": 1 }, { "id": 5, "slot": 3, "kind": 3, "unknown": 1 }, { "id": 1216, "slot": 8, "kind": 2, "unknown": 1 }, { "id": 0, "slot": 9, "kind": 3, "unknown": 1 } ]
+},{
+    "classId": 18,
+    "shortcuts": [{ "id": 2, "slot": 0, "kind": 3, "unknown": 1 }, { "id": 5, "slot": 3, "kind": 3, "unknown": 1 }, { "id": 0, "slot": 9, "kind": 3, "unknown": 1 } ]
+},{
+    "classId": 25,
+    "shortcuts": [{ "id": 2, "slot": 0, "kind": 3, "unknown": 1 }, { "id": 1177, "slot": 1, "kind": 2, "unknown": 1 }, { "id": 5, "slot": 3, "kind": 3, "unknown": 1 }, { "id": 1216, "slot": 8, "kind": 2, "unknown": 1 }, { "id": 0, "slot": 9, "kind": 3, "unknown": 1 } ]
+},{
+    "classId": 31,
+    "shortcuts": [{ "id": 2, "slot": 0, "kind": 3, "unknown": 1 }, { "id": 5, "slot": 3, "kind": 3, "unknown": 1 }, { "id": 0, "slot": 9, "kind": 3, "unknown": 1 } ]
+},{
+    "classId": 38,
+    "shortcuts": [{ "id": 2, "slot": 0, "kind": 3, "unknown": 1 }, { "id": 1177, "slot": 1, "kind": 2, "unknown": 1 }, { "id": 5, "slot": 3, "kind": 3, "unknown": 1 }, { "id": 1216, "slot": 8, "kind": 2, "unknown": 1 }, { "id": 0, "slot": 9, "kind": 3, "unknown": 1 } ]
+},{
+    "classId": 44,
+    "shortcuts": [{ "id": 2, "slot": 0, "kind": 3, "unknown": 1 }, { "id": 5, "slot": 3, "kind": 3, "unknown": 1 }, { "id": 0, "slot": 9, "kind": 3, "unknown": 1 } ]
+},{
+    "classId": 49,
+    "shortcuts": [{ "id": 2, "slot": 0, "kind": 3, "unknown": 1 }, { "id": 1001, "slot": 1, "kind": 2, "unknown": 1 }, { "id": 5, "slot": 3, "kind": 3, "unknown": 1 }, { "id": 0, "slot": 9, "kind": 3, "unknown": 1 } ]
+},{
+    "classId": 53,
+    "shortcuts": [{ "id": 2, "slot": 0, "kind": 3, "unknown": 1 }, { "id": 5, "slot": 3, "kind": 3, "unknown": 1 }, { "id": 0, "slot": 9, "kind": 3, "unknown": 1 } ]
+}]

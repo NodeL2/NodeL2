@@ -1,5 +1,5 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "array",
     "items": {
         "type": "object",
@@ -15,11 +15,15 @@
                     },
                     "count": {
                         "type": "integer"
+                    },
+                    "respawn": {
+                        "type": "integer"
                     }
                 },
                 "required": [
                     "name",
-                    "count"
+                    "count",
+                    "respawn"
                 ]
             },
             "spawns": {

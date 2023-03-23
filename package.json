@@ -1,6 +1,6 @@
 {
     "name": "nodel2",
-    "version": "0.0.4",
+    "version": "0.0.6",
     "description": "L2 Chronicle 2 server emulator in NodeJS",
     "author": "Dennis Koluris",
     "scripts": {
@@ -8,11 +8,12 @@
     },
     "dependencies": {
         "blowfish-ecb": "^1.0.2",
-        "eslint": "^8.34.0",
-        "js-ini": "^1.6.0-rc2",
+        "eslint": "^8.36.0",
+        "explicit-json": "^1.0.5",
+        "js-ini": "^1.6.0",
         "jsonschema": "^1.4.1",
         "like-sql": "^0.1.1",
-        "mariadb": "^3.0.2",
+        "mariadb": "^3.1.1",
         "objcrush": "^1.0.1",
         "rsa-raw": "^1.0.3"
     }

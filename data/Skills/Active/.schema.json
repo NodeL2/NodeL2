@@ -1,5 +1,5 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "array",
     "items": {
         "type": "object",
@@ -16,11 +16,8 @@
                     "passive": {
                         "type": "boolean"
                     },
-                    "effect": {
-                        "type": "string"
-                    },
-                    "mp": {
-                        "type": "integer"
+                    "spell": {
+                        "type": "boolean"
                     },
                     "distance": {
                         "type": "integer"
@@ -29,8 +26,7 @@
                 "required": [
                     "name",
                     "passive",
-                    "effect",
-                    "mp",
+                    "spell",
                     "distance"
                 ]
             },
@@ -40,20 +36,59 @@
                     "hitTime": {
                         "type": "integer"
                     },
-                    "reuseTime": {
+                    "reuse": {
+                        "type": "integer"
+                    },
+                    "buff": {
                         "type": "integer"
                     }
                 },
                 "required": [
                     "hitTime",
-                    "reuseTime"
+                    "reuse",
+                    "buff"
                 ]
+            },
+            "levels": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "level": {
+                            "type": "integer"
+                        },
+                        "power": {
+                            "type": "integer"
+                        },
+                        "mp": {
+                            "type": "integer"
+                        },
+                        "hp": {
+                            "type": "integer"
+                        },
+                        "itemId": {
+                            "type": "integer"
+                        },
+                        "itemCount": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "level",
+                        "power",
+                        "mp",
+                        "hp",
+                        "itemId",
+                        "itemCount"
+                    ]
+                }
             }
         },
         "required": [
             "selfId",
             "template",
-            "time"
+            "time",
+            "levels"
         ]
     }
 }

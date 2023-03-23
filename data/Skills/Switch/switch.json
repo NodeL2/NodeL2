@@ -1,4 +1,25 @@
 [{
+    "selfId": 60,
+    "template": { "name": "Fake Death", "passive": false },
+    "levels": [{ "level": 1, "power": 1, "mp": 200, "hp": 0, "itemId": 0, "itemCount": 0 }]
+},{
+    "selfId": 221,
+    "template": { "name": "Silent Move", "passive": false },
+    "levels": [{ "level": 1, "power": 1, "mp": 0, "hp": 0, "itemId": 0, "itemCount": 0 }]
+},{
+    "selfId": 222,
+    "template": { "name": "Fist Fury", "passive": false },
+    "levels": [{ "level": 1, "power": 1, "mp": 0, "hp": 0, "itemId": 0, "itemCount": 0 }]
+},{
+    "selfId": 226,
+    "template": { "name": "Relax", "passive": false },
+    "levels": [{ "level": 1, "power": 1, "mp": 0, "hp": 0, "itemId": 0, "itemCount": 0 }]
+},{
+    "selfId": 256,
+    "template": { "name": "Accuracy", "passive": false },
+    "levels": [{ "level": 1, "power": 1, "mp": 0, "hp": 0, "itemId": 0, "itemCount": 0 }]
+},{
     "selfId": 1001,
-    "template": { "name": "Soul Cry", "passive": false }
+    "template": { "name": "Soul Cry", "passive": false },
+    "levels": [{ "level": 1, "power": 1, "mp": 0, "hp": 0, "itemId": 0, "itemCount": 0 }, { "level": 2, "power": 1, "mp": 0, "hp": 0, "itemId": 0, "itemCount": 0 }, { "level": 3, "power": 1, "mp": 0, "hp": 0, "itemId": 0, "itemCount": 0 }, { "level": 4, "power": 1, "mp": 0, "hp": 0, "itemId": 0, "itemCount": 0 }, { "level": 5, "power": 1, "mp": 0, "hp": 0, "itemId": 0, "itemCount": 0 }, { "level": 6, "power": 1, "mp": 0, "hp": 0, "itemId": 0, "itemCount": 0 }, { "level": 7, "power": 1, "mp": 0, "hp": 0, "itemId": 0, "itemCount": 0 }]
 }]
