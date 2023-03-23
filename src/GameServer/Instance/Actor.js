@@ -396,6 +396,7 @@ class Actor extends ActorModel {
 
         setTimeout(() => {
             this.state.setDead(false);
+            this.socialAction(9); // SWAG stand-up
         }, 2500);
     }
 
