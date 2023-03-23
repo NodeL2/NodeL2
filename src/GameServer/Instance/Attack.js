@@ -4,11 +4,11 @@ const Formulas       = invoke('GameServer/Formulas');
 
 class Attack {
     constructor() {
-        this.resetQueuedEvents();
+        this.resetQueuedEvent();
     }
 
     destructor() {
-        this.resetQueuedEvents();
+        this.resetQueuedEvent();
     }
 
     // Queue mechanism
@@ -30,18 +30,17 @@ class Attack {
             case 'pickup' : actor.pickupRequest(queue.data); break;
             case 'sit'    : actor.basicAction  (queue.data); break;
         }
-        this.resetQueuedEvents();
+        this.resetQueuedEvent();
     }
 
-    resetQueuedEvents() {
+    resetQueuedEvent() {
         this.queue = { name: undefined, data: undefined };
     }
 
     meleeHit(session, npc) {
         const actor = session.actor;
 
-        if (actor.state.fetchDead() || npc.state.fetchDead()) {
-            actor.state.setHits(false);
+        if (this.checkParticipants(actor, npc)) {
             return;
         }
 
@@ -51,8 +50,7 @@ class Attack {
         actor.state.setHits(true);
 
         setTimeout(() => {
-            if (actor.state.fetchDead() || npc.state.fetchDead()) {
-                actor.state.setHits(false);
+            if (this.checkParticipants(actor, npc)) {
                 return;
             }
 
@@ -68,8 +66,7 @@ class Attack {
         }, speed * 0.644); // Until hit point
 
         setTimeout(() => {
-            if (actor.state.fetchDead() || npc.state.fetchDead()) {
-                actor.state.setHits(false);
+            if (this.checkParticipants(actor, npc)) {
                 return;
             }
 
@@ -77,6 +74,7 @@ class Attack {
                 this.dequeueEvent(session);
                 return;
             }
+
             this.meleeHit(session, npc);
 
         }, speed); // Until end of combat move
@@ -85,8 +83,7 @@ class Attack {
     remoteHit(session, npc, skill) {
         const actor = session.actor;
 
-        if (actor.state.fetchDead() || npc.state.fetchDead()) {
-            actor.state.setCasts(false);
+        if (this.checkParticipants(actor, npc)) {
             return;
         }
 
@@ -101,8 +98,7 @@ class Attack {
         actor.state.setCasts(true);
 
         setTimeout(() => {
-            if (actor.state.fetchDead() || npc.state.fetchDead()) {
-                actor.state.setCasts(false);
+            if (this.checkParticipants(actor, npc)) {
                 return;
             }
 
@@ -126,6 +122,16 @@ class Attack {
         setTimeout(() => {
             // TODO: Prohibit same skill use before reuse time
         }, skill.fetchReuseTime());
+    }
+
+    checkParticipants(src, dst) {
+        if (src.state.fetchDead() || dst.state.fetchDead()) {
+            this.resetQueuedEvent();
+            src.state.setHits (false);
+            src.state.setCasts(false);
+            return true;
+        }
+        return false;
     }
 
     hit(session, actor, npc, hit) {

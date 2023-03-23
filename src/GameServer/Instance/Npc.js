@@ -31,7 +31,7 @@ class Npc extends NpcModel {
 
     destructor() {
         this.stopReplenish();
-        this.enterCooldownState();
+        this.abortCombatState();
     }
 
     showLevelTitle() {
@@ -133,6 +133,11 @@ class Npc extends NpcModel {
     abortCombatState() {
         clearInterval(this.timer.combat);
         this.timer.combat = undefined;
+
+        this.clearDestId();
+        this.state.setHits (false);
+        this.state.setCasts(false);
+        this.automation.destructor(this);
     }
 
     meleeHit(session, src, dst) {
@@ -165,17 +170,10 @@ class Npc extends NpcModel {
 
     checkParticipants(src, dst) {
         if (src.state.fetchDead() || dst.state.fetchDead()) {
-            this.enterCooldownState();
+            this.abortCombatState();
             return true;
         }
         return false;
-    }
-
-    enterCooldownState() {
-        this.clearDestId();
-        this.abortCombatState();
-        this.state.destructor();
-        this.automation.destructor(this);
     }
 
     hit(session, actor, hit) {
