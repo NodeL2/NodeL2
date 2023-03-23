@@ -5,7 +5,7 @@ function npcInfo(npc) {
 
     packet
         .writeD(npc.fetchId())
-        .writeD(npc.fetchSelfId() + 1000000)
+        .writeD(npc.fetchDispSelfId())
         .writeD(npc.fetchAttackable())
         .writeD(npc.fetchLocX())
         .writeD(npc.fetchLocY())

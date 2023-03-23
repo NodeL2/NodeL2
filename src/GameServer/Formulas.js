@@ -142,6 +142,10 @@ const Formulas = {
         return (91 * utils.sqrt(mAtk) * power) / mDef;
     },
 
+    calcHitChance() { // TODO: This is faked for now
+        return Math.random() <= 80.0 / 100.0;
+    },
+
     calcDistance(srcX, srcY, destX, destY) {
         const dX = destX - srcX;
         const dY = destY - srcY;
