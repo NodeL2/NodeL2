@@ -141,7 +141,8 @@ class Npc extends NpcModel {
         }
 
         const speed = Formulas.calcMeleeAtkTime(src.fetchCollectiveAtkSpd());
-        session.dataSend(ServerResponse.attack(src, dst.fetchId()));
+        const hitLanded = Formulas.calcHitChance();
+        session.dataSend(ServerResponse.attack(src, dst.fetchId(), hitLanded ? 0x00 : 0x80));
         src.state.setHits(true);
 
         setTimeout(() => {
@@ -149,8 +150,10 @@ class Npc extends NpcModel {
                 return;
             }
 
-            const pAtk = src.fetchCollectivePAtk();
-            this.hit(session, dst, Formulas.calcMeleeHit(pAtk, 0, dst.fetchCollectivePDef()));
+            if (hitLanded) {
+                const pAtk = src.fetchCollectivePAtk();
+                this.hit(session, dst, Formulas.calcMeleeHit(pAtk, 0, dst.fetchCollectivePDef()));
+            }
 
         }, speed * 0.644);
 
@@ -176,17 +179,24 @@ class Npc extends NpcModel {
     }
 
     hit(session, actor, hit) {
-        actor.setHp(Math.max(0, actor.fetchHp() - hit)); // HP bar would disappear if less than zero
-        actor.automation.replenishVitals(session, actor);
+        ConsoleText.transmit(session, ConsoleText.caption.monsterHit, [
+            { kind: ConsoleText.kind.npc, value: this.fetchDispSelfId() }, { kind: ConsoleText.kind.number, value: hit }
+        ]);
+        actor.hitReceived(hit);
+    }
 
-        actor.statusUpdateVitals(actor);
-        ConsoleText.transmit(session, ConsoleText.caption.monsterHit, [{ kind: ConsoleText.kind.npc, value: this.fetchSelfId() + 1000000 }, { kind: ConsoleText.kind.number, value: hit }]);
+    hitReceived(session, actor, hit) {
+        this.setHp(Math.max(0, this.fetchHp() - hit)); // HP bar would disappear if less than zero
+        this.replenishVitals();
 
-        if (actor.fetchHp() <= 0) {
-            actor.die();
-            this.enterCooldownState();
+        actor.statusUpdateVitals(this);
+
+        if (this.fetchHp() <= 0) {
+            actor.npcDied(this);
             return;
         }
+
+        this.enterCombatState(session, actor);
     }
 
     die(session) {

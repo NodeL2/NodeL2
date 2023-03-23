@@ -1,5 +1,4 @@
 const ServerResponse = invoke('GameServer/Network/Response');
-const World          = invoke('GameServer/World');
 const ConsoleText    = invoke('GameServer/ConsoleText');
 const Formulas       = invoke('GameServer/Formulas');
 
@@ -47,7 +46,8 @@ class Attack {
         }
 
         const speed = Formulas.calcMeleeAtkTime(actor.fetchCollectiveAtkSpd());
-        session.dataSend(ServerResponse.attack(actor, npc.fetchId()));
+        const hitLanded = Formulas.calcHitChance();
+        session.dataSend(ServerResponse.attack(actor, npc.fetchId(), hitLanded ? 0x00 : 0x80));
         actor.state.setHits(true);
 
         setTimeout(() => {
@@ -56,9 +56,14 @@ class Attack {
                 return;
             }
 
-            const pAtk  = actor.fetchCollectivePAtk();
-            const pRand = actor.backpack.fetchTotalWeaponPAtkRnd() ?? 0;
-            this.hit(session, actor, npc, Formulas.calcMeleeHit(pAtk, pRand, npc.fetchCollectivePDef()));
+            if (hitLanded) {
+                const pAtk  = actor.fetchCollectivePAtk();
+                const pRand = actor.backpack.fetchTotalWeaponPAtkRnd() ?? 0;
+                this.hit(session, actor, npc, Formulas.calcMeleeHit(pAtk, pRand, npc.fetchCollectivePDef()));
+            }
+            else {
+                ConsoleText.transmit(session, ConsoleText.caption.missedHit);
+            }
 
         }, speed * 0.644); // Until hit point
 
@@ -124,19 +129,8 @@ class Attack {
     }
 
     hit(session, actor, npc, hit) {
-        npc.setHp(Math.max(0, npc.fetchHp() - hit)); // HP bar would disappear if less than zero
-        npc.replenishVitals();
-
-        actor.statusUpdateVitals(npc);
         ConsoleText.transmit(session, ConsoleText.caption.actorHit, [{ kind: ConsoleText.kind.number, value: hit }]);
-
-        if (npc.fetchHp() <= 0) {
-            actor.rewardExpAndSp(npc.fetchRewardExp(), npc.fetchRewardSp());
-            World.removeNpc(session, npc);
-            return;
-        }
-
-        npc.enterCombatState(session, actor);
+        npc.hitReceived(session, actor, hit);
     }
 }
 

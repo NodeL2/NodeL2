@@ -314,27 +314,15 @@ class Actor extends ActorModel {
         this.session.dataSend(ServerResponse.socialAction(this.fetchId(), actionId));
     }
 
-    isBlocked() {
-        if (this.state.isBlocked()) {
-            this.session.dataSend(ServerResponse.actionFailed());
-            return true;
-        }
-        return false;
-    }
+    npcDied(npc) {
+        World.removeNpc(this.session, npc);
 
-    isDead() {
-        if (this.state.fetchDead()) {
-            this.session.dataSend(ServerResponse.actionFailed());
-            return true;
+        if (this.isDead() === false) {
+            this.rewardExpAndSp(npc.fetchRewardExp(), npc.fetchRewardSp());
         }
-        return false;
     }
 
     rewardExpAndSp(exp, sp) {
-        if (this.isDead()) {
-            return;
-        }
-
         const optn = options.default.General;
 
         let totalExp = this.fetchExp() + (exp *= optn.expRate);
@@ -374,6 +362,23 @@ class Actor extends ActorModel {
         Database.updateCharacterVitals(this.fetchId(), this.fetchHp(), this.fetchMaxHp(), this.fetchMp(), this.fetchMaxMp());
     }
 
+    hitReceived(hit) {
+        this.setHp(Math.max(0, this.fetchHp() - hit)); // HP bar would disappear if less than zero
+        this.automation.replenishVitals(this.session, this);
+
+        this.statusUpdateVitals(this);
+
+        // On hit, actor should stand-up
+        if (this.state.fetchSeated()) {
+            this.basicAction({ actionId: 0 });
+        }
+
+        // Bummer
+        if (this.fetchHp() <= 0) {
+            this.die();
+        }
+    }
+
     die() {
         if (this.isDead()) {
             return;
@@ -411,6 +416,24 @@ class Actor extends ActorModel {
         this.session.dataSend(
             ServerResponse.npcHtml(this.fetchId(), utils.parseRawFile('data/Html/Admin/main.html'))
         );
+    }
+
+    // State
+
+    isBlocked() {
+        if (this.state.isBlocked()) {
+            this.session.dataSend(ServerResponse.actionFailed());
+            return true;
+        }
+        return false;
+    }
+
+    isDead() {
+        if (this.state.fetchDead()) {
+            this.session.dataSend(ServerResponse.actionFailed());
+            return true;
+        }
+        return false;
     }
 
     // Calculate stats
