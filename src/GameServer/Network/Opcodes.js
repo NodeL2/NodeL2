@@ -20,6 +20,7 @@ const Opcodes = {
         table[0x0e] = ClientRequest.enterCharCreation;
         table[0x0f] = ClientRequest.itemsList;
         table[0x11] = ClientRequest.unequipItem;
+        table[0x12] = ClientRequest.dropItem;
         table[0x14] = ClientRequest.useItem;
         table[0x1b] = ClientRequest.socialAction;
         table[0x1f] = ClientRequest.purchase;
