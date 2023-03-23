@@ -366,8 +366,6 @@ class Actor extends ActorModel {
         this.setHp(Math.max(0, this.fetchHp() - hit)); // HP bar would disappear if less than zero
         this.automation.replenishVitals(this.session, this);
 
-        this.statusUpdateVitals(this);
-
         // On hit, actor should stand-up
         if (this.state.fetchSeated()) {
             this.basicAction({ actionId: 0 });
@@ -376,7 +374,10 @@ class Actor extends ActorModel {
         // Bummer
         if (this.fetchHp() <= 0) {
             this.die();
+            return;
         }
+
+        this.statusUpdateVitals(this);
     }
 
     die() {

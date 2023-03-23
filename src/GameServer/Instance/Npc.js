@@ -187,22 +187,22 @@ class Npc extends NpcModel {
 
     hitReceived(session, actor, hit) {
         this.setHp(Math.max(0, this.fetchHp() - hit)); // HP bar would disappear if less than zero
-        this.replenishVitals();
-
         actor.statusUpdateVitals(this);
 
         if (this.fetchHp() <= 0) {
-            actor.npcDied(this);
+            this.die(session, actor);
             return;
         }
 
+        this.replenishVitals();
         this.enterCombatState(session, actor);
     }
 
-    die(session) {
+    die(session, actor) {
         this.destructor(session);
         this.state.setDead(true);
         session.dataSend(ServerResponse.die(this.fetchId()));
+        actor.npcDied(this);
     }
 }
 
