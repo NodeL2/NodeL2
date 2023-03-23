@@ -14,7 +14,7 @@ function trashItem(session, buffer) {
 }
 
 function consume(session, data) {
-    console.info(data);
+    session.actor.backpack.deleteItem(session, data.id, data.count);
 }
 
 module.exports = trashItem;

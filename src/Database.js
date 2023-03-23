@@ -145,6 +145,12 @@ const Database = {
         );
     },
 
+    deleteItem(characterId, id) {
+        return Database.execute(
+            builder.delete('items', 'id = ? AND characterId = ?', id, characterId)
+        )
+    },
+
     deleteItems(characterId) {
         return Database.execute(
             builder.delete('items', 'characterId = ?', characterId)

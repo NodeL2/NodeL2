@@ -24,6 +24,21 @@ class Backpack extends BackpackModel {
         });
     }
 
+    deleteItem(session, id, amount) {
+        this.fetchItem(id, (item) => {
+            const total = item.fetchAmount() - amount;
+            if (total <= 0) {
+                this.items = this.fetchItems().filter((ob) => ob.fetchId() !== id);
+                Database.deleteItem(session.actor.fetchId(), item.fetchId());
+            }
+            else {
+                item.setAmount(total);
+                Database.updateItemAmount(session.actor.fetchId(), item.fetchId(), total);
+            }
+            session.dataSend(ServerResponse.itemsList(this.fetchItems(), true));
+        });
+    }
+
     updateAmount(id, amount) {
         this.fetchItem(id, (item) => { item.setAmount(amount); });
     }
