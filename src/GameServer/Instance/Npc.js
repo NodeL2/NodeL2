@@ -135,8 +135,9 @@ class Npc extends NpcModel {
         this.timer.combat = undefined;
 
         this.clearDestId();
-        this.state.setHits (false);
-        this.state.setCasts(false);
+        this.state.setCombats(false);
+        this.state.setHits   (false);
+        this.state.setCasts  (false);
         this.automation.destructor(this);
     }
 
