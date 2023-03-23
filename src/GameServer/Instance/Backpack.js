@@ -4,6 +4,7 @@ const SkillModel     = invoke('GameServer/Model/Skill');
 const Item           = invoke('GameServer/Instance/Item');
 const DataCache      = invoke('GameServer/DataCache');
 const ConsoleText    = invoke('GameServer/ConsoleText');
+const World          = invoke('GameServer/World');
 const Database       = invoke('Database');
 
 class Backpack extends BackpackModel {
@@ -21,6 +22,37 @@ class Backpack extends BackpackModel {
             if (item.slot) delete itemDetails.etc.slot; this.items.push(new Item(id, {
                 ...item, ...utils.crushOb(itemDetails)
             }));
+        });
+    }
+
+    deleteItem(session, id, amount) {
+        this.fetchItem(id, (item) => {
+            const total = item.fetchAmount() - amount;
+            if (total <= 0) {
+                this.items = this.fetchItems().filter((ob) => ob.fetchId() !== id);
+                Database.deleteItem(session.actor.fetchId(), item.fetchId());
+            }
+            else {
+                item.setAmount(total);
+                Database.updateItemAmount(session.actor.fetchId(), item.fetchId(), total);
+            }
+            session.dataSend(ServerResponse.itemsList(this.fetchItems(), true));
+        });
+    }
+
+    dropItem(session, id, amount, locX, locY, locZ) {
+        this.fetchItem(id, (item) => {
+            const total = item.fetchAmount() - amount;
+            if (total <= 0) {
+                this.items = this.fetchItems().filter((ob) => ob.fetchId() !== id);
+                Database.deleteItem(session.actor.fetchId(), item.fetchId());
+            }
+            else {
+                item.setAmount(total);
+                Database.updateItemAmount(session.actor.fetchId(), item.fetchId(), total);
+            }
+            session.dataSend(ServerResponse.itemsList(this.fetchItems(), true));
+            World.spawnItem(session, item.fetchSelfId(), amount, { locX: locX, locY: locY, locZ: locZ });
         });
     }
 

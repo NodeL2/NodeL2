@@ -9,6 +9,7 @@ module.exports = {
          charSelected: require('./CharSelected'),
         createNewChar: require('./CreateNewChar'),
            destCancel: require('./DestCancel'),
+             dropItem: require('./DropItem'),
     enterCharCreation: require('./EnterCharCreation'),
            enterWorld: require('./EnterWorld'),
              htmlLink: require('./HtmlLink'),
