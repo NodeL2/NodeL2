@@ -21,7 +21,6 @@ function purchaseList(items) {
             packet
                 .writeD(item.fetchSlot())
                 .writeH(0x00)  // Enchant
-                .writeH(0x00)  // ?
                 .writeH(0x00); // ?
         }
 

@@ -17,8 +17,7 @@ function itemsList(items, popup = false) {
             .writeH(0x00)  // ?
             .writeH(item.fetchEquipped())
             .writeD(item.fetchEquipped() ? 2 ** item.fetchSlot() : 0)
-            .writeH(0x00)  // Enchant level
-            .writeH(0x00); // ?
+            .writeH(0x00); // Enchant level
     }
 
     return packet.fetchBuffer();
