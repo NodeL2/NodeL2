@@ -1,7 +1,7 @@
 const SendPacket = invoke('Packet/Send');
 
 function itemsList(items, popup = false) {
-    const packet = new SendPacket(0x37);
+    const packet = new SendPacket(0x27);
 
     packet
         .writeH(popup)

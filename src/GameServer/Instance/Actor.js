@@ -296,9 +296,6 @@ class Actor extends ActorModel {
             );
             break;
 
-        case 0x28: // Recommend without selection
-            break;
-
         default:
             utils.infoWarn('GameServer :: unknown basic action 0x%s', utils.toHex(data.actionId));
             break;
