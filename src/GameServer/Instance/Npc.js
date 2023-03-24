@@ -29,9 +29,9 @@ class Npc extends NpcModel {
         };
     }
 
-    destructor() {
+    destructor(session) {
         this.stopReplenish();
-        this.abortCombatState();
+        this.abortCombatState(session);
     }
 
     showLevelTitle() {
@@ -130,7 +130,7 @@ class Npc extends NpcModel {
         }, 1000);
     }
 
-    abortCombatState() {
+    abortCombatState(session) {
         clearInterval(this.timer.combat);
         this.timer.combat = undefined;
 
@@ -139,10 +139,15 @@ class Npc extends NpcModel {
         this.state.setHits   (false);
         this.state.setCasts  (false);
         this.automation.destructor(this);
+
+        this.setStateRun(false);
+        this.setStateAttack(false);
+        session.dataSend(ServerResponse.walkAndRun(this.fetchId(), this.fetchStateRun()));
+        session.dataSend(ServerResponse.autoAttackStop(this.fetchId()));
     }
 
     meleeHit(session, src, dst) {
-        if (this.checkParticipants(src, dst)) {
+        if (this.checkParticipants(session, src, dst)) {
             return;
         }
 
@@ -152,7 +157,7 @@ class Npc extends NpcModel {
         src.state.setHits(true);
 
         setTimeout(() => {
-            if (this.checkParticipants(src, dst)) {
+            if (this.checkParticipants(session, src, dst)) {
                 return;
             }
 
@@ -169,9 +174,9 @@ class Npc extends NpcModel {
         }, speed); // Until end of combat move
     }
 
-    checkParticipants(src, dst) {
+    checkParticipants(session, src, dst) {
         if (src.state.fetchDead() || dst.state.fetchDead()) {
-            this.abortCombatState();
+            this.abortCombatState(session);
             return true;
         }
         return false;

@@ -129,6 +129,7 @@ class Attack {
             this.resetQueuedEvent();
             src.state.setHits (false);
             src.state.setCasts(false);
+            src.abortCombatState();
             return true;
         }
         return false;
