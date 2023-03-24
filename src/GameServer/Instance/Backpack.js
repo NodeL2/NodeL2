@@ -25,34 +25,37 @@ class Backpack extends BackpackModel {
         });
     }
 
-    deleteItem(session, id, amount) {
+    deleteItem(session, id, amount, callback = () => {}) {
+        if (session.actor.isDead()) {
+            return;
+        }
+
         this.fetchItem(id, (item) => {
             const total = item.fetchAmount() - amount;
-            if (total <= 0) {
-                this.items = this.fetchItems().filter((ob) => ob.fetchId() !== id);
-                Database.deleteItem(session.actor.fetchId(), item.fetchId());
+            if (total > 0) {
+                Database.updateItemAmount(session.actor.fetchId(), item.fetchId(), total).then(() => {
+                    item.setAmount(total);
+                    session.dataSend(ServerResponse.itemsList(this.fetchItems()));
+                    callback(item.fetchSelfId());
+                });
             }
             else {
-                item.setAmount(total);
-                Database.updateItemAmount(session.actor.fetchId(), item.fetchId(), total);
+                Database.deleteItem(session.actor.fetchId(), item.fetchId()).then(() => {
+                    this.items = this.fetchItems().filter((ob) => ob.fetchId() !== id);
+                    session.dataSend(ServerResponse.itemsList(this.fetchItems()));
+                    callback(item.fetchSelfId());
+                });
             }
-            session.dataSend(ServerResponse.itemsList(this.fetchItems(), true));
         });
     }
 
     dropItem(session, id, amount, locX, locY, locZ) {
-        this.fetchItem(id, (item) => {
-            const total = item.fetchAmount() - amount;
-            if (total <= 0) {
-                this.items = this.fetchItems().filter((ob) => ob.fetchId() !== id);
-                Database.deleteItem(session.actor.fetchId(), item.fetchId());
-            }
-            else {
-                item.setAmount(total);
-                Database.updateItemAmount(session.actor.fetchId(), item.fetchId(), total);
-            }
-            session.dataSend(ServerResponse.itemsList(this.fetchItems(), true));
-            World.spawnItem(session, item.fetchSelfId(), amount, { locX: locX, locY: locY, locZ: locZ });
+        this.deleteItem(session, id, amount, (selfId) => {
+            World.spawnItem(session, selfId, amount, {
+                locX: locX,
+                locY: locY,
+                locZ: locZ,
+            });
         });
     }
 
@@ -95,6 +98,10 @@ class Backpack extends BackpackModel {
     }
 
     equipGear(session, item) {
+        if (session.actor.isDead()) {
+            return;
+        }
+
         const slot  = item.fetchSlot();
         const equip = this.equipment;
 
@@ -142,6 +149,10 @@ class Backpack extends BackpackModel {
     }
 
     unequipGear(session, slot) {
+        if (session.actor.isDead()) {
+            return;
+        }
+
         // Start a database timer to update equipped state
         this.updateDatabaseTimer(session.actor.fetchId());
 

@@ -176,7 +176,7 @@ const World = {
             Database.updateItemAmount(actor.fetchId(), itemId, total).then(() => {
                 backpack.updateAmount(itemId, total);
                 session.dataSend(ServerResponse.userInfo(session.actor));
-                session.dataSend(ServerResponse.itemsList(backpack.fetchItems(), true));
+                session.dataSend(ServerResponse.itemsList(backpack.fetchItems()));
             });
         }).catch(() => { // New item
             DataCache.fetchItemFromSelfId(selfId, (item) => {
@@ -189,7 +189,7 @@ const World = {
                 }).then((packet) => {
                     backpack.insertItem(Number(packet.insertId), selfId, { amount: amount });
                     session.dataSend(ServerResponse.userInfo(session.actor));
-                    session.dataSend(ServerResponse.itemsList(backpack.fetchItems(), true));
+                    session.dataSend(ServerResponse.itemsList(backpack.fetchItems()));
                 });
             });
         });
