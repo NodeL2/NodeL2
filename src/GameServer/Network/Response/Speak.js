@@ -1,7 +1,7 @@
 const SendPacket = invoke('Packet/Send');
 
 function speak(actor, data) {
-    const packet = new SendPacket(0x4a);
+    const packet = new SendPacket(0x5d);
 
     packet
         .writeD(actor.fetchId())

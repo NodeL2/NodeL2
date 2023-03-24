@@ -1,7 +1,7 @@
 const SendPacket = invoke('Packet/Send');
 
 function restart() {
-    const packet = new SendPacket(0x5f);
+    const packet = new SendPacket(0x74);
 
     packet
         .writeD(0x01);

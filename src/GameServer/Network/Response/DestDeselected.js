@@ -1,7 +1,7 @@
 const SendPacket = invoke('Packet/Send');
 
 function destDeselected(actor) {
-    const packet = new SendPacket(0x2a);
+    const packet = new SendPacket(0x3a);
 
     packet
         .writeD(actor.fetchId())

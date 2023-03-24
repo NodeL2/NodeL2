@@ -4,7 +4,7 @@ function charCreateSuccess() {
     const packet = new SendPacket(0x19);
 
     packet
-        .writeD(0x01);
+        .writeD(0x25);
 
     return packet.fetchBuffer();
 }

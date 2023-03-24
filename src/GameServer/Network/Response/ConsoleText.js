@@ -1,7 +1,7 @@
 const SendPacket = invoke('Packet/Send');
 
 function consoleText(textId, params) {
-    const packet = new SendPacket(0x64);
+    const packet = new SendPacket(0x7a);
 
     packet
         .writeD(textId)

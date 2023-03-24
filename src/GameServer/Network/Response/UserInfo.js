@@ -81,19 +81,7 @@ function userInfo(actor) {
         .writeD(actor.fetchPk())
         .writeD(actor.fetchPvp())
         .writeH(0x00)  // Cubic Count
-        .writeC(0x00)  // Find Party Members = 0x01
-        .writeD(0x00)  // Is invisible?
-        .writeC(0x00)  // ?
-        .writeD(0x00)  // Clan Privileges
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeD(0x00)  // ?
-        .writeH(actor.fetchRecRemain())
-        .writeH(actor.fetchEvalScore());
+        .writeC(0x00); // Find Party Members = 0x01
 
     return packet.fetchBuffer();
 }

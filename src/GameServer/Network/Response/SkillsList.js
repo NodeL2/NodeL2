@@ -1,7 +1,7 @@
 const SendPacket = invoke('Packet/Send');
 
 function skillsList(skills) {
-    const packet = new SendPacket(0x58);
+    const packet = new SendPacket(0x6d);
 
     packet
         .writeD(skills.length);

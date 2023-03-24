@@ -1,7 +1,7 @@
 const SendPacket = invoke('Packet/Send');
 
 function questList() {
-    const packet = new SendPacket(0x80);
+    const packet = new SendPacket(0x98);
 
     packet
         .writeH(0x00)

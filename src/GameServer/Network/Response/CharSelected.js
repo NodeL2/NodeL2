@@ -1,7 +1,7 @@
 const SendPacket = invoke('Packet/Send');
 
 function charSelected(actor) {
-    const packet = new SendPacket(0x15);
+    const packet = new SendPacket(0x21);
 
     packet
         .writeS(actor.fetchName())

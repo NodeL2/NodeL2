@@ -1,7 +1,7 @@
 const SendPacket = invoke('Packet/Send');
 
 function teleportToLocation(id, data) {
-    const packet = new SendPacket(0x28);
+    const packet = new SendPacket(0x38);
 
     packet
         .writeD(id)

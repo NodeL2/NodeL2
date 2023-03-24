@@ -1,7 +1,7 @@
 const SendPacket = invoke('Packet/Send');
 
 function purchaseList(items) {
-    const packet = new SendPacket(0x11);
+    const packet = new SendPacket(0x1d);
 
     packet
         .writeD(1337)  // TODO: User's Adena

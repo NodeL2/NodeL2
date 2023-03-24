@@ -1,7 +1,7 @@
 const SendPacket = invoke('Packet/Send');
 
 function statusUpdate(id, params = []) {
-    const packet = new SendPacket(0x0e);
+    const packet = new SendPacket(0x1a);
 
     packet
         .writeD(id)

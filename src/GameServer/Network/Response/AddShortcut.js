@@ -1,7 +1,7 @@
 const SendPacket = invoke('Packet/Send');
 
 function addShortcut(data) {
-    const packet = new SendPacket(0x44);
+    const packet = new SendPacket(0x56);
 
     packet
         .writeD(data.kind)

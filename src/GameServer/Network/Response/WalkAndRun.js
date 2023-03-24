@@ -1,12 +1,11 @@
 const SendPacket = invoke('Packet/Send');
 
 function walkAndRun(creatureId, movement) {
-    const packet = new SendPacket(0x2e);
+    const packet = new SendPacket(0x3e);
 
     packet
         .writeD(creatureId)
-        .writeD(movement)
-        .writeD(0x00); // C2?
+        .writeD(movement);
 
     return packet.fetchBuffer();
 }

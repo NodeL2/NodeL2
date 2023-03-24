@@ -1,7 +1,7 @@
 const SendPacket = invoke('Packet/Send');
 
 function attack(src, destId, params) {
-    const packet = new SendPacket(0x05);
+    const packet = new SendPacket(0x06);
 
     packet
         .writeD(src.fetchId())

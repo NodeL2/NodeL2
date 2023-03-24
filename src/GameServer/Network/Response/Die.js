@@ -1,7 +1,7 @@
 const SendPacket = invoke('Packet/Send');
 
 function die(id) {
-    const packet = new SendPacket(0x06);
+    const packet = new SendPacket(0x0b);
 
     packet
         .writeD(id)    // Id

@@ -1,7 +1,7 @@
 const SendPacket = invoke('Packet/Send');
 
 function skillStarted(actor, npcId, skill) {
-    const packet = new SendPacket(0x48);
+    const packet = new SendPacket(0x5a);
 
     packet
         .writeD(actor.fetchId())

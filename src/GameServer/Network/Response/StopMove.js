@@ -1,7 +1,7 @@
 const SendPacket = invoke('Packet/Send');
 
 function stopMove(id, data) {
-    const packet = new SendPacket(0x47);
+    const packet = new SendPacket(0x59);
 
     packet
         .writeD(id)

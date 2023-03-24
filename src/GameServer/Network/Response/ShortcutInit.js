@@ -1,7 +1,7 @@
 const SendPacket = invoke('Packet/Send');
 
 function shortcutInit(shortcuts) {
-    const packet = new SendPacket(0x45);
+    const packet = new SendPacket(0x57);
 
     packet
         .writeD(shortcuts.length);

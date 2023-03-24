@@ -1,7 +1,7 @@
 const SendPacket = invoke('Packet/Send');
 
 function npcHtml(id, html) {
-    const packet = new SendPacket(0x0f);
+    const packet = new SendPacket(0x1b);
 
     packet
         .writeD(id)

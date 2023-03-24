@@ -1,7 +1,7 @@
 const SendPacket = invoke('Packet/Send');
 
 function spawnItem(item) {
-    const packet = new SendPacket(0x0b);
+    const packet = new SendPacket(0x15);
 
     packet
         .writeD(item.fetchId())

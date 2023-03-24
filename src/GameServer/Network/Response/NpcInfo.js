@@ -1,7 +1,7 @@
 const SendPacket = invoke('Packet/Send');
 
 function npcInfo(npc) {
-    const packet = new SendPacket(0x16);
+    const packet = new SendPacket(0x22);
 
     packet
         .writeD(npc.fetchId())
@@ -38,13 +38,7 @@ function npcInfo(npc) {
         .writeS(npc.fetchTitle())
         .writeD(0x00)  // ?
         .writeD(0x00)  // Pvp?
-        .writeD(0x00)  // Pk?
-        .writeD(0x00)  // Abnormal effect
-        .writeD(0x00)  // Clan Id
-        .writeD(0x00)  // Clan crest
-        .writeD(0x00)  // Ally Id
-        .writeD(0x00)  // Ally crest
-        .writeC(0x00); // ?
+        .writeD(0x00); // Pk?
 
     return packet.fetchBuffer();
 }

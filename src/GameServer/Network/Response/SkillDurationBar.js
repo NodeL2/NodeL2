@@ -1,7 +1,7 @@
 const SendPacket = invoke('Packet/Send');
 
 function skillDurationBar(hitTime) {
-    const packet  = new SendPacket(0x6d);
+    const packet  = new SendPacket(0x85);
 
     packet
         .writeD(0x00) // B, R, C

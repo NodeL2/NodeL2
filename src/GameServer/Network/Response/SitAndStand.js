@@ -1,7 +1,7 @@
 const SendPacket = invoke('Packet/Send');
 
 function sitAndStand(actor) {
-    const packet = new SendPacket(0x2f);
+    const packet = new SendPacket(0x3f);
 
     packet
         .writeD(actor.fetchId())

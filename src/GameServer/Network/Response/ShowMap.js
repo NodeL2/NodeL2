@@ -1,7 +1,7 @@
 const SendPacket = invoke('Packet/Send');
 
 function showMap(selfId) {
-    const packet = new SendPacket(0x9d);
+    const packet = new SendPacket(0xb6);
 
     packet
         .writeD(selfId); // World = 1665, Elmore = 1863

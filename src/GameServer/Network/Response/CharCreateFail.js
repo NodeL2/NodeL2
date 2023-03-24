@@ -1,7 +1,7 @@
 const SendPacket = invoke('Packet/Send');
 
 function charCreateFail(errorCode) {
-    const packet = new SendPacket(0x1a);
+    const packet = new SendPacket(0x26);
 
     packet
         .writeD(errorCode);

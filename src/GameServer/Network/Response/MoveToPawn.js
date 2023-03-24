@@ -1,7 +1,7 @@
 const SendPacket = invoke('Packet/Send');
 
 function moveToPawn(src, dst, distance) {
-    const packet = new SendPacket(0x60);
+    const packet = new SendPacket(0x75);
 
     packet
         .writeD(src.fetchId())
