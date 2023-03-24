@@ -3,6 +3,7 @@ module.exports = {
            addShortcut: require('./AddShortcut'),
                 attack: require('./Attack'),
        autoAttackStart: require('./AutoAttackStart'),
+        autoAttackStop: require('./AutoAttackStop'),
         charCreateFail: require('./CharCreateFail'),
      charCreateSuccess: require('./CharCreateSuccess'),
           charSelected: require('./CharSelected'),
@@ -37,6 +38,7 @@ module.exports = {
           statusUpdate: require('./StatusUpdate'),
               stopMove: require('./StopMove'),
                sunrise: require('./Sunrise'),
+                sunset: require('./Sunset'),
     teleportToLocation: require('./TeleportToLocation'),
               userInfo: require('./UserInfo'),
             walkAndRun: require('./WalkAndRun')

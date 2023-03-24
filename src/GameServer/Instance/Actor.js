@@ -329,7 +329,7 @@ class Actor extends ActorModel {
         let totalSp  = this.fetchSp () + ( sp *= optn.expRate);
 
         this.setExpSp(totalExp, totalSp);
-        ConsoleText.transmit(this.session, ConsoleText.caption.earnedExpAndSp, [{ kind: ConsoleText.kind.number, value: exp}, { kind: ConsoleText.kind.number, value: sp }]);
+        ConsoleText.transmit(this.session, ConsoleText.caption.earnedExpAndSp, [{ kind: ConsoleText.kind.number, value: exp }, { kind: ConsoleText.kind.number, value: sp }]);
 
         for (let i = 0; i < 75; i++) {
             if (totalExp >= DataCache.experience[i] && totalExp < DataCache.experience[i + 1]) {
@@ -362,6 +362,23 @@ class Actor extends ActorModel {
         Database.updateCharacterVitals(this.fetchId(), this.fetchHp(), this.fetchMaxHp(), this.fetchMp(), this.fetchMaxMp());
     }
 
+    enterCombatState() {
+        if (this.state.fetchCombats()) {
+            return;
+        }
+
+        this.state.setCombats(true);
+        this.session.dataSend(ServerResponse.autoAttackStart(this.fetchId()));
+    }
+
+    abortCombatState() {
+        this.clearDestId();
+        this.state.setCombats(false);
+        this.automation.destructor(this);
+
+        this.session.dataSend(ServerResponse.autoAttackStop(this.fetchId()));
+    }
+
     hitReceived(hit) {
         this.setHp(Math.max(0, this.fetchHp() - hit)); // HP bar would disappear if less than zero
         this.statusUpdateVitals(this);
@@ -378,6 +395,7 @@ class Actor extends ActorModel {
         }
 
         this.automation.replenishVitals(this.session, this);
+        this.enterCombatState();
     }
 
     die() {
