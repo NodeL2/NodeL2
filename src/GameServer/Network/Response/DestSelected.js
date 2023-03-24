@@ -1,11 +1,14 @@
 const SendPacket = invoke('Packet/Send');
 
-function destSelected(id, lvlDiff = 0) {
+function destSelected(srcId, dstId) {
     const packet = new SendPacket(0x39);
 
     packet
-        .writeD(id)
-        .writeH(lvlDiff);
+        .writeD(srcId)
+        .writeD(dstId)
+        .writeD(0x00)  // X
+        .writeD(0x00)  // Y
+        .writeD(0x00); // Z
 
     return packet.fetchBuffer();
 }

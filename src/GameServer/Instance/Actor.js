@@ -111,14 +111,14 @@ class Actor extends ActorModel {
     select(data) {
         if (this.fetchId() === data.id) { // Click on self
             this.setDestId(this.fetchId());
-            this.session.dataSend(ServerResponse.destSelected(this.fetchDestId()));
+            this.session.dataSend(ServerResponse.destSelected(this.fetchId(), this.fetchDestId()));
             return;
         }
 
         World.fetchNpc(data.id).then((npc) => {
             if (npc.fetchId() !== this.fetchDestId()) { // First click on a Creature
                 this.setDestId(npc.fetchId());
-                this.session.dataSend(ServerResponse.destSelected(this.fetchDestId(), this.fetchLevel() - npc.fetchLevel()));
+                this.session.dataSend(ServerResponse.destSelected(this.fetchId(), this.fetchDestId()));
                 this.statusUpdateVitals(npc);
             }
             else { // Second click on same Creature
