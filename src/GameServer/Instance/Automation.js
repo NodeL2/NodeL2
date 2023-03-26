@@ -1,6 +1,5 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 const SelectedModel  = invoke('GameServer/Model/Selected');
-const DataCache      = invoke('GameServer/DataCache');
 const Formulas       = invoke('GameServer/Formulas');
 const Timer          = invoke('GameServer/Timer');
 
@@ -24,25 +23,47 @@ class Automation extends SelectedModel {
         this.abortAll(creature);
     }
 
-    replenishVitals(session, actor) {
+    // Set
+
+    setRevHp(data) {
+        this.revHp = data;
+    }
+
+    setRevMp(data) {
+        this.revMp = data;
+    }
+
+    // Get
+
+    fetchRevHp() {
+        return this.revHp;
+    }
+
+    fetchRevMp() {
+        return this.revMp;
+    }
+
+    // Abstract
+
+    replenishVitals(creature) {
         if (this.timer.replenish) {
             return;
         }
 
         this.stopReplenish();
         this.timer.replenish = setInterval(() => {
-            const maxHp = actor.fetchMaxHp();
-            const maxMp = actor.fetchMaxMp();
+            const maxHp = creature.fetchMaxHp();
+            const maxMp = creature.fetchMaxMp();
 
-            const revHp = DataCache.revitalize.hp[actor.fetchLevel()];
-            const revMp = DataCache.revitalize.mp[actor.fetchLevel()];
+            const minHp = Math.min(creature.fetchHp() + this.fetchRevHp(), maxHp);
+            const minMp = Math.min(creature.fetchMp() + this.fetchRevMp(), maxMp);
 
-            const minHp = Math.min(actor.fetchHp() + revHp, maxHp);
-            const minMp = Math.min(actor.fetchMp() + revMp, maxMp);
+            creature.setHp(minHp);
+            creature.setMp(minMp);
 
-            actor.setHp(minHp);
-            actor.setMp(minMp);
-            actor.statusUpdateVitals(actor);
+            if (creature.fetchKind === undefined) { // TODO: NPCs will need to broadcast to subscribers
+                creature.statusUpdateVitals(creature);
+            }
 
             if (minHp >= maxHp && minMp >= maxMp) {
                 this.stopReplenish();
