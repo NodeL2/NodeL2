@@ -32,7 +32,9 @@ class Actor extends ActorModel {
         this.skillset.populate(this);
 
         // Start vitals replenish
-        this.automation.replenishVitals(this.session, this);
+        this.automation.setRevHp(DataCache.revitalize.hp[this.fetchLevel()]);
+        this.automation.setRevMp(DataCache.revitalize.mp[this.fetchLevel()]);
+        this.automation.replenishVitals(this);
 
         // Show npcs based on radius
         this.updatePosition({
@@ -391,7 +393,7 @@ class Actor extends ActorModel {
             return;
         }
 
-        this.automation.replenishVitals(this.session, this);
+        this.automation.replenishVitals(this);
         this.enterCombatState();
     }
 
@@ -407,7 +409,7 @@ class Actor extends ActorModel {
 
     revive() {
         this.session.dataSend(ServerResponse.revive(this.fetchId()));
-        this.automation.replenishVitals(this.session, this);
+        this.automation.replenishVitals(this);
 
         setTimeout(() => {
             this.state.setDead(false);

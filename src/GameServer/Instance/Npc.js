@@ -11,6 +11,8 @@ class Npc extends NpcModel {
 
         // Local
         this.automation = new Automation();
+        this.automation.setRevHp(this.fetchRevHp());
+        this.automation.setRevMp(this.fetchRevMp());
 
         this.setId(id);
         this.fillupVitals();
@@ -24,13 +26,12 @@ class Npc extends NpcModel {
 
         // TODO: Move this into actual GameServer timer
         this.timer = {
-            replenish : undefined,
-            combat    : undefined,
+            combat: undefined
         };
     }
 
     destructor(session) {
-        this.stopReplenish();
+        this.automation.stopReplenish();
         this.abortCombatState(session);
     }
 
@@ -38,33 +39,6 @@ class Npc extends NpcModel {
         if (this.fetchAttackable() && this.fetchTitle() === '') {
             this.setTitle('Lv ' + this.fetchLevel() + (this.fetchHostile() ? ' @' : ''));
         }
-    }
-
-    replenishVitals() {
-        if (this.timer.replenish) {
-            return;
-        }
-
-        this.stopReplenish();
-        this.timer.replenish = setInterval(() => {
-            const maxHp = this.fetchMaxHp();
-            const maxMp = this.fetchMaxMp();
-
-            const minHp = Math.min(this.fetchHp() + this.fetchRevHp(), maxHp);
-            const minMp = Math.min(this.fetchMp() + this.fetchRevMp(), maxMp);
-
-            this.setHp(minHp);
-            this.setMp(minMp);
-
-            if (minHp >= maxHp && minMp >= maxMp) {
-                this.stopReplenish();
-            }
-        }, 3000);
-    }
-
-    stopReplenish() {
-        clearInterval(this.timer.replenish);
-        this.timer.replenish = undefined;
     }
 
     enterCombatState(session, actor) {
@@ -198,7 +172,7 @@ class Npc extends NpcModel {
             return;
         }
 
-        this.replenishVitals();
+        this.automation.replenishVitals(this);
         this.enterCombatState(session, actor);
     }
 
