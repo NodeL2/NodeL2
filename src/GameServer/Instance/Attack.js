@@ -110,7 +110,7 @@ class Attack {
             actor.state.setCasts(false);
 
             // Start replenish
-            actor.automation.replenishVitals(session, actor);
+            actor.automation.replenishVitals(actor);
 
             if (this.queue.name) {
                 this.dequeueEvent(session);
