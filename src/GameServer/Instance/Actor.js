@@ -6,6 +6,7 @@ const Skillset       = invoke('GameServer/Instance/Skillset');
 const Backpack       = invoke('GameServer/Instance/Backpack');
 const DataCache      = invoke('GameServer/DataCache');
 const World          = invoke('GameServer/World');
+const Methods        = invoke('GameServer/Methods');
 const ConsoleText    = invoke('GameServer/ConsoleText');
 const Formulas       = invoke('GameServer/Formulas');
 const Database       = invoke('Database');
@@ -29,7 +30,7 @@ class Actor extends ActorModel {
     enterWorld() {
         // Calculate accumulated
         this.setCollectiveAll();
-        this.skillset.populate(this);
+        this.skillset.populate(this.fetchId());
 
         // Start vitals replenish
         this.automation.setRevHp(DataCache.revitalize.hp[this.fetchLevel()]);
@@ -320,49 +321,8 @@ class Actor extends ActorModel {
         World.removeNpc(this.session, npc);
 
         if (this.isDead() === false) {
-            this.rewardExpAndSp(npc.fetchRewardExp(), npc.fetchRewardSp());
+            Methods.expAndSpReward(this.session, this, npc.fetchRewardExp(), npc.fetchRewardSp());
         }
-    }
-
-    rewardExpAndSp(exp, sp) {
-        const optn = options.default.General;
-
-        let totalExp = this.fetchExp() + (exp *= optn.expRate);
-        let totalSp  = this.fetchSp () + ( sp *= optn.expRate);
-
-        this.setExpSp(totalExp, totalSp);
-        ConsoleText.transmit(this.session, ConsoleText.caption.earnedExpAndSp, [{ kind: ConsoleText.kind.number, value: exp }, { kind: ConsoleText.kind.number, value: sp }]);
-
-        for (let i = 0; i < 75; i++) {
-            if (totalExp >= DataCache.experience[i] && totalExp < DataCache.experience[i + 1]) {
-                if (i + 1 > this.fetchLevel()) { // Leveled up
-                    this.levelUp(i + 1);
-                    break;
-                }
-            }
-        }
-
-        // Update database with new exp, sp
-        Database.updateCharacterExperience(this.fetchId(), this.fetchLevel(), totalExp, totalSp);
-        this.session.dataSend(ServerResponse.userInfo(this));
-    }
-
-    levelUp(level) {
-        // Stop automation to prevent false data
-        this.automation.stopReplenish();
-
-        // Update stats
-        this.setLevel(level);
-        this.setCollectiveAll();
-        this.fillupVitals();
-        this.skillset.awardSkills(this.fetchId(), this.fetchClassId(), this.fetchLevel());
-
-        // Level up effect
-        this.session.dataSend(ServerResponse.socialAction(this.fetchId(), 15));
-        ConsoleText.transmit(this.session, ConsoleText.caption.levelUp);
-
-        // Update database with new hp, mp
-        Database.updateCharacterVitals(this.fetchId(), this.fetchHp(), this.fetchMaxHp(), this.fetchMp(), this.fetchMaxMp());
     }
 
     enterCombatState() {
