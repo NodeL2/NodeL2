@@ -33,6 +33,30 @@ class Skillset {
             });
         });
     }
+
+    awardSkills(id, classId, level) {
+        DataCache.fetchSkillTreeFromClassId(classId, (skillTree) => {
+            const skills = skillTree.skills;
+            const levelX = skills?.filter((ob) => ob.levels.find((ob) => ob.pLevel <= level)) ?? [];
+
+            levelX.forEach((skill) => {
+                skill.level = skill.levels.filter((ob) => ob.pLevel <= level).pop();
+                Database.fetchSkill(id, skill.selfId).then((rows) => {
+                    const storedLevel = rows[0]?.level;
+
+                    if (storedLevel) {
+                        Database.updateSkillLevel(id, skill.selfId, skill.level.level);
+                    }
+                    else {
+                        DataCache.fetchSkillFromSelfId(skill.selfId, (skillDetails) => {
+                            skill = { ...utils.crushOb(skill), passive: skillDetails.template?.passive ?? false };
+                            Database.setSkill(skill, id);
+                        });
+                    }
+                });
+            });
+        });
+    }
 }
 
 module.exports = Skillset;

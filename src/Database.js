@@ -85,6 +85,24 @@ const Database = {
         );
     },
 
+    fetchSkills(characterId) {
+        return Database.execute(
+            builder.select('skills', ['*'], 'characterId = ?', characterId)
+        );
+    },
+
+    fetchSkill(characterId, skillSelfId) {
+        return Database.execute(
+            builder.selectOne('skills', ['*'], 'characterId = ? AND selfId = ?', characterId, skillSelfId)
+        );
+    },
+
+    deleteSkills(characterId) {
+        return Database.execute(
+            builder.delete('skills', 'characterId = ?', characterId)
+        );
+    },
+
     setSkill(skill, characterId) {
         return Database.execute(
             builder.insert('skills', {
@@ -97,15 +115,11 @@ const Database = {
         );
     },
 
-    fetchSkills(characterId) {
+    updateSkillLevel(characterId, skillSelfId, skillLevel) {
         return Database.execute(
-            builder.select('skills', ['*'], 'characterId = ?', characterId)
-        );
-    },
-
-    deleteSkills(characterId) {
-        return Database.execute(
-            builder.delete('skills', 'characterId = ?', characterId)
+            builder.update('skills', {
+                level: skillLevel
+            }, 'selfId = ? AND characterId = ?', skillSelfId, characterId)
         );
     },
 

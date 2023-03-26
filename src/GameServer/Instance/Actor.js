@@ -355,6 +355,7 @@ class Actor extends ActorModel {
         this.setLevel(level);
         this.setCollectiveAll();
         this.fillupVitals();
+        this.skillset.awardSkills(this.fetchId(), this.fetchClassId(), this.fetchLevel());
 
         // Level up effect
         this.session.dataSend(ServerResponse.socialAction(this.fetchId(), 15));
