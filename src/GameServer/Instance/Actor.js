@@ -32,7 +32,9 @@ class Actor extends ActorModel {
         this.skillset.populate(this);
 
         // Start vitals replenish
-        this.automation.replenishVitals(this.session, this);
+        this.automation.setRevHp(DataCache.revitalize.hp[this.fetchLevel()]);
+        this.automation.setRevMp(DataCache.revitalize.mp[this.fetchLevel()]);
+        this.automation.replenishVitals(this);
 
         // Show npcs based on radius
         this.updatePosition({
@@ -111,14 +113,14 @@ class Actor extends ActorModel {
     select(data) {
         if (this.fetchId() === data.id) { // Click on self
             this.setDestId(this.fetchId());
-            this.session.dataSend(ServerResponse.destSelected(this.fetchDestId()));
+            this.session.dataSend(ServerResponse.destSelected(this.fetchId(), this.fetchDestId()));
             return;
         }
 
         World.fetchNpc(data.id).then((npc) => {
             if (npc.fetchId() !== this.fetchDestId()) { // First click on a Creature
                 this.setDestId(npc.fetchId());
-                this.session.dataSend(ServerResponse.destSelected(this.fetchDestId(), this.fetchLevel() - npc.fetchLevel()));
+                this.session.dataSend(ServerResponse.destSelected(this.fetchId(), this.fetchDestId()));
                 this.statusUpdateVitals(npc);
             }
             else { // Second click on same Creature
@@ -296,9 +298,6 @@ class Actor extends ActorModel {
             );
             break;
 
-        case 0x28: // Recommend without selection
-            break;
-
         default:
             utils.infoWarn('GameServer :: unknown basic action 0x%s', utils.toHex(data.actionId));
             break;
@@ -394,7 +393,7 @@ class Actor extends ActorModel {
             return;
         }
 
-        this.automation.replenishVitals(this.session, this);
+        this.automation.replenishVitals(this);
         this.enterCombatState();
     }
 
@@ -410,7 +409,7 @@ class Actor extends ActorModel {
 
     revive() {
         this.session.dataSend(ServerResponse.revive(this.fetchId()));
-        this.automation.replenishVitals(this.session, this);
+        this.automation.replenishVitals(this);
 
         setTimeout(() => {
             this.state.setDead(false);
