@@ -1,31 +1,17 @@
-const ServerResponse = invoke('GameServer/Network/Response');
-
 function basicAction(session, actor, data) {
+    const Generics = invoke('GameServer/Generics');
+
     if (actor.isDead()) {
         return;
     }
 
     switch (data.actionId) {
     case 0x00: // Sit / Stand
-        if (actor.state.fetchHits() || actor.state.fetchCasts() || actor.state.fetchAnimated() || actor.state.inMotion()) {
-            actor.queueRequest('sit', data);
-            return;
-        }
-
-        actor.state.setAnimated(true);
-        actor.state.setSeated(!actor.state.fetchSeated());
-        session.dataSend(ServerResponse.sitAndStand(actor));
-
-        setTimeout(() => {
-            actor.state.setAnimated(false);
-        }, 2500);
+        Generics.sitAndStand(session, actor, data);
         break;
 
     case 0x01: // Walk / Run
-        actor.state.setWalkin(!actor.state.fetchWalkin());
-        session.dataSend(
-            ServerResponse.walkAndRun(actor.fetchId(), actor.state.fetchWalkin() ? 0 : 1)
-        );
+        Generics.walkAndRun(session, actor);
         break;
 
     case 0x28: // Recommend without selection

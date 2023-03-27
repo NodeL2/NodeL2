@@ -4,9 +4,7 @@ const Automation     = invoke('GameServer/Instance/Automation');
 const Attack         = invoke('GameServer/Instance/Attack');
 const Skillset       = invoke('GameServer/Instance/Skillset');
 const Backpack       = invoke('GameServer/Instance/Backpack');
-const DataCache      = invoke('GameServer/DataCache');
 const World          = invoke('GameServer/World');
-const ConsoleText    = invoke('GameServer/ConsoleText');
 const Formulas       = invoke('GameServer/Formulas');
 const Database       = invoke('Database');
 
@@ -26,30 +24,8 @@ class Actor extends ActorModel {
         delete this.model.paperdoll;
     }
 
-    enterWorld() {
-        // Calculate accumulated
-        this.setCollectiveAll();
-        this.skillset.populate(this.fetchId());
-
-        // Start vitals replenish
-        this.automation.setRevHp(DataCache.revitalize.hp[this.fetchLevel()]);
-        this.automation.setRevMp(DataCache.revitalize.mp[this.fetchLevel()]);
-        this.automation.replenishVitals(this);
-
-        // Show npcs based on radius
-        this.updatePosition({
-            locX: this.fetchLocX(),
-            locY: this.fetchLocY(),
-            locZ: this.fetchLocZ(),
-            head: this.fetchHead(),
-        });
-
-        // Default
-        ConsoleText.transmit(this.session, ConsoleText.caption.welcome);
-    }
-
     destructor() {
-        this.unselect();
+        invoke('GameServer/Generics').unselect(this.session, this);
         this.clearStoredActions();
         this.attack.destructor();
         this.automation.destructor(this);
@@ -93,32 +69,6 @@ class Actor extends ActorModel {
         this.storedAttack = undefined;
         this.storedSpell  = undefined;
         this.storedPickup = undefined;
-    }
-
-    select(data) {
-        if (this.fetchId() === data.id) { // Click on self
-            this.setDestId(this.fetchId());
-            this.session.dataSend(ServerResponse.destSelected(this.fetchDestId()));
-            return;
-        }
-
-        World.fetchNpc(data.id).then((npc) => {
-            if (npc.fetchId() !== this.fetchDestId()) { // First click on a Creature
-                this.setDestId(npc.fetchId());
-                this.session.dataSend(ServerResponse.destSelected(this.fetchDestId(), this.fetchLevel() - npc.fetchLevel()));
-                this.statusUpdateVitals(npc);
-            }
-            else { // Second click on same Creature
-                this.attackRequest(data);
-            }
-        }).catch(() => {
-            this.pickupRequest(data);
-        });
-    }
-
-    unselect() {
-        this.clearDestId();
-        this.session.dataSend(ServerResponse.destDeselected(this));
     }
 
     attackRequest(data) {
@@ -253,43 +203,6 @@ class Actor extends ActorModel {
                 head: this.fetchHead(),
             })
         );
-    }
-
-    basicAction(data) {
-        if (this.isDead()) {
-            return;
-        }
-
-        switch (data.actionId) {
-        case 0x00: // Sit / Stand
-            if (this.state.fetchHits() || this.state.fetchCasts() || this.state.fetchAnimated() || this.state.inMotion()) {
-                this.queueRequest('sit', data);
-                return;
-            }
-
-            this.state.setAnimated(true);
-            this.state.setSeated(!this.state.fetchSeated());
-            this.session.dataSend(ServerResponse.sitAndStand(this));
-
-            setTimeout(() => {
-                this.state.setAnimated(false);
-            }, 2500);
-            break;
-
-        case 0x01: // Walk / Run
-            this.state.setWalkin(!this.state.fetchWalkin());
-            this.session.dataSend(
-                ServerResponse.walkAndRun(this.fetchId(), this.state.fetchWalkin() ? 0 : 1)
-            );
-            break;
-
-        case 0x28: // Recommend without selection
-            break;
-
-        default:
-            utils.infoWarn('GameServer :: unknown basic action 0x%s', utils.toHex(data.actionId));
-            break;
-        }
     }
 
     npcDied(npc) {

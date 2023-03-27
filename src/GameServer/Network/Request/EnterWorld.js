@@ -8,7 +8,7 @@ function enterWorld(session, buffer) {
             ServerResponse.shortcutInit(shortcuts)
         );
     });
-    session.actor.enterWorld();
+    invoke('GameServer/Generics').enterWorld(session, session.actor);
 
     session.dataSend(ServerResponse.sunrise()); // TODO: Server timer
     session.dataSend(ServerResponse.userInfo(session.actor));
