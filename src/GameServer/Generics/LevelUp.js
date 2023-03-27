@@ -6,7 +6,7 @@ const Database       = invoke('Database');
 function levelUp(session, actor, nextLevel) {
     // Update stats
     actor.setLevel(nextLevel);
-    actor.setCollectiveAll();
+    invoke('GameServer/Generics').calculateStats(session, actor);
     actor.fillupVitals();
 
     const id      = actor.fetchId();

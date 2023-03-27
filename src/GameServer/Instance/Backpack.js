@@ -145,7 +145,7 @@ class Backpack extends BackpackModel {
         ]);
 
         // Recalculate
-        session.actor.setCollectiveAll();
+        invoke('GameServer/Generics').calculateStats(session, session.actor);
     }
 
     unequipGear(session, slot) {
@@ -170,7 +170,7 @@ class Backpack extends BackpackModel {
             this.items.unshift(item);
 
             // Recalculate
-            session.actor.setCollectiveAll();
+            invoke('GameServer/Generics').calculateStats(session, session.actor);
         });
     }
 

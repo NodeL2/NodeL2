@@ -2,8 +2,10 @@ const DataCache   = invoke('GameServer/DataCache');
 const ConsoleText = invoke('GameServer/ConsoleText');
 
 function enterWorld(session, actor) {
+    const Generics = invoke('GameServer/Generics');
+
     // Calculate accumulated
-    actor.setCollectiveAll();
+    Generics.calculateStats(session, actor);
     actor.skillset.populate(actor.fetchId());
 
     // Start vitals replenish
@@ -12,7 +14,7 @@ function enterWorld(session, actor) {
     actor.automation.replenishVitals(actor);
 
     // Show npcs based on radius
-    invoke('GameServer/Generics').updatePosition(session, actor, {
+    Generics.updatePosition(session, actor, {
         locX: actor.fetchLocX(),
         locY: actor.fetchLocY(),
         locZ: actor.fetchLocZ(),

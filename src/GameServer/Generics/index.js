@@ -4,6 +4,7 @@ module.exports = {
           attackExec: require('./AttackExec'),
        attackRequest: require('./AttackRequest'),
          basicAction: require('./BasicAction'),
+      calculateStats: require('./CalculateStats'),
                  die: require('./Die'),
     enterCombatState: require('./EnterCombatState'),
           enterWorld: require('./EnterWorld'),
