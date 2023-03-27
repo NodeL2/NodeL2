@@ -160,7 +160,7 @@ class Npc extends NpcModel {
         ConsoleText.transmit(session, ConsoleText.caption.monsterHit, [
             { kind: ConsoleText.kind.npc, value: this.fetchDispSelfId() }, { kind: ConsoleText.kind.number, value: hit }
         ]);
-        actor.hitReceived(hit);
+        invoke('GameServer/Generics').receivedHit(session, actor, hit);
     }
 
     hitReceived(session, actor, hit) {

@@ -61,21 +61,6 @@ class Actor extends ActorModel {
         }
     }
 
-    moveTo(coords) {
-        if (this.isDead()) {
-            return;
-        }
-
-        if (this.isBlocked()) {
-            this.queueRequest('move', coords);
-            return;
-        }
-
-        // Abort scheduled movement, user redirected the actor
-        this.automation.abortAll(this);
-        this.session.dataSend(ServerResponse.moveToLocation(this.fetchId(), coords));
-    }
-
     updatePosition(coords) {
         // TODO: Write less in DB about movement
         this.setLocXYZH(coords);
@@ -313,25 +298,6 @@ class Actor extends ActorModel {
         if (this.isDead() === false) {
             invoke('GameServer/Generics').experienceReward(this.session, this, npc.fetchRewardExp(), npc.fetchRewardSp());
         }
-    }
-
-    hitReceived(hit) {
-        this.setHp(Math.max(0, this.fetchHp() - hit)); // HP bar would disappear if less than zero
-        this.statusUpdateVitals(this);
-
-        // On hit, actor should stand-up
-        if (this.state.fetchSeated()) {
-            this.basicAction({ actionId: 0 });
-        }
-
-        // Bummer
-        if (this.fetchHp() <= 0) {
-            invoke('GameServer/Generics').die(this.session, this);
-            return;
-        }
-
-        this.automation.replenishVitals(this);
-        invoke('GameServer/Generics').enterCombatState(this.session, this);
     }
 
     // State
