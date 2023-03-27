@@ -10,7 +10,7 @@ function skillRequest(session, actor, data) {
     }
 
     if (actor.isBlocked()) {
-        actor.queueRequest('skill', data);
+        Generics.queueRequest(session, actor, 'skill', data);
         return;
     }
 

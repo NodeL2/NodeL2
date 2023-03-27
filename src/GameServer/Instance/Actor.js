@@ -28,12 +28,6 @@ class Actor extends ActorModel {
         this.automation.destructor(this);
     }
 
-    queueRequest(event, data) {
-        if (this.state.fetchHits() || this.state.fetchCasts()) {
-            this.attack.queueEvent(event, data);
-        }
-    }
-
     clearStoredActions() {
         this.storedAttack = undefined;
         this.storedSpell  = undefined;

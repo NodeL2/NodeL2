@@ -6,7 +6,7 @@ function attackRequest(session, actor, data) {
     }
 
     if (actor.isBlocked()) {
-        actor.queueRequest('attack', data);
+        Generics.queueRequest(session, actor, 'attack', data);
         return;
     }
 

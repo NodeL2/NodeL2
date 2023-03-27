@@ -6,7 +6,7 @@ function pickupRequest(session, actor, data) {
     }
 
     if (actor.isBlocked()) {
-        actor.queueRequest('pickup', data);
+        Generics.queueRequest(session, actor, 'pickup', data);
         return;
     }
 
