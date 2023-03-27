@@ -1,10 +1,13 @@
 const World = invoke('GameServer/World');
 
 function npcDied(session, actor, npc) {
+    const Generics = invoke('GameServer/Generics');
+
     World.removeNpc(session, npc);
+    Generics.abortCombatState(session, actor);
 
     if (!actor.isDead()) {
-        invoke('GameServer/Generics').experienceReward(session, actor, npc.fetchRewardExp(), npc.fetchRewardSp());
+        Generics.experienceReward(session, actor, npc.fetchRewardExp(), npc.fetchRewardSp());
     }
 }
 

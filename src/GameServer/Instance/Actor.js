@@ -34,8 +34,6 @@ class Actor extends ActorModel {
         this.storedPickup = undefined;
     }
 
-    // State
-
     isBlocked() {
         if (this.state.isBlocked()) {
             this.session.dataSend(ServerResponse.actionFailed());
