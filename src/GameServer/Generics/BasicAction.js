@@ -36,9 +36,6 @@ function basicAction(session, actor, data) {
         walkAndRun(session, actor);
         break;
 
-    case 0x28: // Recommend without selection
-        break;
-
     default:
         utils.infoWarn('GameServer :: unknown basic action 0x%s', utils.toHex(data.actionId));
         break;
