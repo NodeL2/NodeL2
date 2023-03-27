@@ -182,6 +182,15 @@ class Npc extends NpcModel {
         session.dataSend(ServerResponse.die(this.fetchId()));
         invoke('GameServer/Generics').npcDied(session, actor, this);
     }
+
+    broadcastToSubscribers() {
+        const World = invoke('GameServer/World');
+
+        const inRadiusActors = World.user.sessions.filter((ob) => this.fetchId() === ob.actor.fetchDestId() && Formulas.calcWithinRadius(this.fetchLocX(), this.fetchLocY(), ob.actor.fetchLocX(), ob.actor.fetchLocY(), 3500)) ?? [];
+        inRadiusActors.forEach((session) => {
+            session.actor.statusUpdateVitals(this);
+        });
+    }
 }
 
 module.exports = Npc;
