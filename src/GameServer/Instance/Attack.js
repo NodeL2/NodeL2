@@ -26,11 +26,11 @@ class Attack {
         actor.state.setHits(false);
 
         switch (queue.name) {
-            case 'move'   : Generics.moveTo(session, actor, queue.data); break;
-            case 'attack' : actor.attackRequest(queue.data); break;
-            case 'spell'  : actor.skillRequest (queue.data); break;
-            case 'pickup' : actor.pickupRequest(queue.data); break;
-            case 'sit'    : Generics.basicAction(session, actor, queue.data); break;
+            case 'move'   : Generics.moveTo       (session, actor, queue.data); break;
+            case 'attack' : Generics.attackRequest(session, actor, queue.data); break;
+            case 'spell'  : Generics.skillRequest (session, actor, queue.data); break;
+            case 'pickup' : Generics.pickupRequest(session, actor, queue.data); break;
+            case 'sit'    : Generics.basicAction  (session, actor, queue.data); break;
         }
         this.resetQueuedEvent();
     }

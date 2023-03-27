@@ -38,6 +38,8 @@ class Actor extends ActorModel {
     }
 
     updatePosition(coords) {
+        const Generics = invoke('GameServer/Generics');
+
         // TODO: Write less in DB about movement
         this.setLocXYZH(coords);
         Database.updateCharacterLocation(this.fetchId(), coords);
@@ -50,17 +52,17 @@ class Actor extends ActorModel {
 
         // Reschedule actions based on updated position
         if (this.storedAttack) {
-            this.attackExec(structuredClone(this.storedAttack));
+            Generics.attackExec(this.session, this, structuredClone(this.storedAttack));
             this.clearStoredActions();
         }
 
         if (this.storedSpell) {
-            this.skillExec(structuredClone(this.storedSpell));
+            Generics.skillExec(this.session, this, structuredClone(this.storedSpell));
             this.clearStoredActions();
         }
 
         if (this.storedPickup) {
-            this.pickupExec(structuredClone(this.storedPickup));
+            Generics.pickupExec(this.session, this, structuredClone(this.storedPickup));
             this.clearStoredActions();
         }
     }
@@ -69,127 +71,6 @@ class Actor extends ActorModel {
         this.storedAttack = undefined;
         this.storedSpell  = undefined;
         this.storedPickup = undefined;
-    }
-
-    attackRequest(data) {
-        if (this.isDead()) {
-            return;
-        }
-
-        if (this.isBlocked()) {
-            this.queueRequest('attack', data);
-            return;
-        }
-
-        if (this.state.inMotion()) {
-            if (this.state.fetchTowards() === 'remote' || this.fetchDestId() !== this.automation.fetchDestId()) {
-                this.storedAttack = data;
-                this.requestStopAutomation();
-                return;
-            }
-        }
-
-        if (this.state.fetchTowards() === 'melee') {
-            return;
-        }
-
-        this.storedAttack = data;
-        this.requestStopAutomation();
-    }
-
-    attackExec(data) {
-        World.fetchNpc(data.id).then((npc) => {
-            this.automation.scheduleAction(this.session, this, npc, 0, () => {
-                if (npc.fetchAttackable() || data.ctrl) {
-                    this.attack.meleeHit(this.session, npc);
-                }
-                else {
-                    World.npcTalk(this.session, npc);
-                }
-            });
-        }).catch((err) => {
-            utils.infoWarn('GameServer :: Attack -> ' + err);
-        });
-    }
-
-    skillRequest(data) {
-        if (this.isDead()) {
-            return;
-        }
-
-        if ((data.id = this.fetchDestId()) === undefined) {
-            return;
-        }
-
-        if (this.isBlocked()) {
-            this.queueRequest('spell', data);
-            return;
-        }
-
-        if (this.state.inMotion()) {
-            if (this.state.fetchTowards() === 'melee' || this.fetchDestId() !== this.automation.fetchDestId()) {
-                this.storedSpell = data;
-                this.requestStopAutomation();
-                return;
-            }
-        }
-
-        if (this.state.fetchTowards() === 'remote') {
-            return;
-        }
-
-        this.storedSpell = data;
-        this.requestStopAutomation();
-    }
-
-    skillExec(data) {
-        World.fetchNpc(data.id).then((npc) => {
-            const skill = this.skillset.fetchSkill(data.selfId);
-            this.automation.scheduleAction(this.session, this, npc, skill.fetchDistance(), () => {
-                if (npc.fetchAttackable() || data.ctrl) { // TODO: Else, find which `response` fails the attack
-                    this.attack.remoteHit(this.session, npc, skill);
-                }
-            });
-        }).catch((err) => {
-            utils.infoWarn('GameServer :: Skill -> ' + err);
-        });
-    }
-
-    pickupRequest(data) {
-        if (this.isDead()) {
-            return;
-        }
-
-        if (this.isBlocked()) {
-            this.queueRequest('pickup', data);
-            return;
-        }
-
-        if (this.state.fetchTowards() === 'pickup') {
-            return;
-        }
-
-        this.storedPickup = data;
-        this.requestStopAutomation();
-    }
-
-    pickupExec(data) {
-        World.fetchItem(data.id).then((item) => {
-            this.automation.schedulePickup(this.session, this, item, () => {
-                this.state.setPickinUp(true);
-                this.session.dataSend(ServerResponse.pickupItem(this.fetchId(), item));
-
-                setTimeout(() => {
-                    World.pickupItemFromGround(this.session, this, item);
-                }, 250);
-
-                setTimeout(() => {
-                    this.state.setPickinUp(false);
-                }, 500);
-            });
-        }).catch((err) => {
-            utils.infoWarn('GameServer :: Pickup -> ' + err);
-        });
     }
 
     requestStopAutomation() {

@@ -2,6 +2,8 @@ const ServerResponse = invoke('GameServer/Network/Response');
 const World          = invoke('GameServer/World');
 
 function select(session, actor, data) {
+    const Generics = invoke('GameServer/Generics');
+
     if (actor.fetchId() === data.id) { // Click on self
         actor.setDestId(actor.fetchId());
         session.dataSend(ServerResponse.destSelected(actor.fetchDestId()));
@@ -15,10 +17,14 @@ function select(session, actor, data) {
             actor.statusUpdateVitals(npc);
         }
         else { // Second click on same Creature
-            actor.attackRequest(data);
+            Generics.attackRequest(session, actor, data);
         }
     }).catch(() => {
-        actor.pickupRequest(data);
+        World.fetchItem(data.id).then(() => {
+            Generics.pickupRequest(session, actor, data);
+        }).catch(() => {
+            utils.infoWarn('GameServer :: unknown World Id %d', data.id);
+        });
     });
 }
 
