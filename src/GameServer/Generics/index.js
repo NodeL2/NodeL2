@@ -10,6 +10,7 @@ module.exports = {
     experienceReward: require('./ExperienceReward'),
              levelUp: require('./LevelUp'),
               moveTo: require('./MoveTo'),
+          pickupExec: require('./PickupExec'),
        pickupRequest: require('./PickupRequest'),
          receivedHit: require('./ReceivedHit'),
               revive: require('./Revive'),
@@ -20,5 +21,6 @@ module.exports = {
         socialAction: require('./SocialAction'),
           teleportTo: require('./TeleportTo'),
             unselect: require('./Unselect'),
+      updatePosition: require('./UpdatePosition'),
           walkAndRun: require('./WalkAndRun')
 };

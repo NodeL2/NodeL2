@@ -8,7 +8,7 @@ function skillRequest(session, actor, data) {
     }
 
     if (actor.isBlocked()) {
-        actor.queueRequest('spell', data);
+        actor.queueRequest('skill', data);
         return;
     }
 

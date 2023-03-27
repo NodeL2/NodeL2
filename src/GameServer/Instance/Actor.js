@@ -6,7 +6,6 @@ const Skillset       = invoke('GameServer/Instance/Skillset');
 const Backpack       = invoke('GameServer/Instance/Backpack');
 const World          = invoke('GameServer/World');
 const Formulas       = invoke('GameServer/Formulas');
-const Database       = invoke('Database');
 
 class Actor extends ActorModel {
     constructor(session, data) {
@@ -34,36 +33,6 @@ class Actor extends ActorModel {
     queueRequest(event, data) {
         if (this.state.fetchHits() || this.state.fetchCasts()) {
             this.attack.queueEvent(event, data);
-        }
-    }
-
-    updatePosition(coords) {
-        const Generics = invoke('GameServer/Generics');
-
-        // TODO: Write less in DB about movement
-        this.setLocXYZH(coords);
-        Database.updateCharacterLocation(this.fetchId(), coords);
-
-        // Render npcs found inside user's radius
-        const inRadiusNpcs = World.npc.spawns.filter(ob => Formulas.calcWithinRadius(coords.locX, coords.locY, ob.fetchLocX(), ob.fetchLocY(), 3500)) ?? [];
-        inRadiusNpcs.forEach((npc) => {
-            this.session.dataSend(ServerResponse.npcInfo(npc));
-        });
-
-        // Reschedule actions based on updated position
-        if (this.storedAttack) {
-            Generics.attackExec(this.session, this, structuredClone(this.storedAttack));
-            this.clearStoredActions();
-        }
-
-        if (this.storedSpell) {
-            Generics.skillExec(this.session, this, structuredClone(this.storedSpell));
-            this.clearStoredActions();
-        }
-
-        if (this.storedPickup) {
-            Generics.pickupExec(this.session, this, structuredClone(this.storedPickup));
-            this.clearStoredActions();
         }
     }
 

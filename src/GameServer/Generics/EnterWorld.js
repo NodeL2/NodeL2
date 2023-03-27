@@ -12,7 +12,7 @@ function enterWorld(session, actor) {
     actor.automation.replenishVitals(actor);
 
     // Show npcs based on radius
-    actor.updatePosition({
+    invoke('GameServer/Generics').updatePosition(session, actor, {
         locX: actor.fetchLocX(),
         locY: actor.fetchLocY(),
         locZ: actor.fetchLocZ(),

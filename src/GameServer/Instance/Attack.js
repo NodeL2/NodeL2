@@ -28,7 +28,7 @@ class Attack {
         switch (queue.name) {
             case 'move'   : Generics.moveTo       (session, actor, queue.data); break;
             case 'attack' : Generics.attackRequest(session, actor, queue.data); break;
-            case 'spell'  : Generics.skillRequest (session, actor, queue.data); break;
+            case 'skill'  : Generics.skillRequest (session, actor, queue.data); break;
             case 'pickup' : Generics.pickupRequest(session, actor, queue.data); break;
             case 'sit'    : Generics.basicAction  (session, actor, queue.data); break;
         }
