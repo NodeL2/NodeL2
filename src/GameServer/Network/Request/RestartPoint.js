@@ -1,5 +1,4 @@
-const ServerResponse = invoke('GameServer/Network/Response');
-const ReceivePacket  = invoke('Packet/Receive');
+const ReceivePacket = invoke('Packet/Receive');
 
 function restartPoint(session, buffer) {
     const packet = new ReceivePacket(buffer);
@@ -13,7 +12,7 @@ function restartPoint(session, buffer) {
 }
 
 function consume(session, data) {
-    session.actor.revive();
+    invoke('GameServer/Generics').revive(session, session.actor);
 }
 
 module.exports = restartPoint;

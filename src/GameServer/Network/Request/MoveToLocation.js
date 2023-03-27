@@ -26,7 +26,7 @@ function moveToLocation(session, buffer) {
 }
 
 function consume(session, data) {
-    session.actor.moveTo(data);
+    invoke('GameServer/Generics').moveTo(session, session.actor, data);
 }
 
 module.exports = moveToLocation;
