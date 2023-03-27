@@ -352,38 +352,12 @@ class Actor extends ActorModel {
 
         // Bummer
         if (this.fetchHp() <= 0) {
-            this.die();
+            invoke('GameServer/Generics').die(this.session, this);
             return;
         }
 
         this.automation.replenishVitals(this);
         this.enterCombatState();
-    }
-
-    die() {
-        if (this.isDead()) {
-            return;
-        }
-
-        this.destructor();
-        this.state.setDead(true);
-        this.session.dataSend(ServerResponse.die(this.fetchId()));
-    }
-
-    revive() {
-        this.session.dataSend(ServerResponse.revive(this.fetchId()));
-        this.automation.replenishVitals(this);
-
-        setTimeout(() => {
-            this.state.setDead(false);
-            this.socialAction(9); // SWAG stand-up
-        }, 2500);
-    }
-
-    admin() {
-        this.session.dataSend(
-            ServerResponse.npcHtml(this.fetchId(), utils.parseRawFile('data/Html/Admin/main.html'))
-        );
     }
 
     // State
