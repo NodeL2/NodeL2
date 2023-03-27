@@ -1,6 +1,7 @@
 module.exports = {
     abortCombatState: require('./AbortCombatState'),
           adminPanel: require('./AdminPanel'),
+         basicAction: require('./BasicAction'),
                  die: require('./Die'),
     enterCombatState: require('./EnterCombatState'),
     experienceReward: require('./ExperienceReward'),
