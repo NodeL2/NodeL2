@@ -21,6 +21,7 @@ module.exports = {
            skillExec: require('./SkillExec'),
         skillRequest: require('./SkillRequest'),
         socialAction: require('./SocialAction'),
+      stopAutomation: require('./StopAutomation'),
           teleportTo: require('./TeleportTo'),
             unselect: require('./Unselect'),
       updatePosition: require('./UpdatePosition'),

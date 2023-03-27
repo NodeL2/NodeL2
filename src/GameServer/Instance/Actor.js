@@ -4,7 +4,6 @@ const Automation     = invoke('GameServer/Instance/Automation');
 const Attack         = invoke('GameServer/Instance/Attack');
 const Skillset       = invoke('GameServer/Instance/Skillset');
 const Backpack       = invoke('GameServer/Instance/Backpack');
-const World          = invoke('GameServer/World');
 
 class Actor extends ActorModel {
     constructor(session, data) {
@@ -39,19 +38,6 @@ class Actor extends ActorModel {
         this.storedAttack = undefined;
         this.storedSpell  = undefined;
         this.storedPickup = undefined;
-    }
-
-    requestStopAutomation() {
-        this.automation.abortAll(this);
-
-        this.session.dataSend(
-            ServerResponse.stopMove(this.fetchId(), {
-                locX: this.fetchLocX(),
-                locY: this.fetchLocY(),
-                locZ: this.fetchLocZ(),
-                head: this.fetchHead(),
-            })
-        );
     }
 
     // State

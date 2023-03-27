@@ -1,4 +1,6 @@
 function skillRequest(session, actor, data) {
+    const Generics = invoke('GameServer/Generics');
+
     if (actor.isDead()) {
         return;
     }
@@ -15,7 +17,7 @@ function skillRequest(session, actor, data) {
     if (actor.state.inMotion()) {
         if (actor.state.fetchTowards() === 'melee' || actor.fetchDestId() !== actor.automation.fetchDestId()) {
             actor.storedSpell = data;
-            actor.requestStopAutomation();
+            Generics.stopAutomation(session, actor);
             return;
         }
     }
@@ -25,7 +27,7 @@ function skillRequest(session, actor, data) {
     }
 
     actor.storedSpell = data;
-    actor.requestStopAutomation();
+    Generics.stopAutomation(session, actor);
 }
 
 module.exports = skillRequest;

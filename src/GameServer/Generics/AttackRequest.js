@@ -1,4 +1,6 @@
 function attackRequest(session, actor, data) {
+    const Generics = invoke('GameServer/Generics');
+
     if (actor.isDead()) {
         return;
     }
@@ -11,7 +13,7 @@ function attackRequest(session, actor, data) {
     if (actor.state.inMotion()) {
         if (actor.state.fetchTowards() === 'remote' || actor.fetchDestId() !== actor.automation.fetchDestId()) {
             actor.storedAttack = data;
-            actor.requestStopAutomation();
+            Generics.stopAutomation(session, actor);
             return;
         }
     }
@@ -21,7 +23,7 @@ function attackRequest(session, actor, data) {
     }
 
     actor.storedAttack = data;
-    actor.requestStopAutomation();
+    Generics.stopAutomation(session, actor);
 }
 
 module.exports = attackRequest;

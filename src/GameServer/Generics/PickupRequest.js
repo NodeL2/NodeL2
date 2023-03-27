@@ -1,4 +1,6 @@
 function pickupRequest(session, actor, data) {
+    const Generics = invoke('GameServer/Generics');
+
     if (actor.isDead()) {
         return;
     }
@@ -13,7 +15,7 @@ function pickupRequest(session, actor, data) {
     }
 
     actor.storedPickup = data;
-    actor.requestStopAutomation();
+    Generics.stopAutomation(session, actor);
 }
 
 module.exports = pickupRequest;
