@@ -21,7 +21,7 @@ function action(session, buffer) {
 }
 
 function consume(session, data) {
-    session.actor.select(data);
+    invoke('GameServer/Generics').select(session, session.actor, data);
 }
 
 module.exports = action;

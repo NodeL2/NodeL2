@@ -19,7 +19,7 @@ function validatePosition(session, buffer) {
 }
 
 function consume(session, data) {
-    session.actor.updatePosition(data);
+    invoke('GameServer/Generics').updatePosition(session, session.actor, data);
 }
 
 module.exports = validatePosition;
