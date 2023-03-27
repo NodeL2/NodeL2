@@ -11,6 +11,7 @@ module.exports = {
     experienceReward: require('./ExperienceReward'),
              levelUp: require('./LevelUp'),
               moveTo: require('./MoveTo'),
+             npcDied: require('./NpcDied'),
           pickupExec: require('./PickupExec'),
        pickupRequest: require('./PickupRequest'),
          receivedHit: require('./ReceivedHit'),

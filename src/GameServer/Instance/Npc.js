@@ -180,7 +180,7 @@ class Npc extends NpcModel {
         this.destructor(session);
         this.state.setDead(true);
         session.dataSend(ServerResponse.die(this.fetchId()));
-        actor.npcDied(this);
+        invoke('GameServer/Generics').npcDied(session, actor, this);
     }
 }
 

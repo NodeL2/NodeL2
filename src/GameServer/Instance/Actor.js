@@ -5,7 +5,6 @@ const Attack         = invoke('GameServer/Instance/Attack');
 const Skillset       = invoke('GameServer/Instance/Skillset');
 const Backpack       = invoke('GameServer/Instance/Backpack');
 const World          = invoke('GameServer/World');
-const Formulas       = invoke('GameServer/Formulas');
 
 class Actor extends ActorModel {
     constructor(session, data) {
@@ -55,14 +54,6 @@ class Actor extends ActorModel {
         );
     }
 
-    npcDied(npc) {
-        World.removeNpc(this.session, npc);
-
-        if (this.isDead() === false) {
-            invoke('GameServer/Generics').experienceReward(this.session, this, npc.fetchRewardExp(), npc.fetchRewardSp());
-        }
-    }
-
     // State
 
     isBlocked() {
@@ -81,18 +72,6 @@ class Actor extends ActorModel {
         return false;
     }
 
-    // Update stats
-
-    statusUpdateLevelExpSp(creature) {
-        this.session.dataSend(
-            ServerResponse.statusUpdate(creature.fetchId(), [
-                { id: 0x1, value: creature.fetchLevel() },
-                { id: 0x2, value: creature.fetchExp  () },
-                { id: 0xd, value: creature.fetchSp   () },
-            ])
-        );
-    }
-
     statusUpdateVitals(creature) {
         this.session.dataSend(
             ServerResponse.statusUpdate(creature.fetchId(), [
@@ -100,16 +79,6 @@ class Actor extends ActorModel {
                 { id: 0xa, value: creature.fetchMaxHp() },
                 { id: 0xb, value: creature.fetchMp   () },
                 { id: 0xc, value: creature.fetchMaxMp() },
-            ])
-        );
-    }
-
-    statusUpdateStats(creature) {
-        this.session.dataSend(
-            ServerResponse.statusUpdate(creature.fetchId(), [
-                { id: 0x11, value: creature.fetchCollectivePAtk  () },
-                { id: 0x17, value: creature.fetchCollectiveMAtk  () },
-                { id: 0x12, value: creature.fetchCollectiveAtkSpd() },
             ])
         );
     }
