@@ -12,7 +12,7 @@ function socialAction(session, buffer) {
 }
 
 function consume(session, data) {
-    session.actor.socialAction(data.actionId);
+    invoke('GameServer/Generics').socialAction(session, session.actor, data.actionId);
 }
 
 module.exports = socialAction;

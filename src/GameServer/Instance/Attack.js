@@ -129,7 +129,7 @@ class Attack {
             this.resetQueuedEvent();
             src.state.setHits (false);
             src.state.setCasts(false);
-            src.abortCombatState();
+            invoke('GameServer/Generics').abortCombatState(src.session, src);
             return true;
         }
         return false;

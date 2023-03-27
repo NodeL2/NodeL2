@@ -6,7 +6,7 @@ function revive(session, actor) {
 
     setTimeout(() => {
         actor.state.setDead(false);
-        actor.socialAction(9); // SWAG stand-up
+        session.dataSend(ServerResponse.socialAction(actor.fetchId(), 9)); // SWAG stand-up
     }, 2500);
 }
 

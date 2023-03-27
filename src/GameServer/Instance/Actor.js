@@ -307,38 +307,12 @@ class Actor extends ActorModel {
         }
     }
 
-    socialAction(actionId) {
-        if (this.isDead() || this.isBlocked() || this.state.inMotion()) {
-            return;
-        }
-
-        this.automation.abortAll(this);
-        this.session.dataSend(ServerResponse.socialAction(this.fetchId(), actionId));
-    }
-
     npcDied(npc) {
         World.removeNpc(this.session, npc);
 
         if (this.isDead() === false) {
             invoke('GameServer/Generics').experienceReward(this.session, this, npc.fetchRewardExp(), npc.fetchRewardSp());
         }
-    }
-
-    enterCombatState() {
-        if (this.state.fetchCombats()) {
-            return;
-        }
-
-        this.state.setCombats(true);
-        this.session.dataSend(ServerResponse.autoAttackStart(this.fetchId()));
-    }
-
-    abortCombatState() {
-        this.clearDestId();
-        this.state.setCombats(false);
-        this.automation.destructor(this);
-
-        this.session.dataSend(ServerResponse.autoAttackStop(this.fetchId()));
     }
 
     hitReceived(hit) {
@@ -357,7 +331,7 @@ class Actor extends ActorModel {
         }
 
         this.automation.replenishVitals(this);
-        this.enterCombatState();
+        invoke('GameServer/Generics').enterCombatState(this.session, this);
     }
 
     // State
