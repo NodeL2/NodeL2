@@ -103,7 +103,7 @@ const World = {
             case 'teleport':
                 {
                     const coords = DataCache.teleports.find((ob) => ob.id === Number(parts[1]))?.spawns;
-                    coords ? session.actor.teleportTo(coords[0]) : null;
+                    coords ? invoke('GameServer/Generics').teleportTo(session, session.actor, coords[0]) : null;
                 }
                 break;
 
@@ -116,7 +116,7 @@ const World = {
                         head: session.actor.fetchHead()
                     };
 
-                    session.actor.teleportTo(coords);
+                    invoke('GameServer/Generics').teleportTo(session, session.actor, coords);
                 }
                 break;
 

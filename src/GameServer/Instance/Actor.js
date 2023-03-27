@@ -6,7 +6,6 @@ const Skillset       = invoke('GameServer/Instance/Skillset');
 const Backpack       = invoke('GameServer/Instance/Backpack');
 const DataCache      = invoke('GameServer/DataCache');
 const World          = invoke('GameServer/World');
-const Methods        = invoke('GameServer/Methods');
 const ConsoleText    = invoke('GameServer/ConsoleText');
 const Formulas       = invoke('GameServer/Formulas');
 const Database       = invoke('Database');
@@ -321,7 +320,7 @@ class Actor extends ActorModel {
         World.removeNpc(this.session, npc);
 
         if (this.isDead() === false) {
-            Methods.expAndSpReward(this.session, this, npc.fetchRewardExp(), npc.fetchRewardSp());
+            invoke('GameServer/Generics').experienceReward(this.session, this, npc.fetchRewardExp(), npc.fetchRewardSp());
         }
     }
 
@@ -379,20 +378,6 @@ class Actor extends ActorModel {
             this.state.setDead(false);
             this.socialAction(9); // SWAG stand-up
         }, 2500);
-    }
-
-    teleportTo(coords) {
-        if (this.isDead() || this.isBlocked()) {
-            return;
-        }
-
-        this.automation.abortAll(this);
-        this.session.dataSend(ServerResponse.teleportToLocation(this.fetchId(), coords));
-
-        // Turns out to be a viable solution
-        setTimeout(() => {
-            this.updatePosition(coords);
-        }, 1000);
     }
 
     admin() {
