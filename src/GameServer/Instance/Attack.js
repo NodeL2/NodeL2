@@ -19,16 +19,18 @@ class Attack {
     }
 
     dequeueEvent(session) {
+        const Generics = invoke('GameServer/Generics');
+
         let actor = session.actor;
         let queue = this.queue;
         actor.state.setHits(false);
 
         switch (queue.name) {
-            case 'move'   : actor.moveTo       (queue.data); break;
-            case 'attack' : actor.attackRequest(queue.data); break;
-            case 'spell'  : actor.skillRequest (queue.data); break;
-            case 'pickup' : actor.pickupRequest(queue.data); break;
-            case 'sit'    : actor.basicAction  (queue.data); break;
+            case 'move'   : Generics.moveTo       (session, actor, queue.data); break;
+            case 'attack' : Generics.attackRequest(session, actor, queue.data); break;
+            case 'skill'  : Generics.skillRequest (session, actor, queue.data); break;
+            case 'pickup' : Generics.pickupRequest(session, actor, queue.data); break;
+            case 'sit'    : Generics.basicAction  (session, actor, queue.data); break;
         }
         this.resetQueuedEvent();
     }
@@ -129,7 +131,7 @@ class Attack {
             this.resetQueuedEvent();
             src.state.setHits (false);
             src.state.setCasts(false);
-            src.abortCombatState();
+            invoke('GameServer/Generics').abortCombatState(src.session, src);
             return true;
         }
         return false;

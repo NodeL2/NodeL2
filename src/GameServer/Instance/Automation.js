@@ -61,8 +61,11 @@ class Automation extends SelectedModel {
             creature.setHp(minHp);
             creature.setMp(minMp);
 
-            if (creature.fetchKind === undefined) { // TODO: NPCs will need to broadcast to subscribers
+            if (creature.fetchKind === undefined) {
                 creature.statusUpdateVitals(creature);
+            }
+            else {
+                creature.broadcastToSubscribers();
             }
 
             if (minHp >= maxHp && minMp >= maxMp) {

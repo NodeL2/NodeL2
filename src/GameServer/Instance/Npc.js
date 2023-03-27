@@ -160,7 +160,7 @@ class Npc extends NpcModel {
         ConsoleText.transmit(session, ConsoleText.caption.monsterHit, [
             { kind: ConsoleText.kind.npc, value: this.fetchDispSelfId() }, { kind: ConsoleText.kind.number, value: hit }
         ]);
-        actor.hitReceived(hit);
+        invoke('GameServer/Generics').receivedHit(session, actor, hit);
     }
 
     hitReceived(session, actor, hit) {
@@ -180,7 +180,16 @@ class Npc extends NpcModel {
         this.destructor(session);
         this.state.setDead(true);
         session.dataSend(ServerResponse.die(this.fetchId()));
-        actor.npcDied(this);
+        invoke('GameServer/Generics').npcDied(session, actor, this);
+    }
+
+    broadcastToSubscribers() {
+        const World = invoke('GameServer/World');
+
+        const inRadiusActors = World.user.sessions.filter((ob) => this.fetchId() === ob.actor.fetchDestId() && Formulas.calcWithinRadius(this.fetchLocX(), this.fetchLocY(), ob.actor.fetchLocX(), ob.actor.fetchLocY(), 3500)) ?? [];
+        inRadiusActors.forEach((session) => {
+            session.actor.statusUpdateVitals(this);
+        });
     }
 }
 
