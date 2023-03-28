@@ -79,8 +79,8 @@ class Automation extends SelectedModel {
         this.timer.replenish = undefined;
     }
 
-    ticksToMove(srcX, srcY, dstX, dstY, radius, speed) {
-        const distance = Formulas.calcDistance(srcX, srcY, dstX, dstY) - radius;
+    ticksToMove(srcX, srcY, srcZ, dstX, dstY, dstZ, radius, speed) {
+        const distance = Formulas.calcDistance3D(srcX, srcY, srcZ, dstX, dstY, dstZ) - radius;
         const duration = 1 + ((this.ticksPerSecond * distance) / speed);
         return (1000 / this.ticksPerSecond) * duration;
     }
@@ -95,7 +95,7 @@ class Automation extends SelectedModel {
         // Calculate duration
         src.state.setTowards(radius === 0 ? 'melee' : 'remote');
         const ticks = this.ticksToMove(
-            src.fetchLocX(), src.fetchLocY(), dst.fetchLocX(), dst.fetchLocY(), radius, src.fetchCollectiveRunSpd()
+            src.fetchLocX(), src.fetchLocY(), src.fetchLocZ(), dst.fetchLocX(), dst.fetchLocY(), dst.fetchLocZ(), radius, src.fetchCollectiveRunSpd()
         );
 
         // Arrived
@@ -115,24 +115,25 @@ class Automation extends SelectedModel {
     }
 
     schedulePickup(session, src, dst, callback) {
+        const from = {
+            locX: src.fetchLocX(),
+            locY: src.fetchLocY(),
+            locZ: src.fetchLocZ(),
+        };
+
+        const to = {
+            locX: dst.fetchLocX(),
+            locY: dst.fetchLocY(),
+            locZ: dst.fetchLocZ(),
+        };
+
         // Execute each time, or else creature is stuck
-        session.dataSend(ServerResponse.moveToLocation(src.fetchId(), {
-            from: {
-                locX: src.fetchLocX(),
-                locY: src.fetchLocY(),
-                locZ: src.fetchLocZ(),
-            },
-            to: {
-                locX: dst.fetchLocX(),
-                locY: dst.fetchLocY(),
-                locZ: dst.fetchLocZ(),
-            }
-        }));
+        session.dataSend(ServerResponse.moveToLocation(src.fetchId(), { from: from, to: to }));
 
         // Calculate duration
         src.state.setTowards('pickup');
         const ticks = this.ticksToMove(
-            src.fetchLocX(), src.fetchLocY(), dst.fetchLocX(), dst.fetchLocY(), 0, src.fetchCollectiveRunSpd()
+            from.locX, from.locY, from.locZ, to.locX, to.locY, to.locZ, 0, src.fetchCollectiveRunSpd()
         );
 
         // Arrived
