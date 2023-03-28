@@ -1,5 +1,5 @@
 function destCancel(session, buffer) {
-    invoke('GameServer/Generics').unselect(session, session.actor);
+    session.actor.unselect();
 }
 
 module.exports = destCancel;

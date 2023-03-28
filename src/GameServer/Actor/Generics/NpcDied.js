@@ -1,7 +1,7 @@
 const World = invoke('GameServer/World');
 
 function npcDied(session, actor, npc) {
-    const Generics = invoke('GameServer/Generics');
+    const Generics = invoke('GameServer/Actor/Generics');
 
     World.removeNpc(session, npc);
     Generics.abortCombatState(session, actor);

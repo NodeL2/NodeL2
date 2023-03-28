@@ -4,7 +4,7 @@ const Formulas       = invoke('GameServer/Formulas');
 const Database       = invoke('Database');
 
 function updatePosition(session, actor, coords) {
-    const Generics = invoke('GameServer/Generics');
+    const Generics = invoke('GameServer/Actor/Generics');
 
     // TODO: Write less in DB about movement
     actor.setLocXYZH(coords);
@@ -19,17 +19,17 @@ function updatePosition(session, actor, coords) {
     // Reschedule actions based on updated position
     if (actor.storedAttack) {
         Generics.attackExec(session, actor, structuredClone(actor.storedAttack));
-        actor.clearStoredActions();
+        Generics.clearStoredActions(session, actor);
     }
 
     if (actor.storedSpell) {
-        Generics. skillExec(session, actor, structuredClone(actor.storedSpell));
-        actor.clearStoredActions();
+        Generics. skillExec(session, actor, structuredClone(actor.storedSpell ));
+        Generics.clearStoredActions(session, actor);
     }
 
     if (actor.storedPickup) {
         Generics.pickupExec(session, actor, structuredClone(actor.storedPickup));
-        actor.clearStoredActions();
+        Generics.clearStoredActions(session, actor);
     }
 }
 

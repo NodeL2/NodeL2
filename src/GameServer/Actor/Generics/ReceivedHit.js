@@ -1,5 +1,5 @@
 function receivedHit(session, actor, hit) {
-    const Generics = invoke('GameServer/Generics');
+    const Generics = invoke('GameServer/Actor/Generics');
 
     actor.setHp(Math.max(0, actor.fetchHp() - hit)); // HP bar would disappear if less than zero
     actor.statusUpdateVitals(actor);

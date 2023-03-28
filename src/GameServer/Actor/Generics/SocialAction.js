@@ -1,12 +1,12 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 
-function socialAction(session, actor, actionId) {
+function socialAction(session, actor, data) {
     if (actor.isDead() || actor.isBlocked() || actor.state.inMotion()) {
         return;
     }
 
     actor.automation.abortAll(actor);
-    session.dataSend(ServerResponse.socialAction(actor.fetchId(), actionId));
+    session.dataSend(ServerResponse.socialAction(actor.fetchId(), data.actionId));
 }
 
 module.exports = socialAction;

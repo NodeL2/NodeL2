@@ -12,7 +12,7 @@ function restartPoint(session, buffer) {
 }
 
 function consume(session, data) {
-    invoke('GameServer/Generics').revive(session, session.actor);
+    session.actor.revive();
 }
 
 module.exports = restartPoint;

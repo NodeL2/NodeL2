@@ -2,7 +2,7 @@ const ServerResponse = invoke('GameServer/Network/Response');
 const World          = invoke('GameServer/World');
 
 function select(session, actor, data) {
-    const Generics = invoke('GameServer/Generics');
+    const Generics = invoke('GameServer/Actor/Generics');
 
     if (actor.fetchId() === data.id) { // Click on self
         actor.setDestId(actor.fetchId());
