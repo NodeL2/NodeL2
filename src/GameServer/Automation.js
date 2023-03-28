@@ -115,24 +115,25 @@ class Automation extends SelectedModel {
     }
 
     schedulePickup(session, src, dst, callback) {
+        const from = {
+            locX: src.fetchLocX(),
+            locY: src.fetchLocY(),
+            locZ: src.fetchLocZ(),
+        };
+
+        const to = {
+            locX: dst.fetchLocX(),
+            locY: dst.fetchLocY(),
+            locZ: dst.fetchLocZ(),
+        };
+
         // Execute each time, or else creature is stuck
-        session.dataSend(ServerResponse.moveToLocation(src.fetchId(), {
-            from: {
-                locX: src.fetchLocX(),
-                locY: src.fetchLocY(),
-                locZ: src.fetchLocZ(),
-            },
-            to: {
-                locX: dst.fetchLocX(),
-                locY: dst.fetchLocY(),
-                locZ: dst.fetchLocZ(),
-            }
-        }));
+        session.dataSend(ServerResponse.moveToLocation(src.fetchId(), { from: from, to: to }));
 
         // Calculate duration
         src.state.setTowards('pickup');
         const ticks = this.ticksToMove(
-            src.fetchLocX(), src.fetchLocY(), dst.fetchLocX(), dst.fetchLocY(), 0, src.fetchCollectiveRunSpd()
+            from.locX, from.locY, from.locZ, to.locX, to.locY, to.locZ, 0, src.fetchCollectiveRunSpd()
         );
 
         // Arrived
