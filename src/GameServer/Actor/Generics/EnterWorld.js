@@ -2,7 +2,7 @@ const DataCache   = invoke('GameServer/DataCache');
 const ConsoleText = invoke('GameServer/ConsoleText');
 
 function enterWorld(session, actor) {
-    const Generics = invoke('GameServer/Generics');
+    const Generics = invoke('GameServer/Actor/Generics');
 
     // Calculate accumulated
     Generics.calculateStats(session, actor);

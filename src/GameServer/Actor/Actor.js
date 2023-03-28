@@ -1,9 +1,9 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 const ActorModel     = invoke('GameServer/Model/Actor');
-const Automation     = invoke('GameServer/Instance/Automation');
-const Attack         = invoke('GameServer/Instance/Attack');
-const Skillset       = invoke('GameServer/Instance/Skillset');
-const Backpack       = invoke('GameServer/Instance/Backpack');
+const Attack         = invoke('GameServer/Actor/Attack');
+const Skillset       = invoke('GameServer/Actor/Skillset');
+const Backpack       = invoke('GameServer/Actor/Backpack');
+const Automation     = invoke('GameServer/Automation');
 
 class Actor extends ActorModel {
     constructor(session, data) {
@@ -11,10 +11,10 @@ class Actor extends ActorModel {
         super(data);
 
         // Local
-        this.automation = new Automation();
-        this.attack     = new Attack();
         this.skillset   = new Skillset();
         this.backpack   = new Backpack(data);
+        this.attack     = new Attack();
+        this.automation = new Automation();
         this.session    = session;
 
         delete this.model.items;
@@ -22,11 +22,11 @@ class Actor extends ActorModel {
     }
 
     destructor() {
-        invoke('GameServer/Generics').unselect(
+        invoke('GameServer/Actor/Generics').unselect(
             this.session, this
         );
 
-        invoke('GameServer/Generics').clearStoredActions(
+        invoke('GameServer/Actor/Generics').clearStoredActions(
             this.session, this
         );
 
@@ -37,55 +37,55 @@ class Actor extends ActorModel {
     // Request packets
 
     enterWorld() {
-        invoke('GameServer/Generics').enterWorld(
+        invoke('GameServer/Actor/Generics').enterWorld(
             this.session, this
         );
     }
 
     select(data) {
-        invoke('GameServer/Generics').select(
+        invoke('GameServer/Actor/Generics').select(
             this.session, this, data
         );
     }
 
     unselect() {
-        invoke('GameServer/Generics').unselect(
+        invoke('GameServer/Actor/Generics').unselect(
             this.session, this
         );
     }
 
     moveTo(data) {
-        invoke('GameServer/Generics').moveTo(
+        invoke('GameServer/Actor/Generics').moveTo(
             this.session, this, data
         );
     }
 
     updatePosition(data) {
-        invoke('GameServer/Generics').updatePosition(
+        invoke('GameServer/Actor/Generics').updatePosition(
             this.session, this, data
         );
     }
 
     basicAction(data) {
-        invoke('GameServer/Generics').basicAction(
+        invoke('GameServer/Actor/Generics').basicAction(
             this.session, this, data
         );
     }
 
     socialAction(data) {
-        invoke('GameServer/Generics').socialAction(
+        invoke('GameServer/Actor/Generics').socialAction(
             this.session, this, data
         );
     }
 
     skillRequest(data) {
-        invoke('GameServer/Generics').skillRequest(
+        invoke('GameServer/Actor/Generics').skillRequest(
             this.session, this, data
         );
     }
 
     revive() {
-        invoke('GameServer/Generics').revive(
+        invoke('GameServer/Actor/Generics').revive(
             this.session, this
         );
     }

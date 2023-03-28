@@ -4,7 +4,7 @@ const Formulas       = invoke('GameServer/Formulas');
 const Database       = invoke('Database');
 
 function updatePosition(session, actor, coords) {
-    const Generics = invoke('GameServer/Generics');
+    const Generics = invoke('GameServer/Actor/Generics');
 
     // TODO: Write less in DB about movement
     actor.setLocXYZH(coords);
