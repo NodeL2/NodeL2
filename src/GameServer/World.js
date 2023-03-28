@@ -49,15 +49,17 @@ const World = {
     },
 
     npcRewards(session, npc) {
-        const rewards = DataCache.npcRewards.find(ob => ob.selfId === npc.fetchSelfId())?.rewards ?? [];
-        rewards.forEach((reward) => {
-            const optn = options.default.General;
+        DataCache.fetchNpcRewardsFromSelfId(npc.fetchSelfId(), (result) => {
+            const rewards = result.rewards ?? [];
+            const optn    = options.default.General;
 
-            if (Math.random() <= (reward.chance * optn.dropChanceRate) / 100) { // TODO: Remove locZ hack at some point
-                const coords = Formulas.createRandomCoordinates(npc.fetchLocX(), npc.fetchLocY(), 50);
-                coords.locZ  = npc.fetchLocZ() - 10;
-                this.spawnItem(session, reward.selfId, utils.oneFromSpan(reward.min, reward.max), coords);
-            }
+            rewards.forEach((reward) => {
+                if (Math.random() <= (reward.chance * optn.dropChanceRate) / 100) { // TODO: Remove locZ hack at some point
+                    const coords = Formulas.createRandomCoordinates(npc.fetchLocX(), npc.fetchLocY(), 50);
+                    coords.locZ  = npc.fetchLocZ() - 10;
+                    this.spawnItem(session, reward.selfId, utils.oneFromSpan(reward.min, reward.max), coords);
+                }
+            });
         });
     },
 
