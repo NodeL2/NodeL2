@@ -22,17 +22,75 @@ class Actor extends ActorModel {
     }
 
     destructor() {
-        invoke('GameServer/Generics').unselect(this.session, this);
-        this.clearStoredActions();
+        invoke('GameServer/Generics').unselect(
+            this.session, this
+        );
+
+        invoke('GameServer/Generics').clearStoredActions(
+            this.session, this
+        );
+
         this.attack.destructor();
         this.automation.destructor(this);
     }
 
-    clearStoredActions() {
-        this.storedAttack = undefined;
-        this.storedSpell  = undefined;
-        this.storedPickup = undefined;
+    // Request packets
+
+    enterWorld() {
+        invoke('GameServer/Generics').enterWorld(
+            this.session, this
+        );
     }
+
+    select(data) {
+        invoke('GameServer/Generics').select(
+            this.session, this, data
+        );
+    }
+
+    unselect() {
+        invoke('GameServer/Generics').unselect(
+            this.session, this
+        );
+    }
+
+    moveTo(data) {
+        invoke('GameServer/Generics').moveTo(
+            this.session, this, data
+        );
+    }
+
+    updatePosition(data) {
+        invoke('GameServer/Generics').updatePosition(
+            this.session, this, data
+        );
+    }
+
+    basicAction(data) {
+        invoke('GameServer/Generics').basicAction(
+            this.session, this, data
+        );
+    }
+
+    socialAction(data) {
+        invoke('GameServer/Generics').socialAction(
+            this.session, this, data
+        );
+    }
+
+    skillRequest(data) {
+        invoke('GameServer/Generics').skillRequest(
+            this.session, this, data
+        );
+    }
+
+    revive() {
+        invoke('GameServer/Generics').revive(
+            this.session, this
+        );
+    }
+
+    // Abstract
 
     isBlocked() {
         if (this.state.isBlocked()) {

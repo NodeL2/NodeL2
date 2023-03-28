@@ -20,7 +20,7 @@ function consume(session, data) {
         return;
     }
 
-    invoke('GameServer/Generics').skillRequest(session, session.actor, data);
+    session.actor.skillRequest(data);
 }
 
 module.exports = skillUse;
