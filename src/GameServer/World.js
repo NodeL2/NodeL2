@@ -1,6 +1,6 @@
 const ServerResponse = invoke('GameServer/Network/Response');
-const Npc            = invoke('GameServer/Instance/Npc');
-const Item           = invoke('GameServer/Instance/Item');
+const Npc            = invoke('GameServer/Npc/Npc');
+const Item           = invoke('GameServer/Item/Item');
 const DataCache      = invoke('GameServer/DataCache');
 const ConsoleText    = invoke('GameServer/ConsoleText');
 const Formulas       = invoke('GameServer/Formulas');
@@ -49,15 +49,17 @@ const World = {
     },
 
     npcRewards(session, npc) {
-        const rewards = DataCache.npcRewards.find(ob => ob.selfId === npc.fetchSelfId())?.rewards ?? [];
-        rewards.forEach((reward) => {
-            const optn = options.default.General;
+        DataCache.fetchNpcRewardsFromSelfId(npc.fetchSelfId(), (result) => {
+            const rewards = result.rewards ?? [];
+            const optn    = options.default.General;
 
-            if (Math.random() <= (reward.chance * optn.dropChanceRate) / 100) { // TODO: Remove locZ hack at some point
-                const coords = Formulas.createRandomCoordinates(npc.fetchLocX(), npc.fetchLocY(), 50);
-                coords.locZ  = npc.fetchLocZ() - 10;
-                this.spawnItem(session, reward.selfId, utils.oneFromSpan(reward.min, reward.max), coords);
-            }
+            rewards.forEach((reward) => {
+                if (Math.random() <= (reward.chance * optn.dropChanceRate) / 100) { // TODO: Remove locZ hack at some point
+                    const coords = Formulas.createRandomCoordinates(npc.fetchLocX(), npc.fetchLocY(), 50);
+                    coords.locZ  = npc.fetchLocZ() - 10;
+                    this.spawnItem(session, reward.selfId, utils.oneFromSpan(reward.min, reward.max), coords);
+                }
+            });
         });
     },
 
@@ -103,7 +105,7 @@ const World = {
             case 'teleport':
                 {
                     const coords = DataCache.teleports.find((ob) => ob.id === Number(parts[1]))?.spawns;
-                    coords ? invoke('GameServer/Generics').teleportTo(session, session.actor, coords[0]) : null;
+                    coords ? invoke('GameServer/Actor/Generics').teleportTo(session, session.actor, coords[0]) : null;
                 }
                 break;
 
@@ -116,7 +118,7 @@ const World = {
                         head: session.actor.fetchHead()
                     };
 
-                    invoke('GameServer/Generics').teleportTo(session, session.actor, coords);
+                    invoke('GameServer/Actor/Generics').teleportTo(session, session.actor, coords);
                 }
                 break;
 

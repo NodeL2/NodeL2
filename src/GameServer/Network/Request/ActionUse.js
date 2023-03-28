@@ -16,7 +16,7 @@ function actionUse(session, buffer) {
 }
 
 function consume(session, data) {
-    invoke('GameServer/Generics').basicAction(session, session.actor, data);
+    session.actor.basicAction(data);
 }
 
 module.exports = actionUse;

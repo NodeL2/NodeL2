@@ -1,6 +1,6 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 const NpcModel       = invoke('GameServer/Model/Npc');
-const Automation     = invoke('GameServer/Instance/Automation');
+const Automation     = invoke('GameServer/Automation');
 const ConsoleText    = invoke('GameServer/ConsoleText');
 const Formulas       = invoke('GameServer/Formulas');
 
@@ -160,7 +160,7 @@ class Npc extends NpcModel {
         ConsoleText.transmit(session, ConsoleText.caption.monsterHit, [
             { kind: ConsoleText.kind.npc, value: this.fetchDispSelfId() }, { kind: ConsoleText.kind.number, value: hit }
         ]);
-        invoke('GameServer/Generics').receivedHit(session, actor, hit);
+        invoke('GameServer/Actor/Generics').receivedHit(session, actor, hit);
     }
 
     hitReceived(session, actor, hit) {
@@ -180,7 +180,7 @@ class Npc extends NpcModel {
         this.destructor(session);
         this.state.setDead(true);
         session.dataSend(ServerResponse.die(this.fetchId()));
-        invoke('GameServer/Generics').npcDied(session, actor, this);
+        invoke('GameServer/Actor/Generics').npcDied(session, actor, this);
     }
 
     broadcastToSubscribers() {

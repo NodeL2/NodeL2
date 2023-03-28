@@ -34,17 +34,22 @@ const DataCache = {
 
     fetchItemFromSelfId(selfId, callback) {
         const item = structuredClone(DataCache.items.find((ob) => ob.selfId === selfId));
-        item ? callback(item) : utils.infoWarn('Datapack   :: unknown Item Id %d', selfId);
+        item ? callback(item) : utils.infoWarn('Datapack   :: unknown Item SelfId %d', selfId);
     },
 
     fetchSkillFromSelfId(selfId, callback) {
         const item = structuredClone(DataCache.skills.find((ob) => ob.selfId === selfId));
-        item ? callback(item) : utils.infoWarn('Datapack   :: unknown Skill Id %d', selfId);
+        item ? callback(item) : utils.infoWarn('Datapack   :: unknown Skill SelfId %d', selfId);
     },
 
     fetchSkillTreeFromClassId(classId, callback) {
         const item = structuredClone(DataCache.skillTree.find((ob) => ob.classId === classId));
         item ? callback(item) : utils.infoWarn('Datapack   :: unknown SkillTree ClassId %d', classId);
+    },
+
+    fetchNpcRewardsFromSelfId(selfId, callback) {
+        const item = structuredClone(DataCache.npcRewards.find((ob) => ob.selfId === selfId));
+        item ? callback(item) : utils.infoWarn('Datapack   :: unknown NpcRewards SelfId %d', selfId);
     }
 };
 

@@ -1,5 +1,5 @@
 function attackRequest(session, actor, data) {
-    const Generics = invoke('GameServer/Generics');
+    const Generics = invoke('GameServer/Actor/Generics');
 
     if (actor.isDead()) {
         return;

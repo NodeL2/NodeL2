@@ -1,5 +1,5 @@
 const Opcodes = invoke('GameServer/Network/Opcodes');
-const Actor   = invoke('GameServer/Instance/Actor');
+const Actor   = invoke('GameServer/Actor/Actor');
 const World   = invoke('GameServer/World');
 
 class Session {
