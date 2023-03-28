@@ -13,8 +13,7 @@ class ActorModel extends CreatureModel {
     }
 
     setExpSp(exp, sp) {
-        this.setExp(exp);
-        this.setSp ( sp);
+        this.setExp(exp); this.setSp(sp);
     }
 
     setCollectiveAccur(data) {

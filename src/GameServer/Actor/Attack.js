@@ -139,7 +139,7 @@ class Attack {
 
     hit(session, actor, npc, hit) {
         ConsoleText.transmit(session, ConsoleText.caption.actorHit, [{ kind: ConsoleText.kind.number, value: hit }]);
-        npc.hitReceived(session, actor, hit);
+        invoke('GameServer/Npc/Generics').receivedHit(session, actor, npc, hit);
     }
 }
 
