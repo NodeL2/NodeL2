@@ -152,6 +152,13 @@ const Formulas = {
         return utils.sqrt((dX ** 2) + (dY ** 2));
     },
 
+    calcDistance3D(srcX, srcY, srcZ, destX, destY, destZ) {
+        const dX = destX - srcX;
+        const dY = destY - srcY;
+        const dZ = destZ - srcZ;
+        return utils.sqrt((dX ** 2) + (dY ** 2) + (dZ ** 2));
+    },
+
     createRandomCoordinates(centerX, centerY, radius) {
         const r = radius * utils.sqrt(Math.random());
         const theta = Math.random() * 2 * Math.PI;
@@ -168,10 +175,11 @@ const Formulas = {
         return ((dX ** 2) + (dY ** 2)) < (radius ** 2);
     },
 
-    calcMidPointCoordinates(srcX, srcY, destX, destY, t) {
+    calcMidPointCoordinates(srcX, srcY, srcZ, destX, destY, destZ, t) {
         return {
             locX: ((1 - t) * srcX) + (t * destX),
             locY: ((1 - t) * srcY) + (t * destY),
+            locZ: ((1 - t) * srcZ) + (t * destZ),
         };
     }
 };

@@ -57,10 +57,14 @@ class CreatureModel extends SelectedModel {
         this.model.head = data;
     }
 
-    setLocXYZH(coords) {
+    setLocXYZ(coords) {
         this.setLocX(coords.locX);
         this.setLocY(coords.locY);
         this.setLocZ(coords.locZ);
+    }
+
+    setLocXYZH(coords) {
+        this.setLocXYZ(coords);
         this.setHead(coords.head);
     }
 

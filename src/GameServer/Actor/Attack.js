@@ -19,7 +19,7 @@ class Attack {
     }
 
     dequeueEvent(session) {
-        const Generics = invoke('GameServer/Generics');
+        const Generics = invoke('GameServer/Actor/Generics');
 
         let actor = session.actor;
         let queue = this.queue;
@@ -131,7 +131,7 @@ class Attack {
             this.resetQueuedEvent();
             src.state.setHits (false);
             src.state.setCasts(false);
-            invoke('GameServer/Generics').abortCombatState(src.session, src);
+            invoke('GameServer/Actor/Generics').abortCombatState(src.session, src);
             return true;
         }
         return false;
@@ -139,7 +139,7 @@ class Attack {
 
     hit(session, actor, npc, hit) {
         ConsoleText.transmit(session, ConsoleText.caption.actorHit, [{ kind: ConsoleText.kind.number, value: hit }]);
-        npc.hitReceived(session, actor, hit);
+        invoke('GameServer/Npc/Generics').receivedHit(session, actor, npc, hit);
     }
 }
 

@@ -1,7 +1,7 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 const BackpackModel  = invoke('GameServer/Model/Backpack');
 const SkillModel     = invoke('GameServer/Model/Skill');
-const Item           = invoke('GameServer/Instance/Item');
+const Item           = invoke('GameServer/Item/Item');
 const DataCache      = invoke('GameServer/DataCache');
 const ConsoleText    = invoke('GameServer/ConsoleText');
 const World          = invoke('GameServer/World');
@@ -145,7 +145,7 @@ class Backpack extends BackpackModel {
         ]);
 
         // Recalculate
-        invoke('GameServer/Generics').calculateStats(session, session.actor);
+        invoke('GameServer/Actor/Generics').calculateStats(session, session.actor);
     }
 
     unequipGear(session, slot) {
@@ -170,7 +170,7 @@ class Backpack extends BackpackModel {
             this.items.unshift(item);
 
             // Recalculate
-            invoke('GameServer/Generics').calculateStats(session, session.actor);
+            invoke('GameServer/Actor/Generics').calculateStats(session, session.actor);
         });
     }
 

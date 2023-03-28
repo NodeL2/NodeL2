@@ -10,7 +10,7 @@ function teleportTo(session, actor, coords) {
 
     // Turns out to be a viable solution
     setTimeout(() => {
-        invoke('GameServer/Generics').updatePosition(session, actor, coords);
+        invoke('GameServer/Actor/Generics').updatePosition(session, actor, coords);
     }, 1000);
 }
 
