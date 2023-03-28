@@ -57,6 +57,7 @@ class Npc extends NpcModel {
             const perimeter = this.fetchRadius() + this.fetchAtkRadius();
             let dstX = 0;
             let dstY = 0;
+            let dstZ = 0;
 
             this.timer.combat = setInterval(() => {
                 if (this.state.isBlocked()) {
@@ -65,13 +66,15 @@ class Npc extends NpcModel {
 
                 const newDstX = actor.fetchLocX();
                 const newDstY = actor.fetchLocY();
+                const newDstZ = actor.fetchLocZ();
 
                 if (this.state.inMotion()) {
                     if (dstX !== newDstX || dstY !== newDstY) {
                         const ratio  = this.automation.fetchDistanceRatio();
-                        const coords = Formulas.calcMidPointCoordinates(this.fetchLocX(), this.fetchLocY(), dstX, dstY, ratio);
+                        const coords = Formulas.calcMidPointCoordinates(this.fetchLocX(), this.fetchLocY(), this.fetchLocZ(), dstX, dstY, dstZ, ratio);
                         this.setLocX(coords.locX);
                         this.setLocY(coords.locY);
+                        this.setLocZ(coords.locZ);
 
                         this.automation.abortAll(this);
                     }
@@ -80,10 +83,12 @@ class Npc extends NpcModel {
 
                 dstX = newDstX;
                 dstY = newDstY;
+                dstZ = newDstZ;
 
                 this.automation.scheduleAction(session, this, actor, actor.fetchRadius(), () => {
                     this.setLocX(dstX);
                     this.setLocY(dstY);
+                    this.setLocZ(dstZ);
 
                     if (Formulas.calcDistance(dstX, dstY, actor.fetchLocX(), actor.fetchLocY()) <= perimeter) {
                         session.dataSend(
