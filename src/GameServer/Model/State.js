@@ -93,6 +93,12 @@ class StateModel {
 
     // Abstract
 
+    setCombatEnded() {
+        this.setHits   (false);
+        this.setCasts  (false);
+        this.setCombats(false);
+    }
+
     inMotion() {
         return this.fetchTowards();
     }

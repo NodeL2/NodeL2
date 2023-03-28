@@ -54,10 +54,11 @@ class Npc extends NpcModel {
         session.dataSend(ServerResponse.autoAttackStart(this.fetchId()));
 
         setTimeout(() => {
-            const perimeter = this.fetchRadius() + this.fetchAtkRadius();
-            let dstX = 0;
-            let dstY = 0;
-            let dstZ = 0;
+            const coords = {
+                locX: 0,
+                locY: 0,
+                locZ: 0,
+            };
 
             this.timer.combat = setInterval(() => {
                 if (this.state.isBlocked()) {
@@ -69,28 +70,22 @@ class Npc extends NpcModel {
                 const newDstZ = actor.fetchLocZ();
 
                 if (this.state.inMotion()) {
-                    if (dstX !== newDstX || dstY !== newDstY) {
-                        const ratio  = this.automation.fetchDistanceRatio();
-                        const coords = Formulas.calcMidPointCoordinates(this.fetchLocX(), this.fetchLocY(), this.fetchLocZ(), dstX, dstY, dstZ, ratio);
-                        this.setLocX(coords.locX);
-                        this.setLocY(coords.locY);
-                        this.setLocZ(coords.locZ);
+                    if (coords.locX !== newDstX || coords.locY !== newDstY) {
+                        this.setLocXYZ(Formulas.calcMidPointCoordinates(this.fetchLocX(), this.fetchLocY(), this.fetchLocZ(), coords.locX, coords.locY, coords.locZ, this.automation.fetchDistanceRatio()));
 
                         this.automation.abortAll(this);
                     }
                     return;
                 }
 
-                dstX = newDstX;
-                dstY = newDstY;
-                dstZ = newDstZ;
+                coords.locX = newDstX;
+                coords.locY = newDstY;
+                coords.locZ = newDstZ;
 
                 this.automation.scheduleAction(session, this, actor, actor.fetchRadius(), () => {
-                    this.setLocX(dstX);
-                    this.setLocY(dstY);
-                    this.setLocZ(dstZ);
+                    this.setLocXYZ(coords);
 
-                    if (Formulas.calcDistance(dstX, dstY, actor.fetchLocX(), actor.fetchLocY()) <= perimeter) {
+                    if (Formulas.calcDistance(coords.locX, coords.locY, actor.fetchLocX(), actor.fetchLocY()) <= this.fetchAtkRadius()) {
                         session.dataSend(
                             ServerResponse.stopMove(this.fetchId(), {
                                 locX: this.fetchLocX(),
@@ -114,9 +109,7 @@ class Npc extends NpcModel {
         this.timer.combat = undefined;
 
         this.clearDestId();
-        this.state.setCombats(false);
-        this.state.setHits   (false);
-        this.state.setCasts  (false);
+        this.state.setCombatEnded();
         this.automation.destructor(this);
 
         this.setStateRun(false);
@@ -166,26 +159,6 @@ class Npc extends NpcModel {
             { kind: ConsoleText.kind.npc, value: this.fetchDispSelfId() }, { kind: ConsoleText.kind.number, value: hit }
         ]);
         invoke('GameServer/Actor/Generics').receivedHit(session, actor, hit);
-    }
-
-    hitReceived(session, actor, hit) {
-        this.setHp(Math.max(0, this.fetchHp() - hit)); // HP bar would disappear if less than zero
-        actor.statusUpdateVitals(this);
-
-        if (this.fetchHp() <= 0) {
-            this.die(session, actor);
-            return;
-        }
-
-        this.automation.replenishVitals(this);
-        this.enterCombatState(session, actor);
-    }
-
-    die(session, actor) {
-        this.destructor(session);
-        this.state.setDead(true);
-        session.dataSend(ServerResponse.die(this.fetchId()));
-        invoke('GameServer/Actor/Generics').npcDied(session, actor, this);
     }
 
     broadcastToSubscribers() {
