@@ -93,5 +93,7 @@ global.options = {
 };
 
 global.path = {
-    world: 'GameServer/World/Generics/'
+    world: 'GameServer/World/Generics/',
+    actor: 'GameServer/Actor/Generics/',
+    npc: 'GameServer/Npc/Generics'
 }

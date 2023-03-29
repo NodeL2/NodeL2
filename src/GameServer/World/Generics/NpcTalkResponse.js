@@ -24,7 +24,7 @@ function npcTalkResponse(session, data) {
         case 'teleport':
             {
                 const coords = DataCache.teleports.find((ob) => ob.id === Number(parts[1]))?.spawns;
-                coords ? invoke('GameServer/Actor/Generics').teleportTo(session, session.actor, coords[0]) : null;
+                coords ? invoke(path.actor).teleportTo(session, session.actor, coords[0]) : null;
             }
             break;
 
@@ -37,7 +37,7 @@ function npcTalkResponse(session, data) {
                     head: session.actor.fetchHead()
                 };
 
-                invoke('GameServer/Actor/Generics').teleportTo(session, session.actor, coords);
+                invoke(path.actor).teleportTo(session, session.actor, coords);
             }
             break;
 
@@ -53,7 +53,7 @@ function npcTalkResponse(session, data) {
                 });
 
                 session.dataSend(
-                    ServerResponse.purchaseList(list)
+                    ServerResponse.purchaseList(list, session.actor.backpack.fetchTotalAdena())
                 );
             }
             break;

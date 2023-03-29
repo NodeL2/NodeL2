@@ -6,7 +6,7 @@ function moveTo(session, actor, coords) {
     }
 
     if (actor.isBlocked()) {
-        invoke('GameServer/Actor/Generics').queueRequest(session, actor, 'move', coords);
+        invoke(path.actor).queueRequest(session, actor, 'move', coords);
         return;
     }
 

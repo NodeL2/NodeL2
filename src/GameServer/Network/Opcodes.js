@@ -41,7 +41,7 @@ const Opcodes = {
         table[0x6d] = ClientRequest.restartPoint;
         table[0xcd] = ClientRequest.showMap;
 
-        table[0x57] = () => {}; // Board
+        table[0x57] = (session) => { invoke(path.actor).adminPanel(session, session.actor); }; // Board
         table[0x9d] = () => {}; // Skill Cool Time, not needed?
         table[0xb9] = () => {}; // Recommend button
         table[0xc1] = () => {}; // Macro
