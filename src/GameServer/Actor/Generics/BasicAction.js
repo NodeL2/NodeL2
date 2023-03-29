@@ -37,7 +37,7 @@ function basicAction(session, actor, data) {
         break;
 
     default:
-        utils.infoWarn('GameServer :: unknown basic action 0x%s', utils.toHex(data.actionId));
+        utils.infoWarn('GameServer', 'unknown basic action 0x%s', utils.toHex(data.actionId));
         break;
     }
 }

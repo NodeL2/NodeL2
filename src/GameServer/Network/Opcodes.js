@@ -4,7 +4,7 @@ const ClientRequest = invoke('GameServer/Network/Request');
 const Opcodes = {
     table: (() => {
         const table = utils.tupleAlloc(0xff, (_, packet) => {
-            utils.infoFail('GameServer :: unknown Opcode 0x%s', utils.toHex(packet[0]));
+            utils.infoFail('GameServer', 'unknown Opcode 0x%s', utils.toHex(packet[0]));
         });
 
         table[0x00] = ClientRequest.protocolVersion;

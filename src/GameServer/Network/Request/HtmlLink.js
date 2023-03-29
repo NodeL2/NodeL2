@@ -1,4 +1,4 @@
-const World         = invoke('GameServer/World');
+const World         = invoke('GameServer/World/World');
 const ReceivePacket = invoke('Packet/Receive');
 
 function htmlLink(session, buffer) {

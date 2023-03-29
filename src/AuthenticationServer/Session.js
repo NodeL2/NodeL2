@@ -37,7 +37,7 @@ class Session {
     }
 
     error() {
-        utils.infoWarn('AuthServer :: exception');
+        utils.infoWarn('AuthServer', 'exception');
     }
 }
 

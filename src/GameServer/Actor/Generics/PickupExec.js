@@ -1,5 +1,5 @@
 const ServerResponse = invoke('GameServer/Network/Response');
-const World          = invoke('GameServer/World');
+const World          = invoke('GameServer/World/World');
 
 function pickupExec(session, actor, data) {
     World.fetchItem(data.id).then((item) => {
@@ -8,7 +8,7 @@ function pickupExec(session, actor, data) {
             session.dataSend(ServerResponse.pickupItem(actor.fetchId(), item));
 
             setTimeout(() => {
-                World.pickupItemFromGround(session, actor, item);
+                World.pickupItem(session, actor, item);
             }, 250);
 
             setTimeout(() => {
@@ -16,7 +16,7 @@ function pickupExec(session, actor, data) {
             }, 500);
         });
     }).catch((err) => {
-        utils.infoWarn('GameServer :: Pickup -> ' + err);
+        utils.infoWarn('GameServer', 'Pickup -> ' + err);
     });
 }
 
