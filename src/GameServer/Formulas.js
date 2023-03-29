@@ -1,7 +1,7 @@
 const Formulas = {
     calcBaseHp: (() => {
         const table = utils.tupleAlloc(100, (level) => {
-            utils.infoFail('GameServer :: unknown HP Table for Level %d', level);
+            utils.infoFail('GameServer', 'unknown HP Table for Level %d', level);
         });
 
         function hp(level, a, b, c, d) {
@@ -23,7 +23,7 @@ const Formulas = {
 
     calcBaseMp: (() => {
         const table = utils.tupleAlloc(3, (level) => {
-            utils.infoFail('GameServer :: unknown MP Table for Level %d', level);
+            utils.infoFail('GameServer', 'unknown MP Table for Level %d', level);
         });
 
         function mp(level, a, b, c, d) {

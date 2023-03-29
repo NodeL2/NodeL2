@@ -1,5 +1,5 @@
 const ServerResponse = invoke('GameServer/Network/Response');
-const World          = invoke('GameServer/World');
+const World          = invoke('GameServer/World/World');
 const Formulas       = invoke('GameServer/Formulas');
 const Database       = invoke('Database');
 

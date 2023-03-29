@@ -4,7 +4,7 @@ const SkillModel     = invoke('GameServer/Model/Skill');
 const Item           = invoke('GameServer/Item/Item');
 const DataCache      = invoke('GameServer/DataCache');
 const ConsoleText    = invoke('GameServer/ConsoleText');
-const World          = invoke('GameServer/World');
+const World          = invoke('GameServer/World/World');
 const Database       = invoke('Database');
 
 class Backpack extends BackpackModel {
@@ -92,7 +92,7 @@ class Backpack extends BackpackModel {
                     return;
                 }
 
-                utils.infoWarn('GameServer :: unhandled item action');
+                utils.infoWarn('GameServer', 'unhandled item action');
             }
         });
     }

@@ -11,6 +11,7 @@
     "globals": {
         "invoke": "readonly",
         "utils": "readonly",
-        "options": "readonly"
+        "options": "readonly",
+        "path": "readonly"
     }
 }

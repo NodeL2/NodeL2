@@ -1,4 +1,4 @@
-const World = invoke('GameServer/World');
+const World = invoke('GameServer/World/World');
 
 function skillExec(session, actor, data) {
     World.fetchNpc(data.id).then((npc) => {
@@ -9,7 +9,7 @@ function skillExec(session, actor, data) {
             }
         });
     }).catch((err) => {
-        utils.infoWarn('GameServer :: Skill -> ' + err);
+        utils.infoWarn('GameServer', 'Skill -> ' + err);
     });
 }
 

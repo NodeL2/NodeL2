@@ -4,16 +4,16 @@ global.invoke = (module) => {
 };
 
 global.utils = {
-    infoSuccess(...params) {
-        console.info('\x1b[32m' + require('util').format(...params) + '\x1b[0m');
+    infoSuccess(prefix, ...params) {
+        console.info('\x1b[32m' + prefix.slice(0, 10) + ' '.repeat(10 - Math.min(prefix.length, 10)) + ' :: ' + require('util').format(...params) + '\x1b[0m');
     },
 
-    infoWarn(...params) {
-        console.info('\x1b[33m' + require('util').format(...params) + '\x1b[0m');
+    infoWarn(prefix, ...params) {
+        console.info('\x1b[33m' + prefix.slice(0, 10) + ' '.repeat(10 - Math.min(prefix.length, 10)) + ' :: ' + require('util').format(...params) + '\x1b[0m');
     },
 
-    infoFail(...params) {
-        console.info('\x1b[31m' + require('util').format(...params) + '\x1b[0m');
+    infoFail(prefix, ...params) {
+        console.info('\x1b[31m' + prefix.slice(0, 10) + ' '.repeat(10 - Math.min(prefix.length, 10)) + ' :: ' + require('util').format(...params) + '\x1b[0m');
         process.exit();
     },
 
@@ -91,3 +91,7 @@ global.options = {
         utils.parseRawFile('./config/default.ini')
     )
 };
+
+global.path = {
+    world: 'GameServer/World/Generics/'
+}

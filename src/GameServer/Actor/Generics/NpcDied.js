@@ -1,4 +1,4 @@
-const World = invoke('GameServer/World');
+const World = invoke('GameServer/World/World');
 
 function npcDied(session, actor, npc) {
     const Generics = invoke('GameServer/Actor/Generics');
