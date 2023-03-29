@@ -1,20 +1,31 @@
 const ServerResponse = invoke('GameServer/Network/Response');
-const World          = invoke('GameServer/World');
+const World          = invoke('GameServer/World/World');
 const Formulas       = invoke('GameServer/Formulas');
 const Database       = invoke('Database');
 
+function updateNpcs(session, coords) {
+    if (Formulas.calcDistance(this.previousXY?.locX ?? 0, this.previousXY?.locY ?? 0, coords.locX, coords.locY) < 1000) {
+        return;
+    }
+
+    const npcs = World.npc.spawns.filter((ob) => Formulas.calcWithinRadius(coords.locX, coords.locY, ob.fetchLocX(), ob.fetchLocY(), 3500)) ?? [];
+
+    npcs.forEach((npc) => {
+        session.dataSend(ServerResponse.npcInfo(npc));
+    });
+
+    this.previousXY = coords;
+}
+
 function updatePosition(session, actor, coords) {
-    const Generics = invoke('GameServer/Actor/Generics');
+    const Generics = invoke(path.actor);
 
     // TODO: Write less in DB about movement
     actor.setLocXYZH(coords);
     Database.updateCharacterLocation(actor.fetchId(), coords);
 
     // Render npcs found inside user's radius
-    const inRadiusNpcs = World.npc.spawns.filter(ob => Formulas.calcWithinRadius(coords.locX, coords.locY, ob.fetchLocX(), ob.fetchLocY(), 3500)) ?? [];
-    inRadiusNpcs.forEach((npc) => {
-        session.dataSend(ServerResponse.npcInfo(npc));
-    });
+    updateNpcs(session, coords);
 
     // Reschedule actions based on updated position
     if (actor.storedAttack) {

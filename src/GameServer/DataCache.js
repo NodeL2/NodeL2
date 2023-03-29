@@ -29,27 +29,27 @@ const DataCache = {
             ...validateModel(path + 'Skills/Switch/switch')
         ];
 
-        utils.infoSuccess('Datapack   :: cached');
+        utils.infoSuccess('Datapack', 'cached');
     },
 
     fetchItemFromSelfId(selfId, callback) {
         const item = structuredClone(DataCache.items.find((ob) => ob.selfId === selfId));
-        item ? callback(item) : utils.infoWarn('Datapack   :: unknown Item SelfId %d', selfId);
+        item ? callback(item) : utils.infoWarn('Datapack', 'unknown Item SelfId %d', selfId);
     },
 
     fetchSkillFromSelfId(selfId, callback) {
         const item = structuredClone(DataCache.skills.find((ob) => ob.selfId === selfId));
-        item ? callback(item) : utils.infoWarn('Datapack   :: unknown Skill SelfId %d', selfId);
+        item ? callback(item) : utils.infoWarn('Datapack', 'unknown Skill SelfId %d', selfId);
     },
 
     fetchSkillTreeFromClassId(classId, callback) {
         const item = structuredClone(DataCache.skillTree.find((ob) => ob.classId === classId));
-        item ? callback(item) : utils.infoWarn('Datapack   :: unknown SkillTree ClassId %d', classId);
+        item ? callback(item) : utils.infoWarn('Datapack', 'unknown SkillTree ClassId %d', classId);
     },
 
     fetchNpcRewardsFromSelfId(selfId, callback) {
         const item = structuredClone(DataCache.npcRewards.find((ob) => ob.selfId === selfId));
-        item ? callback(item) : utils.infoWarn('Datapack   :: unknown NpcRewards SelfId %d', selfId);
+        item ? callback(item) : utils.infoWarn('Datapack', 'unknown NpcRewards SelfId %d', selfId);
     }
 };
 
@@ -59,7 +59,7 @@ function validateModel(filepath) {
     const result = validateSchema(model, invoke(path + '/.schema'));
 
     if (!result.valid) {
-        utils.infoWarn('Cache      :: failed to parse "%s" -> %s', filepath, result.errors[0].stack);
+        utils.infoWarn('Cache', 'failed to parse "%s" -> %s', filepath, result.errors[0].stack);
     }
     
     return model;

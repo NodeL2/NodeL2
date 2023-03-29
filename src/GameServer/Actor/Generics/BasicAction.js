@@ -2,7 +2,7 @@ const ServerResponse = invoke('GameServer/Network/Response');
 
 function sitAndStand(session, actor, data) {
     if (actor.state.fetchHits() || actor.state.fetchCasts() || actor.state.fetchAnimated() || actor.state.inMotion()) {
-        invoke('GameServer/Actor/Generics').queueRequest(session, actor, 'sit', data);
+        invoke(path.actor).queueRequest(session, actor, 'sit', data);
         return;
     }
 
@@ -37,7 +37,7 @@ function basicAction(session, actor, data) {
         break;
 
     default:
-        utils.infoWarn('GameServer :: unknown basic action 0x%s', utils.toHex(data.actionId));
+        utils.infoWarn('GameServer', 'unknown basic action 0x%s', utils.toHex(data.actionId));
         break;
     }
 }

@@ -1,7 +1,7 @@
 const Formulas = {
     calcBaseHp: (() => {
         const table = utils.tupleAlloc(100, (level) => {
-            utils.infoFail('GameServer :: unknown HP Table for Level %d', level);
+            utils.infoFail('GameServer', 'unknown HP Table for Level %d', level);
         });
 
         function hp(level, a, b, c, d) {
@@ -23,7 +23,7 @@ const Formulas = {
 
     calcBaseMp: (() => {
         const table = utils.tupleAlloc(3, (level) => {
-            utils.infoFail('GameServer :: unknown MP Table for Level %d', level);
+            utils.infoFail('GameServer', 'unknown MP Table for Level %d', level);
         });
 
         function mp(level, a, b, c, d) {
@@ -143,7 +143,7 @@ const Formulas = {
     },
 
     calcHitChance() { // TODO: This is faked for now
-        return Math.random() <= 80.0 / 100.0;
+        return Math.random() <= 90.0 / 100.0;
     },
 
     calcDistance(srcX, srcY, destX, destY) {

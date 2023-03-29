@@ -1,11 +1,11 @@
 const SendPacket = invoke('Packet/Send');
 
-function purchaseList(items) {
+function purchaseList(items, adena) {
     const packet = new SendPacket(0x1d);
 
     packet
-        .writeD(1337)  // TODO: User's Adena
-        .writeD(0x00)  // List Id?
+        .writeD(adena)
+        .writeD(0x00) // List Id?
         .writeH(items.length);
 
     for (const item of items) {
@@ -13,7 +13,7 @@ function purchaseList(items) {
             .writeH(item.fetchClass1())
             .writeD(item.fetchId())
             .writeD(item.fetchSelfId())
-            .writeD(0x00)  // Count?
+            .writeD(item.fetchAmount())
             .writeH(item.fetchClass2())
             .writeH(0x00); // ?
 

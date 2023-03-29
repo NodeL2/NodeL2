@@ -158,11 +158,11 @@ class Npc extends NpcModel {
         ConsoleText.transmit(session, ConsoleText.caption.monsterHit, [
             { kind: ConsoleText.kind.npc, value: this.fetchDispSelfId() }, { kind: ConsoleText.kind.number, value: hit }
         ]);
-        invoke('GameServer/Actor/Generics').receivedHit(session, actor, hit);
+        invoke(path.actor).receivedHit(session, actor, hit);
     }
 
     broadcastToSubscribers() {
-        const World = invoke('GameServer/World');
+        const World = invoke('GameServer/World/World');
 
         const inRadiusActors = World.user.sessions.filter((ob) => this.fetchId() === ob.actor?.fetchDestId() && Formulas.calcWithinRadius(this.fetchLocX(), this.fetchLocY(), ob.actor?.fetchLocX(), ob.actor?.fetchLocY(), 3500)) ?? [];
         inRadiusActors.forEach((session) => {

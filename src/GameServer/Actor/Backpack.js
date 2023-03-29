@@ -4,7 +4,7 @@ const SkillModel     = invoke('GameServer/Model/Skill');
 const Item           = invoke('GameServer/Item/Item');
 const DataCache      = invoke('GameServer/DataCache');
 const ConsoleText    = invoke('GameServer/ConsoleText');
-const World          = invoke('GameServer/World');
+const World          = invoke('GameServer/World/World');
 const Database       = invoke('Database');
 
 class Backpack extends BackpackModel {
@@ -92,7 +92,7 @@ class Backpack extends BackpackModel {
                     return;
                 }
 
-                utils.infoWarn('GameServer :: unhandled item action');
+                utils.infoWarn('GameServer', 'unhandled item action');
             }
         });
     }
@@ -145,7 +145,7 @@ class Backpack extends BackpackModel {
         ]);
 
         // Recalculate
-        invoke('GameServer/Actor/Generics').calculateStats(session, session.actor);
+        invoke(path.actor).calculateStats(session, session.actor);
     }
 
     unequipGear(session, slot) {
@@ -170,7 +170,7 @@ class Backpack extends BackpackModel {
             this.items.unshift(item);
 
             // Recalculate
-            invoke('GameServer/Actor/Generics').calculateStats(session, session.actor);
+            invoke(path.actor).calculateStats(session, session.actor);
         });
     }
 

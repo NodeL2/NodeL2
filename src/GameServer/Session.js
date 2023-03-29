@@ -1,6 +1,6 @@
 const Opcodes = invoke('GameServer/Network/Opcodes');
 const Actor   = invoke('GameServer/Actor/Actor');
-const World   = invoke('GameServer/World');
+const World   = invoke('GameServer/World/World');
 
 class Session {
     constructor(socket) {
@@ -33,7 +33,7 @@ class Session {
     }
 
     error() {
-        utils.infoWarn('GameServer :: exception');
+        utils.infoWarn('GameServer', 'exception');
         this.actor?.destructor();
     }
 }

@@ -1,4 +1,4 @@
-# NodeL2 ::: LINEAGE II Server Emulator
+# NodeL2 :: LINEAGE II Server Emulator
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/dkoluris/nodel2?color=success) ![GitHub license](https://img.shields.io/github/license/dkoluris/nodel2?color=informational)
 
@@ -31,8 +31,8 @@
 ✅ Character Creation for 5 Races, also Deletion\
 ✅ NPC & Monster Spawns\
 ✅ Attack, Cast, other Basic Actions\
-✅ Gain Experience, SP, Level-up\
-✅ Pick-up items\
+✅ Mob Combat, Gain Experience, SP\
+✅ Level-up, Pick-up items\
 ✅ Admin panel (Shop & Teleport)
 
 ## WIP/Experimental
@@ -43,7 +43,7 @@
 ## Unimplemented
 ⛔️ Skills Purpose & Mechanics (a real bummer)\
 ⛔️ Broadcast Packets to others\
-⛔️ 60% of datapack
+⛔️ 50% of datapack
 
 ## License
 Open-source under [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0).

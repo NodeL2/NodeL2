@@ -1,8 +1,8 @@
 const ServerResponse = invoke('GameServer/Network/Response');
-const World          = invoke('GameServer/World');
+const World          = invoke('GameServer/World/World');
 
 function select(session, actor, data) {
-    const Generics = invoke('GameServer/Actor/Generics');
+    const Generics = invoke(path.actor);
 
     if (actor.fetchId() === data.id) { // Click on self
         actor.setDestId(actor.fetchId());
@@ -23,7 +23,7 @@ function select(session, actor, data) {
         World.fetchItem(data.id).then(() => {
             Generics.pickupRequest(session, actor, data);
         }).catch(() => {
-            utils.infoWarn('GameServer :: unknown World Id %d', data.id);
+            utils.infoWarn('GameServer', 'unknown World Id %d', data.id);
         });
     });
 }

@@ -25,7 +25,7 @@ class Skillset {
 
         const skillLevelLookup = (skill, level, success) => {
             const item = skill.levels?.find((ob) => ob.level === level);
-            item ? success(item) : utils.infoWarn('GameServer :: unknown Skill Id %d with Level %d', skill.selfId, level);
+            item ? success(item) : utils.infoWarn('GameServer', 'unknown Skill Id %d with Level %d', skill.selfId, level);
         };
 
         Database.fetchSkills(characterId).then((ownedSkills) => {
