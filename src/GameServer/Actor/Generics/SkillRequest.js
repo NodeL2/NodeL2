@@ -1,5 +1,5 @@
 function skillRequest(session, actor, data) {
-    const Generics = invoke('GameServer/Actor/Generics');
+    const Generics = invoke(path.actor);
 
     if (actor.isDead()) {
         return;

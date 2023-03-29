@@ -15,7 +15,7 @@ function experienceReward(session, actor, exp, sp) {
     for (let i = 0; i < optn.maxLevel; i++) {
         if (totalExp >= DataCache.experience[i] && totalExp < DataCache.experience[i + 1]) {
             if (i + 1 > actor.fetchLevel()) { // Leveled up
-                invoke('GameServer/Actor/Generics').levelUp(session, actor, i + 1);
+                invoke(path.actor).levelUp(session, actor, i + 1);
                 break;
             }
         }

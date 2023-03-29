@@ -61,6 +61,10 @@ class BackpackModel {
         return this.fetchItems().find((ob) => ob.fetchId() === id);
     }
 
+    fetchItemFromSelfId(selfId) {
+        return this.fetchItems().find((ob) => ob.fetchSelfId() === selfId);
+    }
+
     fetchPaperdollId(slot) {
         return this.paperdoll[slot].id;
     }
@@ -140,6 +144,10 @@ class BackpackModel {
     fetchTotalLoad() {
         let values = this.fetchItems().map((ob) => ob.fetchMass()) ?? [];
         return values.reduce((acc, value) => acc + value);
+    }
+
+    fetchTotalAdena() {
+        return this.fetchItemFromSelfId(57)?.fetchAmount() ?? 0;
     }
 
     stackableExists(selfId) {

@@ -15,18 +15,20 @@ class Actor extends ActorModel {
         this.backpack   = new Backpack(data);
         this.attack     = new Attack();
         this.automation = new Automation();
+
         this.session    = session;
+        this.previousXY = undefined;
 
         delete this.model.items;
         delete this.model.paperdoll;
     }
 
     destructor() {
-        invoke('GameServer/Actor/Generics').unselect(
+        invoke(path.actor).unselect(
             this.session, this
         );
 
-        invoke('GameServer/Actor/Generics').clearStoredActions(
+        invoke(path.actor).clearStoredActions(
             this.session, this
         );
 
@@ -37,55 +39,55 @@ class Actor extends ActorModel {
     // Request packets
 
     enterWorld() {
-        invoke('GameServer/Actor/Generics').enterWorld(
+        invoke(path.actor).enterWorld(
             this.session, this
         );
     }
 
     select(data) {
-        invoke('GameServer/Actor/Generics').select(
+        invoke(path.actor).select(
             this.session, this, data
         );
     }
 
     unselect() {
-        invoke('GameServer/Actor/Generics').unselect(
+        invoke(path.actor).unselect(
             this.session, this
         );
     }
 
     moveTo(data) {
-        invoke('GameServer/Actor/Generics').moveTo(
+        invoke(path.actor).moveTo(
             this.session, this, data
         );
     }
 
     updatePosition(data) {
-        invoke('GameServer/Actor/Generics').updatePosition(
+        invoke(path.actor).updatePosition(
             this.session, this, data
         );
     }
 
     basicAction(data) {
-        invoke('GameServer/Actor/Generics').basicAction(
+        invoke(path.actor).basicAction(
             this.session, this, data
         );
     }
 
     socialAction(data) {
-        invoke('GameServer/Actor/Generics').socialAction(
+        invoke(path.actor).socialAction(
             this.session, this, data
         );
     }
 
     skillRequest(data) {
-        invoke('GameServer/Actor/Generics').skillRequest(
+        invoke(path.actor).skillRequest(
             this.session, this, data
         );
     }
 
     revive() {
-        invoke('GameServer/Actor/Generics').revive(
+        invoke(path.actor).revive(
             this.session, this
         );
     }

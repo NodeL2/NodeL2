@@ -3,7 +3,7 @@ function receivedHit(session, actor, npc, hit) {
     actor.statusUpdateVitals(npc);
 
     if (npc.fetchHp() <= 0) {
-        invoke('GameServer/Npc/Generics').die(session, actor, npc);
+        invoke(path.npc).die(session, actor, npc);
         return;
     }
 
