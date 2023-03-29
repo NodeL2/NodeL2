@@ -1,4 +1,4 @@
-const World = invoke('GameServer/World');
+const World = invoke('GameServer/World/World');
 
 function attackExec(session, actor, data) {
     World.fetchNpc(data.id).then((npc) => {
@@ -11,7 +11,7 @@ function attackExec(session, actor, data) {
             }
         });
     }).catch((err) => {
-        utils.infoWarn('GameServer :: Attack -> ' + err);
+        utils.infoWarn('GameServer', 'Attack -> ' + err);
     });
 }
 

@@ -3,7 +3,7 @@ require('./Global');
 // User imports
 const AuthSession = invoke('AuthenticationServer/Session');
 const GameSession = invoke('GameServer/Session');
-const World       = invoke('GameServer/World');
+const World       = invoke('GameServer/World/World');
 const DataCache   = invoke('GameServer/DataCache');
 const Database    = invoke('Database');
 const Server      = invoke('Server');

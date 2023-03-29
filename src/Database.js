@@ -14,12 +14,12 @@ const Database = {
             database : optn.databaseName
 
         }).then((instance) => {
-            utils.infoSuccess('DB         :: connected');
+            utils.infoSuccess('DB', 'connected');
             conn = instance;
             callback();
 
         }).catch(error => {
-            utils.infoFail('DB         :: failed(%d) -> %s', error.errno, error.text);
+            utils.infoFail('DB', 'failed(%d) -> %s', error.errno, error.text);
         });
     },
 
