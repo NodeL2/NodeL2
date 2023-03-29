@@ -143,7 +143,7 @@ const Formulas = {
     },
 
     calcHitChance() { // TODO: This is faked for now
-        return Math.random() <= 80.0 / 100.0;
+        return Math.random() <= 90.0 / 100.0;
     },
 
     calcDistance(srcX, srcY, destX, destY) {

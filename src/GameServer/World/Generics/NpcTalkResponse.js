@@ -53,7 +53,7 @@ function npcTalkResponse(session, data) {
                 });
 
                 session.dataSend(
-                    ServerResponse.purchaseList(list)
+                    ServerResponse.purchaseList(list, session.actor.backpack.fetchTotalAdena())
                 );
             }
             break;
