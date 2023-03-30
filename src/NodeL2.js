@@ -47,10 +47,10 @@ for (let spawn of spawns) {
                 console.log(one.selfId);
             }
             else {
-                one.name = found.Name;
+                one.name = found.name;
             }
         }
     }
 }
 
-//require('fs').writeFile('output.json', JSON.stringify(names), 'utf8', () => {});
+require('fs').writeFile('output.json', JSON.stringify(spawns), 'utf8', () => {});
