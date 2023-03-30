@@ -23,7 +23,8 @@ function spawnNpcs() {
                 const coords = {
                     locX: spawn.coords[0].locX,
                     locY: spawn.coords[0].locY,
-                    locZ: spawn.coords[0].minZ,
+                    locZ: spawn.coords[0].locZ,
+                    head: spawn.coords[0].head,
                 }
                 this.npc.spawns.push(
                     new Npc(this.npc.nextId++, utils.crushOb({ ...npc, ...coords }))

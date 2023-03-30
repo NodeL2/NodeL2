@@ -55,18 +55,18 @@
                                     "locY": {
                                         "type": "integer"
                                     },
-                                    "minZ": {
+                                    "locZ": {
                                         "type": "integer"
                                     },
-                                    "maxZ": {
+                                    "head": {
                                         "type": "integer"
                                     }
                                 },
                                 "required": [
                                     "locX",
                                     "locY",
-                                    "minZ",
-                                    "maxZ"
+                                    "locZ",
+                                    "head"
                                 ]
                             }
                         },
