@@ -159,13 +159,13 @@ function spawnNpcs() {
                     locZ = bound.maxZ;
                 }
 
-                let divide = (array, size) => {
-                    var results = [];
-                    while (array.length) {
-                      results.push(array.splice(0, size));
-                    }
-                    return results;
-                };
+                //let divide = (array, size) => {
+                //    var results = [];
+                //    while (array.length) {
+                //      results.push(array.splice(0, size));
+                //    }
+                //    return results;
+                //};
 
                 let triangles;
                 try {
@@ -181,34 +181,37 @@ function spawnNpcs() {
                     return;
                 }
                 let vertexCnt = 0;
+                //console.log(triangles);
 
-                //function method3(ptX1, ptX2, ptX3) {
-                //    let r1 = random();
-                //    let r2 = random();
-                //    
-                //    let s1 = sqrt(r1);
-                //    
-                //    let x = x1 * (1.0 - s1) + x2 * (1.0 - r2) * s1 + x3 * r2 * s1;
-                //    let y = y1 * (1.0 - s1) + y2 * (1.0 - r2) * s1 + y3 * r2 * s1;
-                //    
-                //    fill(255, 0, 0);
-                //    circle(x, y, 1);
-                //    
-                //    return [x, y];
-                //  }
+                let method3 = (vertex) => {
+                    let r1 = Math.random();
+                    let r2 = Math.random();
+                    
+                    let s1 = Math.sqrt(r1);
+                    
+                    let x = vertex[0].x * (1.0 - s1) + vertex[1].x * (1.0 - r2) * s1 + vertex[2].x * r2 * s1;
+                    let y = vertex[0].y * (1.0 - s1) + vertex[1].y * (1.0 - r2) * s1 + vertex[2].y * r2 * s1;
+                    
+                    return [x, y];
+                }
 
-                for (let i = 0; i < spawn.total; i++, vertexCnt++) {
-//                    const pos = randomPositionInPolygon(polygon);
-//
-//                    const coords = {
-//                        locX: pos[0],
-//                        locY: pos[1],
-//                        locZ: locZ,
-//                        head: utils.randomNumber(65536),
-//                    }
-//                    this.npc.spawns.push(
-//                        new Npc(this.npc.nextId++, utils.crushOb({ ...npc, ...coords }))
-//                    );
+                for (let i = 0; i < spawn.total; i++) {
+                    const pos = method3(triangles[vertexCnt]); //randomPositionInPolygon(polygon);
+                    if (++vertexCnt > triangles.length - 1) {
+                        vertexCnt = 0;
+                    }
+
+                    //console.log(triangles.length + ' ' + vertexCnt);
+
+                    const coords = {
+                        locX: pos[0],
+                        locY: pos[1],
+                        locZ: locZ,
+                        head: utils.randomNumber(65536),
+                    }
+                    this.npc.spawns.push(
+                        new Npc(this.npc.nextId++, utils.crushOb({ ...npc, ...coords }))
+                    );
                 }
             }
         });
