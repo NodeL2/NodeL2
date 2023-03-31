@@ -1,199 +1,52 @@
 const Npc       = invoke('GameServer/Npc/Npc');
 const DataCache = invoke('GameServer/DataCache');
+const Formulas  = invoke('GameServer/Formulas');
 
-var app={
-    angle: function(a,b,c) { // angle at point b
-        var v1=[b[0] - a[0], b[1] - a[1]],
-            v2=[b[0] - c[0], b[1] - c[1]];
-            
-        return Math.acos(this.inner(v1, v2) / (this.norm(v1) * this.norm(v2)));
-    },
-    is_clockwise: function(a,b,c) {
-        return ((b[0]-a[0]) * (c[1]-a[1]) - (c[0]-a[0]) * (b[1]-a[1])) < 0 ? true : false;
-    },
-    clamp_index: function(x,a,b) {
-        x=x < a ? b : x;
-        x=x > b ? a : x;
-    
-        return x;
-    },
-    norm: function(v) {
-        var s=0, n=v.length;
-
-        for(var i=0; i < n; ++i) {
-            s += Math.pow(v[i], 2);
-        }
-
-        return Math.sqrt(s);
-    },
-    inner: function(a,b) {
-        var s=0;
-
-        for(var i=0; i < a.length; ++i){
-            s += (a[i]*b[i]);
-        }
-
-        return s;
-    },
-    triangulate: function(points) {
-        var n=points.length, m, angles=[], triangles=[], poly_cw, ear_cw, a, b, c, theta, min_ang, i, max_x;
-        
-        if(points[0][0] == points[n-1][0] && points[0][1] == points[n-1][1]){
-            n=n-1;
-        }
-
-        m=n;
-
-        max_x=points[0][0], i;
-
-        for(var k=1; k < n; ++k){
-            if(points[k][0] > max_x){
-                max_x=points[k][0];
-                i=k;
-            }
-        }
-
-        let h=this.clamp_index(i-1,0,n-1);
-        let j=this.clamp_index(i+1,0,n-1);
-        
-        a=points[h]; b=points[i]; c=points[j];
-
-        poly_cw=this.is_clockwise(a,b,c);
-
-        for(let k=0; k < n; ++k){
-            a=points[k];
-            b=points[(k+1)%n];
-            c=points[(k+2)%n];
-    
-            theta=this.angle(a,b,c);
-            ear_cw=this.is_clockwise(a,b,c);
-    
-            if(ear_cw != poly_cw){
-                theta = 2*Math.PI - theta;
-            }
-    
-            angles[(k+1)%n] = theta;
-        }
-
-    
-        for(let k=0; k < m-2; ++k){
-            min_ang=Math.min(...angles);
-    
-            i=angles.indexOf(min_ang);
-    
-            h=this.clamp_index(i-1,0,n-1);
-            j=this.clamp_index(i+1,0,n-1);
-    
-            triangles.push([points[h], points[i], points[j]]);
-    
-            //==================== UPDATE ANGLE k - 1 ====================
-            a=points[this.clamp_index(h-1,0,n-1)]; b=points[h]; c=points[j];
-            ear_cw=this.is_clockwise(a,b,c);
-            theta = this.angle(a,b,c);
-            if(ear_cw != poly_cw) theta=2*Math.PI - theta;
-            angles[h] = theta;
-            //============================================================
-    
-    
-            //==================== UPDATE ANGLE k + 1 ====================
-            a=points[h]; b=points[j]; c=points[this.clamp_index(j+1,0,n-1)];
-    
-            ear_cw=this.is_clockwise(a,b,c);
-    
-            theta = this.angle(a,b,c);
-    
-            if(ear_cw != poly_cw) theta=2*Math.PI - theta;
-    
-            angles[j] = theta;
-            //============================================================
-    
-    
-    
-            points.splice(i,1);
-            angles.splice(i,1);
-    
-            n--;
-        }
-    
-        return triangles;
-    }
+function createNpc(world, npc, coords) {
+    world.npc.spawns.push(
+        new Npc(world.npc.nextId++, { ...utils.crushOb(npc), ...coords })
+    );
 }
 
 function spawnNpcs() {
-//    DataCache.npcs.forEach((npc) => {
-//        const spawns = DataCache.npcSpawns.filter(ob => ob.selfId === npc.selfId)[0]?.spawns ?? [];
-//        spawns.forEach((coords) => {
-//            this.npc.spawns.push(
-//                new Npc(this.npc.nextId++, utils.crushOb({ ...npc, ...coords }))
-//            );
-//        });
-//    });
-//
-//    utils.infoSuccess('Spawns', '%d Npcs & Monsters', this.npc.spawns.length);
-
     DataCache.npcSpawns.forEach((item) => {
         const bounds = item.bounds;
         const spawns = item.spawns;
 
         spawns.forEach((spawn) => {
-            const npc = DataCache.npcs.find((ob) => ob.selfId === spawn.selfId);
-            if (npc && spawn.coords[0]) {
-                if (spawn.coords[0].head === 0) {
-                    spawn.coords[0].head = utils.randomNumber(65536);
+            DataCache.fetchNpcFromSelfId(spawn.selfId, (npc) => {
+                if (utils.size(spawn.coords) > 0) { // Explicit location
+                    spawn.coords.forEach((info) => {
+                        createNpc(this, npc, {
+                            locX: info.locX, locY: info.locY, locZ: info.locZ, head: info.head || utils.randomNumber(65536),
+                        });
+                    });
                 }
-                const coords = {
-                    locX: spawn.coords[0].locX,
-                    locY: spawn.coords[0].locY,
-                    locZ: spawn.coords[0].locZ,
-                    head: spawn.coords[0].head,
-                }
-                this.npc.spawns.push(
-                    new Npc(this.npc.nextId++, utils.crushOb({ ...npc, ...coords }))
-                );
-            }
-            else if (npc && bounds) {
-                let coordinates = [];
-                let locZ = 0;
-                for (let bound of bounds) {
-                    coordinates.push({x:bound.locX, y:bound.locY});
-                    locZ = bound.maxZ;
-                }
+                else { // Random location within bounds
+                    let coords = [];
 
-                let triangles = utils.fetchEarcutVertices(item.selfId, coordinates);
-                if (!triangles) {
-                    return;
-                }
-                let vertexCnt = 0;
+                    bounds.forEach((bound) => {
+                        coords.push({ x: bound.locX, y: bound.locY });
+                    });
 
-                let method3 = (vertex) => {
-                    let r1 = Math.random();
-                    let r2 = Math.random();
-                    
-                    let s1 = Math.sqrt(r1);
-                    
-                    let x = vertex[0].x * (1.0 - s1) + vertex[1].x * (1.0 - r2) * s1 + vertex[2].x * r2 * s1;
-                    let y = vertex[0].y * (1.0 - s1) + vertex[1].y * (1.0 - r2) * s1 + vertex[2].y * r2 * s1;
-                    
-                    return [x, y];
-                }
+                    let vertices = utils.fetchEarcutVertices(coords);
 
-                for (let i = 0; i < spawn.total; i++) {
-                    const pos = method3(triangles[vertexCnt]);
-                    if (++vertexCnt > triangles.length - 1) {
-                        vertexCnt = 0;
+                    if (vertices === undefined) {
+                        utils.infoWarn('Datapack', 'cannot extract Vertices from "' + item.selfId + '"');
+                        return;
                     }
 
-                    const coords = {
-                        locX: pos[0],
-                        locY: pos[1],
-                        locZ: locZ,
-                        head: utils.randomNumber(65536),
+                    for (let i = 0, cnt = 0; i < spawn.total; i++, cnt = (cnt === utils.size(vertices) - 1) ? 0 : cnt + 1) {
+                        const pos = Formulas.createRandomCoordsForVertex(
+                            vertices[cnt][0], vertices[cnt][1], vertices[cnt][2]
+                        );
+
+                        createNpc(this, npc, {
+                            locX: pos[0], locY: pos[1], locZ: bounds[0].maxZ, head: utils.randomNumber(65536),
+                        });
                     }
-                    this.npc.spawns.push(
-                        new Npc(this.npc.nextId++, utils.crushOb({ ...npc, ...coords }))
-                    );
                 }
-            }
+            });
         });
     });
 

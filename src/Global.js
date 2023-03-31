@@ -85,16 +85,16 @@ global.utils = {
         console.info('NodeL2     :: Total Mem Used -> %f MB', Math.round(process.memoryUsage().heapTotal / 1024 / 1024 * 100) / 100);
     },
 
-    fetchEarcutVertices(selfId, coords) {
+    size(ob) {
+        return ob.length;
+    },
+
+    fetchEarcutVertices(coords) {
         let vertices;
         try {
             vertices = require('poly-partition').triangulate(coords, true);
         }
         catch (err) {
-        }
-
-        if (vertices === undefined) {
-            utils.infoWarn('Datapack', 'cannot extract Vertices from "' + selfId + '"');
         }
 
         return vertices;

@@ -32,6 +32,11 @@ const DataCache = {
         utils.infoSuccess('Datapack', 'cached');
     },
 
+    fetchNpcFromSelfId(selfId, callback) {
+        const item = structuredClone(DataCache.npcs.find((ob) => ob.selfId === selfId));
+        item ? callback(item) : utils.infoWarn('Datapack', 'unknown Npc SelfId %d', selfId);
+    },
+
     fetchItemFromSelfId(selfId, callback) {
         const item = structuredClone(DataCache.items.find((ob) => ob.selfId === selfId));
         item ? callback(item) : utils.infoWarn('Datapack', 'unknown Item SelfId %d', selfId);
