@@ -27,7 +27,7 @@ function spawnNpcs() {
                         });
                     }
                     else { // Random location within bounds
-                        const pos = Formulas.createRandomVertexPosition(coords);
+                        const pos = Formulas.createRandomVertexPoint(coords);
                         createNpc(this, npc, {
                             locX: pos[0], locY: pos[1], locZ: bounds[0].maxZ, head: utils.randomNumber(65536),
                         });
@@ -37,7 +37,7 @@ function spawnNpcs() {
         });
     });
 
-    utils.infoSuccess('Spawns', '%d Npcs & Monsters', this.npc.spawns.length);
+    utils.infoSuccess('Spawns', '%d Npcs & Monsters', utils.size(this.npc.spawns));
 }
 
 module.exports = spawnNpcs;

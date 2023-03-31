@@ -183,7 +183,7 @@ const Formulas = {
         };
     },
 
-    createRandomVertexPosition(coords) {
+    createRandomVertexPoint(coords) {
         return require('random-position-in-polygon')({
             type: "Feature",
             properties: {},

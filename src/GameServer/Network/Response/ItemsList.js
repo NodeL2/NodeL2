@@ -5,9 +5,9 @@ function itemsList(items, popup = false) {
 
     packet
         .writeH(popup)
-        .writeH(items.length);
+        .writeH(utils.size(items));
 
-    for (const item of items) {
+    items.forEach((item) => {
         packet
             .writeH(item.fetchClass1())
             .writeD(item.fetchId())
@@ -19,7 +19,7 @@ function itemsList(items, popup = false) {
             .writeD(item.fetchEquipped() ? 2 ** item.fetchSlot() : 0)
             .writeH(0x00)  // Enchant level
             .writeH(0x00); // ?
-    }
+    });
 
     return packet.fetchBuffer();
 }
