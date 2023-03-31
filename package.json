@@ -15,6 +15,6 @@
         "like-sql": "^0.1.1",
         "mariadb": "^3.1.1",
         "objcrush": "^1.0.1",
-        "poly-partition": "^1.0.2"
+        "random-position-in-polygon": "^1.0.6"
     }
 }

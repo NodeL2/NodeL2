@@ -183,18 +183,15 @@ const Formulas = {
         };
     },
 
-    createRandomCoordsForVertex(v0, v1, v2) {
-        let t = Math.sqrt(Math.random());
-        let s = Math.random();
-        
-        let a = (1 - t);
-        let b = (1 - s) * t;
-        let c = (s * t);
-
-        return [
-            a * v0.x + b * v1.x + c * v2.x,
-            a * v0.y + b * v1.y + c * v2.y,
-        ];
+    createRandomVertexPosition(coords) {
+        return require('random-position-in-polygon')({
+            type: "Feature",
+            properties: {},
+            geometry: {
+                type: "Polygon",
+                coordinates: [coords]
+            }
+        });
     }
 };
 

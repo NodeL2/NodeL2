@@ -87,17 +87,6 @@ global.utils = {
 
     size(ob) {
         return ob.length;
-    },
-
-    fetchEarcutVertices(coords) {
-        let vertices;
-        try {
-            vertices = require('poly-partition').triangulate(coords, true);
-        }
-        catch (err) {
-        }
-
-        return vertices;
     }
 };
 
