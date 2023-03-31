@@ -159,29 +159,11 @@ function spawnNpcs() {
                     locZ = bound.maxZ;
                 }
 
-                //let divide = (array, size) => {
-                //    var results = [];
-                //    while (array.length) {
-                //      results.push(array.splice(0, size));
-                //    }
-                //    return results;
-                //};
-
-                let triangles;
-                try {
-                    triangles = require('poly-partition').triangulate(coordinates, true);
-                }
-                catch (error) {
-                    //console.info(error);
-                }
-
-                if (triangles === undefined) {
-                    console.log(item.selfId);
-                    console.log('Yes');
+                let triangles = utils.fetchEarcutVertices(item.selfId, coordinates);
+                if (!triangles) {
                     return;
                 }
                 let vertexCnt = 0;
-                //console.log(triangles);
 
                 let method3 = (vertex) => {
                     let r1 = Math.random();
@@ -196,12 +178,10 @@ function spawnNpcs() {
                 }
 
                 for (let i = 0; i < spawn.total; i++) {
-                    const pos = method3(triangles[vertexCnt]); //randomPositionInPolygon(polygon);
+                    const pos = method3(triangles[vertexCnt]);
                     if (++vertexCnt > triangles.length - 1) {
                         vertexCnt = 0;
                     }
-
-                    //console.log(triangles.length + ' ' + vertexCnt);
 
                     const coords = {
                         locX: pos[0],
