@@ -9,9 +9,8 @@ function updateNpcs(session, coords) {
     }
 
     const npcs = World.npc.spawns.filter((ob) => Formulas.calcWithinRadius(coords.locX, coords.locY, ob.fetchLocX(), ob.fetchLocY(), 3500)) ?? [];
-
-    npcs.forEach((npc) => {
-        session.dataSend(ServerResponse.npcInfo(npc));
+    npcs.forEach((npc) => { // Gives a sense of random NPC Animation to the actor
+        setTimeout( () => { session.dataSend(ServerResponse.npcInfo(npc)); }, utils.randomNumber(1000));
     });
 
     this.previousXY = coords;

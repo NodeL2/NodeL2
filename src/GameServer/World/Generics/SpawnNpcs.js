@@ -14,10 +14,8 @@ function spawnNpcs() {
 
         item.spawns.forEach((spawn) => {
             DataCache.fetchNpcFromSelfId(spawn.selfId, (npc) => {
-                let coords = [];
-
-                bounds.forEach((bound) => {
-                    coords.push([bound.locX, bound.locY]);
+                const coords = bounds.map((bound) => {
+                    return [bound.locX, bound.locY];
                 });
 
                 for (let i = 0; i < spawn.total; i++) {
