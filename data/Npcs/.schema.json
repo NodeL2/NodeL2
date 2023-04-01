@@ -22,11 +22,8 @@
                     "level": {
                         "type": "integer"
                     },
-                    "undead": {
-                        "type": "boolean"
-                    },
                     "hostile": {
-                        "type": "integer"
+                        "type": "boolean"
                     }
                 },
                 "required": [
@@ -34,7 +31,6 @@
                     "name",
                     "title",
                     "level",
-                    "undead",
                     "hostile"
                 ]
             },

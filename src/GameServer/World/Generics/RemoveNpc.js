@@ -4,13 +4,13 @@ function removeNpc(session, npc) {
     const npcId = npc.fetchId();
     this.npcRewards(session, npc);
 
-    // Delete npc from world
+    // Delete NPC from world
     setTimeout(() => {
         this.npc.spawns = this.npc.spawns.filter(ob => ob.fetchId() !== npcId);
         session.dataSend(
             ServerResponse.deleteOb(npcId)
         );
-    }, 7000); // TODO: Depends if npc is spoiled
+    }, npc.fetchCorpseTime()); // TODO: Depends if NPC is spoiled too
 }
 
 module.exports = removeNpc;
