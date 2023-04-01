@@ -1,6 +1,7 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 const Item           = invoke('GameServer/Item/Item');
 const DataCache      = invoke('GameServer/DataCache');
+const Formulas       = invoke('GameServer/Formulas');
 
 function npcTalkResponse(session, data) {
     let parts = data.link.split(' ') ?? [];
@@ -38,6 +39,22 @@ function npcTalkResponse(session, data) {
                 };
 
                 invoke(path.actor).teleportTo(session, session.actor, coords);
+            }
+            break;
+
+        case 'admin-teleport-random':
+            {
+                const count    = utils.size(DataCache.npcSpawns);
+                const selected = DataCache.npcSpawns[utils.randomNumber(count)];
+
+                const coords = selected.bounds.map((bound) => {
+                    return [bound.locX, bound.locY];
+                });
+
+                const pos = Formulas.createRandomVertexPoint(coords);
+                invoke(path.actor).teleportTo(session, session.actor, {
+                    locX: pos[0], locY: pos[1], locZ: selected.bounds[0].maxZ, head: utils.randomNumber(65536),
+                });
             }
             break;
 

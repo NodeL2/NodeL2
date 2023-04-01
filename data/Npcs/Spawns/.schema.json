@@ -5,28 +5,9 @@
         "type": "object",
         "properties": {
             "selfId": {
-                "type": "integer"
+                "type": "string"
             },
-            "template": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string"
-                    },
-                    "count": {
-                        "type": "integer"
-                    },
-                    "respawn": {
-                        "type": "integer"
-                    }
-                },
-                "required": [
-                    "name",
-                    "count",
-                    "respawn"
-                ]
-            },
-            "spawns": {
+            "bounds": {
                 "type": "array",
                 "items": {
                     "type": "object",
@@ -37,25 +18,82 @@
                         "locY": {
                             "type": "integer"
                         },
-                        "locZ": {
+                        "minZ": {
                             "type": "integer"
                         },
-                        "head": {
+                        "maxZ": {
                             "type": "integer"
                         }
                     },
                     "required": [
                         "locX",
                         "locY",
-                        "locZ",
-                        "head"
+                        "minZ",
+                        "maxZ"
+                    ]
+                }
+            },
+            "spawns": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "selfId": {
+                            "type": "integer"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "coords": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "locX": {
+                                        "type": "integer"
+                                    },
+                                    "locY": {
+                                        "type": "integer"
+                                    },
+                                    "locZ": {
+                                        "type": "integer"
+                                    },
+                                    "head": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "locX",
+                                    "locY",
+                                    "locZ",
+                                    "head"
+                                ]
+                            }
+                        },
+                        "total": {
+                            "type": "integer"
+                        },
+                        "respawn": {
+                            "type": "integer"
+                        },
+                        "bias": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "selfId",
+                        "name",
+                        "coords",
+                        "total",
+                        "respawn",
+                        "bias"
                     ]
                 }
             }
         },
         "required": [
             "selfId",
-            "template",
+            "bounds",
             "spawns"
         ]
     }

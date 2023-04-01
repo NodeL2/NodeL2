@@ -4,9 +4,9 @@ function shortcutInit(shortcuts) {
     const packet = new SendPacket(0x57);
 
     packet
-        .writeD(shortcuts.length);
+        .writeD(utils.size(shortcuts));
 
-    for (const shortcut of shortcuts) {
+    shortcuts.forEach((shortcut) => {
         packet
             .writeD(shortcut.kind)
             .writeD(shortcut.slot)
@@ -19,7 +19,7 @@ function shortcutInit(shortcuts) {
 
         packet
             .writeD(shortcut.unknown);
-    }
+    });
 
     return packet.fetchBuffer();
 }

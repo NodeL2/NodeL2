@@ -43,7 +43,7 @@ function consume(session, data) {
         else {
             Shared.fetchClassInformation(data.classId).then((classInfo) => {
                 const spawns = fetchSpawnPoints(data.classId);
-                const coords = spawns[utils.randomNumber(spawns.length)];
+                const coords = spawns[utils.randomNumber(utils.size(spawns))];
         
                 data = {
                     ...data, ...classInfo.vitals, ...coords

@@ -18,14 +18,14 @@ const Shared = {
                         character.items = items;
                         character.paperdoll = utils.tupleAlloc(15 + 1, {});
 
-                        for (const item of items.filter(ob => ob.equipped === 1)) {
+                        items.filter((ob) => ob.equipped === 1).forEach((item) => {
                             if (item.slot === 15) { // FB Armor, stupid implementation
                                 character.paperdoll[10] = { id: item.id, selfId: item.selfId };
                                 character.paperdoll[11] = { id: item.id, selfId: item.selfId };
                             }
 
                             character.paperdoll[item.slot] = { id: item.id, selfId: item.selfId };
-                        }
+                        });
                         done();
                     });
                 });
