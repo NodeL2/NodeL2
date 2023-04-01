@@ -13,6 +13,7 @@ function select(session, actor, data) {
     World.fetchNpc(data.id).then((npc) => {
         if (npc.fetchId() !== actor.fetchDestId()) { // First click on a Creature
             actor.setDestId(npc.fetchId());
+            npc.setLocZ(actor.fetchLocZ()); // TODO: Remove, uber hack...
             session.dataSend(ServerResponse.destSelected(actor.fetchId(), actor.fetchDestId()));
             actor.statusUpdateVitals(npc);
         }
