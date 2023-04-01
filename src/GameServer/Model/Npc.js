@@ -89,7 +89,7 @@ class NpcModel extends CreatureModel {
     }
 
     fetchAttackable() {
-        return this.model.kind.includes('Monster.');
+        return this.model.kind === 'Monster' || this.model.kind === 'Boss';
     }
 }
 

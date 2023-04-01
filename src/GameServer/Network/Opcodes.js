@@ -39,6 +39,7 @@ const Opcodes = {
         table[0x59] = ClientRequest.trashItem;
         table[0x63] = ClientRequest.questList;
         table[0x6d] = ClientRequest.restartPoint;
+        table[0xaa] = ClientRequest.userCommand;
         table[0xcd] = ClientRequest.showMap;
 
         table[0x57] = (session) => { invoke(path.actor).adminPanel(session, session.actor); }; // Board
@@ -47,10 +48,6 @@ const Opcodes = {
         table[0xc1] = () => {}; // Macro
 
         table[0x4b] = () => {}; // ?
-        table[0xd0] = () => {}; // ?
-
-        table[0x4b] = () => {}; // ?
-        table[0xcd] = () => {}; // Map?
         table[0xd0] = () => {}; // ?
 
         return table;

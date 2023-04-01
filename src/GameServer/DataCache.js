@@ -32,6 +32,16 @@ const DataCache = {
         utils.infoSuccess('Datapack', 'cached');
     },
 
+    fetchNpcFromSelfId(selfId, callback) {
+        const item = structuredClone(DataCache.npcs.find((ob) => ob.selfId === selfId));
+        item ? callback(item) : utils.infoWarn('Datapack', 'unknown Npc SelfId %d', selfId);
+    },
+
+    fetchNpcRewardsFromSelfId(selfId, callback) {
+        const item = structuredClone(DataCache.npcRewards.find((ob) => ob.selfId === selfId));
+        item ? callback(item) : utils.infoWarn('Datapack', 'unknown NpcRewards SelfId %d', selfId);
+    },
+
     fetchItemFromSelfId(selfId, callback) {
         const item = structuredClone(DataCache.items.find((ob) => ob.selfId === selfId));
         item ? callback(item) : utils.infoWarn('Datapack', 'unknown Item SelfId %d', selfId);
@@ -45,11 +55,6 @@ const DataCache = {
     fetchSkillTreeFromClassId(classId, callback) {
         const item = structuredClone(DataCache.skillTree.find((ob) => ob.classId === classId));
         item ? callback(item) : utils.infoWarn('Datapack', 'unknown SkillTree ClassId %d', classId);
-    },
-
-    fetchNpcRewardsFromSelfId(selfId, callback) {
-        const item = structuredClone(DataCache.npcRewards.find((ob) => ob.selfId === selfId));
-        item ? callback(item) : utils.infoWarn('Datapack', 'unknown NpcRewards SelfId %d', selfId);
     }
 };
 

@@ -4,14 +4,14 @@ function skillsList(skills) {
     const packet = new SendPacket(0x58);
 
     packet
-        .writeD(skills.length);
+        .writeD(utils.size(skills));
 
-    for (const skill of skills) {
+    skills.forEach((skill) => {
         packet
             .writeD(skill.fetchPassive())
             .writeD(skill.fetchLevel())
             .writeD(skill.fetchSelfId());
-    }
+    });
 
     return packet.fetchBuffer();
 }

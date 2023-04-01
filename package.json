@@ -1,6 +1,6 @@
 {
     "name": "nodel2",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "L2 Chronicle 2 server emulator in NodeJS",
     "author": "Dennis Koluris",
     "scripts": {
@@ -15,6 +15,7 @@
         "like-sql": "^0.1.1",
         "mariadb": "^3.1.1",
         "objcrush": "^1.0.1",
+        "random-position-in-polygon": "^1.0.6",
         "rsa-raw": "^1.0.3"
     }
 }

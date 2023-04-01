@@ -7,11 +7,11 @@ function statusUpdate(id, params = []) {
         .writeD(id)
         .writeD(0x04);
 
-    for (const param of params) {
+    params.forEach((param) => {
         packet
             .writeD(param.id)
             .writeD(param.value);
-    }
+    });
 
     return packet.fetchBuffer();
 }

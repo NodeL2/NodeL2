@@ -4,9 +4,9 @@ function charSelectInfo(characters) {
     const packet = new SendPacket(0x13);
 
     packet
-        .writeD(characters.length);
+        .writeD(utils.size(characters));
 
-    for (const character of characters) {
+    characters.forEach((character) => {
         packet
             .writeS(character.name)
             .writeD(character.id)
@@ -57,7 +57,7 @@ function charSelectInfo(characters) {
             .writeD(0x00)  // Class Id?
             .writeD(0x00)  // Active character slot?
             .writeC(0x00); // Enchanted effect
-    }
+    });
 
     return packet.fetchBuffer();
 }

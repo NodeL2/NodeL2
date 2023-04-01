@@ -31,7 +31,7 @@ class Session {
 
     dataSend(data, encipher = true) {
         const header = Buffer.alloc(2);
-        header.writeInt16LE(data.length + 2);
+        header.writeInt16LE(utils.size(data) + 2);
         const encipheredPacket = encipher ? require('blowfish-ecb').encipher(this.blowfish, data) : data;
         this.socket.write(Buffer.concat([header, encipheredPacket]));
     }

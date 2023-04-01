@@ -5,13 +5,13 @@ function consoleText(textId, params) {
 
     packet
         .writeD(textId)
-        .writeD(params.length)
+        .writeD(utils.size(params))
 
-    for (const param of params) {
+    params.forEach((param) => {
         packet
             .writeD(param.kind)
             .writeD(param.value);
-    }
+    });
 
     return packet.fetchBuffer();
 }
