@@ -46,6 +46,10 @@ class NpcModel extends CreatureModel {
         return this.model.revMp;
     }
 
+    fetchCorpseTime() {
+        return this.model.corpseTime;
+    }
+
     fetchWeapon() {
         return this.model.weapon;
     }
