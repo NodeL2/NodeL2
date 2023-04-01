@@ -80,7 +80,7 @@ class Automation extends SelectedModel {
     }
 
     ticksToMove(srcX, srcY, srcZ, dstX, dstY, dstZ, radius, speed) {
-        const distance = Formulas.calcDistance(srcX, srcY, dstX, dstY) - radius;
+        const distance = Formulas.calcDistance3D(srcX, srcY, srcZ, dstX, dstY, dstZ) - radius;
         const duration = 1 + ((this.ticksPerSecond * distance) / speed);
         return (1000 / this.ticksPerSecond) * duration;
     }

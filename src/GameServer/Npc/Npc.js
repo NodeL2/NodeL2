@@ -71,7 +71,7 @@ class Npc extends NpcModel {
 
                 if (this.state.inMotion()) {
                     if (coords.locX !== newDstX || coords.locY !== newDstY) {
-                        this.setLocXYZ(Formulas.calcMidPointCoordinates(this.fetchLocX(), this.fetchLocY(), this.fetchLocZ(), coords.locX, coords.locY, coords.locZ, this.automation.fetchDistanceRatio()));
+                        this.setLocXYZ(Formulas.calcMidPointCoordinates(this.fetchLocX(), this.fetchLocY(), this.fetchLocZ(), coords.locX, coords.locY, coords.locZ, this.automation.fetchDistanceRatio() * 1.5)); // TODO: Another hack to catch-up
 
                         this.automation.abortAll(this);
                     }
