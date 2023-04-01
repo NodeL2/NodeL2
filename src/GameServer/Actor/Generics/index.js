@@ -25,5 +25,6 @@ module.exports = {
         stopAutomation: require('./StopAutomation'),
             teleportTo: require('./TeleportTo'),
               unselect: require('./Unselect'),
+            updateNpcs: require('./UpdateNpcs'),
         updatePosition: require('./UpdatePosition')
 };

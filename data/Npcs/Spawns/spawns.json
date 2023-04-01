@@ -14741,7 +14741,7 @@
 },{
     "selfId": "event_t17_20_001",
     "bounds": [{ "locX": -87378, "locY": 81319, "minZ": -3787, "maxZ": -2587 }, { "locX": -82982, "locY": 80015, "minZ": -3787, "maxZ": -2587 }, { "locX": -78714, "locY": 90583, "minZ": -3787, "maxZ": -2587 }, { "locX": -87374, "locY": 91027, "minZ": -3787, "maxZ": -2587 }, { "locX": -89554, "locY": 87603, "minZ": -3787, "maxZ": -2587 }],
-    "spawns": [{ "selfId": 485, "name": "Of Kuroboros", "coords": [{ "locX": -84784, "locY": 83069, "locZ": -3326, "head": 0 }, { "locX": -87833, "locY": 88201, "locZ": -3409, "head": 0 }, { "locX": -82361, "locY": 88628, "locZ": -3670, "head": 0 }], "total": 1, "respawn": 10800, "bias": 3600 }]
+    "spawns": [{ "selfId": 485, "name": "Priest Of Kuroboros", "coords": [{ "locX": -84784, "locY": 83069, "locZ": -3326, "head": 0 }, { "locX": -87833, "locY": 88201, "locZ": -3409, "head": 0 }, { "locX": -82361, "locY": 88628, "locZ": -3670, "head": 0 }], "total": 1, "respawn": 10800, "bias": 3600 }]
 },{
     "selfId": "event_t17_21_001",
     "bounds": [{ "locX": -77717, "locY": 104455, "minZ": -3970, "maxZ": -3470 }, { "locX": -68897, "locY": 99367, "minZ": -3970, "maxZ": -3470 }, { "locX": -66257, "locY": 101063, "minZ": -3970, "maxZ": -3470 }, { "locX": -66325, "locY": 110159, "minZ": -3970, "maxZ": -3470 }],
@@ -14805,7 +14805,7 @@
 },{
     "selfId": "event_t18_22_001",
     "bounds": [{ "locX": -50802, "locY": 132092, "minZ": -2996, "maxZ": -2096 }, { "locX": -48718, "locY": 131408, "minZ": -2996, "maxZ": -2096 }, { "locX": -46642, "locY": 131908, "minZ": -2996, "maxZ": -2096 }, { "locX": -47438, "locY": 134276, "minZ": -2996, "maxZ": -2096 }, { "locX": -50366, "locY": 133460, "minZ": -2996, "maxZ": -2096 }],
-    "spawns": [{ "selfId": 485, "name": "Of Kuroboros", "coords": [{ "locX": -49446, "locY": 132688, "locZ": -2647, "head": 0 }, { "locX": -42073, "locY": 132372, "locZ": -2989, "head": 0 }], "total": 1, "respawn": 14400, "bias": 3600 }]
+    "spawns": [{ "selfId": 485, "name": "Priest Of Kuroboros", "coords": [{ "locX": -49446, "locY": 132688, "locZ": -2647, "head": 0 }, { "locX": -42073, "locY": 132372, "locZ": -2989, "head": 0 }], "total": 1, "respawn": 14400, "bias": 3600 }]
 },{
     "selfId": "event_t20_20_001",
     "bounds": [{ "locX": 12662, "locY": 76084, "minZ": -4301, "maxZ": -4001 }, { "locX": 14030, "locY": 76120, "minZ": -4301, "maxZ": -4001 }, { "locX": 14171, "locY": 80672, "minZ": -4301, "maxZ": -4001 }, { "locX": 12556, "locY": 80636, "minZ": -4301, "maxZ": -4001 }],

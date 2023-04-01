@@ -5324,7 +5324,7 @@
     "rewards": { "exp": 2.27, "sp": 102 }
 },{
     "selfId": 485,
-    "template": { "kind": "Monster", "name": "Of Kuroboros", "title": "", "level": 31, "undead": false, "hostile": 1000 },
+    "template": { "kind": "Monster", "name": "Priest Of Kuroboros", "title": "", "level": 31, "undead": false, "hostile": 1000 },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 99.2198617906377, "pAtkRnd": 30, "pDef": 134.187011431931, "mAtk": 67.7543037690698, "mDef": 89.2656648606231, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 56, "run": 130 },

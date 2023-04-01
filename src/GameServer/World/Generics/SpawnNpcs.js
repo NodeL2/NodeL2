@@ -22,7 +22,8 @@ function spawnNpcs() {
                     if (utils.size(spawn.coords) > 0) { // Explicit location
                         spawn.coords.forEach((info) => {
                             createNpc(this, npc, {
-                                locX: info.locX, locY: info.locY, locZ: info.locZ, head: info.head || utils.randomNumber(65536),
+                                locX: info.locX, locY: info.locY, locZ: info.locZ,
+                                head: npc.template.kind === 'Monster' && info.head === 0 ? utils.randomNumber(65536) : info.head,
                             });
                         });
                     }
