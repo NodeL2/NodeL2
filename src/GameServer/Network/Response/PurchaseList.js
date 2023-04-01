@@ -6,9 +6,9 @@ function purchaseList(items, adena) {
     packet
         .writeD(adena)
         .writeD(0x00) // List Id?
-        .writeH(items.length);
+        .writeH(utils.size(items));
 
-    for (const item of items) {
+    items.forEach((item) => {
         packet
             .writeH(item.fetchClass1())
             .writeD(item.fetchId())
@@ -26,7 +26,7 @@ function purchaseList(items, adena) {
 
         packet
             .writeD(item.fetchPrice());
-    }
+    });
 
     return packet.fetchBuffer();
 }

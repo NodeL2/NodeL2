@@ -1,6 +1,8 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 
 function teleportTo(session, actor, coords) {
+    const Generics = invoke(path.actor);
+
     if (actor.isDead() || actor.isBlocked()) {
         return;
     }
@@ -10,7 +12,8 @@ function teleportTo(session, actor, coords) {
 
     // Turns out to be a viable solution
     setTimeout(() => {
-        invoke(path.actor).updatePosition(session, actor, coords);
+        Generics.updatePosition(session, actor, coords);
+        Generics.updateNpcs(session, coords); // Force update position, in case we Teleport to the same Location
     }, 1000);
 }
 

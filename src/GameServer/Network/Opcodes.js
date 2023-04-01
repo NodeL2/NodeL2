@@ -39,6 +39,7 @@ const Opcodes = {
         table[0x59] = ClientRequest.trashItem;
         table[0x63] = ClientRequest.questList;
         table[0x6d] = ClientRequest.restartPoint;
+        table[0xaa] = ClientRequest.userCommand;
 
         table[0x57] = (session) => { invoke(path.actor).adminPanel(session, session.actor); }; // Board
         table[0x9d] = () => {}; // Skill Cool Time, not needed?

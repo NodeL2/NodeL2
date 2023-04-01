@@ -83,6 +83,10 @@ global.utils = {
 
     totalMemUsed() {
         console.info('NodeL2     :: Total Mem Used -> %f MB', Math.round(process.memoryUsage().heapTotal / 1024 / 1024 * 100) / 100);
+    },
+
+    size(ob) {
+        return ob.length;
     }
 };
 

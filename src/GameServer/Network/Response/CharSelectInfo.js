@@ -4,9 +4,9 @@ function charSelectInfo(characters) {
     const packet = new SendPacket(0x1f);
 
     packet
-        .writeD(characters.length);
+        .writeD(utils.size(characters));
 
-    for (const character of characters) {
+    characters.forEach((character) => {
         packet
             .writeS(character.name)
             .writeD(character.id)
@@ -54,7 +54,7 @@ function charSelectInfo(characters) {
             .writeF(character.maxHp)
             .writeF(character.maxMp)
             .writeD(0x00); // Time before deletion
-    }
+    });
 
     return packet.fetchBuffer();
 }

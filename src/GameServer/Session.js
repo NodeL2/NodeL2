@@ -28,7 +28,7 @@ class Session {
 
     dataSend(data) {
         const header = Buffer.alloc(2);
-        header.writeInt16LE(data.length + 2);
+        header.writeInt16LE(utils.size(data) + 2);
         this.socket.write(Buffer.concat([header, data]));
     }
 

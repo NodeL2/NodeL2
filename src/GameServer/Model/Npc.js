@@ -46,6 +46,10 @@ class NpcModel extends CreatureModel {
         return this.model.revMp;
     }
 
+    fetchCorpseTime() {
+        return this.model.corpseTime;
+    }
+
     fetchWeapon() {
         return this.model.weapon;
     }
@@ -89,7 +93,7 @@ class NpcModel extends CreatureModel {
     }
 
     fetchAttackable() {
-        return this.model.kind.includes('Monster.');
+        return this.model.kind === 'Monster' || this.model.kind === 'Boss';
     }
 }
 

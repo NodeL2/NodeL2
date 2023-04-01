@@ -30,5 +30,6 @@ module.exports = {
             trashItem: require('./TrashItem'),
           unequipItem: require('./UnequipItem'),
               useItem: require('./UseItem'),
+          userCommand: require('./UserCommand'),
      validatePosition: require('./ValidatePosition')
 };

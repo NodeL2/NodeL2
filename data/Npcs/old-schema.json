@@ -22,8 +22,11 @@
                     "level": {
                         "type": "integer"
                     },
-                    "hostile": {
+                    "undead": {
                         "type": "boolean"
+                    },
+                    "hostile": {
+                        "type": "integer"
                     }
                 },
                 "required": [
@@ -31,6 +34,7 @@
                     "name",
                     "title",
                     "level",
+                    "undead",
                     "hostile"
                 ]
             },
@@ -69,22 +73,16 @@
                 "type": "object",
                 "properties": {
                     "pAtk": {
-                        "type": "number"
-                    },
-                    "pAtkRnd": {
                         "type": "integer"
                     },
                     "pDef": {
-                        "type": "number"
+                        "type": "integer"
                     },
                     "mAtk": {
-                        "type": "number"
+                        "type": "integer"
                     },
                     "mDef": {
-                        "type": "number"
-                    },
-                    "accur": {
-                        "type": "number"
+                        "type": "integer"
                     },
                     "atkSpd": {
                         "type": "integer"
@@ -98,11 +96,9 @@
                 },
                 "required": [
                     "pAtk",
-                    "pAtkRnd",
                     "pDef",
                     "mAtk",
                     "mDef",
-                    "accur",
                     "atkSpd",
                     "castSpd",
                     "atkRadius"
@@ -127,27 +123,23 @@
                 "type": "object",
                 "properties": {
                     "maxHp": {
-                        "type": "number"
+                        "type": "integer"
                     },
                     "maxMp": {
-                        "type": "number"
+                        "type": "integer"
                     },
                     "revHp": {
                         "type": "number"
                     },
                     "revMp": {
                         "type": "number"
-                    },
-                    "corpseTime": {
-                        "type": "integer"
                     }
                 },
                 "required": [
                     "maxHp",
                     "maxMp",
                     "revHp",
-                    "revMp",
-                    "corpseTime"
+                    "revMp"
                 ]
             },
             "collision": {
@@ -169,41 +161,26 @@
                 "type": "object",
                 "properties": {
                     "weapon": {
-                        "type": "string"
+                        "type": "integer"
                     },
                     "shield": {
-                        "type": "string"
+                        "type": "integer"
                     },
-                    "reuseTime": {
+                    "armor": {
                         "type": "integer"
                     }
                 },
                 "required": [
                     "weapon",
                     "shield",
-                    "reuseTime"
-                ]
-            },
-            "clan": {
-                "type": "object",
-                "properties": {
-                    "clanName": {
-                        "type": "string"
-                    },
-                    "helpRadius": {
-                        "type": "integer"
-                    }
-                },
-                "required": [
-                    "clanName",
-                    "helpRadius"
+                    "armor"
                 ]
             },
             "rewards": {
                 "type": "object",
                 "properties": {
                     "exp": {
-                        "type": "number"
+                        "type": "integer"
                     },
                     "sp": {
                         "type": "integer"
@@ -224,7 +201,6 @@
             "vitals",
             "collision",
             "equipment",
-            "clan",
             "rewards"
         ]
     }
