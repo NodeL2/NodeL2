@@ -169,10 +169,10 @@
                 "type": "object",
                 "properties": {
                     "weapon": {
-                        "type": "string"
+                        "type": "integer"
                     },
                     "shield": {
-                        "type": "string"
+                        "type": "integer"
                     },
                     "reuseTime": {
                         "type": "integer"
