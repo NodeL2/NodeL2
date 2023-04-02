@@ -1,3 +1,4 @@
+const World    = invoke('GameServer/World/World');
 const Formulas = invoke('GameServer/Formulas');
 const Database = invoke('Database');
 
@@ -12,6 +13,12 @@ function updatePosition(session, actor, coords) {
     if (Formulas.calcDistance(this.previousXY?.locX ?? 0, this.previousXY?.locY ?? 0, coords.locX, coords.locY) >= 1000) {
         Generics.updateNpcs(session, coords);
     }
+
+    const npcs = World.npc.spawns.filter((ob) => ob.fetchHostile() && Formulas.calcWithinRadius(coords.locX, coords.locY, ob.fetchLocX(), ob.fetchLocY(), 500)) ?? [];
+    npcs.forEach((npc) => {
+        npc.setLocZ(actor.fetchLocZ()); // TODO: Remove, uber hack...
+        npc.enterCombatState(session, actor);
+    });
 
     // Reschedule actions based on updated position
     if (actor.storedAttack) {

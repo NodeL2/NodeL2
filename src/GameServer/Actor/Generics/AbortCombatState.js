@@ -1,9 +1,8 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 
 function abortCombatState(session, actor) {
-    actor.automation.abortAll(actor);
-
     actor.state.setCombats(false);
+    actor.automation.abortAll(actor);
     session.dataSend(ServerResponse.autoAttackStop(actor.fetchId()));
 }
 

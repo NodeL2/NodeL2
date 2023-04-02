@@ -1,4 +1,5 @@
 module.exports = {
-            die: require('./Die'),
-    receivedHit: require('./ReceivedHit')
+               die: require('./Die'),
+       receivedHit: require('./ReceivedHit'),
+    stopAutomation: require('./StopAutomation')
 };
