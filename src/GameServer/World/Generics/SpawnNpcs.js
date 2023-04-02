@@ -1,6 +1,5 @@
 const Npc       = invoke('GameServer/Npc/Npc');
 const DataCache = invoke('GameServer/DataCache');
-const Formulas  = invoke('GameServer/Formulas');
 
 function createNpc(world, npc, coords) {
     world.npc.spawns.push(
@@ -28,7 +27,7 @@ function spawnNpcs() {
                         });
                     }
                     else { // Random location within bounds
-                        const pos = Formulas.createRandomVertexPoint(coords);
+                        const pos = require('random-point-in-shape')(coords);
                         createNpc(this, npc, {
                             locX: pos[0], locY: pos[1], locZ: bounds[0].maxZ, head: utils.randomNumber(65536),
                         });
