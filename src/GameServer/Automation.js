@@ -18,7 +18,6 @@ class Automation extends SelectedModel {
     }
 
     destructor(creature) {
-        this.clearDestId();
         this.stopReplenish();
         this.abortAll(creature);
     }
@@ -145,6 +144,7 @@ class Automation extends SelectedModel {
     }
 
     abortAll(creature) {
+        this.clearDestId();
         creature.state.setTowards(false);
         Timer.clear(this.timer.action);
         Timer.clear(this.timer.pickup);
