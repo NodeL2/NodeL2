@@ -15,7 +15,7 @@
         "like-sql": "^0.1.1",
         "mariadb": "^3.1.1",
         "objcrush": "^1.0.1",
-        "random-position-in-polygon": "^1.0.6",
+        "random-point-in-shape": "^1.0.0",
         "rsa-raw": "^1.0.3"
     }
 }

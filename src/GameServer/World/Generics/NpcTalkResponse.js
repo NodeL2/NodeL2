@@ -51,7 +51,7 @@ function npcTalkResponse(session, data) {
                     return [bound.locX, bound.locY];
                 });
 
-                const pos = Formulas.createRandomVertexPoint(coords);
+                const pos = require('random-point-in-shape')(coords);
                 invoke(path.actor).teleportTo(session, session.actor, {
                     locX: pos[0], locY: pos[1], locZ: selected.bounds[0].maxZ, head: utils.randomNumber(65536),
                 });
