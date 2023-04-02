@@ -181,17 +181,6 @@ const Formulas = {
             locY: ((1 - t) * srcY) + (t * destY),
             locZ: ((1 - t) * srcZ) + (t * destZ),
         };
-    },
-
-    createRandomVertexPoint(coords) {
-        return require('random-position-in-polygon')({
-            type: "Feature",
-            properties: {},
-            geometry: {
-                type: "Polygon",
-                coordinates: [coords]
-            }
-        });
     }
 };
 
