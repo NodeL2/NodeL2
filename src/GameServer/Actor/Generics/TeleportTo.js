@@ -7,6 +7,7 @@ function teleportTo(session, actor, coords) {
         return;
     }
 
+    actor.clearDestId();
     actor.automation.abortAll(actor);
     session.dataSend(ServerResponse.teleportToLocation(actor.fetchId(), coords));
 

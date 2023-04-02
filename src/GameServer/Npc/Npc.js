@@ -61,6 +61,11 @@ class Npc extends NpcModel {
             };
 
             this.timer.combat = setInterval(() => {
+                if (Formulas.calcDistance(this.fetchLocX(), this.fetchLocY(), actor.fetchLocX(), actor.fetchLocY()) >= 1500) {
+                    this.abortCombatState(session); // Actor is out of reach
+                    return;
+                }
+
                 if (this.state.isBlocked()) {
                     return;
                 }
@@ -71,7 +76,7 @@ class Npc extends NpcModel {
 
                 if (this.state.inMotion()) {
                     if (coords.locX !== newDstX || coords.locY !== newDstY) {
-                        this.setLocXYZ(Formulas.calcMidPointCoordinates(this.fetchLocX(), this.fetchLocY(), this.fetchLocZ(), coords.locX, coords.locY, coords.locZ, this.automation.fetchDistanceRatio() * 1.5)); // TODO: Another hack to catch-up
+                        this.setLocXYZ(Formulas.calcMidPointCoordinates(this.fetchLocX(), this.fetchLocY(), this.fetchLocZ(), coords.locX, coords.locY, coords.locZ, this.automation.fetchDistanceRatio() * 1.3)); // TODO: Another hack to catch-up
 
                         this.automation.abortAll(this);
                     }
@@ -110,7 +115,7 @@ class Npc extends NpcModel {
 
         this.clearDestId();
         this.state.setCombatEnded();
-        this.automation.destructor(this);
+        invoke(path.npc).stopAutomation(session, this);
 
         this.setStateRun(false);
         this.setStateAttack(false);
