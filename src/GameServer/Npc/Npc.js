@@ -115,7 +115,7 @@ class Npc extends NpcModel {
 
         this.clearDestId();
         this.state.setCombatEnded();
-        invoke(path.npc).stopAutomation(session, this);
+        this.automation.abortAll(this);
 
         this.setStateRun(false);
         this.setStateAttack(false);
