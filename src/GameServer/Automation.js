@@ -64,7 +64,7 @@ class Automation extends SelectedModel {
                 creature.statusUpdateVitals(creature);
             }
             else {
-                creature.broadcastToSubscribers();
+                creature.broadcastVitals();
             }
 
             if (minHp >= maxHp && minMp >= maxMp) {
