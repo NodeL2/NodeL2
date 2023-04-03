@@ -115,7 +115,7 @@ class Npc extends NpcModel {
 
         this.clearDestId();
         this.state.setCombatEnded();
-        invoke(path.npc).stopAutomation(session, this);
+        this.automation.abortAll(this);
 
         this.setStateRun(false);
         this.setStateAttack(false);
@@ -166,13 +166,8 @@ class Npc extends NpcModel {
         invoke(path.actor).receivedHit(session, actor, hit);
     }
 
-    broadcastToSubscribers() {
-        const World = invoke('GameServer/World/World');
-
-        const inRadiusActors = World.user.sessions.filter((ob) => this.fetchId() === ob.actor?.fetchDestId() && Formulas.calcWithinRadius(this.fetchLocX(), this.fetchLocY(), ob.actor?.fetchLocX(), ob.actor?.fetchLocY(), 3500)) ?? [];
-        inRadiusActors.forEach((session) => {
-            session.actor.statusUpdateVitals(this);
-        });
+    broadcastVitals() {
+        invoke(path.npc).broadcastVitals(this);
     }
 }
 
