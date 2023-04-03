@@ -143,7 +143,7 @@
     "rewards": { "exp": 2.26, "sp": 15 }
 },{
     "selfId": 14,
-    "template": { "kind": "Monster", "name": "Felim Lizardman Warrior", "title": "", "level": 17, "hostile": true },
+    "template": { "kind": "Monster", "name": "Felim Lizardman Warrior", "title": "", "level": 17, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 38.387687430923, "pAtkRnd": 30, "pDef": 78.6846933884443, "mAtk": 23.8307403032876, "mDef": 57.578043762905, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 52, "run": 130 },
@@ -440,7 +440,7 @@
     "rewards": { "exp": 1.63, "sp": 23 }
 },{
     "selfId": 41,
-    "template": { "kind": "Monster", "name": "Tainted Zombie", "title": "", "level": 18, "hostile": true },
+    "template": { "kind": "Monster", "name": "Tainted Zombie", "title": "", "level": 18, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 37.8293210682914, "pAtkRnd": 30, "pDef": 89.4827041677855, "mAtk": 25.8325224887638, "mDef": 59.5268722048839, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 15, "run": 15 },
@@ -495,7 +495,7 @@
     "rewards": { "exp": 1.55, "sp": 25 }
 },{
     "selfId": 46,
-    "template": { "kind": "Monster", "name": "Stink Zombie", "title": "", "level": 19, "hostile": true },
+    "template": { "kind": "Monster", "name": "Stink Zombie", "title": "", "level": 19, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 40.9691547169596, "pAtkRnd": 30, "pDef": 92.4840203490576, "mAtk": 27.9766218553312, "mDef": 61.5234475926151, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 15, "run": 15 },
@@ -2200,7 +2200,7 @@
     "rewards": { "exp": 1.2, "sp": 64 }
 },{
     "selfId": 201,
-    "template": { "kind": "Monster", "name": "Ghoul", "title": "", "level": 32, "hostile": true },
+    "template": { "kind": "Monster", "name": "Ghoul", "title": "", "level": 32, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 116.781777327581, "pAtkRnd": 30, "pDef": 125.577266295727, "mAtk": 72.4971050329047, "mDef": 91.8919935127208, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 15, "run": 15 },
@@ -2629,7 +2629,7 @@
     "rewards": { "exp": 1.33, "sp": 236 }
 },{
     "selfId": 240,
-    "template": { "kind": "Monster", "name": "Royal Cave Servant", "title": "", "level": 51, "hostile": true },
+    "template": { "kind": "Monster", "name": "Royal Cave Servant", "title": "", "level": 51, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 321.132066836175, "pAtkRnd": 30, "pDef": 204.85193600925, "mAtk": 219.291573418222, "mDef": 149.901756345772, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 150 },
@@ -2673,7 +2673,7 @@
     "rewards": { "exp": 1.2, "sp": 279 }
 },{
     "selfId": 244,
-    "template": { "kind": "Monster", "name": "Malruk Succubus", "title": "", "level": 55, "hostile": true },
+    "template": { "kind": "Monster", "name": "Malruk Succubus", "title": "", "level": 55, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 426.922566144327, "pAtkRnd": 30, "pDef": 223.636201988549, "mAtk": 265.029791693132, "mDef": 163.647266965872, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 60, "run": 100 },
@@ -3102,7 +3102,7 @@
     "rewards": { "exp": 1.2, "sp": 279 }
 },{
     "selfId": 283,
-    "template": { "kind": "Monster", "name": "Malruk Succubus", "title": "", "level": 55, "hostile": true },
+    "template": { "kind": "Monster", "name": "Malruk Succubus", "title": "", "level": 55, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 426.922566144327, "pAtkRnd": 30, "pDef": 223.636201988549, "mAtk": 265.029791693132, "mDef": 163.647266965872, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 60, "run": 100 },
@@ -3234,7 +3234,7 @@
     "rewards": { "exp": 1.34, "sp": 38 }
 },{
     "selfId": 295,
-    "template": { "kind": "Monster", "name": "Virud Lizardman Warrior", "title": "", "level": 22, "hostile": false },
+    "template": { "kind": "Monster", "name": "Virud Lizardman Warrior", "title": "", "level": 22, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 56.9280619450074, "pAtkRnd": 30, "pDef": 92.656936328145, "mAtk": 35.3404424953224, "mDef": 67.8023247609444, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 52, "run": 130 },
@@ -3245,7 +3245,7 @@
     "rewards": { "exp": 1.4, "sp": 32 }
 },{
     "selfId": 296,
-    "template": { "kind": "Monster", "name": "Virud Lizardman Scout", "title": "", "level": 21, "hostile": true },
+    "template": { "kind": "Monster", "name": "Virud Lizardman Scout", "title": "", "level": 21, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 106.476560304551, "pAtkRnd": 10, "pDef": 98.7036461844923, "mAtk": 32.7226319401133, "mDef": 65.6609496463517, "accur": 0, "atkSpd": 227, "castSpd": 333, "atkRadius": 500 },
     "speed": { "walk": 80, "run": 130 },
@@ -3256,7 +3256,7 @@
     "rewards": { "exp": 1.43, "sp": 29 }
 },{
     "selfId": 297,
-    "template": { "kind": "Monster", "name": "Virud Lizardman Shaman", "title": "", "level": 23, "hostile": true },
+    "template": { "kind": "Monster", "name": "Virud Lizardman Shaman", "title": "", "level": 23, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 55.8412534896936, "pAtkRnd": 30, "pDef": 105.214730908699, "mAtk": 38.1323374524528, "mDef": 69.992339850723, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 43, "run": 120 },
@@ -3267,7 +3267,7 @@
     "rewards": { "exp": 1.37, "sp": 35 }
 },{
     "selfId": 298,
-    "template": { "kind": "Monster", "name": "Virud Lizardman Shaman", "title": "", "level": 23, "hostile": true },
+    "template": { "kind": "Monster", "name": "Virud Lizardman Shaman", "title": "", "level": 23, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 55.8412534896936, "pAtkRnd": 30, "pDef": 105.214730908699, "mAtk": 38.1323374524528, "mDef": 69.992339850723, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 43, "run": 120 },
@@ -3278,7 +3278,7 @@
     "rewards": { "exp": 1.37, "sp": 35 }
 },{
     "selfId": 299,
-    "template": { "kind": "Monster", "name": "Zenta Lizardman", "title": "", "level": 40, "hostile": true },
+    "template": { "kind": "Monster", "name": "Zenta Lizardman", "title": "", "level": 40, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 176.360773305357, "pAtkRnd": 30, "pDef": 156.550345057693, "mAtk": 120.431546585834, "mDef": 114.55674834152, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 37, "run": 140 },
@@ -3300,7 +3300,7 @@
     "rewards": { "exp": 1.33, "sp": 176 }
 },{
     "selfId": 301,
-    "template": { "kind": "Monster", "name": "Zenta Lizardman Scout", "title": "", "level": 41, "hostile": true },
+    "template": { "kind": "Monster", "name": "Zenta Lizardman Scout", "title": "", "level": 41, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 415.777930219857, "pAtkRnd": 10, "pDef": 176.759019661826, "mAtk": 127.77787092757, "mDef": 117.585981249973, "accur": 0, "atkSpd": 227, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 37, "run": 150 },
@@ -3322,7 +3322,7 @@
     "rewards": { "exp": 1.2, "sp": 141 }
 },{
     "selfId": 303,
-    "template": { "kind": "Monster", "name": "Zenta Lizardman Shaman", "title": "", "level": 43, "hostile": true },
+    "template": { "kind": "Monster", "name": "Zenta Lizardman Shaman", "title": "", "level": 43, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 210.048315836633, "pAtkRnd": 30, "pDef": 186.047588305709, "mAtk": 143.435771231034, "mDef": 123.765046174005, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 37, "run": 130 },
@@ -3608,7 +3608,7 @@
     "rewards": { "exp": 3.67, "sp": 8 }
 },{
     "selfId": 329,
-    "template": { "kind": "Monster", "name": "Ghost Guardian", "title": "", "level": 21, "hostile": false },
+    "template": { "kind": "Monster", "name": "Ghost Guardian", "title": "", "level": 21, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 47.919244061454, "pAtkRnd": 30, "pDef": 89.7305874404475, "mAtk": 32.7226319401133, "mDef": 65.6609496463517, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 140 },
@@ -3641,7 +3641,7 @@
     "rewards": { "exp": 2.94, "sp": 10 }
 },{
     "selfId": 332,
-    "template": { "kind": "Monster", "name": "Patriarch Kuroboros", "title": "", "level": 35, "hostile": true },
+    "template": { "kind": "Monster", "name": "Patriarch Kuroboros", "title": "", "level": 35, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 129.32895629306, "pAtkRnd": 30, "pDef": 136.729482315266, "mAtk": 88.3149122834552, "mDef": 100.052701197714, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 52, "run": 130 },
@@ -4202,7 +4202,7 @@
     "rewards": { "exp": 2.67, "sp": 12 }
 },{
     "selfId": 383,
-    "template": { "kind": "Monster", "name": "Arachnid Hunter", "title": "", "level": 30, "hostile": false },
+    "template": { "kind": "Monster", "name": "Arachnid Hunter", "title": "", "level": 30, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 92.6422612424255, "pAtkRnd": 30, "pDef": 130.310702404407, "mAtk": 63.2626552465637, "mDef": 86.6870151175919, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 10, "run": 140 },
@@ -4213,7 +4213,7 @@
     "rewards": { "exp": 1.26, "sp": 62 }
 },{
     "selfId": 384,
-    "template": { "kind": "Monster", "name": "Discarded Guardian", "title": "", "level": 20, "hostile": true },
+    "template": { "kind": "Monster", "name": "Discarded Guardian", "title": "", "level": 20, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 44.3286254037503, "pAtkRnd": 30, "pDef": 95.5575443427496, "mAtk": 30.2707048474683, "mDef": 63.5680580197664, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 23, "run": 23 },
@@ -4345,7 +4345,7 @@
     "rewards": { "exp": 4.2, "sp": 28 }
 },{
     "selfId": 396,
-    "template": { "kind": "Monster", "name": "Brae Orc Fighter", "title": "", "level": 15, "hostile": true },
+    "template": { "kind": "Monster", "name": "Brae Orc Fighter", "title": "", "level": 15, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 32.5785976788137, "pAtkRnd": 30, "pDef": 73.5521582805718, "mAtk": 20.2245082391626, "mDef": 53.8222773192738, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 45, "run": 110 },
@@ -4356,7 +4356,7 @@
     "rewards": { "exp": 3.65, "sp": 33 }
 },{
     "selfId": 397,
-    "template": { "kind": "Monster", "name": "Brae Orc Chief", "title": "", "level": 17, "hostile": true },
+    "template": { "kind": "Monster", "name": "Brae Orc Chief", "title": "", "level": 17, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 38.387687430923, "pAtkRnd": 30, "pDef": 78.6846933884443, "mAtk": 23.8307403032876, "mDef": 57.578043762905, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 45, "run": 110 },
@@ -4488,7 +4488,7 @@
     "rewards": { "exp": 2.4, "sp": 82 }
 },{
     "selfId": 409,
-    "template": { "kind": "Monster", "name": "Soul Scavenger", "title": "", "level": 35, "hostile": true },
+    "template": { "kind": "Monster", "name": "Soul Scavenger", "title": "", "level": 35, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 142.261851922366, "pAtkRnd": 30, "pDef": 136.729482315266, "mAtk": 88.3149122834552, "mDef": 100.052701197714, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 100, "run": 100 },
@@ -4543,7 +4543,7 @@
     "rewards": { "exp": 2.44, "sp": 76 }
 },{
     "selfId": 414,
-    "template": { "kind": "Monster", "name": "Sukar Wererat Chief", "title": "", "level": 28, "hostile": true },
+    "template": { "kind": "Monster", "name": "Sukar Wererat Chief", "title": "", "level": 28, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 80.5405590081038, "pAtkRnd": 30, "pDef": 122.775046237955, "mAtk": 54.9987613597006, "mDef": 81.6740458988784, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 120 },
@@ -5038,7 +5038,7 @@
     "rewards": { "exp": 1.4, "sp": 32 }
 },{
     "selfId": 459,
-    "template": { "kind": "Monster", "name": "Zombie Lord Farakelsus", "title": "", "level": 29, "hostile": true },
+    "template": { "kind": "Monster", "name": "Zombie Lord Farakelsus", "title": "", "level": 29, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 95.062021797265, "pAtkRnd": 30, "pDef": 115.00597751854, "mAtk": 59.0136709389587, "mDef": 84.1563831718592, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 15, "run": 15 },
@@ -5126,7 +5126,7 @@
     "rewards": { "exp": 1.73, "sp": 21 }
 },{
     "selfId": 467,
-    "template": { "kind": "Monster", "name": "Tracker Sharuk", "title": "", "level": 28, "hostile": true },
+    "template": { "kind": "Monster", "name": "Tracker Sharuk", "title": "", "level": 28, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 80.5405590081038, "pAtkRnd": 30, "pDef": 111.613678398141, "mAtk": 54.9987613597006, "mDef": 81.6740458988784, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 52, "run": 130 },
@@ -5291,7 +5291,7 @@
     "rewards": { "exp": 29.39, "sp": 2 }
 },{
     "selfId": 482,
-    "template": { "kind": "Monster", "name": "Corpse Scavenger", "title": "", "level": 32, "hostile": true },
+    "template": { "kind": "Monster", "name": "Corpse Scavenger", "title": "", "level": 32, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 116.781777327581, "pAtkRnd": 30, "pDef": 125.577266295727, "mAtk": 72.4971050329047, "mDef": 91.8919935127208, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 60, "run": 140 },
@@ -5313,7 +5313,7 @@
     "rewards": { "exp": 1.73, "sp": 21 }
 },{
     "selfId": 484,
-    "template": { "kind": "Monster", "name": "Follower Of Kuroboros", "title": "", "level": 29, "hostile": true },
+    "template": { "kind": "Monster", "name": "Follower Of Kuroboros", "title": "", "level": 29, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 86.4200198156954, "pAtkRnd": 30, "pDef": 126.506575270394, "mAtk": 59.0136709389587, "mDef": 84.1563831718592, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 43, "run": 130 },
@@ -5324,7 +5324,7 @@
     "rewards": { "exp": 2.27, "sp": 102 }
 },{
     "selfId": 485,
-    "template": { "kind": "Monster", "name": "Priest Of Kuroboros", "title": "", "level": 31, "hostile": false },
+    "template": { "kind": "Monster", "name": "Priest Of Kuroboros", "title": "", "level": 31, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 99.2198617906377, "pAtkRnd": 30, "pDef": 134.187011431931, "mAtk": 67.7543037690698, "mDef": 89.2656648606231, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 56, "run": 130 },
@@ -5346,7 +5346,7 @@
     "rewards": { "exp": 2.23, "sp": 140 }
 },{
     "selfId": 487,
-    "template": { "kind": "Monster", "name": "Kuruka Ratman", "title": "", "level": 16, "hostile": true },
+    "template": { "kind": "Monster", "name": "Kuruka Ratman", "title": "", "level": 16, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 32.1639609810834, "pAtkRnd": 30, "pDef": 83.6949028379183, "mAtk": 21.9638159477305, "mDef": 55.6766341805139, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 120 },
@@ -5357,7 +5357,7 @@
     "rewards": { "exp": 1.84, "sp": 19 }
 },{
     "selfId": 488,
-    "template": { "kind": "Monster", "name": "Kuruka Ratman Hunter", "title": "", "level": 17, "hostile": true },
+    "template": { "kind": "Monster", "name": "Kuruka Ratman Hunter", "title": "", "level": 17, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 34.8978976644755, "pAtkRnd": 30, "pDef": 86.5531627272888, "mAtk": 23.8307403032876, "mDef": 57.578043762905, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 120 },
@@ -5379,7 +5379,7 @@
     "rewards": { "exp": 1.96, "sp": 18 }
 },{
     "selfId": 490,
-    "template": { "kind": "Monster", "name": "Death Doll", "title": "", "level": 40, "hostile": false },
+    "template": { "kind": "Monster", "name": "Death Doll", "title": "", "level": 40, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 193.996850635892, "pAtkRnd": 30, "pDef": 156.550345057693, "mAtk": 120.431546585834, "mDef": 114.55674834152, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 60, "run": 150 },
@@ -5709,7 +5709,7 @@
     "rewards": { "exp": 1.26, "sp": 47 }
 },{
     "selfId": 520,
-    "template": { "kind": "Monster", "name": "Pirate Captain Uthanka", "title": "", "level": 10, "hostile": false },
+    "template": { "kind": "Monster", "name": "Pirate Captain Uthanka", "title": "", "level": 10, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 19.3375804545075, "pAtkRnd": 30, "pDef": 68.0077952701505, "mAtk": 13.2050607270364, "mDef": 45.241048263264, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 45, "run": 110 },
@@ -5753,7 +5753,7 @@
     "rewards": { "exp": 2.23, "sp": 140 }
 },{
     "selfId": 524,
-    "template": { "kind": "Monster", "name": "Gray Wolf Elder", "title": "", "level": 7, "hostile": true },
+    "template": { "kind": "Monster", "name": "Gray Wolf Elder", "title": "", "level": 7, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 15.2876092271086, "pAtkRnd": 30, "pDef": 57.3110937274479, "mAtk": 10.1130063620162, "mDef": 40.6263479280594, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 24, "run": 110 },
@@ -5962,7 +5962,7 @@
     "rewards": { "exp": 1.55, "sp": 25 }
 },{
     "selfId": 543,
-    "template": { "kind": "Monster", "name": "Ghost", "title": "", "level": 20, "hostile": false },
+    "template": { "kind": "Monster", "name": "Ghost", "title": "", "level": 20, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 48.7614879441253, "pAtkRnd": 30, "pDef": 86.870494857045, "mAtk": 30.2707048474683, "mDef": 63.5680580197664, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 140 },
@@ -6116,7 +6116,7 @@
     "rewards": { "exp": 1.2, "sp": 132 }
 },{
     "selfId": 557,
-    "template": { "kind": "Monster", "name": "Dire Wyrm", "title": "", "level": 42, "hostile": false },
+    "template": { "kind": "Monster", "name": "Dire Wyrm", "title": "", "level": 42, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 198.345907305602, "pAtkRnd": 30, "pDef": 181.373644449944, "mAtk": 135.444543183224, "mDef": 120.655783203216, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 70, "run": 70 },
@@ -6160,7 +6160,7 @@
     "rewards": { "exp": 1.2, "sp": 169 }
 },{
     "selfId": 561,
-    "template": { "kind": "Monster", "name": "Trisalim Tarantula", "title": "", "level": 46, "hostile": false },
+    "template": { "kind": "Monster", "name": "Trisalim Tarantula", "title": "", "level": 46, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 248.052596235842, "pAtkRnd": 30, "pDef": 200.406973777662, "mAtk": 169.387768262901, "mDef": 133.31738717531, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 120, "run": 190 },
@@ -6193,7 +6193,7 @@
     "rewards": { "exp": 1.33, "sp": 138 }
 },{
     "selfId": 564,
-    "template": { "kind": "Monster", "name": "Enchanted Monstereye", "title": "", "level": 41, "hostile": false },
+    "template": { "kind": "Monster", "name": "Enchanted Monstereye", "title": "", "level": 41, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 205.830658524682, "pAtkRnd": 30, "pDef": 160.690017874387, "mAtk": 127.77787092757, "mDef": 117.585981249973, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 90, "run": 190 },
@@ -6259,7 +6259,7 @@
     "rewards": { "exp": 1.2, "sp": 180 }
 },{
     "selfId": 570,
-    "template": { "kind": "Monster", "name": "Tarlk Bugbear", "title": "", "level": 47, "hostile": false },
+    "template": { "kind": "Monster", "name": "Tarlk Bugbear", "title": "", "level": 47, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 270.143049629073, "pAtkRnd": 30, "pDef": 192.660314124232, "mAtk": 178.704095517361, "mDef": 136.571899862237, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 55, "run": 130 },
@@ -6402,7 +6402,7 @@
     "rewards": { "exp": 1.2, "sp": 124 }
 },{
     "selfId": 583,
-    "template": { "kind": "Monster", "name": "Timak Orc", "title": "", "level": 40, "hostile": true },
+    "template": { "kind": "Monster", "name": "Timak Orc", "title": "", "level": 40, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 193.996850635892, "pAtkRnd": 30, "pDef": 156.550345057693, "mAtk": 120.431546585834, "mDef": 114.55674834152, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 130 },
@@ -6446,7 +6446,7 @@
     "rewards": { "exp": 1.33, "sp": 167 }
 },{
     "selfId": 587,
-    "template": { "kind": "Monster", "name": "Timak Orc Shaman", "title": "", "level": 44, "hostile": true },
+    "template": { "kind": "Monster", "name": "Timak Orc Shaman", "title": "", "level": 44, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 244.454229970673, "pAtkRnd": 30, "pDef": 173.435520214248, "mAtk": 151.755045962434, "mDef": 126.912586716704, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 120 },
@@ -6457,7 +6457,7 @@
     "rewards": { "exp": 1.2, "sp": 159 }
 },{
     "selfId": 588,
-    "template": { "kind": "Monster", "name": "Timak Orc Overlord", "title": "", "level": 45, "hostile": true },
+    "template": { "kind": "Monster", "name": "Timak Orc Overlord", "title": "", "level": 45, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 258.388121079002, "pAtkRnd": 30, "pDef": 177.787457476699, "mAtk": 160.405083582293, "mDef": 130.097145534437, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 140 },
@@ -6468,7 +6468,7 @@
     "rewards": { "exp": 1.33, "sp": 188 }
 },{
     "selfId": 589,
-    "template": { "kind": "Monster", "name": "Fline", "title": "", "level": 45, "hostile": true },
+    "template": { "kind": "Monster", "name": "Fline", "title": "", "level": 45, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 234.898291890002, "pAtkRnd": 30, "pDef": 195.566203224369, "mAtk": 160.405083582293, "mDef": 130.097145534437, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 60, "run": 170 },
@@ -6490,7 +6490,7 @@
     "rewards": { "exp": 1.2, "sp": 180 }
 },{
     "selfId": 591,
-    "template": { "kind": "Monster", "name": "Valley Treant", "title": "", "level": 47, "hostile": true },
+    "template": { "kind": "Monster", "name": "Valley Treant", "title": "", "level": 47, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 261.695489028813, "pAtkRnd": 30, "pDef": 205.29926166694, "mAtk": 178.704095517361, "mDef": 136.571899862237, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 12, "run": 12 },
@@ -6512,7 +6512,7 @@
     "rewards": { "exp": 1.2, "sp": 202 }
 },{
     "selfId": 593,
-    "template": { "kind": "Monster", "name": "Unicorn", "title": "", "level": 49, "hostile": true },
+    "template": { "kind": "Monster", "name": "Unicorn", "title": "", "level": 49, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 290.445878844496, "pAtkRnd": 30, "pDef": 215.229326789024, "mAtk": 198.336884859089, "mDef": 143.177709588328, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 46, "run": 150 },
@@ -6534,7 +6534,7 @@
     "rewards": { "exp": 1.2, "sp": 226 }
 },{
     "selfId": 595,
-    "template": { "kind": "Monster", "name": "Fline Elder", "title": "", "level": 51, "hostile": true },
+    "template": { "kind": "Monster", "name": "Fline Elder", "title": "", "level": 51, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 353.245273519793, "pAtkRnd": 30, "pDef": 204.85193600925, "mAtk": 219.291573418222, "mDef": 149.901756345772, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 60, "run": 170 },
@@ -6556,7 +6556,7 @@
     "rewards": { "exp": 1.2, "sp": 251 }
 },{
     "selfId": 597,
-    "template": { "kind": "Monster", "name": "Valley Treant Elder", "title": "", "level": 53, "hostile": true },
+    "template": { "kind": "Monster", "name": "Valley Treant Elder", "title": "", "level": 53, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 389.082006518376, "pAtkRnd": 30, "pDef": 214.18325907071, "mAtk": 241.5387035415, "mDef": 156.73001358948, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 12, "run": 12 },
@@ -6567,7 +6567,7 @@
     "rewards": { "exp": 1.2, "sp": 265 }
 },{
     "selfId": 598,
-    "template": { "kind": "Monster", "name": "Satyr Elder", "title": "", "level": 54, "hostile": true },
+    "template": { "kind": "Monster", "name": "Satyr Elder", "title": "", "level": 54, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 407.757942831258, "pAtkRnd": 30, "pDef": 218.895889884277, "mAtk": 253.132561311492, "mDef": 160.178512294081, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 50, "run": 110 },
@@ -6578,7 +6578,7 @@
     "rewards": { "exp": 1.2, "sp": 279 }
 },{
     "selfId": 599,
-    "template": { "kind": "Monster", "name": "Unicorn Elder", "title": "", "level": 55, "hostile": true },
+    "template": { "kind": "Monster", "name": "Unicorn Elder", "title": "", "level": 55, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 426.922566144327, "pAtkRnd": 30, "pDef": 223.636201988549, "mAtk": 265.029791693132, "mDef": 163.647266965872, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 46, "run": 150 },
@@ -6644,7 +6644,7 @@
     "rewards": { "exp": 1.33, "sp": 176 }
 },{
     "selfId": 605,
-    "template": { "kind": "Monster", "name": "Weird Drake", "title": "", "level": 45, "hostile": false },
+    "template": { "kind": "Monster", "name": "Weird Drake", "title": "", "level": 45, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 242.480835872714, "pAtkRnd": 30, "pDef": 183.52645713074, "mAtk": 160.405083582293, "mDef": 130.097145534437, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 70, "run": 70 },
@@ -6897,7 +6897,7 @@
     "rewards": { "exp": 1.26, "sp": 563 }
 },{
     "selfId": 628,
-    "template": { "kind": "Monster", "name": "Limal Karinness", "title": "", "level": 69, "hostile": false },
+    "template": { "kind": "Monster", "name": "Limal Karinness", "title": "", "level": 69, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 734.253971072063, "pAtkRnd": 30, "pDef": 291.150625725597, "mAtk": 455.818437428996, "mDef": 213.051392179505, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 140 },
@@ -6908,7 +6908,7 @@
     "rewards": { "exp": 1.2, "sp": 559 }
 },{
     "selfId": 629,
-    "template": { "kind": "Monster", "name": "Karik", "title": "", "level": 70, "hostile": false },
+    "template": { "kind": "Monster", "name": "Karik", "title": "", "level": 70, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 757.750098146369, "pAtkRnd": 30, "pDef": 295.91597408024, "mAtk": 470.404627426724, "mDef": 216.538467292763, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 37, "run": 200 },
@@ -6963,7 +6963,7 @@
     "rewards": { "exp": 1.33, "sp": 167 }
 },{
     "selfId": 634,
-    "template": { "kind": "Monster", "name": "Taik Orc Captain", "title": "", "level": 44, "hostile": false },
+    "template": { "kind": "Monster", "name": "Taik Orc Captain", "title": "", "level": 44, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 222.231118155158, "pAtkRnd": 30, "pDef": 173.435520214248, "mAtk": 151.755045962434, "mDef": 126.912586716704, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 36, "run": 170 },
@@ -7018,7 +7018,7 @@
     "rewards": { "exp": 1.27, "sp": 214 }
 },{
     "selfId": 639,
-    "template": { "kind": "Monster", "name": "Mirror", "title": "", "level": 49, "hostile": true },
+    "template": { "kind": "Monster", "name": "Mirror", "title": "", "level": 49, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 290.445878844496, "pAtkRnd": 30, "pDef": 195.663024353658, "mAtk": 198.336884859089, "mDef": 143.177709588328, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 165 },
@@ -7172,7 +7172,7 @@
     "rewards": { "exp": 1.27, "sp": 417 }
 },{
     "selfId": 653,
-    "template": { "kind": "Monster", "name": "Lesser Giant", "title": "", "level": 61, "hostile": true },
+    "template": { "kind": "Monster", "name": "Lesser Giant", "title": "", "level": 61, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 517.255620400203, "pAtkRnd": 30, "pDef": 260.64397788076, "mAtk": 342.173148344222, "mDef": 184.763755881103, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 15, "run": 180 },
@@ -7249,7 +7249,7 @@
     "rewards": { "exp": 1.2, "sp": 169 }
 },{
     "selfId": 660,
-    "template": { "kind": "Monster", "name": "Archer Of Greed", "title": "", "level": 46, "hostile": false },
+    "template": { "kind": "Monster", "name": "Archer Of Greed", "title": "", "level": 46, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 606.290155719644, "pAtkRnd": 10, "pDef": 182.188157979692, "mAtk": 169.387768262901, "mDef": 133.31738717531, "accur": 0, "atkSpd": 227, "castSpd": 333, "atkRadius": 500 },
     "speed": { "walk": 92, "run": 140 },
@@ -7546,7 +7546,7 @@
     "rewards": { "exp": 1.2, "sp": 226 }
 },{
     "selfId": 687,
-    "template": { "kind": "Monster", "name": "Revenant Of Sir Calibus", "title": "", "level": 40, "hostile": true },
+    "template": { "kind": "Monster", "name": "Revenant Of Sir Calibus", "title": "", "level": 40, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 182.053719429628, "pAtkRnd": 30, "pDef": 161.603808270889, "mAtk": 120.431546585834, "mDef": 114.55674834152, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 27, "run": 110 },
@@ -7568,7 +7568,7 @@
     "rewards": { "exp": 2.23, "sp": 162 }
 },{
     "selfId": 689,
-    "template": { "kind": "Monster", "name": "Demon Tempest", "title": "", "level": 38, "hostile": true },
+    "template": { "kind": "Monster", "name": "Demon Tempest", "title": "", "level": 38, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 161.265614169495, "pAtkRnd": 30, "pDef": 153.234620423168, "mAtk": 106.679871119326, "mDef": 108.624048138767, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 80 },
@@ -7590,7 +7590,7 @@
     "rewards": { "exp": 2.23, "sp": 140 }
 },{
     "selfId": 691,
-    "template": { "kind": "Monster", "name": "Redeye Leader Trakia", "title": "", "level": 40, "hostile": true },
+    "template": { "kind": "Monster", "name": "Redeye Leader Trakia", "title": "", "level": 40, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 182.053719429628, "pAtkRnd": 30, "pDef": 161.603808270889, "mAtk": 120.431546585834, "mDef": 114.55674834152, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 70, "run": 110 },
@@ -7612,7 +7612,7 @@
     "rewards": { "exp": 2.23, "sp": 140 }
 },{
     "selfId": 693,
-    "template": { "kind": "Monster", "name": "Nurka's Messenger", "title": "", "level": 38, "hostile": true },
+    "template": { "kind": "Monster", "name": "Nurka's Messenger", "title": "", "level": 38, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 161.265614169495, "pAtkRnd": 30, "pDef": 153.234620423168, "mAtk": 106.679871119326, "mDef": 108.624048138767, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 50, "run": 110 },
@@ -7656,7 +7656,7 @@
     "rewards": { "exp": 2.23, "sp": 201 }
 },{
     "selfId": 697,
-    "template": { "kind": "Monster", "name": "Premo Prime", "title": "", "level": 43, "hostile": false },
+    "template": { "kind": "Monster", "name": "Premo Prime", "title": "", "level": 43, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 216.828699723255, "pAtkRnd": 30, "pDef": 174.593841760541, "mAtk": 143.435771231034, "mDef": 123.765046174005, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 45, "run": 100 },
@@ -7689,7 +7689,7 @@
     "rewards": { "exp": 3.24, "sp": 921 }
 },{
     "selfId": 700,
-    "template": { "kind": "Monster", "name": "Gustos Susceptor", "title": "", "level": 55, "hostile": true },
+    "template": { "kind": "Monster", "name": "Gustos Susceptor", "title": "", "level": 55, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 400.639705336722, "pAtkRnd": 30, "pDef": 230.855204408963, "mAtk": 265.029791693132, "mDef": 163.647266965872, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 27, "run": 150 },
@@ -7700,7 +7700,7 @@
     "rewards": { "exp": 2.23, "sp": 545 }
 },{
     "selfId": 701,
-    "template": { "kind": "Monster", "name": "Eyes Of Bereth", "title": "", "level": 35, "hostile": true },
+    "template": { "kind": "Monster", "name": "Eyes Of Bereth", "title": "", "level": 35, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 133.503709934051, "pAtkRnd": 30, "pDef": 141.143125790692, "mAtk": 88.3149122834552, "mDef": 100.052701197714, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 90, "run": 90 },
@@ -7711,7 +7711,7 @@
     "rewards": { "exp": 3.24, "sp": 235 }
 },{
     "selfId": 702,
-    "template": { "kind": "Monster", "name": "Followers Of The Eye", "title": "", "level": 33, "hostile": true },
+    "template": { "kind": "Monster", "name": "Followers Of The Eye", "title": "", "level": 33, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 117.154145942851, "pAtkRnd": 30, "pDef": 133.402537046416, "mAtk": 77.4994052801751, "mDef": 94.5655985961041, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 90, "run": 90 },
@@ -7722,7 +7722,7 @@
     "rewards": { "exp": 2.23, "sp": 140 }
 },{
     "selfId": 703,
-    "template": { "kind": "Monster", "name": "Skyla", "title": "Adherent Of Antharas", "level": 41, "hostile": false },
+    "template": { "kind": "Monster", "name": "Skyla", "title": "Adherent Of Antharas", "level": 41, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 193.158996314835, "pAtkRnd": 30, "pDef": 165.877110204058, "mAtk": 127.77787092757, "mDef": 117.585981249973, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 53, "run": 140 },
@@ -7766,7 +7766,7 @@
     "rewards": { "exp": 2.23, "sp": 201 }
 },{
     "selfId": 707,
-    "template": { "kind": "Monster", "name": "Lord Ishka", "title": "Cave Servant", "level": 66, "hostile": true },
+    "template": { "kind": "Monster", "name": "Lord Ishka", "title": "Cave Servant", "level": 66, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 623.28972920793, "pAtkRnd": 30, "pDef": 285.660316465034, "mAtk": 412.316465133206, "mDef": 202.497189482006, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 100, "run": 170 },
@@ -7810,7 +7810,7 @@
     "rewards": { "exp": 2.23, "sp": 314 }
 },{
     "selfId": 711,
-    "template": { "kind": "Monster", "name": "Necrosentinel Guard", "title": "", "level": 40, "hostile": false },
+    "template": { "kind": "Monster", "name": "Necrosentinel Guard", "title": "", "level": 40, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 182.053719429628, "pAtkRnd": 30, "pDef": 161.603808270889, "mAtk": 120.431546585834, "mDef": 114.55674834152, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 120 },
@@ -7854,7 +7854,7 @@
     "rewards": { "exp": 2.23, "sp": 188 }
 },{
     "selfId": 715,
-    "template": { "kind": "Monster", "name": "Dread Avenger Kraven", "title": "", "level": 48, "hostile": true },
+    "template": { "kind": "Monster", "name": "Dread Avenger Kraven", "title": "", "level": 48, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 284.730774309043, "pAtkRnd": 30, "pDef": 197.297661947999, "mAtk": 188.354116675298, "mDef": 139.859195460672, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 27, "run": 110 },
@@ -7920,7 +7920,7 @@
     "rewards": { "exp": 2.23, "sp": 545 }
 },{
     "selfId": 721,
-    "template": { "kind": "Monster", "name": "Betrayer Of Urutu Freki", "title": "", "level": 25, "hostile": false },
+    "template": { "kind": "Monster", "name": "Betrayer Of Urutu Freki", "title": "", "level": 25, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 66.9248157739934, "pAtkRnd": 30, "pDef": 105.122586908787, "mAtk": 44.2718725763225, "mDef": 74.5186754097605, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 31, "run": 120 },
@@ -7953,7 +7953,7 @@
     "rewards": { "exp": 1.2, "sp": 132 }
 },{
     "selfId": 724,
-    "template": { "kind": "Monster", "name": "Crimson Bear", "title": "", "level": 37, "hostile": false },
+    "template": { "kind": "Monster", "name": "Crimson Bear", "title": "", "level": 37, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 161.508457868943, "pAtkRnd": 30, "pDef": 144.477583542986, "mAtk": 100.263036766284, "mDef": 105.722425414172, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 37, "run": 170 },
@@ -7964,7 +7964,7 @@
     "rewards": { "exp": 1.2, "sp": 101 }
 },{
     "selfId": 725,
-    "template": { "kind": "Monster", "name": "Devastator", "title": "", "level": 38, "hostile": false },
+    "template": { "kind": "Monster", "name": "Devastator", "title": "", "level": 38, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 171.844999172555, "pAtkRnd": 30, "pDef": 148.442867520918, "mAtk": 106.679871119326, "mDef": 108.624048138767, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 25, "run": 170 },
@@ -7975,7 +7975,7 @@
     "rewards": { "exp": 1.2, "sp": 108 }
 },{
     "selfId": 726,
-    "template": { "kind": "Monster", "name": "Saber Toothed Tiger", "title": "", "level": 36, "hostile": false },
+    "template": { "kind": "Monster", "name": "Saber Toothed Tiger", "title": "", "level": 36, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 151.651134149242, "pAtkRnd": 30, "pDef": 140.57278398777, "mAtk": 94.1436964941632, "mDef": 102.86506256514, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 60, "run": 170 },
@@ -7986,7 +7986,7 @@
     "rewards": { "exp": 1.2, "sp": 94 }
 },{
     "selfId": 727,
-    "template": { "kind": "Monster", "name": "Liviona", "title": "", "level": 39, "hostile": false },
+    "template": { "kind": "Monster", "name": "Liviona", "title": "", "level": 39, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 166.064758291296, "pAtkRnd": 30, "pDef": 167.714277243237, "mAtk": 113.400702999844, "mDef": 111.56911764393, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 170 },
@@ -8041,7 +8041,7 @@
     "rewards": { "exp": 1.2, "sp": 159 }
 },{
     "selfId": 732,
-    "template": { "kind": "Monster", "name": "Heltor Silenos Warrior", "title": "", "level": 42, "hostile": false },
+    "template": { "kind": "Monster", "name": "Heltor Silenos Warrior", "title": "", "level": 42, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 218.180498036163, "pAtkRnd": 30, "pDef": 164.885131318131, "mAtk": 135.444543183224, "mDef": 120.655783203216, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 36, "run": 160 },
@@ -8063,7 +8063,7 @@
     "rewards": { "exp": 1.2, "sp": 226 }
 },{
     "selfId": 734,
-    "template": { "kind": "Monster", "name": "Ketra Orc Archer", "title": "", "level": 51, "hostile": true },
+    "template": { "kind": "Monster", "name": "Ketra Orc Archer", "title": "", "level": 51, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 784.910997760979, "pAtkRnd": 10, "pDef": 204.85193600925, "mAtk": 219.291573418222, "mDef": 149.901756345772, "accur": 0, "atkSpd": 227, "castSpd": 333, "atkRadius": 500 },
     "speed": { "walk": 45, "run": 170 },
@@ -8096,7 +8096,7 @@
     "rewards": { "exp": 1.2, "sp": 265 }
 },{
     "selfId": 737,
-    "template": { "kind": "Monster", "name": "Ketra Orc Warrior", "title": "", "level": 52, "hostile": false },
+    "template": { "kind": "Monster", "name": "Ketra Orc Warrior", "title": "", "level": 52, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 370.907537195782, "pAtkRnd": 30, "pDef": 209.501057961233, "mAtk": 230.256152089132, "mDef": 153.303782021705, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 36, "run": 170 },
@@ -8107,7 +8107,7 @@
     "rewards": { "exp": 1.2, "sp": 251 }
 },{
     "selfId": 738,
-    "template": { "kind": "Monster", "name": "Kobold Looter Bepook", "title": "", "level": 13, "hostile": false },
+    "template": { "kind": "Monster", "name": "Kobold Looter Bepook", "title": "", "level": 13, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 27.5469770405035, "pAtkRnd": 50, "pDef": 68.6745818177488, "mAtk": 17.100922194757, "mDef": 50.2530785470691, "accur": 9, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 47, "run": 110 },
@@ -8151,7 +8151,7 @@
     "rewards": { "exp": 2.6, "sp": 60 }
 },{
     "selfId": 742,
-    "template": { "kind": "Monster", "name": "Mystical Weaver", "title": "", "level": 22, "hostile": true },
+    "template": { "kind": "Monster", "name": "Mystical Weaver", "title": "", "level": 22, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 51.7527835863704, "pAtkRnd": 30, "pDef": 101.92262996096, "mAtk": 35.3404424953224, "mDef": 67.8023247609444, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 90, "run": 90 },
@@ -8162,7 +8162,7 @@
     "rewards": { "exp": 1.4, "sp": 32 }
 },{
     "selfId": 743,
-    "template": { "kind": "Monster", "name": "Howler", "title": "", "level": 25, "hostile": false },
+    "template": { "kind": "Monster", "name": "Howler", "title": "", "level": 25, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 64.8320303490552, "pAtkRnd": 30, "pDef": 112.018863744696, "mAtk": 44.2718725763225, "mDef": 74.5186754097605, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 31, "run": 120 },
@@ -8327,7 +8327,7 @@
     "rewards": { "exp": 1.56, "sp": 58 }
 },{
     "selfId": 758,
-    "template": { "kind": "Monster", "name": "Dragon Bearer Chief", "title": "", "level": 49, "hostile": true },
+    "template": { "kind": "Monster", "name": "Dragon Bearer Chief", "title": "", "level": 49, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 290.445878844496, "pAtkRnd": 30, "pDef": 195.663024353658, "mAtk": 198.336884859089, "mDef": 143.177709588328, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 60, "run": 155 },
@@ -8437,7 +8437,7 @@
     "rewards": { "exp": 1.82, "sp": 257 }
 },{
     "selfId": 768,
-    "template": { "kind": "Monster", "name": "Timak Orc Troop Shaman", "title": "", "level": 44, "hostile": true },
+    "template": { "kind": "Monster", "name": "Timak Orc Troop Shaman", "title": "", "level": 44, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 244.454229970673, "pAtkRnd": 30, "pDef": 173.435520214248, "mAtk": 151.755045962434, "mDef": 126.912586716704, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 156 },
@@ -8448,7 +8448,7 @@
     "rewards": { "exp": 1.64, "sp": 218 }
 },{
     "selfId": 769,
-    "template": { "kind": "Monster", "name": "Timak Orc Troop Warrior", "title": "", "level": 43, "hostile": true },
+    "template": { "kind": "Monster", "name": "Timak Orc Troop Warrior", "title": "", "level": 43, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 231.053147420296, "pAtkRnd": 30, "pDef": 169.134171187008, "mAtk": 143.435771231034, "mDef": 123.765046174005, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 156 },
@@ -8470,7 +8470,7 @@
     "rewards": { "exp": 1.96, "sp": 215 }
 },{
     "selfId": 771,
-    "template": { "kind": "Monster", "name": "Barif", "title": "", "level": 64, "hostile": true },
+    "template": { "kind": "Monster", "name": "Barif", "title": "", "level": 64, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 562.02275172566, "pAtkRnd": 30, "pDef": 293.749149085723, "mAtk": 383.788684627476, "mDef": 195.411708000375, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 15, "run": 180 },
@@ -8492,7 +8492,7 @@
     "rewards": { "exp": 1.64, "sp": 538 }
 },{
     "selfId": 773,
-    "template": { "kind": "Monster", "name": "Conjurer Bat Lord", "title": "", "level": 54, "hostile": true },
+    "template": { "kind": "Monster", "name": "Conjurer Bat Lord", "title": "", "level": 54, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 370.689038937507, "pAtkRnd": 30, "pDef": 218.895889884277, "mAtk": 253.132561311492, "mDef": 160.178512294081, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 60, "run": 159 },
@@ -8569,7 +8569,7 @@
     "rewards": { "exp": 1.2, "sp": 116 }
 },{
     "selfId": 780,
-    "template": { "kind": "Monster", "name": "Bloody Axe Elite", "title": "", "level": 35, "hostile": false },
+    "template": { "kind": "Monster", "name": "Bloody Axe Elite", "title": "", "level": 35, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 129.32895629306, "pAtkRnd": 30, "pDef": 136.729482315266, "mAtk": 88.3149122834552, "mDef": 100.052701197714, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 50, "run": 110 },
@@ -8613,7 +8613,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5002,
-    "template": { "kind": "Monster", "name": "Orc Fighter Leader", "title": "", "level": 12, "hostile": true },
+    "template": { "kind": "Monster", "name": "Orc Fighter Leader", "title": "", "level": 12, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 23.7383726854035, "pAtkRnd": 30, "pDef": 68.4710217570833, "mAtk": 15.7033261659844, "mDef": 48.5373314653868, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 45, "run": 110 },
@@ -8800,7 +8800,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5019,
-    "template": { "kind": "Monster", "name": "Orc Warrior Leader", "title": "", "level": 11, "hostile": true },
+    "template": { "kind": "Monster", "name": "Orc Warrior Leader", "title": "", "level": 11, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 21.7783235645904, "pAtkRnd": 30, "pDef": 66.1144665149657, "mAtk": 14.4067212531967, "mDef": 46.8668305736526, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 45, "run": 110 },
@@ -8910,7 +8910,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5029,
-    "template": { "kind": "Monster", "name": "Phantom Of Salamander", "title": "", "level": 17, "hostile": false },
+    "template": { "kind": "Monster", "name": "Phantom Of Salamander", "title": "", "level": 17, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 38.387687430923, "pAtkRnd": 30, "pDef": 78.6846933884443, "mAtk": 23.8307403032876, "mDef": 57.578043762905, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 64, "run": 96 },
@@ -8943,7 +8943,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5032,
-    "template": { "kind": "Monster", "name": "Lizardman Warrior", "title": "", "level": 13, "hostile": false },
+    "template": { "kind": "Monster", "name": "Lizardman Warrior", "title": "", "level": 13, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 32.1473222062676, "pAtkRnd": 50, "pDef": 68.6745818177488, "mAtk": 17.100922194757, "mDef": 50.2530785470691, "accur": 9, "atkSpd": 217, "castSpd": 333, "atkRadius": 80 },
     "speed": { "walk": 52, "run": 130 },
@@ -8954,7 +8954,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5033,
-    "template": { "kind": "Monster", "name": "Lizardman Scout", "title": "", "level": 12, "hostile": false },
+    "template": { "kind": "Monster", "name": "Lizardman Scout", "title": "", "level": 12, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 25.2956630307654, "pAtkRnd": 30, "pDef": 66.3298853982211, "mAtk": 15.7033261659844, "mDef": 48.5373314653868, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 43, "run": 130 },
@@ -8965,7 +8965,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5034,
-    "template": { "kind": "Monster", "name": "Lizardman", "title": "", "level": 11, "hostile": false },
+    "template": { "kind": "Monster", "name": "Lizardman", "title": "", "level": 11, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 27.0826043641314, "pAtkRnd": 50, "pDef": 64.0470212736169, "mAtk": 14.4067212531967, "mDef": 46.8668305736526, "accur": 9, "atkSpd": 217, "castSpd": 333, "atkRadius": 80 },
     "speed": { "walk": 43, "run": 130 },
@@ -8976,7 +8976,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5035,
-    "template": { "kind": "Monster", "name": "Tamato", "title": "", "level": 19, "hostile": false },
+    "template": { "kind": "Monster", "name": "Tamato", "title": "", "level": 19, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 45.0660701886555, "pAtkRnd": 50, "pDef": 84.0763821355069, "mAtk": 27.9766218553312, "mDef": 61.5234475926151, "accur": 9, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 55, "run": 130 },
@@ -9020,7 +9020,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5039,
-    "template": { "kind": "Monster", "name": "Ol Mahum Rookie", "title": "", "level": 17, "hostile": true },
+    "template": { "kind": "Monster", "name": "Ol Mahum Rookie", "title": "", "level": 17, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 36.0244058302692, "pAtkRnd": 30, "pDef": 81.2246443756722, "mAtk": 23.8307403032876, "mDef": 57.578043762905, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 50, "run": 110 },
@@ -9086,7 +9086,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5045,
-    "template": { "kind": "Monster", "name": "Kuruka Ratman Leader", "title": "", "level": 18, "hostile": false },
+    "template": { "kind": "Monster", "name": "Kuruka Ratman Leader", "title": "", "level": 18, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 37.8293210682914, "pAtkRnd": 30, "pDef": 81.347912879805, "mAtk": 25.8325224887638, "mDef": 59.5268722048839, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 120 },
@@ -9207,7 +9207,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5056,
-    "template": { "kind": "Monster", "name": "Durka Spirit", "title": "", "level": 18, "hostile": false },
+    "template": { "kind": "Monster", "name": "Durka Spirit", "title": "", "level": 18, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 39.0504559200118, "pAtkRnd": 30, "pDef": 83.9738328996996, "mAtk": 25.8325224887638, "mDef": 59.5268722048839, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 90, "run": 90 },
@@ -9471,7 +9471,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5080,
-    "template": { "kind": "Monster", "name": "Pashika Son Of Voltar", "title": "", "level": 37, "hostile": false },
+    "template": { "kind": "Monster", "name": "Pashika Son Of Voltar", "title": "", "level": 37, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 151.565426851029, "pAtkRnd": 30, "pDef": 149.14133662061, "mAtk": 100.263036766284, "mDef": 105.722425414172, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 120 },
@@ -9482,7 +9482,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5081,
-    "template": { "kind": "Monster", "name": "Vultus Son Of Voltar", "title": "", "level": 37, "hostile": false },
+    "template": { "kind": "Monster", "name": "Vultus Son Of Voltar", "title": "", "level": 37, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 151.565426851029, "pAtkRnd": 30, "pDef": 149.14133662061, "mAtk": 100.263036766284, "mDef": 105.722425414172, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 120 },
@@ -9493,7 +9493,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5082,
-    "template": { "kind": "Monster", "name": "Enku Orc Overlord", "title": "", "level": 33, "hostile": false },
+    "template": { "kind": "Monster", "name": "Enku Orc Overlord", "title": "", "level": 33, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 124.839719963184, "pAtkRnd": 30, "pDef": 129.23094715182, "mAtk": 77.4994052801751, "mDef": 94.5655985961041, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 120 },
@@ -9504,7 +9504,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5083,
-    "template": { "kind": "Monster", "name": "Makum Bugbear Thug", "title": "", "level": 37, "hostile": false },
+    "template": { "kind": "Monster", "name": "Makum Bugbear Thug", "title": "", "level": 37, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 161.508457868943, "pAtkRnd": 30, "pDef": 144.477583542986, "mAtk": 100.263036766284, "mDef": 105.722425414172, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 55, "run": 130 },
@@ -9559,7 +9559,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5088,
-    "template": { "kind": "Monster", "name": "Harpy Matriarch", "title": "", "level": 34, "hostile": false },
+    "template": { "kind": "Monster", "name": "Harpy Matriarch", "title": "", "level": 34, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 125.120627866965, "pAtkRnd": 30, "pDef": 137.240191819465, "mAtk": 82.769364839227, "mDef": 97.2860125316525, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 60, "run": 100 },
@@ -9570,7 +9570,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5089,
-    "template": { "kind": "Monster", "name": "Road Collector", "title": "", "level": 36, "hostile": false },
+    "template": { "kind": "Monster", "name": "Road Collector", "title": "", "level": 36, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 142.314954789699, "pAtkRnd": 30, "pDef": 145.110489684918, "mAtk": 94.1436964941632, "mDef": 102.86506256514, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 120 },
@@ -9625,7 +9625,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5094,
-    "template": { "kind": "Monster", "name": "Delu Lizardman Assassin", "title": "", "level": 36, "hostile": false },
+    "template": { "kind": "Monster", "name": "Delu Lizardman Assassin", "title": "", "level": 36, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 151.651134149242, "pAtkRnd": 30, "pDef": 140.57278398777, "mAtk": 94.1436964941632, "mDef": 102.86506256514, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 43, "run": 130 },
@@ -9845,7 +9845,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5114,
-    "template": { "kind": "Monster", "name": "Succubus Queen", "title": "Quest Monster", "level": 34, "hostile": true },
+    "template": { "kind": "Monster", "name": "Succubus Queen", "title": "Quest Monster", "level": 34, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 133.32882092068, "pAtkRnd": 30, "pDef": 132.948595797364, "mAtk": 82.769364839227, "mDef": 97.2860125316525, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 60, "run": 100 },
@@ -9889,7 +9889,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5118,
-    "template": { "kind": "Monster", "name": "Black Willow", "title": "Quest Monster", "level": 30, "hostile": true },
+    "template": { "kind": "Monster", "name": "Black Willow", "title": "Quest Monster", "level": 30, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 101.906487366668, "pAtkRnd": 30, "pDef": 118.464274913098, "mAtk": 63.2626552465637, "mDef": 86.6870151175919, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 55, "run": 55 },
@@ -9955,7 +9955,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5124,
-    "template": { "kind": "Monster", "name": "Leto Lizardman Assassin", "title": "", "level": 37, "hostile": false },
+    "template": { "kind": "Monster", "name": "Leto Lizardman Assassin", "title": "", "level": 37, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 161.508457868943, "pAtkRnd": 30, "pDef": 144.477583542986, "mAtk": 100.263036766284, "mDef": 105.722425414172, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 37, "run": 140 },
@@ -9988,7 +9988,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5127,
-    "template": { "kind": "Monster", "name": "Leto Lizardman Lord", "title": "", "level": 40, "hostile": false },
+    "template": { "kind": "Monster", "name": "Leto Lizardman Lord", "title": "", "level": 40, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 176.360773305357, "pAtkRnd": 30, "pDef": 156.550345057693, "mAtk": 120.431546585834, "mDef": 114.55674834152, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 53, "run": 140 },
@@ -9999,7 +9999,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5128,
-    "template": { "kind": "Monster", "name": "Aruraune", "title": "", "level": 40, "hostile": false },
+    "template": { "kind": "Monster", "name": "Aruraune", "title": "", "level": 40, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 182.053719429628, "pAtkRnd": 30, "pDef": 161.603808270889, "mAtk": 120.431546585834, "mDef": 114.55674834152, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 120 },
@@ -10010,7 +10010,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5129,
-    "template": { "kind": "Monster", "name": "Ol Mahum Inspector", "title": "", "level": 38, "hostile": false },
+    "template": { "kind": "Monster", "name": "Ol Mahum Inspector", "title": "", "level": 38, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 171.844999172555, "pAtkRnd": 30, "pDef": 148.442867520918, "mAtk": 106.679871119326, "mDef": 108.624048138767, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 50, "run": 110 },
@@ -10032,7 +10032,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5131,
-    "template": { "kind": "Monster", "name": "Crimsha Werewolf", "title": "", "level": 36, "hostile": false },
+    "template": { "kind": "Monster", "name": "Crimsha Werewolf", "title": "", "level": 36, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 142.314954789699, "pAtkRnd": 30, "pDef": 145.110489684918, "mAtk": 94.1436964941632, "mDef": 102.86506256514, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 31, "run": 120 },
@@ -10043,7 +10043,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5132,
-    "template": { "kind": "Monster", "name": "Krudel Lizardman", "title": "", "level": 36, "hostile": false },
+    "template": { "kind": "Monster", "name": "Krudel Lizardman", "title": "", "level": 36, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 166.081552239578, "pAtkRnd": 50, "pDef": 145.110489684918, "mAtk": 94.1436964941632, "mDef": 102.86506256514, "accur": 9, "atkSpd": 217, "castSpd": 333, "atkRadius": 80 },
     "speed": { "walk": 43, "run": 130 },
@@ -10054,7 +10054,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5133,
-    "template": { "kind": "Monster", "name": "Evil Eye Lord", "title": "Quest Monster", "level": 37, "hostile": false },
+    "template": { "kind": "Monster", "name": "Evil Eye Lord", "title": "Quest Monster", "level": 37, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 161.508457868943, "pAtkRnd": 30, "pDef": 144.477583542986, "mAtk": 100.263036766284, "mDef": 105.722425414172, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 90, "run": 90 },
@@ -10065,7 +10065,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5134,
-    "template": { "kind": "Monster", "name": "Tatoma", "title": "", "level": 32, "hostile": false },
+    "template": { "kind": "Monster", "name": "Tatoma", "title": "", "level": 32, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 106.165252115982, "pAtkRnd": 30, "pDef": 125.577266295727, "mAtk": 72.4971050329047, "mDef": 91.8919935127208, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 55, "run": 130 },
@@ -10076,7 +10076,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5135,
-    "template": { "kind": "Monster", "name": "Grima", "title": "", "level": 50, "hostile": false },
+    "template": { "kind": "Monster", "name": "Grima", "title": "", "level": 50, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 336.103970998851, "pAtkRnd": 30, "pDef": 200.238442298688, "mAtk": 208.650402871762, "mDef": 146.525801870672, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 25, "run": 170 },
@@ -10087,7 +10087,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5136,
-    "template": { "kind": "Monster", "name": "Succubus Of Seduction", "title": "", "level": 40, "hostile": false },
+    "template": { "kind": "Monster", "name": "Succubus Of Seduction", "title": "", "level": 40, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 176.360773305357, "pAtkRnd": 30, "pDef": 156.550345057693, "mAtk": 120.431546585834, "mDef": 114.55674834152, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 60, "run": 100 },
@@ -10098,7 +10098,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5137,
-    "template": { "kind": "Monster", "name": "Demon King", "title": "", "level": 50, "hostile": false },
+    "template": { "kind": "Monster", "name": "Demon King", "title": "", "level": 50, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 305.54906454441, "pAtkRnd": 30, "pDef": 200.238442298688, "mAtk": 208.650402871762, "mDef": 146.525801870672, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 80 },
@@ -10109,7 +10109,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5138,
-    "template": { "kind": "Monster", "name": "Great Demon King", "title": "", "level": 60, "hostile": false },
+    "template": { "kind": "Monster", "name": "Great Demon King", "title": "", "level": 60, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 1588.44019042812, "pAtkRnd": 30, "pDef": 247.65008459062, "mAtk": 328.696588226919, "mDef": 181.219584068938, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 27, "run": 110 },
@@ -10131,7 +10131,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5140,
-    "template": { "kind": "Monster", "name": "Breka Overlord Haka", "title": "", "level": 36, "hostile": false },
+    "template": { "kind": "Monster", "name": "Breka Overlord Haka", "title": "", "level": 36, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 137.864667408402, "pAtkRnd": 30, "pDef": 140.57278398777, "mAtk": 94.1436964941632, "mDef": 102.86506256514, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 140 },
@@ -10142,7 +10142,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5141,
-    "template": { "kind": "Monster", "name": "Breka Overlord Jaka", "title": "", "level": 36, "hostile": false },
+    "template": { "kind": "Monster", "name": "Breka Overlord Jaka", "title": "", "level": 36, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 137.864667408402, "pAtkRnd": 30, "pDef": 140.57278398777, "mAtk": 94.1436964941632, "mDef": 102.86506256514, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 140 },
@@ -10153,7 +10153,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5142,
-    "template": { "kind": "Monster", "name": "Breka Overlord Marka", "title": "", "level": 36, "hostile": false },
+    "template": { "kind": "Monster", "name": "Breka Overlord Marka", "title": "", "level": 36, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 137.864667408402, "pAtkRnd": 30, "pDef": 140.57278398777, "mAtk": 94.1436964941632, "mDef": 102.86506256514, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 140 },
@@ -10164,7 +10164,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5143,
-    "template": { "kind": "Monster", "name": "Windsus Aleph", "title": "", "level": 42, "hostile": false },
+    "template": { "kind": "Monster", "name": "Windsus Aleph", "title": "", "level": 42, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 218.180498036163, "pAtkRnd": 30, "pDef": 164.885131318131, "mAtk": 135.444543183224, "mDef": 120.655783203216, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 35, "run": 120 },
@@ -10175,7 +10175,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5144,
-    "template": { "kind": "Monster", "name": "Talk Raider Athu", "title": "", "level": 48, "hostile": false },
+    "template": { "kind": "Monster", "name": "Talk Raider Athu", "title": "", "level": 48, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 303.409749980006, "pAtkRnd": 30, "pDef": 191.128027164191, "mAtk": 188.354116675298, "mDef": 139.859195460672, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 55, "run": 130 },
@@ -10186,7 +10186,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5145,
-    "template": { "kind": "Monster", "name": "Talk Raider Lanka", "title": "", "level": 48, "hostile": false },
+    "template": { "kind": "Monster", "name": "Talk Raider Lanka", "title": "", "level": 48, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 303.409749980006, "pAtkRnd": 30, "pDef": 191.128027164191, "mAtk": 188.354116675298, "mDef": 139.859195460672, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 55, "run": 130 },
@@ -10197,7 +10197,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5146,
-    "template": { "kind": "Monster", "name": "Talk Raider Triska", "title": "", "level": 48, "hostile": false },
+    "template": { "kind": "Monster", "name": "Talk Raider Triska", "title": "", "level": 48, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 303.409749980006, "pAtkRnd": 30, "pDef": 191.128027164191, "mAtk": 188.354116675298, "mDef": 139.859195460672, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 55, "run": 130 },
@@ -10208,7 +10208,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5147,
-    "template": { "kind": "Monster", "name": "Talk Raider Motura", "title": "", "level": 48, "hostile": false },
+    "template": { "kind": "Monster", "name": "Talk Raider Motura", "title": "", "level": 48, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 303.409749980006, "pAtkRnd": 30, "pDef": 191.128027164191, "mAtk": 188.354116675298, "mDef": 139.859195460672, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 55, "run": 130 },
@@ -10219,7 +10219,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5148,
-    "template": { "kind": "Monster", "name": "Talk Raider Kalath", "title": "", "level": 48, "hostile": false },
+    "template": { "kind": "Monster", "name": "Talk Raider Kalath", "title": "", "level": 48, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 303.409749980006, "pAtkRnd": 30, "pDef": 191.128027164191, "mAtk": 188.354116675298, "mDef": 139.859195460672, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 55, "run": 130 },
@@ -10230,7 +10230,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5149,
-    "template": { "kind": "Monster", "name": "Gremlin Filcher", "title": "", "level": 12, "hostile": false },
+    "template": { "kind": "Monster", "name": "Gremlin Filcher", "title": "", "level": 12, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 22.9960573006958, "pAtkRnd": 30, "pDef": 66.3298853982211, "mAtk": 15.7033261659844, "mDef": 48.5373314653868, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 20, "run": 50 },
@@ -10241,7 +10241,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5150,
-    "template": { "kind": "Monster", "name": "Black Legion Stormtrooper", "title": "", "level": 43, "hostile": false },
+    "template": { "kind": "Monster", "name": "Black Legion Stormtrooper", "title": "", "level": 43, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 231.053147420296, "pAtkRnd": 30, "pDef": 169.134171187008, "mAtk": 143.435771231034, "mDef": 123.765046174005, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 120 },
@@ -10252,7 +10252,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5151,
-    "template": { "kind": "Monster", "name": "Delu Lizardman Headhunter", "title": "", "level": 28, "hostile": false },
+    "template": { "kind": "Monster", "name": "Delu Lizardman Headhunter", "title": "", "level": 28, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 196.857234327607, "pAtkRnd": 10, "pDef": 111.613678398141, "mAtk": 54.9987613597006, "mDef": 81.6740458988784, "accur": 0, "atkSpd": 227, "castSpd": 333, "atkRadius": 500 },
     "speed": { "walk": 80, "run": 130 },
@@ -10263,7 +10263,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5152,
-    "template": { "kind": "Monster", "name": "Marsh Stakato Marquess", "title": "", "level": 35, "hostile": false },
+    "template": { "kind": "Monster", "name": "Marsh Stakato Marquess", "title": "", "level": 35, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 142.261851922366, "pAtkRnd": 30, "pDef": 136.729482315266, "mAtk": 88.3149122834552, "mDef": 100.052701197714, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 130, "run": 130 },
@@ -10307,7 +10307,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5156,
-    "template": { "kind": "Monster", "name": "Leto Shaman Ketz", "title": "", "level": 40, "hostile": false },
+    "template": { "kind": "Monster", "name": "Leto Shaman Ketz", "title": "", "level": 40, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 176.360773305357, "pAtkRnd": 30, "pDef": 156.550345057693, "mAtk": 120.431546585834, "mDef": 114.55674834152, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 37, "run": 130 },
@@ -10318,7 +10318,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5157,
-    "template": { "kind": "Monster", "name": "Leto Chief Narak", "title": "", "level": 41, "hostile": false },
+    "template": { "kind": "Monster", "name": "Leto Chief Narak", "title": "", "level": 41, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 187.118780476983, "pAtkRnd": 30, "pDef": 160.690017874387, "mAtk": 127.77787092757, "mDef": 117.585981249973, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 53, "run": 140 },
@@ -10329,7 +10329,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5158,
-    "template": { "kind": "Monster", "name": "Timak Raider Kaikee", "title": "", "level": 43, "hostile": false },
+    "template": { "kind": "Monster", "name": "Timak Raider Kaikee", "title": "", "level": 43, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 231.053147420296, "pAtkRnd": 30, "pDef": 169.134171187008, "mAtk": 143.435771231034, "mDef": 123.765046174005, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 130 },
@@ -10340,7 +10340,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5159,
-    "template": { "kind": "Monster", "name": "Timak Overlord Okun", "title": "", "level": 46, "hostile": false },
+    "template": { "kind": "Monster", "name": "Timak Overlord Okun", "title": "", "level": 46, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 272.857855859426, "pAtkRnd": 30, "pDef": 182.188157979692, "mAtk": 169.387768262901, "mDef": 133.31738717531, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 140 },
@@ -10351,7 +10351,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5160,
-    "template": { "kind": "Monster", "name": "Grandis Chief Gok Magok", "title": "", "level": 43, "hostile": false },
+    "template": { "kind": "Monster", "name": "Grandis Chief Gok Magok", "title": "", "level": 43, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 210.048315836633, "pAtkRnd": 30, "pDef": 169.134171187008, "mAtk": 143.435771231034, "mDef": 123.765046174005, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 45, "run": 100 },
@@ -10362,7 +10362,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5161,
-    "template": { "kind": "Monster", "name": "Taik Overlord Kakran", "title": "", "level": 45, "hostile": false },
+    "template": { "kind": "Monster", "name": "Taik Overlord Kakran", "title": "", "level": 45, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 258.388121079002, "pAtkRnd": 30, "pDef": 177.787457476699, "mAtk": 160.405083582293, "mDef": 130.097145534437, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 36, "run": 170 },
@@ -10373,7 +10373,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5162,
-    "template": { "kind": "Monster", "name": "Hatar Chieftain Kubel", "title": "", "level": 52, "hostile": false },
+    "template": { "kind": "Monster", "name": "Hatar Chieftain Kubel", "title": "", "level": 52, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 337.188670177984, "pAtkRnd": 30, "pDef": 209.501057961233, "mAtk": 230.256152089132, "mDef": 153.303782021705, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 50, "run": 110 },
@@ -10384,7 +10384,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5163,
-    "template": { "kind": "Monster", "name": "Vanor Elder Kerunos", "title": "", "level": 51, "hostile": false },
+    "template": { "kind": "Monster", "name": "Vanor Elder Kerunos", "title": "", "level": 51, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 321.132066836175, "pAtkRnd": 30, "pDef": 204.85193600925, "mAtk": 219.291573418222, "mDef": 149.901756345772, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 27, "run": 160 },
@@ -10395,7 +10395,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5164,
-    "template": { "kind": "Monster", "name": "Karul Chief Orooto", "title": "", "level": 43, "hostile": false },
+    "template": { "kind": "Monster", "name": "Karul Chief Orooto", "title": "", "level": 43, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 231.053147420296, "pAtkRnd": 30, "pDef": 169.134171187008, "mAtk": 143.435771231034, "mDef": 123.765046174005, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 55, "run": 130 },
@@ -10439,7 +10439,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5168,
-    "template": { "kind": "Monster", "name": "Jewel Guardian Mara", "title": "", "level": 53, "hostile": false },
+    "template": { "kind": "Monster", "name": "Jewel Guardian Mara", "title": "", "level": 53, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 389.082006518376, "pAtkRnd": 30, "pDef": 214.18325907071, "mAtk": 241.5387035415, "mDef": 156.73001358948, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 60, "run": 100 },
@@ -10450,7 +10450,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5169,
-    "template": { "kind": "Monster", "name": "Jewel Guardian Musfel", "title": "", "level": 53, "hostile": false },
+    "template": { "kind": "Monster", "name": "Jewel Guardian Musfel", "title": "", "level": 53, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 353.710915016705, "pAtkRnd": 30, "pDef": 214.18325907071, "mAtk": 241.5387035415, "mDef": 156.73001358948, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 80 },
@@ -10461,7 +10461,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5170,
-    "template": { "kind": "Monster", "name": "Jewel Guardian Pyton", "title": "", "level": 58, "hostile": false },
+    "template": { "kind": "Monster", "name": "Jewel Guardian Pyton", "title": "", "level": 58, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 442.899203952633, "pAtkRnd": 30, "pDef": 237.99429333638, "mAtk": 302.442743439877, "mDef": 174.153895083439, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 70, "run": 110 },
@@ -10483,7 +10483,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5172,
-    "template": { "kind": "Monster", "name": "Harit Lizardman Zealot", "title": "", "level": 55, "hostile": false },
+    "template": { "kind": "Monster", "name": "Harit Lizardman Zealot", "title": "", "level": 55, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 426.922566144327, "pAtkRnd": 30, "pDef": 223.636201988549, "mAtk": 265.029791693132, "mDef": 163.647266965872, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 40, "run": 140 },
@@ -10549,7 +10549,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5178,
-    "template": { "kind": "Monster", "name": "Blitz Wyrm", "title": "", "level": 60, "hostile": false },
+    "template": { "kind": "Monster", "name": "Blitz Wyrm", "title": "", "level": 60, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 529.480063476039, "pAtkRnd": 30, "pDef": 247.65008459062, "mAtk": 328.696588226919, "mDef": 181.219584068938, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 70, "run": 70 },
@@ -10571,7 +10571,7 @@
     "rewards": { "exp": 0, "sp": 0 }
 },{
     "selfId": 5180,
-    "template": { "kind": "Monster", "name": "Imperial Slave", "title": "", "level": 56, "hostile": false },
+    "template": { "kind": "Monster", "name": "Imperial Slave", "title": "", "level": 56, "hostile": true },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 405.964549260878, "pAtkRnd": 30, "pDef": 228.401349641403, "mAtk": 277.221162111016, "mDef": 167.13419521427, "accur": 4.75, "atkSpd": 253, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 10, "run": 140 },
@@ -20405,7 +20405,7 @@
     "rewards": { "exp": 0.1, "sp": 1 }
 },{
     "selfId": 12004,
-    "template": { "kind": "Monster", "name": "Ant", "title": "", "level": 37, "hostile": true },
+    "template": { "kind": "Monster", "name": "Ant", "title": "", "level": 37, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 146.825870789948, "pAtkRnd": 7, "pDef": 144.477583542986, "mAtk": 100.263036766284, "mDef": 105.722425414172, "accur": 20, "atkSpd": 257, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 230 },
@@ -20955,7 +20955,7 @@
     "rewards": { "exp": 0.1, "sp": 1 }
 },{
     "selfId": 12054,
-    "template": { "kind": "Boss", "name": "Death Knight", "title": "", "level": 50, "hostile": true },
+    "template": { "kind": "Boss", "name": "Death Knight", "title": "", "level": 50, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 336.103970998851, "pAtkRnd": 30, "pDef": 200.238442298688, "mAtk": 208.650402871762, "mDef": 146.525801870672, "accur": 20, "atkSpd": 257, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 27, "run": 110 },
@@ -20966,7 +20966,7 @@
     "rewards": { "exp": 0.1, "sp": 1 }
 },{
     "selfId": 12055,
-    "template": { "kind": "Boss", "name": "Death Blader", "title": "", "level": 55, "hostile": true },
+    "template": { "kind": "Boss", "name": "Death Blader", "title": "", "level": 55, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 426.922566144327, "pAtkRnd": 30, "pDef": 223.636201988549, "mAtk": 265.029791693132, "mDef": 163.647266965872, "accur": 20, "atkSpd": 257, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 100, "run": 230 },
@@ -21021,7 +21021,7 @@
     "rewards": { "exp": 0.1, "sp": 1 }
 },{
     "selfId": 12060,
-    "template": { "kind": "Boss", "name": "Premo", "title": "", "level": 45, "hostile": true },
+    "template": { "kind": "Boss", "name": "Premo", "title": "", "level": 45, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 258.388121079002, "pAtkRnd": 30, "pDef": 177.787457476699, "mAtk": 160.405083582293, "mDef": 130.097145534437, "accur": 20, "atkSpd": 257, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 55, "run": 110 },
@@ -21230,7 +21230,7 @@
     "rewards": { "exp": 0.1, "sp": 1 }
 },{
     "selfId": 12079,
-    "template": { "kind": "Monster", "name": "Bloody Queen", "title": "", "level": 60, "hostile": true },
+    "template": { "kind": "Monster", "name": "Bloody Queen", "title": "", "level": 60, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 529.480063476039, "pAtkRnd": 30, "pDef": 247.65008459062, "mAtk": 328.696588226919, "mDef": 181.219584068938, "accur": 3.75, "atkSpd": 257, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 160 },
@@ -21241,7 +21241,7 @@
     "rewards": { "exp": 1.2, "sp": 375 }
 },{
     "selfId": 12080,
-    "template": { "kind": "Monster", "name": "Bloody Queen Hold", "title": "", "level": 60, "hostile": true },
+    "template": { "kind": "Monster", "name": "Bloody Queen Hold", "title": "", "level": 60, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 529.480063476039, "pAtkRnd": 30, "pDef": 247.65008459062, "mAtk": 328.696588226919, "mDef": 181.219584068938, "accur": 3.75, "atkSpd": 257, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 80, "run": 160 },
@@ -22220,7 +22220,7 @@
     "rewards": { "exp": 0.1, "sp": 10 }
 },{
     "selfId": 12169,
-    "template": { "kind": "Boss", "name": "Orfen", "title": "", "level": 50, "hostile": true },
+    "template": { "kind": "Boss", "name": "Orfen", "title": "", "level": 50, "hostile": false },
     "base": { "str": 40, "dex": 30, "con": 43, "int": 21, "wit": 20, "men": 10 },
     "stats": { "pAtk": 610, "pAtkRnd": 30, "pDef": 200.238442298688, "mAtk": 208.650402871762, "mDef": 292, "accur": 20, "atkSpd": 257, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 60, "run": 230 },
@@ -22682,7 +22682,7 @@
     "rewards": { "exp": 0.1, "sp": 1 }
 },{
     "selfId": 12211,
-    "template": { "kind": "Boss", "name": "Antharas", "title": "", "level": 70, "hostile": true },
+    "template": { "kind": "Boss", "name": "Antharas", "title": "", "level": 70, "hostile": false },
     "base": { "str": 84, "dex": 73, "con": 71, "int": 76, "wit": 70, "men": 80 },
     "stats": { "pAtk": 2833, "pAtkRnd": 30, "pDef": 4800, "mAtk": 1700, "mDef": 440, "accur": 20, "atkSpd": 206, "castSpd": 333, "atkRadius": 40 },
     "speed": { "walk": 50, "run": 186 },
