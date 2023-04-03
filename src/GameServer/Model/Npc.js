@@ -1,4 +1,5 @@
 const CreatureModel = invoke('GameServer/Model/Creature');
+const Formulas      = invoke('GameServer/Formulas');
 
 class NpcModel extends CreatureModel {
 
@@ -93,7 +94,11 @@ class NpcModel extends CreatureModel {
     }
 
     fetchAttackable() {
-        return this.model.kind === 'Monster' || this.model.kind === 'Boss';
+        return ['Monster', 'Boss'].includes(this.model.kind);
+    }
+
+    fetchAcquiredExp() {
+        return Formulas.calcAcquiredExp(this.fetchLevel(), this.fetchRewardExp());
     }
 }
 

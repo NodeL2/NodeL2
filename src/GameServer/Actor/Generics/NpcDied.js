@@ -7,7 +7,7 @@ function npcDied(session, actor, npc) {
     Generics.abortCombatState(session, actor);
 
     if (!actor.isDead()) {
-        Generics.experienceReward(session, actor, npc.fetchRewardExp(), npc.fetchRewardSp());
+        Generics.experienceReward(session, actor, npc.fetchAcquiredExp(), npc.fetchRewardSp());
     }
 }
 
