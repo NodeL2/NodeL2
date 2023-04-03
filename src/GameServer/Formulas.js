@@ -70,6 +70,10 @@ const Formulas = {
         return (level + 89) / 100;
     },
 
+    calcAcquiredExp(level, mod) {
+        return Math.pow(level, 2) * mod;
+    },
+
     calcPAtk(level, str, wpnPAtk) {
         let levelMod = this.calcLevelMod(level);
         let strMod   = this.calcBaseMod.STR(str);

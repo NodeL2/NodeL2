@@ -1009,7 +1009,7 @@
 },{
     "selfId": "t21_19_NPC_030709",
     "bounds": [{ "locX": 35592, "locY": 46830, "minZ": -3728, "maxZ": -3528 }, { "locX": 35822, "locY": 46841, "minZ": -3728, "maxZ": -3528 }, { "locX": 35819, "locY": 47171, "minZ": -3728, "maxZ": -3528 }, { "locX": 35532, "locY": 47165, "minZ": -3728, "maxZ": -3528 }],
-    "spawns": [{ "selfId": 12092, "name": "Bri Mec Tran", "coords": [{ "locX": 35689, "locY": 47039, "locZ": -3609, "head": 0 }], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12092, "name": "Treant Bremec", "coords": [{ "locX": 35689, "locY": 47039, "locZ": -3609, "head": 0 }], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "21_19_030704",
     "bounds": [{ "locX": 45356, "locY": 48268, "minZ": -3109, "maxZ": -2909 }, { "locX": 45556, "locY": 48268, "minZ": -3109, "maxZ": -2909 }, { "locX": 45556, "locY": 48468, "minZ": -3109, "maxZ": -2909 }, { "locX": 45356, "locY": 48468, "minZ": -3109, "maxZ": -2909 }],
@@ -2097,19 +2097,19 @@
 },{
     "selfId": "t17_25_001",
     "bounds": [{ "locX": -77220, "locY": 253656, "minZ": -3632, "maxZ": -3132 }, { "locX": -75280, "locY": 251732, "minZ": -3632, "maxZ": -3132 }, { "locX": -71332, "locY": 253756, "minZ": -3632, "maxZ": -3132 }, { "locX": -71416, "locY": 254696, "minZ": -3632, "maxZ": -3132 }, { "locX": -74252, "locY": 257300, "minZ": -3632, "maxZ": -3132 }, { "locX": -76076, "locY": 255984, "minZ": -3632, "maxZ": -3132 }],
-    "spawns": [{ "selfId": 12082, "name": "Tuto Keltir", "coords": [], "total": 15, "respawn": 15, "bias": 0 }, { "selfId": 432, "name": "Elpy", "coords": [], "total": 3, "respawn": 15, "bias": 0 }]
+    "spawns": [{ "selfId": 12082, "name": "Keltir (Tuto)", "coords": [], "total": 15, "respawn": 15, "bias": 0 }, { "selfId": 432, "name": "Elpy", "coords": [], "total": 3, "respawn": 15, "bias": 0 }]
 },{
     "selfId": "t17_25_002",
     "bounds": [{ "locX": -73328, "locY": 253440, "minZ": -3484, "maxZ": -3184 }, { "locX": -71828, "locY": 254140, "minZ": -3484, "maxZ": -3184 }, { "locX": -72448, "locY": 255004, "minZ": -3484, "maxZ": -3184 }, { "locX": -73676, "locY": 254344, "minZ": -3484, "maxZ": -3184 }],
-    "spawns": [{ "selfId": 12082, "name": "Tuto Keltir", "coords": [], "total": 2, "respawn": 15, "bias": 0 }, { "selfId": 432, "name": "Elpy", "coords": [], "total": 1, "respawn": 15, "bias": 0 }]
+    "spawns": [{ "selfId": 12082, "name": "Keltir (Tuto)", "coords": [], "total": 2, "respawn": 15, "bias": 0 }, { "selfId": 432, "name": "Elpy", "coords": [], "total": 1, "respawn": 15, "bias": 0 }]
 },{
     "selfId": "t17_25_003",
     "bounds": [{ "locX": -76472, "locY": 253732, "minZ": -3452, "maxZ": -3152 }, { "locX": -75120, "locY": 252192, "minZ": -3452, "maxZ": -3152 }, { "locX": -73940, "locY": 253452, "minZ": -3452, "maxZ": -3152 }, { "locX": -76064, "locY": 254504, "minZ": -3452, "maxZ": -3152 }],
-    "spawns": [{ "selfId": 12082, "name": "Tuto Keltir", "coords": [], "total": 4, "respawn": 15, "bias": 0 }, { "selfId": 432, "name": "Elpy", "coords": [], "total": 1, "respawn": 15, "bias": 0 }]
+    "spawns": [{ "selfId": 12082, "name": "Keltir (Tuto)", "coords": [], "total": 4, "respawn": 15, "bias": 0 }, { "selfId": 432, "name": "Elpy", "coords": [], "total": 1, "respawn": 15, "bias": 0 }]
 },{
     "selfId": "t17_25_003_01",
     "bounds": [{ "locX": -71020, "locY": 254768, "minZ": -3352, "maxZ": -3052 }, { "locX": -69228, "locY": 256660, "minZ": -3352, "maxZ": -3052 }, { "locX": -70320, "locY": 256880, "minZ": -3352, "maxZ": -3052 }, { "locX": -71732, "locY": 255364, "minZ": -3352, "maxZ": -3052 }],
-    "spawns": [{ "selfId": 12082, "name": "Tuto Keltir", "coords": [], "total": 6, "respawn": 15, "bias": 0 }, { "selfId": 432, "name": "Elpy", "coords": [], "total": 1, "respawn": 15, "bias": 0 }]
+    "spawns": [{ "selfId": 12082, "name": "Keltir (Tuto)", "coords": [], "total": 6, "respawn": 15, "bias": 0 }, { "selfId": 432, "name": "Elpy", "coords": [], "total": 1, "respawn": 15, "bias": 0 }]
 },{
     "selfId": "t17_25_004",
     "bounds": [{ "locX": -83700, "locY": 246444, "minZ": -3824, "maxZ": -3474 }, { "locX": -80040, "locY": 242844, "minZ": -3824, "maxZ": -3474 }, { "locX": -79760, "locY": 243872, "minZ": -3824, "maxZ": -3474 }, { "locX": -79824, "locY": 248404, "minZ": -3824, "maxZ": -3474 }, { "locX": -81332, "locY": 249704, "minZ": -3824, "maxZ": -3474 }, { "locX": -82868, "locY": 248960, "minZ": -3824, "maxZ": -3474 }],
@@ -2129,11 +2129,11 @@
 },{
     "selfId": "t17_25_008",
     "bounds": [{ "locX": -87752, "locY": 250932, "minZ": -3804, "maxZ": -3454 }, { "locX": -81812, "locY": 251296, "minZ": -3804, "maxZ": -3454 }, { "locX": -83320, "locY": 254864, "minZ": -3804, "maxZ": -3454 }, { "locX": -85688, "locY": 256360, "minZ": -3804, "maxZ": -3454 }, { "locX": -87164, "locY": 256368, "minZ": -3804, "maxZ": -3454 }],
-    "spawns": [{ "selfId": 12082, "name": "Tuto Keltir", "coords": [], "total": 5, "respawn": 15, "bias": 0 }, { "selfId": 545, "name": "Young Keltir", "coords": [], "total": 8, "respawn": 15, "bias": 0 }, { "selfId": 481, "name": "Bearded Keltir", "coords": [], "total": 5, "respawn": 15, "bias": 0 }]
+    "spawns": [{ "selfId": 12082, "name": "Keltir (Tuto)", "coords": [], "total": 5, "respawn": 15, "bias": 0 }, { "selfId": 545, "name": "Young Keltir", "coords": [], "total": 8, "respawn": 15, "bias": 0 }, { "selfId": 481, "name": "Bearded Keltir", "coords": [], "total": 5, "respawn": 15, "bias": 0 }]
 },{
     "selfId": "t17_25_009",
     "bounds": [{ "locX": -87172, "locY": 251152, "minZ": -3716, "maxZ": -3466 }, { "locX": -85780, "locY": 251660, "minZ": -3716, "maxZ": -3466 }, { "locX": -86320, "locY": 252392, "minZ": -3716, "maxZ": -3466 }, { "locX": -87176, "locY": 252552, "minZ": -3716, "maxZ": -3466 }],
-    "spawns": [{ "selfId": 12082, "name": "Tuto Keltir", "coords": [], "total": 6, "respawn": 15, "bias": 0 }]
+    "spawns": [{ "selfId": 12082, "name": "Keltir (Tuto)", "coords": [], "total": 6, "respawn": 15, "bias": 0 }]
 },{
     "selfId": "t17_25_010",
     "bounds": [{ "locX": -84948, "locY": 251924, "minZ": -3800, "maxZ": -3550 }, { "locX": -82520, "locY": 251696, "minZ": -3800, "maxZ": -3550 }, { "locX": -83496, "locY": 253392, "minZ": -3800, "maxZ": -3550 }, { "locX": -86828, "locY": 253380, "minZ": -3800, "maxZ": -3550 }],
@@ -2525,11 +2525,11 @@
 },{
     "selfId": "oren_t20_18_012",
     "bounds": [{ "locX": 28528, "locY": 6768, "minZ": -3892, "maxZ": -3642 }, { "locX": 30648, "locY": 6116, "minZ": -3892, "maxZ": -3642 }, { "locX": 31916, "locY": 8912, "minZ": -3892, "maxZ": -3642 }, { "locX": 29616, "locY": 9268, "minZ": -3892, "maxZ": -3642 }],
-    "spawns": [{ "selfId": 12082, "name": "Tuto Keltir", "coords": [], "total": 5, "respawn": 15, "bias": 0 }, { "selfId": 532, "name": "Brown Keltir", "coords": [], "total": 1, "respawn": 15, "bias": 0 }]
+    "spawns": [{ "selfId": 12082, "name": "Keltir (Tuto)", "coords": [], "total": 5, "respawn": 15, "bias": 0 }, { "selfId": 532, "name": "Brown Keltir", "coords": [], "total": 1, "respawn": 15, "bias": 0 }]
 },{
     "selfId": "oren_t20_18_013",
     "bounds": [{ "locX": 22692, "locY": 10092, "minZ": -3856, "maxZ": -3506 }, { "locX": 24916, "locY": 6908, "minZ": -3856, "maxZ": -3506 }, { "locX": 27864, "locY": 6920, "minZ": -3856, "maxZ": -3506 }, { "locX": 27664, "locY": 8272, "minZ": -3856, "maxZ": -3506 }, { "locX": 24940, "locY": 10048, "minZ": -3856, "maxZ": -3506 }],
-    "spawns": [{ "selfId": 12082, "name": "Tuto Keltir", "coords": [], "total": 5, "respawn": 15, "bias": 0 }, { "selfId": 532, "name": "Brown Keltir", "coords": [], "total": 2, "respawn": 15, "bias": 0 }]
+    "spawns": [{ "selfId": 12082, "name": "Keltir (Tuto)", "coords": [], "total": 5, "respawn": 15, "bias": 0 }, { "selfId": 532, "name": "Brown Keltir", "coords": [], "total": 2, "respawn": 15, "bias": 0 }]
 },{
     "selfId": "oren_t20_18_015",
     "bounds": [{ "locX": 25264, "locY": 4160, "minZ": -3728, "maxZ": -3478 }, { "locX": 27716, "locY": 4492, "minZ": -3728, "maxZ": -3478 }, { "locX": 27688, "locY": 6236, "minZ": -3728, "maxZ": -3478 }, { "locX": 24404, "locY": 6300, "minZ": -3728, "maxZ": -3478 }],
@@ -2545,7 +2545,7 @@
 },{
     "selfId": "oren_t20_18_018",
     "bounds": [{ "locX": 29100, "locY": 13552, "minZ": -3776, "maxZ": -3526 }, { "locX": 32068, "locY": 13200, "minZ": -3776, "maxZ": -3526 }, { "locX": 32044, "locY": 15356, "minZ": -3776, "maxZ": -3526 }, { "locX": 29488, "locY": 16056, "minZ": -3776, "maxZ": -3526 }],
-    "spawns": [{ "selfId": 12082, "name": "Tuto Keltir", "coords": [], "total": 4, "respawn": 15, "bias": 0 }, { "selfId": 532, "name": "Brown Keltir", "coords": [], "total": 1, "respawn": 15, "bias": 0 }]
+    "spawns": [{ "selfId": 12082, "name": "Keltir (Tuto)", "coords": [], "total": 4, "respawn": 15, "bias": 0 }, { "selfId": 532, "name": "Brown Keltir", "coords": [], "total": 1, "respawn": 15, "bias": 0 }]
 },{
     "selfId": "oren_t20_18_019",
     "bounds": [{ "locX": 28896, "locY": 16884, "minZ": -3780, "maxZ": -3580 }, { "locX": 31776, "locY": 15808, "minZ": -3780, "maxZ": -3580 }, { "locX": 31376, "locY": 18628, "minZ": -3780, "maxZ": -3580 }, { "locX": 30012, "locY": 20024, "minZ": -3780, "maxZ": -3580 }, { "locX": 28624, "locY": 19380, "minZ": -3780, "maxZ": -3580 }],
@@ -2553,7 +2553,7 @@
 },{
     "selfId": "oren_t20_18_020",
     "bounds": [{ "locX": 24588, "locY": 11860, "minZ": -3792, "maxZ": -3542 }, { "locX": 27324, "locY": 13852, "minZ": -3792, "maxZ": -3542 }, { "locX": 27224, "locY": 16116, "minZ": -3792, "maxZ": -3542 }, { "locX": 23920, "locY": 14528, "minZ": -3792, "maxZ": -3542 }, { "locX": 21504, "locY": 11972, "minZ": -3792, "maxZ": -3542 }],
-    "spawns": [{ "selfId": 12082, "name": "Tuto Keltir", "coords": [], "total": 7, "respawn": 15, "bias": 0 }, { "selfId": 532, "name": "Brown Keltir", "coords": [], "total": 1, "respawn": 15, "bias": 0 }, { "selfId": 536, "name": "Elder Brown Keltir", "coords": [], "total": 1, "respawn": 15, "bias": 0 }]
+    "spawns": [{ "selfId": 12082, "name": "Keltir (Tuto)", "coords": [], "total": 7, "respawn": 15, "bias": 0 }, { "selfId": 532, "name": "Brown Keltir", "coords": [], "total": 1, "respawn": 15, "bias": 0 }, { "selfId": 536, "name": "Elder Brown Keltir", "coords": [], "total": 1, "respawn": 15, "bias": 0 }]
 },{
     "selfId": "oren_t20_18_021",
     "bounds": [{ "locX": 21604, "locY": 12808, "minZ": -3744, "maxZ": -3494 }, { "locX": 23600, "locY": 14848, "minZ": -3744, "maxZ": -3494 }, { "locX": 22404, "locY": 17516, "minZ": -3744, "maxZ": -3494 }, { "locX": 21512, "locY": 17452, "minZ": -3744, "maxZ": -3494 }],
@@ -3261,15 +3261,15 @@
 },{
     "selfId": "oren_t21_19_027",
     "bounds": [{ "locX": 47492, "locY": 42776, "minZ": -3584, "maxZ": -3284 }, { "locX": 49448, "locY": 41944, "minZ": -3584, "maxZ": -3284 }, { "locX": 50416, "locY": 43524, "minZ": -3584, "maxZ": -3284 }, { "locX": 49076, "locY": 44948, "minZ": -3584, "maxZ": -3284 }],
-    "spawns": [{ "selfId": 12082, "name": "Tuto Keltir", "coords": [], "total": 3, "respawn": 15, "bias": 0 }, { "selfId": 534, "name": "Red Keltir", "coords": [], "total": 1, "respawn": 15, "bias": 0 }]
+    "spawns": [{ "selfId": 12082, "name": "Keltir (Tuto)", "coords": [], "total": 3, "respawn": 15, "bias": 0 }, { "selfId": 534, "name": "Red Keltir", "coords": [], "total": 1, "respawn": 15, "bias": 0 }]
 },{
     "selfId": "oren_t21_19_028",
     "bounds": [{ "locX": 50132, "locY": 39744, "minZ": -3608, "maxZ": -3308 }, { "locX": 51300, "locY": 38576, "minZ": -3608, "maxZ": -3308 }, { "locX": 52388, "locY": 39988, "minZ": -3608, "maxZ": -3308 }, { "locX": 50876, "locY": 41216, "minZ": -3608, "maxZ": -3308 }],
-    "spawns": [{ "selfId": 12082, "name": "Tuto Keltir", "coords": [], "total": 3, "respawn": 15, "bias": 0 }, { "selfId": 534, "name": "Red Keltir", "coords": [], "total": 1, "respawn": 15, "bias": 0 }]
+    "spawns": [{ "selfId": 12082, "name": "Keltir (Tuto)", "coords": [], "total": 3, "respawn": 15, "bias": 0 }, { "selfId": 534, "name": "Red Keltir", "coords": [], "total": 1, "respawn": 15, "bias": 0 }]
 },{
     "selfId": "oren_t21_19_029",
     "bounds": [{ "locX": 50976, "locY": 41680, "minZ": -3564, "maxZ": -3264 }, { "locX": 52612, "locY": 40564, "minZ": -3564, "maxZ": -3264 }, { "locX": 53316, "locY": 41840, "minZ": -3564, "maxZ": -3264 }, { "locX": 51872, "locY": 42900, "minZ": -3564, "maxZ": -3264 }],
-    "spawns": [{ "selfId": 12082, "name": "Tuto Keltir", "coords": [], "total": 3, "respawn": 15, "bias": 0 }, { "selfId": 534, "name": "Red Keltir", "coords": [], "total": 1, "respawn": 15, "bias": 0 }]
+    "spawns": [{ "selfId": 12082, "name": "Keltir (Tuto)", "coords": [], "total": 3, "respawn": 15, "bias": 0 }, { "selfId": 534, "name": "Red Keltir", "coords": [], "total": 1, "respawn": 15, "bias": 0 }]
 },{
     "selfId": "oren_t21_19_030",
     "bounds": [{ "locX": 47176, "locY": 36924, "minZ": -3764, "maxZ": -3364 }, { "locX": 49208, "locY": 36080, "minZ": -3764, "maxZ": -3364 }, { "locX": 50956, "locY": 37508, "minZ": -3764, "maxZ": -3364 }, { "locX": 49012, "locY": 38060, "minZ": -3764, "maxZ": -3364 }],
@@ -3281,11 +3281,11 @@
 },{
     "selfId": "oren_t21_19_032",
     "bounds": [{ "locX": 40136, "locY": 38856, "minZ": -3624, "maxZ": -3324 }, { "locX": 41456, "locY": 37952, "minZ": -3624, "maxZ": -3324 }, { "locX": 41856, "locY": 40516, "minZ": -3624, "maxZ": -3324 }, { "locX": 40368, "locY": 40368, "minZ": -3624, "maxZ": -3324 }],
-    "spawns": [{ "selfId": 12082, "name": "Tuto Keltir", "coords": [], "total": 3, "respawn": 15, "bias": 0 }, { "selfId": 534, "name": "Red Keltir", "coords": [], "total": 1, "respawn": 15, "bias": 0 }]
+    "spawns": [{ "selfId": 12082, "name": "Keltir (Tuto)", "coords": [], "total": 3, "respawn": 15, "bias": 0 }, { "selfId": 534, "name": "Red Keltir", "coords": [], "total": 1, "respawn": 15, "bias": 0 }]
 },{
     "selfId": "oren_t21_19_033",
     "bounds": [{ "locX": 41088, "locY": 42060, "minZ": -3732, "maxZ": -3332 }, { "locX": 44248, "locY": 41952, "minZ": -3732, "maxZ": -3332 }, { "locX": 44320, "locY": 43816, "minZ": -3732, "maxZ": -3332 }],
-    "spawns": [{ "selfId": 12082, "name": "Tuto Keltir", "coords": [], "total": 3, "respawn": 15, "bias": 0 }, { "selfId": 534, "name": "Red Keltir", "coords": [], "total": 1, "respawn": 15, "bias": 0 }]
+    "spawns": [{ "selfId": 12082, "name": "Keltir (Tuto)", "coords": [], "total": 3, "respawn": 15, "bias": 0 }, { "selfId": 534, "name": "Red Keltir", "coords": [], "total": 1, "respawn": 15, "bias": 0 }]
 },{
     "selfId": "oren_t21_19_034",
     "bounds": [{ "locX": 53772, "locY": 42936, "minZ": -3704, "maxZ": -3404 }, { "locX": 55684, "locY": 44044, "minZ": -3704, "maxZ": -3404 }, { "locX": 54660, "locY": 45244, "minZ": -3704, "maxZ": -3404 }, { "locX": 52352, "locY": 44756, "minZ": -3704, "maxZ": -3404 }],
@@ -3805,35 +3805,35 @@
 },{
     "selfId": "oren_guard_t20_18_001",
     "bounds": [{ "locX": 28316, "locY": 4256, "minZ": -3776, "maxZ": -3476 }, { "locX": 32496, "locY": 5352, "minZ": -3776, "maxZ": -3476 }, { "locX": 32480, "locY": 10004, "minZ": -3776, "maxZ": -3476 }, { "locX": 29872, "locY": 9844, "minZ": -3776, "maxZ": -3476 }, { "locX": 28316, "locY": 8608, "minZ": -3776, "maxZ": -3476 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t20_18_002",
     "bounds": [{ "locX": 25400, "locY": 3308, "minZ": -3772, "maxZ": -3372 }, { "locX": 28168, "locY": 4256, "minZ": -3772, "maxZ": -3372 }, { "locX": 28112, "locY": 8492, "minZ": -3772, "maxZ": -3372 }, { "locX": 24788, "locY": 10940, "minZ": -3772, "maxZ": -3372 }, { "locX": 19620, "locY": 10848, "minZ": -3772, "maxZ": -3372 }, { "locX": 17048, "locY": 7948, "minZ": -3772, "maxZ": -3372 }, { "locX": 18780, "locY": 6020, "minZ": -3772, "maxZ": -3372 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 2, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 2, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t20_18_003",
     "bounds": [{ "locX": 30036, "locY": 12200, "minZ": -3776, "maxZ": -3476 }, { "locX": 32420, "locY": 11992, "minZ": -3776, "maxZ": -3476 }, { "locX": 32460, "locY": 19600, "minZ": -3776, "maxZ": -3476 }, { "locX": 29828, "locY": 20712, "minZ": -3776, "maxZ": -3476 }, { "locX": 28004, "locY": 19996, "minZ": -3776, "maxZ": -3476 }, { "locX": 28076, "locY": 13480, "minZ": -3776, "maxZ": -3476 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t20_18_004",
     "bounds": [{ "locX": 20860, "locY": 11156, "minZ": -3800, "maxZ": -3300 }, { "locX": 24796, "locY": 11200, "minZ": -3800, "maxZ": -3300 }, { "locX": 27824, "locY": 13536, "minZ": -3800, "maxZ": -3300 }, { "locX": 27848, "locY": 17312, "minZ": -3800, "maxZ": -3300 }, { "locX": 20804, "locY": 18276, "minZ": -3800, "maxZ": -3300 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 3, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 3, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t20_18_005",
     "bounds": [{ "locX": 20836, "locY": 18416, "minZ": -3724, "maxZ": -3324 }, { "locX": 27852, "locY": 17404, "minZ": -3724, "maxZ": -3324 }, { "locX": 27816, "locY": 21108, "minZ": -3724, "maxZ": -3324 }, { "locX": 25100, "locY": 23292, "minZ": -3724, "maxZ": -3324 }, { "locX": 22372, "locY": 22700, "minZ": -3724, "maxZ": -3324 }, { "locX": 20428, "locY": 20000, "minZ": -3724, "maxZ": -3324 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t20_18_006",
     "bounds": [{ "locX": 12808, "locY": 4404, "minZ": -3656, "maxZ": -2706 }, { "locX": 18760, "locY": 5752, "minZ": -3656, "maxZ": -2706 }, { "locX": 16808, "locY": 8040, "minZ": -3656, "maxZ": -2706 }, { "locX": 11224, "locY": 7332, "minZ": -3656, "maxZ": -2706 }],
-    "spawns": [{ "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t20_18_007",
     "bounds": [{ "locX": 8468, "locY": 2476, "minZ": -3168, "maxZ": -2418 }, { "locX": 12692, "locY": 4392, "minZ": -3168, "maxZ": -2418 }, { "locX": 10668, "locY": 7916, "minZ": -3168, "maxZ": -2418 }, { "locX": 6240, "locY": 8240, "minZ": -3168, "maxZ": -2418 }, { "locX": 4324, "locY": 3544, "minZ": -3168, "maxZ": -2418 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t20_18_008",
     "bounds": [{ "locX": 2472, "locY": 3168, "minZ": -3436, "maxZ": -2786 }, { "locX": 4252, "locY": 3448, "minZ": -3436, "maxZ": -2786 }, { "locX": 6028, "locY": 7676, "minZ": -3436, "maxZ": -2786 }, { "locX": 2504, "locY": 13380, "minZ": -3436, "maxZ": -2786 }, { "locX": 236, "locY": 13532, "minZ": -3436, "maxZ": -2786 }, { "locX": 324, "locY": 4196, "minZ": -3436, "maxZ": -2786 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t20_18_009",
     "bounds": [{ "locX": 244, "locY": 13704, "minZ": -3380, "maxZ": -2980 }, { "locX": 2492, "locY": 13688, "minZ": -3380, "maxZ": -2980 }, { "locX": 2208, "locY": 16292, "minZ": -3380, "maxZ": -2980 }, { "locX": 204, "locY": 18316, "minZ": -3380, "maxZ": -2980 }],
@@ -3845,7 +3845,7 @@
 },{
     "selfId": "oren_guard_t20_18_011",
     "bounds": [{ "locX": 8052, "locY": 24820, "minZ": -3764, "maxZ": -3314 }, { "locX": 11076, "locY": 24872, "minZ": -3764, "maxZ": -3314 }, { "locX": 15976, "locY": 29020, "minZ": -3764, "maxZ": -3314 }, { "locX": 10076, "locY": 29568, "minZ": -3764, "maxZ": -3314 }, { "locX": 5496, "locY": 26128, "minZ": -3764, "maxZ": -3314 }],
-    "spawns": [{ "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_delf_t20_19_001",
     "bounds": [{ "locX": 188, "locY": 32968, "minZ": -3808, "maxZ": -3408 }, { "locX": 5528, "locY": 32892, "minZ": -3808, "maxZ": -3408 }, { "locX": 2876, "locY": 35952, "minZ": -3808, "maxZ": -3408 }, { "locX": 196, "locY": 36040, "minZ": -3808, "maxZ": -3408 }],
@@ -3861,83 +3861,83 @@
 },{
     "selfId": "oren_guard_t19_18_002",
     "bounds": [{ "locX": -12136, "locY": 5932, "minZ": -3800, "maxZ": -2450 }, { "locX": -7216, "locY": 9852, "minZ": -3800, "maxZ": -2450 }, { "locX": -6716, "locY": 12048, "minZ": -3800, "maxZ": -2450 }, { "locX": -8576, "locY": 15740, "minZ": -3800, "maxZ": -2450 }, { "locX": -16580, "locY": 7808, "minZ": -3800, "maxZ": -2450 }, { "locX": -14192, "locY": 6300, "minZ": -3800, "maxZ": -2450 }],
-    "spawns": [{ "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 2, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 2, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t19_18_003",
     "bounds": [{ "locX": -24536, "locY": 14068, "minZ": -3780, "maxZ": -2780 }, { "locX": -16680, "locY": 7836, "minZ": -3780, "maxZ": -2780 }, { "locX": -10312, "locY": 14416, "minZ": -3780, "maxZ": -2780 }, { "locX": -17296, "locY": 20564, "minZ": -3780, "maxZ": -2780 }, { "locX": -22876, "locY": 18244, "minZ": -3780, "maxZ": -2780 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 3, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 2, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 3, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 2, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t19_18_004",
     "bounds": [{ "locX": -14052, "locY": 19268, "minZ": -3804, "maxZ": -2954 }, { "locX": -10428, "locY": 15740, "minZ": -3804, "maxZ": -2954 }, { "locX": -7016, "locY": 19428, "minZ": -3804, "maxZ": -2954 }, { "locX": -12428, "locY": 23844, "minZ": -3804, "maxZ": -2954 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t19_18_005",
     "bounds": [{ "locX": -20576, "locY": 20488, "minZ": -3796, "maxZ": -2846 }, { "locX": -14372, "locY": 19536, "minZ": -3796, "maxZ": -2846 }, { "locX": -12896, "locY": 24276, "minZ": -3796, "maxZ": -2846 }, { "locX": -16956, "locY": 27352, "minZ": -3796, "maxZ": -2846 }, { "locX": -23616, "locY": 25260, "minZ": -3796, "maxZ": -2846 }, { "locX": -23372, "locY": 23080, "minZ": -3796, "maxZ": -2846 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 3, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 3, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t19_18_006",
     "bounds": [{ "locX": -27288, "locY": 15844, "minZ": -3800, "maxZ": -3100 }, { "locX": -24612, "locY": 14104, "minZ": -3800, "maxZ": -3100 }, { "locX": -23028, "locY": 18316, "minZ": -3800, "maxZ": -3100 }, { "locX": -25428, "locY": 26624, "minZ": -3800, "maxZ": -3100 }, { "locX": -29428, "locY": 24408, "minZ": -3800, "maxZ": -3100 }, { "locX": -29076, "locY": 18844, "minZ": -3800, "maxZ": -3100 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 3, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 3, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t19_18_007",
     "bounds": [{ "locX": -29552, "locY": 24516, "minZ": -3692, "maxZ": -2242 }, { "locX": -25488, "locY": 26760, "minZ": -3692, "maxZ": -2242 }, { "locX": -22292, "locY": 31968, "minZ": -3692, "maxZ": -2242 }, { "locX": -31540, "locY": 32016, "minZ": -3692, "maxZ": -2242 }],
-    "spawns": [{ "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 2, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 2, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t19_18_008",
     "bounds": [{ "locX": -8864, "locY": 23044, "minZ": -3752, "maxZ": -2502 }, { "locX": -5428, "locY": 22956, "minZ": -3752, "maxZ": -2502 }, { "locX": -5896, "locY": 27684, "minZ": -3752, "maxZ": -2502 }, { "locX": -8744, "locY": 29348, "minZ": -3752, "maxZ": -2502 }, { "locX": -10500, "locY": 28104, "minZ": -3752, "maxZ": -2502 }, { "locX": -11108, "locY": 24596, "minZ": -3752, "maxZ": -2502 }],
-    "spawns": [{ "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 2, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 2, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t19_18_009",
     "bounds": [{ "locX": -16748, "locY": 32476, "minZ": -3768, "maxZ": -2518 }, { "locX": -13436, "locY": 27360, "minZ": -3768, "maxZ": -2518 }, { "locX": -10540, "locY": 32448, "minZ": -3768, "maxZ": -2518 }],
-    "spawns": [{ "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t19_19_001",
     "bounds": [{ "locX": -31596, "locY": 32972, "minZ": -3436, "maxZ": -2936 }, { "locX": -29432, "locY": 32944, "minZ": -3436, "maxZ": -2936 }, { "locX": -26656, "locY": 36556, "minZ": -3436, "maxZ": -2936 }, { "locX": -30308, "locY": 40688, "minZ": -3436, "maxZ": -2936 }, { "locX": -32544, "locY": 40712, "minZ": -3436, "maxZ": -2936 }, { "locX": -32492, "locY": 33980, "minZ": -3436, "maxZ": -2936 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t19_19_004",
     "bounds": [{ "locX": -32568, "locY": 58504, "minZ": -3764, "maxZ": -3264 }, { "locX": -30148, "locY": 58432, "minZ": -3764, "maxZ": -3264 }, { "locX": -26400, "locY": 64316, "minZ": -3764, "maxZ": -3264 }, { "locX": -26180, "locY": 65192, "minZ": -3764, "maxZ": -3264 }, { "locX": -32556, "locY": 65152, "minZ": -3764, "maxZ": -3264 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t19_19_006",
     "bounds": [{ "locX": -16260, "locY": 59596, "minZ": -3772, "maxZ": -3272 }, { "locX": -14176, "locY": 58444, "minZ": -3772, "maxZ": -3272 }, { "locX": -12280, "locY": 65244, "minZ": -3772, "maxZ": -3272 }, { "locX": -18044, "locY": 65236, "minZ": -3772, "maxZ": -3272 }, { "locX": -18712, "locY": 62400, "minZ": -3772, "maxZ": -3272 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guardt_t19_19_009",
     "bounds": [{ "locX": -8076, "locY": 32836, "minZ": -3780, "maxZ": -3380 }, { "locX": -272, "locY": 32892, "minZ": -3780, "maxZ": -3380 }, { "locX": -408, "locY": 43636, "minZ": -3780, "maxZ": -3380 }, { "locX": -5000, "locY": 42488, "minZ": -3780, "maxZ": -3380 }, { "locX": -8904, "locY": 34648, "minZ": -3780, "maxZ": -3380 }],
-    "spawns": [{ "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 3, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 3, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guardt_t9_19_010",
     "bounds": [{ "locX": -4892, "locY": 42672, "minZ": -3768, "maxZ": -3368 }, { "locX": -492, "locY": 43696, "minZ": -3768, "maxZ": -3368 }, { "locX": -7128, "locY": 51252, "minZ": -3768, "maxZ": -3368 }, { "locX": -8756, "locY": 49924, "minZ": -3768, "maxZ": -3368 }, { "locX": -7200, "locY": 45288, "minZ": -3768, "maxZ": -3368 }],
-    "spawns": [{ "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 2, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 2, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t19_19_011",
     "bounds": [{ "locX": -15852, "locY": 54236, "minZ": -3772, "maxZ": -3272 }, { "locX": -8748, "locY": 50036, "minZ": -3772, "maxZ": -3272 }, { "locX": -7336, "locY": 51208, "minZ": -3772, "maxZ": -3272 }, { "locX": -13424, "locY": 57060, "minZ": -3772, "maxZ": -3272 }, { "locX": -16468, "locY": 58204, "minZ": -3772, "maxZ": -3272 }],
-    "spawns": [{ "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t19_19_012",
     "bounds": [{ "locX": -26988, "locY": 61664, "minZ": -3760, "maxZ": -3360 }, { "locX": -16664, "locY": 58936, "minZ": -3760, "maxZ": -3360 }, { "locX": -19412, "locY": 61968, "minZ": -3760, "maxZ": -3360 }, { "locX": -24608, "locY": 62524, "minZ": -3760, "maxZ": -3360 }],
-    "spawns": [{ "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t19_19_013",
     "bounds": [{ "locX": -29100, "locY": 53628, "minZ": -3764, "maxZ": -3364 }, { "locX": -28392, "locY": 53528, "minZ": -3764, "maxZ": -3364 }, { "locX": -25484, "locY": 61080, "minZ": -3764, "maxZ": -3364 }, { "locX": -27016, "locY": 61456, "minZ": -3764, "maxZ": -3364 }, { "locX": -29236, "locY": 58524, "minZ": -3764, "maxZ": -3364 }],
-    "spawns": [{ "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t19_19_014",
     "bounds": [{ "locX": -28840, "locY": 46164, "minZ": -3756, "maxZ": -3356 }, { "locX": -28368, "locY": 46168, "minZ": -3756, "maxZ": -3356 }, { "locX": -28424, "locY": 53236, "minZ": -3756, "maxZ": -3356 }, { "locX": -28956, "locY": 53284, "minZ": -3756, "maxZ": -3356 }, { "locX": -30256, "locY": 50372, "minZ": -3756, "maxZ": -3356 }, { "locX": -30076, "locY": 48372, "minZ": -3756, "maxZ": -3356 }],
-    "spawns": [{ "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t19_19_015",
     "bounds": [{ "locX": -27420, "locY": 39172, "minZ": -3768, "maxZ": -2868 }, { "locX": -25664, "locY": 38172, "minZ": -3768, "maxZ": -2868 }, { "locX": -23436, "locY": 41116, "minZ": -3768, "maxZ": -2868 }, { "locX": -28712, "locY": 45228, "minZ": -3768, "maxZ": -2868 }, { "locX": -29536, "locY": 42852, "minZ": -3768, "maxZ": -2868 }, { "locX": -29248, "locY": 41228, "minZ": -3768, "maxZ": -2868 }],
-    "spawns": [{ "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 2, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 2, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t19_19_016",
     "bounds": [{ "locX": -18732, "locY": 33164, "minZ": -3684, "maxZ": -2834 }, { "locX": -14284, "locY": 33048, "minZ": -3684, "maxZ": -2834 }, { "locX": -16056, "locY": 37700, "minZ": -3684, "maxZ": -2834 }, { "locX": -21604, "locY": 40964, "minZ": -3684, "maxZ": -2834 }, { "locX": -23356, "locY": 41164, "minZ": -3684, "maxZ": -2834 }, { "locX": -25416, "locY": 38312, "minZ": -3684, "maxZ": -2834 }],
-    "spawns": [{ "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 3, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 3, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t19_19_017",
     "bounds": [{ "locX": -14120, "locY": 32988, "minZ": -3788, "maxZ": -3038 }, { "locX": -9052, "locY": 32904, "minZ": -3788, "maxZ": -3038 }, { "locX": -8828, "locY": 36700, "minZ": -3788, "maxZ": -3038 }, { "locX": -12404, "locY": 37376, "minZ": -3788, "maxZ": -3038 }],
-    "spawns": [{ "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t19_19_018",
     "bounds": [{ "locX": -12116, "locY": 37404, "minZ": -3940, "maxZ": -3440 }, { "locX": -8160, "locY": 36676, "minZ": -3940, "maxZ": -3440 }, { "locX": -5052, "locY": 42460, "minZ": -3940, "maxZ": -3440 }, { "locX": -6616, "locY": 44656, "minZ": -3940, "maxZ": -3440 }],
@@ -3977,39 +3977,39 @@
 },{
     "selfId": "oren_guard_delf_t19_20_004",
     "bounds": [{ "locX": -18624, "locY": 68648, "minZ": -3708, "maxZ": -3308 }, { "locX": -17428, "locY": 69532, "minZ": -3708, "maxZ": -3308 }, { "locX": -16296, "locY": 71120, "minZ": -3708, "maxZ": -3308 }, { "locX": -21424, "locY": 76504, "minZ": -3708, "maxZ": -3308 }, { "locX": -25612, "locY": 70380, "minZ": -3708, "maxZ": -3308 }, { "locX": -21892, "locY": 68492, "minZ": -3708, "maxZ": -3308 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 2, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 2, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_delf_t19_20_005",
     "bounds": [{ "locX": -32508, "locY": 70548, "minZ": -3732, "maxZ": -3232 }, { "locX": -25776, "locY": 70408, "minZ": -3732, "maxZ": -3232 }, { "locX": -21596, "locY": 76712, "minZ": -3732, "maxZ": -3232 }, { "locX": -23528, "locY": 79416, "minZ": -3732, "maxZ": -3232 }, { "locX": -32508, "locY": 80860, "minZ": -3732, "maxZ": -3232 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_delf_t19_20_006",
     "bounds": [{ "locX": -30732, "locY": 80672, "minZ": -3716, "maxZ": -3216 }, { "locX": -23952, "locY": 79632, "minZ": -3716, "maxZ": -3216 }, { "locX": -23100, "locY": 85288, "minZ": -3716, "maxZ": -3216 }, { "locX": -23004, "locY": 87808, "minZ": -3716, "maxZ": -3216 }, { "locX": -23520, "locY": 88900, "minZ": -3716, "maxZ": -3216 }, { "locX": -29976, "locY": 84928, "minZ": -3716, "maxZ": -3216 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t18_19_002",
     "bounds": [{ "locX": -40552, "locY": 35020, "minZ": -3340, "maxZ": -2690 }, { "locX": -39712, "locY": 35000, "minZ": -3340, "maxZ": -2690 }, { "locX": -38524, "locY": 38596, "minZ": -3340, "maxZ": -2690 }, { "locX": -42984, "locY": 40240, "minZ": -3340, "maxZ": -2690 }, { "locX": -45592, "locY": 40036, "minZ": -3340, "maxZ": -2690 }, { "locX": -46472, "locY": 38704, "minZ": -3340, "maxZ": -2690 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t18_19_005",
     "bounds": [{ "locX": -38300, "locY": 38744, "minZ": -3416, "maxZ": -3016 }, { "locX": -33084, "locY": 38684, "minZ": -3416, "maxZ": -3016 }, { "locX": -33092, "locY": 42820, "minZ": -3416, "maxZ": -3016 }, { "locX": -34692, "locY": 43844, "minZ": -3416, "maxZ": -3016 }, { "locX": -39116, "locY": 43656, "minZ": -3416, "maxZ": -3016 }, { "locX": -39448, "locY": 39592, "minZ": -3416, "maxZ": -3016 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t18_19_006",
     "bounds": [{ "locX": -41064, "locY": 42064, "minZ": -3396, "maxZ": -2946 }, { "locX": -39836, "locY": 42340, "minZ": -3396, "maxZ": -2946 }, { "locX": -38524, "locY": 46708, "minZ": -3396, "maxZ": -2946 }, { "locX": -39104, "locY": 48960, "minZ": -3396, "maxZ": -2946 }, { "locX": -40072, "locY": 49736, "minZ": -3396, "maxZ": -2946 }, { "locX": -42892, "locY": 49684, "minZ": -3396, "maxZ": -2946 }, { "locX": -42740, "locY": 42924, "minZ": -3396, "maxZ": -2946 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t18_19_009",
     "bounds": [{ "locX": -39716, "locY": 57220, "minZ": -3672, "maxZ": -3122 }, { "locX": -33032, "locY": 56340, "minZ": -3672, "maxZ": -3122 }, { "locX": -33084, "locY": 65188, "minZ": -3672, "maxZ": -3122 }, { "locX": -45280, "locY": 65292, "minZ": -3672, "maxZ": -3122 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 3, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 3, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t18_19_010",
     "bounds": [{ "locX": -37440, "locY": 50772, "minZ": -3500, "maxZ": -3000 }, { "locX": -33072, "locY": 52340, "minZ": -3500, "maxZ": -3000 }, { "locX": -33072, "locY": 56232, "minZ": -3500, "maxZ": -3000 }, { "locX": -39740, "locY": 57200, "minZ": -3500, "maxZ": -3000 }, { "locX": -40752, "locY": 55912, "minZ": -3500, "maxZ": -3000 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t18_19_014",
     "bounds": [{ "locX": -59388, "locY": 62596, "minZ": -3480, "maxZ": -3280 }, { "locX": -52996, "locY": 59008, "minZ": -3480, "maxZ": -3280 }, { "locX": -52616, "locY": 65264, "minZ": -3480, "maxZ": -3280 }, { "locX": -59492, "locY": 65192, "minZ": -3480, "maxZ": -3280 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_delf_t18_20_001",
     "bounds": [{ "locX": -38852, "locY": 65704, "minZ": -3684, "maxZ": -3284 }, { "locX": -33128, "locY": 65708, "minZ": -3684, "maxZ": -3284 }, { "locX": -33028, "locY": 69704, "minZ": -3684, "maxZ": -3284 }, { "locX": -35508, "locY": 69116, "minZ": -3684, "maxZ": -3284 }, { "locX": -38780, "locY": 67944, "minZ": -3684, "maxZ": -3284 }],
@@ -4021,43 +4021,43 @@
 },{
     "selfId": "oren_guard_delf_t18_20_009",
     "bounds": [{ "locX": -53596, "locY": 69744, "minZ": -3480, "maxZ": -2980 }, { "locX": -51704, "locY": 70160, "minZ": -3480, "maxZ": -2980 }, { "locX": -48296, "locY": 72268, "minZ": -3480, "maxZ": -2980 }, { "locX": -51684, "locY": 75480, "minZ": -3480, "maxZ": -2980 }, { "locX": -56900, "locY": 75632, "minZ": -3480, "maxZ": -2980 }, { "locX": -56812, "locY": 72700, "minZ": -3480, "maxZ": -2980 }, { "locX": -55964, "locY": 71192, "minZ": -3480, "maxZ": -2980 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_delf_t18_20_010",
     "bounds": [{ "locX": -48196, "locY": 72432, "minZ": -3632, "maxZ": -2932 }, { "locX": -46160, "locY": 72964, "minZ": -3632, "maxZ": -2932 }, { "locX": -45760, "locY": 76584, "minZ": -3632, "maxZ": -2932 }, { "locX": -48548, "locY": 80216, "minZ": -3632, "maxZ": -2932 }, { "locX": -51460, "locY": 80708, "minZ": -3632, "maxZ": -2932 }, { "locX": -52588, "locY": 77876, "minZ": -3632, "maxZ": -2932 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_delf_t18_20_011",
     "bounds": [{ "locX": -56556, "locY": 75760, "minZ": -3672, "maxZ": -3072 }, { "locX": -53796, "locY": 75592, "minZ": -3672, "maxZ": -3072 }, { "locX": -51588, "locY": 80672, "minZ": -3672, "maxZ": -3072 }, { "locX": -55652, "locY": 81924, "minZ": -3672, "maxZ": -3072 }, { "locX": -58520, "locY": 81516, "minZ": -3672, "maxZ": -3072 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_delf_t18_20_012",
     "bounds": [{ "locX": -51744, "locY": 80516, "minZ": -3696, "maxZ": -3196 }, { "locX": -48136, "locY": 80356, "minZ": -3696, "maxZ": -3196 }, { "locX": -47908, "locY": 85576, "minZ": -3696, "maxZ": -3196 }, { "locX": -52680, "locY": 87340, "minZ": -3696, "maxZ": -3196 }, { "locX": -57384, "locY": 85568, "minZ": -3696, "maxZ": -3196 }, { "locX": -57756, "locY": 82652, "minZ": -3696, "maxZ": -3196 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_delf_t18_20_016",
     "bounds": [{ "locX": -35576, "locY": 70224, "minZ": -3668, "maxZ": -3018 }, { "locX": -33144, "locY": 70676, "minZ": -3668, "maxZ": -3018 }, { "locX": -33176, "locY": 81904, "minZ": -3668, "maxZ": -3018 }, { "locX": -35440, "locY": 81572, "minZ": -3668, "maxZ": -3018 }, { "locX": -38208, "locY": 77676, "minZ": -3668, "maxZ": -3018 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_dlef_t18_20_017",
     "bounds": [{ "locX": -38228, "locY": 69396, "minZ": -3764, "maxZ": -3164 }, { "locX": -35720, "locY": 70236, "minZ": -3764, "maxZ": -3164 }, { "locX": -38280, "locY": 77448, "minZ": -3764, "maxZ": -3164 }, { "locX": -43920, "locY": 76496, "minZ": -3764, "maxZ": -3164 }, { "locX": -44808, "locY": 72936, "minZ": -3764, "maxZ": -3164 }, { "locX": -43876, "locY": 71640, "minZ": -3764, "maxZ": -3164 }, { "locX": -40096, "locY": 69564, "minZ": -3764, "maxZ": -3164 }],
-    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12084, "name": "Bloody Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_delf_t17_20_001",
     "bounds": [{ "locX": -72228, "locY": 71784, "minZ": -3428, "maxZ": -2778 }, { "locX": -70084, "locY": 72576, "minZ": -3428, "maxZ": -2778 }, { "locX": -69724, "locY": 73632, "minZ": -3428, "maxZ": -2778 }, { "locX": -70900, "locY": 76416, "minZ": -3428, "maxZ": -2778 }, { "locX": -74288, "locY": 77356, "minZ": -3428, "maxZ": -2778 }, { "locX": -74820, "locY": 72492, "minZ": -3428, "maxZ": -2778 }],
-    "spawns": [{ "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_delf_t17_20_002",
     "bounds": [{ "locX": -68088, "locY": 74788, "minZ": -3552, "maxZ": -2952 }, { "locX": -65840, "locY": 74936, "minZ": -3552, "maxZ": -2952 }, { "locX": -65888, "locY": 83740, "minZ": -3552, "maxZ": -2952 }, { "locX": -69512, "locY": 82344, "minZ": -3552, "maxZ": -2952 }, { "locX": -72716, "locY": 77220, "minZ": -3552, "maxZ": -2952 }],
-    "spawns": [{ "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 2, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 2, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_delf_t17_20_004",
     "bounds": [{ "locX": -76868, "locY": 79404, "minZ": -3468, "maxZ": -2818 }, { "locX": -72884, "locY": 77288, "minZ": -3468, "maxZ": -2818 }, { "locX": -71412, "locY": 79260, "minZ": -3468, "maxZ": -2818 }, { "locX": -72184, "locY": 80516, "minZ": -3468, "maxZ": -2818 }, { "locX": -75348, "locY": 82512, "minZ": -3468, "maxZ": -2818 }],
-    "spawns": [{ "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_delf_t17_20_005",
     "bounds": [{ "locX": -75188, "locY": 82520, "minZ": -3588, "maxZ": -2638 }, { "locX": -72680, "locY": 81048, "minZ": -3588, "maxZ": -2638 }, { "locX": -68784, "locY": 82808, "minZ": -3588, "maxZ": -2638 }, { "locX": -70508, "locY": 86316, "minZ": -3588, "maxZ": -2638 }, { "locX": -75028, "locY": 86452, "minZ": -3588, "maxZ": -2638 }],
-    "spawns": [{ "selfId": 12089, "name": "Ti Mi Riran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12089, "name": "Blight Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t21_19_001",
     "bounds": [{ "locX": 46324, "locY": 42336, "minZ": -3780, "maxZ": -3380 }, { "locX": 49700, "locY": 40892, "minZ": -3780, "maxZ": -3380 }, { "locX": 51644, "locY": 43768, "minZ": -3780, "maxZ": -3380 }, { "locX": 49324, "locY": 46348, "minZ": -3780, "maxZ": -3380 }, { "locX": 46076, "locY": 44344, "minZ": -3780, "maxZ": -3380 }],
@@ -4085,19 +4085,19 @@
 },{
     "selfId": "oren_guard_t21_19_007",
     "bounds": [{ "locX": 54712, "locY": 37424, "minZ": -3792, "maxZ": -3392 }, { "locX": 59236, "locY": 40488, "minZ": -3792, "maxZ": -3392 }, { "locX": 57676, "locY": 43956, "minZ": -3792, "maxZ": -3392 }, { "locX": 53724, "locY": 41940, "minZ": -3792, "maxZ": -3392 }, { "locX": 52128, "locY": 37212, "minZ": -3792, "maxZ": -3392 }],
-    "spawns": [{ "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12090, "name": "Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t21_19_008",
     "bounds": [{ "locX": 53708, "locY": 41984, "minZ": -3768, "maxZ": -3368 }, { "locX": 57652, "locY": 44116, "minZ": -3768, "maxZ": -3368 }, { "locX": 56188, "locY": 48700, "minZ": -3768, "maxZ": -3368 }, { "locX": 50376, "locY": 49176, "minZ": -3768, "maxZ": -3368 }, { "locX": 49412, "locY": 46324, "minZ": -3768, "maxZ": -3368 }],
-    "spawns": [{ "selfId": 12087, "name": "Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12087, "name": "Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12090, "name": "Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t21_19_009",
     "bounds": [{ "locX": 50296, "locY": 49300, "minZ": -3788, "maxZ": -3388 }, { "locX": 56156, "locY": 48824, "minZ": -3788, "maxZ": -3388 }, { "locX": 57708, "locY": 49724, "minZ": -3788, "maxZ": -3388 }, { "locX": 58396, "locY": 52292, "minZ": -3788, "maxZ": -3388 }, { "locX": 55712, "locY": 54244, "minZ": -3788, "maxZ": -3388 }, { "locX": 49944, "locY": 52184, "minZ": -3788, "maxZ": -3388 }],
-    "spawns": [{ "selfId": 12087, "name": "Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12087, "name": "Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12090, "name": "Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t21_19_010",
     "bounds": [{ "locX": 50596, "locY": 52560, "minZ": -3704, "maxZ": -3304 }, { "locX": 55600, "locY": 54320, "minZ": -3704, "maxZ": -3304 }, { "locX": 55336, "locY": 56828, "minZ": -3704, "maxZ": -3304 }, { "locX": 54288, "locY": 58536, "minZ": -3704, "maxZ": -3304 }, { "locX": 51456, "locY": 57324, "minZ": -3704, "maxZ": -3304 }, { "locX": 50372, "locY": 56272, "minZ": -3704, "maxZ": -3304 }, { "locX": 50108, "locY": 55472, "minZ": -3704, "maxZ": -3304 }],
-    "spawns": [{ "selfId": 12087, "name": "Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12087, "name": "Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12090, "name": "Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t21_19_012",
     "bounds": [{ "locX": 53048, "locY": 58884, "minZ": -3776, "maxZ": -3376 }, { "locX": 53664, "locY": 60240, "minZ": -3776, "maxZ": -3376 }, { "locX": 52104, "locY": 61684, "minZ": -3776, "maxZ": -3376 }, { "locX": 48760, "locY": 61636, "minZ": -3776, "maxZ": -3376 }, { "locX": 48624, "locY": 57632, "minZ": -3776, "maxZ": -3376 }, { "locX": 50060, "locY": 56840, "minZ": -3776, "maxZ": -3376 }, { "locX": 52200, "locY": 58036, "minZ": -3776, "maxZ": -3376 }],
@@ -4109,15 +4109,15 @@
 },{
     "selfId": "oren_guard_t21_19_014",
     "bounds": [{ "locX": 56744, "locY": 60912, "minZ": -3612, "maxZ": -3212 }, { "locX": 58228, "locY": 61448, "minZ": -3612, "maxZ": -3212 }, { "locX": 59192, "locY": 63660, "minZ": -3612, "maxZ": -3212 }, { "locX": 59136, "locY": 65248, "minZ": -3612, "maxZ": -3212 }, { "locX": 54896, "locY": 65280, "minZ": -3612, "maxZ": -3212 }, { "locX": 55224, "locY": 62700, "minZ": -3612, "maxZ": -3212 }],
-    "spawns": [{ "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12090, "name": "Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t21_19_017",
     "bounds": [{ "locX": 36628, "locY": 39212, "minZ": -3720, "maxZ": -3320 }, { "locX": 39228, "locY": 37780, "minZ": -3720, "maxZ": -3320 }, { "locX": 40504, "locY": 43276, "minZ": -3720, "maxZ": -3320 }, { "locX": 38556, "locY": 42784, "minZ": -3720, "maxZ": -3320 }, { "locX": 37068, "locY": 41396, "minZ": -3720, "maxZ": -3320 }, { "locX": 36352, "locY": 40092, "minZ": -3720, "maxZ": -3320 }],
-    "spawns": [{ "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12090, "name": "Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t21_19_020",
     "bounds": [{ "locX": 32996, "locY": 41508, "minZ": -3768, "maxZ": -3368 }, { "locX": 35128, "locY": 41580, "minZ": -3768, "maxZ": -3368 }, { "locX": 40944, "locY": 45752, "minZ": -3768, "maxZ": -3368 }, { "locX": 40056, "locY": 50152, "minZ": -3768, "maxZ": -3368 }, { "locX": 33020, "locY": 50052, "minZ": -3768, "maxZ": -3368 }],
-    "spawns": [{ "selfId": 12087, "name": "Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 2, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12087, "name": "Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12090, "name": "Treant", "coords": [], "total": 2, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t21_19_021",
     "bounds": [{ "locX": 33080, "locY": 50156, "minZ": -3764, "maxZ": -3264 }, { "locX": 40052, "locY": 50216, "minZ": -3764, "maxZ": -3264 }, { "locX": 40360, "locY": 52688, "minZ": -3764, "maxZ": -3264 }, { "locX": 37724, "locY": 53816, "minZ": -3764, "maxZ": -3264 }, { "locX": 33016, "locY": 52080, "minZ": -3764, "maxZ": -3264 }],
@@ -4125,19 +4125,19 @@
 },{
     "selfId": "oren_guard_t21_19_1022",
     "bounds": [{ "locX": 43212, "locY": 54120, "minZ": -3764, "maxZ": -3364 }, { "locX": 45000, "locY": 54396, "minZ": -3764, "maxZ": -3364 }, { "locX": 46564, "locY": 55816, "minZ": -3764, "maxZ": -3364 }, { "locX": 47584, "locY": 58572, "minZ": -3764, "maxZ": -3364 }, { "locX": 40652, "locY": 61728, "minZ": -3764, "maxZ": -3364 }, { "locX": 37828, "locY": 57444, "minZ": -3764, "maxZ": -3364 }],
-    "spawns": [{ "selfId": 12087, "name": "Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12087, "name": "Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12090, "name": "Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t21_19_023",
     "bounds": [{ "locX": 40648, "locY": 61836, "minZ": -3788, "maxZ": -3388 }, { "locX": 47524, "locY": 58700, "minZ": -3788, "maxZ": -3388 }, { "locX": 47548, "locY": 60764, "minZ": -3788, "maxZ": -3388 }, { "locX": 46444, "locY": 63032, "minZ": -3788, "maxZ": -3388 }, { "locX": 44412, "locY": 65232, "minZ": -3788, "maxZ": -3388 }, { "locX": 40688, "locY": 65288, "minZ": -3788, "maxZ": -3388 }],
-    "spawns": [{ "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12090, "name": "Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t21_19_024",
     "bounds": [{ "locX": 33028, "locY": 61096, "minZ": -3752, "maxZ": -3352 }, { "locX": 37404, "locY": 57800, "minZ": -3752, "maxZ": -3352 }, { "locX": 40632, "locY": 61828, "minZ": -3752, "maxZ": -3352 }, { "locX": 40572, "locY": 65232, "minZ": -3752, "maxZ": -3352 }, { "locX": 32988, "locY": 65176, "minZ": -3752, "maxZ": -3352 }],
-    "spawns": [{ "selfId": 12087, "name": "Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12087, "name": "Pixy", "coords": [], "total": 2, "respawn": 60, "bias": 0 }, { "selfId": 12090, "name": "Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t21_19_025",
     "bounds": [{ "locX": 33024, "locY": 53304, "minZ": -3792, "maxZ": -3392 }, { "locX": 36736, "locY": 54392, "minZ": -3792, "maxZ": -3392 }, { "locX": 37316, "locY": 57604, "minZ": -3792, "maxZ": -3392 }, { "locX": 33044, "locY": 60888, "minZ": -3792, "maxZ": -3392 }],
-    "spawns": [{ "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12090, "name": "Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t21_20_003",
     "bounds": [{ "locX": 54552, "locY": 65632, "minZ": -3800, "maxZ": -3400 }, { "locX": 58764, "locY": 65620, "minZ": -3800, "maxZ": -3400 }, { "locX": 60580, "locY": 70164, "minZ": -3800, "maxZ": -3400 }, { "locX": 56516, "locY": 69612, "minZ": -3800, "maxZ": -3400 }, { "locX": 53668, "locY": 67608, "minZ": -3800, "maxZ": -3400 }],
@@ -4145,11 +4145,11 @@
 },{
     "selfId": "oren_guard_t21_20_005",
     "bounds": [{ "locX": 54284, "locY": 69472, "minZ": -3788, "maxZ": -3238 }, { "locX": 57332, "locY": 71724, "minZ": -3788, "maxZ": -3238 }, { "locX": 57852, "locY": 74800, "minZ": -3788, "maxZ": -3238 }, { "locX": 57120, "locY": 75764, "minZ": -3788, "maxZ": -3238 }, { "locX": 53724, "locY": 75496, "minZ": -3788, "maxZ": -3238 }, { "locX": 53108, "locY": 70720, "minZ": -3788, "maxZ": -3238 }],
-    "spawns": [{ "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12090, "name": "Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t21_20_006",
     "bounds": [{ "locX": 57948, "locY": 74832, "minZ": -3700, "maxZ": -3300 }, { "locX": 61208, "locY": 76588, "minZ": -3700, "maxZ": -3300 }, { "locX": 60140, "locY": 80780, "minZ": -3700, "maxZ": -3300 }, { "locX": 56932, "locY": 81004, "minZ": -3700, "maxZ": -3300 }, { "locX": 54980, "locY": 79120, "minZ": -3700, "maxZ": -3300 }],
-    "spawns": [{ "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12090, "name": "Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t21_20_007",
     "bounds": [{ "locX": 56972, "locY": 81092, "minZ": -3708, "maxZ": -3308 }, { "locX": 60016, "locY": 80868, "minZ": -3708, "maxZ": -3308 }, { "locX": 60536, "locY": 81712, "minZ": -3708, "maxZ": -3308 }, { "locX": 59768, "locY": 83732, "minZ": -3708, "maxZ": -3308 }, { "locX": 58068, "locY": 84768, "minZ": -3708, "maxZ": -3308 }, { "locX": 56444, "locY": 84904, "minZ": -3708, "maxZ": -3308 }, { "locX": 56200, "locY": 83340, "minZ": -3708, "maxZ": -3308 }],
@@ -4161,7 +4161,7 @@
 },{
     "selfId": "oren_guard_t21_20_011",
     "bounds": [{ "locX": 46620, "locY": 87800, "minZ": -3812, "maxZ": -3412 }, { "locX": 49712, "locY": 89932, "minZ": -3812, "maxZ": -3412 }, { "locX": 48848, "locY": 93488, "minZ": -3812, "maxZ": -3412 }, { "locX": 44496, "locY": 94904, "minZ": -3812, "maxZ": -3412 }, { "locX": 42576, "locY": 93980, "minZ": -3812, "maxZ": -3412 }, { "locX": 41220, "locY": 90484, "minZ": -3812, "maxZ": -3412 }],
-    "spawns": [{ "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 2, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12090, "name": "Treant", "coords": [], "total": 2, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t21_20_012",
     "bounds": [{ "locX": 38392, "locY": 88972, "minZ": -3808, "maxZ": -3158 }, { "locX": 41016, "locY": 90068, "minZ": -3808, "maxZ": -3158 }, { "locX": 42280, "locY": 93676, "minZ": -3808, "maxZ": -3158 }, { "locX": 38468, "locY": 93408, "minZ": -3808, "maxZ": -3158 }, { "locX": 36460, "locY": 91872, "minZ": -3808, "maxZ": -3158 }],
@@ -4169,7 +4169,7 @@
 },{
     "selfId": "oren_guard_t21_20_013",
     "bounds": [{ "locX": 35804, "locY": 87764, "minZ": -3756, "maxZ": -3156 }, { "locX": 38132, "locY": 88916, "minZ": -3756, "maxZ": -3156 }, { "locX": 36284, "locY": 91840, "minZ": -3756, "maxZ": -3156 }, { "locX": 32972, "locY": 90360, "minZ": -3756, "maxZ": -3156 }, { "locX": 33052, "locY": 87676, "minZ": -3756, "maxZ": -3156 }],
-    "spawns": [{ "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12090, "name": "Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t21_20_015",
     "bounds": [{ "locX": 32988, "locY": 83192, "minZ": -3648, "maxZ": -3248 }, { "locX": 41760, "locY": 83160, "minZ": -3648, "maxZ": -3248 }, { "locX": 42436, "locY": 83924, "minZ": -3648, "maxZ": -3248 }, { "locX": 41064, "locY": 86984, "minZ": -3648, "maxZ": -3248 }, { "locX": 37980, "locY": 87956, "minZ": -3648, "maxZ": -3248 }, { "locX": 33024, "locY": 86460, "minZ": -3648, "maxZ": -3248 }],
@@ -4181,7 +4181,7 @@
 },{
     "selfId": "oren_guard_t21_20_017",
     "bounds": [{ "locX": 33032, "locY": 71956, "minZ": -3796, "maxZ": -3296 }, { "locX": 37292, "locY": 70972, "minZ": -3796, "maxZ": -3296 }, { "locX": 40136, "locY": 74304, "minZ": -3796, "maxZ": -3296 }, { "locX": 38940, "locY": 78236, "minZ": -3796, "maxZ": -3296 }, { "locX": 37492, "locY": 79736, "minZ": -3796, "maxZ": -3296 }, { "locX": 33060, "locY": 78536, "minZ": -3796, "maxZ": -3296 }],
-    "spawns": [{ "selfId": 12087, "name": "Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12087, "name": "Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12090, "name": "Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t20_19_001",
     "bounds": [{ "locX": 31384, "locY": 33580, "minZ": -3780, "maxZ": -3480 }, { "locX": 32520, "locY": 33824, "minZ": -3780, "maxZ": -3480 }, { "locX": 32496, "locY": 36848, "minZ": -3780, "maxZ": -3480 }, { "locX": 27992, "locY": 37752, "minZ": -3780, "maxZ": -3480 }, { "locX": 26292, "locY": 35428, "minZ": -3780, "maxZ": -3480 }, { "locX": 27704, "locY": 34468, "minZ": -3780, "maxZ": -3480 }],
@@ -4189,15 +4189,15 @@
 },{
     "selfId": "oren_guard_t20_19_003",
     "bounds": [{ "locX": 31032, "locY": 46088, "minZ": -3788, "maxZ": -3138 }, { "locX": 32408, "locY": 46608, "minZ": -3788, "maxZ": -3138 }, { "locX": 32404, "locY": 51144, "minZ": -3788, "maxZ": -3138 }, { "locX": 29484, "locY": 51188, "minZ": -3788, "maxZ": -3138 }, { "locX": 27420, "locY": 49124, "minZ": -3788, "maxZ": -3138 }],
-    "spawns": [{ "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12090, "name": "Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t20_19_004",
     "bounds": [{ "locX": 24620, "locY": 48304, "minZ": -3732, "maxZ": -3282 }, { "locX": 27360, "locY": 49132, "minZ": -3732, "maxZ": -3282 }, { "locX": 29352, "locY": 51128, "minZ": -3732, "maxZ": -3282 }, { "locX": 27272, "locY": 53028, "minZ": -3732, "maxZ": -3282 }, { "locX": 25760, "locY": 53600, "minZ": -3732, "maxZ": -3282 }, { "locX": 22720, "locY": 52016, "minZ": -3732, "maxZ": -3282 }, { "locX": 22376, "locY": 49480, "minZ": -3732, "maxZ": -3282 }],
-    "spawns": [{ "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12090, "name": "Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t20_19_005",
     "bounds": [{ "locX": 19828, "locY": 45920, "minZ": -3756, "maxZ": -3306 }, { "locX": 25008, "locY": 43944, "minZ": -3756, "maxZ": -3306 }, { "locX": 24556, "locY": 48204, "minZ": -3756, "maxZ": -3306 }, { "locX": 22272, "locY": 49504, "minZ": -3756, "maxZ": -3306 }, { "locX": 20928, "locY": 49456, "minZ": -3756, "maxZ": -3306 }],
-    "spawns": [{ "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12090, "name": "Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t20_19_006",
     "bounds": [{ "locX": 20920, "locY": 41452, "minZ": -3760, "maxZ": -3360 }, { "locX": 27528, "locY": 37580, "minZ": -3760, "maxZ": -3360 }, { "locX": 28824, "locY": 40800, "minZ": -3760, "maxZ": -3360 }, { "locX": 25184, "locY": 43884, "minZ": -3760, "maxZ": -3360 }, { "locX": 23028, "locY": 44644, "minZ": -3760, "maxZ": -3360 }],
@@ -4213,19 +4213,19 @@
 },{
     "selfId": "oren_guard_t20_19_009",
     "bounds": [{ "locX": 14852, "locY": 43152, "minZ": -3896, "maxZ": -3496 }, { "locX": 17012, "locY": 43196, "minZ": -3896, "maxZ": -3496 }, { "locX": 19104, "locY": 46332, "minZ": -3896, "maxZ": -3496 }, { "locX": 20056, "locY": 49512, "minZ": -3896, "maxZ": -3496 }, { "locX": 16804, "locY": 49856, "minZ": -3896, "maxZ": -3496 }, { "locX": 14120, "locY": 45048, "minZ": -3896, "maxZ": -3496 }],
-    "spawns": [{ "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12090, "name": "Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t20_19_010",
     "bounds": [{ "locX": 15372, "locY": 50076, "minZ": -3792, "maxZ": -3392 }, { "locX": 19548, "locY": 49648, "minZ": -3792, "maxZ": -3392 }, { "locX": 20296, "locY": 54032, "minZ": -3792, "maxZ": -3392 }, { "locX": 14732, "locY": 55092, "minZ": -3792, "maxZ": -3392 }, { "locX": 12328, "locY": 52968, "minZ": -3792, "maxZ": -3392 }, { "locX": 13268, "locY": 51184, "minZ": -3792, "maxZ": -3392 }],
-    "spawns": [{ "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12090, "name": "Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t20_19_013",
     "bounds": [{ "locX": 968, "locY": 57384, "minZ": -3752, "maxZ": -3102 }, { "locX": 6284, "locY": 57464, "minZ": -3752, "maxZ": -3102 }, { "locX": 6300, "locY": 62956, "minZ": -3752, "maxZ": -3102 }, { "locX": 4612, "locY": 65108, "minZ": -3752, "maxZ": -3102 }, { "locX": 840, "locY": 65084, "minZ": -3752, "maxZ": -3102 }],
-    "spawns": [{ "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12090, "name": "Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t20_19_015",
     "bounds": [{ "locX": 8556, "locY": 47740, "minZ": -3824, "maxZ": -3374 }, { "locX": 11616, "locY": 50580, "minZ": -3824, "maxZ": -3374 }, { "locX": 11216, "locY": 51764, "minZ": -3824, "maxZ": -3374 }, { "locX": 5988, "locY": 54460, "minZ": -3824, "maxZ": -3374 }, { "locX": 4140, "locY": 52600, "minZ": -3824, "maxZ": -3374 }],
-    "spawns": [{ "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12090, "name": "Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t20_19_017",
     "bounds": [{ "locX": 29960, "locY": 52768, "minZ": -3672, "maxZ": -3172 }, { "locX": 32368, "locY": 53392, "minZ": -3672, "maxZ": -3172 }, { "locX": 32316, "locY": 57764, "minZ": -3672, "maxZ": -3172 }, { "locX": 28432, "locY": 59844, "minZ": -3672, "maxZ": -3172 }, { "locX": 24808, "locY": 55412, "minZ": -3672, "maxZ": -3172 }],
@@ -4241,7 +4241,7 @@
 },{
     "selfId": "oren_guard_t20_19_020",
     "bounds": [{ "locX": 18808, "locY": 55952, "minZ": -3664, "maxZ": -3014 }, { "locX": 23172, "locY": 54984, "minZ": -3664, "maxZ": -3014 }, { "locX": 26876, "locY": 59864, "minZ": -3664, "maxZ": -3014 }, { "locX": 24464, "locY": 61272, "minZ": -3664, "maxZ": -3014 }, { "locX": 18652, "locY": 58272, "minZ": -3664, "maxZ": -3014 }],
-    "spawns": [{ "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12090, "name": "Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t20_20_004",
     "bounds": [{ "locX": 30936, "locY": 68400, "minZ": -3772, "maxZ": -3372 }, { "locX": 32380, "locY": 67800, "minZ": -3772, "maxZ": -3372 }, { "locX": 32432, "locY": 71664, "minZ": -3772, "maxZ": -3372 }, { "locX": 30404, "locY": 70596, "minZ": -3772, "maxZ": -3372 }],
@@ -4249,7 +4249,7 @@
 },{
     "selfId": "oren_guard_t20_20_006",
     "bounds": [{ "locX": 29428, "locY": 81588, "minZ": -3676, "maxZ": -3276 }, { "locX": 32428, "locY": 81444, "minZ": -3676, "maxZ": -3276 }, { "locX": 32364, "locY": 86680, "minZ": -3676, "maxZ": -3276 }, { "locX": 28432, "locY": 88772, "minZ": -3676, "maxZ": -3276 }, { "locX": 27508, "locY": 87692, "minZ": -3676, "maxZ": -3276 }],
-    "spawns": [{ "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12090, "name": "Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t20_20_007",
     "bounds": [{ "locX": 20668, "locY": 70756, "minZ": -3616, "maxZ": -3016 }, { "locX": 29480, "locY": 68980, "minZ": -3616, "maxZ": -3016 }, { "locX": 28100, "locY": 70560, "minZ": -3616, "maxZ": -3016 }, { "locX": 21388, "locY": 71220, "minZ": -3616, "maxZ": -3016 }],
@@ -4265,11 +4265,11 @@
 },{
     "selfId": "oren_guard_t20_20_015",
     "bounds": [{ "locX": 19512, "locY": 83080, "minZ": -3804, "maxZ": -3254 }, { "locX": 23548, "locY": 82332, "minZ": -3804, "maxZ": -3254 }, { "locX": 26768, "locY": 85656, "minZ": -3804, "maxZ": -3254 }, { "locX": 22376, "locY": 88024, "minZ": -3804, "maxZ": -3254 }, { "locX": 16176, "locY": 88128, "minZ": -3804, "maxZ": -3254 }, { "locX": 16360, "locY": 85980, "minZ": -3804, "maxZ": -3254 }],
-    "spawns": [{ "selfId": 12087, "name": "Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12087, "name": "Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12090, "name": "Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t20_20_018",
     "bounds": [{ "locX": 19340, "locY": 89072, "minZ": -3844, "maxZ": -3444 }, { "locX": 25728, "locY": 88332, "minZ": -3844, "maxZ": -3444 }, { "locX": 27864, "locY": 89612, "minZ": -3844, "maxZ": -3444 }, { "locX": 26780, "locY": 92668, "minZ": -3844, "maxZ": -3444 }, { "locX": 19196, "locY": 92048, "minZ": -3844, "maxZ": -3444 }],
-    "spawns": [{ "selfId": 12087, "name": "Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12090, "name": "Ti Mi Tran", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
+    "spawns": [{ "selfId": 12087, "name": "Pixy", "coords": [], "total": 1, "respawn": 60, "bias": 0 }, { "selfId": 12090, "name": "Treant", "coords": [], "total": 1, "respawn": 60, "bias": 0 }]
 },{
     "selfId": "oren_guard_t20_20_019",
     "bounds": [{ "locX": 14424, "locY": 89996, "minZ": -3892, "maxZ": -3492 }, { "locX": 19188, "locY": 89060, "minZ": -3892, "maxZ": -3492 }, { "locX": 19080, "locY": 92008, "minZ": -3892, "maxZ": -3492 }, { "locX": 17700, "locY": 93148, "minZ": -3892, "maxZ": -3492 }, { "locX": 14284, "locY": 92804, "minZ": -3892, "maxZ": -3492 }, { "locX": 12488, "locY": 91372, "minZ": -3892, "maxZ": -3492 }],
@@ -4277,19 +4277,19 @@
 },{
     "selfId": "t23_12_001",
     "bounds": [{ "locX": 108520, "locY": -173936, "minZ": -604, "maxZ": -404 }, { "locX": 109876, "locY": -173636, "minZ": -604, "maxZ": -404 }, { "locX": 109132, "locY": -172528, "minZ": -604, "maxZ": -404 }, { "locX": 108020, "locY": -172224, "minZ": -604, "maxZ": -404 }],
-    "spawns": [{ "selfId": 12082, "name": "Tuto Keltir", "coords": [], "total": 10, "respawn": 15, "bias": 0 }]
+    "spawns": [{ "selfId": 12082, "name": "Keltir (Tuto)", "coords": [], "total": 10, "respawn": 15, "bias": 0 }]
 },{
     "selfId": "t23_12_002",
     "bounds": [{ "locX": 107460, "locY": -174188, "minZ": -592, "maxZ": -392 }, { "locX": 108416, "locY": -173672, "minZ": -592, "maxZ": -392 }, { "locX": 108144, "locY": -172728, "minZ": -592, "maxZ": -392 }, { "locX": 107124, "locY": -172800, "minZ": -592, "maxZ": -392 }],
-    "spawns": [{ "selfId": 12082, "name": "Tuto Keltir", "coords": [], "total": 10, "respawn": 15, "bias": 0 }]
+    "spawns": [{ "selfId": 12082, "name": "Keltir (Tuto)", "coords": [], "total": 10, "respawn": 15, "bias": 0 }]
 },{
     "selfId": "t23_12_003",
     "bounds": [{ "locX": 108624, "locY": -176004, "minZ": -592, "maxZ": -342 }, { "locX": 109472, "locY": -175020, "minZ": -592, "maxZ": -342 }, { "locX": 108740, "locY": -174364, "minZ": -592, "maxZ": -342 }, { "locX": 107996, "locY": -174704, "minZ": -592, "maxZ": -342 }],
-    "spawns": [{ "selfId": 12082, "name": "Tuto Keltir", "coords": [], "total": 10, "respawn": 15, "bias": 0 }]
+    "spawns": [{ "selfId": 12082, "name": "Keltir (Tuto)", "coords": [], "total": 10, "respawn": 15, "bias": 0 }]
 },{
     "selfId": "t23_12_004",
     "bounds": [{ "locX": 109436, "locY": -174996, "minZ": -592, "maxZ": -392 }, { "locX": 110296, "locY": -174132, "minZ": -592, "maxZ": -392 }, { "locX": 109976, "locY": -173776, "minZ": -592, "maxZ": -392 }, { "locX": 108816, "locY": -173880, "minZ": -592, "maxZ": -392 }, { "locX": 108716, "locY": -174348, "minZ": -592, "maxZ": -392 }],
-    "spawns": [{ "selfId": 12082, "name": "Tuto Keltir", "coords": [], "total": 10, "respawn": 15, "bias": 0 }]
+    "spawns": [{ "selfId": 12082, "name": "Keltir (Tuto)", "coords": [], "total": 10, "respawn": 15, "bias": 0 }]
 },{
     "selfId": "t23_12_005",
     "bounds": [{ "locX": 113136, "locY": -174872, "minZ": -760, "maxZ": -510 }, { "locX": 113752, "locY": -174864, "minZ": -760, "maxZ": -510 }, { "locX": 113716, "locY": -173764, "minZ": -760, "maxZ": -510 }, { "locX": 112884, "locY": -174168, "minZ": -760, "maxZ": -510 }],
@@ -5125,7 +5125,7 @@
 },{
     "selfId": "rion_t18_14_001",
     "bounds": [{ "locX": -51344, "locY": -113300, "minZ": -388, "maxZ": -88 }, { "locX": -47452, "locY": -113280, "minZ": -388, "maxZ": -88 }, { "locX": -47452, "locY": -109232, "minZ": -388, "maxZ": -88 }, { "locX": -49824, "locY": -107692, "minZ": -388, "maxZ": -88 }, { "locX": -52148, "locY": -109344, "minZ": -388, "maxZ": -88 }],
-    "spawns": [{ "selfId": 12082, "name": "Tuto Keltir", "coords": [], "total": 9, "respawn": 15, "bias": 0 }, { "selfId": 531, "name": "Young Prairie Keltir", "coords": [], "total": 3, "respawn": 15, "bias": 0 }, { "selfId": 535, "name": "Prairie Keltir", "coords": [], "total": 3, "respawn": 15, "bias": 0 }, { "selfId": 538, "name": "Elder Prairie Keltir", "coords": [], "total": 3, "respawn": 15, "bias": 0 }]
+    "spawns": [{ "selfId": 12082, "name": "Keltir (Tuto)", "coords": [], "total": 9, "respawn": 15, "bias": 0 }, { "selfId": 531, "name": "Young Prairie Keltir", "coords": [], "total": 3, "respawn": 15, "bias": 0 }, { "selfId": 535, "name": "Prairie Keltir", "coords": [], "total": 3, "respawn": 15, "bias": 0 }, { "selfId": 538, "name": "Elder Prairie Keltir", "coords": [], "total": 3, "respawn": 15, "bias": 0 }]
 },{
     "selfId": "rion_t18_14_002",
     "bounds": [{ "locX": -48060, "locY": -108820, "minZ": -844, "maxZ": -144 }, { "locX": -45772, "locY": -109180, "minZ": -844, "maxZ": -144 }, { "locX": -45080, "locY": -107524, "minZ": -844, "maxZ": -144 }, { "locX": -46448, "locY": -106120, "minZ": -844, "maxZ": -144 }, { "locX": -49292, "locY": -108036, "minZ": -844, "maxZ": -144 }],
@@ -5141,7 +5141,7 @@
 },{
     "selfId": "rion_t18_14_005",
     "bounds": [{ "locX": -49360, "locY": -117304, "minZ": -356, "maxZ": -56 }, { "locX": -47552, "locY": -117340, "minZ": -356, "maxZ": -56 }, { "locX": -47548, "locY": -113956, "minZ": -356, "maxZ": -56 }, { "locX": -51276, "locY": -113952, "minZ": -356, "maxZ": -56 }, { "locX": -51096, "locY": -116048, "minZ": -356, "maxZ": -56 }],
-    "spawns": [{ "selfId": 12082, "name": "Tuto Keltir", "coords": [], "total": 6, "respawn": 15, "bias": 0 }, { "selfId": 531, "name": "Young Prairie Keltir", "coords": [], "total": 2, "respawn": 15, "bias": 0 }, { "selfId": 535, "name": "Prairie Keltir", "coords": [], "total": 2, "respawn": 15, "bias": 0 }, { "selfId": 538, "name": "Elder Prairie Keltir", "coords": [], "total": 2, "respawn": 15, "bias": 0 }]
+    "spawns": [{ "selfId": 12082, "name": "Keltir (Tuto)", "coords": [], "total": 6, "respawn": 15, "bias": 0 }, { "selfId": 531, "name": "Young Prairie Keltir", "coords": [], "total": 2, "respawn": 15, "bias": 0 }, { "selfId": 535, "name": "Prairie Keltir", "coords": [], "total": 2, "respawn": 15, "bias": 0 }, { "selfId": 538, "name": "Elder Prairie Keltir", "coords": [], "total": 2, "respawn": 15, "bias": 0 }]
 },{
     "selfId": "rion_t18_14_006",
     "bounds": [{ "locX": -44912, "locY": -120980, "minZ": -340, "maxZ": -40 }, { "locX": -44152, "locY": -119864, "minZ": -340, "maxZ": -40 }, { "locX": -45008, "locY": -117840, "minZ": -340, "maxZ": -40 }, { "locX": -47560, "locY": -117400, "minZ": -340, "maxZ": -40 }, { "locX": -49224, "locY": -117336, "minZ": -340, "maxZ": -40 }, { "locX": -46804, "locY": -120552, "minZ": -340, "maxZ": -40 }],
