@@ -7,10 +7,20 @@ function npcRewards(session, npc) {
         const optn    = options.default.General;
 
         rewards.forEach((reward) => {
-            if (Math.random() <= (reward.chance * optn.dropChanceRate) / 100) { // TODO: Remove locZ hack at some point
-                const coords = Formulas.createRandomCoordinates(npc.fetchLocX(), npc.fetchLocY(), 50);
-                coords.locZ  = npc.fetchLocZ() - 10;
-                this.spawnItem(session, reward.selfId, utils.oneFromSpan(reward.min, reward.max), coords);
+            if (Math.random() * 100 <= reward.overall * optn.dropChanceRate) {
+                let number = Math.random() * 100;
+                let rewardPartition = 0;
+
+                for (const item of reward.items) {
+                    rewardPartition += item.chance;
+
+                    if (number <= rewardPartition) { // TODO: Remove locZ hack at some point
+                        const coords = Formulas.createRandomCoordinates(npc.fetchLocX(), npc.fetchLocY(), 50);
+                        coords.locZ  = npc.fetchLocZ() - 10;
+                        this.spawnItem(session, item.selfId, utils.oneFromSpan(item.min, item.max), coords);
+                        break;
+                    }
+                }
             }
         });
     });
