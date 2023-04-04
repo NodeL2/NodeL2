@@ -23,28 +23,43 @@
                 "items": {
                     "type": "object",
                     "properties": {
-                        "selfId": {
-                            "type": "integer"
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "selfId": {
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "min": {
+                                        "type": "integer"
+                                    },
+                                    "max": {
+                                        "type": "integer"
+                                    },
+                                    "chance": {
+                                        "type": "number"
+                                    }
+                                },
+                                "required": [
+                                    "selfId",
+                                    "name",
+                                    "min",
+                                    "max",
+                                    "chance"
+                                ]
+                            }
                         },
-                        "name": {
-                            "type": "string"
-                        },
-                        "min": {
-                            "type": "integer"
-                        },
-                        "max": {
-                            "type": "integer"
-                        },
-                        "chance": {
+                        "overall": {
                             "type": "number"
                         }
                     },
                     "required": [
-                        "selfId",
-                        "name",
-                        "min",
-                        "max",
-                        "chance"
+                        "items",
+                        "overall"
                     ]
                 }
             },
@@ -53,28 +68,43 @@
                 "items": {
                     "type": "object",
                     "properties": {
-                        "selfId": {
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "selfId": {
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "min": {
+                                        "type": "integer"
+                                    },
+                                    "max": {
+                                        "type": "integer"
+                                    },
+                                    "chance": {
+                                        "type": "number"
+                                    }
+                                },
+                                "required": [
+                                    "selfId",
+                                    "name",
+                                    "min",
+                                    "max",
+                                    "chance"
+                                ]
+                            }
+                        },
+                        "overall": {
                             "type": "integer"
-                        },
-                        "name": {
-                            "type": "string"
-                        },
-                        "min": {
-                            "type": "integer"
-                        },
-                        "max": {
-                            "type": "integer"
-                        },
-                        "chance": {
-                            "type": "number"
                         }
                     },
                     "required": [
-                        "selfId",
-                        "name",
-                        "min",
-                        "max",
-                        "chance"
+                        "items",
+                        "overall"
                     ]
                 }
             }
