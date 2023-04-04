@@ -13,7 +13,8 @@
 * Install **[NodeJS LTS](https://nodejs.org/en/download)**, and **[MariaDB 16](https://mariadb.org/download/?t=mariadb&p=mariadb&r=10.6.12)**
 * For convenience, also install **[MS Visual Studio Code](https://code.visualstudio.com/download)**, and **[TablePlus](https://tableplus.com/download)**
 * Download **[LINEAGE II C2 Splendor Client](https://drive.google.com/file/d/1NVA4XY3bC2xD_Jejggo_b0fuMFChsZqe/view?usp=sharing)** that features `485` API protocol
-* You can also download **[LINEAGE II C1 Client](https://drive.google.com/file/d/1Wo0KnHJfRgKgnrxtm0qdVHUgPWV7tK9M/view?usp=sharing)** that features `419` API protocol, and use branch `feature/c1`. Last, download **[LINEAGE II C4 Client](https://drive.google.com/file/d/1jYP9WG943_sdpX7kaQ5aHJU0L8MLX5yz/view?usp=sharing)** with `656` API protocol, and use `feature/c4`.
+
+📌 You could also download **[LINEAGE II C1 Client](https://drive.google.com/file/d/1Wo0KnHJfRgKgnrxtm0qdVHUgPWV7tK9M/view?usp=sharing)** that features `419` API protocol, and use branch `feature/c1`. Final option, download **[LINEAGE II C4 Client](https://drive.google.com/file/d/1jYP9WG943_sdpX7kaQ5aHJU0L8MLX5yz/view?usp=sharing)** with `656` API protocol, and use `feature/c4`.
 
 ## Setup
 * Fix database credentials in `database/install` script, and `config/default.ini`
