@@ -10,10 +10,7 @@ const World = {
     insertUser(session) {
         const exists = this.user.sessions.find((ob) => session.fetchAccountId() === ob.fetchAccountId());
         if (exists) {
-            const ServerResponse = invoke('GameServer/Network/Response');
-            exists.actor?.destructor();
-            exists.dataSend(ServerResponse.serverClose());
-            exists.socket.destroy();
+            exists.socket.resetAndDestroy();
             this.user.sessions = this.user.sessions.filter(ob => session.fetchAccountId() === ob.fetchAccountId());
             this.user.sessions.push(session);
         }

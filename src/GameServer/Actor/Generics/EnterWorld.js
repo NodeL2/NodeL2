@@ -5,7 +5,7 @@ function enterWorld(session, actor) {
     const Generics = invoke(path.actor);
 
     // Set character as online
-    actor.setOnline(true);
+    actor.setIsOnline(true);
 
     // Calculate accumulated statistics
     Generics.calculateStats(session, actor);
