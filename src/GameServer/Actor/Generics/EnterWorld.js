@@ -4,7 +4,10 @@ const ConsoleText = invoke('GameServer/ConsoleText');
 function enterWorld(session, actor) {
     const Generics = invoke(path.actor);
 
-    // Calculate accumulated
+    // Set character as online
+    actor.setOnline(true);
+
+    // Calculate accumulated statistics
     Generics.calculateStats(session, actor);
     actor.skillset.populate(actor.fetchId());
 
@@ -13,7 +16,7 @@ function enterWorld(session, actor) {
     actor.automation.setRevMp(DataCache.revitalize.mp[actor.fetchLevel()]);
     actor.automation.replenishVitals(actor);
 
-    // Show npcs based on radius
+    // Show NPCs based on radius
     Generics.updatePosition(session, actor, {
         locX: actor.fetchLocX(),
         locY: actor.fetchLocY(),
@@ -21,7 +24,7 @@ function enterWorld(session, actor) {
         head: actor.fetchHead(),
     });
 
-    // Default
+    // Default welcome
     ConsoleText.transmit(session, ConsoleText.caption.welcome);
 }
 

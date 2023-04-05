@@ -26,6 +26,7 @@ module.exports = {
              questList: require('./QuestList'),
                restart: require('./Restart'),
                 revive: require('./Revive'),
+           serverClose: require('./ServerClose'),
           shortcutInit: require('./ShortcutInit'),
                showMap: require('./ShowMap'),
            sitAndStand: require('./SitAndStand'),

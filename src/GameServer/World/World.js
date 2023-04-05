@@ -8,7 +8,18 @@ const World = {
     },
 
     insertUser(session) {
-        this.user.sessions.push(session);
+        const exists = this.user.sessions.find((ob) => session.fetchAccountId() === ob.fetchAccountId());
+        if (exists) {
+            const ServerResponse = invoke('GameServer/Network/Response');
+            exists.actor?.destructor();
+            exists.dataSend(ServerResponse.serverClose());
+            exists.socket.destroy();
+            this.user.sessions = this.user.sessions.filter(ob => session.fetchAccountId() === ob.fetchAccountId());
+            this.user.sessions.push(session);
+        }
+        else {
+            this.user.sessions.push(session);
+        }
     },
 
     fetchNpc        : invoke(path.world + 'FetchNpc'),

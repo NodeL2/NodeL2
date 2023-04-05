@@ -12,7 +12,7 @@ function updatePosition(session, actor, coords) {
 
     // Render npcs found inside user's radius
     if (Formulas.calcDistance(this.previousXY?.locX ?? 0, this.previousXY?.locY ?? 0, coords.locX, coords.locY) >= 1000) {
-        Generics.updateNpcs(session, coords);
+        Generics.updateNpcs(session, actor, coords);
     }
 
     const npcs = World.npc.spawns.filter((ob) => ob.fetchHostile() && Formulas.calcWithinRadius(coords.locX, coords.locY, ob.fetchLocX(), ob.fetchLocY(), 500)) ?? [];
