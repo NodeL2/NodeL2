@@ -12,8 +12,8 @@ function purchaseItem(session, selfId, amount) {
 
         Database.updateItemAmount(actor.fetchId(), itemId, total).then(() => {
             backpack.updateAmount(itemId, total);
-            session.dataSend(ServerResponse.userInfo(session.actor));
-            session.dataSend(ServerResponse.itemsList(backpack.fetchItems()));
+            session.dataSendToMe(ServerResponse.userInfo(session.actor));
+            session.dataSendToMe(ServerResponse.itemsList(backpack.fetchItems()));
         });
     }).catch(() => { // New item
         DataCache.fetchItemFromSelfId(selfId, (item) => {
@@ -25,8 +25,8 @@ function purchaseItem(session, selfId, amount) {
                     slot: item.etc.slot
             }).then((packet) => {
                 backpack.insertItem(Number(packet.insertId), selfId, { amount: amount });
-                session.dataSend(ServerResponse.userInfo(session.actor));
-                session.dataSend(ServerResponse.itemsList(backpack.fetchItems()));
+                session.dataSendToMe(ServerResponse.userInfo(session.actor));
+                session.dataSendToMe(ServerResponse.itemsList(backpack.fetchItems()));
             });
         });
     });

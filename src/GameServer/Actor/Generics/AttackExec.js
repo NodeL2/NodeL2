@@ -12,9 +12,11 @@ function attackExec(session, actor, data) {
         });
     }).catch(() => {
         World.fetchUser(data.id).then((user) => {
-            if (data.ctrl) {
-                actor.attack.meleeHit(session, user);
-            }
+            actor.automation.scheduleAction(session, actor, user, 0, () => {
+                if (data.ctrl) {
+                    actor.attack.meleeHit(session, user);
+                }
+            });
         }).catch((err) => {
             utils.infoWarn('GameServer', 'Attack -> ' + err);
         })

@@ -31,7 +31,7 @@ function consume(session, data) {
     Database.deleteShortcut(characterId, data.slot).then(() => {
 
         Database.setShortcut(characterId, data).then(() => {
-            session.dataSend(
+            session.dataSendToMe(
                 ServerResponse.addShortcut(data)
             );
         });

@@ -2,17 +2,17 @@ const ServerResponse = invoke('GameServer/Network/Response');
 const Database       = invoke('Database');
 
 function enterWorld(session, buffer) {
-    session.dataSend(ServerResponse.itemsList(session.actor.backpack.fetchItems()));
+    session.dataSendToMe(ServerResponse.itemsList(session.actor.backpack.fetchItems()));
     Database.fetchShortcuts(session.actor.fetchId()).then((shortcuts) => {
-        session.dataSend(
+        session.dataSendToMe(
             ServerResponse.shortcutInit(shortcuts)
         );
     });
     
     session.actor.enterWorld();
-    session.dataSend(ServerResponse.sunrise()); // TODO: Server timer
-    session.dataSend(ServerResponse.userInfo(session.actor));
-    session.dataSend(ServerResponse.charInfo(session.actor), session.actor);
+    session.dataSendToMe(ServerResponse.sunrise()); // TODO: Server timer
+    session.dataSendToMe(ServerResponse.userInfo(session.actor));
+    session.dataSendToOthers(ServerResponse.charInfo(session.actor), session.actor);
 }
 
 module.exports = enterWorld;

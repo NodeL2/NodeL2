@@ -35,14 +35,14 @@ class Backpack extends BackpackModel {
             if (total > 0) {
                 Database.updateItemAmount(session.actor.fetchId(), item.fetchId(), total).then(() => {
                     item.setAmount(total);
-                    session.dataSend(ServerResponse.itemsList(this.fetchItems()));
+                    session.dataSendToMe(ServerResponse.itemsList(this.fetchItems()));
                     callback(item.fetchSelfId());
                 });
             }
             else {
                 Database.deleteItem(session.actor.fetchId(), item.fetchId()).then(() => {
                     this.items = this.fetchItems().filter((ob) => ob.fetchId() !== id);
-                    session.dataSend(ServerResponse.itemsList(this.fetchItems()));
+                    session.dataSendToMe(ServerResponse.itemsList(this.fetchItems()));
                     callback(item.fetchSelfId());
                 });
             }
@@ -70,7 +70,7 @@ class Backpack extends BackpackModel {
             }
             else {
                 if ([1665, 1863].includes(item.fetchSelfId())) { // TODO: This needs to be out of here...
-                    session.dataSend(
+                    session.dataSendToMe(
                         ServerResponse.showMap(item.fetchSelfId())
                     );
                     return;
@@ -78,13 +78,13 @@ class Backpack extends BackpackModel {
                 else
                 if (item.fetchSelfId() === 1061) {
                     const details = utils.crushOb(DataCache.skills.find((ob) => ob.selfId === 2032) ?? {});
-                    session.dataSend(ServerResponse.skillStarted(session.actor, session.actor.fetchId(), new SkillModel(details)), session.actor);
+                    session.dataSendToMeAndOthers(ServerResponse.skillStarted(session.actor, session.actor.fetchId(), new SkillModel(details)), session.actor);
                     return;
                 }
                 else
                 if (item.fetchSelfId() === 736) {
                     const details = utils.crushOb(DataCache.skills.find((ob) => ob.selfId === 2013) ?? {});
-                    session.dataSend(ServerResponse.skillStarted(session.actor, session.actor.fetchId(), new SkillModel(details)), session.actor);
+                    session.dataSendToMeAndOthers(ServerResponse.skillStarted(session.actor, session.actor.fetchId(), new SkillModel(details)), session.actor);
                     return;
                 }
 

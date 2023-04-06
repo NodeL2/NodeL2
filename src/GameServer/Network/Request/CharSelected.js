@@ -23,7 +23,7 @@ function consume(session, data) {
                 ...character, ...utils.crushOb(classInfo)
             });
 
-            session.dataSend(
+            session.dataSendToMe(
                 ServerResponse.charSelected(session.actor)
             );
         });

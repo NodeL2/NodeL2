@@ -5,7 +5,7 @@ function restart(session, buffer) {
 
     session.actor?.destructor();
 
-    session.dataSend(
+    session.dataSendToMe(
         ServerResponse.restart()
     );
 
