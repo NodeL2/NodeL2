@@ -32,7 +32,7 @@ const ConsoleText = {
     },
 
     transmit(session, textId, params = []) {
-        session.dataSend(
+        session.dataSendToMe(
             ServerResponse.consoleText(textId, params)
         );
     }

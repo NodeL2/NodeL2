@@ -19,7 +19,7 @@ function consume(session, data) {
         utils.infoWarn('GameServer', 'Protocol mismatch, expected %d, provided %d', optn.protocol, data.protocolVersion);
     }
 
-    session.dataSend(
+    session.dataSendToMe(
         ServerResponse.cipherInit()
     );
 }

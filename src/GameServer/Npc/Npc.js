@@ -51,8 +51,8 @@ class Npc extends NpcModel {
 
         this.setStateRun(true);
         this.setStateAttack(true);
-        session.dataSend(ServerResponse.walkAndRun(this.fetchId(), this.fetchStateRun()));
-        session.dataSend(ServerResponse.autoAttackStart(this.fetchId()), this);
+        session.dataSendToMeAndOthers(ServerResponse.walkAndRun(this.fetchId(), this.fetchStateRun()), this);
+        session.dataSendToMeAndOthers(ServerResponse.autoAttackStart(this.fetchId()), this);
 
         setTimeout(() => {
             const coords = {
@@ -92,7 +92,7 @@ class Npc extends NpcModel {
                     this.setLocXYZ(coords);
 
                     if (new SpeckMath.Point(coords.locX, coords.locY).distance(new SpeckMath.Point(actor.fetchLocX(), actor.fetchLocY())) <= this.fetchAtkRadius()) {
-                        session.dataSend(
+                        session.dataSendToMeAndOthers(
                             ServerResponse.stopMove(this.fetchId(), {
                                 locX: this.fetchLocX(),
                                 locY: this.fetchLocY(),
@@ -120,8 +120,8 @@ class Npc extends NpcModel {
 
         this.setStateRun(false);
         this.setStateAttack(false);
-        session.dataSend(ServerResponse.walkAndRun(this.fetchId(), this.fetchStateRun()));
-        session.dataSend(ServerResponse.autoAttackStop(this.fetchId()), this);
+        session.dataSendToMeAndOthers(ServerResponse.walkAndRun(this.fetchId(), this.fetchStateRun()), this);
+        session.dataSendToMeAndOthers(ServerResponse.autoAttackStop(this.fetchId()), this);
     }
 
     meleeHit(session, src, dst) {
@@ -131,7 +131,7 @@ class Npc extends NpcModel {
 
         const speed = Formulas.calcMeleeAtkTime(src.fetchCollectiveAtkSpd());
         const hitLanded = Formulas.calcHitChance();
-        session.dataSend(ServerResponse.attack(src, dst.fetchId(), hitLanded ? 0x00 : 0x80), this);
+        session.dataSendToMeAndOthers(ServerResponse.attack(src, dst.fetchId(), hitLanded ? 0x00 : 0x80), this);
         src.state.setHits(true);
 
         setTimeout(() => {

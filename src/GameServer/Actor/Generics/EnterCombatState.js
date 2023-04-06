@@ -6,7 +6,7 @@ function enterCombatState(session, actor) {
     }
 
     actor.state.setCombats(true);
-    session.dataSend(ServerResponse.autoAttackStart(actor.fetchId()), actor);
+    session.dataSendToMeAndOthers(ServerResponse.autoAttackStart(actor.fetchId()), actor);
 }
 
 module.exports = enterCombatState;

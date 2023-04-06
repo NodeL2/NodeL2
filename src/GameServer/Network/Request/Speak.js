@@ -22,7 +22,7 @@ function consume(session, data) {
         }
     }
 
-    session.dataSend(ServerResponse.speak(session.actor, data), session.actor);
+    session.dataSendToMeAndOthers(ServerResponse.speak(session.actor, data), session.actor);
 }
 
 module.exports = speak;

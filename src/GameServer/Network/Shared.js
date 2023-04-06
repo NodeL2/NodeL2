@@ -44,7 +44,7 @@ const Shared = {
     },
 
     enterCharacterHall(session, characters) {
-        session.dataSend(
+        session.dataSendToMe(
             ServerResponse.charSelectInfo(characters)
         );
     }

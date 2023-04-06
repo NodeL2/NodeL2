@@ -36,7 +36,7 @@ function createNewChar(session, buffer) {
 function consume(session, data) {
     Database.fetchCharacterName(data.name).then((rows) => {
         if (rows[0]) {
-            session.dataSend(
+            session.dataSendToMe(
                 ServerResponse.charCreateFail(0x02)
             );
         }
@@ -50,7 +50,7 @@ function consume(session, data) {
                 };
         
                 Database.createCharacter(session.accountId, data).then((packet) => {
-                    session.dataSend(
+                    session.dataSendToMe(
                         ServerResponse.charCreateSuccess()
                     );
         

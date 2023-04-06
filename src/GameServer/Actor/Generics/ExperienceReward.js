@@ -22,7 +22,7 @@ function experienceReward(session, actor, exp, sp) {
     }
 
     // Update stats
-    session.dataSend(ServerResponse.userInfo(actor));
+    session.dataSendToMe(ServerResponse.userInfo(actor));
 
     // Update database with new exp, sp
     Database.updateCharacterExperience(actor.fetchId(), actor.fetchLevel(), totalExp, totalSp);

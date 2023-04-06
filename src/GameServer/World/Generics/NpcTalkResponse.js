@@ -12,7 +12,7 @@ function npcTalkResponse(session, data) {
                 const filename = path + parts[1] + '.html';
 
                 if (utils.fileExists(filename)) {
-                    session.dataSend(
+                    session.dataSendToMe(
                         ServerResponse.npcHtml(7146, utils.parseRawFile(filename))
                     );
                     return;
@@ -68,7 +68,7 @@ function npcTalkResponse(session, data) {
                     });
                 });
 
-                session.dataSend(
+                session.dataSendToMe(
                     ServerResponse.purchaseList(list, session.actor.backpack.fetchTotalAdena())
                 );
             }

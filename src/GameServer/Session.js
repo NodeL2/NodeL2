@@ -29,18 +29,27 @@ class Session {
         Opcodes.table[packet[0]](this, packet);
     }
 
-    dataSend(data, creature) {
+    dataSendToMe(data) {
+        const packet = this.packData(data);
+        this.socket.write(packet);
+    }
+
+    dataSendToOthers(data, creature) {
+        const packet = this.packData(data);
+        World.fetchVisibleUsers(this, creature).forEach((user) => {
+            user.socket.write(packet);
+        });
+    }
+
+    dataSendToMeAndOthers(data, creature) {
+        this.dataSendToMe(data);
+        this.dataSendToOthers(data, creature);
+    }
+
+    packData(data) {
         const header = Buffer.alloc(2);
         header.writeInt16LE(utils.size(data) + 2);
-
-        const packet = Buffer.concat([header, data]);
-        this.socket.write(packet);
-
-        if (creature) {
-            World.fetchVisibleUsers(this, creature).forEach((user) => {
-                user.socket.write(packet);
-            });
-        }
+        return Buffer.concat([header, data]);
     }
 
     error() {

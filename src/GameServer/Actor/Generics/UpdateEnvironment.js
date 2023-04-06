@@ -8,11 +8,11 @@ function updateEnvironment(session, actor) {
 
     if (new SpeckMath.Point(this.previousXY?.locX ?? 0, this.previousXY?.locY ?? 0).distance(new SpeckMath.Point(actor.fetchLocX(), actor.fetchLocY())) >= 1000) {
         npcs.forEach((npc) => { // Gives a sense of random NPC Animation to the actor
-            setTimeout( () => { session.dataSend(ServerResponse.npcInfo(npc)); }, utils.randomNumber(2000));
+            setTimeout( () => { session.dataSendToMe(ServerResponse.npcInfo(npc)); }, utils.randomNumber(2000));
         });
 
         World.fetchVisibleUsers(session, actor).forEach((user) => {
-            session.dataSend(ServerResponse.charInfo(user.actor));
+            session.dataSendToMe(ServerResponse.charInfo(user.actor));
         });
 
         actor.previousXY = actorArea.toCoords();

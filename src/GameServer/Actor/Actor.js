@@ -96,7 +96,7 @@ class Actor extends ActorModel {
 
     isBlocked() {
         if (this.state.isBlocked()) {
-            this.session.dataSend(ServerResponse.actionFailed());
+            this.session.dataSendToMe(ServerResponse.actionFailed());
             return true;
         }
         return false;
@@ -104,14 +104,14 @@ class Actor extends ActorModel {
 
     isDead() {
         if (this.state.fetchDead()) {
-            this.session.dataSend(ServerResponse.actionFailed());
+            this.session.dataSendToMe(ServerResponse.actionFailed());
             return true;
         }
         return false;
     }
 
     statusUpdateVitals(creature) {
-        this.session.dataSend(
+        this.session.dataSendToMe(
             ServerResponse.statusUpdate(creature.fetchId(), [
                 { id: 0x9, value: creature.fetchHp   () },
                 { id: 0xa, value: creature.fetchMaxHp() },
