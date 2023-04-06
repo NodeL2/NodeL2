@@ -36,11 +36,11 @@ class Session {
         const packet = Buffer.concat([header, data]);
         this.socket.write(packet);
 
-        //if (broadcast) {
-        //    World.fetchVisibleUsers(this, this.actor).forEach((user) => {
-        //        user.socket.write(packet);
-        //    });
-        //}
+        if (broadcast) {
+            World.fetchVisibleUsers(this, this.actor).forEach((user) => {
+                user.socket.write(packet);
+            });
+        }
     }
 
     error() {
