@@ -1,6 +1,6 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 const World          = invoke('GameServer/World/World');
-const Formulas       = invoke('GameServer/Formulas');
+const SpeckMath      = invoke('SpeckMath');
 
 function moveTo(session, actor, coords) {
     if (actor.isDead()) {
@@ -16,7 +16,7 @@ function moveTo(session, actor, coords) {
     actor.automation.abortAll(actor);
     session.dataSend(ServerResponse.moveToLocation(actor.fetchId(), coords));
 
-    const sessions = World.user.sessions.filter((ob) => Formulas.calcWithinRadius(coords.from.locX, coords.from.locY, ob.actor?.fetchLocX(), ob.actor?.fetchLocY(), 5000)) ?? [];
+    const sessions = World.user.sessions.filter((ob) => new SpeckMath.Circle(coords.from.locX, coords.from.locY, 5000).contains(new SpeckMath.Point(ob.actor?.fetchLocX(), ob.actor?.fetchLocY()))) ?? [];
     sessions.forEach((user) => {
         if (user !== session) {
             user.dataSend(ServerResponse.moveToLocation(actor.fetchId(), coords));

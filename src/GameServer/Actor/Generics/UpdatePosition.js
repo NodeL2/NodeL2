@@ -1,7 +1,7 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 const World          = invoke('GameServer/World/World');
-const Formulas       = invoke('GameServer/Formulas');
 const Database       = invoke('Database');
+const SpeckMath      = invoke('SpeckMath');
 
 function updatePosition(session, actor, coords) {
     const Generics = invoke(path.actor);
@@ -11,11 +11,11 @@ function updatePosition(session, actor, coords) {
     Database.updateCharacterLocation(actor.fetchId(), coords);
 
     // Render npcs found inside user's radius
-    if (Formulas.calcDistance(this.previousXY?.locX ?? 0, this.previousXY?.locY ?? 0, coords.locX, coords.locY) >= 1000) {
+    if (new SpeckMath.Point(this.previousXY?.locX ?? 0, this.previousXY?.locY ?? 0).distance(new SpeckMath.Point(coords.locX, coords.locY)) >= 1000) {
         Generics.updateNpcs(session, actor, coords);
     }
 
-    const npcs = World.npc.spawns.filter((ob) => ob.fetchHostile() && Formulas.calcWithinRadius(coords.locX, coords.locY, ob.fetchLocX(), ob.fetchLocY(), 500)) ?? [];
+    const npcs = World.npc.spawns.filter((ob) => ob.fetchHostile() && new SpeckMath.Circle(coords.locX, coords.locY, 500).contains(new SpeckMath.Point(ob.fetchLocX(), ob.fetchLocY()))) ?? [];
     npcs.forEach((npc) => {
         npc.setLocZ(actor.fetchLocZ()); // TODO: Remove, uber hack...
         npc.enterCombatState(session, actor);

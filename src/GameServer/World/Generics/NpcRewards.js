@@ -1,5 +1,5 @@
 const DataCache = invoke('GameServer/DataCache');
-const Formulas  = invoke('GameServer/Formulas');
+const SpeckMath = invoke('SpeckMath');
 
 function npcRewards(session, npc) {
     DataCache.fetchNpcRewardsFromSelfId(npc.fetchSelfId(), (result) => {
@@ -15,9 +15,9 @@ function npcRewards(session, npc) {
                     rewardPartition += item.chance;
 
                     if (number <= rewardPartition) { // TODO: Remove locZ hack at some point
-                        const coords = Formulas.createRandomCoordinates(npc.fetchLocX(), npc.fetchLocY(), 50);
-                        coords.locZ  = npc.fetchLocZ() - 10;
-                        this.spawnItem(session, item.selfId, utils.oneFromSpan(item.min, item.max), coords);
+                        const point = new SpeckMath.Circle(npc.fetchLocX(), npc.fetchLocY(), 50).createPointWithin();
+                        point.setPointZ(npc.fetchLocZ() - 10);
+                        this.spawnItem(session, item.selfId, utils.oneFromSpan(item.min, item.max), point.coords());
                         break;
                     }
                 }
