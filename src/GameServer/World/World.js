@@ -21,6 +21,13 @@ const World = {
         }
     },
 
+    fetchUser(id) {
+        return new Promise((success, fail) => {
+            let user = this.user.sessions.find((ob) => id === ob.actor?.fetchId());
+            return user.actor ? success(user.actor) : fail();
+        });
+    },
+
     fetchVisibleUsers(session, creature) {
         const actorArea = new SpeckMath.Circle(creature.fetchLocX(), creature.fetchLocY(), 5000);
         return this.user.sessions.filter((ob) => session !== ob && actorArea.contains(new SpeckMath.Point(ob.actor?.fetchLocX() ?? 0, ob.actor?.fetchLocY() ?? 0))) ?? [];

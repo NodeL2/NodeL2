@@ -8,10 +8,11 @@ function enterWorld(session, buffer) {
             ServerResponse.shortcutInit(shortcuts)
         );
     });
+    
     session.actor.enterWorld();
-
     session.dataSend(ServerResponse.sunrise()); // TODO: Server timer
-    session.dataSend(ServerResponse.userInfo(session.actor), session.actor);
+    session.dataSend(ServerResponse.userInfo(session.actor));
+    session.dataSend(ServerResponse.charInfo(session.actor), session.actor);
 }
 
 module.exports = enterWorld;
