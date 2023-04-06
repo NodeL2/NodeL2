@@ -1,7 +1,7 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 const SelectedModel  = invoke('GameServer/Model/Selected');
-const Formulas       = invoke('GameServer/Formulas');
 const Timer          = invoke('GameServer/Timer');
+const SpeckMath      = invoke('GameServer/SpeckMath');
 
 class Automation extends SelectedModel {
     constructor() {
@@ -79,7 +79,7 @@ class Automation extends SelectedModel {
     }
 
     ticksToMove(srcX, srcY, srcZ, dstX, dstY, dstZ, radius, speed) {
-        const distance = Formulas.calcDistance3D(srcX, srcY, srcZ, dstX, dstY, dstZ) - radius;
+        const distance = new SpeckMath.Point3D(srcX, srcY, srcZ).distance(new SpeckMath.Point3D(dstX, dstY, dstZ)) - radius;
         const duration = 1 + ((this.ticksPerSecond * distance) / speed);
         return (1000 / this.ticksPerSecond) * duration;
     }
@@ -87,9 +87,7 @@ class Automation extends SelectedModel {
     scheduleAction(session, src, dst, radius, callback) {
         // Execute each time, or else creature is stuck
         this.setDestId(dst.fetchId());
-        session.dataSend(
-            ServerResponse.moveToPawn(src, dst, radius)
-        );
+        session.dataSend(ServerResponse.moveToPawn(src, dst, radius), src);
 
         // Calculate duration
         src.state.setTowards(radius === 0 ? 'melee' : 'remote');
@@ -127,7 +125,7 @@ class Automation extends SelectedModel {
         };
 
         // Execute each time, or else creature is stuck
-        session.dataSend(ServerResponse.moveToLocation(src.fetchId(), { from: from, to: to }));
+        session.dataSend(ServerResponse.moveToLocation(src.fetchId(), { from: from, to: to }), src);
 
         // Calculate duration
         src.state.setTowards('pickup');

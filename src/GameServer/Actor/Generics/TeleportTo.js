@@ -9,12 +9,12 @@ function teleportTo(session, actor, coords) {
 
     actor.clearDestId();
     actor.automation.abortAll(actor);
-    session.dataSend(ServerResponse.teleportToLocation(actor.fetchId(), coords));
+    session.dataSend(ServerResponse.teleportToLocation(actor.fetchId(), coords), actor);
 
     // Turns out to be a viable solution
     setTimeout(() => {
         Generics.updatePosition(session, actor, coords);
-        Generics.updateNpcs(session, coords); // Force update position, in case we Teleport to the same Location
+        Generics.updateEnvironment(session, actor); // Force update position, in case we Teleport to the same Location
     }, 1000);
 }
 

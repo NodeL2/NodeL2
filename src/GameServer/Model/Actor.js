@@ -36,6 +36,10 @@ class ActorModel extends CreatureModel {
         this.model.maxLoad = data;
     }
 
+    setIsOnline(data) {
+        this.model.isOnline = data;
+    }
+
     // Get
 
     fetchUsername() {

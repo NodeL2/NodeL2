@@ -73,8 +73,8 @@ global.utils = {
 
     fetchIPv4Address() {
         let network = require('os').networkInterfaces();
-        let ipv4 = network['en0'].filter(item => item.family === 'IPv4');
-        return ipv4[0].address;
+        let interface = network['Ethernet'].find((ob) => ob.family === 'IPv4');
+        return interface.address ?? '0.0.0.0';
     },
 
     crushOb(ob) {

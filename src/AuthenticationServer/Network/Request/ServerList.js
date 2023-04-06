@@ -32,7 +32,7 @@ function detectServerIPAddress(session) {
     const host = remoteAddr.split('.');
 
     switch (host[0]) {
-        case '127': // Localhost
+        case '10', '127': // Subnet, Localhost
             return remoteAddr;
 
         case '192': // LAN

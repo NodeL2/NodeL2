@@ -24,7 +24,8 @@ module.exports = {
           socialAction: require('./SocialAction'),
         stopAutomation: require('./StopAutomation'),
             teleportTo: require('./TeleportTo'),
+       underwaterCheck: require('./UnderwaterCheck'),
               unselect: require('./Unselect'),
-            updateNpcs: require('./UpdateNpcs'),
+     updateEnvironment: require('./UpdateEnvironment'),
         updatePosition: require('./UpdatePosition')
 };

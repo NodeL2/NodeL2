@@ -8,16 +8,19 @@ class Session {
 
         this.socket   = socket;
         this.serverId = optn.id;
-
-        World.insertUser(this);
     }
 
     setAccountId(username) {
         this.accountId = username;
+        World.insertUser(this);
     }
 
     setActor(properties) {
         this.actor = new Actor(this, properties);
+    }
+
+    fetchAccountId() {
+        return this.accountId;
     }
 
     dataReceive(data) {
@@ -26,10 +29,18 @@ class Session {
         Opcodes.table[packet[0]](this, packet);
     }
 
-    dataSend(data) {
+    dataSend(data, creature) {
         const header = Buffer.alloc(2);
         header.writeInt16LE(utils.size(data) + 2);
-        this.socket.write(Buffer.concat([header, data]));
+
+        const packet = Buffer.concat([header, data]);
+        this.socket.write(packet);
+
+        if (creature) {
+            World.fetchVisibleUsers(this, creature).forEach((user) => {
+                user.socket.write(packet);
+            });
+        }
     }
 
     error() {
