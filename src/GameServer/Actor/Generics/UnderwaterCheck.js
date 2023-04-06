@@ -29,7 +29,7 @@ function underwaterCheck(session, actor) {
             (mapX === 25 && mapY === 12) || // Mithril Mines
             (mapX === 25 && mapY === 19)) { // The Giant's Cave
                 actor.stateWater = false;
-                session.dataSend(ServerResponse.skillDurationBar(0, 2));
+                session.dataSendToMe(ServerResponse.skillDurationBar(0, 2));
                 return;
         }
 
@@ -41,11 +41,11 @@ function underwaterCheck(session, actor) {
         }
 
         actor.stateWater = true;
-        session.dataSend(ServerResponse.skillDurationBar(86000, 2));
+        session.dataSendToMe(ServerResponse.skillDurationBar(86000, 2));
     }
     else {
         actor.stateWater = false;
-        session.dataSend(ServerResponse.skillDurationBar(0, 2));
+        session.dataSendToMe(ServerResponse.skillDurationBar(0, 2));
     }
 }
 

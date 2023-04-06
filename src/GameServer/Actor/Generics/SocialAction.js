@@ -6,7 +6,7 @@ function socialAction(session, actor, data) {
     }
 
     actor.automation.abortAll(actor);
-    session.dataSend(ServerResponse.socialAction(actor.fetchId(), data.actionId), actor);
+    session.dataSendToMeAndOthers(ServerResponse.socialAction(actor.fetchId(), data.actionId), actor);
 }
 
 module.exports = socialAction;

@@ -24,11 +24,11 @@ function levelUp(session, actor, nextLevel) {
 
     // Check for new skills
     actor.skillset.awardSkills(id, classId, level).then(() => {
-        session.dataSend(ServerResponse.skillsList(actor.skillset.fetchSkills()));
+        session.dataSendToMe(ServerResponse.skillsList(actor.skillset.fetchSkills()));
     })
 
     // Level up effect
-    session.dataSend(ServerResponse.socialAction(id, 15), actor);
+    session.dataSendToMeAndOthers(ServerResponse.socialAction(id, 15), actor);
     ConsoleText.transmit(session, ConsoleText.caption.levelUp);
 
     // Update database with new hp, mp

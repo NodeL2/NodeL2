@@ -4,7 +4,7 @@ function logout(session, buffer) {
 
     session.actor?.destructor();
 
-    session.dataSend(
+    session.dataSendToMe(
         ServerResponse.logoutSuccess()
     );
 }

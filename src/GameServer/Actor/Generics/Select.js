@@ -6,7 +6,7 @@ function select(session, actor, data) {
 
     if (actor.fetchId() === data.id) { // Click on self
         actor.setDestId(actor.fetchId());
-        session.dataSend(ServerResponse.destSelected(actor.fetchDestId()));
+        session.dataSendToMe(ServerResponse.destSelected(actor.fetchDestId()));
         return;
     }
 
@@ -14,7 +14,7 @@ function select(session, actor, data) {
         if (npc.fetchId() !== actor.fetchDestId()) { // First click on a Creature
             actor.setDestId(npc.fetchId());
             npc.setLocZ(actor.fetchLocZ()); // TODO: Remove, uber hack...
-            session.dataSend(ServerResponse.destSelected(actor.fetchDestId(), actor.fetchLevel() - npc.fetchLevel()));
+            session.dataSendToMe(ServerResponse.destSelected(actor.fetchDestId(), actor.fetchLevel() - npc.fetchLevel()));
             actor.statusUpdateVitals(npc);
         }
         else { // Second click on same Creature
@@ -27,7 +27,7 @@ function select(session, actor, data) {
             World.fetchUser(data.id).then((user) => {
                 if (user.fetchId() !== actor.fetchDestId()) { // First click on a User
                     actor.setDestId(user.fetchId());
-                    session.dataSend(ServerResponse.destSelected(actor.fetchDestId()));
+                    session.dataSendToMe(ServerResponse.destSelected(actor.fetchDestId()));
                 }
                 else { // Second click on same User
                     Generics.attackRequest(session, actor, data);

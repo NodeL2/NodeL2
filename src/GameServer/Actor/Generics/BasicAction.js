@@ -8,7 +8,7 @@ function sitAndStand(session, actor, data) {
 
     actor.state.setAnimated(true);
     actor.state.setSeated(!actor.state.fetchSeated());
-    session.dataSend(ServerResponse.sitAndStand(actor), actor);
+    session.dataSendToMeAndOthers(ServerResponse.sitAndStand(actor), actor);
 
     setTimeout(() => {
         actor.state.setAnimated(false);
@@ -17,7 +17,7 @@ function sitAndStand(session, actor, data) {
 
 function walkAndRun(session, actor) {
     actor.state.setWalkin(!actor.state.fetchWalkin());
-    session.dataSend(ServerResponse.walkAndRun(actor.fetchId(), actor.state.fetchWalkin() ? 0 : 1));
+    session.dataSendToMeAndOthers(ServerResponse.walkAndRun(actor.fetchId(), actor.state.fetchWalkin() ? 0 : 1), actor);
 }
 
 function basicAction(session, actor, data) {

@@ -1,7 +1,7 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 
 function skillsList(session, buffer) {
-    session.dataSend(
+    session.dataSendToMe(
         ServerResponse.skillsList(session.actor.skillset.fetchSkills())
     );
 }

@@ -6,7 +6,7 @@ function removeNpc(session, npc) {
 
     // Delete NPC from world
     setTimeout(() => {
-        session.dataSend(ServerResponse.deleteOb(npcId), npc);
+        session.dataSendToMeAndOthers(ServerResponse.deleteOb(npcId), npc);
         this.npc.spawns = this.npc.spawns.filter(ob => ob.fetchId() !== npcId);
     }, npc.fetchCorpseTime()); // TODO: Depends if NPC is spoiled too
 }
