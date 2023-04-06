@@ -8,16 +8,19 @@ class Session {
 
         this.socket   = socket;
         this.serverId = optn.id;
-
-        World.insertUser(this);
     }
 
     setAccountId(username) {
         this.accountId = username;
+        World.insertUser(this);
     }
 
     setActor(properties) {
         this.actor = new Actor(this, properties);
+    }
+
+    fetchAccountId() {
+        return this.accountId;
     }
 
     dataReceive(data) {

@@ -1,7 +1,6 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 const Item           = invoke('GameServer/Item/Item');
 const DataCache      = invoke('GameServer/DataCache');
-const Formulas       = invoke('GameServer/Formulas');
 
 function npcTalkResponse(session, data) {
     let parts = data.link.split(' ') ?? [];

@@ -2,6 +2,7 @@ const ServerResponse = invoke('GameServer/Network/Response');
 const NpcModel       = invoke('GameServer/Model/Npc');
 const Automation     = invoke('GameServer/Automation');
 const ConsoleText    = invoke('GameServer/ConsoleText');
+const SpeckMath      = invoke('GameServer/SpeckMath');
 const Formulas       = invoke('GameServer/Formulas');
 
 class Npc extends NpcModel {
@@ -61,7 +62,7 @@ class Npc extends NpcModel {
             };
 
             this.timer.combat = setInterval(() => {
-                if (Formulas.calcDistance(this.fetchLocX(), this.fetchLocY(), actor.fetchLocX(), actor.fetchLocY()) >= 1500) {
+                if (new SpeckMath.Point(this.fetchLocX(), this.fetchLocY()).distance(new SpeckMath.Point(actor.fetchLocX(), actor.fetchLocY())) >= 1500) {
                     this.abortCombatState(session); // Actor is out of reach
                     return;
                 }
@@ -76,7 +77,7 @@ class Npc extends NpcModel {
 
                 if (this.state.inMotion()) {
                     if (coords.locX !== newDstX || coords.locY !== newDstY) {
-                        this.setLocXYZ(Formulas.calcMidPointCoordinates(this.fetchLocX(), this.fetchLocY(), this.fetchLocZ(), coords.locX, coords.locY, coords.locZ, this.automation.fetchDistanceRatio() * 1.3)); // TODO: Another hack to catch-up
+                        this.setLocXYZ(new SpeckMath.Point3D(this.fetchLocX(), this.fetchLocY(), this.fetchLocZ()).midPoint(new SpeckMath.Point3D(coords.locX, coords.locY, coords.locZ), this.automation.fetchDistanceRatio() * 1.3).toCoords()); // TODO: Another hack to catch-up
 
                         this.automation.abortAll(this);
                     }
@@ -90,7 +91,7 @@ class Npc extends NpcModel {
                 this.automation.scheduleAction(session, this, actor, actor.fetchRadius(), () => {
                     this.setLocXYZ(coords);
 
-                    if (Formulas.calcDistance(coords.locX, coords.locY, actor.fetchLocX(), actor.fetchLocY()) <= this.fetchAtkRadius()) {
+                    if (new SpeckMath.Point(coords.locX, coords.locY).distance(new SpeckMath.Point(actor.fetchLocX(), actor.fetchLocY())) <= this.fetchAtkRadius()) {
                         session.dataSend(
                             ServerResponse.stopMove(this.fetchId(), {
                                 locX: this.fetchLocX(),

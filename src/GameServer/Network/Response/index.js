@@ -6,6 +6,7 @@ module.exports = {
         autoAttackStop: require('./AutoAttackStop'),
         charCreateFail: require('./CharCreateFail'),
      charCreateSuccess: require('./CharCreateSuccess'),
+              charInfo: require('./CharInfo'),
           charSelected: require('./CharSelected'),
         charSelectInfo: require('./CharSelectInfo'),
          charTemplates: require('./CharTemplates'),

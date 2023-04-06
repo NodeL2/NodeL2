@@ -1,7 +1,7 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 const SelectedModel  = invoke('GameServer/Model/Selected');
-const Formulas       = invoke('GameServer/Formulas');
 const Timer          = invoke('GameServer/Timer');
+const SpeckMath      = invoke('GameServer/SpeckMath');
 
 class Automation extends SelectedModel {
     constructor() {
@@ -79,7 +79,7 @@ class Automation extends SelectedModel {
     }
 
     ticksToMove(srcX, srcY, srcZ, dstX, dstY, dstZ, radius, speed) {
-        const distance = Formulas.calcDistance3D(srcX, srcY, srcZ, dstX, dstY, dstZ) - radius;
+        const distance = new SpeckMath.Point3D(srcX, srcY, srcZ).distance(new SpeckMath.Point3D(dstX, dstY, dstZ)) - radius;
         const duration = 1 + ((this.ticksPerSecond * distance) / speed);
         return (1000 / this.ticksPerSecond) * duration;
     }
