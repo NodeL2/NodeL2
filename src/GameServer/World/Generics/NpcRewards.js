@@ -15,9 +15,9 @@ function npcRewards(session, npc) {
                     rewardPartition += item.chance;
 
                     if (number <= rewardPartition) { // TODO: Remove locZ hack at some point
-                        const point = new SpeckMath.Circle(npc.fetchLocX(), npc.fetchLocY(), 50).createPointWithin();
+                        let point = new SpeckMath.Circle(npc.fetchLocX(), npc.fetchLocY(), 50).createPointWithin();
                         this.spawnItem(session, item.selfId, utils.oneFromSpan(item.min, item.max), {
-                            ...point.coords(), locZ: npc.fetchLocZ() - 10
+                            ...point.toCoords(), locZ: npc.fetchLocZ() - 10
                         });
                         break;
                     }

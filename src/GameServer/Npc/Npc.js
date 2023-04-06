@@ -77,7 +77,7 @@ class Npc extends NpcModel {
 
                 if (this.state.inMotion()) {
                     if (coords.locX !== newDstX || coords.locY !== newDstY) {
-                        this.setLocXYZ(new SpeckMath.Point3D(this.fetchLocX(), this.fetchLocY(), this.fetchLocZ()).midPoint(new SpeckMath.Point3D(coords.locX, coords.locY, coords.locZ), this.automation.fetchDistanceRatio() * 1.3).coords()); // TODO: Another hack to catch-up
+                        this.setLocXYZ(new SpeckMath.Point3D(this.fetchLocX(), this.fetchLocY(), this.fetchLocZ()).midPoint(new SpeckMath.Point3D(coords.locX, coords.locY, coords.locZ), this.automation.fetchDistanceRatio() * 1.3).toCoords()); // TODO: Another hack to catch-up
 
                         this.automation.abortAll(this);
                     }

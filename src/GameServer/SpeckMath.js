@@ -64,7 +64,7 @@ class Point {
         );
     }
 
-    coords() {
+    toCoords() {
         return {
             locX: this.fetchPointX(),
             locY: this.fetchPointY(),
@@ -118,7 +118,7 @@ class Point3D extends Point {
         );
     }
 
-    coords() {
+    toCoords() {
         return {
             locX: this.fetchPointX(),
             locY: this.fetchPointY(),
