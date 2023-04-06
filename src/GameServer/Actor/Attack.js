@@ -48,7 +48,7 @@ class Attack {
 
         const speed = Formulas.calcMeleeAtkTime(actor.fetchCollectiveAtkSpd());
         const hitLanded = Formulas.calcHitChance();
-        session.dataSend(ServerResponse.attack(actor, npc.fetchId(), hitLanded ? 0x00 : 0x80));
+        session.dataSend(ServerResponse.attack(actor, npc.fetchId(), hitLanded ? 0x00 : 0x80), actor);
         actor.state.setHits(true);
 
         setTimeout(() => {
@@ -95,7 +95,7 @@ class Attack {
         }
 
         skill.setCalculatedHitTime(Formulas.calcRemoteAtkTime(skill.fetchHitTime(), actor.fetchCollectiveCastSpd()));
-        session.dataSend(ServerResponse.skillStarted(actor, npc.fetchId(), skill));
+        session.dataSend(ServerResponse.skillStarted(actor, npc.fetchId(), skill), actor);
         session.dataSend(ServerResponse.skillDurationBar(skill.fetchCalculatedHitTime()));
         actor.state.setCasts(true);
 

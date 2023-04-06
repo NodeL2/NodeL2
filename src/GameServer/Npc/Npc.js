@@ -52,7 +52,7 @@ class Npc extends NpcModel {
         this.setStateRun(true);
         this.setStateAttack(true);
         session.dataSend(ServerResponse.walkAndRun(this.fetchId(), this.fetchStateRun()));
-        session.dataSend(ServerResponse.autoAttackStart(this.fetchId()));
+        session.dataSend(ServerResponse.autoAttackStart(this.fetchId()), this);
 
         setTimeout(() => {
             const coords = {
@@ -98,7 +98,7 @@ class Npc extends NpcModel {
                                 locY: this.fetchLocY(),
                                 locZ: this.fetchLocZ(),
                                 head: this.fetchHead(),
-                            })
+                            }), this
                         );
 
                         this.meleeHit(session, this, actor);
@@ -121,7 +121,7 @@ class Npc extends NpcModel {
         this.setStateRun(false);
         this.setStateAttack(false);
         session.dataSend(ServerResponse.walkAndRun(this.fetchId(), this.fetchStateRun()));
-        session.dataSend(ServerResponse.autoAttackStop(this.fetchId()));
+        session.dataSend(ServerResponse.autoAttackStop(this.fetchId()), this);
     }
 
     meleeHit(session, src, dst) {
@@ -131,7 +131,7 @@ class Npc extends NpcModel {
 
         const speed = Formulas.calcMeleeAtkTime(src.fetchCollectiveAtkSpd());
         const hitLanded = Formulas.calcHitChance();
-        session.dataSend(ServerResponse.attack(src, dst.fetchId(), hitLanded ? 0x00 : 0x80));
+        session.dataSend(ServerResponse.attack(src, dst.fetchId(), hitLanded ? 0x00 : 0x80), this);
         src.state.setHits(true);
 
         setTimeout(() => {

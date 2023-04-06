@@ -10,8 +10,14 @@ function attackExec(session, actor, data) {
                 World.npcTalk(session, npc);
             }
         });
-    }).catch((err) => {
-        utils.infoWarn('GameServer', 'Attack -> ' + err);
+    }).catch(() => {
+        World.fetchUser(data.id).then((user) => {
+            if (data.ctrl) {
+                actor.attack.meleeHit(session, user);
+            }
+        }).catch((err) => {
+            utils.infoWarn('GameServer', 'Attack -> ' + err);
+        })
     });
 }
 

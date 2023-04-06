@@ -5,7 +5,7 @@ function pickupExec(session, actor, data) {
     World.fetchItem(data.id).then((item) => {
         actor.automation.schedulePickup(session, actor, item, () => {
             actor.state.setPickinUp(true);
-            session.dataSend(ServerResponse.pickupItem(actor.fetchId(), item));
+            session.dataSend(ServerResponse.pickupItem(actor.fetchId(), item), actor);
 
             setTimeout(() => {
                 World.pickupItem(session, actor, item);

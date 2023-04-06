@@ -11,11 +11,8 @@ function updateEnvironment(session, actor) {
             setTimeout( () => { session.dataSend(ServerResponse.npcInfo(npc)); }, utils.randomNumber(2000));
         });
 
-        const users = World.user.sessions.filter((ob) => actorArea.contains(new SpeckMath.Point(ob.actor?.fetchLocX() ?? 0, ob.actor?.fetchLocY() ?? 0))) ?? [];
-        users.forEach((user) => {
-            if (user !== session) {
-                session.dataSend(ServerResponse.charInfo(user.actor));
-            }
+        World.fetchVisibleUsers(session, actor).forEach((user) => {
+            session.dataSend(ServerResponse.charInfo(user.actor));
         });
 
         actor.previousXY = actorArea.toCoords();

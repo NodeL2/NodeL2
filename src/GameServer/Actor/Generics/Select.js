@@ -24,7 +24,17 @@ function select(session, actor, data) {
         World.fetchItem(data.id).then(() => {
             Generics.pickupRequest(session, actor, data);
         }).catch(() => {
-            utils.infoWarn('GameServer', 'unknown World Id %d', data.id);
+            World.fetchUser(data.id).then((user) => {
+                if (user.fetchId() !== actor.fetchDestId()) { // First click on a User
+                    actor.setDestId(user.fetchId());
+                    session.dataSend(ServerResponse.destSelected(actor.fetchDestId()));
+                }
+                else { // Second click on same User
+                    Generics.attackRequest(session, actor, data);
+                }
+            }).catch(() => {
+                utils.infoWarn('GameServer', 'unknown World Id %d', data.id);
+            });
         });
     });
 }
