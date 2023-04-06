@@ -1,5 +1,5 @@
 const DataCache = invoke('GameServer/DataCache');
-const SpeckMath = invoke('SpeckMath');
+const SpeckMath = invoke('GameServer/SpeckMath');
 
 function npcRewards(session, npc) {
     DataCache.fetchNpcRewardsFromSelfId(npc.fetchSelfId(), (result) => {
@@ -16,8 +16,9 @@ function npcRewards(session, npc) {
 
                     if (number <= rewardPartition) { // TODO: Remove locZ hack at some point
                         const point = new SpeckMath.Circle(npc.fetchLocX(), npc.fetchLocY(), 50).createPointWithin();
-                        point.setPointZ(npc.fetchLocZ() - 10);
-                        this.spawnItem(session, item.selfId, utils.oneFromSpan(item.min, item.max), point.coords());
+                        this.spawnItem(session, item.selfId, utils.oneFromSpan(item.min, item.max), {
+                            ...point.coords(), locZ: npc.fetchLocZ() - 10
+                        });
                         break;
                     }
                 }

@@ -1,7 +1,7 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 const SelectedModel  = invoke('GameServer/Model/Selected');
 const Timer          = invoke('GameServer/Timer');
-const SpeckMath      = invoke('SpeckMath');
+const SpeckMath      = invoke('GameServer/SpeckMath');
 
 class Automation extends SelectedModel {
     constructor() {

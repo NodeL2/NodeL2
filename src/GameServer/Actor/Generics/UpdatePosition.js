@@ -1,7 +1,7 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 const World          = invoke('GameServer/World/World');
 const Database       = invoke('Database');
-const SpeckMath      = invoke('SpeckMath');
+const SpeckMath      = invoke('GameServer/SpeckMath');
 
 function updatePosition(session, actor, coords) {
     const Generics = invoke(path.actor);

@@ -1,6 +1,6 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 const World          = invoke('GameServer/World/World');
-const SpeckMath      = invoke('SpeckMath');
+const SpeckMath      = invoke('GameServer/SpeckMath');
 
 function moveTo(session, actor, coords) {
     if (actor.isDead()) {

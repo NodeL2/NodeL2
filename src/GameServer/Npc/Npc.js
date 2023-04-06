@@ -2,8 +2,8 @@ const ServerResponse = invoke('GameServer/Network/Response');
 const NpcModel       = invoke('GameServer/Model/Npc');
 const Automation     = invoke('GameServer/Automation');
 const ConsoleText    = invoke('GameServer/ConsoleText');
+const SpeckMath      = invoke('GameServer/SpeckMath');
 const Formulas       = invoke('GameServer/Formulas');
-const SpeckMath      = invoke('SpeckMath');
 
 class Npc extends NpcModel {
     constructor(id, data) {

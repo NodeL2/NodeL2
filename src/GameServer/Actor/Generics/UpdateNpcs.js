@@ -1,6 +1,6 @@
 const ServerResponse = invoke('GameServer/Network/Response');
 const World          = invoke('GameServer/World/World');
-const SpeckMath      = invoke('SpeckMath');
+const SpeckMath      = invoke('GameServer/SpeckMath');
 
 function updateNpcs(session, actor, coords) {
     const npcs = World.npc.spawns.filter((ob) => !ob.state.fetchDead() && new SpeckMath.Circle(coords.locX, coords.locY, 5000).contains(new SpeckMath.Point(ob.fetchLocX(), ob.fetchLocY()))) ?? [];
