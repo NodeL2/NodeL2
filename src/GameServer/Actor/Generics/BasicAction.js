@@ -8,7 +8,7 @@ function sitAndStand(session, actor, data) {
 
     actor.state.setAnimated(true);
     actor.state.setSeated(!actor.state.fetchSeated());
-    session.dataSend(ServerResponse.sitAndStand(actor), true);
+    session.dataSend(ServerResponse.sitAndStand(actor), actor);
 
     setTimeout(() => {
         actor.state.setAnimated(false);

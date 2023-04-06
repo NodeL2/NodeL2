@@ -7,7 +7,7 @@ function die(session, actor) {
 
     actor.destructor();
     actor.state.setDead(true);
-    session.dataSend(ServerResponse.die(actor.fetchId()), true);
+    session.dataSend(ServerResponse.die(actor.fetchId()), actor);
 }
 
 module.exports = die;

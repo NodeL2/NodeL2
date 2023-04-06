@@ -87,7 +87,7 @@ class Automation extends SelectedModel {
     scheduleAction(session, src, dst, radius, callback) {
         // Execute each time, or else creature is stuck
         this.setDestId(dst.fetchId());
-        session.dataSend(ServerResponse.moveToPawn(src, dst, radius), true);
+        session.dataSend(ServerResponse.moveToPawn(src, dst, radius), src);
 
         // Calculate duration
         src.state.setTowards(radius === 0 ? 'melee' : 'remote');
@@ -125,7 +125,7 @@ class Automation extends SelectedModel {
         };
 
         // Execute each time, or else creature is stuck
-        session.dataSend(ServerResponse.moveToLocation(src.fetchId(), { from: from, to: to }), true);
+        session.dataSend(ServerResponse.moveToLocation(src.fetchId(), { from: from, to: to }), src);
 
         // Calculate duration
         src.state.setTowards('pickup');

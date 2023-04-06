@@ -12,7 +12,7 @@ function moveTo(session, actor, coords) {
 
     // Abort scheduled movement, user redirected the actor
     actor.automation.abortAll(actor);
-    session.dataSend(ServerResponse.moveToLocation(actor.fetchId(), coords), true);
+    session.dataSend(ServerResponse.moveToLocation(actor.fetchId(), coords), actor);
 }
 
 module.exports = moveTo;

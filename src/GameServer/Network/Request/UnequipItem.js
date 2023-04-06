@@ -14,7 +14,7 @@ function unequipItem(session, buffer) {
 
 function consume(session, data) {
     session.actor.backpack.unequipGear(session, Math.log2(data.slot));
-    session.dataSend(ServerResponse.userInfo (session.actor), true);
+    session.dataSend(ServerResponse.userInfo (session.actor), session.actor);
     session.dataSend(ServerResponse.itemsList(session.actor.backpack.fetchItems()));
 }
 

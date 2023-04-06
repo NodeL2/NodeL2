@@ -14,7 +14,7 @@ function useItem(session, buffer) {
 
 function consume(session, data) {
     session.actor.backpack.useItem(session, data.id);
-    session.dataSend(ServerResponse.userInfo (session.actor), true);
+    session.dataSend(ServerResponse.userInfo (session.actor), session.actor);
     session.dataSend(ServerResponse.itemsList(session.actor.backpack.fetchItems()));
 }
 

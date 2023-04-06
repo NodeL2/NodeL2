@@ -29,15 +29,15 @@ class Session {
         Opcodes.table[packet[0]](this, packet);
     }
 
-    dataSend(data, broadcast = false) {
+    dataSend(data, creature) {
         const header = Buffer.alloc(2);
         header.writeInt16LE(utils.size(data) + 2);
 
         const packet = Buffer.concat([header, data]);
         this.socket.write(packet);
 
-        if (broadcast) {
-            World.fetchVisibleUsers(this, this.actor).forEach((user) => {
+        if (creature) {
+            World.fetchVisibleUsers(this, creature).forEach((user) => {
                 user.socket.write(packet);
             });
         }

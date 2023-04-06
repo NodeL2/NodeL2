@@ -21,8 +21,8 @@ const World = {
         }
     },
 
-    fetchVisibleUsers(session, actor) {
-        const actorArea = new SpeckMath.Circle(actor.fetchLocX(), actor.fetchLocY(), 5000);
+    fetchVisibleUsers(session, creature) {
+        const actorArea = new SpeckMath.Circle(creature.fetchLocX(), creature.fetchLocY(), 5000);
         return this.user.sessions.filter((ob) => session !== ob && actorArea.contains(new SpeckMath.Point(ob.actor?.fetchLocX() ?? 0, ob.actor?.fetchLocY() ?? 0))) ?? [];
     },
 

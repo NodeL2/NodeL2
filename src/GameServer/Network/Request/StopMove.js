@@ -20,7 +20,7 @@ function stopMove(session, buffer) {
 
 function consume(session, data) {
     utils.infoWarn('GameServer', 'stopped actor');
-    session.dataSend(ServerResponse.stopMove(session.actor.fetchId(), data), true);
+    session.dataSend(ServerResponse.stopMove(session.actor.fetchId(), data), session.actor);
 }
 
 module.exports = stopMove;
