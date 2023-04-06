@@ -17,6 +17,7 @@ const ConsoleText = {
         earnedExpAndSp    :  95,
         levelUp           :  96,
         incorrectDest     : 144,
+        waitForResponse   : 164,
         insufficientSp    : 278,
         insufficientAdena : 279,
         dropped           : 298,

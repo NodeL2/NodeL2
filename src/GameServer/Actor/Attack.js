@@ -39,27 +39,27 @@ class Attack {
         this.queue = { name: undefined, data: undefined };
     }
 
-    meleeHit(session, npc) {
+    meleeHit(session, creature) {
         const actor = session.actor;
 
-        if (this.checkParticipants(actor, npc)) {
+        if (this.checkParticipants(actor, creature)) {
             return;
         }
 
         const speed = Formulas.calcMeleeAtkTime(actor.fetchCollectiveAtkSpd());
         const hitLanded = Formulas.calcHitChance();
-        session.dataSendToMeAndOthers(ServerResponse.attack(actor, npc.fetchId(), hitLanded ? 0x00 : 0x80), actor);
+        session.dataSendToMeAndOthers(ServerResponse.attack(actor, creature.fetchId(), hitLanded ? 0x00 : 0x80), actor);
         actor.state.setHits(true);
 
         setTimeout(() => {
-            if (this.checkParticipants(actor, npc)) {
+            if (this.checkParticipants(actor, creature)) {
                 return;
             }
 
             if (hitLanded) {
                 const pAtk  = actor.fetchCollectivePAtk();
                 const pRand = actor.backpack.fetchTotalWeaponPAtkRnd() ?? 0;
-                this.hit(session, actor, npc, Formulas.calcMeleeHit(pAtk, pRand, npc.fetchCollectivePDef()));
+                this.hit(session, actor, creature, Formulas.calcMeleeHit(pAtk, pRand, creature.fetchCollectivePDef()));
             }
             else {
                 ConsoleText.transmit(session, ConsoleText.caption.missedHit);
@@ -68,7 +68,7 @@ class Attack {
         }, speed * 0.644); // Until hit point
 
         setTimeout(() => {
-            if (this.checkParticipants(actor, npc)) {
+            if (this.checkParticipants(actor, creature)) {
                 return;
             }
 
@@ -77,15 +77,15 @@ class Attack {
                 return;
             }
 
-            this.meleeHit(session, npc);
+            this.meleeHit(session, creature);
 
         }, speed); // Until end of combat move
     }
 
-    remoteHit(session, npc, skill) {
+    remoteHit(session, creature, skill) {
         const actor = session.actor;
 
-        if (this.checkParticipants(actor, npc)) {
+        if (this.checkParticipants(actor, creature)) {
             return;
         }
 
@@ -95,12 +95,12 @@ class Attack {
         }
 
         skill.setCalculatedHitTime(Formulas.calcRemoteAtkTime(skill.fetchHitTime(), actor.fetchCollectiveCastSpd()));
-        session.dataSendToMeAndOthers(ServerResponse.skillStarted(actor, npc.fetchId(), skill), actor);
+        session.dataSendToMeAndOthers(ServerResponse.skillStarted(actor, creature.fetchId(), skill), actor);
         session.dataSendToMe(ServerResponse.skillDurationBar(skill.fetchCalculatedHitTime()));
         actor.state.setCasts(true);
 
         setTimeout(() => {
-            if (this.checkParticipants(actor, npc)) {
+            if (this.checkParticipants(actor, creature)) {
                 return;
             }
 
@@ -108,7 +108,7 @@ class Attack {
             actor.statusUpdateVitals(actor);
 
             const mAtk = actor.fetchCollectiveMAtk();
-            this.hit(session, actor, npc, Formulas.calcRemoteHit(mAtk, skill.fetchPower(), npc.fetchCollectiveMDef()));
+            this.hit(session, actor, creature, Formulas.calcRemoteHit(mAtk, skill.fetchPower(), creature.fetchCollectiveMDef()));
             actor.state.setCasts(false);
 
             // Start replenish
@@ -137,9 +137,15 @@ class Attack {
         return false;
     }
 
-    hit(session, actor, npc, hit) {
+    hit(session, actor, creature, hit) {
         ConsoleText.transmit(session, ConsoleText.caption.actorHit, [{ kind: ConsoleText.kind.number, value: hit }]);
-        invoke(path.npc).receivedHit(session, actor, npc, hit);
+
+        if (creature.fetchId() >= 2000000) {
+            invoke(path.actor).receivedHit(session, creature, hit);
+        }
+        else {
+            invoke(path.npc).receivedHit(session, actor, creature, hit);
+        }
     }
 }
 

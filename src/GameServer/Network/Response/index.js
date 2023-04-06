@@ -1,6 +1,7 @@
 module.exports = {
           actionFailed: require('./ActionFailed'),
            addShortcut: require('./AddShortcut'),
+          askForTeamUp: require('./AskForTeamUp'),
                 attack: require('./Attack'),
        autoAttackStart: require('./AutoAttackStart'),
         autoAttackStop: require('./AutoAttackStop'),

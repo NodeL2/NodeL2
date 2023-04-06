@@ -1,4 +1,6 @@
-const SpeckMath = invoke('GameServer/SpeckMath');
+const ServerResponse = invoke('GameServer/Network/Response');
+const ConsoleText    = invoke('GameServer/ConsoleText');
+const SpeckMath      = invoke('GameServer/SpeckMath');
 
 const World = {
     init() {
@@ -31,6 +33,17 @@ const World = {
     fetchVisibleUsers(session, creature) {
         const actorArea = new SpeckMath.Circle(creature.fetchLocX(), creature.fetchLocY(), 5000);
         return this.user.sessions.filter((ob) => session !== ob && actorArea.contains(new SpeckMath.Point(ob.actor?.fetchLocX() ?? 0, ob.actor?.fetchLocY() ?? 0))) ?? [];
+    },
+
+    askForTeamUp(session, actor, data) {
+        ConsoleText.transmit(session, ConsoleText.caption.waitForResponse);
+        this.fetchUser(data.id).then((user) => {
+            user.session.dataSendToMe(ServerResponse.askForTeamUp(actor.fetchId(), data.distribution));
+        });
+    },
+
+    answerForTeamUp(session, actor, data) {
+        console.info(data);
     },
 
     fetchNpc        : invoke(path.world + 'FetchNpc'),
