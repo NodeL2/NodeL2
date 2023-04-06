@@ -29,10 +29,18 @@ class Session {
         Opcodes.table[packet[0]](this, packet);
     }
 
-    dataSend(data) {
+    dataSend(data, broadcast = false) {
         const header = Buffer.alloc(2);
         header.writeInt16LE(utils.size(data) + 2);
-        this.socket.write(Buffer.concat([header, data]));
+
+        const packet = Buffer.concat([header, data]);
+        this.socket.write(packet);
+
+        //if (broadcast) {
+        //    World.fetchVisibleUsers(this, this.actor).forEach((user) => {
+        //        user.socket.write(packet);
+        //    });
+        //}
     }
 
     error() {

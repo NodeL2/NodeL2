@@ -7,7 +7,7 @@ function pickupItem(session, actor, item) {
     const amount = item.fetchAmount();
 
     this.items.spawns = this.items.spawns.filter((ob) => ob.fetchId() !== id);
-    session.dataSend(ServerResponse.deleteOb(id));
+    session.dataSend(ServerResponse.deleteOb(id), true);
     this.purchaseItem(session, selfId, amount);
 
     const textName   = { kind: ConsoleText.kind.  item, value: selfId };

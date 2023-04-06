@@ -28,7 +28,7 @@ function levelUp(session, actor, nextLevel) {
     })
 
     // Level up effect
-    session.dataSend(ServerResponse.socialAction(id, 15));
+    session.dataSend(ServerResponse.socialAction(id, 15), true);
     ConsoleText.transmit(session, ConsoleText.caption.levelUp);
 
     // Update database with new hp, mp

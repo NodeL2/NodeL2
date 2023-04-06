@@ -1,3 +1,5 @@
+const SpeckMath = invoke('GameServer/SpeckMath');
+
 const World = {
     init() {
         this.user  = { sessions : [] };
@@ -17,6 +19,11 @@ const World = {
         else {
             this.user.sessions.push(session);
         }
+    },
+
+    fetchVisibleUsers(session, actor) {
+        const actorArea = new SpeckMath.Circle(actor.fetchLocX(), actor.fetchLocY(), 5000);
+        return this.user.sessions.filter((ob) => session !== ob.session && actorArea.contains(new SpeckMath.Point(ob.actor?.fetchLocX() ?? 0, ob.actor?.fetchLocY() ?? 0))) ?? [];
     },
 
     fetchNpc        : invoke(path.world + 'FetchNpc'),

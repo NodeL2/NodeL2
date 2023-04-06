@@ -9,7 +9,7 @@ function teleportTo(session, actor, coords) {
 
     actor.clearDestId();
     actor.automation.abortAll(actor);
-    session.dataSend(ServerResponse.teleportToLocation(actor.fetchId(), coords));
+    session.dataSend(ServerResponse.teleportToLocation(actor.fetchId(), coords), true);
 
     // Turns out to be a viable solution
     setTimeout(() => {

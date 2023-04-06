@@ -9,7 +9,7 @@ function stopAutomation(session, creature) {
             locY: creature.fetchLocY(),
             locZ: creature.fetchLocZ(),
             head: creature.fetchHead(),
-        })
+        }), true
     );
 }
 

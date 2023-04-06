@@ -78,17 +78,13 @@ class Backpack extends BackpackModel {
                 else
                 if (item.fetchSelfId() === 1061) {
                     const details = utils.crushOb(DataCache.skills.find((ob) => ob.selfId === 2032) ?? {});
-                    session.dataSend(
-                        ServerResponse.skillStarted(session.actor, session.actor.fetchId(), new SkillModel(details))
-                    );
+                    session.dataSend(ServerResponse.skillStarted(session.actor, session.actor.fetchId(), new SkillModel(details)), true);
                     return;
                 }
                 else
                 if (item.fetchSelfId() === 736) {
                     const details = utils.crushOb(DataCache.skills.find((ob) => ob.selfId === 2013) ?? {});
-                    session.dataSend(
-                        ServerResponse.skillStarted(session.actor, session.actor.fetchId(), new SkillModel(details))
-                    );
+                    session.dataSend(ServerResponse.skillStarted(session.actor, session.actor.fetchId(), new SkillModel(details)), true);
                     return;
                 }
 
