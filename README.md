@@ -1,6 +1,6 @@
 # NodeL2 :: LINEAGE II Server Emulator
 
-![GitHub Repo stars](https://img.shields.io/github/stars/dkoluris/nodel2?color=success) ![GitHub license](https://img.shields.io/github/license/dkoluris/nodel2?color=informational)
+![GitHub Repo stars](https://img.shields.io/github/stars/nodel2/nodel2?color=success) ![GitHub license](https://img.shields.io/github/license/nodel2/nodel2?color=informational)
 
 **LINEAGE II** Chronicle 2 server emulator for **NodeJS**. The structure is comprised of **ES6 JavaScript** (as much as possible), **SQL** via **MariaDB**, **JSON** for vast data, and **JSON Schema** for data structure validation.
 
