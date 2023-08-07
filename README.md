@@ -1,4 +1,4 @@
-# NodeL2 :: LINEAGE II Server Emulator
+# NodeL2 :: LINEAGE II Server Emulator (<a href="https://naden.co">https://naden.co</a>)
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/nodel2/nodel2?color=success) ![GitHub license](https://img.shields.io/github/license/nodel2/nodel2?color=informational)
 
