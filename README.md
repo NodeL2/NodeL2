@@ -6,9 +6,6 @@
 
 ⚠️ Careful, this is not to be used as a private server **at all**.
 
-## YouTube Showcase
-[![YouTube Thumbnail](https://img.youtube.com/vi/jSHAAKAnfCQ/0.jpg)](https://www.youtube.com/watch?v=jSHAAKAnfCQ)
-
 ## Prerequisites
 * Install **[NodeJS LTS](https://nodejs.org/en/download)**, and **[MariaDB 16](https://mariadb.org/download/?t=mariadb&p=mariadb&r=10.6.12)**
 * For convenience, also install **[MS Visual Studio Code](https://code.visualstudio.com/download)**, and **[TablePlus](https://tableplus.com/download)**
